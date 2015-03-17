@@ -4,3 +4,6 @@
 [submodule "submodules/fenix-ui-common"]
 	path = submodules/fenix-ui-common
 	url = https://github.com/FENIX-Platform/fenix-ui-common.git
+[submodule "submodules/faostat-ui-menu"]
+	path = submodules/faostat-ui-menu
+	url = https://github.com/FAOSTAT4/faostat-ui-menu.git
