@@ -1,4 +1,4 @@
-define(['jquery'], function($) {
+define(['jquery','require'], function($, Require) {
 
     'use strict';
 
@@ -32,11 +32,11 @@ define(['jquery'], function($) {
         var _this = this;
 
         /* Initiate components. */
-        require(['FAOSTAT_DOWNLOAD_UI'], function(DWLD) {
+        require(['FAOSTAT_UI_MENU'], function(MENU) {
 
-            /* Initiate download. */
-            var dwld = new DWLD();
-            dwld.init(_this.CONFIG.download);
+            /* Initiate menu. */
+            var menu = new MENU();
+            menu.init(_this.CONFIG.download);
 
         });
 

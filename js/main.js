@@ -1,11 +1,11 @@
 require(['../submodules/fenix-ui-common/js/Compiler',
-         '../submodules/faostat-download-ui/js/paths'
-        ], function(Compiler, DWLD) {
+         '../submodules/faostat-ui-menu/js/paths'
+        ], function(Compiler, MENU) {
 
-    var downloadConfig = DWLD;
-    downloadConfig['baseUrl'] = 'submodules/faostat-download-ui/js';
+    var menuConfig = MENU;
+    menuConfig['baseUrl'] = 'submodules/faostat-ui-menu/js';
 
-    Compiler.resolve([downloadConfig],
+    Compiler.resolve([menuConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository'
