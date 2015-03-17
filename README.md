@@ -1,2 +1,2 @@
-# faostat4-ui
-FAOSTAT4
+# FAOSTAT4
+New architecture for FAOSTAT dissemination system.
