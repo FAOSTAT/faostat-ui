@@ -1,0 +1,6 @@
+[submodule "submodules/faostat-download-ui"]
+	path = submodules/faostat-download-ui
+	url = https://github.com/FAOSTAT4/faostat-download-ui.git
+[submodule "submodules/fenix-ui-common"]
+	path = submodules/fenix-ui-common
+	url = https://github.com/FENIX-Platform/fenix-ui-common.git
