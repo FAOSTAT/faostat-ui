@@ -14,6 +14,11 @@ define(['jquery','backbone'], function($, Backbone) {
             download: {
                 lang: lang,
                 prefix: 'faostat_download_'
+            },
+
+            menu: {
+                lang: lang,
+                prefix: 'faostat_download_'
             }
 
         };
@@ -37,7 +42,8 @@ define(['jquery','backbone'], function($, Backbone) {
             /* Define the routes. */
             routes: {
                 ''                                  :   'home',
-                '(/):lang(/)home(/)'                :   'home'
+                '(/):lang(/)home(/)'                :   'home',
+                '(/):lang(/)download(/)'            :   'download'
             },
 
             /* Overwrite language settings. */
@@ -50,7 +56,7 @@ define(['jquery','backbone'], function($, Backbone) {
                 /* Initiate menu. */
                 require(['FAOSTAT_UI_MENU'], function(MENU) {
                     var menu = new MENU();
-                    menu.init(_this.CONFIG.download);
+                    menu.init(_this.CONFIG.menu);
                 });
 
             },
@@ -75,7 +81,8 @@ define(['jquery','backbone'], function($, Backbone) {
 
         /* Define modules. */
         var modules = [
-            'home'
+            'home',
+            'download'
         ];
 
         /* Route modules. */

@@ -1,7 +1,8 @@
 require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-menu/js/paths',
-         '../submodules/faostat-ui-home/js/paths'
-        ], function(Compiler, MENU, HOME) {
+         '../submodules/faostat-ui-home/js/paths',
+         '../submodules/faostat-ui-download/js/paths'
+        ], function(Compiler, MENU, HOME, DWLD) {
 
     var menuConfig = MENU;
     menuConfig['baseUrl'] = 'submodules/faostat-ui-menu/js';
@@ -9,7 +10,10 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var homeConfig = HOME;
     homeConfig['baseUrl'] = 'submodules/faostat-ui-home/js';
 
-    Compiler.resolve([menuConfig, homeConfig],
+    var downloadConfig = DWLD;
+    downloadConfig['baseUrl'] = 'submodules/faostat-ui-download/js';
+
+    Compiler.resolve([menuConfig, homeConfig, downloadConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository'
