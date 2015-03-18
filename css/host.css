@@ -1821,6 +1821,7 @@ div[data-module="region"] .fx-catalog-modular-form-content {
 
 .faostat-footer {
   background-color: #174c74;
-  height: 10em; }
+  height: 10em;
+  margin-top: 2em; }
 
 /*# sourceMappingURL=host.css.map */
