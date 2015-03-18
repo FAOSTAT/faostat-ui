@@ -1798,7 +1798,7 @@ div[data-module="region"] .fx-catalog-modular-form-content {
 /* Leaflet */
 /* Fenix Leaflet Import */
 /* Fenix Leaflet Zoom control 0.7.3*/
-/* Componenbt Style*/
+/* Component Style*/
 /* Faostat Download */
 .summary-item {
   display: inline-block;
@@ -1814,5 +1814,13 @@ div[data-module="region"] .fx-catalog-modular-form-content {
 
 .v-space {
   margin-top: 16px; }
+
+.faostat-header {
+  background-color: #174c74;
+  height: 5em; }
+
+.faostat-footer {
+  background-color: #174c74;
+  height: 10em; }
 
 /*# sourceMappingURL=host.css.map */
