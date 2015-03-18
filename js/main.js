@@ -1,8 +1,13 @@
 require(['../submodules/fenix-ui-common/js/Compiler',
+         '../submodules/faostat-ui-commons/js/paths',
          '../submodules/faostat-ui-menu/js/paths',
          '../submodules/faostat-ui-home/js/paths',
-         '../submodules/faostat-ui-download/js/paths'
-        ], function(Compiler, MENU, HOME, DWLD) {
+         '../submodules/faostat-ui-download/js/paths',
+         '../submodules/faostat-ui-tree/js/paths'
+        ], function(Compiler, Commons, MENU, HOME, DWLD, TREE) {
+
+    var commonsConfig = Commons;
+    commonsConfig['baseUrl'] = 'submodules/faostat-ui-commons/js';
 
     var menuConfig = MENU;
     menuConfig['baseUrl'] = 'submodules/faostat-ui-menu/js';
@@ -13,7 +18,10 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var downloadConfig = DWLD;
     downloadConfig['baseUrl'] = 'submodules/faostat-ui-download/js';
 
-    Compiler.resolve([menuConfig, homeConfig, downloadConfig],
+    var treeConfig = TREE;
+    treeConfig['baseUrl'] = 'submodules/faostat-ui-tree/js';
+
+    Compiler.resolve([commonsConfig, menuConfig, homeConfig, downloadConfig, treeConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository'

@@ -4,7 +4,7 @@ define(['jquery','backbone'], function($, Backbone) {
 
     function FAOSTAT4() {
 
-        var lang = 'E';
+        var lang = 'en';
 
         this.CONFIG = {
 
