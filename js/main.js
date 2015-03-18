@@ -1,11 +1,15 @@
 require(['../submodules/fenix-ui-common/js/Compiler',
-         '../submodules/faostat-ui-menu/js/paths'
-        ], function(Compiler, MENU) {
+         '../submodules/faostat-ui-menu/js/paths',
+         '../submodules/faostat-ui-home/js/paths'
+        ], function(Compiler, MENU, HOME) {
 
     var menuConfig = MENU;
     menuConfig['baseUrl'] = 'submodules/faostat-ui-menu/js';
 
-    Compiler.resolve([menuConfig],
+    var homeConfig = HOME;
+    homeConfig['baseUrl'] = 'submodules/faostat-ui-home/js';
+
+    Compiler.resolve([menuConfig, homeConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository'
@@ -22,12 +26,23 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     text: '{FENIX_CDN}/js/requirejs/plugins/text/2.0.12/text',
                     sweetAlert: '{FENIX_CDN}/js/sweet-alert/0.4.2/sweet-alert',
                     bootstrap: '{FENIX_CDN}/js/bootstrap/3.3.2/js/bootstrap.min',
-                    domReady: '{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady'
+                    domReady: '{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady',
+                    backbone: 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
+                    underscore: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min'
                 },
                 shim: {
+                    backbone: {
+                        deps: ['jquery', 'underscore'],
+                        exports: 'Backbone'
+                    },
+                    bootstrap: ['jquery'],
                     handlebars: {
                         exports: 'Handlebars'
                     },
+                    underscore: {
+                        exports: '_'
+                    },
+                    highcharts: ['jquery'],
                     amplify: {
                         deps: ['jquery'],
                         exports: 'amplifyjs'

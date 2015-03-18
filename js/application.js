@@ -1,4 +1,4 @@
-define(['jquery','require'], function($, Require) {
+define(['jquery','backbone'], function($, Backbone) {
 
     'use strict';
 
@@ -31,14 +31,59 @@ define(['jquery','require'], function($, Require) {
         /* This... */
         var _this = this;
 
-        /* Initiate components. */
-        require(['FAOSTAT_UI_MENU'], function(MENU) {
+        /* Define the router. */
+        var AppRouter = Backbone.Router.extend({
 
-            /* Initiate menu. */
-            var menu = new MENU();
-            menu.init(_this.CONFIG.download);
+            /* Define the routes. */
+            routes: {
+                ''                                  :   'home',
+                '(/):lang(/)home(/)'                :   'home'
+            },
+
+            /* Overwrite language settings. */
+            init_language: function (lang) {
+
+                /* Initiate language. */
+                lang = (lang != null) ? lang : 'en';
+                require.config({'locale': lang});
+
+                /* Initiate menu. */
+                require(['FAOSTAT_UI_MENU'], function(MENU) {
+                    var menu = new MENU();
+                    menu.init(_this.CONFIG.download);
+                });
+
+            },
+
+            route_module: function(module_name) {
+                app_router.on('route:' + module_name, function (lang) {
+                    this.init_language(lang);
+                    require(['FAOSTAT_UI_' + module_name.toUpperCase()], function (MODULE) {
+                        var module = new MODULE();
+                        module.init({
+                            lang: lang,
+                            placeholder_id: 'faostat_ui_content'
+                        });
+                    });
+                });
+            }
 
         });
+
+        /* Initiate router. */
+        var app_router = new AppRouter;
+
+        /* Define modules. */
+        var modules = [
+            'home'
+        ];
+
+        /* Route modules. */
+        for (var module in modules)
+            app_router.route_module(modules[module]);
+
+        /* Initiate Backbone history. */
+        Backbone.history.start();
 
     };
 
