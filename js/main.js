@@ -3,8 +3,11 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-menu/js/paths',
          '../submodules/faostat-ui-home/js/paths',
          '../submodules/faostat-ui-download/js/paths',
-         '../submodules/faostat-ui-tree/js/paths'
-        ], function(Compiler, Commons, MENU, HOME, DWLD, TREE) {
+         '../submodules/faostat-ui-tree/js/paths',
+         '../submodules/faostat-ui-download/submodules/faostat-ui-bulk-downloads/js/paths',
+         '../submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/js/paths',
+         '../submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/submodules/faostat-ui-download-selector/js/paths'
+        ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR) {
 
     var commonsConfig = Commons;
     commonsConfig['baseUrl'] = 'submodules/faostat-ui-commons/js';
@@ -21,7 +24,23 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var treeConfig = TREE;
     treeConfig['baseUrl'] = 'submodules/faostat-ui-tree/js';
 
-    Compiler.resolve([commonsConfig, menuConfig, homeConfig, downloadConfig, treeConfig],
+    var bulkConfig = BULK;
+    bulkConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/faostat-ui-bulk-downloads/js';
+
+    var selectorMgrConfig = SELECTOR_MGR;
+    selectorMgrConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/js';
+
+    var selectorConfig = SELECTOR;
+    selectorConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/submodules/faostat-ui-download-selector/js';
+
+    Compiler.resolve([commonsConfig,
+                      menuConfig,
+                      homeConfig,
+                      downloadConfig,
+                      treeConfig,
+                      bulkConfig,
+                      selectorMgrConfig,
+                      selectorConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository'
