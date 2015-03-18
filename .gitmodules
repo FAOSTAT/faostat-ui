@@ -19,3 +19,6 @@
 [submodule "submodules/-f"]
 	path = submodules/-f
 	url = https://github.com/FAOSTAT4/faostat-ui-home.git
+[submodule "submodules/faostat-ui-download"]
+	path = submodules/faostat-ui-download
+	url = https://github.com/FAOSTAT4/faostat-ui-download.git
