@@ -4,9 +4,6 @@
 [submodule "submodules/faostat-ui-menu"]
 	path = submodules/faostat-ui-menu
 	url = https://github.com/FAOSTAT4/faostat-ui-menu.git
-[submodule "submodules/faostat-ui-home"]
-	path = submodules/faostat-ui-home
-	url = https://github.com/FAOSTAT4/faostat-ui-home.git
 [submodule "submodules/faostat-ui-module-1"]
 	path = submodules/faostat-ui-module-1
 	url = https://github.com/FAOSTAT4/faostat-ui-archetype.git
