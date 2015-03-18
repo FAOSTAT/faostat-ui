@@ -1,0 +1,13 @@
+/* TEAM */
+
+    Software engineer: Simone Murzilli
+    Contact: simone.murzilli [at] gmail.com
+    From: Rome, Italy
+    Github: simonefenix
+
+    Software engineer: Guido Barbaglia
+    Contact: guido.barbaglia [at] gmail.com
+    From: Caserta, Italy
+    Location: Rome, Italy
+    Twitter: @Kalimaha
+    Github: Kalimaha

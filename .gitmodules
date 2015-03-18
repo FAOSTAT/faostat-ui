@@ -22,3 +22,12 @@
 [submodule "submodules/faostat-ui-download"]
 	path = submodules/faostat-ui-download
 	url = https://github.com/FAOSTAT4/faostat-ui-download.git
+[submodule "submodules/faostat-tree"]
+	path = submodules/faostat-tree
+	url = https://github.com/FAOSTAT4/faostat-tree.git
+[submodule "submodules/faostat-ui-tree"]
+	path = submodules/faostat-ui-tree
+	url = https://github.com/FAOSTAT4/faostat-ui-tree.git
+[submodule "submodules/faostat-ui-commons"]
+	path = submodules/faostat-ui-commons
+	url = https://github.com/FAOSTAT4/faostat-ui-commons.git
