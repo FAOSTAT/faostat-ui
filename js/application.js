@@ -41,9 +41,10 @@ define(['jquery','backbone'], function($, Backbone) {
 
             /* Define the routes. */
             routes: {
-                ''                                  :   'home',
-                '(/):lang(/)home(/)'                :   'home',
-                '(/):lang(/)download(/)'            :   'download'
+                ''                                          :   'home',
+                '(/):lang(/)home(/)'                        :   'home',
+                '(/):lang(/)download(/)'                    :   'download',
+                '(/):lang(/)download(/):group(/):domain(/)'    :   'download_group_domain'
             },
 
             /* Overwrite language settings. */
@@ -88,6 +89,19 @@ define(['jquery','backbone'], function($, Backbone) {
         /* Route modules. */
         for (var module in modules)
             app_router.route_module(modules[module]);
+
+        /* Open download on selected group and domain. */
+        app_router.on('route:download_group_domain', function (lang, group, domain) {
+            require(['FAOSTAT_UI_DOWNLOAD'], function (DWLD) {
+                var dwld = new DWLD();
+                dwld.init({
+                    lang: lang,
+                    group: group,
+                    domain: domain,
+                    placeholder_id: 'faostat_ui_content'
+                });
+            });
+        });
 
         /* Initiate Backbone history. */
         Backbone.history.start();
