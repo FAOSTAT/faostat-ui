@@ -6,8 +6,10 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-tree/js/paths',
          '../submodules/faostat-ui-download/submodules/faostat-ui-bulk-downloads/js/paths',
          '../submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/js/paths',
-         '../submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/submodules/faostat-ui-download-selector/js/paths'
-        ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR) {
+         '../submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/submodules/faostat-ui-download-selector/js/paths',
+         '../submodules/faostat-ui-download/submodules/fenix-ui-download-options/js/paths',
+         '../submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/js/paths'
+        ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA) {
 
     var commonsConfig = Commons;
     commonsConfig['baseUrl'] = 'submodules/faostat-ui-commons/js';
@@ -33,6 +35,12 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var selectorConfig = SELECTOR;
     selectorConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/submodules/faostat-ui-download-selector/js';
 
+    var optionsConfig = OPTIONS;
+    optionsConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-download-options/js';
+
+    var metadataConfig = METADATA;
+    metadataConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/js';
+
     Compiler.resolve([commonsConfig,
                       menuConfig,
                       homeConfig,
@@ -40,7 +48,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       treeConfig,
                       bulkConfig,
                       selectorMgrConfig,
-                      selectorConfig],
+                      selectorConfig,
+                      optionsConfig,
+                      metadataConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository'
