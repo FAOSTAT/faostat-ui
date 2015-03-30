@@ -44,7 +44,7 @@ define(['jquery','backbone'], function($, Backbone) {
                 ''                                          :   'home',
                 '(/):lang(/)home(/)'                        :   'home',
                 '(/):lang(/)download(/)'                    :   'download',
-                '(/):lang(/)download(/):group(/):domain(/)'    :   'download_group_domain'
+                '(/):lang(/)download(/):group(/):domain(/)' :   'download_group_domain'
             },
 
             /* Overwrite language settings. */
