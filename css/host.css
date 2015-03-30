@@ -1824,4 +1824,50 @@ div[data-module="region"] .fx-catalog-modular-form-content {
   height: 10em;
   margin-top: 2em; }
 
+.fs-head {
+  background-color: #379bce;
+  height: 50px; }
+
+.fs-logo-holder {
+  width: 200px;
+  height: 50px;
+  background-color: #174c74;
+  padding: 7px 0 0 20px;
+  float: left; }
+
+.fs-logo {
+  width: 160px;
+  height: 34px;
+  background-size: 160px 34px;
+  background: url("../images/fs-logo-new.png") no-repeat; }
+
+.fs-united {
+  background-color: #379bce;
+  width: 550px;
+  height: 50px;
+  float: left;
+  padding: 14px 0 0 65px;
+  color: white; }
+
+.fs-united p {
+  line-height: 7px;
+  height: 12px; }
+
+.fs-bold {
+  font-weight: 700; }
+
+.fs-languages {
+  background-color: #379bce;
+  height: 100%;
+  float: right;
+  color: white;
+  padding: 15px 20px 0 0; }
+
+.fs-languages span.fs-lan-selected {
+  text-decoration: underline; }
+
+.fs-languages span {
+  margin: 0 7px 0 7px;
+  cursor: pointer; }
+
 /*# sourceMappingURL=host.css.map */
