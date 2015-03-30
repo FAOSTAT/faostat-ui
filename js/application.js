@@ -41,10 +41,10 @@ define(['jquery','backbone'], function($, Backbone) {
 
             /* Define the routes. */
             routes: {
-                ''                                          :   'home',
-                '(/):lang(/)home(/)'                        :   'home',
-                '(/):lang(/)download(/)'                    :   'download',
-                '(/):lang(/)download(/):group(/):domain(/)' :   'download_group_domain'
+                ''                                                      :   'home',
+                '(/):lang(/)home(/)'                                    :   'home',
+                '(/):lang(/)download(/)'                                :   'download',
+                '(/):lang(/)download(/):group(/):domain(/):section(/)'  :   'download_group_domain_section'
             },
 
             /* Overwrite language settings. */
@@ -91,13 +91,14 @@ define(['jquery','backbone'], function($, Backbone) {
             app_router.route_module(modules[module]);
 
         /* Open download on selected group and domain. */
-        app_router.on('route:download_group_domain', function (lang, group, domain) {
+        app_router.on('route:download_group_domain_section', function (lang, group, domain, section) {
             require(['FAOSTAT_UI_DOWNLOAD'], function (DWLD) {
                 var dwld = new DWLD();
                 dwld.init({
                     lang: lang,
                     group: group,
                     domain: domain,
+                    section: section,
                     placeholder_id: 'faostat_ui_content'
                 });
             });
