@@ -10,6 +10,7 @@ define(['jquery','backbone'], function($, Backbone) {
 
             lang: lang,
             prefix: 'faostat_',
+            datasource: 'faostat',
 
             download: {
                 lang: lang,
@@ -99,6 +100,7 @@ define(['jquery','backbone'], function($, Backbone) {
                     group: group,
                     domain: domain,
                     section: section,
+                    datasource: _this.CONFIG.datasource,
                     placeholder_id: 'faostat_ui_content'
                 });
             });
