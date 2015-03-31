@@ -19,7 +19,8 @@ define(['jquery','backbone'], function($, Backbone) {
 
             menu: {
                 lang: lang,
-                prefix: 'faostat_download_'
+                prefix: 'faostat_download_',
+                datasource: 'faostatdb'
             }
 
         };
