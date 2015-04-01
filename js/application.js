@@ -44,6 +44,7 @@ define(['jquery','backbone'], function($, Backbone) {
             /* Define the routes. */
             routes: {
                 ''                                                      :   'home',
+                '(/):lang(/)'                                           :   'home',
                 '(/):lang(/)home(/)'                                    :   'home',
                 '(/):lang(/)download(/)'                                :   'download',
                 '(/):lang(/)download(/):group(/):domain(/):section(/)'  :   'download_group_domain_section'
