@@ -47,6 +47,7 @@ define(['jquery','backbone'], function($, Backbone) {
                 '(/):lang(/)'                                           :   'home',
                 '(/):lang(/)home(/)'                                    :   'home',
                 '(/):lang(/)download(/)'                                :   'download',
+                '(/):lang(/)download(/):group(/)'                       :   'download_group',
                 '(/):lang(/)download(/):group(/):domain(/):section(/)'  :   'download_group_domain_section'
             },
 
@@ -92,6 +93,21 @@ define(['jquery','backbone'], function($, Backbone) {
         /* Route modules. */
         for (var module in modules)
             app_router.route_module(modules[module]);
+
+        /* Open download on selected group. */
+        app_router.on('route:download_group', function (lang, group) {
+            require(['FAOSTAT_UI_DOWNLOAD'], function (DWLD) {
+                var dwld = new DWLD();
+                dwld.init({
+                    lang: lang,
+                    group: group,
+                    domain: null,
+                    section: 'metadata',
+                    datasource: _this.CONFIG.datasource,
+                    placeholder_id: 'faostat_ui_content'
+                });
+            });
+        });
 
         /* Open download on selected group and domain. */
         app_router.on('route:download_group_domain_section', function (lang, group, domain, section) {
