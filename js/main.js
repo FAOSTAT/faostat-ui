@@ -8,8 +8,13 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/js/paths',
          '../submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/submodules/faostat-ui-download-selector/js/paths',
          '../submodules/faostat-ui-download/submodules/fenix-ui-download-options/js/paths',
-         '../submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/js/paths'
-        ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA) {
+         '../submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/js/paths',
+         '../submodules/faostat-ui-analysis/js/paths',
+         '../submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-indicators/js/paths',
+         '../submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-overview/js/paths',
+         '../submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-qaqc/js/paths',
+         '../submodules/faostat-ui-analysis/submodules/fenix-ui-tiles-manager/js/paths'
+        ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA, ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR) {
 
     var commonsConfig = Commons;
     commonsConfig['baseUrl'] = 'submodules/faostat-ui-commons/js';
@@ -41,6 +46,21 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var metadataConfig = METADATA;
     metadataConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/js';
 
+    var analysisConfig = ANALYSIS;
+    analysisConfig['baseUrl'] = 'submodules/faostat-ui-analysis/js';
+
+    var ghgIndicatorsConfig = GHG_INDICATORS;
+    ghgIndicatorsConfig['baseUrl'] = 'submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-indicators/js';
+
+    var ghgOverviewConfig = GHG_OVERVIEW;
+    ghgOverviewConfig['baseUrl'] = 'submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-overview/js';
+
+    var ghgQAQCConfig = GHG_QA_QC;
+    ghgQAQCConfig['baseUrl'] = 'submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-qaqc/js';
+
+    var tilesManagerConfig = TILES_MGR;
+    tilesManagerConfig['baseUrl'] = 'submodules/faostat-ui-analysis/submodules/fenix-ui-tiles-manager/js';
+
     Compiler.resolve([commonsConfig,
                       menuConfig,
                       homeConfig,
@@ -50,7 +70,12 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       selectorMgrConfig,
                       selectorConfig,
                       optionsConfig,
-                      metadataConfig],
+                      metadataConfig,
+                      analysisConfig,
+                      ghgIndicatorsConfig,
+                      ghgOverviewConfig,
+                      ghgQAQCConfig,
+                      tilesManagerConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository'
