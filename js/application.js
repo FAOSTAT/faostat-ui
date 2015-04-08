@@ -150,6 +150,11 @@ define(['jquery','backbone'], function($, Backbone) {
 
         });
 
+        /* Show Analysis. */
+        //app_router.on('route:analysis_section_module', function (lang, section, module) {
+        //
+        //});
+
         /* Initiate Backbone history. */
         Backbone.history.start();
 
