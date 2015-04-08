@@ -96,7 +96,18 @@ define(['jquery','backbone'], function($, Backbone) {
 
         /* Open download on selected group. */
         app_router.on('route:download_group', function (lang, group) {
-            require(['FAOSTAT_UI_DOWNLOAD'], function (DWLD) {
+
+            /* Initiate language. */
+            lang = (lang != null) ? lang : 'en';
+            require.config({'locale': lang});
+
+            require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_DOWNLOAD'], function (MENU, DWLD) {
+
+                /* Initiate the menu. */
+                var menu = new MENU();
+                menu.init(_this.CONFIG.menu);
+
+                /* Initiate the download. */
                 var dwld = new DWLD();
                 dwld.init({
                     lang: lang,
@@ -106,12 +117,25 @@ define(['jquery','backbone'], function($, Backbone) {
                     datasource: _this.CONFIG.datasource,
                     placeholder_id: 'faostat_ui_content'
                 });
+
             });
+
         });
 
         /* Open download on selected group and domain. */
         app_router.on('route:download_group_domain_section', function (lang, group, domain, section) {
-            require(['FAOSTAT_UI_DOWNLOAD'], function (DWLD) {
+
+            /* Initiate language. */
+            lang = (lang != null) ? lang : 'en';
+            require.config({'locale': lang});
+
+            require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_DOWNLOAD'], function (MENU, DWLD) {
+
+                /* Initiate the menu. */
+                var menu = new MENU();
+                menu.init(_this.CONFIG.menu);
+
+                /* Initiate the download. */
                 var dwld = new DWLD();
                 dwld.init({
                     lang: lang,
@@ -121,7 +145,9 @@ define(['jquery','backbone'], function($, Backbone) {
                     datasource: _this.CONFIG.datasource,
                     placeholder_id: 'faostat_ui_content'
                 });
+
             });
+
         });
 
         /* Initiate Backbone history. */
