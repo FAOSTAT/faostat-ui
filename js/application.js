@@ -48,7 +48,10 @@ define(['jquery','backbone'], function($, Backbone) {
                 '(/):lang(/)home(/)'                                    :   'home',
                 '(/):lang(/)download(/)'                                :   'download',
                 '(/):lang(/)download(/):group(/)'                       :   'download_group',
-                '(/):lang(/)download(/):group(/):domain(/):section(/)'  :   'download_group_domain_section'
+                '(/):lang(/)download(/):group(/):domain(/):section(/)'  :   'download_group_domain_section',
+                '(/):lang(/)analysis(/)'                                :   'analysis',
+                '(/):lang(/)analysis(/):section(/)'                     :   'analysis_section',
+                '(/):lang(/)analysis(/):section(/):module(/)'           :   'analysis_section_module'
             },
 
             /* Overwrite language settings. */
@@ -87,7 +90,8 @@ define(['jquery','backbone'], function($, Backbone) {
         /* Define modules. */
         var modules = [
             'home',
-            'download'
+            'download',
+            'analysis'
         ];
 
         /* Route modules. */
@@ -151,9 +155,58 @@ define(['jquery','backbone'], function($, Backbone) {
         });
 
         /* Show Analysis. */
-        //app_router.on('route:analysis_section_module', function (lang, section, module) {
-        //
-        //});
+        app_router.on('route:analysis_section_module', function (lang, section, module) {
+
+            /* Initiate language. */
+            lang = (lang != null) ? lang : 'en';
+            require.config({'locale': lang});
+
+            require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
+
+                /* Initiate the menu. */
+                var menu = new MENU();
+                menu.init(_this.CONFIG.menu);
+
+                /* Initiate the download. */
+                var analysis = new ANALYSIS();
+                analysis.init({
+                    lang: lang,
+                    section: section,
+                    module: module,
+                    datasource: _this.CONFIG.datasource,
+                    placeholder_id: 'faostat_ui_content'
+                });
+
+            });
+
+        });
+
+        /* Show Analysis. */
+        app_router.on('route:analysis_section', function (lang, section) {
+
+            /* Initiate language. */
+            lang = (lang != null) ? lang : 'en';
+            require.config({'locale': lang});
+
+            require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
+
+                /* Initiate the menu. */
+                var menu = new MENU();
+                menu.init(_this.CONFIG.menu);
+
+                /* Initiate the download. */
+                var analysis = new ANALYSIS();
+                analysis.init({
+                    lang: lang,
+                    section: section,
+                    module: null,
+                    datasource: _this.CONFIG.datasource,
+                    placeholder_id: 'faostat_ui_content'
+                });
+
+            });
+
+        });
 
         /* Initiate Backbone history. */
         Backbone.history.start();
