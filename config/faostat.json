@@ -1,0 +1,53 @@
+{
+   "$schema": "http://json-schema.org/draft-04/schema#",
+   "type": "object",
+   "title": "FAOSTAT",
+   "description": "FAOSTAT",
+   "definitions": {
+      "lang": {
+         "type": "string",
+         "default": "en"
+      },
+      "lang_faostat": {
+         "type": "string",
+         "default": "E"
+      },
+      "url_wds_bulk_downloads": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat3.fao.org/wds/rest/bulkdownloads"
+      }
+   },
+   "properties": {
+      "download": {
+         "type": "object",
+         "properties": {
+            "bulk": {
+               "type": "object",
+               "properties": {
+                  "lang": {
+                     "$ref": "#/definitions/lang"
+                  },
+                  "lang_faostat": {
+                     "$ref": "#/definitions/lang_faostat"
+                  }
+               }
+            },
+            "metadata": {
+               "type": "object",
+               "properties": {
+                  "lang": {
+                     "$ref": "#/definitions/lang"
+                  },
+                  "lang_faostat": {
+                     "$ref": "#/definitions/lang_faostat"
+                  },
+                  "bulks_url": {
+                     "$ref": "#/definitions/url_wds_bulk_downloads"
+                  }
+               }
+            }
+         }
+      }
+   }
+}
