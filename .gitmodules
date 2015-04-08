@@ -34,3 +34,6 @@
 [submodule "submodules/faostat-ui-home"]
 	path = submodules/faostat-ui-home
 	url = https://github.com/FAOSTAT4/faostat-ui-home.git
+[submodule "submodules/faostat-ui-analysis"]
+	path = submodules/faostat-ui-analysis
+	url = https://github.com/FAOSTAT4/faostat-ui-analysis.git
