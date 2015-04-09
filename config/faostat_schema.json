@@ -1,0 +1,369 @@
+{
+   "$schema": "http://json-schema.org/draft-04/schema#",
+   "type": "object",
+   "title": "FAOSTAT",
+   "description": "FAOSTAT",
+   "definitions": {
+      "lang": {
+         "type": "string",
+         "default": "en",
+         "enum": ["en", "fr", "es", "ar", "cn", "ru"]
+      },
+      "lang_faostat": {
+         "type": "string",
+         "default": "E",
+         "enum": ["E", "F", "S", "A", "C", "R"]
+      },
+      "bulk_downloads_root": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat.fao.org/Portals/_Faostat/Downloads/zip_files/"
+      },
+      "url_wds_bulk_downloads": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat3.fao.org/wds/rest/bulkdownloads"
+      },
+      "url_wds_table": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat3.fao.org/wds/rest/table/json"
+      },
+      "url_mdsd": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat3.fao.org/d3s2/v2/mdsd"
+      },
+      "url_d3s": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat3.fao.org/d3s2/v2/msd/resources/metadata/uid"
+      },
+      "url_codelists": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat3.fao.org/wds/"
+      },
+      "url_listboxes": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat3.fao.org/wds/rest/procedures/listboxes"
+      },
+      "datasource": {
+         "type": "string",
+         "default": "faostatdb",
+         "enum": [
+            "faostat",
+            "faostatdb",
+            "faostatglbl",
+            "faostatprod",
+            "faostatproddiss"
+         ]
+      }
+   },
+   "properties": {
+      "download": {
+         "type": "object",
+         "title": "Download Section",
+         "properties": {
+            "metadata": {
+               "type": "object",
+               "properties": {
+                  "lang": {
+                     "$ref": "#/definitions/lang"
+                  },
+                  "lang_faostat": {
+                     "$ref": "#/definitions/lang_faostat"
+                  },
+                  "edit": {
+                     "type": "boolean",
+                     "default": false
+                  },
+                  "domain": {
+                     "type": "string",
+                     "default": "QC"
+                  },
+                  "application_name": {
+                     "type": "string",
+                     "default": "faostat"
+                  },
+                  "placeholder_id": {
+                     "type": "string",
+                     "default": "placeholder"
+                  },
+                  "url_wds_table": {
+                     "$ref": "#/definitions/url_wds_table"
+                  },
+                  "url_mdsd": {
+                     "$ref": "#/definitions/url_mdsd"
+                  },
+                  "url_d3s": {
+                     "$ref": "#/definitions/url_d3s"
+                  }
+               }
+            },
+            "bulk": {
+               "type": "object",
+               "title": "Bulk Downloads",
+               "properties": {
+                  "lang": {
+                     "$ref": "#/definitions/lang"
+                  },
+                  "lang_faostat": {
+                     "$ref": "#/definitions/lang_faostat"
+                  },
+                  "domain": {
+                     "type": "string",
+                     "default": "QC"
+                  },
+                  "datasource": {
+                     "$ref": "#/definitions/datasource"
+                  },
+                  "placeholder_id": {
+                     "type": "string",
+                     "default": "placeholder"
+                  },
+                  "url_bulk_downloads": {
+                     "$ref": "#/definitions/url_wds_bulk_downloads"
+                  },
+                  "bulk_downloads_root": {
+                     "$ref": "#/definitions/bulk_downloads_root"
+                  }
+               }
+            },
+            "download_options": {
+               "type": "object",
+               "title": "Preview Options",
+               "properties": {
+                  "lang": {
+                     "$ref": "#/definitions/lang"
+                  },
+                  "lang_faostat": {
+                     "$ref": "#/definitions/lang_faostat"
+                  },
+                  "placeholder_id": {
+                     "type": "string",
+                     "default": "placeholder"
+                  },
+                  "prefix": {
+                     "type": "string",
+                     "default": "fenix_"
+                  },
+                  "excel_button": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "pdf_button": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "ok_button": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "csv_button": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "decimal_separators": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "thousand_separators": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "decimal_numbers": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "show_options": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "pdf_button_id": {
+                     "type": "string",
+                     "default": "pdf_button_id"
+                  },
+                  "csv_button_id": {
+                     "type": "string",
+                     "default": "csv_button_id"
+                  },
+                  "excel_button_id": {
+                     "type": "string",
+                     "default": "excel_button_id"
+                  },
+                  "decimal_separator_id": {
+                     "type": "string",
+                     "default": "decimal_separator_id"
+                  },
+                  "thousand_separator_id": {
+                     "type": "string",
+                     "default": "thousand_separator_id"
+                  },
+                  "decimal_numbers_id": {
+                     "type": "string",
+                     "default": "decimal_numbers_id"
+                  },
+                  "flags_id": {
+                     "type": "string",
+                     "default": "flags_id"
+                  },
+                  "codes_id": {
+                     "type": "string",
+                     "default": "codes_id"
+                  },
+                  "units_id": {
+                     "type": "string",
+                     "default": "units_id"
+                  },
+                  "null_values_id": {
+                     "type": "string",
+                     "default": "null_values_id"
+                  },
+                  "button_label": {
+                     "type": "string",
+                     "default": "button_label"
+                  },
+                  "header_label": {
+                     "type": "string",
+                     "default": "header_label"
+                  }
+               }
+            },
+            "preview_options": {
+               "type": "object",
+               "title": "Preview Options",
+               "properties": {
+                  "lang": {
+                     "$ref": "#/definitions/lang"
+                  },
+                  "lang_faostat": {
+                     "$ref": "#/definitions/lang_faostat"
+                  },
+                  "placeholder_id": {
+                     "type": "string",
+                     "default": "placeholder"
+                  },
+                  "prefix": {
+                     "type": "string",
+                     "default": "fenix_"
+                  },
+                  "excel_button": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "pdf_button": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "ok_button": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "csv_button": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "decimal_separators": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "thousand_separators": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "decimal_numbers": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "show_options": {
+                     "type": "boolean",
+                     "value": false
+                  },
+                  "pdf_button_id": {
+                     "type": "string",
+                     "default": "pdf_button_id"
+                  },
+                  "csv_button_id": {
+                     "type": "string",
+                     "default": "csv_button_id"
+                  },
+                  "excel_button_id": {
+                     "type": "string",
+                     "default": "excel_button_id"
+                  },
+                  "decimal_separator_id": {
+                     "type": "string",
+                     "default": "decimal_separator_id"
+                  },
+                  "thousand_separator_id": {
+                     "type": "string",
+                     "default": "thousand_separator_id"
+                  },
+                  "decimal_numbers_id": {
+                     "type": "string",
+                     "default": "decimal_numbers_id"
+                  },
+                  "flags_id": {
+                     "type": "string",
+                     "default": "flags_id"
+                  },
+                  "codes_id": {
+                     "type": "string",
+                     "default": "codes_id"
+                  },
+                  "units_id": {
+                     "type": "string",
+                     "default": "units_id"
+                  },
+                  "null_values_id": {
+                     "type": "string",
+                     "default": "null_values_id"
+                  },
+                  "button_label": {
+                     "type": "string",
+                     "default": "button_label"
+                  },
+                  "header_label": {
+                     "type": "string",
+                     "default": "header_label"
+                  }
+               }
+            },
+            "selector_manager": {
+               "type": "object",
+               "properties": {
+                  "lang": {
+                     "$ref": "#/definitions/lang"
+                  },
+                  "lang_faostat": {
+                     "$ref": "#/definitions/lang_faostat"
+                  },
+                  "domain": {
+                     "type": "string",
+                     "default": "QC"
+                  },
+                  "prefix": {
+                     "type": "string",
+                     "default": "fenix_"
+                  },
+                  "datasource": {
+                     "$ref": "#/definitions/datasource"
+                  },
+                  "placeholder_id": {
+                     "type": "string",
+                     "default": "placeholder"
+                  },
+                  "url_codelists": {
+                     "$ref": "#/definitions/url_codelists"
+                  },
+                  "url_listboxes": {
+                     "$ref": "#/definitions/url_listboxes"
+                  }
+               }
+            }
+         }
+      }
+   }
+}
