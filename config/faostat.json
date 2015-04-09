@@ -1,22 +1,19 @@
 {
    "download": {
-      "bulk": {
-         "lang": "en",
-         "lang_faostat": "E"
-      },
       "metadata": {
-         "lang": "en",
-         "lang_faostat": "E",
-         "bulks_url": "http://faostat3.fao.org/wds/rest/bulkdownloads",
-         "datasource": "faostatdb"
+         "url_mdsd": "http://faostat3.fao.org/d3s2/v2/mdsd",
+         "url_wds_table": "http://faostat3.fao.org/wds/rest/table/json",
+         "url_d3s": "http://faostat3.fao.org/d3s2/v2/msd/resources/metadata/uid"
       },
-      "custom": {
-         "selector_manager": {
-            "selector": {
-               "lang": "en",
-               "lang_faostat": "E"
-            }
-         }
+      "preview_options": {
+         "ok_button": true,
+         "pdf_button": false,
+         "csv_button": false,
+         "excel_button": false
+      },
+      "selector_manager": {
+         "url_codelists": "http://faostat3.fao.org/wds/",
+         "url_listboxes": "http://faostat3.fao.org/wds/rest/procedures/listboxes"
       }
    }
 }

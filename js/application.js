@@ -1,4 +1,6 @@
-define(['jquery','backbone'], function($, Backbone) {
+define(['jquery',
+        'backbone',
+        'text!config/faostat.json'], function($, Backbone, faostat_config) {
 
     'use strict';
 
@@ -34,6 +36,9 @@ define(['jquery','backbone'], function($, Backbone) {
 
         /* Fix the language, if needed. */
         this.CONFIG.lang = this.CONFIG.lang != null ? this.CONFIG.lang : 'E';
+
+        /* Cast FAOSTAT configuration file to JSON. */
+        faostat_config = $.parseJSON(faostat_config);
 
         /* This... */
         var _this = this;
@@ -111,16 +116,22 @@ define(['jquery','backbone'], function($, Backbone) {
                 var menu = new MENU();
                 menu.init(_this.CONFIG.menu);
 
-                /* Initiate the download. */
-                var dwld = new DWLD();
-                dwld.init({
+                /* Download configuration. */
+                var dwld_config = {
                     lang: lang,
                     group: group,
                     domain: null,
                     section: 'metadata',
                     datasource: _this.CONFIG.datasource,
                     placeholder_id: 'faostat_ui_content'
-                });
+                };
+
+                /* Propagate central configuration. */
+                dwld_config = $.extend(true, {}, dwld_config, faostat_config.download);
+
+                /* Initiate the download. */
+                var dwld = new DWLD();
+                dwld.init(dwld_config);
 
             });
 
@@ -139,16 +150,22 @@ define(['jquery','backbone'], function($, Backbone) {
                 var menu = new MENU();
                 menu.init(_this.CONFIG.menu);
 
-                /* Initiate the download. */
-                var dwld = new DWLD();
-                dwld.init({
+                /* Download configuration. */
+                var dwld_config = {
                     lang: lang,
                     group: group,
                     domain: domain,
                     section: section,
                     datasource: _this.CONFIG.datasource,
                     placeholder_id: 'faostat_ui_content'
-                });
+                };
+
+                /* Propagate central configuration. */
+                dwld_config = $.extend(true, {}, dwld_config, faostat_config.download);
+
+                /* Initiate the download. */
+                var dwld = new DWLD();
+                dwld.init(dwld_config);
 
             });
 
