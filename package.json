@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "grunt": "~0.4.5",
-    "json-editor": "~0.7.17",
     "json-schema-defaults": "~0.1.1"
   }
 }

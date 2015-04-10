@@ -7,11 +7,8 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json')
     });
 
-    /* Register default task. */
-    grunt.registerTask('default', []);
-
     /* Create configuration file. */
-    grunt.registerTask('create_configuration_file', 'Create JSON configuration file from JSON Schema.', function() {
+    grunt.registerTask('default', 'Create JSON configuration file from JSON Schema.', function() {
 
         /* Load JSON Schema utilities. */
         var defaults = require('json-schema-defaults');
