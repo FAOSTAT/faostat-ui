@@ -86,19 +86,19 @@
                "properties": {
                   "excel_button": {
                      "type": "boolean",
-                     "value": false
+                     "default": false
                   },
                   "pdf_button": {
                      "type": "boolean",
-                     "value": false
+                     "default": false
                   },
                   "ok_button": {
                      "type": "boolean",
-                     "value": false
+                     "default": false
                   },
                   "csv_button": {
                      "type": "boolean",
-                     "value": false
+                     "default": false
                   }
                }
             },

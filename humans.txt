@@ -11,3 +11,8 @@
     Location: Rome, Italy
     Twitter: @Kalimaha
     Github: Kalimaha
+
+    Designer: Nicola Selleri
+    Contact: nicola.selleri [at] fao.org
+    Location: Rome, Italy
+    Github: nicolafenix

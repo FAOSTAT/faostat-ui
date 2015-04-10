@@ -6,26 +6,7 @@ define(['jquery',
 
     function FAOSTAT4() {
 
-        var lang = 'en';
-
-        this.CONFIG = {
-
-            lang: lang,
-            prefix: 'faostat_',
-            datasource: 'faostat',
-
-            download: {
-                lang: lang,
-                prefix: 'faostat_download_'
-            },
-
-            menu: {
-                lang: lang,
-                prefix: 'faostat_download_',
-                datasource: 'faostatdb'
-            }
-
-        };
+        this.CONFIG = {};
 
     }
 
@@ -35,7 +16,7 @@ define(['jquery',
         this.CONFIG = $.extend(true, {}, this.CONFIG, config);
 
         /* Fix the language, if needed. */
-        this.CONFIG.lang = this.CONFIG.lang != null ? this.CONFIG.lang : 'E';
+        this.CONFIG.lang = this.CONFIG.lang != null ? this.CONFIG.lang : 'en';
 
         /* Cast FAOSTAT configuration file to JSON. */
         faostat_config = $.parseJSON(faostat_config);

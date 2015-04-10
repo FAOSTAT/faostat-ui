@@ -1,0 +1,37 @@
+{
+  "name": "faostat4-ui",
+  "label": {
+    "en": "FAOSTAT User Interface"
+  },
+  "language": "JavaScript",
+  "description": "User interface to access FAOSTAT database.",
+  "license": "GPL2",
+  "homepage": "http://faostat3.fao.org/",
+  "keywords": [
+    "informationsystem",
+    "statistics",
+    "agriculture",
+    "javascript",
+    "foodsecurity"
+  ],
+  "version": "1.0.0",
+  "contributors": [
+    {
+      "name": "Simone Murzilli",
+      "email": "simone.murzilli@gmail.com"
+    },
+    {
+      "name": "Guido Barbaglia",
+      "email": "guido.barbaglia@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FAOSTAT4/faostat4-ui"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "json-editor": "~0.7.17",
+    "json-schema-defaults": "~0.1.1"
+  }
+}
