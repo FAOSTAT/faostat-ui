@@ -40,24 +40,11 @@ define(['jquery',
                 '(/):lang(/)analysis(/):section(/):module(/)'           :   'analysis_section_module'
             },
 
-            /* Overwrite language settings. */
-            init_language: function (lang) {
-
-                /* Initiate language. */
-                lang = (lang != null) ? lang : 'en';
-                require.config({'locale': lang});
-
-                /* Initiate menu. */
-                require(['FAOSTAT_UI_MENU'], function(MENU) {
-                    var menu = new MENU();
-                    menu.init(_this.CONFIG.menu);
-                });
-
-            },
-
+            /* Generic routing. */
             route_module: function(module_name) {
                 app_router.on('route:' + module_name, function (lang) {
-                    this.init_language(lang);
+                    lang = (lang != null) ? lang : 'en';
+                    require.config({'locale': lang});
                     require(['FAOSTAT_UI_' + module_name.toUpperCase()], function (MODULE) {
                         var module = new MODULE();
                         module.init({
@@ -83,6 +70,22 @@ define(['jquery',
         /* Route modules. */
         for (var module in modules)
             app_router.route_module(modules[module]);
+
+        /* Download router. */
+        _this.download_router(app_router);
+
+        /* Analysis router. */
+        _this.analysis_router(app_router);
+
+        /* Initiate Backbone history. */
+        Backbone.history.start();
+
+    };
+
+    FAOSTAT4.prototype.download_router = function(app_router) {
+
+        /* This... */
+        var _this = this;
 
         /* Open download on selected group. */
         app_router.on('route:download_group', function (lang, group) {
@@ -152,6 +155,13 @@ define(['jquery',
 
         });
 
+    };
+
+    FAOSTAT4.prototype.analysis_router = function(app_router) {
+
+        /* This... */
+        var _this = this;
+
         /* Show Analysis. */
         app_router.on('route:analysis_section_module', function (lang, section, module) {
 
@@ -205,9 +215,6 @@ define(['jquery',
             });
 
         });
-
-        /* Initiate Backbone history. */
-        Backbone.history.start();
 
     };
 
