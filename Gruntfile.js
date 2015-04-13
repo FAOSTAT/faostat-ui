@@ -2,6 +2,9 @@
 
 module.exports = function (grunt) {
 
+    var schema_dir = 'resources/json/';
+    var output_dir = 'config/';
+
     /* Initiate Grunt configuration. */
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json')
@@ -14,7 +17,7 @@ module.exports = function (grunt) {
         var defaults = require('json-schema-defaults');
 
         /* Load JSON Schema. */
-        var schema = grunt.file.readJSON('config/faostat_schema.json', [, {
+        var schema = grunt.file.readJSON(schema_dir + 'faostat_schema.json', [, {
             encoding: 'utf8'
         }]);
 
@@ -22,7 +25,7 @@ module.exports = function (grunt) {
         var json = defaults(schema);
 
         /* Write JSON. */
-        grunt.file.write('config/faostat.json', JSON.stringify(json), [, {encoding: 'utf8'}]);
+        grunt.file.write(output_dir + 'faostat.json', JSON.stringify(json), [, {encoding: 'utf8'}]);
 
     });
 
