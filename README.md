@@ -5,16 +5,45 @@ New architecture for FAOSTAT dissemination system.
 ```
 faostat4-ui
 |─── config
-    |─── faostat_schema.json
+|   |─── faostat.json
 |─── css
+|   |─── ...
 |─── html
-    |─── templates.html
+|   |─── templates.html
 |─── images
+|   |─── ...
 |─── js
-    |─── application.js
-    |─── main.js
+|   |─── application.js
+|   |─── main.js
+|─── node_modules
+|   |─── ...
 |─── submodules
-    |─── 
+|   |─── faostat-ui-analysis
+|   |─── faostat-ui-browse
+|   |─── faostat-ui-commons
+|   |─── faostat-ui-download
+|   |   |─── css
+|   |   |─── html
+|   |   |─── js
+|   |   |─── nls
+|   |   |─── submodules
+|   |       |─── faostat-ui-bulk-downloads
+|   |       |─── faostat-ui-download-selectors-manager
+|   |       |   |─── html
+|   |       |   |─── js
+|   |       |   |─── nls
+|   |       |   |─── submodules
+|   |       |       |─── faostat-ui-download-selector
+|   |       |           |─── css
+|   |       |           |─── html
+|   |       |           |─── js
+|   |       |           |─── nls
+|   |       |─── fenix-ui-download-options
+|   |       |─── fenix-ui-metadata-viewer
+|   |─── faostat-ui-home
+|   |─── faostat-ui-menu
+|   |─── faostat-ui-tree
+|   |─── fenix-ui-common
 |─── index.html
 ```
 
