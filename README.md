@@ -18,5 +18,8 @@ faostat4-ui
 |─── index.html
 ```
 
+# Installation
+Run ```npm install``` and ```grunt``` to generate the ```config/faostat.json``` configuration file.
+
 # Developed with 
 ![IntelliJ](http://www.jetbrains.com/idea/docs/logo_intellij_idea.png)
