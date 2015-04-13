@@ -6,7 +6,13 @@ define(['jquery',
 
     function FAOSTAT4() {
 
-        this.CONFIG = {};
+        this.CONFIG = {
+            menu: {
+                lang: 'en',
+                prefix: 'faostat_download_',
+                datasource: 'faostatdb'
+            }
+        };
 
     }
 
@@ -42,17 +48,29 @@ define(['jquery',
 
             /* Generic routing. */
             route_module: function(module_name) {
+
                 app_router.on('route:' + module_name, function (lang) {
+
                     lang = (lang != null) ? lang : 'en';
                     require.config({'locale': lang});
-                    require(['FAOSTAT_UI_' + module_name.toUpperCase()], function (MODULE) {
+
+                    require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_' + module_name.toUpperCase()], function (MENU, MODULE) {
+
+                        /* Initiate the menu. */
+                        var menu = new MENU();
+                        menu.init(_this.CONFIG.menu);
+
+                        /* Initiate the module. */
                         var module = new MODULE();
                         module.init({
                             lang: lang,
                             placeholder_id: 'faostat_ui_content'
                         });
+
                     });
+
                 });
+
             }
 
         });
