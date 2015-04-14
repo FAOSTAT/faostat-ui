@@ -51,8 +51,8 @@ define(['jquery',
 
                 app_router.on('route:' + module_name, function (lang) {
 
-                    lang = (lang != null) ? lang : 'en';
-                    require.config({'locale': lang});
+                    /* Initiate language. */
+                    _this.set_language(lang);
 
                     require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_' + module_name.toUpperCase()], function (MENU, MODULE) {
 
@@ -109,8 +109,7 @@ define(['jquery',
         app_router.on('route:download_group', function (lang, group) {
 
             /* Initiate language. */
-            lang = (lang != null) ? lang : 'en';
-            require.config({'locale': lang});
+            _this.set_language(lang);
 
             require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_DOWNLOAD'], function (MENU, DWLD) {
 
@@ -143,8 +142,7 @@ define(['jquery',
         app_router.on('route:download_group_domain_section', function (lang, group, domain, section) {
 
             /* Initiate language. */
-            lang = (lang != null) ? lang : 'en';
-            require.config({'locale': lang});
+            _this.set_language(lang);
 
             require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_DOWNLOAD'], function (MENU, DWLD) {
 
@@ -184,8 +182,7 @@ define(['jquery',
         app_router.on('route:analysis_section_module', function (lang, section, module) {
 
             /* Initiate language. */
-            lang = (lang != null) ? lang : 'en';
-            require.config({'locale': lang});
+            _this.set_language(lang);
 
             require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
 
@@ -211,8 +208,7 @@ define(['jquery',
         app_router.on('route:analysis_section', function (lang, section) {
 
             /* Initiate language. */
-            lang = (lang != null) ? lang : 'en';
-            require.config({'locale': lang});
+            _this.set_language(lang);
 
             require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
 
@@ -234,6 +230,17 @@ define(['jquery',
 
         });
 
+    };
+
+    FAOSTAT4.prototype.set_language = function(lang) {
+        lang = (lang != null) ? lang : 'en';
+        require.config({'locale': lang});
+        var locale = localStorage.getItem('locale');
+        localStorage.setItem('locale', lang);
+        if (locale != lang) {
+            localStorage.setItem('locale', lang);
+            location.reload();
+        }
     };
 
     return FAOSTAT4;
