@@ -13,8 +13,10 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-indicators/js/paths',
          '../submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-overview/js/paths',
          '../submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-qaqc/js/paths',
-         '../submodules/faostat-ui-analysis/submodules/fenix-ui-tiles-manager/js/paths'
-        ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA, ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR) {
+         '../submodules/faostat-ui-analysis/submodules/fenix-ui-tiles-manager/js/paths',
+         '../submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/submodules/json-editor-faostat-theme/js/paths'
+        ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
+                    ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME) {
 
     var commonsConfig = Commons;
     commonsConfig['baseUrl'] = 'submodules/faostat-ui-commons/js';
@@ -61,6 +63,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var tilesManagerConfig = TILES_MGR;
     tilesManagerConfig['baseUrl'] = 'submodules/faostat-ui-analysis/submodules/fenix-ui-tiles-manager/js';
 
+    var faostatThemeConfig = FAOSTAT_THEME;
+    faostatThemeConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/submodules/json-editor-faostat-theme/js';
+
     Compiler.resolve([commonsConfig,
                       menuConfig,
                       homeConfig,
@@ -75,7 +80,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       ghgIndicatorsConfig,
                       ghgOverviewConfig,
                       ghgQAQCConfig,
-                      tilesManagerConfig],
+                      tilesManagerConfig,
+                      faostatThemeConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository',
@@ -95,7 +101,6 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     bootstrap: '{FENIX_CDN}/js/bootstrap/3.3.2/js/bootstrap.min',
                     domReady: '{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady',
                     jsonEditor: '{FENIX_CDN}/js/json-editor/0.7.17/jsoneditor',
-                    //jsonEditor: '{LOCALHOST}/js/libs/jsoneditor',
                     backbone: 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
                     underscore: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min'
                 },
