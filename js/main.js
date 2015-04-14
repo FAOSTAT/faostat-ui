@@ -78,7 +78,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       tilesManagerConfig],
         {
             placeholders: {
-               FENIX_CDN: '//fenixapps.fao.org/repository'
+               FENIX_CDN: '//fenixapps.fao.org/repository',
+               LOCALHOST: '//localhost:8080/faostat'
             },
             config: {
                 locale: 'en',
@@ -94,6 +95,7 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     bootstrap: '{FENIX_CDN}/js/bootstrap/3.3.2/js/bootstrap.min',
                     domReady: '{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady',
                     jsonEditor: '{FENIX_CDN}/js/json-editor/0.7.17/jsoneditor',
+                    //jsonEditor: '{LOCALHOST}/js/libs/jsoneditor',
                     backbone: 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
                     underscore: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min'
                 },
