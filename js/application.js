@@ -178,33 +178,15 @@ define(['jquery',
         /* This... */
         var _this = this;
 
-        /* Show Analysis. */
-        app_router.on('route:analysis', function (lang, section) {
+        /* Show analysis. */
+        app_router.on('route:analysis', function (lang) {
 
-            /* Initiate language. */
-            _this.set_language(lang);
-
-            require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
-
-                /* Initiate the menu. */
-                var menu = new MENU();
-                menu.init(_this.CONFIG.menu);
-
-                /* Initiate the download. */
-                var analysis = new ANALYSIS();
-                analysis.init({
-                    lang: lang,
-                    section: null,
-                    module: null,
-                    datasource: _this.CONFIG.datasource,
-                    placeholder_id: 'faostat_ui_content'
-                });
-
-            });
+            /* Re-route to default section. */
+            Backbone.history.navigate('/' + _this.CONFIG.lang + '/analysis/statistical_analysis', {trigger: false});
 
         });
 
-        /* Show Analysis. */
+        /* Show analysis section. */
         app_router.on('route:analysis_section', function (lang, section) {
 
             /* Initiate language. */
@@ -230,7 +212,7 @@ define(['jquery',
 
         });
 
-        /* Show Analysis. */
+        /* Show analysis module. */
         app_router.on('route:analysis_section_module', function (lang, section, module) {
 
             /* Initiate language. */
