@@ -19,6 +19,20 @@ faostat4-ui
 |   |─── ...
 |─── submodules
 |   |─── faostat-ui-analysis
+|   |   |─── html
+|   |   |─── js
+|   |   |─── nls
+|   |   |─── submodules
+|   |       |─── faostat-ui-analysis-ghg-indicators
+|   |       |─── faostat-ui-analysis-ghg-overview
+|   |       |─── faostat-ui-analysis-ghg-qaqc
+|   |       |─── fenix-ui-tiles-manager
+|   |           |─── config
+|   |           |─── css
+|   |           |─── html
+|   |           |─── images
+|   |           |─── js
+|   |           |─── nls
 |   |─── faostat-ui-browse
 |   |─── faostat-ui-commons
 |   |─── faostat-ui-download
