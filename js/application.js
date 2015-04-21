@@ -179,7 +179,7 @@ define(['jquery',
         var _this = this;
 
         /* Show Analysis. */
-        app_router.on('route:analysis_section_module', function (lang, section, module) {
+        app_router.on('route:analysis', function (lang, section) {
 
             /* Initiate language. */
             _this.set_language(lang);
@@ -194,8 +194,8 @@ define(['jquery',
                 var analysis = new ANALYSIS();
                 analysis.init({
                     lang: lang,
-                    section: section,
-                    module: module,
+                    section: null,
+                    module: null,
                     datasource: _this.CONFIG.datasource,
                     placeholder_id: 'faostat_ui_content'
                 });
@@ -222,6 +222,32 @@ define(['jquery',
                     lang: lang,
                     section: section,
                     module: null,
+                    datasource: _this.CONFIG.datasource,
+                    placeholder_id: 'faostat_ui_content'
+                });
+
+            });
+
+        });
+
+        /* Show Analysis. */
+        app_router.on('route:analysis_section_module', function (lang, section, module) {
+
+            /* Initiate language. */
+            _this.set_language(lang);
+
+            require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
+
+                /* Initiate the menu. */
+                var menu = new MENU();
+                menu.init(_this.CONFIG.menu);
+
+                /* Initiate the download. */
+                var analysis = new ANALYSIS();
+                analysis.init({
+                    lang: lang,
+                    section: section,
+                    module: module,
                     datasource: _this.CONFIG.datasource,
                     placeholder_id: 'faostat_ui_content'
                 });
