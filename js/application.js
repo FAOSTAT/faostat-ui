@@ -181,6 +181,8 @@ define(['jquery',
         /* Show analysis. */
         app_router.on('route:analysis', function (lang) {
 
+            console.log('route:analysis');
+
             /* Re-route to default section. */
             Backbone.history.navigate('/' + _this.CONFIG.lang + '/analysis/statistical_analysis', {trigger: false});
 
@@ -188,6 +190,8 @@ define(['jquery',
 
         /* Show analysis section. */
         app_router.on('route:analysis_section', function (lang, section) {
+
+            console.log('route:analysis_section');
 
             /* Initiate language. */
             _this.set_language(lang);
@@ -215,26 +219,30 @@ define(['jquery',
         /* Show analysis module. */
         app_router.on('route:analysis_section_module', function (lang, section, module) {
 
+            console.log('route:analysis_section_module');
+            console.log(section);
+            console.log(module);
+
             /* Initiate language. */
-            _this.set_language(lang);
-
-            require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
-
-                /* Initiate the menu. */
-                var menu = new MENU();
-                menu.init(_this.CONFIG.menu);
-
-                /* Initiate the download. */
-                var analysis = new ANALYSIS();
-                analysis.init({
-                    lang: lang,
-                    section: section,
-                    module: module,
-                    datasource: _this.CONFIG.datasource,
-                    placeholder_id: 'faostat_ui_content'
-                });
-
-            });
+            //_this.set_language(lang);
+            //
+            //require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
+            //
+            //    /* Initiate the menu. */
+            //    var menu = new MENU();
+            //    menu.init(_this.CONFIG.menu);
+            //
+            //    /* Initiate the download. */
+            //    var analysis = new ANALYSIS();
+            //    analysis.init({
+            //        lang: lang,
+            //        section: section,
+            //        module: module,
+            //        datasource: _this.CONFIG.datasource,
+            //        placeholder_id: 'faostat_ui_content'
+            //    });
+            //
+            //});
 
         });
 
