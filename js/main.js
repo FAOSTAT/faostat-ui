@@ -102,7 +102,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     domReady: '{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady',
                     jsonEditor: '{FENIX_CDN}/js/json-editor/0.7.17/jsoneditor',
                     backbone: 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
-                    underscore: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min'
+                    underscore: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min',
+                    chosen: '{FENIX_CDN}/js/chosen/1.2.0/chosen.jquery.min'
                 },
                 shim: {
                     backbone: {
@@ -110,6 +111,7 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                         exports: 'Backbone'
                     },
                     bootstrap: ['jquery'],
+                    chosen: ['jquery'],
                     handlebars: {
                         exports: 'Handlebars'
                     },
