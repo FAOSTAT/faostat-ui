@@ -22,7 +22,7 @@
       "url_wds_bulk_downloads": {
          "type": "string",
          "format": "url",
-         "default": "http://faostat3.fao.org/wds/rest/bulkdownloads"
+         "default": "http://faostat3.fao.org/wds/rest"
       },
       "url_wds_table": {
          "type": "string",
