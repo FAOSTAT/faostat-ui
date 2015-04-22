@@ -229,8 +229,6 @@ define(['jquery',
                 /* Fetch RequireJS module's ID. */
                 var id = mgr.CONFIG.tiles_configuration[section + '_' + module].require;
 
-                console.log(_this.CONFIG.placeholder_id);
-
                 /* Load module. */
                 require([id], function (MODULE) {
                     var module = new MODULE();
