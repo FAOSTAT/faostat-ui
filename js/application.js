@@ -11,7 +11,8 @@ define(['jquery',
                 lang: 'en',
                 prefix: 'faostat_download_',
                 datasource: 'faostatdb'
-            }
+            },
+            placeholder_id: 'faostat_ui_content'
         };
 
     }
@@ -64,7 +65,7 @@ define(['jquery',
                         var module = new MODULE();
                         module.init({
                             lang: lang,
-                            placeholder_id: 'faostat_ui_content'
+                            placeholder_id: _this.CONFIG.placeholder_id
                         });
 
                     });
@@ -124,7 +125,7 @@ define(['jquery',
                     domain: null,
                     section: 'metadata',
                     datasource: _this.CONFIG.datasource,
-                    placeholder_id: 'faostat_ui_content'
+                    placeholder_id: _this.CONFIG.placeholder_id
                 };
 
                 /* Propagate central configuration. */
@@ -157,7 +158,7 @@ define(['jquery',
                     domain: domain,
                     section: section,
                     datasource: _this.CONFIG.datasource,
-                    placeholder_id: 'faostat_ui_content'
+                    placeholder_id: _this.CONFIG.placeholder_id
                 };
 
                 /* Propagate central configuration. */
@@ -181,8 +182,6 @@ define(['jquery',
         /* Show analysis. */
         app_router.on('route:analysis', function (lang) {
 
-            console.log('route:analysis');
-
             /* Re-route to default section. */
             Backbone.history.navigate('/' + _this.CONFIG.lang + '/analysis/statistical_analysis', {trigger: false});
 
@@ -190,8 +189,6 @@ define(['jquery',
 
         /* Show analysis section. */
         app_router.on('route:analysis_section', function (lang, section) {
-
-            console.log('route:analysis_section');
 
             /* Initiate language. */
             _this.set_language(lang);
@@ -209,7 +206,7 @@ define(['jquery',
                     section: section,
                     module: null,
                     datasource: _this.CONFIG.datasource,
-                    placeholder_id: 'faostat_ui_content'
+                    placeholder_id: _this.CONFIG.placeholder_id
                 });
 
             });
@@ -219,30 +216,31 @@ define(['jquery',
         /* Show analysis module. */
         app_router.on('route:analysis_section_module', function (lang, section, module) {
 
-            console.log('route:analysis_section_module');
-            console.log(section);
-            console.log(module);
+            /* Initiate menu and tiles manager. */
+            require(['FAOSTAT_UI_MENU', 'FENIX_UI_TILES_MANAGER'], function (MENU, TILES_MGR) {
 
-            /* Initiate language. */
-            //_this.set_language(lang);
-            //
-            //require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
-            //
-            //    /* Initiate the menu. */
-            //    var menu = new MENU();
-            //    menu.init(_this.CONFIG.menu);
-            //
-            //    /* Initiate the download. */
-            //    var analysis = new ANALYSIS();
-            //    analysis.init({
-            //        lang: lang,
-            //        section: section,
-            //        module: module,
-            //        datasource: _this.CONFIG.datasource,
-            //        placeholder_id: 'faostat_ui_content'
-            //    });
-            //
-            //});
+                /* Initiate the menu. */
+                var menu = new MENU();
+                menu.init(_this.CONFIG.menu);
+
+                /* Initiate tiles manager. */
+                var mgr = new TILES_MGR();
+
+                /* Fetch RequireJS module's ID. */
+                var id = mgr.CONFIG.tiles_configuration[section + '_' + module].require;
+
+                console.log(_this.CONFIG.placeholder_id);
+
+                /* Load module. */
+                require([id], function (MODULE) {
+                    var module = new MODULE();
+                    module.init({
+                        lang: _this.CONFIG.lang,
+                        placeholder_id: _this.CONFIG.placeholder_id
+                    });
+                });
+
+            });
 
         });
 
