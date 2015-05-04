@@ -40,3 +40,6 @@
 [submodule "submodules/faostat-ui-browse"]
 	path = submodules/faostat-ui-browse
 	url = https://github.com/FAOSTAT4/faostat-ui-browse.git
+[submodule "submodules/faostat-ui-wide-tables"]
+	path = submodules/faostat-ui-wide-tables
+	url = https://github.com/FAOSTAT4/faostat-ui-wide-tables.git
