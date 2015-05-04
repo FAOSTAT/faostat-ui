@@ -14,9 +14,10 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-overview/js/paths',
          '../submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-qaqc/js/paths',
          '../submodules/faostat-ui-analysis/submodules/fenix-ui-tiles-manager/js/paths',
-         '../submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/submodules/json-editor-faostat-theme/js/paths'
+         '../submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/submodules/json-editor-faostat-theme/js/paths',
+         '../submodules/faostat-ui-analysis/submodules/faostat-ui-wide-tables/js/paths'
         ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
-                    ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME) {
+                    ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME, WIDE_TABLES) {
 
     var commonsConfig = Commons;
     commonsConfig['baseUrl'] = 'submodules/faostat-ui-commons/js';
@@ -63,8 +64,12 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var tilesManagerConfig = TILES_MGR;
     tilesManagerConfig['baseUrl'] = 'submodules/faostat-ui-analysis/submodules/fenix-ui-tiles-manager/js';
 
+    /* FAOSTAT theme for JSON editor library. */
     var faostatThemeConfig = FAOSTAT_THEME;
     faostatThemeConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/submodules/json-editor-faostat-theme/js';
+
+    var wideTablesConfig = WIDE_TABLES;
+    wideTablesConfig['baseUrl'] = 'submodules/faostat-ui-analysis/submodules/faostat-ui-wide-tables/js';
 
     Compiler.resolve([commonsConfig,
                       menuConfig,
@@ -81,7 +86,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       ghgOverviewConfig,
                       ghgQAQCConfig,
                       tilesManagerConfig,
-                      faostatThemeConfig],
+                      faostatThemeConfig,
+                      wideTablesConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository',
