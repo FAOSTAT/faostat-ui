@@ -51,17 +51,32 @@
       },
       "datasource": {
          "type": "string",
-         "default": "faostatdb",
+         "default": "faostatdata",
          "enum": [
             "faostat",
             "faostatdb",
             "faostatglbl",
+            "faostatdata",
             "faostatprod",
             "faostatproddiss"
          ]
       }
    },
    "properties": {
+      "analysis": {
+         "type": "object",
+         "title": "Analysis Section",
+         "properties": {
+            "FAOSTAT_UI_ANALYSIS_GHG_QA_QC": {
+               "type": "object",
+               "properties": {
+                  "datasource": {
+                     "$ref": "#/definitions/datasource"
+                  }
+               }
+            }
+         }
+      },
       "download": {
          "type": "object",
          "title": "Download Section",

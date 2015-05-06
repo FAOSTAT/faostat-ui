@@ -199,15 +199,21 @@ define(['jquery',
                 var menu = new MENU();
                 menu.init(_this.CONFIG.menu);
 
-                /* Initiate the download. */
-                var analysis = new ANALYSIS();
-                analysis.init({
+                /* Module configuration. */
+                var analysis_config = {
                     lang: lang,
                     section: section,
                     module: null,
                     datasource: _this.CONFIG.datasource,
                     placeholder_id: _this.CONFIG.placeholder_id
-                });
+                };
+
+                /* Propagate central configuration. */
+                analysis_config = $.extend(true, {}, analysis_config, faostat_config.analysis);
+
+                /* Initiate the download. */
+                var analysis = new ANALYSIS();
+                analysis.init(analysis_config);
 
             });
 
@@ -231,12 +237,22 @@ define(['jquery',
 
                 /* Load module. */
                 require([id], function (MODULE) {
-                    var module = new MODULE();
-                    module.init({
+
+                    /* Module configuration. */
+                    var module_config = {
                         lang: _this.CONFIG.lang,
                         placeholder_id: _this.CONFIG.placeholder_id
-                    });
+                    };
+
+                    /* Propagate central configuration. */
+                    module_config = $.extend(true, {}, module_config, faostat_config.analysis[id]);
+
+                    /* Initiate module. */
+                    var module = new MODULE();
+                    module.init(module_config);
+
                 });
+
 
             });
 
