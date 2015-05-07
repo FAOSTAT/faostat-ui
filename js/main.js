@@ -109,7 +109,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     jsonEditor: '{FENIX_CDN}/js/json-editor/0.7.17/jsoneditor',
                     backbone: 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
                     underscore: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min',
-                    chosen: '{FENIX_CDN}/js/chosen/1.2.0/chosen.jquery.min'
+                    chosen: '{FENIX_CDN}/js/chosen/1.2.0/chosen.jquery.min',
+                    highcharts: 'http://code.highcharts.com/highcharts'
                 },
                 shim: {
                     backbone: {
