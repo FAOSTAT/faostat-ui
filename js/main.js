@@ -107,10 +107,10 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     bootstrap: '{FENIX_CDN}/js/bootstrap/3.3.2/js/bootstrap.min',
                     domReady: '{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady',
                     jsonEditor: '{FENIX_CDN}/js/json-editor/0.7.17/jsoneditor',
-                    backbone: 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
-                    underscore: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min',
+                    backbone: '{FENIX_CDN}/js/backbone/1.1.2/backbone.min',
+                    underscore: '{FENIX_CDN}/js/underscore/1.8.0/underscore.min',
                     chosen: '{FENIX_CDN}/js/chosen/1.2.0/chosen.jquery.min',
-                    highcharts: 'http://code.highcharts.com/highcharts'
+                    highcharts: '{FENIX_CDN}/js/highcharts/4.0.4/js/highcharts'
                 },
                 shim: {
                     backbone: {
