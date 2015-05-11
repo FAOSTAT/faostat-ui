@@ -1977,4 +1977,7 @@ input[type="checkbox"]:checked + label {
   margin: 0 7px 0 7px;
   cursor: pointer; }
 
+.fs-chart-row {
+  line-height: 250px; }
+
 /*# sourceMappingURL=host.css.map */
