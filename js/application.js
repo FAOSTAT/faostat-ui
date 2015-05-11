@@ -247,8 +247,6 @@ define(['jquery',
                     /* Propagate central configuration. */
                     module_config = $.extend(true, {}, module_config, faostat_config.analysis[id]);
 
-                    console.log(module_config);
-
                     /* Initiate module. */
                     var module = new MODULE();
                     module.init(module_config);
