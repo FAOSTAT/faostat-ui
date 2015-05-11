@@ -240,12 +240,14 @@ define(['jquery',
 
                     /* Module configuration. */
                     var module_config = {
-                        lang: _this.CONFIG.lang,
+                        lang: lang,
                         placeholder_id: _this.CONFIG.placeholder_id
                     };
 
                     /* Propagate central configuration. */
                     module_config = $.extend(true, {}, module_config, faostat_config.analysis[id]);
+
+                    console.log(module_config);
 
                     /* Initiate module. */
                     var module = new MODULE();
