@@ -110,7 +110,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     backbone: '{FENIX_CDN}/js/backbone/1.1.2/backbone.min',
                     underscore: '{FENIX_CDN}/js/underscore/1.8.0/underscore.min',
                     chosen: '{FENIX_CDN}/js/chosen/1.2.0/chosen.jquery.min',
-                    highcharts: '{FENIX_CDN}/js/highcharts/4.0.4/js/highcharts'
+                    highcharts: '{FENIX_CDN}/js/highcharts/4.0.4/js/highcharts',
+                    stickyjs: '{FENIX_CDN}/js/stickyjs/1.0.0/jquery.sticky'
                 },
                 shim: {
                     backbone: {
