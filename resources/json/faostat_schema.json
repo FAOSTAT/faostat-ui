@@ -72,6 +72,12 @@
                "properties": {
                   "datasource": {
                      "$ref": "#/definitions/datasource"
+                  },
+                  "url_wds": {
+                     "title": "WDS URL",
+                     "type": "string",
+                     "description": "ULR for WDS-based web-services.",
+                     "default": "http://hqlprfenixapp2.hq.un.fao.org:12900/wds_qa_qc/rest"
                   }
                }
             }
