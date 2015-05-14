@@ -182,6 +182,9 @@ define(['jquery',
         /* Show analysis. */
         app_router.on('route:analysis', function (lang) {
 
+            /* Initiate language. */
+            _this.set_language(lang);
+
             /* Re-route to default section. */
             Backbone.history.navigate('/' + _this.CONFIG.lang + '/analysis/statistical_analysis', {trigger: false});
 
@@ -221,6 +224,9 @@ define(['jquery',
 
         /* Show analysis module. */
         app_router.on('route:analysis_section_module', function (lang, section, module) {
+
+            /* Initiate language. */
+            _this.set_language(lang);
 
             /* Initiate menu and tiles manager. */
             require(['FAOSTAT_UI_MENU', 'FENIX_UI_TILES_MANAGER'], function (MENU, TILES_MGR) {
