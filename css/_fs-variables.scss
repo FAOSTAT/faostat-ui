@@ -1,4 +1,5 @@
 /* Faostat Variables */
+$fx-ui-common: '../submodules/fenix-ui-common/';
 
 // Fenix - Variables
 
@@ -8,7 +9,7 @@ $host-menu-height : 50px;
 
 // Typography
 $small-text : 12px;
-$standard-text-size: 13px;
+$standard-text-size: 11px;
 $standard-text : normal normal 300 $standard-text-size/normal 'Roboto';
 $standard-text-bold : normal normal 500 14px/normal 'Roboto';
 $standard-text-big : normal normal 300 16px/normal 'Roboto';
@@ -25,7 +26,7 @@ $fx-text-smalltitle-bold: normal normal 700 10px/normal 'Roboto';
 
 // Fenix Colors
 $fenix-standard-blue: rgba(53, 166, 220, 1);
-$fx-cool-blue: #174c74 /* afo green*/;
+$fx-cool-blue: #379bce /* afo green*/;
 
 
 $fx-secondary-color: desaturate( $fx-cool-blue, 50% );
@@ -77,7 +78,7 @@ $fx-site-bg: $fenix-light-bg;
 
 // Border Radius
 $fx-border-radius: 0;
-$custom-color1: #f5f5f5;
+$custom-color1: #e6e6e6;
 $custom-color2: #336600;
 $custom-color3: #fcfaee;
 $custom-color4: #457f25;

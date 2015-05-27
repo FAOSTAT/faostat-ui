@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* Fenix Theme */
 /* Faostat Variables */
 /* Fenix Utils*/
@@ -209,6 +208,24 @@
 .icojam_link_1:before {
   content: "\ea50"; }
 
+.icojam_base_search_in:before {
+  content: "\e65e"; }
+
+.icojam_add:before {
+  content: "\e656"; }
+
+.icojam_delete:before {
+  content: "\e66a"; }
+
+.icojam_cancel_1:before {
+  content: "\eb55"; }
+
+.icojam_home2:before {
+  content: "\e7c1"; }
+
+.icojam_geography_globe:before {
+  content: "\e7be"; }
+
 /* Roboto */
 /* Roboto Import */
 /* Roboto Regular */
@@ -330,7 +347,7 @@
 
 .fa-border {
   padding: .2em .25em .15em;
-  border: solid 0.08em #eee;
+  border: solid 0.08em #eeeeee;
   border-radius: .1em; }
 
 .pull-right {
@@ -352,6 +369,7 @@
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
+
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg); } }
@@ -359,6 +377,7 @@
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
+
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg); } }
@@ -420,86 +439,86 @@
   font-size: 2em; }
 
 .fa-inverse {
-  color: #fff; }
+  color: white; }
 
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
    readers do not read off random characters that represent icons */
 .fa-search:before {
-  content: ""; }
+  content: "\f002"; }
 
 .fa-th:before {
-  content: ""; }
+  content: "\f00a"; }
 
 .fa-th-list:before {
-  content: ""; }
+  content: "\f00b"; }
 
 .fa-home:before {
-  content: ""; }
+  content: "\f015"; }
 
 .fa-clock-o:before {
-  content: ""; }
+  content: "\f017"; }
 
 .fa-refresh:before {
-  content: ""; }
+  content: "\f021"; }
 
 .fa-lock:before {
-  content: ""; }
+  content: "\f023"; }
 
 .fa-barcode:before {
-  content: ""; }
+  content: "\f02a"; }
 
 .fa-map-marker:before {
-  content: ""; }
+  content: "\f041"; }
 
 .fa-calendar:before {
-  content: ""; }
+  content: "\f073"; }
 
 .fa-twitter-square:before {
-  content: ""; }
+  content: "\f081"; }
 
 .fa-facebook-square:before {
-  content: ""; }
+  content: "\f082"; }
 
 .fa-globe:before {
-  content: ""; }
+  content: "\f0ac"; }
 
 .fa-wrench:before {
-  content: ""; }
+  content: "\f0ad"; }
 
 .fa-google-plus-square:before {
-  content: ""; }
+  content: "\f0d4"; }
 
 .fa-google-plus:before {
-  content: ""; }
+  content: "\f0d5"; }
 
 .fa-caret-down:before {
-  content: ""; }
+  content: "\f0d7"; }
 
 .fa-caret-up:before {
-  content: ""; }
+  content: "\f0d8"; }
 
 .fa-caret-left:before {
-  content: ""; }
+  content: "\f0d9"; }
 
 .fa-caret-right:before {
-  content: ""; }
+  content: "\f0da"; }
 
 .fa-rss-square:before {
-  content: ""; }
+  content: "\f143"; }
 
 .fa-slack:before {
-  content: ""; }
+  content: "\f198"; }
 
 .fa-database:before {
-  content: ""; }
+  content: "\f1c0"; }
 
 /* Fenix Typography */
 body {
   color: #666666;
-  font: normal normal 300 13px/normal "Roboto"; }
+  font: normal normal 300 11px/normal "Roboto"; }
 
 a {
-  color: #174c74; }
+  color: #379bce; }
   a:focus {
     outline: none; }
   a:active {
@@ -511,24 +530,24 @@ a {
 
 h1 {
   font: normal normal 100 36px/normal "Roboto";
-  color: #174c74; }
+  color: #379bce; }
 
 h2 {
   font: normal normal 100 18px/normal "sansation_lightlight";
-  color: #2c495f; }
+  color: #5c8fa9; }
 
 h3 {
   font: normal normal 500 14px/normal "Roboto";
-  color: #3a4751; }
+  color: #758790; }
 
 h4 {
   font: normal normal 500 14px/normal "Roboto";
-  color: #464646; }
+  color: #838383; }
 
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small, h1 .small, h2 .small, h3 .small, h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 .small {
   font-family: Roboto;
   font-weight: 700;
-  color: #174c74;
+  color: #379bce;
   text-transform: uppercase;
   font-size: 12px; }
 
@@ -555,18 +574,18 @@ input[type="button"]::-moz-focus-inner {
   border: 0; }
 
 .btn {
-  background-color: #174c74;
+  background-color: #379bce;
   color: white;
   border-color: transparent;
-  font: normal normal 300 13px/normal "Roboto"; }
+  font: normal normal 300 11px/normal "Roboto"; }
   .btn:hover {
     background-color: transparent;
-    color: #174c74;
-    border-color: #174c74; }
+    color: #379bce;
+    border-color: #379bce; }
   .btn:active {
     background-color: transparent;
-    color: #174c74;
-    border-color: #174c74;
+    color: #379bce;
+    border-color: #379bce;
     -webkit-box-shadow: 0 0 0 white;
     -moz-box-shadow: 0 0 0 white;
     box-shadow: 0 0 0 white; }
@@ -575,7 +594,7 @@ input[type="button"]::-moz-focus-inner {
   background-color: transparent;
   color: #666666;
   border-color: transparent;
-  font: normal normal 300 13px/normal "Roboto"; }
+  font: normal normal 300 11px/normal "Roboto"; }
   .fx-button-reset:hover {
     background-color: transparent;
     color: #666666;
@@ -603,8 +622,8 @@ input[type="button"]::-moz-focus-inner {
 , .btn-primary.disabled.active
 , .btn-primary[disabled].active
 , fieldset[disabled] .btn-primary.active {
-  background-color: #3a4751;
-  border-color: #3a4751; }
+  background-color: #758790;
+  border-color: #758790; }
 
 /* Fenix - Circle Number Component */
 .fx-circle-number {
@@ -615,7 +634,7 @@ input[type="button"]::-moz-focus-inner {
   width: 20px;
   line-height: 20px;
   text-align: center;
-  background-color: #174c74;
+  background-color: #379bce;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   -ms-border-radius: 100%;
@@ -633,9 +652,9 @@ input[type="button"]::-moz-focus-inner {
     -ms-border-radius: 0;
     border-radius: 0; }
   .datepicker .datepicker-days .day.active {
-    background-color: #174c74; }
+    background-color: #379bce; }
   .datepicker .datepicker-days .day.today:before {
-    border-bottom-color: #174c74; }
+    border-bottom-color: #379bce; }
   .datepicker .datepicker-days .day.active.today:before {
     border-bottom-color: white; }
 
@@ -731,7 +750,7 @@ input[type=text]::-ms-clear {
 
 /* Fenix - Labels Component */
 label {
-  font: normal normal 300 13px/normal "Roboto"; }
+  font: normal normal 300 11px/normal "Roboto"; }
 
 /* Fenix - Legend Component */
 legend {
@@ -810,7 +829,7 @@ legend {
   top: 4px;
   left: 30px;
   font-weight: 300;
-  color: #3a4751; }
+  color: #758790; }
 
 .fx-catalog-modular-form-content {
   padding: 10px 10px 10px 10px;
@@ -825,17 +844,17 @@ div[data-module="region"] .fx-catalog-modular-form-content {
   border-width: 0; }
 
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-  border-color: #174c74; }
+  border-color: #379bce; }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
   background-color: transparent;
   color: #666666; }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-  color: #174c74; }
+  color: #379bce; }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-  border-bottom: 1px solid #174c74; }
+  border-bottom: 1px solid #379bce; }
 
 /* Fenix - Object Box Component */
 .obj-box, .obj-box-radius10, .obj-box-title {
@@ -865,7 +884,7 @@ div[data-module="region"] .fx-catalog-modular-form-content {
 .obj-box-title {
   padding-top: 5px; }
   .obj-box-title h4 {
-    color: #174c74;
+    color: #379bce;
     font: normal normal 500 14px/normal "Roboto"; }
 
 /* Fenix - Panel Component */
@@ -904,12 +923,12 @@ div[data-module="region"] .fx-catalog-modular-form-content {
         .panel-group .panel-heading .panel-title a:focus {
           text-decoration: none; }
   .panel-group .panel-heading.fx-active-panel .panel-title a {
-    color: #174c74; }
+    color: #379bce; }
   .panel-group .panel-body .btn {
     background-color: transparent;
     color: #666666;
     border-color: transparent;
-    font: normal normal 300 13px/normal "Roboto";
+    font: normal normal 300 11px/normal "Roboto";
     text-align: left;
     position: relative; }
     .panel-group .panel-body .btn:hover {
@@ -997,13 +1016,13 @@ input[type="radio"] + label {
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
     border-radius: 100%;
-    border: 0 solid #174c74;
+    border: 0 solid #379bce;
     position: relative;
     top: 4px;
     left: -4px; }
 
 input[type="radio"]:checked + label {
-  color: #174c74; }
+  color: #379bce; }
   input[type="radio"]:checked + label:before {
     border-width: 5px; }
 
@@ -1042,13 +1061,13 @@ input[type="checkbox"] + label {
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
     border-radius: 100%;
-    border: 0 solid #174c74;
+    border: 0 solid #379bce;
     position: relative;
     top: 4px;
     left: -4px; }
 
 input[type="checkbox"]:checked + label {
-  color: #174c74; }
+  color: #379bce; }
   input[type="checkbox"]:checked + label:before {
     border-width: 5px; }
 
@@ -1079,7 +1098,7 @@ input[type="checkbox"]:checked + label {
   min-height: 60px; }
 
 .fx-resume-title {
-  color: #174c74;
+  color: #379bce;
   padding-left: 15px;
   padding-top: 5px;
   font: normal normal 400 10px/normal "Roboto";
@@ -1094,7 +1113,7 @@ input[type="checkbox"]:checked + label {
 #fx-catalog-submit-btn {
   color: white;
   text-transform: uppercase;
-  background-color: #174c74;
+  background-color: #379bce;
   width: 150px;
   position: absolute;
   bottom: 0;
@@ -1117,7 +1136,7 @@ input[type="checkbox"]:checked + label {
     padding-left: 15px; }
     .fx-resume-item-selected .fx-resume-module-title em {
       font: normal normal 400 10px/normal "Roboto";
-      color: #174c74;
+      color: #379bce;
       font-size: 12px;
       /* Not expected */
       position: absolute;
@@ -1198,14 +1217,14 @@ input[type="checkbox"]:checked + label {
 
 .bs-docs-sidebar .nav > li > a:hover, .bs-docs-sidebar .nav > li > a:focus {
   background-color: transparent;
-  border-left: 1px solid #174c74;
-  color: #174c74;
+  border-left: 1px solid #379bce;
+  color: #379bce;
   text-decoration: none; }
 
 .bs-docs-sidebar .nav > .active > a, .bs-docs-sidebar .nav > .active:hover > a, .bs-docs-sidebar .nav > .active:focus > a {
   background-color: transparent;
-  border-left: 1px solid #174c74;
-  color: #174c74;
+  border-left: 1px solid #379bce;
+  color: #379bce;
   font-weight: 700; }
 
 .bs-docs-sidebar .nav .nav {
@@ -1262,11 +1281,11 @@ input[type="checkbox"]:checked + label {
   position: relative; }
   .fx-widget .nav-tabs > li > a:hover, .fx-widget .nav-tabs > li > a:focus, .fx-widget .nav-tabs > li > a:active {
     background-color: transparent;
-    color: #174c74;
+    color: #379bce;
     border-color: transparent; }
   .fx-widget .nav-tabs > li.active > a, .fx-widget .nav-tabs > li.active > a:hover, .fx-widget .nav-tabs > li.active > a:focus {
     background-color: white;
-    color: #174c74;
+    color: #379bce;
     border-left-color: #d8d8d8;
     border-top-color: #d8d8d8;
     border-right-color: #d8d8d8;
@@ -1379,15 +1398,15 @@ input[type="checkbox"]:checked + label {
   display: none; }
 
 .fx-closepanel-container {
-  border-bottom: 1px solid #174c74;
+  border-bottom: 1px solid #379bce;
   padding: 5px 10px; }
   .fx-closepanel-container .fx-widget-icons {
-    color: #174c74;
+    color: #379bce;
     margin-right: 5px;
     cursor: pointer; }
   .fx-closepanel-container #fx-ws-close-btn {
     text-transform: uppercase;
-    color: #174c74;
+    color: #379bce;
     cursor: pointer;
     line-height: 1;
     display: inline-block;
@@ -1412,7 +1431,7 @@ input[type="checkbox"]:checked + label {
   list-style-type: none;
   padding: 16px 16px 35px 16px;
   position: relative;
-  border-bottom: 1px solid #174c74; }
+  border-bottom: 1px solid #379bce; }
 
 .fx-sessionstore-item-title {
   text-transform: uppercase;
@@ -1457,7 +1476,7 @@ input[type="checkbox"]:checked + label {
   width: 20px;
   line-height: 20px;
   text-align: center;
-  background-color: #174c74;
+  background-color: #379bce;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   -ms-border-radius: 100%;
@@ -1476,12 +1495,12 @@ input[type="checkbox"]:checked + label {
 
 .introjs-button:hover, .introjs-button:active, .introjs-button:focus {
   text-shadow: none;
-  color: #174c74;
+  color: #379bce;
   text-decoration: none; }
 
 /* Fenix - JQwidgets */
 .jqx-widget {
-  font: normal normal 300 13px/normal "Roboto"; }
+  font: normal normal 300 11px/normal "Roboto"; }
 
 .jqx-widget-content {
   color: #666666;
@@ -1493,14 +1512,14 @@ input[type="checkbox"]:checked + label {
   color: #666666;
   text-shadow: none;
   border-color: transparent;
-  background-color: #74b3e3;
-  background-image: -moz-linear-gradient(top, #74b3e3, #74b3e3);
-  background-image: -ms-linear-gradient(top, #74b3e3, #74b3e3);
-  background-image: -o-linear-gradient(top, #74b3e3, #74b3e3);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#74b3e3), to(#74b3e3));
-  background-image: -webkit-linear-gradient(top, #74b3e3, #74b3e3);
-  background-image: linear-gradient(top, #74b3e3, #74b3e3);
-  background-image: linear-gradient(to bottom, #74b3e3, #74b3e3);
+  background-color: #dbedf6;
+  background-image: -moz-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: -ms-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: -o-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: -webkit-gradient(linear, center top, center bottom, from(#dbedf6), to(#dbedf6));
+  background-image: -webkit-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: linear-gradient(to bottom, #dbedf6, #dbedf6);
   -moz-background-clip: padding;
   background-clip: padding-box;
   -webkit-background-clip: padding-box;
@@ -1567,14 +1586,14 @@ input[type="checkbox"]:checked + label {
   color: #666666;
   text-shadow: none;
   border-color: transparent;
-  background-color: #74b3e3;
-  background-image: -moz-linear-gradient(top, #74b3e3, #74b3e3);
-  background-image: -ms-linear-gradient(top, #74b3e3, #74b3e3);
-  background-image: -o-linear-gradient(top, #74b3e3, #74b3e3);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#74b3e3), to(#74b3e3));
-  background-image: -webkit-linear-gradient(top, #74b3e3, #74b3e3);
-  background-image: linear-gradient(top, #74b3e3, #74b3e3);
-  background-image: linear-gradient(to bottom, #74b3e3, #74b3e3);
+  background-color: #dbedf6;
+  background-image: -moz-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: -ms-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: -o-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: -webkit-gradient(linear, center top, center bottom, from(#dbedf6), to(#dbedf6));
+  background-image: -webkit-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: linear-gradient(to bottom, #dbedf6, #dbedf6);
   -moz-background-clip: padding;
   background-clip: padding-box;
   -webkit-background-clip: padding-box;
@@ -1583,15 +1602,15 @@ input[type="checkbox"]:checked + label {
 .jqx-fill-state-pressed, .jqx-widget .jqx-grid-cell-selected {
   color: #666666;
   text-shadow: none;
-  border-color: #2884c9;
-  background-color: #2884c9;
-  background-image: -moz-linear-gradient(top, #2884c9, #2884c9);
-  background-image: -ms-linear-gradient(top, #2884c9, #2884c9);
-  background-image: -o-linear-gradient(top, #2884c9, #2884c9);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#2884c9), to(#2884c9));
-  background-image: -webkit-linear-gradient(top, #2884c9, #2884c9);
-  background-image: linear-gradient(top, #2884c9, #2884c9);
-  background-image: linear-gradient(to bottom, #2884c9, #2884c9);
+  border-color: #89c4e2;
+  background-color: #89c4e2;
+  background-image: -moz-linear-gradient(top, #89c4e2, #89c4e2);
+  background-image: -ms-linear-gradient(top, #89c4e2, #89c4e2);
+  background-image: -o-linear-gradient(top, #89c4e2, #89c4e2);
+  background-image: -webkit-gradient(linear, center top, center bottom, from(#89c4e2), to(#89c4e2));
+  background-image: -webkit-linear-gradient(top, #89c4e2, #89c4e2);
+  background-image: linear-gradient(top, #89c4e2, #89c4e2);
+  background-image: linear-gradient(to bottom, #89c4e2, #89c4e2);
   -moz-background-clip: padding;
   background-clip: padding-box;
   -webkit-background-clip: padding-box;
@@ -1892,20 +1911,226 @@ input[type="checkbox"]:checked + label {
 
 .jstree-default .jstree-node,
 .jstree-default .jstree-icon {
-  background-image: url("img/treejs-32px.png"); }
+  background-image: url("../submodules/fenix-ui-common/css/img/treejs-32px.png"); }
 
 .jstree-default .jstree-wholerow-clicked {
   background: none;
-  background-color: #2884c9; }
+  background-color: #89c4e2; }
 
 .jstree-default .jstree-wholerow-hovered {
   background: none;
-  background-color: #74b3e3; }
+  background-color: #dbedf6; }
 
 /* Leaflet */
 /* Fenix Leaflet Import */
 /* Fenix Leaflet Zoom control 0.7.3*/
 /* Component Style*/
+/* Faostat Base Style */
+.faostat-content {
+  background-color: white;
+  padding-top: 15px; }
+
+/* FAOSTAT Typography */
+.fs-bold {
+  font-weight: 700; }
+
+.fs-text-standard-blue {
+  color: #379bce; }
+
+h3 {
+  font: normal normal 400 16px/normal "Roboto Condensed", sans-serif !important;
+  color: #379bce; }
+
+h4 {
+  font: normal normal 400 13px/normal "Roboto Condensed", sans-serif !important; }
+
+h5 {
+  font: normal normal 400 12px/normal "Roboto", sans-serif;
+  text-transform: uppercase;
+  color: #379bce; }
+
+b {
+  font-weight: 700; }
+
+a {
+  text-decoration: none; }
+
+* {
+  box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important; }
+
+em {
+  font-style: normal; }
+
+input {
+  padding-left: 5px !important; }
+
+.truncate {
+  min-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+/* HEADER */
+.fs-head {
+  background-color: #379bce;
+  height: 50px;
+  position: relative; }
+
+.fs-logo-holder {
+  width: 200px;
+  height: 50px;
+  background-color: #174c74;
+  padding: 7px 0 0 20px; }
+
+.fs-logo {
+  width: 160px;
+  height: 34px;
+  background-image: url("../images/fs-logo-new.png");
+  background-size: 160px 34px;
+  background-repeat: no-repeat; }
+
+.fs-united {
+  background-color: #379bce;
+  height: 50px;
+  position: absolute;
+  left: 200px;
+  top: 0;
+  padding: 14px 0 0 65px;
+  color: white; }
+
+.fs-united p {
+  text-transform: uppercase;
+  line-height: 7px;
+  height: 12px;
+  margin-bottom: 0; }
+
+.fs-languages {
+  background-color: #379bce;
+  height: 50px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: white;
+  padding: 15px 0 0 0; }
+
+.fs-languages span {
+  margin: 0 7px 0 7px;
+  cursor: pointer; }
+
+.fs-languages span:hover {
+  text-decoration: underline; }
+
+.fs-languages span.fs-lan-selected {
+  text-decoration: underline; }
+
+.fs-menu-holder {
+  padding: 0 20px 0 10px;
+  background-color: white;
+  position: relative;
+  height: 33px;
+  -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2); }
+
+.fs-menu {
+  /** Apply to menu element if selected */ }
+
+.fs-menu span {
+  cursor: pointer;
+  font: normal normal 400 12px/normal "Roboto", sans-serif;
+  text-transform: uppercase;
+  display: inline-block;
+  border-bottom: 4px solid transparent;
+  vertical-align: top;
+  white-space: nowrap;
+  margin: 0 8px;
+  max-width: 155px;
+  min-width: 20px;
+  /*overflow: hidden; Rimettere se dovesse dare problemi*/
+  padding: 8px 0 4px 0;
+  text-overflow: ellipsis;
+  position: relative; }
+
+.fs-menu span:hover {
+  border-color: #40769e;
+  transition: border-color 0.218s ease 0s; }
+
+.fs-menu span.fs-menu-selected {
+  color: #174c74;
+  font: normal normal 900 12px/normal "Roboto", sans-serif;
+  border-bottom: 4px solid #40769e;
+  transition: border-color 0.218s ease 0s; }
+
+#searchFS {
+  position: absolute;
+  top: 3px;
+  right: 20px; }
+
+#searchFS input[type="text"] {
+  /* Reset Previous Search Box */
+  box-shadow: none;
+  color: #666666;
+  font-weight: normal;
+  /* End reset */
+  border: 1px solid #d1d1d1;
+  border-radius: 20px;
+  padding: 4px 15px 4px 30px !important;
+  transition: all 0.7s ease 0s;
+  width: 100px; }
+
+#searchFS input[type="text"]:focus {
+  width: 180px; }
+
+.navbar {
+  font-size: 13px;
+  margin-bottom: 0;
+  background-color: #e6e6e6; }
+  .navbar .fa {
+    font-size: 16px;
+    margin-right: 5px; }
+  .navbar li a {
+    padding: 15px 25px;
+    position: relative; }
+    .navbar li a:before {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 0;
+      width: 100%;
+      background-color: #379bce;
+      -webkit-transition: all 0.3s ease 0s;
+      -moz-transition: all 0.3s ease 0s;
+      -ms-transition: all 0.3s ease 0s;
+      -o-transition: all 0.3s ease 0s;
+      transition: all 0.3s ease 0s; }
+    .navbar li a:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      height: 50%;
+      width: 1px;
+      background-color: #999999;
+      -ms-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%); }
+  .navbar li a:hover:before {
+    height: 4px;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s; }
+  .navbar li:last-child a:after {
+    background-color: transparent; }
+
+.navbar-brand {
+  display: none; }
+
 /* Faostat Download */
 .summary-item {
   display: inline-block;
@@ -1921,63 +2146,3 @@ input[type="checkbox"]:checked + label {
 
 .v-space {
   margin-top: 16px; }
-
-.faostat-header {
-  background-color: #174c74;
-  height: 5em; }
-
-.faostat-footer {
-  background-color: #174c74;
-  height: 10em;
-  margin-top: 2em; }
-
-.fs-head {
-  background-color: #379bce;
-  height: 50px; }
-
-.fs-logo-holder {
-  width: 200px;
-  height: 50px;
-  background-color: #174c74;
-  padding: 7px 0 0 20px;
-  float: left; }
-
-.fs-logo {
-  width: 160px;
-  height: 34px;
-  background-size: 160px 34px;
-  background: url("../images/fs-logo-new.png") no-repeat; }
-
-.fs-united {
-  background-color: #379bce;
-  width: 550px;
-  height: 50px;
-  float: left;
-  padding: 14px 0 0 65px;
-  color: white; }
-
-.fs-united p {
-  line-height: 7px;
-  height: 12px; }
-
-.fs-bold {
-  font-weight: 700; }
-
-.fs-languages {
-  background-color: #379bce;
-  height: 100%;
-  float: right;
-  color: white;
-  padding: 15px 20px 0 0; }
-
-.fs-languages span.fs-lan-selected {
-  text-decoration: underline; }
-
-.fs-languages span {
-  margin: 0 7px 0 7px;
-  cursor: pointer; }
-
-.fs-chart-row {
-  line-height: 250px; }
-
-/*# sourceMappingURL=host.css.map */
