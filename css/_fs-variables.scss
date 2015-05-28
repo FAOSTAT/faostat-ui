@@ -29,10 +29,10 @@ $fenix-standard-blue: rgba(53, 166, 220, 1);
 $fx-cool-blue: #379bce /* afo green*/;
 
 
-$fx-secondary-color: desaturate( $fx-cool-blue, 50% );
+$fx-secondary-color: desaturate( $fx-cool-blue, 70% );
 
-$fx-main-color-light:lighten($fx-cool-blue, 20%); // Ideal for selection
-$fx-main-color-lighter: lighten($fx-cool-blue, 40%); // Ideal for hovers
+$fx-main-color-light:lighten($fx-cool-blue, 40%); // Ideal for selection
+$fx-main-color-lighter: lighten($fx-cool-blue, 60%); // Ideal for hovers
 
 
 

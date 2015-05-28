@@ -829,7 +829,7 @@ legend {
   top: 4px;
   left: 30px;
   font-weight: 300;
-  color: #758790; }
+  color: #838383; }
 
 .fx-catalog-modular-form-content {
   padding: 10px 10px 10px 10px;
@@ -1512,14 +1512,14 @@ input[type="checkbox"]:checked + label {
   color: #666666;
   text-shadow: none;
   border-color: transparent;
-  background-color: #dbedf6;
-  background-image: -moz-linear-gradient(top, #dbedf6, #dbedf6);
-  background-image: -ms-linear-gradient(top, #dbedf6, #dbedf6);
-  background-image: -o-linear-gradient(top, #dbedf6, #dbedf6);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#dbedf6), to(#dbedf6));
-  background-image: -webkit-linear-gradient(top, #dbedf6, #dbedf6);
-  background-image: linear-gradient(top, #dbedf6, #dbedf6);
-  background-image: linear-gradient(to bottom, #dbedf6, #dbedf6);
+  background-color: white;
+  background-image: -moz-linear-gradient(top, white, white);
+  background-image: -ms-linear-gradient(top, white, white);
+  background-image: -o-linear-gradient(top, white, white);
+  background-image: -webkit-gradient(linear, center top, center bottom, from(white), to(white));
+  background-image: -webkit-linear-gradient(top, white, white);
+  background-image: linear-gradient(top, white, white);
+  background-image: linear-gradient(to bottom, white, white);
   -moz-background-clip: padding;
   background-clip: padding-box;
   -webkit-background-clip: padding-box;
@@ -1586,14 +1586,14 @@ input[type="checkbox"]:checked + label {
   color: #666666;
   text-shadow: none;
   border-color: transparent;
-  background-color: #dbedf6;
-  background-image: -moz-linear-gradient(top, #dbedf6, #dbedf6);
-  background-image: -ms-linear-gradient(top, #dbedf6, #dbedf6);
-  background-image: -o-linear-gradient(top, #dbedf6, #dbedf6);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#dbedf6), to(#dbedf6));
-  background-image: -webkit-linear-gradient(top, #dbedf6, #dbedf6);
-  background-image: linear-gradient(top, #dbedf6, #dbedf6);
-  background-image: linear-gradient(to bottom, #dbedf6, #dbedf6);
+  background-color: white;
+  background-image: -moz-linear-gradient(top, white, white);
+  background-image: -ms-linear-gradient(top, white, white);
+  background-image: -o-linear-gradient(top, white, white);
+  background-image: -webkit-gradient(linear, center top, center bottom, from(white), to(white));
+  background-image: -webkit-linear-gradient(top, white, white);
+  background-image: linear-gradient(top, white, white);
+  background-image: linear-gradient(to bottom, white, white);
   -moz-background-clip: padding;
   background-clip: padding-box;
   -webkit-background-clip: padding-box;
@@ -1602,15 +1602,15 @@ input[type="checkbox"]:checked + label {
 .jqx-fill-state-pressed, .jqx-widget .jqx-grid-cell-selected {
   color: #666666;
   text-shadow: none;
-  border-color: #89c4e2;
-  background-color: #89c4e2;
-  background-image: -moz-linear-gradient(top, #89c4e2, #89c4e2);
-  background-image: -ms-linear-gradient(top, #89c4e2, #89c4e2);
-  background-image: -o-linear-gradient(top, #89c4e2, #89c4e2);
-  background-image: -webkit-gradient(linear, center top, center bottom, from(#89c4e2), to(#89c4e2));
-  background-image: -webkit-linear-gradient(top, #89c4e2, #89c4e2);
-  background-image: linear-gradient(top, #89c4e2, #89c4e2);
-  background-image: linear-gradient(to bottom, #89c4e2, #89c4e2);
+  border-color: #dbedf6;
+  background-color: #dbedf6;
+  background-image: -moz-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: -ms-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: -o-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: -webkit-gradient(linear, center top, center bottom, from(#dbedf6), to(#dbedf6));
+  background-image: -webkit-linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: linear-gradient(top, #dbedf6, #dbedf6);
+  background-image: linear-gradient(to bottom, #dbedf6, #dbedf6);
   -moz-background-clip: padding;
   background-clip: padding-box;
   -webkit-background-clip: padding-box;
@@ -1915,11 +1915,11 @@ input[type="checkbox"]:checked + label {
 
 .jstree-default .jstree-wholerow-clicked {
   background: none;
-  background-color: #89c4e2; }
+  background-color: #dbedf6; }
 
 .jstree-default .jstree-wholerow-hovered {
   background: none;
-  background-color: #dbedf6; }
+  background-color: white; }
 
 /* Leaflet */
 /* Fenix Leaflet Import */
@@ -2149,18 +2149,18 @@ input {
 
 /*Vendor */
 /* Js Tree Fix */
-.jstree-container-ul .jstree-anchor {
+.faostat-download-tree-holder .jstree-container-ul .jstree-anchor {
   padding: 3px; }
-.jstree-container-ul > li {
+.faostat-download-tree-holder .jstree-container-ul > li {
   position: relative; }
-  .jstree-container-ul > li > .jstree-wholerow {
+  .faostat-download-tree-holder .jstree-container-ul > li > .jstree-wholerow {
     height: 100%;
     background-color: transparent; }
-  .jstree-container-ul > li > .jstree-anchor {
-    font-weight: 700; }
-.jstree-container-ul .jstree-children .jstree-node {
+  .faostat-download-tree-holder .jstree-container-ul > li > .jstree-anchor {
+    font-weight: 400; }
+.faostat-download-tree-holder .jstree-container-ul .jstree-children .jstree-node {
   position: relative; }
-  .jstree-container-ul .jstree-children .jstree-node .jstree-icon {
+  .faostat-download-tree-holder .jstree-container-ul .jstree-children .jstree-node .jstree-icon {
     width: 10px; }
-  .jstree-container-ul .jstree-children .jstree-node .jstree-wholerow {
+  .faostat-download-tree-holder .jstree-container-ul .jstree-children .jstree-node .jstree-wholerow {
     height: 100%; }

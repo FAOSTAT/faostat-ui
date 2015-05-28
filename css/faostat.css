@@ -3106,18 +3106,18 @@ cursor: pointer;
 }
 
 a {
-    color: #399BCC !important;
+    color: #399BCC;
     text-decoration: none;
     font-size:12px;
 }
 
 a:hover {
-    color: #399BCC !important;
+    color: #399BCC ;
     text-decoration: underline;
 }
 
 a:visited {
-    color: #399BCC !important;
+    color: #399BCC;
     text-decoration: none;
 }
 .fa {
