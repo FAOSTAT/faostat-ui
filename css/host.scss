@@ -5,5 +5,10 @@
 @import '../submodules/fenix-ui-common/css/fenix-style-no-variables';
 
 /* Component Style*/
+@import "faostat-base";
+@import "faostat-header";
 @import "fs-download";
-@import "fs";
+
+/*Vendor */
+@import "js-tree-fix";
+
