@@ -2146,3 +2146,21 @@ input {
 
 .v-space {
   margin-top: 16px; }
+
+/*Vendor */
+/* Js Tree Fix */
+.jstree-container-ul .jstree-anchor {
+  padding: 3px; }
+.jstree-container-ul > li {
+  position: relative; }
+  .jstree-container-ul > li > .jstree-wholerow {
+    height: 100%;
+    background-color: transparent; }
+  .jstree-container-ul > li > .jstree-anchor {
+    font-weight: 700; }
+.jstree-container-ul .jstree-children .jstree-node {
+  position: relative; }
+  .jstree-container-ul .jstree-children .jstree-node .jstree-icon {
+    width: 10px; }
+  .jstree-container-ul .jstree-children .jstree-node .jstree-wholerow {
+    height: 100%; }

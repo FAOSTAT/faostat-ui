@@ -1,0 +1,48 @@
+/* Js Tree Fix */
+
+.jstree-container-ul{
+
+
+  .jstree-anchor{
+    padding: 3px;
+  }
+
+
+  >li{
+    position: relative;
+    // First Level
+
+    >.jstree-wholerow{
+      height: 100%;
+      background-color: transparent;
+    }
+
+    >.jstree-anchor{
+      //display: none;
+      font-weight: 700;
+    }
+  }
+    // Second Level
+  .jstree-children{
+
+
+    .jstree-node{
+
+
+      position: relative;
+
+      .jstree-icon{
+        width: 10px;
+      }
+
+      .jstree-wholerow{
+        height: 100%;
+      }
+
+    }
+
+  }
+
+
+}
+
