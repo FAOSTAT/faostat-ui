@@ -19,10 +19,32 @@
 
 .faostat-download-main-content{
 
+  .nav.nav-tabs{
+  /// Style of the mai tab of the selector grid (meta/bulk/custom)
+    li{
+
+      a{
+        color: $fenix-text;
+      }
+
+    }
+
+
+  }
+
 
   .faostat-downlaod-selector-grid{
+
+
+
+
 
   }
 
 }
 
+.faostat-summary-item{
+
+  height: 100px;
+  //background-color: $fx-light;
+}
