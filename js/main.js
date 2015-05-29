@@ -15,9 +15,11 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-qaqc/js/paths',
          '../submodules/faostat-ui-analysis/submodules/fenix-ui-tiles-manager/js/paths',
          '../submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/submodules/json-editor-faostat-theme/js/paths',
-         '../submodules/faostat-ui-analysis/submodules/faostat-ui-wide-tables/js/paths'
+         '../submodules/faostat-ui-analysis/submodules/faostat-ui-wide-tables/js/paths',
+         '../submodules/faostat-ui-download/submodules/fenix-ui-olap/js/paths'
         ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
-                    ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME, WIDE_TABLES) {
+                    ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME, WIDE_TABLES,
+                    OLAP) {
 
     var commonsConfig = Commons;
     commonsConfig['baseUrl'] = 'submodules/faostat-ui-commons/js';
@@ -71,6 +73,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var wideTablesConfig = WIDE_TABLES;
     wideTablesConfig['baseUrl'] = 'submodules/faostat-ui-analysis/submodules/faostat-ui-wide-tables/js';
 
+    var olapConfig = OLAP;
+    olapConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-olap/js';
+
     Compiler.resolve([commonsConfig,
                       menuConfig,
                       homeConfig,
@@ -87,7 +92,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       ghgQAQCConfig,
                       tilesManagerConfig,
                       faostatThemeConfig,
-                      wideTablesConfig],
+                      wideTablesConfig,
+                      olapConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository',
