@@ -116,7 +116,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     bootstrap: '{FENIX_CDN}/js/bootstrap/3.3.2/js/bootstrap.min',
                     underscore: '{FENIX_CDN}/js/underscore/1.8.0/underscore.min',
                     sweetAlert: '{FENIX_CDN}/js/sweet-alert/0.5.0/sweet-alert.min',
-                    domReady: '{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady'
+                    domReady: '{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady',
+                    pivot: 'submodules/faostat-ui-download/submodules/fenix-ui-olap/js/pivot'
                 },
                 shim: {
                     backbone: {
