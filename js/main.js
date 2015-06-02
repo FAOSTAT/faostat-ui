@@ -6,7 +6,7 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-download/submodules/faostat-ui-bulk-downloads/js/paths',
          '../submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/js/paths',
          '../submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/submodules/faostat-ui-download-selector/js/paths',
-         '../submodules/faostat-ui-download/submodules/fenix-ui-download-options/js/paths',
+         '../submodules/fenix-ui-download-options/js/paths',
          '../submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/js/paths',
          '../submodules/faostat-ui-analysis/js/paths',
          '../submodules/faostat-ui-analysis/submodules/faostat-ui-analysis-ghg-indicators/js/paths',
@@ -52,7 +52,7 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     selectorConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/submodules/faostat-ui-download-selector/js';
 
     var optionsConfig = OPTIONS;
-    optionsConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-download-options/js';
+    optionsConfig['baseUrl'] = 'submodules/fenix-ui-download-options/js';
 
     var metadataConfig = METADATA;
     metadataConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/js';
@@ -179,6 +179,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     amplify: {
                         deps: ['jquery'],
                         exports: 'amplifyjs'
+                    },
+                    sweetAlert: {
+                        exports: 'swal'
                     }
                 }
             }
