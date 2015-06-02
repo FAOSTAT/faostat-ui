@@ -80,7 +80,7 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     wideTablesConfig['baseUrl'] = 'submodules/faostat-ui-analysis/submodules/faostat-ui-wide-tables/js';
 
     var olapConfig = OLAP;
-    olapConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-olap/js';
+    olapConfig['baseUrl'] = 'submodules/fenix-ui-olap/js';
 
     var browseConfig = BROWSE;
     browseConfig['baseUrl'] = 'submodules/faostat-ui-browse/js';
@@ -155,6 +155,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     sweetAlert: '{FENIX_CDN}/js/sweet-alert/0.5.0/sweet-alert.min',
                     domReady: '{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady',
                     pivot: 'submodules/fenix-ui-olap/js/pivot',
+                    pivotRenderers: 'submodules/fenix-ui-olap/js/rend/rendererers',
+                    pivotAggregators: 'submodules/fenix-ui-olap/js/rend/aggregators',
+                    pivotConfig: 'submodules/fenix-ui-olap/config/dataConfig',
                     faostat_commons: 'submodules/fenix-ui-common/js/FAOSTATCommons',
                     fenix_ui_common: 'submodules/fenix-ui-common',
                     wds_client: 'submodules/fenix-ui-common/js/WDSClient'
