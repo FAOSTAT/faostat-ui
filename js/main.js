@@ -17,8 +17,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/submodules/json-editor-faostat-theme/js/paths',
          '../submodules/faostat-ui-analysis/submodules/faostat-ui-wide-tables/js/paths',
          '../submodules/faostat-ui-download/submodules/fenix-ui-olap/js/paths',
-        '../submodules/faostat-ui-browse/js/paths',
-        '../submodules/faostat-ui-browse/submodules/faostat-ui-browse-by-domain/js/paths',
+         '../submodules/faostat-ui-browse/js/paths',
+         '../submodules/faostat-ui-browse/submodules/faostat-ui-browse-by-domain/js/paths'
 
     ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
                         ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME, WIDE_TABLES,
@@ -105,8 +105,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       faostatThemeConfig,
                       wideTablesConfig,
                       olapConfig,
-        browseConfig,
-        browseByDomainConfig],
+                      browseConfig,
+                      browseByDomainConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository',
@@ -130,7 +130,10 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                     underscore: '{FENIX_CDN}/js/underscore/1.8.0/underscore.min',
                     sweetAlert: '{FENIX_CDN}/js/sweet-alert/0.5.0/sweet-alert.min',
                     domReady: '{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady',
-                    pivot: 'submodules/faostat-ui-download/submodules/fenix-ui-olap/js/pivot'
+                    pivot: 'submodules/faostat-ui-download/submodules/fenix-ui-olap/js/pivot',
+                    faostat_commons: 'submodules/fenix-ui-common/js/FAOSTATCommons',
+                    fenix_ui_common: 'submodules/fenix-ui-common',
+                    wds_client: 'submodules/fenix-ui-common/js/WDSClient'
                 },
                 shim: {
                     backbone: {
