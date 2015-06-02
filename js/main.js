@@ -20,11 +20,13 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-browse/submodules/faostat-ui-browse-by-domain/js/paths',
          '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-abbreviations/js/paths',
          '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-classifications/js/paths',
-         '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-glossary/js/paths'
+         '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-glossary/js/paths',
+         '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-methodology/js/paths'
 
     ], function(Compiler, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
-                        ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME, WIDE_TABLES,
-                        OLAP, BROWSE, BROWSE_BY_DOMAIN, ABBREVIATIONS, CLASSIFICATIONS, GLOSSARY) {
+                        ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME,
+                        WIDE_TABLES, OLAP, BROWSE, BROWSE_BY_DOMAIN, ABBREVIATIONS, CLASSIFICATIONS,
+                        GLOSSARY, METHODOLOGY) {
 
     var menuConfig = MENU;
     menuConfig['baseUrl'] = 'submodules/faostat-ui-menu/js';
@@ -94,6 +96,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var standardsGlossaryConfig = GLOSSARY;
     standardsGlossaryConfig['baseUrl'] = 'submodules/faostat-ui-standards/submodules/faostat-ui-standards-glossary/js';
 
+    var standardsMethodologyConfig = METHODOLOGY;
+    standardsMethodologyConfig['baseUrl'] = 'submodules/faostat-ui-standards/submodules/faostat-ui-standards-methodology/js';
+
     Compiler.resolve([menuConfig,
                       homeConfig,
                       downloadConfig,
@@ -115,7 +120,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       browseByDomainConfig,
                       standardsAbbreviationsConfig,
                       standardsClassificationsConfig,
-                      standardsGlossaryConfig
+                      standardsGlossaryConfig,
+                      standardsMethodologyConfig
         ], {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository',
