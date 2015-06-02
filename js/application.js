@@ -1,6 +1,7 @@
 define(['jquery',
+        'require',
         'backbone',
-        'text!config/faostat.json'], function($, Backbone, faostat_config, tiles_configuration) {
+        'text!config/faostat.json'], function($, Require, Backbone, faostat_config, tiles_configuration) {
 
     'use strict';
 
@@ -44,7 +45,9 @@ define(['jquery',
                 '(/):lang(/)download(/):group(/):domain(/):section(/)'  :   'download_group_domain_section',
                 '(/):lang(/)analysis(/)'                                :   'analysis',
                 '(/):lang(/)analysis(/):section(/)'                     :   'analysis_section',
-                '(/):lang(/)analysis(/):section(/):module(/)'           :   'analysis_section_module'
+                '(/):lang(/)analysis(/):section(/):module(/)'           :   'analysis_section_module',
+                '(/):lang(/)browse(/)'                                  :   'browse',
+                '(/):lang(/)browse(/):domain(/):code(/)'                :   'browse'
             },
 
             /* Generic routing. */
@@ -55,7 +58,7 @@ define(['jquery',
                     /* Initiate language. */
                     _this.set_language(lang);
 
-                    require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_' + module_name.toUpperCase()], function (MENU, MODULE) {
+                    Require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_' + module_name.toUpperCase()], function (MENU, MODULE) {
 
                         /* Initiate the menu. */
                         var menu = new MENU();
@@ -83,7 +86,8 @@ define(['jquery',
         var modules = [
             'home',
             'download',
-            'analysis'
+            'analysis',
+            'browse'
         ];
 
         /* Route modules. */
@@ -95,6 +99,9 @@ define(['jquery',
 
         /* Analysis router. */
         _this.analysis_router(app_router);
+
+        /* Analysis router. */
+        _this.browse_router(app_router);
 
         /* Initiate Backbone history. */
         Backbone.history.start();
@@ -112,7 +119,7 @@ define(['jquery',
             /* Initiate language. */
             _this.set_language(lang);
 
-            require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_DOWNLOAD'], function (MENU, DWLD) {
+            Require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_DOWNLOAD'], function (MENU, DWLD) {
 
                 /* Initiate the menu. */
                 var menu = new MENU();
@@ -145,7 +152,7 @@ define(['jquery',
             /* Initiate language. */
             _this.set_language(lang);
 
-            require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_DOWNLOAD'], function (MENU, DWLD) {
+            Require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_DOWNLOAD'], function (MENU, DWLD) {
 
                 /* Initiate the menu. */
                 var menu = new MENU();
@@ -196,7 +203,7 @@ define(['jquery',
             /* Initiate language. */
             _this.set_language(lang);
 
-            require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
+            Require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_ANALYSIS'], function (MENU, ANALYSIS) {
 
                 /* Initiate the menu. */
                 var menu = new MENU();
@@ -229,7 +236,7 @@ define(['jquery',
             _this.set_language(lang);
 
             /* Initiate menu and tiles manager. */
-            require(['FAOSTAT_UI_MENU', 'FENIX_UI_TILES_MANAGER'], function (MENU, TILES_MGR) {
+            Require(['FAOSTAT_UI_MENU', 'FENIX_UI_TILES_MANAGER'], function (MENU, TILES_MGR) {
 
                 /* Initiate the menu. */
                 var menu = new MENU();
@@ -242,7 +249,7 @@ define(['jquery',
                 var id = mgr.CONFIG.tiles_configuration[section + '_' + module].require;
 
                 /* Load module. */
-                require([id], function (MODULE) {
+                Require([id], function (MODULE) {
 
                     /* Module configuration. */
                     var module_config = {
@@ -265,6 +272,42 @@ define(['jquery',
         });
 
     };
+
+    FAOSTAT4.prototype.browse_router = function(app_router) {
+
+        /* This... */
+        var _this = this;
+
+        /* Show analysis. */
+        app_router.on('route:browse', function (lang, section, code) {
+
+            /* Re-route to default section. */
+            //Backbone.history.navigate('/' + _this.CONFIG.lang + '/browse/domain/Q', {trigger: false});
+
+            Require(['FAOSTAT_UI_MENU', 'FAOSTAT_UI_BROWSE'], function (MENU, MODULE) {
+
+                /* Initiate the menu. */
+                var menu = new MENU();
+                menu.init(_this.CONFIG.menu);
+
+                /* Download configuration. */
+                var config = {
+                    lang: lang,
+                    code: code,
+                    section: section,
+                    datasource: _this.CONFIG.datasource,
+                    placeholder_id: _this.CONFIG.placeholder_id
+                };
+
+                if ( _this.module != null) {
+                    _this.module.destroy();
+                }
+                _this.module = new MODULE();
+                _this.module.init(config);
+            });
+        });
+    };
+
 
     FAOSTAT4.prototype.set_language = function(lang) {
         lang = (lang != null) ? lang : 'en';

@@ -16,10 +16,13 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-analysis/submodules/fenix-ui-tiles-manager/js/paths',
          '../submodules/faostat-ui-download/submodules/fenix-ui-metadata-viewer/submodules/json-editor-faostat-theme/js/paths',
          '../submodules/faostat-ui-analysis/submodules/faostat-ui-wide-tables/js/paths',
-         '../submodules/faostat-ui-download/submodules/fenix-ui-olap/js/paths'
-        ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
-                    ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME, WIDE_TABLES,
-                    OLAP) {
+         '../submodules/faostat-ui-download/submodules/fenix-ui-olap/js/paths',
+        '../submodules/faostat-ui-browse/js/paths',
+        '../submodules/faostat-ui-browse/submodules/faostat-ui-browse-by-domain/js/paths',
+
+    ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
+                        ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME, WIDE_TABLES,
+                        OLAP, BROWSE, BROWSE_BY_DOMAIN) {
 
     var commonsConfig = Commons;
     commonsConfig['baseUrl'] = 'submodules/faostat-ui-commons/js';
@@ -76,6 +79,14 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var olapConfig = OLAP;
     olapConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-olap/js';
 
+    /* Browse */
+    var browseConfig = BROWSE;
+    browseConfig['baseUrl'] = 'submodules/faostat-ui-browse/js';
+
+    var browseByDomainConfig = BROWSE_BY_DOMAIN;
+    browseByDomainConfig['baseUrl'] = 'submodules/faostat-ui-browse/submodules/faostat-ui-browse-by-domain/js';
+
+
     Compiler.resolve([commonsConfig,
                       menuConfig,
                       homeConfig,
@@ -93,7 +104,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       tilesManagerConfig,
                       faostatThemeConfig,
                       wideTablesConfig,
-                      olapConfig],
+                      olapConfig,
+        browseConfig,
+        browseByDomainConfig],
         {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository',
