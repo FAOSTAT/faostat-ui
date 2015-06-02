@@ -1,7 +1,7 @@
 define(['jquery',
         'require',
         'backbone',
-        'text!config/faostat.json'], function($, Require, Backbone, faostat_config, tiles_configuration) {
+        'text!config/faostat.json'], function($, Require, Backbone, faostat_config) {
 
     'use strict';
 

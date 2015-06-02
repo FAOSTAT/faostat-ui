@@ -1,5 +1,4 @@
 require(['../submodules/fenix-ui-common/js/Compiler',
-         '../submodules/faostat-ui-commons/js/paths',
          '../submodules/faostat-ui-menu/js/paths',
          '../submodules/faostat-ui-home/js/paths',
          '../submodules/faostat-ui-download/js/paths',
@@ -19,14 +18,12 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-download/submodules/fenix-ui-olap/js/paths',
          '../submodules/faostat-ui-browse/js/paths',
          '../submodules/faostat-ui-browse/submodules/faostat-ui-browse-by-domain/js/paths',
-         '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-abbreviations/js/paths'
+         '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-abbreviations/js/paths',
+         '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-classifications/js/paths'
 
-    ], function(Compiler, Commons, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
+    ], function(Compiler, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
                         ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME, WIDE_TABLES,
-                        OLAP, BROWSE, BROWSE_BY_DOMAIN, ABBREVIATIONS) {
-
-    var commonsConfig = Commons;
-    commonsConfig['baseUrl'] = 'submodules/faostat-ui-commons/js';
+                        OLAP, BROWSE, BROWSE_BY_DOMAIN, ABBREVIATIONS, CLASSIFICATIONS) {
 
     var menuConfig = MENU;
     menuConfig['baseUrl'] = 'submodules/faostat-ui-menu/js';
@@ -90,8 +87,10 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var standardsAbbreviationsConfig = ABBREVIATIONS;
     standardsAbbreviationsConfig['baseUrl'] = 'submodules/faostat-ui-standards/submodules/faostat-ui-standards-abbreviations/js';
 
-    Compiler.resolve([commonsConfig,
-                      menuConfig,
+    var standardsClassificationsConfig = CLASSIFICATIONS;
+    standardsClassificationsConfig['baseUrl'] = 'submodules/faostat-ui-standards/submodules/faostat-ui-standards-classifications/js';
+
+    Compiler.resolve([menuConfig,
                       homeConfig,
                       downloadConfig,
                       treeConfig,
@@ -110,8 +109,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       olapConfig,
                       browseConfig,
                       browseByDomainConfig,
-                      standardsAbbreviationsConfig],
-        {
+                      standardsAbbreviationsConfig,
+                      standardsClassificationsConfig
+        ], {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository',
                LOCALHOST: '//localhost:8080/faostat'
