@@ -25,9 +25,6 @@
 [submodule "submodules/faostat-ui-tree"]
 	path = submodules/faostat-ui-tree
 	url = https://github.com/FAOSTAT4/faostat-ui-tree.git
-[submodule "submodules/faostat-ui-commons"]
-	path = submodules/faostat-ui-commons
-	url = https://github.com/FAOSTAT4/faostat-ui-commons.git
 [submodule "faostat-ui-home"]
 	path = faostat-ui-home
 	url = https://github.com/FAOSTAT4/faostat-ui-home.git
