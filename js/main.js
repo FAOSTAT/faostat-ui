@@ -22,12 +22,13 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-classifications/js/paths',
          '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-glossary/js/paths',
          '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-methodology/js/paths',
-         '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-units/js/paths'
+         '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-units/js/paths',
+         '../submodules/faostat-ui-standards/js/paths'
 
     ], function(Compiler, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
                         ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME,
                         WIDE_TABLES, OLAP, BROWSE, BROWSE_BY_DOMAIN, ABBREVIATIONS, CLASSIFICATIONS,
-                        GLOSSARY, METHODOLOGY, UNITS) {
+                        GLOSSARY, METHODOLOGY, UNITS, STANDARDS) {
 
     var menuConfig = MENU;
     menuConfig['baseUrl'] = 'submodules/faostat-ui-menu/js';
@@ -103,6 +104,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var standardsUnitsConfig = UNITS;
     standardsUnitsConfig['baseUrl'] = 'submodules/faostat-ui-standards/submodules/faostat-ui-standards-units/js';
 
+    var standardsConfig = STANDARDS;
+    standardsConfig['baseUrl'] = 'submodules/faostat-ui-standards/js';
+
     Compiler.resolve([menuConfig,
                       homeConfig,
                       downloadConfig,
@@ -126,7 +130,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       standardsClassificationsConfig,
                       standardsGlossaryConfig,
                       standardsMethodologyConfig,
-                      standardsUnitsConfig
+                      standardsUnitsConfig,
+                      standardsConfig
         ], {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository',
