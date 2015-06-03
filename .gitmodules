@@ -55,3 +55,6 @@
 [submodule "submodules/fenix-ui-chart-creator"]
 	path = submodules/fenix-ui-chart-creator
 	url = https://github.com/FENIX-Platform/fenix-ui-chart-creator.git
+[submodule "submodules/faostat-ui-compare"]
+	path = submodules/faostat-ui-compare
+	url = https://github.com/FAOSTAT4/faostat-ui-compare.git
