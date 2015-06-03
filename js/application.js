@@ -88,9 +88,7 @@ define(['jquery',
         var modules = [
             'home',
             'download',
-            'analysis',
-            'browse',
-            'compare'
+            'analysis'
         ];
 
         /* Route modules. */
@@ -106,6 +104,9 @@ define(['jquery',
 
         /* Analysis router. */
         _this.browse_router(app_router);
+
+        /* Analysis router. */
+        _this.compare_router(app_router);
 
         /* Initiate Backbone history. */
         Backbone.history.start();
@@ -303,7 +304,7 @@ define(['jquery',
                     placeholder_id: _this.CONFIG.placeholder_id
                 };
 
-                if ( _this.module !== null) {
+                if ( _this.module !== null && _this.module !== undefined) {
                     _this.module.destroy();
                 }
                 _this.module = new MODULE();
@@ -339,7 +340,7 @@ define(['jquery',
                     placeholder_id: _this.CONFIG.placeholder_id
                 };
 
-                if ( _this.module !== null) {
+                if ( _this.module !== null && _this.module !== undefined) {
                     _this.module.destroy();
                 }
                 _this.module = new MODULE();
