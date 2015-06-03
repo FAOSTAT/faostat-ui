@@ -19,6 +19,11 @@
          "format": "url",
          "default": "http://faostat.fao.org/Portals/_Faostat/Downloads/zip_files/"
       },
+      "url_wds_crud": {
+         "type": "string",
+         "format": "url",
+         "default": "http://fenixapps2.fao.org/wds_5.1/rest/crud"
+      },
       "url_wds_bulk_downloads": {
          "type": "string",
          "format": "url",
@@ -78,6 +83,40 @@
                      "type": "string",
                      "description": "ULR for WDS-based web-services.",
                      "default": "http://hqlprfenixapp2.hq.un.fao.org:12900/wds_qa_qc/rest"
+                  }
+               }
+            }
+         }
+      },
+      "browse": {
+         "type": "object",
+         "title": "Browse Section",
+         "properties": {
+            "browse_by_domain": {
+               "type": "object",
+               "properties": {
+                  "datasource": {
+                     "$ref": "#/definitions/datasource"
+                  },
+                  "url_wds_crud": {
+                     "$ref": "#/definitions/url_wds_crud"
+                  }
+               }
+            }
+         }
+      },
+      "compare": {
+         "type": "object",
+         "title": "Compare Section",
+         "properties": {
+            "selectors": {
+               "type": "object",
+               "properties": {
+                  "datasource": {
+                     "$ref": "#/definitions/datasource"
+                  },
+                  "url_wds_crud": {
+                     "$ref": "#/definitions/url_wds_crud"
                   }
                }
             }
