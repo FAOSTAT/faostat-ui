@@ -52,3 +52,6 @@
 [submodule "submodules/faostat-ui-breadcrumbs"]
 	path = submodules/faostat-ui-breadcrumbs
 	url = https://github.com/FAOSTAT4/faostat-ui-breadcrumbs.git
+[submodule "submodules/fenix-ui-chart-creator"]
+	path = submodules/fenix-ui-chart-creator
+	url = https://github.com/FENIX-Platform/fenix-ui-chart-creator.git
