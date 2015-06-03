@@ -307,6 +307,10 @@ define(['jquery',
                 if ( _this.module !== null && _this.module !== undefined) {
                     _this.module.destroy();
                 }
+
+                /* Propagate central configuration. */
+                config = $.extend(true, {}, config, faostat_config.browse);
+
                 _this.module = new MODULE();
                 _this.module.init(config);
             });
@@ -334,8 +338,6 @@ define(['jquery',
                 /* Download configuration. */
                 var config = {
                     lang: lang,
-                    code: code,
-                    section: section,
                     datasource: _this.CONFIG.datasource,
                     placeholder_id: _this.CONFIG.placeholder_id
                 };
@@ -343,6 +345,10 @@ define(['jquery',
                 if ( _this.module !== null && _this.module !== undefined) {
                     _this.module.destroy();
                 }
+
+                /* Propagate central configuration. */
+                var config = $.extend(true, {}, config, faostat_config.compare);
+
                 _this.module = new MODULE();
                 _this.module.init(config);
             });
