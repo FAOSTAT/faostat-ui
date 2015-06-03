@@ -25,7 +25,7 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-standards/submodules/faostat-ui-standards-units/js/paths',
          '../submodules/faostat-ui-standards/js/paths',
          '../submodules/faostat-ui-browse/submodules/faostat-ui-browse-by-country/js/paths',
-         '../submodules/faostat-ui-browse/submodules/faostat-ui-browse-by-rankings/js/paths'
+         '../submodules/faostat-ui-browse/submodules/faostat-ui-browse-rankings/js/paths'
 
     ], function(Compiler, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
                 ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME,
