@@ -49,3 +49,6 @@
 [submodule "submodules/fenix-ui-download-options"]
 	path = submodules/fenix-ui-download-options
 	url = https://github.com/FENIX-Platform/fenix-ui-download-options.git
+[submodule "submodules/faostat-ui-breadcrumbs"]
+	path = submodules/faostat-ui-breadcrumbs
+	url = https://github.com/FAOSTAT4/faostat-ui-breadcrumbs.git
