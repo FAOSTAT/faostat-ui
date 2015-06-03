@@ -115,7 +115,7 @@
                   },
                   "ok_button": {
                      "type": "boolean",
-                     "default": false
+                     "default": true
                   },
                   "csv_button": {
                      "type": "boolean",
