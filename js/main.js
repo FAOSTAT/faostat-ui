@@ -26,13 +26,14 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-standards/js/paths',
          '../submodules/faostat-ui-browse/submodules/faostat-ui-browse-by-country/js/paths',
          '../submodules/faostat-ui-browse/submodules/faostat-ui-browse-rankings/js/paths',
-         '../submodules/faostat-ui-breadcrumbs/js/paths'
+         '../submodules/faostat-ui-breadcrumbs/js/paths',
+         '../submodules/fenix-ui-chart-creator/src/js/paths'
 
     ], function(Compiler, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
                 ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME,
                 WIDE_TABLES, OLAP, BROWSE, BROWSE_BY_DOMAIN, ABBREVIATIONS, CLASSIFICATIONS,
                 GLOSSARY, METHODOLOGY, UNITS, STANDARDS, BROWSE_BY_COUNTRY, BROWSE_RANKINGS,
-                BREADCRUMBS) {
+                BREADCRUMBS, CHARTS) {
 
     var menuConfig = MENU;
     menuConfig['baseUrl'] = 'submodules/faostat-ui-menu/js';
@@ -119,6 +120,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
     var breadcrumbsConfig = BREADCRUMBS;
     breadcrumbsConfig['baseUrl'] = 'submodules/faostat-ui-breadcrumbs/js';
 
+    var chartsConfig = CHARTS;
+    chartsConfig['baseUrl'] = 'submodules/fenix-ui-chart-creator/src/js';
+
     Compiler.resolve([menuConfig,
                       homeConfig,
                       downloadConfig,
@@ -146,7 +150,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       standardsConfig,
                       browseByCountryConfig,
                       browseRankingsConfig,
-                      breadcrumbsConfig
+                      breadcrumbsConfig,
+                      chartsConfig
         ], {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository',
