@@ -1,3 +1,4 @@
+/* global define, require */
 define(['jquery',
         'require',
         'backbone',
@@ -24,7 +25,7 @@ define(['jquery',
         this.CONFIG = $.extend(true, {}, this.CONFIG, config);
 
         /* Fix the language, if needed. */
-        this.CONFIG.lang = this.CONFIG.lang != null ? this.CONFIG.lang : 'en';
+        this.CONFIG.lang = this.CONFIG.lang !== null ? this.CONFIG.lang : 'en';
 
         /* Cast FAOSTAT configuration file to JSON. */
         faostat_config = $.parseJSON(faostat_config);
@@ -47,7 +48,8 @@ define(['jquery',
                 '(/):lang(/)analysis(/):section(/)'                     :   'analysis_section',
                 '(/):lang(/)analysis(/):section(/):module(/)'           :   'analysis_section_module',
                 '(/):lang(/)browse(/)'                                  :   'browse',
-                '(/):lang(/)browse(/):domain(/):code(/)'                :   'browse'
+                '(/):lang(/)browse(/):domain(/):code(/)'                :   'browse',
+                '(/):lang(/)compare(/)'                                 :   'compare'
             },
 
             /* Generic routing. */
@@ -80,19 +82,21 @@ define(['jquery',
         });
 
         /* Initiate router. */
-        var app_router = new AppRouter;
+        var app_router = new AppRouter();
 
         /* Define modules. */
         var modules = [
             'home',
             'download',
             'analysis',
-            'browse'
+            'browse',
+            'compare'
         ];
 
         /* Route modules. */
-        for (var module in modules)
+        for (var module in modules) {
             app_router.route_module(modules[module]);
+        }
 
         /* Download router. */
         _this.download_router(app_router);
@@ -299,7 +303,43 @@ define(['jquery',
                     placeholder_id: _this.CONFIG.placeholder_id
                 };
 
-                if ( _this.module != null) {
+                if ( _this.module !== null) {
+                    _this.module.destroy();
+                }
+                _this.module = new MODULE();
+                _this.module.init(config);
+            });
+        });
+    };
+
+
+    FAOSTAT4.prototype.compare_router = function(app_router) {
+
+        /* This... */
+        var _this = this;
+
+        /* Show analysis. */
+        app_router.on('route:compare', function (lang, section, code) {
+
+            /* Re-route to default section. */
+            //Backbone.history.navigate('/' + _this.CONFIG.lang + '/browse/domain/Q', {trigger: false});
+
+            Require(['FAOSTAT_UI_MENU', 'faostat-ui-compare'], function (MENU, MODULE) {
+
+                /* Initiate the menu. */
+                var menu = new MENU();
+                menu.init(_this.CONFIG.menu);
+
+                /* Download configuration. */
+                var config = {
+                    lang: lang,
+                    code: code,
+                    section: section,
+                    datasource: _this.CONFIG.datasource,
+                    placeholder_id: _this.CONFIG.placeholder_id
+                };
+
+                if ( _this.module !== null) {
                     _this.module.destroy();
                 }
                 _this.module = new MODULE();
@@ -310,11 +350,11 @@ define(['jquery',
 
 
     FAOSTAT4.prototype.set_language = function(lang) {
-        lang = (lang != null) ? lang : 'en';
+        lang = (lang !== null) ? lang : 'en';
         require.config({'locale': lang});
         var locale = localStorage.getItem('locale');
         localStorage.setItem('locale', lang);
-        if (locale != lang) {
+        if (locale !== lang) {
             localStorage.setItem('locale', lang);
             location.reload();
         }
