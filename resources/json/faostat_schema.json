@@ -27,7 +27,7 @@
       "url_wds_bulk_downloads": {
          "type": "string",
          "format": "url",
-         "default": "http://faostat3.fao.org/wds/rest"
+         "default": "http://fenixapps2.fao.org/wds_5.1/rest"
       },
       "url_wds_table": {
          "type": "string",
@@ -47,12 +47,12 @@
       "url_codelists": {
          "type": "string",
          "format": "url",
-         "default": "http://faostat3.fao.org/wds/"
+         "default": "http://fenixapps2.fao.org/wds_5.1/"
       },
       "url_listboxes": {
          "type": "string",
          "format": "url",
-         "default": "http://faostat3.fao.org/wds/rest/procedures/listboxes"
+         "default": "http://fenixapps2.fao.org/wds_5.1/rest/procedures/listboxes"
       },
       "datasource": {
          "type": "string",
