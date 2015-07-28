@@ -30,13 +30,14 @@ require(['../submodules/fenix-ui-common/js/Compiler',
          '../submodules/faostat-ui-breadcrumbs/js/paths',
          '../submodules/faostat-ui-compare/js/paths',
          '../submodules/faostat-ui-compare/submodules/faostat-ui-compare-selectors/js/paths',
-         '../submodules/fenix-ui-chart-creator/src/js/paths'
+         '../submodules/fenix-ui-chart-creator/src/js/paths',
+         '../submodules/faostat-ui-download/submodules/fenix-ui-reports/src/js/paths'
 
     ], function(Compiler, MENU, HOME, DWLD, TREE, BULK, SELECTOR_MGR, SELECTOR, OPTIONS, METADATA,
                 ANALYSIS, GHG_INDICATORS, GHG_OVERVIEW, GHG_QA_QC, TILES_MGR, FAOSTAT_THEME,
                 WIDE_TABLES, OLAP, BROWSE, BROWSE_BY_DOMAIN, ABBREVIATIONS, CLASSIFICATIONS,
                 GLOSSARY, METHODOLOGY, UNITS, STANDARDS, BROWSE_BY_COUNTRY, BROWSE_RANKINGS,
-                BREADCRUMBS, COMPARE, COMPARE_SELECTORS, CHARTS) {
+                BREADCRUMBS, COMPARE, COMPARE_SELECTORS, CHARTS, FENIX_UI_REPORTS) {
 
     var menuConfig = MENU;
     menuConfig['baseUrl'] = 'submodules/faostat-ui-menu/js';
@@ -52,6 +53,9 @@ require(['../submodules/fenix-ui-common/js/Compiler',
 
     var bulkConfig = BULK;
     bulkConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/faostat-ui-bulk-downloads/js';
+
+    var reportsConfig = FENIX_UI_REPORTS;
+    reportsConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/fenix-ui-reports/src/js';
 
     var selectorMgrConfig = SELECTOR_MGR;
     selectorMgrConfig['baseUrl'] = 'submodules/faostat-ui-download/submodules/faostat-ui-download-selectors-manager/js';
@@ -163,7 +167,8 @@ require(['../submodules/fenix-ui-common/js/Compiler',
                       breadcrumbsConfig,
                       compareConfig,
                       compareSelectorsConfig,
-                      chartsConfig
+                      chartsConfig,
+                      reportsConfig
         ], {
             placeholders: {
                FENIX_CDN: '//fenixapps.fao.org/repository',
