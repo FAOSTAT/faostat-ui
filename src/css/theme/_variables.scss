@@ -1,0 +1,79 @@
+/* Variables */
+
+// Path of the FENIX-UI-COMMON Submodule relative to this file
+$fx-ui-common: '../../submodules/fenix-ui-common/';
+
+// Fenix - Variables
+
+// Layout
+$host-menu-height : 40px;
+
+// Typography
+$small-text : 12px;
+$standard-text-size: 12px;
+$standard-text : normal normal 300 $standard-text-size/normal 'Roboto';
+$standard-text-bold : normal normal 500 14px/normal 'Roboto';
+$standard-text-big : normal normal 300 16px/normal 'Roboto';
+
+$fx-text-h1: normal normal 300 18px/normal 'Roboto';
+$fx-text-h2: normal normal 300 14px/normal 'Roboto';
+$fx-text-h3: normal normal 500 12px/normal 'Roboto';
+$fx-text-h4: normal normal 300 11px/normal 'Roboto';
+
+
+$fx-text-smalltitle-normal: normal normal 400 10px/normal 'Roboto';
+$fx-text-smalltitle-bold: normal normal 700 10px/normal 'Roboto';
+
+// Fenix Colors
+$fenix-standard-blue: rgba(53, 166, 220, 1);
+$fx-cool-blue: #2395ab;
+
+
+$fx-secondary-color: desaturate( $fx-cool-blue, 50% );
+
+$fx-main-color-light: lighten($fx-cool-blue, 42%);  // Ideal for selection
+$fx-main-color-lighter: lighten($fx-cool-blue, 42%); // Ideal for hovers
+$fx-main-color-darker: darken($fx-cool-blue, 20%); // Ideal for hovers
+
+
+
+$fenix-text: #666666;
+$fenix-secondary-text: #999999;
+
+$fenix-light-gray: #dddddd;
+$fenix-dark-blue: #4c647f;
+$fenix-dark-bg: #666666;
+$fenix-light-bg: #f1f1f1;
+$light-purple: #EEEEFF;
+$light-brown: #f3efe0;
+
+$box-bg: #ededed;
+$superlight-gray: #f2f2f2;
+
+$buttons: #2ab896;
+
+$fenix-hr: #D2D0D0;
+$fenix-light-hr: #cccccc;
+
+$fenix-thin-border: 1px solid $fenix-hr;
+
+// Specials
+$white-alpha: rgba(255, 255, 255, 0.9);
+$black-alpha : rgba(0, 0, 0, 0.8);
+
+
+// Background
+// background: color position/size repeat origin clip attachment image|initial|inherit;
+$fx-site-bg: $fenix-light-bg;
+
+// Border Radius
+$fx-border-radius: 0;
+$custom-color1: lighten($fx-cool-blue, 42%); //Arancio
+
+$custom-color2: #d2ccbf; //Marroncino
+$custom-color3: #dfdede; //Grigio chiaro pulsanti reset
+$custom-color4: #ebebeb; //Grigio Pulsanti pressed
+$custom-color5: #27729a; //Cool blue pressed
+$custom-color6: #0d6cac; // Fao Blue
+$custom-color7: #4fa3db; // Fao Azure
+$custom-color8: #ec6e00; // Fao Orange

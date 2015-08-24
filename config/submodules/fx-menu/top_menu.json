@@ -1,0 +1,54 @@
+{
+  "items": [
+    {
+      "attrs": {
+        "id": "home",
+        "class":"home-menu-item"
+      },
+      "target": "#home",
+      "label": {
+        "EN": ""
+      }
+    },
+    {
+      "attrs": {
+        "id": "protected"
+      },
+      "target": "#protected",
+      "label": {
+        "EN": "Protected"
+      }
+    },
+    {
+      "attrs": {
+        "id": "about"
+      },
+      "target": "#about",
+      "label": {
+        "EN": "About"
+      }
+    }
+  ],
+  "rightItems": [
+    {
+      "attrs": {
+        "id": "login"
+      },
+      "label": {
+        "EN": "LOGIN"
+      }
+    },
+    {
+      "attrs": {
+        "id": "logout"
+      },
+      "label": {
+        "EN": "LOGOUT"
+      }
+    }
+  ],
+  "type": "static-top",
+  "brand": {
+    "target": "#"
+  }
+}
