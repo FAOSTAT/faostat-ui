@@ -8,6 +8,7 @@ define(function () {
         match('', 'home#show');
         match('home', 'home#show');
         match('download', 'download#show');
+        match('download/:test', 'download#show');
         match('protected', 'protected#show');
         match('about', 'about#show');
         match('*anything', '404#show');

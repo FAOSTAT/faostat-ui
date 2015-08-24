@@ -1,6 +1,7 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
     'views/base/view',
+    'config/FAOSTAT',
     'config/Config',
     'config/Queries',
     'config/Events',
@@ -8,12 +9,16 @@ define([
     'i18n!nls/download',
     'handlebars',
     'fx-common/WDSClient',
+    'FAOSTAT_UI_TREE',
     'amplify'
-], function (View, C, Q, E, template, i18nLabels, Handlebars, WDSClient) {
+], function (View, F, C, Q, E, template, i18nLabels, Handlebars, WDSClient, Tree) {
 
     'use strict';
 
-    var s = { };
+    var s = {
+
+        TREE: "#tree"
+    };
 
     var DownloadView = View.extend({
 
@@ -29,6 +34,8 @@ define([
 
         attach: function () {
 
+            console.log(F.download.metadata);
+
             View.prototype.attach.call(this, arguments);
 
             //update State
@@ -43,7 +50,13 @@ define([
             this.configurePage();
         },
 
-        initVariables: function () { },
+        initVariables: function () {
+
+            this.$tree = this.$el.find(s.TREE);
+
+            console.log(this.$tree.length);
+
+        },
 
         initComponents: function () {
 
@@ -52,6 +65,12 @@ define([
                 datasource: C.DB_NAME,
                 outputType : C.WDS_OUTPUT_TYPE
             });
+
+            this.tree = new Tree();
+            this.tree.init({
+                //placeholder_id: this.$tree
+                placeholder_id: s.TREE
+            })
         },
 
         configurePage: function () {
