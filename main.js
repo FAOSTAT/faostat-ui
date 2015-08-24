@@ -3,8 +3,9 @@
 require([
     './submodules/fenix-ui-common/js/Compiler',
     './submodules/fenix-ui-common/js/paths',
-    './submodules/fenix-ui-menu/js/paths'
-], function (Compiler, Common, Menu) {
+    './submodules/fenix-ui-menu/js/paths',
+    './submodules/faostat-ui-tree/js/paths'
+], function (Compiler, Common, Menu, Tree) {
 
     'use strict';
 
@@ -16,7 +17,10 @@ require([
     var menuConfig = Menu;
     menuConfig.baseUrl = submodules_path + '/fenix-ui-menu/js';
 
-    Compiler.resolve([commonConfig, Menu],
+    var treeConfig = Tree;
+    treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/js';
+
+    Compiler.resolve([commonConfig, menuConfig, treeConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 
