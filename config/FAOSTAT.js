@@ -1,11 +1,43 @@
 /*global define*/
-define(function ( ) {
+define(function () {
 
     'use strict';
 
     return {
-
-        EXAMPLE_QUERY : "select  'Indicator' as Indicator, 'Indicator_label' as Indicator_label, 'Source'  as Source,'Source_label' as Source_label,'Country' as Country,'Country_label' as Country_label,'Year' as Year,'Year_label' as Year_label,'Qualifier' as Qualifier,'Qualifier_label' as Qualifier_label,'Value' as Value,'Unit' as Unit,'Flag' as Flag union all select Indicator,Indicator_label,Source,Source_label,Country,Country_label,Year,Year_label,Qualifier,Qualifier_label,Value,Unit,Flag from masterDataSelection( string_to_array('{indicator}',','), string_to_array('{country}',','), string_to_array('{year}',','), string_to_array('{qualifier}',',') )"
-
+        "analysis": {
+            "FAOSTAT_UI_ANALYSIS_GHG_QA_QC": {
+                "datasource": "faostatdata",
+                "url_wds": "http://hqlprfenixapp2.hq.un.fao.org:12900/wds_qa_qc/rest"
+            }
+        },
+        "browse": {
+            "browse_by_domain": {
+                "datasource": "faostatdata",
+                "url_wds_crud": "http://fenixapps2.fao.org/wds_5.1/rest/crud"
+            }
+        },
+        "compare": {
+            "selectors": {
+                "datasource": "faostatdata",
+                "url_wds_crud": "http://fenixapps2.fao.org/wds_5.1/rest/crud"
+            }
+        },
+        "download": {
+            "metadata": {
+                "url_wds_table": "http://faostat3.fao.org/wds/rest/table/json",
+                "url_mdsd": "http://faostat3.fao.org/d3s2/v2/mdsd",
+                "url_d3s": "http://faostat3.fao.org/d3s2/v2/msd/resources/metadata/uid"
+            },
+            "preview_options": {
+                "excel_button": false,
+                "pdf_button": false,
+                "ok_button": true,
+                "csv_button": false
+            },
+            "selector_manager": {
+                "url_codelists": "http://fenixapps2.fao.org/wds_5.1/",
+                "url_listboxes": "http://fenixapps2.fao.org/wds_5.1/rest/procedures/listboxes"
+            }
+        }
     };
 });

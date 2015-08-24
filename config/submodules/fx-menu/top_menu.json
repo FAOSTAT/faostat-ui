@@ -59,37 +59,6 @@
       "label": {
         "EN": "Methods and Standards"
       }
-    },
-    {
-      "attrs": {
-        "id": "protected"
-      },
-      "target": "#protected",
-      "label": {
-        "EN": "Protected"
-      }
     }
-  ],
-  "rightItems": [
-    {
-      "attrs": {
-        "id": "login"
-      },
-      "label": {
-        "EN": "LOGIN"
-      }
-    },
-    {
-      "attrs": {
-        "id": "logout"
-      },
-      "label": {
-        "EN": "LOGOUT"
-      }
-    }
-  ],
-  "type": "static-top",
-  "brand": {
-    "target": "#"
-  }
+  ]
 }
