@@ -1,0 +1,6 @@
+[submodule "submodules/fenix-ui-common"]
+	path = submodules/fenix-ui-common
+	url = https://github.com/FENIX-Platform/fenix-ui-common.git
+[submodule "submodules/fenix-ui-menu"]
+	path = submodules/fenix-ui-menu
+	url = https://github.com/FENIX-Platform/fenix-ui-menu.git
