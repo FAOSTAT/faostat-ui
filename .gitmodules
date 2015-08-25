@@ -16,3 +16,6 @@
 [submodule "submodules/fenix-ui-dashboard"]
 	path = submodules/fenix-ui-dashboard
 	url = https://github.com/FENIX-Platform/fenix-ui-dashboard.git
+[submodule "submodules/fenix-ui-table-creator"]
+	path = submodules/fenix-ui-table-creator
+	url = https://github.com/FENIX-Platform/fenix-ui-table-creator.git
