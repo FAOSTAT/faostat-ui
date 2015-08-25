@@ -7,3 +7,6 @@
 [submodule "submodules/faostat-ui-tree"]
 	path = submodules/faostat-ui-tree
 	url = https://github.com/FAOSTAT/faostat-ui-tree.git
+[submodule "submodules/fenix-ui-chart-creator"]
+	path = submodules/fenix-ui-chart-creator
+	url = https://github.com/FENIX-Platform/fenix-ui-chart-creator.git
