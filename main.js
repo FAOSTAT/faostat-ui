@@ -4,8 +4,12 @@ require([
     './submodules/fenix-ui-common/js/Compiler',
     './submodules/fenix-ui-common/js/paths',
     './submodules/fenix-ui-menu/js/paths',
-    './submodules/faostat-ui-tree/js/paths'
-], function (Compiler, Common, Menu, Tree) {
+    './submodules/faostat-ui-tree/js/paths',
+    './submodules/fenix-ui-map-creator/src/js/paths',
+    './submodules/fenix-ui-chart-creator/src/js/paths',
+    './submodules/fenix-ui-table-creator/src/js/paths',
+    './submodules/fenix-ui-dashboard/src/js/paths',
+], function (Compiler, Common, Menu, Tree, MapCreator, ChartCreator, TableCreator, Dashboard) {
 
     'use strict';
 
@@ -20,7 +24,19 @@ require([
     var treeConfig = Tree;
     treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/js';
 
-    Compiler.resolve([commonConfig, menuConfig, treeConfig],
+    var mapConfig = MapCreator;
+    mapConfig.baseUrl = submodules_path + '/fenix-ui-map-creator/src/js';
+
+    var chartConfig = ChartCreator;
+    chartConfig.baseUrl = submodules_path + '/fenix-ui-chart-creator/src/js';
+
+    var tableConfig = TableCreator;
+    tableConfig.baseUrl = submodules_path + '/fenix-ui-table-creator/src/js';
+
+    var dashboardConfig = Dashboard;
+    dashboardConfig.baseUrl = submodules_path + '/fenix-ui-dashboard/src/js';
+
+    Compiler.resolve([commonConfig, menuConfig, treeConfig, mapConfig, chartConfig, tableConfig, dashboardConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 
