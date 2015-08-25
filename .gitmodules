@@ -10,3 +10,6 @@
 [submodule "submodules/fenix-ui-chart-creator"]
 	path = submodules/fenix-ui-chart-creator
 	url = https://github.com/FENIX-Platform/fenix-ui-chart-creator.git
+[submodule "submodules/fenix-ui-map-creator"]
+	path = submodules/fenix-ui-map-creator
+	url = https://github.com/FENIX-Platform/fenix-ui-map-creator.git
