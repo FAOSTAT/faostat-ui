@@ -13,3 +13,6 @@
 [submodule "submodules/fenix-ui-map-creator"]
 	path = submodules/fenix-ui-map-creator
 	url = https://github.com/FENIX-Platform/fenix-ui-map-creator.git
+[submodule "submodules/fenix-ui-dashboard"]
+	path = submodules/fenix-ui-dashboard
+	url = https://github.com/FENIX-Platform/fenix-ui-dashboard.git
