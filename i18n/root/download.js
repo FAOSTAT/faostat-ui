@@ -1,7 +1,7 @@
-    /*global define*/
+/*global define*/
 define({
     "tree_title": "FAOSTAT Domains",
-    "metadata": "metadata",
-    "interactive_download": "Interactive Download",
-    "bulk_download": "Bulk Download"
+    "metadata_label": "metadata",
+    "interactive_download_label": "Interactive Download",
+    "bulk_downloads_label": "Bulk Download"
 });

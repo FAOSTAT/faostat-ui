@@ -1,46 +1,49 @@
-<h1>{{title}}</h1>
-<hr>
-<div class="row">
-    <div class="intro-logo-holder col-xs-12">
+<div class='row'>
+    <div class='intro-logo-holder col-xs-12'>
         {{text}}
     </div>
 </div>
 
-<div class="row">
-    <div class="col-xs-3">
+<div class='row'>
+    <div class='col-lg-3'>
         <h1>{{tree_title}}</h1>
-        <div id="tree"></div>
+        <div id='tree'></div>
+        <br>
     </div>
-    <div class="col-xs-9">
+    <div class='col-lg-9'>
+        <h1>
+            Production > Crops
+        </h1>
         <div>
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation">
-                    <a href="#interactive_download" role="tab" data-toggle="tab" aria-controls="interactive_download">
-                        interactive label
+            <ul class='nav nav-tabs' role='tablist'>
+                <li role='presentation'>
+                    <a href='#interactive_download' role='tab' data-toggle='tab' aria-controls='interactive_download'>
+                        <i class='fa fa-download'></i> {{interactive_download_label}}
                     </a>
                 </li>
-                <li role="presentation" class="active">
-                    <a href="#bulk_downloads" role="tab" data-toggle="tab" aria-controls="bulk_downloads">
-                        bulk label
+                <li role='presentation' class='active'>
+                    <a href='#bulk_downloads' role='tab' data-toggle='tab' aria-controls='bulk_downloads'>
+                        <i class='fa fa-archive'></i> {{bulk_downloads_label}}
                     </a>
                 </li>
-                <li role="presentation">
-                    <a href="#metadata" role="tab" data-toggle="tab" aria-controls="metadata">
-                        metadata label
+                <li role='presentation'>
+                    <a href='#metadata' role='tab' data-toggle='tab' aria-controls='metadata'>
+                        <i class='fa fa-info'></i> {{metadata_label}}
                     </a>
                 </li>
             </ul>
             <div class='tab-content'>
-                <div role="tabpanel" class="tab-pane" id="interactive_download">
+                <div role='tabpanel' class='tab-pane' id='interactive_download'>
 
                 </div>
-                <div role="tabpanel" class="tab-pane active" id="bulk_downloads">
+                <div role='tabpanel' class='tab-pane active' id='bulk_downloads'>
 
                 </div>
-                <div role="tabpanel" class="tab-pane" id="metadata">
+                <div role='tabpanel' class='tab-pane' id='metadata'>
 
                 </div>
             </div>
         </div>
+        <br>
     </div>
 </div>
