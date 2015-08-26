@@ -17,7 +17,7 @@
       },
       "target": "#browse",
       "label": {
-        "EN": "Browse"
+        "EN": "<i class='fa fa-compass'></i> Browse"
       }
     },
     {
@@ -27,7 +27,7 @@
       },
       "target": "#download",
       "label": {
-        "EN": "Download"
+        "EN": "<i class='fa fa-cloud-download'></i> Download"
       }
     },
     {
@@ -37,7 +37,7 @@
       },
       "target": "#compare",
       "label": {
-        "EN": "Compare"
+        "EN": "<i class='fa fa-share'></i> Compare"
       }
     },
     {
@@ -47,7 +47,7 @@
       },
       "target": "#search",
       "label": {
-        "EN": "Search"
+        "EN": "<i class='fa fa-search'></i> Search"
       }
     },
     {
@@ -57,7 +57,7 @@
       },
       "target": "#mes",
       "label": {
-        "EN": "Methods and Standards"
+        "EN": "<i class='fa fa-wrench'></i> Methods and Standards"
       }
     }
   ]
