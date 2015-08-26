@@ -31,3 +31,6 @@
 [submodule "submodules/faostat-ui-bulk-downloads"]
 	path = submodules/faostat-ui-bulk-downloads
 	url = https://github.com/FAOSTAT/faostat-ui-bulk-downloads.git
+[submodule "submodules/faostat-ui-download-selectors-manager"]
+	path = submodules/faostat-ui-download-selectors-manager
+	url = https://github.com/FAOSTAT/faostat-ui-download-selectors-manager.git
