@@ -1,5 +1,4 @@
 /*global require*/
-
 require([
     './submodules/fenix-ui-common/js/Compiler',
     './submodules/fenix-ui-common/js/paths',
@@ -11,60 +10,55 @@ require([
     './submodules/fenix-ui-dashboard/src/js/paths',
     './submodules/fenix-ui-metadata-viewer/js/paths',
     './submodules/fenix-ui-reports/src/js/paths',
-    './submodules/faostat-ui-bulk-downloads/src/js/paths'
-], function (Compiler, Common, Menu, Tree, MapCreator, ChartCreator, TableCreator, Dashboard, MetadataViewer, Reports, BulkDownloads) {
+    './submodules/faostat-ui-bulk-downloads/src/js/paths',
+    './submodules/faostat-ui-download-selectors-manager/src/js/paths'
+], function (Compiler, Common, Menu, Tree, MapCreator, ChartCreator, TableCreator, Dashboard, MetadataViewer, Reports,
+             BulkDownloads, DownloadSelectorsManager) {
 
     'use strict';
 
-    var submodules_path = '../../submodules/';
+    var submodules_path = '../../submodules/',
+        commonConfig = Common,
+        menuConfig = Menu,
+        treeConfig = Tree,
+        mapConfig = MapCreator,
+        chartConfig = ChartCreator,
+        tableConfig = TableCreator,
+        metadataConfig = MetadataViewer,
+        reportsConfig = Reports,
+        dashboardConfig = Dashboard,
+        bulkDownloadsConfig = BulkDownloads,
+        downloadSelectorsManagerConfig = DownloadSelectorsManager;
 
-    var commonConfig = Common;
-    commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
-
-    var menuConfig = Menu;
     menuConfig.baseUrl = submodules_path + '/fenix-ui-menu/js';
-
-    var treeConfig = Tree;
     treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/js';
-
-    var mapConfig = MapCreator;
+    commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
     mapConfig.baseUrl = submodules_path + '/fenix-ui-map-creator/src/js';
-
-    var chartConfig = ChartCreator;
-    chartConfig.baseUrl = submodules_path + '/fenix-ui-chart-creator/src/js';
-
-    var tableConfig = TableCreator;
-    tableConfig.baseUrl = submodules_path + '/fenix-ui-table-creator/src/js';
-
-    var metadataConfig = MetadataViewer;
-    metadataConfig.baseUrl = submodules_path + '/fenix-ui-metadata-viewer/js';
-
-    var reportsConfig = Reports;
     reportsConfig.baseUrl = submodules_path + '/fenix-ui-reports/src/js';
-
-    var dashboardConfig = Dashboard;
+    chartConfig.baseUrl = submodules_path + '/fenix-ui-chart-creator/src/js';
+    tableConfig.baseUrl = submodules_path + '/fenix-ui-table-creator/src/js';
     dashboardConfig.baseUrl = submodules_path + '/fenix-ui-dashboard/src/js';
-
-    var bulkDownloadsConfig = BulkDownloads;
+    metadataConfig.baseUrl = submodules_path + '/fenix-ui-metadata-viewer/js';
     bulkDownloadsConfig.baseUrl = submodules_path + '/faostat-ui-bulk-downloads/src/js';
+    downloadSelectorsManagerConfig.baseUrl = submodules_path + '/faostat-ui-download-selectors-manager/src/js';
 
-    Compiler.resolve([
-            commonConfig, menuConfig, treeConfig, mapConfig, chartConfig,
-            tableConfig, dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig],
+    Compiler.resolve([commonConfig, menuConfig, treeConfig, mapConfig, chartConfig,
+            tableConfig, dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig,
+            downloadSelectorsManagerConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 
             config: {
 
-                //Set the config for the i18n
+                /* Set the config for the i18n. */
                 i18n: {
                     locale: 'en'
                 },
 
-                // The path where your JavaScripts are located
+                /* The path where your JavaScripts are located. */
                 baseUrl: './src/js',
 
-                // Specify the paths of vendor libraries
+                /* Specify the paths of vendor libraries. */
                 paths: {
                     bootstrap: "{FENIX_CDN}/js/bootstrap/3.3.4/js/bootstrap.min",
                     underscore: "{FENIX_CDN}/js/underscore/1.7.0/underscore.min",
@@ -75,21 +69,13 @@ require([
                     i18n: "{FENIX_CDN}/js/requirejs/plugins/i18n/2.0.4/i18n",
                     text: '{FENIX_CDN}/js/requirejs/plugins/text/2.0.12/text',
                     rsvp: '{FENIX_CDN}/js/rsvp/3.0.17/rsvp',
-
                     amplify: '{FENIX_CDN}/js/amplify/1.1.2/amplify.min',
-
                     nls: "../../i18n",
                     config: "../../config",
                     json: "../../json",
-
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
-
                     wds_client: '../../submodules/fenix-ui-common/js/WDSClient'
-
                 },
-
-                // Underscore and Backbone are not AMD-capable per default,
-                // so we need to use the AMD wrapping of RequireJS
                 shim: {
                     bootstrap: {
                         deps: ["jquery"]
@@ -105,26 +91,22 @@ require([
                         exports: 'Handlebars'
                     }
                 }
-                // For easier development, disable browser caching
-                // Of course, this should be removed in a production environment
-                //, urlArgs: 'bust=' +  (new Date()).getTime()
             }
         });
 
-    // Bootstrap the application
+    /* Bootstrap the application. */
     require([
         'application',
         'routes',
         'config/Config',
         'domReady!'
     ], function (Application, routes, C) {
-
         var app = new Application({
             routes: routes,
-            controllerSuffix: C.CHAPLINJS_CONTROLLER_SUFFIX,
             root: C.CHAPLINJS_PROJECT_ROOT,
+            scrollTo: C.CHAPLINJS_SCROLL_TO,
             pushState: C.CHAPLINJS_PUSH_STATE,
-            scrollTo: C.CHAPLINJS_SCROLL_TO
+            controllerSuffix: C.CHAPLINJS_CONTROLLER_SUFFIX
         });
     });
 });
