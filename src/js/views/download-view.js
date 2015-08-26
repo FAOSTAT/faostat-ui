@@ -23,7 +23,7 @@ define([
 
         TREE: "#tree",
         METADATA: "metadata",
-        INTERACTIVE_DOWNLOAD: "interactive_download",
+        INTERACTIVE_DOWNLOAD: "interactive_download_selectors",
         BULK_DOWNLOADS: "bulk_downloads"
 
     };
