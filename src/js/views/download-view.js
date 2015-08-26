@@ -20,6 +20,7 @@ define([
     var s = {
 
         TREE: "#tree",
+        METADATA: "metadata",
         BULK_DOWNLOADS: "bulk_downloads"
 
     };
@@ -38,10 +39,6 @@ define([
 
         attach: function () {
 
-            console.debug(MetadataViewer);
-
-            console.log(F.download.metadata);
-
             View.prototype.attach.call(this, arguments);
 
             //update State
@@ -59,33 +56,40 @@ define([
         initVariables: function () {
 
             this.$tree = this.$el.find(s.TREE);
+            this.$metadata = this.$el.find(s.METADATA);
             this.bulk_downloads = this.$el.find(s.BULK_DOWNLOADS);
-
-            console.log(this.$tree.length);
 
         },
 
         initComponents: function () {
 
+            /* WDS Client. */
             this.WDSClient = new WDSClient({
                 serviceUrl: C.WDS_URL,
                 datasource: C.DB_NAME,
                 outputType : C.WDS_OUTPUT_TYPE
             });
 
+            /* Bulk Downloads. */
             this.bulk_downloads = new BulkDownloads();
             this.bulk_downloads.init({
                 placeholder_id: s.BULK_DOWNLOADS,
                 domain: 'GE'
             });
-            console.debug('PRIMA');
             this.bulk_downloads.create_flat_list();
-            console.debug('DOPO');
 
+            /* Tree. */
             this.tree = new Tree();
             this.tree.init({
                 placeholder_id: s.TREE
-            })
+            });
+
+            /* Metadata viewer. */
+            this.metadata = new MetadataViewer();
+            this.metadata.init({
+                placeholder_id: s.METADATA
+            });
+
         },
 
         configurePage: function () {
