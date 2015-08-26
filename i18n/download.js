@@ -1,4 +1,5 @@
     /*global define*/
 define({
-    "root": true
+    "root": true,
+    "interactive_download_label": "Interactive Download"
 });

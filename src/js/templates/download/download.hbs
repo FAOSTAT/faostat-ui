@@ -12,10 +12,35 @@
         <div id="tree"></div>
     </div>
     <div class="col-xs-9">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#">{{interactive_download}}</a></li>
-            <li role="presentation"><a href="#">{{bulk_download}}</a></li>
-            <li role="presentation"><a href="#">{{metadata}}</a></li>
-        </ul>
+        <div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation">
+                    <a href="#interactive_download" role="tab" data-toggle="tab" aria-controls="interactive_download">
+                        interactive label
+                    </a>
+                </li>
+                <li role="presentation" class="active">
+                    <a href="#bulk_downloads" role="tab" data-toggle="tab" aria-controls="bulk_downloads">
+                        bulk label
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#metadata" role="tab" data-toggle="tab" aria-controls="metadata">
+                        metadata label
+                    </a>
+                </li>
+            </ul>
+            <div class='tab-content'>
+                <div role="tabpanel" class="tab-pane" id="interactive_download">
+
+                </div>
+                <div role="tabpanel" class="tab-pane active" id="bulk_downloads">
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="metadata">
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>

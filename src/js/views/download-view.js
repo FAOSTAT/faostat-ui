@@ -10,14 +10,18 @@ define([
     'handlebars',
     'fx-common/WDSClient',
     'FAOSTAT_UI_TREE',
+    'FENIX_UI_METADATA_VIEWER',
+    'FAOSTAT_UI_BULK_DOWNLOADS',
     'amplify'
-], function (View, F, C, Q, E, template, i18nLabels, Handlebars, WDSClient, Tree) {
+], function (View, F, C, Q, E, template, i18nLabels, Handlebars, WDSClient, Tree, MetadataViewer, BulkDownloads) {
 
     'use strict';
 
     var s = {
 
-        TREE: "#tree"
+        TREE: "#tree",
+        BULK_DOWNLOADS: "bulk_downloads"
+
     };
 
     var DownloadView = View.extend({
@@ -33,6 +37,8 @@ define([
         },
 
         attach: function () {
+
+            console.debug(MetadataViewer);
 
             console.log(F.download.metadata);
 
@@ -53,6 +59,7 @@ define([
         initVariables: function () {
 
             this.$tree = this.$el.find(s.TREE);
+            this.bulk_downloads = this.$el.find(s.BULK_DOWNLOADS);
 
             console.log(this.$tree.length);
 
@@ -66,9 +73,17 @@ define([
                 outputType : C.WDS_OUTPUT_TYPE
             });
 
+            this.bulk_downloads = new BulkDownloads();
+            this.bulk_downloads.init({
+                placeholder_id: s.BULK_DOWNLOADS,
+                domain: 'GE'
+            });
+            console.debug('PRIMA');
+            this.bulk_downloads.create_flat_list();
+            console.debug('DOPO');
+
             this.tree = new Tree();
             this.tree.init({
-                //placeholder_id: this.$tree
                 placeholder_id: s.TREE
             })
         },

@@ -22,3 +22,12 @@
 [submodule "submodules/fenix-ui-olap"]
 	path = submodules/fenix-ui-olap
 	url = https://github.com/FENIX-Platform/fenix-ui-olap.git
+[submodule "submodules/fenix-ui-metadata-viewer"]
+	path = submodules/fenix-ui-metadata-viewer
+	url = https://github.com/FENIX-Platform/fenix-ui-metadata-viewer.git
+[submodule "submodules/fenix-ui-reports"]
+	path = submodules/fenix-ui-reports
+	url = https://github.com/FENIX-Platform/fenix-ui-reports.git
+[submodule "submodules/faostat-ui-bulk-downloads"]
+	path = submodules/faostat-ui-bulk-downloads
+	url = https://github.com/FAOSTAT/faostat-ui-bulk-downloads.git

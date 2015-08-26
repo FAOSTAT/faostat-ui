@@ -9,7 +9,10 @@ require([
     './submodules/fenix-ui-chart-creator/src/js/paths',
     './submodules/fenix-ui-table-creator/src/js/paths',
     './submodules/fenix-ui-dashboard/src/js/paths',
-], function (Compiler, Common, Menu, Tree, MapCreator, ChartCreator, TableCreator, Dashboard) {
+    './submodules/fenix-ui-metadata-viewer/js/paths',
+    './submodules/fenix-ui-reports/src/js/paths',
+    './submodules/faostat-ui-bulk-downloads/src/js/paths'
+], function (Compiler, Common, Menu, Tree, MapCreator, ChartCreator, TableCreator, Dashboard, MetadataViewer, Reports, BulkDownloads) {
 
     'use strict';
 
@@ -33,10 +36,21 @@ require([
     var tableConfig = TableCreator;
     tableConfig.baseUrl = submodules_path + '/fenix-ui-table-creator/src/js';
 
+    var metadataConfig = MetadataViewer;
+    metadataConfig.baseUrl = submodules_path + '/fenix-ui-metadata-viewer/js';
+
+    var reportsConfig = Reports;
+    reportsConfig.baseUrl = submodules_path + '/fenix-ui-reports/src/js';
+
     var dashboardConfig = Dashboard;
     dashboardConfig.baseUrl = submodules_path + '/fenix-ui-dashboard/src/js';
 
-    Compiler.resolve([commonConfig, menuConfig, treeConfig, mapConfig, chartConfig, tableConfig, dashboardConfig],
+    var bulkDownloadsConfig = BulkDownloads;
+    bulkDownloadsConfig.baseUrl = submodules_path + '/faostat-ui-bulk-downloads/src/js';
+
+    Compiler.resolve([
+            commonConfig, menuConfig, treeConfig, mapConfig, chartConfig,
+            tableConfig, dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 
@@ -68,7 +82,10 @@ require([
                     config: "../../config",
                     json: "../../json",
 
-                    'fx-common/config/auth_users' : '../../config/auth_users.json'
+                    'fx-common/config/auth_users' : '../../config/auth_users.json',
+
+                    wds_client: '../../submodules/fenix-ui-common/js/WDSClient'
+
                 },
 
                 // Underscore and Backbone are not AMD-capable per default,
