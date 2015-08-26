@@ -12,8 +12,10 @@ define([
     'FAOSTAT_UI_TREE',
     'FENIX_UI_METADATA_VIEWER',
     'FAOSTAT_UI_BULK_DOWNLOADS',
+    'FAOSTAT_UI_DOWNLOAD_SELECTORS_MANAGER',
     'amplify'
-], function (View, F, C, Q, E, template, i18nLabels, Handlebars, WDSClient, Tree, MetadataViewer, BulkDownloads) {
+], function (View, F, C, Q, E, template, i18nLabels, Handlebars, WDSClient, Tree, MetadataViewer, BulkDownloads,
+             DownloadSelectorsManager) {
 
     'use strict';
 
@@ -21,6 +23,7 @@ define([
 
         TREE: "#tree",
         METADATA: "metadata",
+        INTERACTIVE_DOWNLOAD: "interactive_download",
         BULK_DOWNLOADS: "bulk_downloads"
 
     };
@@ -56,6 +59,7 @@ define([
         initVariables: function () {
 
             this.$tree = this.$el.find(s.TREE);
+            this.$interactive_download = this.$el.find(s.INTERACTIVE_DOWNLOAD);
             this.$metadata = this.$el.find(s.METADATA);
             this.bulk_downloads = this.$el.find(s.BULK_DOWNLOADS);
 
@@ -88,6 +92,12 @@ define([
             this.metadata = new MetadataViewer();
             this.metadata.init({
                 placeholder_id: s.METADATA
+            });
+
+            /* Interactive Download. */
+            this.download_selectors_manager = new DownloadSelectorsManager();
+            this.download_selectors_manager.init({
+                placeholder_id: s.INTERACTIVE_DOWNLOAD
             });
 
         },
