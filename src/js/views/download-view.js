@@ -1,25 +1,33 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
     'views/base/view',
-    'config/FAOSTAT',
     'config/Config',
-    'config/Queries',
     'config/Events',
     'text!templates/download/download.hbs',
     'i18n!nls/download',
-    'handlebars',
     'fx-common/WDSClient',
     'FAOSTAT_UI_TREE',
     'FENIX_UI_METADATA_VIEWER',
     'FAOSTAT_UI_BULK_DOWNLOADS',
     'FAOSTAT_UI_DOWNLOAD_SELECTORS_MANAGER',
     'amplify'
-], function (View, F, C, Q, E, template, i18nLabels, Handlebars, WDSClient, Tree, MetadataViewer, BulkDownloads,
+], function (View,
+             C,
+             E,
+             template,
+             i18nLabels,
+             WDSClient,
+             Tree,
+             MetadataViewer,
+             BulkDownloads,
              DownloadSelectorsManager) {
 
     'use strict';
 
-    var s = {
+    var s,
+        DownloadView;
+
+    s = {
 
         TREE: "#tree",
         METADATA: "metadata",
@@ -28,13 +36,17 @@ define([
 
     };
 
-    var DownloadView = View.extend({
+    DownloadView = View.extend({
 
         autoRender: true,
 
         className: 'download',
 
         template: template,
+
+        initialize: function (options) {
+            this.options = options;
+        },
 
         getTemplateData: function () {
             return i18nLabels;
@@ -67,38 +79,40 @@ define([
 
         initComponents: function () {
 
-            /* WDS Client. */
-            this.WDSClient = new WDSClient({
-                serviceUrl: C.WDS_URL,
-                datasource: C.DB_NAME,
-                outputType : C.WDS_OUTPUT_TYPE
-            });
-
-            /* Bulk Downloads. */
-            this.bulk_downloads = new BulkDownloads();
-            this.bulk_downloads.init({
-                placeholder_id: s.BULK_DOWNLOADS,
-                domain: 'GE'
-            });
-            this.bulk_downloads.create_flat_list();
-
             /* Tree. */
             this.tree = new Tree();
             this.tree.init({
                 placeholder_id: s.TREE
             });
 
-            /* Metadata viewer. */
-            this.metadata = new MetadataViewer();
-            this.metadata.init({
-                placeholder_id: s.METADATA
-            });
+            /* Render Bulk Downloads. */
+            if (this.options.section === 'bulk') {
+                this.bulk_downloads = new BulkDownloads();
+                this.bulk_downloads.init({
+                    placeholder_id: s.BULK_DOWNLOADS,
+                    domain: 'GE'
+                });
+                this.bulk_downloads.create_flat_list();
+                $('.nav-tabs a[href="#bulk_downloads"]').tab('show');
+            }
 
-            /* Interactive Download. */
-            this.download_selectors_manager = new DownloadSelectorsManager();
-            this.download_selectors_manager.init({
-                placeholder_id: s.INTERACTIVE_DOWNLOAD
-            });
+            /* Render Interactive Download. */
+            if (this.options.section === 'interactive') {
+                this.download_selectors_manager = new DownloadSelectorsManager();
+                this.download_selectors_manager.init({
+                    placeholder_id: s.INTERACTIVE_DOWNLOAD
+                });
+                $('.nav-tabs a[href="#interactive_download"]').tab('show');
+            }
+
+            /* Render Metadata. */
+            if (this.options.section === 'metadata') {
+                this.metadata = new MetadataViewer();
+                this.metadata.init({
+                    placeholder_id: s.METADATA
+                });
+                $('.nav-tabs a[href="#metadata"]').tab('show');
+            }
 
         },
 

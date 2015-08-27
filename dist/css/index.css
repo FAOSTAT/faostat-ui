@@ -4958,8 +4958,8 @@ button_new_2:before {
 /* Roboto Condensed */
 @font-face {
   font-family: 'Roboto Condensed';
-  src: url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/roboto/sources/roboto-condensed/roboto_condensed/RobotoCondensed-Regular-webfont.eot");
-  src: url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/roboto/sources/roboto-condensed/roboto_condensed/RobotoCondensed-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/roboto/sources/roboto-condensed/roboto_condensed/RobotoCondensed-Regular-webfont.woff") format("woff"), url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/roboto/sources/roboto-condensed/roboto_condensed/RobotoCondensed-Regular-webfont.ttf") format("truetype"), url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/roboto/sources/roboto-condensed/roboto_condensed/RobotoCondensed-Regular-webfont.svg#RobotoRegular") format("svg");
+  src: url("http://fenixapps.fao.org/repository/fenix-ui-common/css/fonts/roboto/sources/roboto-condensed/roboto_condensed/RobotoCondensed-Regular-webfont.eot");
+  src: url("http://fenixapps.fao.org/repository/css/fenix-ui-common/css/fonts/roboto/sources/roboto-condensed/roboto_condensed/RobotoCondensed-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/roboto/sources/roboto-condensed/roboto_condensed/RobotoCondensed-Regular-webfont.woff") format("woff"), url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/roboto/sources/roboto-condensed/roboto_condensed/RobotoCondensed-Regular-webfont.ttf") format("truetype"), url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/roboto/sources/roboto-condensed/roboto_condensed/RobotoCondensed-Regular-webfont.svg#RobotoRegular") format("svg");
   font-weight: 400;
   font-style: normal; }
 @font-face {
@@ -5319,6 +5319,142 @@ input[type="button"]::-moz-focus-inner {
 , fieldset[disabled] .btn-primary.active {
   background-color: #577277;
   border-color: #577277; }
+
+/* Fenix UI Catalog */
+.fx-catalog-welcome {
+  text-align: center;
+  max-width: 300px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+  .fx-catalog-welcome .catalog-ico {
+    height: 50px;
+    width: 50px; }
+  .fx-catalog-welcome h1 {
+    margin-top: 10px; }
+
+/* Packery */
+.fx-catalog-form-module {
+  width: 50%;
+  border: 10px solid #f1f1f1; }
+
+.fx-catalog-form-module.fit {
+  width: 100%; }
+
+.fx_result_description_title {
+  text-transform: uppercase;
+  display: inline; }
+
+.fx_result_description_source {
+  display: inline;
+  color: #999999; }
+
+.fx_result_description_source:before {
+  content: "-"; }
+
+.fx_result_description_baseperiod {
+  font-style: italic;
+  font-size: 10px; }
+
+.fenix-result {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #d2d0d0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  margin-bottom: 20px;
+  min-height: 100px;
+  padding: 19px 0 16px 19px; }
+
+/*========= HEADER =========*/
+.fx-catalog-header {
+  text-align: center;
+  background-color: #f1f1f1; }
+  .fx-catalog-header em {
+    font: normal normal 400 10px/normal "Roboto"; }
+
+.fx-catalog-header-btn {
+  cursor: pointer; }
+
+/*========= FILTER CONTAINER =========*/
+.fx-catalog-modular-filter-container {
+  background-color: #f1f1f1;
+  min-height: 250px;
+  overflow: hidden; }
+
+/*========= MODULAR MENU =========*/
+.fx-catalog-modular-menu-container {
+  background-color: #f1f1f1;
+  padding: 0;
+  min-height: 250px; }
+
+.fx-catalog-modular-menu-category-plus {
+  position: absolute;
+  top: 0;
+  height: 15px;
+  width: 15px;
+  background: url("../../submodules/fenix-ui-common/css/img/fenix-catalog-sprite-small.svg") no-repeat -90px 0;
+  background-size: 150px 30px; }
+
+.fx-catalog-mod-timerseries {
+  top: 25px; }
+
+.region-css {
+  height: 100%;
+  position: relative; }
+
+.jstree-holder {
+  height: 209px;
+  overflow-y: auto; }
+
+/*========= RESULTS */
+/*========= COMMONS =========*/
+.fx_horegon {
+  display: inline; }
+
+.fx_result_icon_img {
+  width: 42px; }
+
+#fx-catalog-results {
+  margin-top: 20px; }
+
+.fx-analysis-page-title {
+  font-weight: 100;
+  color: #666666; }
+
+.fx-analysis-page-description {
+  color: #666666; }
+
+.well {
+  background-color: transparent;
+  border: none;
+  -webkit-box-shadow: 0 0 0 white;
+  -moz-box-shadow: 0 0 0 white;
+  box-shadow: 0 0 0 white; }
+
+.fx-catalog-toolbar {
+  color: #666666; }
+  .fx-catalog-toolbar .fx-widget-stack-btns {
+    text-align: right; }
+    .fx-catalog-toolbar .fx-widget-stack-btns em {
+      font-style: normal;
+      background-color: #666666;
+      width: 30px;
+      height: 20px;
+      display: inline-block;
+      color: white;
+      text-align: center;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      border-radius: 3px; }
+    .fx-catalog-toolbar .fx-widget-stack-btns input {
+      margin-left: 33px; }
 
 /* Fenix - Circle Number Component */
 .fx-circle-number {
@@ -5842,6 +5978,50 @@ input[type="checkbox"]:checked + label {
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s; }
 
+/* Fenix Range Slider */
+.ui-rangeSlider-innerBar {
+  height: 3px !important;
+  top: 7px !important;
+  background-color: #d2d0d0 !important; }
+
+.ui-rangeSlider-arrow.ui-rangeSlider-leftArrow {
+  background: url(img/arrow-left-on.svg) no-repeat !important;
+  width: 48px;
+  height: 48px;
+  background-position: -16px -15px !important; }
+
+.ui-rangeSlider-arrow.ui-rangeSlider-rightArrow {
+  background: url(img/arrow-right-on.svg) no-repeat !important;
+  width: 48px;
+  height: 48px;
+  background-position: 16px -15px !important; }
+
+.ui-rangeSlider-label.ui-rangeSlider-rightLabel {
+  background-image: url("img/label.png") !important;
+  margin-bottom: 5px !important; }
+
+.ui-rangeSlider-label.ui-rangeSlider-leftLabel {
+  background-image: url("img/label.png") !important;
+  margin-bottom: 5px !important; }
+
+.ui-rangeSlider-label-value {
+  font-size: 12px;
+  font-weight: 500; }
+
+.ui-rangeSlider-leftHandle, .ui-rangeSlider-rightHandle {
+  width: 20px !important;
+  height: 20px !important;
+  background-color: #2395ab !important;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  border-radius: 100%; }
+
+.ui-rangeSlider-bar {
+  background-color: #2395ab !important;
+  margin-top: 8px !important;
+  height: 5px !important; }
+
 /* Fenix - Resume Bar Component */
 .fx-resume-bar {
   padding-right: 150px;
@@ -5880,7 +6060,9 @@ input[type="checkbox"]:checked + label {
   border-radius: 0; }
   #fx-catalog-submit-btn.disabled {
     background-color: #f1f1f1;
-    opacity: 1; }
+    opacity: 1;
+    border-color: #666666;
+    color: #666666; }
 
 .fx-resume-item-selected {
   position: relative;
