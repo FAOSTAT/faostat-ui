@@ -1,4 +1,5 @@
 /*global define, _:false, $, console, amplify, FM*/
+/*jslint todo: true */
 define([
     'views/base/view',
     'config/Config',
@@ -189,7 +190,6 @@ define([
             data.limit = 50;
 
             var w = new WDSClient({
-                //serviceUrl: C.WDS_URL,
                 datasource: 'faostatdb',
                 outputType : C.WDS_OUTPUT_TYPE
             });
@@ -197,17 +197,52 @@ define([
             w.retrieve({
                 outputType: 'array',
                 payload: {
-                    query: "EXECUTE Warehouse.dbo.usp_GetDataTEST @DomainCode = 'QC', @lang = 'E'," +
-                           "@List1Codes = '(''2'')', @List2Codes = '(''2510'')', @List3Codes = '(''15'')', @List4Codes = '(''2000'')'," +
-                           "@List5Codes = '', @List6Codes = '', @List7Codes = ''," +
-                           "@NullValues = false, @Thousand = ',', @Decimal = '.', @DecPlaces = 2," +
-                           "@Limit = 50"
+                    query: this.create_query_string(user_selection)
                 },
                 success: that.show_preview
             });
         },
 
+        create_query_string: function (user_selection) {
+            var count, qs = "EXECUTE Warehouse.dbo.usp_GetDataTEST ";
+            qs += "@DomainCode = '" + this.options.domain + "', ";
+            /* TODO convert ISO2 to FAOSTAT. */
+            qs += "@lang = 'E', ";
+            for (count = 1; count < 8; count += 1) {
+                qs += this.encode_codelist(count, user_selection["list" + count + "Codes"]);
+                if (count < 8) {
+                    qs += ", ";
+                }
+            }
+            qs += "@NullValues = false, ";
+            qs += "@Thousand = ',', ";
+            qs += "@Decimal = '.', ";
+            qs += "@DecPlaces = 2, ";
+            qs += "@Limit = 50";
+            return qs;
+        },
+
+        encode_codelist: function (idx, codes) {
+            var h, l = "";
+            l += "@List" + idx + "Codes = ";
+            if (codes.length > 0) {
+                l += "'(";
+                for (h = 0; h < codes.length; h += 1) {
+                    l += "'" + codes[h] + "'";
+                    if (h < codes.length - 1) {
+                        l += ",";
+                    }
+                }
+                l += ")'";
+            } else {
+                l += "''";
+            }
+            return l;
+        },
+
         show_preview: function (response) {
+
+            console.debug(response.length);
 
             /* Headers. */
             var hs = ['Domain Code', 'Domain', 'Area Code', 'Area', 'Element Code',
