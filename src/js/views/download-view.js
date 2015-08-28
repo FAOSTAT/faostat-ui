@@ -111,26 +111,34 @@ define([
                 /* Preview options. */
                 var preview_options_config = {
                     ok_button: true,
-                    lang: 'en', /* TODO Lang from URL. */
+                    pdf_button: false,
+                    excel_button: false,
+                    csv_button: false,
+                    lang: 'en',
                     button_label: 'Preview Options',
                     header_label: 'Preview Options',
                     prefix: '_' + 'preview_',
                     placeholder_id: 'preview_options_placeholder',
-                    decimal_separators: false,
-                    thousand_separators: false
+                    decimal_separators: true,
+                    thousand_separators: true
                 };
                 var preview_options = new DownloadOptions();
                 preview_options.init(preview_options_config);
                 preview_options.show_as_modal_window();
-                //preview_options.get_radio_button('flags').change(function() {
-                //    _this.CONFIG.pivot.showFlags($(this).is(':checked'));
-                //});
-                //preview_options.get_radio_button('unit').change(function() {
-                //    _this.CONFIG.pivot.showUnit($(this).is(':checked'));
-                //});
-                //preview_options.get_radio_button('codes').change(function() {
-                //    _this.CONFIG.pivot.showCode($(this).is(':checked'));
-                //});
+
+                /* Download options. */
+                var download_options_config = {
+                    lang: 'en',
+                    button_label: 'Download As...',
+                    header_label: 'Download As...',
+                    prefix: '_' + 'download_',
+                    placeholder_id: 'download_options_placeholder',
+                    decimal_separators: true,
+                    thousand_separators: true
+                };
+                var download_options = new DownloadOptions();
+                download_options.init(download_options_config);
+                download_options.show_as_modal_window();
 
             }
 
