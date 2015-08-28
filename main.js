@@ -3,7 +3,7 @@ require([
     './submodules/fenix-ui-common/js/Compiler',
     './submodules/fenix-ui-common/js/paths',
     './submodules/fenix-ui-menu/js/paths',
-    './submodules/faostat-ui-tree/js/paths',
+    './submodules/faostat-ui-tree/src/js/paths',
     './submodules/fenix-ui-map-creator/src/js/paths',
     './submodules/fenix-ui-chart-creator/src/js/paths',
     './submodules/fenix-ui-table-creator/src/js/paths',
@@ -13,7 +13,8 @@ require([
     './submodules/faostat-ui-bulk-downloads/src/js/paths',
     './submodules/faostat-ui-download-selectors-manager/src/js/paths',
     './submodules/fenix-ui-download-options/src/js/paths',
-    './submodules/faostat-ui-menu/src/js/paths'
+    './submodules/faostat-ui-menu/src/js/paths',
+    './submodules/fenix-ui-olap/js/paths'
 ], function (Compiler, Common, Menu, Tree, MapCreator, ChartCreator, TableCreator, Dashboard, MetadataViewer, Reports,
              BulkDownloads, DownloadSelectorsManager, DownloadOptions, FAOSTATMenu) {
 
@@ -35,7 +36,7 @@ require([
         faostatMenuConfig = FAOSTATMenu;
 
     menuConfig.baseUrl = submodules_path + '/fenix-ui-menu/js';
-    treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/js';
+    treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/src/js';
     commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
     mapConfig.baseUrl = submodules_path + '/fenix-ui-map-creator/src/js';
     reportsConfig.baseUrl = submodules_path + '/fenix-ui-reports/src/js';
@@ -80,7 +81,19 @@ require([
                     config: "../../config",
                     json: "../../json",
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
-                    wds_client: '../../submodules/fenix-ui-common/js/WDSClient'
+                    wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
+
+                    /* Pivot imports. */
+                    'fx-olap/nls':            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/nls",
+                    'gt_msg':                 "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/lib/grid/gt_msg_en",
+                    'gt_msg_grid':            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/lib/grid/gt_grid_all",
+                    'pivot':                  "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/pivot",
+                    'pivotRenderers':         "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/rendererers",
+                    'pivotAggregators':       "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/aggregators",
+                    'pivotRenderersFuncs':    "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/function_rendererers",
+                    'pivotAggregatorsFuncs':  "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/function_aggregators",
+                    "pivotConfig":            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/config/dataConfig"
+
                 },
                 shim: {
                     bootstrap: {
@@ -95,7 +108,12 @@ require([
                     },
                     handlebars: {
                         exports: 'Handlebars'
-                    }
+                    },
+                    "gt_msg": ['jquery'],
+                    "gt_msg_grid": ['jquery','gt_msg'],
+                    "HPivot": ['jquery','jqueryui'],
+                    "pivotRenderers": ['pivotRenderersFuncs'],
+                    "pivotAggregators": ['pivotAggregatorsFuncs','jquery']
                 }
             }
         });

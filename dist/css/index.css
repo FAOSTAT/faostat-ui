@@ -7418,15 +7418,13 @@ footer.fao-footer {
 /* Ipad */
 /* Iphone */
 @media (max-width: 767px) {
-  .container.fao-header {
-    height: 140px; }
-    .container.fao-header .fao-header-menu {
-      margin-top: 15px;
-      text-align: center;
-      line-height: 20px; }
-      .container.fao-header .fao-header-menu ul li a {
-        /* Expand the item space in the mobile version */
-        margin: 5px; }
+  .container.fao-header .fao-header-menu {
+    margin-top: 15px;
+    text-align: center;
+    line-height: 20px; }
+    .container.fao-header .fao-header-menu ul li a {
+      /* Expand the item space in the mobile version */
+      margin: 5px; }
 
   .topmenu {
     padding-top: 30px; }
@@ -7488,7 +7486,7 @@ footer.fao-footer {
 
 /* Jstree Mood */
 li[role="treeitem"]:nth-child(odd) {
-  background-color: #f2f2f2 !important; }
+  background-color: #fff !important; }
 
 ul[role="group"] {
   background-color: white; }

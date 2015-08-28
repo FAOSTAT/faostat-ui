@@ -1,4 +1,5 @@
 /*global define, _:false, $, console, amplify, FM*/
+/*jslint todo: true */
 define([
     'views/base/view',
     'config/Config',
@@ -11,6 +12,12 @@ define([
     'FAOSTAT_UI_BULK_DOWNLOADS',
     'FAOSTAT_UI_DOWNLOAD_SELECTORS_MANAGER',
     'FENIX_UI_DOWNLOAD_OPTIONS',
+    'pivot',
+    'pivotRenderers',
+    'pivotAggregators',
+    'pivotConfig',
+    'sweetAlert',
+    'underscore',
     'amplify'
 ], function (View,
              C,
@@ -22,7 +29,13 @@ define([
              MetadataViewer,
              BulkDownloads,
              DownloadSelectorsManager,
-             DownloadOptions) {
+             DownloadOptions,
+             pivot,
+             pivotRenderers,
+             pivotAggregators,
+             dataConfig,
+             swal,
+             _) {
 
     'use strict';
 
@@ -84,7 +97,8 @@ define([
             /* Tree. */
             this.tree = new Tree();
             this.tree.init({
-                placeholder_id: s.TREE
+                placeholder_id: s.TREE,
+                code: this.options.domain
             });
 
             /* Render Bulk Downloads. */
@@ -92,7 +106,7 @@ define([
                 this.bulk_downloads = new BulkDownloads();
                 this.bulk_downloads.init({
                     placeholder_id: s.BULK_DOWNLOADS,
-                    domain: 'GE'
+                    domain: this.options.domain
                 });
                 this.bulk_downloads.create_flat_list();
                 $('.nav-tabs a[href="#bulk_downloads"]').tab('show');
@@ -104,33 +118,51 @@ define([
                 /* Selectors manager. */
                 this.download_selectors_manager = new DownloadSelectorsManager();
                 this.download_selectors_manager.init({
-                    placeholder_id: s.INTERACTIVE_DOWNLOAD
+                    placeholder_id: s.INTERACTIVE_DOWNLOAD,
+                    domain: this.options.domain
                 });
                 $('.nav-tabs a[href="#interactive_download"]').tab('show');
 
                 /* Preview options. */
                 var preview_options_config = {
                     ok_button: true,
-                    lang: 'en', /* TODO Lang from URL. */
+                    pdf_button: false,
+                    excel_button: false,
+                    csv_button: false,
+                    lang: this.options.lang,
                     button_label: 'Preview Options',
                     header_label: 'Preview Options',
                     prefix: '_' + 'preview_',
                     placeholder_id: 'preview_options_placeholder',
-                    decimal_separators: false,
-                    thousand_separators: false
+                    decimal_separators: true,
+                    thousand_separators: true
                 };
                 var preview_options = new DownloadOptions();
                 preview_options.init(preview_options_config);
                 preview_options.show_as_modal_window();
-                //preview_options.get_radio_button('flags').change(function() {
-                //    _this.CONFIG.pivot.showFlags($(this).is(':checked'));
-                //});
-                //preview_options.get_radio_button('unit').change(function() {
-                //    _this.CONFIG.pivot.showUnit($(this).is(':checked'));
-                //});
-                //preview_options.get_radio_button('codes').change(function() {
-                //    _this.CONFIG.pivot.showCode($(this).is(':checked'));
-                //});
+
+                /* Download options. */
+                var download_options_config = {
+                    lang: this.options.lang,
+                    button_label: 'Download As...',
+                    header_label: 'Download As...',
+                    prefix: '_' + 'download_',
+                    placeholder_id: 'download_options_placeholder',
+                    decimal_separators: true,
+                    thousand_separators: true
+                };
+                var download_options = new DownloadOptions();
+                download_options.init(download_options_config);
+                download_options.show_as_modal_window();
+
+                /* Preview button. */
+                var that = this;
+                $('#preview_button').click({
+                    selector_mgr: this.download_selectors_manager,
+                    preview_options: preview_options
+                }, function (e) {
+                    that.preview(e.data.selector_mgr, e.data.preview_options);
+                });
 
             }
 
@@ -143,6 +175,100 @@ define([
                 $('.nav-tabs a[href="#metadata"]').tab('show');
             }
 
+        },
+
+        preview: function (selector_mgr, preview_options) {
+            var user_selection = selector_mgr.get_user_selection();
+            var dwld_options = preview_options.collect_user_selection();
+            var data = {};
+            var that = this;
+            data = $.extend(true, {}, data, user_selection);
+            data = $.extend(true, {}, data, dwld_options);
+            data.datasource = 'faostat';
+            data.domainCode = this.options.domain;
+            data.lang = this.options.lang_faostat;
+            data.limit = 50;
+
+            var w = new WDSClient({
+                datasource: 'faostatdb',
+                outputType : C.WDS_OUTPUT_TYPE
+            });
+
+            w.retrieve({
+                outputType: 'array',
+                payload: {
+                    query: this.create_query_string(user_selection)
+                },
+                success: that.show_preview
+            });
+        },
+
+        create_query_string: function (user_selection) {
+            var count, qs = "EXECUTE Warehouse.dbo.usp_GetDataTEST ";
+            qs += "@DomainCode = '" + this.options.domain + "', ";
+            qs += "@lang = '" + this.iso2faostat(this.options.lang) + "', ";
+            for (count = 1; count < 8; count += 1) {
+                qs += this.encode_codelist(count, user_selection["list" + count + "Codes"]);
+                if (count < 8) {
+                    qs += ", ";
+                }
+            }
+            qs += "@NullValues = false, ";
+            qs += "@Thousand = ',', ";
+            qs += "@Decimal = '.', ";
+            qs += "@DecPlaces = 2, ";
+            qs += "@Limit = 50";
+            return qs;
+        },
+
+        iso2faostat: function (iso) {
+            switch (iso.toLowerCase()) {
+            case 'fr':
+                return 'F';
+            case 'es':
+                return 'S';
+            default:
+                return 'E';
+            }
+        },
+
+        encode_codelist: function (idx, codes) {
+            var h, l = "";
+            l += "@List" + idx + "Codes = ";
+            if (codes.length > 0) {
+                l += "'(";
+                for (h = 0; h < codes.length; h += 1) {
+                    l += "'" + codes[h] + "'";
+                    if (h < codes.length - 1) {
+                        l += ",";
+                    }
+                }
+                l += ")'";
+            } else {
+                l += "''";
+            }
+            return l;
+        },
+
+        show_preview: function (response) {
+
+            /* Headers. */
+            var hs = ['Domain Code', 'Domain', 'Area Code', 'Area', 'Element Code',
+                      'Element', 'Item Code', 'Item', 'Year', 'Unit',
+                      'Value', 'Flag', 'Flag Description'];
+
+            /* Cast data, if needed. */
+            var json = response;
+            if (typeof json === 'string') {
+                json = $.parseJSON(response);
+            }
+            json.splice(0, 0, hs);
+
+            /* Create OLAP. */
+            dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
+            dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
+            var faostat_pivot = new pivot();
+            faostat_pivot.render('downloadOutputArea', json, dataConfig);
         },
 
         configurePage: function () {
