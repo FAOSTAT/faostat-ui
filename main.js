@@ -3,7 +3,7 @@ require([
     './submodules/fenix-ui-common/js/Compiler',
     './submodules/fenix-ui-common/js/paths',
     './submodules/fenix-ui-menu/js/paths',
-    './submodules/faostat-ui-tree/js/paths',
+    './submodules/faostat-ui-tree/src/js/paths',
     './submodules/fenix-ui-map-creator/src/js/paths',
     './submodules/fenix-ui-chart-creator/src/js/paths',
     './submodules/fenix-ui-table-creator/src/js/paths',
@@ -35,7 +35,7 @@ require([
         faostatMenuConfig = FAOSTATMenu;
 
     menuConfig.baseUrl = submodules_path + '/fenix-ui-menu/js';
-    treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/js';
+    treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/src/js';
     commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
     mapConfig.baseUrl = submodules_path + '/fenix-ui-map-creator/src/js';
     reportsConfig.baseUrl = submodules_path + '/fenix-ui-reports/src/js';
