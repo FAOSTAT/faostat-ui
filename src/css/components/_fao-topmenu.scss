@@ -1,0 +1,296 @@
+/* FAO Like Top Menu */
+
+/* Bootstrap reset */
+
+.navbar-brand {
+  display: none;
+}
+
+/* Item on the right fix */
+.fx-menu {
+
+  .navbar-nav.navbar-right {
+
+    margin: 0;
+
+     li {
+
+
+
+      a{
+        border-right: 0;
+      }
+    }
+  }
+}
+
+/* Header */
+
+.container.fao-header {
+
+  height: 90px;
+  position: relative;
+
+  background-color: $custom-color6;
+
+  .fao-logo {
+    width: 300px;
+
+    height: auto;
+    position: relative;
+    top: 5px;
+  }
+
+  ul {
+    li {
+
+      border-right: 1px solid white;
+
+      &:last-child {
+        border-right: none;
+      }
+
+      a {
+        color: white;
+        &:hover {
+          text-decoration: none;
+
+        }
+
+      }
+
+    }
+  }
+
+}
+
+/* Menu */
+
+.topmenu {
+
+  padding-top: 30px;
+
+  .navbar-collapse {
+    @include fx-gradient(rgba(255, 255, 255, 1), rgba(239, 239, 239, 1));
+    border: 1px solid $fenix-hr;
+  }
+}
+
+.topmenu-buttons-holder {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+
+.navbar-default{
+  background-color: transparent;
+  min-height: $host-menu-height; //It has to be defined - Very important Bootstrap override
+  margin-bottom: 0;
+
+  .navbar-nav > li {
+
+
+    > a {
+      height: $host-menu-height;
+      overflow: hidden;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      border-right: 1px solid $fenix-hr;
+
+      &:hover,
+      &:focus {
+        color: $custom-color8;
+        background-color: white;
+
+      }
+
+
+
+    }
+
+    &.active {
+
+      a ,
+      a:link,
+      a:visited,
+      a:hover,
+      a:focus,
+      a:active {
+        border-bottom-color: transparent;
+        color: $custom-color8 ;
+      }
+
+    }
+
+
+    /* Home icon as fao website */
+    &.home-menu-item {
+
+      width: $host-menu-height;
+
+
+      &.active {
+
+        a {
+          background-image: url(../../src/images/home-h.png);
+        }
+
+      }
+
+      a {
+
+        background-image: url(../../src/images/home.png);
+        background-size: 20px 16px;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+
+
+        &:hover,
+        &:focus{
+          background-image: url(../../src/images/home-h.png);
+        }
+
+      }
+
+    }
+
+
+  }
+
+
+
+}
+
+/* Open/Close button in mobile mode */
+.navbar-default .navbar-toggle {
+
+  &:link,
+  &:visited,
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: transparent;
+  }
+
+  border-color: transparent;
+}
+
+
+.navbar-collapse {
+  border-top: 0;
+  .navbar-nav {
+    margin-top: 0;
+  }
+
+}
+
+
+
+/*//////////////////////////////////////////// Navbar Media queries */
+
+/* Ipad */
+@media (min-width: 768px) and (max-width: 990px) {
+
+}
+
+/* Iphone */
+
+@media (max-width: 767px) {
+
+  .container.fao-header {
+
+
+    height: 140px;
+
+
+    .fao-header-menu{
+
+      margin-top: 15px;
+      text-align: center;
+      line-height: 20px;
+
+
+      ul {
+
+        li{
+
+
+          a{
+            /* Expand the item space in the mobile version */
+            margin: 5px;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .topmenu {
+
+    padding-top: 30px;
+
+    .navbar-collapse {
+      background: none;
+      background-color: white;
+      border-color:transparent;
+    }
+  }
+
+
+
+  .navbar-default{
+
+
+    .navbar-nav > li {
+
+
+      > a {
+
+        border-right-color: transparent;
+
+
+
+      }
+
+      &.active {
+
+        a ,
+        a:link,
+        a:visited,
+        a:hover,
+        a:focus,
+        a:active {
+          border-bottom-color: transparent;
+          color: $custom-color8 !important;
+        }
+
+      }
+
+
+      /* Home icon as fao website */
+      &.home-menu-item {
+
+        width: 100%;
+
+
+        a {
+          background-position: 15px 50%;
+        }
+      }
+
+
+    }
+
+
+
+  }
+
+
+
+  /* End of the iPhone media query*/
+
+}

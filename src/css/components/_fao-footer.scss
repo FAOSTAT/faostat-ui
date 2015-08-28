@@ -1,0 +1,90 @@
+/* FAO Like Footer */
+
+footer.fao-footer{
+  background-color: $custom-color6;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: white;
+
+
+  li{
+    margin-bottom: 10px;
+  }
+
+  h4{
+    color: white;
+    font-size: 14px;
+  }
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:focus,
+  a:active{
+    color: white;
+  }
+
+  .device-image{
+    padding-right: 10px;
+    float: left;
+  }
+
+
+  .fao-social-holder{
+    display: inline-block;
+    width: 19%;
+    padding: 3px 2px;
+  }
+
+}
+
+
+
+/*//////////////////////////////////////////// Navbar Media queries */
+
+/* Ipad */
+@media (min-width: 768px) and (max-width: 990px) {
+
+  footer.fao-footer {
+
+    .device-image {
+      margin-bottom: 10px;
+    }
+
+    .fao-social-holder{
+      display: inline-block;
+      width: 20%;
+      padding: 3px 2px;
+    }
+
+  }
+
+}
+
+/* Iphone */
+
+@media (max-width: 767px) {
+
+
+  footer.fao-footer{
+    text-align: center;
+
+
+    .device-image {
+      margin-bottom: 10px;
+      float: none;
+    }
+
+    .fao-social-holder{
+      display: inline-block;
+      width: 15%;
+      margin: 3px;
+    }
+
+
+  }
+
+
+  /* End of the iPhone media query*/
+
+}

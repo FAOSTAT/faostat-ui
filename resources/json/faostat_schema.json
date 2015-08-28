@@ -1,0 +1,179 @@
+{
+   "$schema": "http://json-schema.org/draft-04/schema#",
+   "type": "object",
+   "title": "FAOSTAT",
+   "description": "FAOSTAT",
+   "definitions": {
+      "lang": {
+         "type": "string",
+         "default": "en",
+         "enum": ["en", "fr", "es", "ar", "cn", "ru"]
+      },
+      "lang_faostat": {
+         "type": "string",
+         "default": "E",
+         "enum": ["E", "F", "S", "A", "C", "R"]
+      },
+      "bulk_downloads_root": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat.fao.org/Portals/_Faostat/Downloads/zip_files/"
+      },
+      "url_wds_crud": {
+         "type": "string",
+         "format": "url",
+         "default": "http://fenixapps2.fao.org/wds_5.1/rest/crud"
+      },
+      "url_wds_bulk_downloads": {
+         "type": "string",
+         "format": "url",
+         "default": "http://fenixapps2.fao.org/wds_5.1/rest"
+      },
+      "url_wds_table": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat3.fao.org/wds/rest/table/json"
+      },
+      "url_mdsd": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat3.fao.org/d3s2/v2/mdsd"
+      },
+      "url_d3s": {
+         "type": "string",
+         "format": "url",
+         "default": "http://faostat3.fao.org/d3s2/v2/msd/resources/metadata/uid"
+      },
+      "url_codelists": {
+         "type": "string",
+         "format": "url",
+         "default": "http://fenixapps2.fao.org/wds_5.1/"
+      },
+      "url_listboxes": {
+         "type": "string",
+         "format": "url",
+         "default": "http://fenixapps2.fao.org/wds_5.1/rest/procedures/listboxes"
+      },
+      "datasource": {
+         "type": "string",
+         "default": "faostatdata",
+         "enum": [
+            "faostat",
+            "faostatdb",
+            "faostatglbl",
+            "faostatdata",
+            "faostatprod",
+            "faostatproddiss"
+         ]
+      }
+   },
+   "properties": {
+      "analysis": {
+         "type": "object",
+         "title": "Analysis Section",
+         "properties": {
+            "FAOSTAT_UI_ANALYSIS_GHG_QA_QC": {
+               "type": "object",
+               "properties": {
+                  "datasource": {
+                     "$ref": "#/definitions/datasource"
+                  },
+                  "url_wds": {
+                     "title": "WDS URL",
+                     "type": "string",
+                     "description": "ULR for WDS-based web-services.",
+                     "default": "http://hqlprfenixapp2.hq.un.fao.org:12900/wds_qa_qc/rest"
+                  }
+               }
+            }
+         }
+      },
+      "browse": {
+         "type": "object",
+         "title": "Browse Section",
+         "properties": {
+            "browse_by_domain": {
+               "type": "object",
+               "properties": {
+                  "datasource": {
+                     "$ref": "#/definitions/datasource"
+                  },
+                  "url_wds_crud": {
+                     "$ref": "#/definitions/url_wds_crud"
+                  }
+               }
+            }
+         }
+      },
+      "compare": {
+         "type": "object",
+         "title": "Compare Section",
+         "properties": {
+            "selectors": {
+               "type": "object",
+               "properties": {
+                  "datasource": {
+                     "$ref": "#/definitions/datasource"
+                  },
+                  "url_wds_crud": {
+                     "$ref": "#/definitions/url_wds_crud"
+                  }
+               }
+            }
+         }
+      },
+      "download": {
+         "type": "object",
+         "title": "Download Section",
+         "properties": {
+            "metadata": {
+               "type": "object",
+               "properties": {
+                  "url_wds_table": {
+                     "$ref": "#/definitions/url_wds_table"
+                  },
+                  "url_mdsd": {
+                     "$ref": "#/definitions/url_mdsd"
+                  },
+                  "url_d3s": {
+                     "$ref": "#/definitions/url_d3s"
+                  }
+               }
+            },
+            "preview_options": {
+               "type": "object",
+               "title": "Preview Options",
+               "properties": {
+                  "excel_button": {
+                     "type": "boolean",
+                     "default": false
+                  },
+                  "pdf_button": {
+                     "type": "boolean",
+                     "default": false
+                  },
+                  "ok_button": {
+                     "type": "boolean",
+                     "default": true
+                  },
+                  "csv_button": {
+                     "type": "boolean",
+                     "default": false
+                  }
+               }
+            },
+            "selector_manager": {
+               "type": "object",
+               "properties": {
+                  "url_codelists": {
+                     "$ref": "#/definitions/url_codelists"
+                  },
+                  "url_listboxes": {
+                     "$ref": "#/definitions/url_listboxes"
+                  }
+               }
+            }
+         }
+      }
+   }
+}

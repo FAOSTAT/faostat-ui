@@ -1,0 +1,88 @@
+<div class='row'>
+    <div class='intro-logo-holder col-xs-12'>
+        {{text}}
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-lg-3'>
+        <h1>{{tree_title}}</h1>
+        <div id='tree'></div>
+        <br>
+    </div>
+    <div class='col-lg-9'>
+        <h1>
+            Production > Crops
+        </h1>
+        <div>
+            <ul class='nav nav-tabs' role='tablist'>
+                <li role='presentation'>
+                    <a href='#interactive_download' role='tab' data-toggle='tab' aria-controls='interactive_download'>
+                        <i class='fa fa-download'></i> {{interactive_download_label}}
+                    </a>
+                </li>
+                <li role='presentation' class='active'>
+                    <a href='#bulk_downloads' role='tab' data-toggle='tab' aria-controls='bulk_downloads'>
+                        <i class='fa fa-archive'></i> {{bulk_downloads_label}}
+                    </a>
+                </li>
+                <li role='presentation'>
+                    <a href='#metadata' role='tab' data-toggle='tab' aria-controls='metadata'>
+                        <i class='fa fa-info'></i> {{metadata_label}}
+                    </a>
+                </li>
+            </ul>
+            <div class='tab-content'>
+                <div role='tabpanel' class='tab-pane' id='interactive_download'>
+                    <div class='row'>
+                        <div class='col-lg-12'>
+                            <br>
+                            <p>
+                                Use this section to create a custom query to extract data from the current domain.
+                                Please use the selectors below to filter the data according to your needs.
+                                Press the <var>Preview</var> button to have an overview
+                                of your selection. Use the <b>Preview Options</b> button to customize the final
+                                output. Click on <b>Download As...</b> to get the data in the Excel or CSV format.
+                                Please consider to visit the <b>Bulk Downloads</b> sections if you need all the data
+                                contained in this domain.
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id='interactive_download_selectors'>
+
+                    </div>
+                    <hr>
+                    <div class='row'>
+                        <div class='col-lg-12'>
+                            <button class='btn btn-default pull-right'>
+                                {{download_as_label}}
+                            </button>
+                            <!-- TODO: Remove buttons, put span, and call submodules. -->
+                            <span id='preview_options_placeholder' class='pull-right'>
+
+                            </span>
+                            <button class='btn btn-default pull-right'>
+                                {{preview_label}}
+                            </button>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-lg-12'>
+                            <h1>
+                                {{preview_label}}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div role='tabpanel' class='tab-pane active' id='bulk_downloads'>
+
+                </div>
+                <div role='tabpanel' class='tab-pane' id='metadata'>
+
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
