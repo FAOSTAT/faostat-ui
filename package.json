@@ -1,36 +1,38 @@
 {
-  "name": "faostat4-ui",
-  "label": {
-    "en": "FAOSTAT User Interface"
-  },
-  "language": "JavaScript",
-  "description": "User interface to access FAOSTAT database.",
-  "license": "GPL2",
-  "homepage": "http://faostat3.fao.org/",
-  "keywords": [
-    "informationsystem",
-    "statistics",
-    "agriculture",
-    "javascript",
-    "foodsecurity"
-  ],
-  "version": "1.0.0",
-  "contributors": [
-    {
-      "name": "Simone Murzilli",
-      "email": "simone.murzilli@gmail.com"
-    },
-    {
-      "name": "Guido Barbaglia",
-      "email": "guido.barbaglia@gmail.com"
-    }
-  ],
+  "name": "fenix-ui-chaplinjs-skeleton",
+  "version": "0.1",
+  "description": "FENIX Skeleton based on ChaplinJS",
+  "homepage": "https://github.com/FENIX-Platform/fenix-ui-chaplinjs-skeleton",
+  "author": "FENIX Development Team",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FAOSTAT4/faostat4-ui"
+    "url": "git@github.com:FENIX-Platform/fenix-ui-chaplinjs-skeleton.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FENIX-Platform/fenix-ui-chaplinjs-skeleton/issues"
+  },
+  "license": "GPL3",
+  "keywords": [
+    "fenix",
+    "platform"
+  ],
+  "dependencies": {
+
   },
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "json-schema-defaults": "~0.1.1"
-  }
+    "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.11",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-jsonlint": "~1.0.4",
+    "grunt-jsdoc": "~0.5.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "main.js"
 }

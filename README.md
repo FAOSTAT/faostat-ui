@@ -1,68 +1,10 @@
+[![License](http://img.shields.io/:license-GPL2-green.svg)](http://doge.mit-license.org)
+
 # FAOSTAT4
 New architecture for FAOSTAT dissemination system.
 
-# Structure
-```
-faostat4-ui
-|─── config
-|   |─── faostat.json
-|─── css
-|   |─── ...
-|─── html
-|   |─── templates.html
-|─── images
-|   |─── ...
-|─── js
-|   |─── application.js
-|   |─── main.js
-|─── node_modules
-|   |─── ...
-|─── submodules
-|   |─── faostat-ui-analysis
-|   |   |─── html
-|   |   |─── js
-|   |   |─── nls
-|   |   |─── submodules
-|   |       |─── faostat-ui-analysis-ghg-indicators
-|   |       |─── faostat-ui-analysis-ghg-overview
-|   |       |─── faostat-ui-analysis-ghg-qaqc
-|   |       |─── fenix-ui-tiles-manager
-|   |           |─── config
-|   |           |─── css
-|   |           |─── html
-|   |           |─── images
-|   |           |─── js
-|   |           |─── nls
-|   |─── faostat-ui-browse
-|   |─── faostat-ui-commons
-|   |─── faostat-ui-download
-|   |   |─── css
-|   |   |─── html
-|   |   |─── js
-|   |   |─── nls
-|   |   |─── submodules
-|   |       |─── faostat-ui-bulk-downloads
-|   |       |─── faostat-ui-download-selectors-manager
-|   |       |   |─── html
-|   |       |   |─── js
-|   |       |   |─── nls
-|   |       |   |─── submodules
-|   |       |       |─── faostat-ui-download-selector
-|   |       |           |─── css
-|   |       |           |─── html
-|   |       |           |─── js
-|   |       |           |─── nls
-|   |       |─── fenix-ui-download-options
-|   |       |─── fenix-ui-metadata-viewer
-|   |─── faostat-ui-home
-|   |─── faostat-ui-menu
-|   |─── faostat-ui-tree
-|   |─── fenix-ui-common
-|─── index.html
-```
+# Acknowledgements
+This project is based on the [FENIX Platform](https://github.com/FENIX-Platform). The [https://github.com/FENIX-Platform/fenix-ui-chaplinjs-skeleton.git](https://github.com/FENIX-Platform/fenix-ui-chaplinjs-skeleton.git) repository has been used as skeleton for the project.
 
-# Installation
-Run ```npm install``` and ```grunt``` to generate the ```config/faostat.json``` configuration file.
-
-# Developed with 
+# Developed with
 ![IntelliJ](http://www.jetbrains.com/idea/docs/logo_intellij_idea.png)

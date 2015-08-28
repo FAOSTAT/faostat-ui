@@ -1,60 +1,42 @@
 [submodule "submodules/fenix-ui-common"]
 	path = submodules/fenix-ui-common
 	url = https://github.com/FENIX-Platform/fenix-ui-common.git
-[submodule "submodules/faostat-ui-menu"]
-	path = submodules/faostat-ui-menu
-	url = https://github.com/FAOSTAT4/faostat-ui-menu.git
-[submodule "submodules/faostat-ui-module-1"]
-	path = submodules/faostat-ui-module-1
-	url = https://github.com/FAOSTAT4/faostat-ui-archetype.git
-[submodule "submodules/--force"]
-	path = submodules/--force
-	url = https://github.com/FAOSTAT4/faostat-ui-home.git
-[submodule "submodules/--name"]
-	path = submodules/--name
-	url = https://github.com/FAOSTAT4/faostat-ui-home.git
-[submodule "submodules/-f"]
-	path = submodules/-f
-	url = https://github.com/FAOSTAT4/faostat-ui-home.git
-[submodule "submodules/faostat-ui-download"]
-	path = submodules/faostat-ui-download
-	url = https://github.com/FAOSTAT4/faostat-ui-download.git
-[submodule "submodules/faostat-tree"]
-	path = submodules/faostat-tree
-	url = https://github.com/FAOSTAT4/faostat-tree.git
+[submodule "submodules/fenix-ui-menu"]
+	path = submodules/fenix-ui-menu
+	url = https://github.com/FENIX-Platform/fenix-ui-menu.git
 [submodule "submodules/faostat-ui-tree"]
 	path = submodules/faostat-ui-tree
-	url = https://github.com/FAOSTAT4/faostat-ui-tree.git
-[submodule "faostat-ui-home"]
-	path = faostat-ui-home
-	url = https://github.com/FAOSTAT4/faostat-ui-home.git
-[submodule "submodules/faostat-ui-home"]
-	path = submodules/faostat-ui-home
-	url = https://github.com/FAOSTAT4/faostat-ui-home.git
-[submodule "submodules/faostat-ui-analysis"]
-	path = submodules/faostat-ui-analysis
-	url = https://github.com/FAOSTAT4/faostat-ui-analysis.git
-[submodule "submodules/faostat-ui-browse"]
-	path = submodules/faostat-ui-browse
-	url = https://github.com/FAOSTAT4/faostat-ui-browse.git
-[submodule "submodules/faostat-ui-wide-tables"]
-	path = submodules/faostat-ui-wide-tables
-	url = https://github.com/FAOSTAT4/faostat-ui-wide-tables.git
-[submodule "submodules/faostat-ui-standards"]
-	path = submodules/faostat-ui-standards
-	url = https://github.com/FAOSTAT4/faostat-ui-standards.git
-[submodule "submodules/fenix-ui-olap"]
-	path = submodules/fenix-ui-olap
-	url = https://github.com/FENIX-Platform/fenix-ui-olap.git
-[submodule "submodules/fenix-ui-download-options"]
-	path = submodules/fenix-ui-download-options
-	url = https://github.com/FENIX-Platform/fenix-ui-download-options.git
-[submodule "submodules/faostat-ui-breadcrumbs"]
-	path = submodules/faostat-ui-breadcrumbs
-	url = https://github.com/FAOSTAT4/faostat-ui-breadcrumbs.git
+	url = https://github.com/FAOSTAT/faostat-ui-tree.git
 [submodule "submodules/fenix-ui-chart-creator"]
 	path = submodules/fenix-ui-chart-creator
 	url = https://github.com/FENIX-Platform/fenix-ui-chart-creator.git
-[submodule "submodules/faostat-ui-compare"]
-	path = submodules/faostat-ui-compare
-	url = https://github.com/FAOSTAT4/faostat-ui-compare.git
+[submodule "submodules/fenix-ui-map-creator"]
+	path = submodules/fenix-ui-map-creator
+	url = https://github.com/FENIX-Platform/fenix-ui-map-creator.git
+[submodule "submodules/fenix-ui-dashboard"]
+	path = submodules/fenix-ui-dashboard
+	url = https://github.com/FENIX-Platform/fenix-ui-dashboard.git
+[submodule "submodules/fenix-ui-table-creator"]
+	path = submodules/fenix-ui-table-creator
+	url = https://github.com/FENIX-Platform/fenix-ui-table-creator.git
+[submodule "submodules/fenix-ui-olap"]
+	path = submodules/fenix-ui-olap
+	url = https://github.com/FENIX-Platform/fenix-ui-olap.git
+[submodule "submodules/fenix-ui-metadata-viewer"]
+	path = submodules/fenix-ui-metadata-viewer
+	url = https://github.com/FENIX-Platform/fenix-ui-metadata-viewer.git
+[submodule "submodules/fenix-ui-reports"]
+	path = submodules/fenix-ui-reports
+	url = https://github.com/FENIX-Platform/fenix-ui-reports.git
+[submodule "submodules/faostat-ui-bulk-downloads"]
+	path = submodules/faostat-ui-bulk-downloads
+	url = https://github.com/FAOSTAT/faostat-ui-bulk-downloads.git
+[submodule "submodules/faostat-ui-download-selectors-manager"]
+	path = submodules/faostat-ui-download-selectors-manager
+	url = https://github.com/FAOSTAT/faostat-ui-download-selectors-manager.git
+[submodule "submodules/fenix-ui-download-options"]
+	path = submodules/fenix-ui-download-options
+	url = https://github.com/FENIX-Platform/fenix-ui-download-options.git
+[submodule "submodules/faostat-ui-menu"]
+	path = submodules/faostat-ui-menu
+	url = https://github.com/FAOSTAT/faostat-ui-menu.git

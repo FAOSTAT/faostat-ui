@@ -1,0 +1,31 @@
+/* Dist - Index */
+
+/* RLM - Variables */
+@import '../../src/css/theme/variables';
+
+/* Fenix Utils*/
+@import '../../submodules/fenix-ui-common/css/fenix-style-no-variables';
+
+
+
+/* Base */
+@import '../../src/css/theme/default';
+
+
+/* Components */
+@import '../../src/css/components/breadcrumbs';
+@import '../../src/css/components/fao-footer';
+@import '../../src/css/components/fao-topmenu';
+@import '../../src/css/components/form';
+@import '../../src/css/components/jstree';
+@import '../../src/css/components/submenu';
+
+
+
+
+
+
+/* Third parties */
+
+/* Pages */
+@import '../../src/css/pages/home';

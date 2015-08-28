@@ -1,0 +1,94 @@
+/* Subemenu */
+
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover{
+  background-color: $fenix-light-bg;
+  border-right-color:transparent;
+
+}
+
+.dropdown{
+
+  &.open{
+
+    .dropdown-menu{
+      z-index:2;
+    }
+  }
+
+  .dropdown-toggle{
+//    .caret
+  }
+
+
+  .dropdown-menu{
+    @include fx-no-border-radius;
+    @include fx-noshadow;
+    border: 0;
+    background-color: $fenix-light-bg;
+    min-width: 250px;
+    padding: 0;
+
+    > li{
+      height: $host-menu-height;
+      border-bottom: 1px solid white;
+      position: relative;
+      cursor: pointer;
+
+      &:last-child{
+        border-bottom-color: transparent;
+      }
+
+      &:hover{
+        background-color: $fx-main-color-lighter;
+
+        &:before{ // Very cool submenu effect //
+          content: '';
+          position: absolute;
+          width: 5px;
+          height: 100%;
+          background-color: $fx-cool-blue;
+          right: 0;
+          top: 0;
+
+        }
+
+      }
+
+      > a{
+        text-transform: uppercase;
+        color: $fenix-text;
+        font-size: 12px;
+        position: relative;
+        top: 50%;
+        height:100%;
+        padding-top: 12px;
+        @include fx-transfor-me(translateY(-50%));
+
+        &:hover{
+          background-color: transparent;
+
+        }
+
+        &:active{
+          background-color: transparent;
+
+        }
+
+        &:focus{
+          background-color: transparent;
+
+        }
+
+        &:visited{
+          background-color: transparent;
+
+        }
+
+      }
+
+    }
+  }
+
+
+}

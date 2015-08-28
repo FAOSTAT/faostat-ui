@@ -1,0 +1,109 @@
+/* Jstree Mood */
+
+
+li[role="treeitem"]{
+
+  &:nth-child(odd){
+    background-color: $superlight-gray !important;
+  }
+
+}
+
+ul[role="group"]{
+  background-color: white;
+}
+
+
+.jstree-container-ul{
+  width: calc(100% - 25px);
+}
+
+.jstree-default>.jstree-no-dots .jstree-leaf>{
+  //display: none;
+
+
+}
+
+.jstree-icon.External{
+  display: inline-block;
+  background-image: none;
+
+  &:before{
+    content: 'E';
+    font-style: normal;
+    background-color: $fenix-text;
+    display: inline-block;
+    color: white;
+    line-height: 15px;
+    width: 15px;
+    height: 15px;
+
+
+  }
+}
+
+.jstree-disabled{
+  opacity: 0.5;
+}
+
+/* Override Fenix Tree */
+.jstree-default-responsive .jstree-anchor {
+  white-space: normal;
+  //line-height: normal;
+  height: auto;
+}
+
+
+[role='treeitem']{
+  position: relative;
+
+  &:nth-child(even){
+    // background-color: black;
+  }
+
+  .jstree-wholerow{
+    height: 100%;
+  }
+
+
+
+  .jstree-wholerow-clicked{
+    height: 100%;
+  }
+
+  &[aria-expanded='true']{
+    //background-color: white;
+
+    [role='group']{
+
+      .jstree-ocl{
+        display: none;
+      }
+
+      .jstree-anchor{
+        padding-left: 35px;
+        .jstree-checkbox{
+          position: absolute;
+          left: 10px;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+
+.jstree-default .jstree-wholerow{
+
+}
+
+
+
+
+
+.jstree-default .jstree-wholerow-clicked{
+
+}

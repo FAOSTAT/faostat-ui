@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "attrs": {
+        "id": "home",
+        "class":"home-menu-item"
+      },
+      "target": "#home",
+      "label": {
+        "EN": ""
+      }
+    },
+    {
+      "attrs": {
+        "id": "browse",
+        "class":"browse-menu-item"
+      },
+      "target": "#browse",
+      "label": {
+        "EN": "<i class='fa fa-compass'></i> Browse"
+      }
+    },
+    {
+      "attrs": {
+        "id": "download",
+        "class":"download-menu-item"
+      },
+      "target": "#download",
+      "label": {
+        "EN": "<i class='fa fa-cloud-download'></i> Download"
+      }
+    },
+    {
+      "attrs": {
+        "id": "compare",
+        "class":"compare-menu-item"
+      },
+      "target": "#compare",
+      "label": {
+        "EN": "<i class='fa fa-share'></i> Compare"
+      }
+    },
+    {
+      "attrs": {
+        "id": "search",
+        "class":"search-menu-item"
+      },
+      "target": "#search",
+      "label": {
+        "EN": "<i class='fa fa-search'></i> Search"
+      }
+    },
+    {
+      "attrs": {
+        "id": "mes",
+        "class":"mes-menu-item"
+      },
+      "target": "#mes",
+      "label": {
+        "EN": "<i class='fa fa-wrench'></i> Methods and Standards"
+      }
+    }
+  ]
+}
