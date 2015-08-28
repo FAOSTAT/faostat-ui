@@ -84,7 +84,8 @@ define([
             /* Tree. */
             this.tree = new Tree();
             this.tree.init({
-                placeholder_id: s.TREE
+                placeholder_id: s.TREE,
+                domain: this.options.domain
             });
 
             /* Render Bulk Downloads. */
@@ -92,7 +93,7 @@ define([
                 this.bulk_downloads = new BulkDownloads();
                 this.bulk_downloads.init({
                     placeholder_id: s.BULK_DOWNLOADS,
-                    domain: 'GE'
+                    domain: this.options.domain
                 });
                 this.bulk_downloads.create_flat_list();
                 $('.nav-tabs a[href="#bulk_downloads"]').tab('show');
@@ -114,7 +115,7 @@ define([
                     pdf_button: false,
                     excel_button: false,
                     csv_button: false,
-                    lang: 'en',
+                    lang: this.options.lang,
                     button_label: 'Preview Options',
                     header_label: 'Preview Options',
                     prefix: '_' + 'preview_',
@@ -128,7 +129,7 @@ define([
 
                 /* Download options. */
                 var download_options_config = {
-                    lang: 'en',
+                    lang: this.options.lang,
                     button_label: 'Download As...',
                     header_label: 'Download As...',
                     prefix: '_' + 'download_',
