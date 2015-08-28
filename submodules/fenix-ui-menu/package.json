@@ -1,0 +1,30 @@
+{
+  "name": "fenix-ui-menu",
+  "version": "1.0.0",
+  "description": "FENIX top menu, based on fixed to top Twitter Bootstrap menu",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FENIX-Platform/fenix-ui-menu.git"
+  },
+  "keywords": [
+    "FENIX",
+    "menu",
+    "menu"
+  ],
+  "author": "FENIX Development Team",
+  "license": "GPL3",
+  "bugs": {
+    "url": "https://github.com/FENIX-Platform/fenix-ui-menu/issues"
+  },
+  "homepage": "https://github.com/FENIX-Platform/fenix-ui-menu",
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "bootstrap": "~3.3.1",
+    "requirejs": "~2.1.15",
+    "text": "https://github.com/requirejs/text/tarball/master"
+  }
+}

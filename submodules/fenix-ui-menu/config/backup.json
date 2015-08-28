@@ -1,0 +1,101 @@
+{
+   "items":[
+      {
+         "type":"item",
+         "attrs" : {
+            "id" : "home"
+         },
+         "target" : "my.html",
+         "attrs":{
+
+         },
+         "label":{
+            "EN":"HOME",
+            "FR":"PI"
+         }
+      },
+      {
+         "type":"dropdown",
+         "attrs":{
+
+         },
+         "label":{
+            "EN":"DROP ME",
+            "FR":"PI"
+         },
+         "children":[
+            {
+               "type":"item",
+               "attrs":{
+
+               },
+               "label":{
+                  "EN":"Drop 1",
+                  "FR":"PI"
+               }
+            },
+            {
+               "type":"divider"
+            }
+         ]
+      }
+   ],
+
+    "brand" : {
+
+    },
+
+   "right" : [
+      {
+         "type":"item",
+         "attrs":{
+
+         },
+         "active":true,
+         "label":{
+            "EN":"FIRST",
+            "FR":"PI"
+         }
+      },
+      {
+         "type":"dropdown",
+         "attrs":{
+
+         },
+         "active":false,
+         "label":{
+            "EN":"DROP ME",
+            "FR":"PI"
+         },
+         "children":[
+            {
+               "type":"item",
+               "attrs":{
+
+               },
+               "active":false,
+               "label":{
+                  "EN":"Drop 1",
+                  "FR":"PI"
+               }
+            },
+            {
+               "type":"divider"
+            }
+         ]
+      }
+   ],
+
+   "active" : "home",
+
+   "languages" : [ 
+	   	{
+	   		"lang" : "EN",
+	   		"label" : "En"
+	   	},
+	   	{
+	   		"lang" : "FR",
+	   		"label" : "Fr"
+	   	}
+   ]
+}
