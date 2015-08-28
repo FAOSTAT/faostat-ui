@@ -206,8 +206,7 @@ define([
         create_query_string: function (user_selection) {
             var count, qs = "EXECUTE Warehouse.dbo.usp_GetDataTEST ";
             qs += "@DomainCode = '" + this.options.domain + "', ";
-            /* TODO convert ISO2 to FAOSTAT. */
-            qs += "@lang = 'E', ";
+            qs += "@lang = '" + this.iso2faostat(this.options.lang) + "', ";
             for (count = 1; count < 8; count += 1) {
                 qs += this.encode_codelist(count, user_selection["list" + count + "Codes"]);
                 if (count < 8) {
@@ -220,6 +219,17 @@ define([
             qs += "@DecPlaces = 2, ";
             qs += "@Limit = 50";
             return qs;
+        },
+
+        iso2faostat: function (iso) {
+            switch (iso.toLowerCase()) {
+            case 'fr':
+                return 'F';
+            case 'es':
+                return 'S';
+            default:
+                return 'E';
+            }
         },
 
         encode_codelist: function (idx, codes) {
@@ -242,8 +252,6 @@ define([
 
         show_preview: function (response) {
 
-            console.debug(response.length);
-
             /* Headers. */
             var hs = ['Domain Code', 'Domain', 'Area Code', 'Area', 'Element Code',
                       'Element', 'Item Code', 'Item', 'Year', 'Unit',
@@ -255,8 +263,6 @@ define([
                 json = $.parseJSON(response);
             }
             json.splice(0, 0, hs);
-
-            console.debug(json);
 
             /* Create OLAP. */
             dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
