@@ -7488,7 +7488,7 @@ footer.fao-footer {
 
 /* Jstree Mood */
 li[role="treeitem"]:nth-child(odd) {
-  background-color: #f2f2f2 !important; }
+  background-color: #fff !important; }
 
 ul[role="group"] {
   background-color: white; }

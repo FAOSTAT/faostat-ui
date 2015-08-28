@@ -85,7 +85,7 @@ define([
             this.tree = new Tree();
             this.tree.init({
                 placeholder_id: s.TREE,
-                domain: this.options.domain
+                code: this.options.domain
             });
 
             /* Render Bulk Downloads. */
