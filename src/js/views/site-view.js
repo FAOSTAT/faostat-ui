@@ -10,8 +10,9 @@ define([
     'fx-menu/start',
     'globals/AuthManager',
     'i18n!nls/site',
-    'text!templates/site.hbs'
-], function ($, Chaplin, _, C, E, State, View, Menu, AuthManager, i18nLabels, template) {
+    'text!templates/site.hbs',
+    'FAOSTAT_UI_MENU'
+], function ($, Chaplin, _, C, E, State, View, Menu, AuthManager, i18nLabels, template, FAOSTATMenu) {
 
     'use strict';
 
@@ -91,6 +92,16 @@ define([
 
             //Top Menu
             this.topMenu = new Menu(this.authManager.isLogged() ? menuConfAuth : menuConfPub);
+
+            /* FAOSTAT menu. */
+            /* Initiate the menu. */
+            var menu = new FAOSTATMenu();
+            menu.init({
+                lang: 'en',
+                prefix: 'faostat_download_',
+                datasource: 'faostatdb'
+            });
+
         },
 
         onMenuRendered: function () {

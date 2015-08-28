@@ -10,6 +10,7 @@ define([
     'FENIX_UI_METADATA_VIEWER',
     'FAOSTAT_UI_BULK_DOWNLOADS',
     'FAOSTAT_UI_DOWNLOAD_SELECTORS_MANAGER',
+    'FENIX_UI_DOWNLOAD_OPTIONS',
     'amplify'
 ], function (View,
              C,
@@ -20,7 +21,8 @@ define([
              Tree,
              MetadataViewer,
              BulkDownloads,
-             DownloadSelectorsManager) {
+             DownloadSelectorsManager,
+             DownloadOptions) {
 
     'use strict';
 
@@ -98,11 +100,38 @@ define([
 
             /* Render Interactive Download. */
             if (this.options.section === 'interactive') {
+
+                /* Selectors manager. */
                 this.download_selectors_manager = new DownloadSelectorsManager();
                 this.download_selectors_manager.init({
                     placeholder_id: s.INTERACTIVE_DOWNLOAD
                 });
                 $('.nav-tabs a[href="#interactive_download"]').tab('show');
+
+                /* Preview options. */
+                var preview_options_config = {
+                    ok_button: true,
+                    lang: 'en', /* TODO Lang from URL. */
+                    button_label: 'Preview Options',
+                    header_label: 'Preview Options',
+                    prefix: '_' + 'preview_',
+                    placeholder_id: 'preview_options_placeholder',
+                    decimal_separators: false,
+                    thousand_separators: false
+                };
+                var preview_options = new DownloadOptions();
+                preview_options.init(preview_options_config);
+                preview_options.show_as_modal_window();
+                //preview_options.get_radio_button('flags').change(function() {
+                //    _this.CONFIG.pivot.showFlags($(this).is(':checked'));
+                //});
+                //preview_options.get_radio_button('unit').change(function() {
+                //    _this.CONFIG.pivot.showUnit($(this).is(':checked'));
+                //});
+                //preview_options.get_radio_button('codes').change(function() {
+                //    _this.CONFIG.pivot.showCode($(this).is(':checked'));
+                //});
+
             }
 
             /* Render Metadata. */
