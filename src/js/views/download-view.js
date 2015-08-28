@@ -11,6 +11,12 @@ define([
     'FAOSTAT_UI_BULK_DOWNLOADS',
     'FAOSTAT_UI_DOWNLOAD_SELECTORS_MANAGER',
     'FENIX_UI_DOWNLOAD_OPTIONS',
+    'pivot',
+    'pivotRenderers',
+    'pivotAggregators',
+    'pivotConfig',
+    'sweetAlert',
+    'underscore',
     'amplify'
 ], function (View,
              C,
@@ -22,7 +28,13 @@ define([
              MetadataViewer,
              BulkDownloads,
              DownloadSelectorsManager,
-             DownloadOptions) {
+             DownloadOptions,
+             pivot,
+             pivotRenderers,
+             pivotAggregators,
+             dataConfig,
+             swal,
+             _) {
 
     'use strict';
 
@@ -105,7 +117,8 @@ define([
                 /* Selectors manager. */
                 this.download_selectors_manager = new DownloadSelectorsManager();
                 this.download_selectors_manager.init({
-                    placeholder_id: s.INTERACTIVE_DOWNLOAD
+                    placeholder_id: s.INTERACTIVE_DOWNLOAD,
+                    domain: this.options.domain
                 });
                 $('.nav-tabs a[href="#interactive_download"]').tab('show');
 
@@ -141,6 +154,15 @@ define([
                 download_options.init(download_options_config);
                 download_options.show_as_modal_window();
 
+                /* Preview button. */
+                var that = this;
+                $('#preview_button').click({
+                    selector_mgr: this.download_selectors_manager,
+                    preview_options: preview_options
+                }, function (e) {
+                    that.preview(e.data.selector_mgr, e.data.preview_options);
+                });
+
             }
 
             /* Render Metadata. */
@@ -152,6 +174,60 @@ define([
                 $('.nav-tabs a[href="#metadata"]').tab('show');
             }
 
+        },
+
+        preview: function (selector_mgr, preview_options) {
+            var user_selection = selector_mgr.get_user_selection();
+            var dwld_options = preview_options.collect_user_selection();
+            var data = {};
+            var that = this;
+            data = $.extend(true, {}, data, user_selection);
+            data = $.extend(true, {}, data, dwld_options);
+            data.datasource = 'faostat';
+            data.domainCode = this.options.domain;
+            data.lang = this.options.lang_faostat;
+            data.limit = 50;
+
+            var w = new WDSClient({
+                //serviceUrl: C.WDS_URL,
+                datasource: 'faostatdb',
+                outputType : C.WDS_OUTPUT_TYPE
+            });
+
+            w.retrieve({
+                outputType: 'array',
+                payload: {
+                    query: "EXECUTE Warehouse.dbo.usp_GetDataTEST @DomainCode = 'QC', @lang = 'E'," +
+                           "@List1Codes = '(''2'')', @List2Codes = '(''2510'')', @List3Codes = '(''15'')', @List4Codes = '(''2000'')'," +
+                           "@List5Codes = '', @List6Codes = '', @List7Codes = ''," +
+                           "@NullValues = false, @Thousand = ',', @Decimal = '.', @DecPlaces = 2," +
+                           "@Limit = 50"
+                },
+                success: that.show_preview
+            });
+        },
+
+        show_preview: function (response) {
+
+            /* Headers. */
+            var hs = ['Domain Code', 'Domain', 'Area Code', 'Area', 'Element Code',
+                      'Element', 'Item Code', 'Item', 'Year', 'Unit',
+                      'Value', 'Flag', 'Flag Description'];
+
+            /* Cast data, if needed. */
+            var json = response;
+            if (typeof json === 'string') {
+                json = $.parseJSON(response);
+            }
+            json.splice(0, 0, hs);
+
+            console.debug(json);
+
+            /* Create OLAP. */
+            dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
+            dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
+            var faostat_pivot = new pivot();
+            faostat_pivot.render('downloadOutputArea', json, dataConfig);
         },
 
         configurePage: function () {

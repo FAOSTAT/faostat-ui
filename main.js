@@ -13,7 +13,8 @@ require([
     './submodules/faostat-ui-bulk-downloads/src/js/paths',
     './submodules/faostat-ui-download-selectors-manager/src/js/paths',
     './submodules/fenix-ui-download-options/src/js/paths',
-    './submodules/faostat-ui-menu/src/js/paths'
+    './submodules/faostat-ui-menu/src/js/paths',
+    './submodules/fenix-ui-olap/js/paths'
 ], function (Compiler, Common, Menu, Tree, MapCreator, ChartCreator, TableCreator, Dashboard, MetadataViewer, Reports,
              BulkDownloads, DownloadSelectorsManager, DownloadOptions, FAOSTATMenu) {
 
@@ -80,7 +81,19 @@ require([
                     config: "../../config",
                     json: "../../json",
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
-                    wds_client: '../../submodules/fenix-ui-common/js/WDSClient'
+                    wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
+
+                    /* Pivot imports. */
+                    'fx-olap/nls':            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/nls",
+                    'gt_msg':                 "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/lib/grid/gt_msg_en",
+                    'gt_msg_grid':            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/lib/grid/gt_grid_all",
+                    'pivot':                  "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/pivot",
+                    'pivotRenderers':         "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/rendererers",
+                    'pivotAggregators':       "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/aggregators",
+                    'pivotRenderersFuncs':    "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/function_rendererers",
+                    'pivotAggregatorsFuncs':  "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/function_aggregators",
+                    "pivotConfig":            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/config/dataConfig"
+
                 },
                 shim: {
                     bootstrap: {
@@ -95,7 +108,12 @@ require([
                     },
                     handlebars: {
                         exports: 'Handlebars'
-                    }
+                    },
+                    "gt_msg": ['jquery'],
+                    "gt_msg_grid": ['jquery','gt_msg'],
+                    "HPivot": ['jquery','jqueryui'],
+                    "pivotRenderers": ['pivotRenderersFuncs'],
+                    "pivotAggregators": ['pivotAggregatorsFuncs','jquery']
                 }
             }
         });

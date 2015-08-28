@@ -91,7 +91,7 @@ define([
             });
 
             //Top Menu
-            this.topMenu = new Menu(this.authManager.isLogged() ? menuConfAuth : menuConfPub);
+            //this.topMenu = new Menu(this.authManager.isLogged() ? menuConfAuth : menuConfPub);
 
             /* FAOSTAT menu. */
             /* Initiate the menu. */
