@@ -100,7 +100,15 @@ define([
                 placeholder_id: s.TREE,
                 code: this.options.domain,
                 callback: {
-                    onTreeRendered: this.update_breadcrumbs
+                    onTreeRendered: this.update_breadcrumbs,
+                    onGroupClick: function (callback) {
+                        var group_code = callback.id;
+                        console.debug('Please route to: ' + group_code);
+                    },
+                    onDomainClick: function (callback) {
+                        var domain_code = callback.id;
+                        console.debug('Please route to: ' + domain_code);
+                    }
                 }
             });
 
@@ -173,7 +181,8 @@ define([
             if (this.options.section === 'metadata') {
                 this.metadata = new MetadataViewer();
                 this.metadata.init({
-                    placeholder_id: s.METADATA
+                    placeholder_id: s.METADATA,
+                    domain: this.options.domain
                 });
                 $('.nav-tabs a[href="#metadata"]').tab('show');
             }
