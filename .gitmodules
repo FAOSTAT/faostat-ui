@@ -40,3 +40,6 @@
 [submodule "submodules/faostat-ui-menu"]
 	path = submodules/faostat-ui-menu
 	url = https://github.com/FAOSTAT/faostat-ui-menu.git
+[submodule "submodules/faostat-ui-options-manager"]
+	path = submodules/faostat-ui-options-manager
+	url = https://github.com/FAOSTAT/faostat-ui-options-manager.git
