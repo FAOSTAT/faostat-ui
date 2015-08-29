@@ -120,12 +120,7 @@ define([
 
             /* Render Bulk Downloads. */
             if (this.options.section === 'bulk') {
-                this.bulk_downloads.init({
-                    placeholder_id: s.BULK_DOWNLOADS,
-                    domain: this.options.domain
-                });
-                this.bulk_downloads.create_flat_list();
-                $('.nav-tabs a[href="#bulk_downloads"]').tab('show');
+                that.render_bulk_downloads();
             }
 
             /* Render Interactive Download. */
@@ -192,16 +187,26 @@ define([
                 } else if (target.indexOf('interactive_download') > -1) {
                     console.debug('render interactive_download');
                 } else if (target.indexOf('bulk_downloads') > -1) {
-                    console.debug('render bulk_downloads');
+                    that.render_bulk_downloads();
                 }
             });
 
         },
 
+        render_bulk_downloads: function () {
+            if (this.bulk_downloads.isNotRendered()) {
+                this.bulk_downloads.init({
+                    placeholder_id: s.BULK_DOWNLOADS,
+                    domain: this.options.domain
+                });
+                this.bulk_downloads.create_flat_list();
+                $('.nav-tabs a[href="#bulk_downloads"]').tab('show');
+            }
+        },
+
         render_metadata : function () {
             $('.nav-tabs a[href="#metadata"]').tab('show');
             if (this.metadata.isNotRendered()) {
-                console.debug('render meta');
                 this.metadata.init({
                     placeholder_id: s.METADATA,
                     domain: this.options.domain,
