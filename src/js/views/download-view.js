@@ -125,6 +125,34 @@ define([
 
             /* Render Interactive Download. */
             if (this.options.section === 'interactive') {
+                that.render_interactive_download();
+            }
+
+            /* Render Metadata. */
+            if (this.options.section === 'metadata') {
+                this.render_metadata();
+            }
+
+            /* onTabChange. */
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var target = $(e.target).attr('href');
+                if (target.indexOf('metadata') > -1) {
+                    that.render_metadata();
+                } else if (target.indexOf('interactive_download') > -1) {
+                    that.render_interactive_download();
+                } else if (target.indexOf('bulk_downloads') > -1) {
+                    that.render_bulk_downloads();
+                }
+            });
+
+        },
+
+        render_interactive_download: function () {
+
+            if (this.download_selectors_manager.isNotRendered()) {
+
+                /* That... */
+                var that = this;
 
                 /* Selectors manager. */
                 this.download_selectors_manager.init({
@@ -173,23 +201,6 @@ define([
                 });
 
             }
-
-            /* Render Metadata. */
-            if (this.options.section === 'metadata') {
-                this.render_metadata();
-            }
-
-            /* onTabChange. */
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                var target = $(e.target).attr('href');
-                if (target.indexOf('metadata') > -1) {
-                    that.render_metadata();
-                } else if (target.indexOf('interactive_download') > -1) {
-                    console.debug('render interactive_download');
-                } else if (target.indexOf('bulk_downloads') > -1) {
-                    that.render_bulk_downloads();
-                }
-            });
 
         },
 
