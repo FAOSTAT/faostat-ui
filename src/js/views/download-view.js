@@ -98,7 +98,10 @@ define([
             this.tree = new Tree();
             this.tree.init({
                 placeholder_id: s.TREE,
-                code: this.options.domain
+                code: this.options.domain,
+                callback: {
+                    onTreeRendered: this.update_breadcrumbs
+                }
             });
 
             /* Render Bulk Downloads. */
@@ -175,6 +178,19 @@ define([
                 $('.nav-tabs a[href="#metadata"]').tab('show');
             }
 
+        },
+
+        update_breadcrumbs: function (node_code) {
+            var node,
+                parent_code,
+                parent_node;
+            node = $('#tree').jstree().get_node(node_code.toUpperCase());
+            $('#group_label').html('<a>' + node.text + '</a>');
+            parent_code = node.parent;
+            if (parent_code !== '#') {
+                parent_node = $('#tree').jstree().get_node(parent_code.toUpperCase());
+                $('#domain_label').html('> <a>' + parent_node.text + '</a>');
+            }
         },
 
         preview: function (selector_mgr, preview_options) {
