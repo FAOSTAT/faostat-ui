@@ -121,3 +121,7 @@
       padding-bottom: 0 !important;
       margin-bottom: 5px;
       border-bottom: 1px solid #dddddd; }
+
+div[role='tabpanel'] div ul li[role='treeitem'] .jstree-wholerow {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd; }

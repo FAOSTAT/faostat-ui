@@ -21,7 +21,8 @@ define(['jquery',
             url_rest: 'http://fenixapps2.fao.org/wds_5.2/rest',
             url_bulk_downloads: 'http://fenixapps2.fao.org/wds_5.2/rest',
             bulk_downloads_root: 'http://faostat.fao.org/Portals/_Faostat/Downloads/zip_files/',
-            url_wds_crud: 'http://fenixapps2.fao.org/wds_5.2/rest/crud'
+            url_wds_crud: 'http://fenixapps2.fao.org/wds_5.2/rest/crud',
+            rendered: false
         };
 
     }
@@ -43,6 +44,14 @@ define(['jquery',
             serviceUrl: this.CONFIG.url_wds_crud
         });
 
+    };
+
+    BULK.prototype.isRendered = function () {
+        return this.CONFIG.rendered;
+    };
+
+    BULK.prototype.isNotRendered = function () {
+        return !this.CONFIG.rendered;
     };
 
     BULK.prototype.create_flat_list = function () {
@@ -101,6 +110,9 @@ define(['jquery',
 
                     /* Render the list. */
                     $('#' + that.CONFIG.placeholder_id).html(s);
+
+                    /* Rendered. */
+                    that.CONFIG.rendered = true;
 
                 }
 

@@ -22,7 +22,8 @@ define(['jquery',
             datasource: 'faostatdb',
             placeholder_id: 'placeholder',
             url_codelists: 'http://fenixapps2.fao.org/wds_5.1/',
-            url_listboxes: 'http://fenixapps2.fao.org/wds_5.1/rest/procedures/listboxes'
+            url_listboxes: 'http://fenixapps2.fao.org/wds_5.1/rest/procedures/listboxes',
+            rendered: false
         };
 
     }
@@ -188,6 +189,24 @@ define(['jquery',
             }
         }
         return out;
+    };
+
+    MGR.prototype.isRendered = function () {
+        var tmp,
+            i;
+        for (i = 0; i < this.CONFIG.selectors.length; i += 1) {
+            if (tmp === undefined) {
+                tmp = this.CONFIG.selectors[i].isRendered();
+            } else {
+                tmp = tmp && this.CONFIG.selectors[i].isRendered();
+            }
+        }
+        this.CONFIG.rendered = tmp !== undefined ? tmp : false;
+        return this.CONFIG.rendered;
+    };
+
+    MGR.prototype.isNotRendered = function () {
+        return !this.isRendered();
     };
 
     return MGR;

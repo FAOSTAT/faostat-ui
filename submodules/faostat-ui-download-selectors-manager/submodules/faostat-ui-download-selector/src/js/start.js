@@ -16,6 +16,7 @@ define(['jquery',
             lang_faostat: 'E',
             placeholder_id: 'placeholder',
             suffix: 'area',
+            rendered: false,
             tabs :   [
                 {
                     label: 'Test',
@@ -66,6 +67,9 @@ define(['jquery',
             this.bind_search(tab_idx);
         }
 
+        /* Rendered. */
+        this.CONFIG.rendered = true;
+
         /* Bind select all functions. */
         $('#select_all_button_' + this.CONFIG.suffix).click(function() {
             _this.select_all();
@@ -79,6 +83,14 @@ define(['jquery',
         /* Show the first tab. */
         $($('#tab_headers_' + this.CONFIG.suffix).find('a')[0]).tab('show');
 
+    };
+
+    SELECTOR.prototype.isRendered = function () {
+        return this.CONFIG.rendered;
+    };
+
+    SELECTOR.prototype.isNotRendered = function () {
+        return !this.CONFIG.rendered;
     };
 
     SELECTOR.prototype.add_tab_header = function(tab_idx, tab_header_label) {
@@ -240,7 +252,7 @@ define(['jquery',
 
     SELECTOR.prototype.select_all = function() {
         var tab_idx = this.active_tab_idx();
-        $('#content_' + this.CONFIG.suffix + '_' + tab_idx + ' ul li div').addClass('jstree-wholerow-clicked');
+        $('#content_' + this.CONFIG.suffix + '_' + tab_idx).jstree('check_all');
     };
 
     SELECTOR.prototype.create_select_all_object = function() {
@@ -259,8 +271,8 @@ define(['jquery',
 
     SELECTOR.prototype.clear_all = function() {
         var tab_idx = this.active_tab_idx();
-        $('#content_' + this.CONFIG.suffix + '_' + tab_idx + ' ul li div').removeClass('jstree-wholerow-clicked');
         $('#summary_' + this.CONFIG.suffix).empty();
+        $('#content_' + this.CONFIG.suffix + '_' + tab_idx).jstree('deselect_all');
     };
 
     SELECTOR.prototype.get_user_selection = function() {

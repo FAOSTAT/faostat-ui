@@ -254,3 +254,10 @@ $light-brown: #f3efe0;
 
 
 }
+
+div[role='tabpanel'] div ul {
+  li[role='treeitem'] .jstree-wholerow {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+}

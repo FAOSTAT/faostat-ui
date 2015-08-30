@@ -45,7 +45,7 @@ define([
     s = {
 
         TREE: "#tree",
-        METADATA: "metadata",
+        METADATA: "metadata_container",
         INTERACTIVE_DOWNLOAD: "interactive_download_selectors",
         BULK_DOWNLOADS: "bulk_downloads"
 
@@ -94,29 +94,67 @@ define([
 
         initComponents: function () {
 
-            /* Tree. */
+            var that = this;
+            this.metadata = new MetadataViewer();
             this.tree = new Tree();
+            this.bulk_downloads = new BulkDownloads();
+            this.download_selectors_manager = new DownloadSelectorsManager();
+            this.download_options = new DownloadOptions();
+
+            /* Tree. */
             this.tree.init({
                 placeholder_id: s.TREE,
-                code: this.options.domain
+                code: this.options.domain,
+                callback: {
+                    onTreeRendered: this.update_breadcrumbs,
+                    onGroupClick: function (callback) {
+                        var group_code = callback.id;
+                        console.debug('Please route to: ' + group_code);
+                    },
+                    onDomainClick: function (callback) {
+                        var domain_code = callback.id;
+                        console.debug('Please route to: ' + domain_code);
+                    }
+                }
             });
 
             /* Render Bulk Downloads. */
             if (this.options.section === 'bulk') {
-                this.bulk_downloads = new BulkDownloads();
-                this.bulk_downloads.init({
-                    placeholder_id: s.BULK_DOWNLOADS,
-                    domain: this.options.domain
-                });
-                this.bulk_downloads.create_flat_list();
-                $('.nav-tabs a[href="#bulk_downloads"]').tab('show');
+                that.render_bulk_downloads();
             }
 
             /* Render Interactive Download. */
             if (this.options.section === 'interactive') {
+                that.render_interactive_download();
+            }
+
+            /* Render Metadata. */
+            if (this.options.section === 'metadata') {
+                this.render_metadata();
+            }
+
+            /* onTabChange. */
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var target = $(e.target).attr('href');
+                if (target.indexOf('metadata') > -1) {
+                    that.render_metadata();
+                } else if (target.indexOf('interactive_download') > -1) {
+                    that.render_interactive_download();
+                } else if (target.indexOf('bulk_downloads') > -1) {
+                    that.render_bulk_downloads();
+                }
+            });
+
+        },
+
+        render_interactive_download: function () {
+
+            if (this.download_selectors_manager.isNotRendered()) {
+
+                /* That... */
+                var that = this;
 
                 /* Selectors manager. */
-                this.download_selectors_manager = new DownloadSelectorsManager();
                 this.download_selectors_manager.init({
                     placeholder_id: s.INTERACTIVE_DOWNLOAD,
                     domain: this.options.domain
@@ -137,9 +175,9 @@ define([
                     decimal_separators: true,
                     thousand_separators: true
                 };
-                var preview_options = new DownloadOptions();
-                preview_options.init(preview_options_config);
-                preview_options.show_as_modal_window();
+                this.preview_options = new DownloadOptions();
+                this.preview_options.init(preview_options_config);
+                this.preview_options.show_as_modal_window();
 
                 /* Download options. */
                 var download_options_config = {
@@ -151,49 +189,78 @@ define([
                     decimal_separators: true,
                     thousand_separators: true
                 };
-                var download_options = new DownloadOptions();
-                download_options.init(download_options_config);
-                download_options.show_as_modal_window();
+                this.download_options.init(download_options_config);
+                this.download_options.show_as_modal_window();
 
                 /* Preview button. */
-                var that = this;
                 $('#preview_button').click({
                     selector_mgr: this.download_selectors_manager,
-                    preview_options: preview_options
+                    preview_options: this.preview_options
                 }, function (e) {
                     that.preview(e.data.selector_mgr, e.data.preview_options);
                 });
 
             }
 
-            /* Render Metadata. */
-            if (this.options.section === 'metadata') {
-                this.metadata = new MetadataViewer();
-                this.metadata.init({
-                    placeholder_id: s.METADATA
-                });
-                $('.nav-tabs a[href="#metadata"]').tab('show');
-            }
+        },
 
+        render_bulk_downloads: function () {
+            if (this.bulk_downloads.isNotRendered()) {
+                this.bulk_downloads.init({
+                    placeholder_id: s.BULK_DOWNLOADS,
+                    domain: this.options.domain
+                });
+                this.bulk_downloads.create_flat_list();
+                $('.nav-tabs a[href="#bulk_downloads"]').tab('show');
+            }
+        },
+
+        render_metadata : function () {
+            $('.nav-tabs a[href="#metadata"]').tab('show');
+            if (this.metadata.isNotRendered()) {
+                this.metadata.init({
+                    placeholder_id: s.METADATA,
+                    domain: this.options.domain,
+                    callback: {
+                        onMetadataRendered: function () {
+                            $('#metadata_loading').css('display', 'none');
+                        }
+                    }
+                });
+            }
+        },
+
+        update_breadcrumbs: function (node_code) {
+            var node,
+                parent_code,
+                parent_node;
+            node = $('#tree').jstree().get_node(node_code.toUpperCase());
+            $('#group_label').html('<a>' + node.text + '</a>');
+            parent_code = node.parent;
+            if (parent_code !== '#') {
+                parent_node = $('#tree').jstree().get_node(parent_code.toUpperCase());
+                $('#domain_label').html('> <a>' + parent_node.text + '</a>');
+            }
         },
 
         preview: function (selector_mgr, preview_options) {
-            var user_selection = selector_mgr.get_user_selection();
-            var dwld_options = preview_options.collect_user_selection();
-            var data = {};
-            var that = this;
+            var user_selection,
+                dwld_options,
+                data = {},
+                that = this,
+                w;
+            user_selection = selector_mgr.get_user_selection();
+            dwld_options = preview_options.collect_user_selection();
             data = $.extend(true, {}, data, user_selection);
             data = $.extend(true, {}, data, dwld_options);
             data.datasource = 'faostat';
             data.domainCode = this.options.domain;
             data.lang = this.options.lang_faostat;
             data.limit = 50;
-
-            var w = new WDSClient({
+            w = new WDSClient({
                 datasource: 'faostatdb',
                 outputType : C.WDS_OUTPUT_TYPE
             });
-
             w.retrieve({
                 outputType: 'array',
                 payload: {

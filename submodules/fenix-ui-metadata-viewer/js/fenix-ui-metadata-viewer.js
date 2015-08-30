@@ -16,6 +16,7 @@ define(['jquery',
     function FUIMDV() {
 
         this.CONFIG = {
+
             lang: 'en',
             edit: false,
             domain: 'GT',
@@ -27,10 +28,25 @@ define(['jquery',
             url_mdsd: 'http://faostat3.fao.org/d3s2/v2/mdsd',
             url_pdf_service: 'http://fenixapps2.fao.org/fenixExport',
             url_wds_table: 'http://fenixapps2.fao.org/wds_5.1/rest/table/json',
-            url_d3s: 'http://faostat3.fao.org/d3s2/v2/msd/resources/metadata/uid'
+            url_d3s: 'http://faostat3.fao.org/d3s2/v2/msd/resources/metadata/uid',
+            rendered: false,
+
+            /* Events to destroy. */
+            callback: {
+                onMetadataRendered: null
+            }
+
         };
 
     }
+
+    FUIMDV.prototype.isRendered = function () {
+        return this.CONFIG.rendered;
+    };
+
+    FUIMDV.prototype.isNotRendered = function () {
+        return !this.CONFIG.rendered;
+    };
 
     /**
      * This is the entry method to configure the module.
@@ -308,6 +324,14 @@ define(['jquery',
         /* ...or a courtesy message. */
         else {
             this.display_courtesy_message();
+        }
+
+        /* Rendered. */
+        this.CONFIG.rendered = true;
+
+        /* Invoke user function. */
+        if (this.CONFIG.callback.onMetadataRendered) {
+            this.CONFIG.callback.onMetadataRendered();
         }
 
     };

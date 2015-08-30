@@ -29,7 +29,8 @@ define(['jquery',
             callback: {
                 onClick: null,
                 onGroupClick: null,
-                onDomainClick: null
+                onDomainClick: null,
+                onTreeRendered: null
             }
 
         };
@@ -155,7 +156,15 @@ define(['jquery',
 
                 /* Show required domain. */
                 that.tree.on('ready.jstree', function () {
+
+                    /* set and select default code. */
                     that.selectDefaultCode();
+
+                    /* Invoke onTreeRendered function. */
+                    if (that.CONFIG.callback.onTreeRendered) {
+                        that.CONFIG.callback.onTreeRendered(that.CONFIG.default_code);
+                    }
+
                 });
 
             }
@@ -166,10 +175,13 @@ define(['jquery',
 
     TREE.prototype.selectDefaultCode = function () {
         if (this.CONFIG.code) {
+            this.CONFIG.default_code = this.CONFIG.code;
             this.tree.jstree().select_node(this.CONFIG.code);
         } else if (this.CONFIG.domain) {
+            this.CONFIG.default_code = this.CONFIG.domain;
             this.tree.jstree().select_node(this.CONFIG.domain);
         } else if (this.CONFIG.group) {
+            this.CONFIG.default_code = this.CONFIG.group;
             this.tree.jstree().select_node(this.CONFIG.group);
         }
     };
