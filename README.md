@@ -14,11 +14,34 @@ This projects represents the user interface (UI) of the FAOSTAT dissemination sy
 
 Sections
 ========
-FAOSTAT's UI is composed by seven sections described more in details further on. 
+FAOSTAT's UI is composed by several sections described more in details further on. 
 
 Download
 --------
 The download section allows users to create custom queries to extract data from the FAOSTAT DB. It is also possible to download data in bulk and browse the metadata of each domain.
+
+<table>
+<thead>
+<tr>
+<th>Interactive Download</th>
+<th>Bulk Downloads</th>
+<th>Metadata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<img src='https://raw.githubusercontent.com/FAOSTAT/faostat-ui/development/docs/images/interactive.png'>
+</td>
+<td>
+<img src='https://raw.githubusercontent.com/FAOSTAT/faostat-ui/development/docs/images/bulk.png'>
+</td>
+<td>
+<img src='https://raw.githubusercontent.com/FAOSTAT/faostat-ui/development/docs/images/metadata.png'>
+</td>
+</tr>
+</tbody>
+</table>
 
 Acknowledgements
 ================
