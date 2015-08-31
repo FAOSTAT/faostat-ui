@@ -131,27 +131,32 @@ define(['jquery',
                 });
 
                 /* Implement node selection. */
-                that.tree.on('select_node.jstree', function (e, data) {
-                    var node = $('#' + data.node.id);
-                    if (data.node.parent === '#') {
-                        data.node.parent === '#' && that.tree.jstree().is_open() ? that.tree.jstree().close_node(node) : that.tree.jstree().open_node(node);
-                    }
-                });
+                that.tree.on('activate_node.jstree', function (e, data) {
 
-                /* Check whether is group or domain. */
-                that.tree.on('changed.jstree', function (e, data) {
-                    if (data.node.parent === '#') {
-                        if (that.CONFIG.callback.onGroupClick) {
-                            that.CONFIG.callback.onGroupClick({id: data.node.id});
+                    /* Fetch node. */
+                    var node = $('#' + data.node.id);
+
+                    /* Generic click listener, or specific listeners for gourps and domains. */
+                    if (that.CONFIG.callback.onClick) {
+                        if (data.node.parent === '#') {
+                            data.node.parent === '#' && that.tree.jstree().is_open() ? that.tree.jstree().close_node(node) : that.tree.jstree().open_node(node);
+                        }
+                        if (that.CONFIG.callback.onClick) {
+                            that.CONFIG.callback.onClick({id: data.node.id});
                         }
                     } else {
-                        if (that.CONFIG.callback.onDomainClick) {
-                            that.CONFIG.callback.onDomainClick({id: data.node.id});
+                        if (data.node.parent === '#') {
+                            data.node.parent === '#' && that.tree.jstree().is_open() ? that.tree.jstree().close_node(node) : that.tree.jstree().open_node(node);
+                            if (that.CONFIG.callback.onGroupClick) {
+                                that.CONFIG.callback.onGroupClick({id: data.node.id});
+                            }
+                        } else {
+                            if (that.CONFIG.callback.onDomainClick) {
+                                that.CONFIG.callback.onDomainClick({id: data.node.id});
+                            }
                         }
                     }
-                    if (that.CONFIG.callback.onClick) {
-                        that.CONFIG.callback.onClick({id: data.node.id});
-                    }
+
                 });
 
                 /* Show required domain. */

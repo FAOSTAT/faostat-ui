@@ -14,12 +14,12 @@ define(['controllers/base/controller', 'views/download-view'], function (Control
             });
         },
 
-        show_bulk: function (params) {
-            this.show(params, 'bulk');
+        show_bulk_downloads: function (params) {
+            this.show(params, 'bulk_downloads');
         },
 
-        show_interactive: function (params) {
-            this.show(params, 'interactive');
+        show_interactive_download: function (params) {
+            this.show(params, 'interactive_download');
         },
 
         show_metadata: function (params) {

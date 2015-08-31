@@ -11,11 +11,12 @@ define([
     'FENIX_UI_METADATA_VIEWER',
     'FAOSTAT_UI_BULK_DOWNLOADS',
     'FAOSTAT_UI_DOWNLOAD_SELECTORS_MANAGER',
-    'FENIX_UI_DOWNLOAD_OPTIONS',
+    'FAOSTAT_UI_OPTIONS_MANAGER',
     'pivot',
     'pivotRenderers',
     'pivotAggregators',
     'pivotConfig',
+    'chaplin',
     'sweetAlert',
     'underscore',
     'amplify'
@@ -29,11 +30,12 @@ define([
              MetadataViewer,
              BulkDownloads,
              DownloadSelectorsManager,
-             DownloadOptions,
-             pivot,
+             OptionsManager,
+             Pivot,
              pivotRenderers,
              pivotAggregators,
              dataConfig,
+             Chaplin,
              swal,
              _) {
 
@@ -99,7 +101,7 @@ define([
             this.tree = new Tree();
             this.bulk_downloads = new BulkDownloads();
             this.download_selectors_manager = new DownloadSelectorsManager();
-            this.download_options = new DownloadOptions();
+            this.options_manager = new OptionsManager();
 
             /* Tree. */
             this.tree.init({
@@ -107,24 +109,19 @@ define([
                 code: this.options.domain,
                 callback: {
                     onTreeRendered: this.update_breadcrumbs,
-                    onGroupClick: function (callback) {
-                        var group_code = callback.id;
-                        console.debug('Please route to: ' + group_code);
-                    },
-                    onDomainClick: function (callback) {
-                        var domain_code = callback.id;
-                        console.debug('Please route to: ' + domain_code);
+                    onClick: function (callback) {
+                        Chaplin.utils.redirectTo('download#show_' + that.options.section, {lang: that.options.lang, domain: callback.id});
                     }
                 }
             });
 
             /* Render Bulk Downloads. */
-            if (this.options.section === 'bulk') {
+            if (this.options.section === 'bulk_downloads') {
                 that.render_bulk_downloads();
             }
 
             /* Render Interactive Download. */
-            if (this.options.section === 'interactive') {
+            if (this.options.section === 'interactive_download') {
                 that.render_interactive_download();
             }
 
@@ -138,10 +135,13 @@ define([
                 var target = $(e.target).attr('href');
                 if (target.indexOf('metadata') > -1) {
                     that.render_metadata();
+                    that.options.section = 'metadata';
                 } else if (target.indexOf('interactive_download') > -1) {
                     that.render_interactive_download();
+                    that.options.section = 'interactive_download';
                 } else if (target.indexOf('bulk_downloads') > -1) {
                     that.render_bulk_downloads();
+                    that.options.section = 'bulk_downloads';
                 }
             });
 
@@ -161,43 +161,41 @@ define([
                 });
                 $('.nav-tabs a[href="#interactive_download"]').tab('show');
 
-                /* Preview options. */
-                var preview_options_config = {
+                /* Initiate options manager. */
+                this.options_manager.init();
+
+                /* Add preview options. */
+                this.options_manager.add_options_window('preview_options', {
                     ok_button: true,
                     pdf_button: false,
                     excel_button: false,
                     csv_button: false,
                     lang: this.options.lang,
-                    button_label: 'Preview Options',
-                    header_label: 'Preview Options',
-                    prefix: '_' + 'preview_',
+                    button_label: i18nLabels.preview_options_label,
+                    header_label: i18nLabels.preview_options_label,
                     placeholder_id: 'preview_options_placeholder',
                     decimal_separators: true,
-                    thousand_separators: true
-                };
-                this.preview_options = new DownloadOptions();
-                this.preview_options.init(preview_options_config);
-                this.preview_options.show_as_modal_window();
+                    thousand_separators: true,
 
-                /* Download options. */
-                var download_options_config = {
+                });
+
+                /* Add download options. */
+                this.options_manager.add_options_window('download_options', {
+                    pdf_button: false,
                     lang: this.options.lang,
-                    button_label: 'Download As...',
-                    header_label: 'Download As...',
-                    prefix: '_' + 'download_',
+                    button_label: i18nLabels.download_as_label,
+                    header_label: i18nLabels.download_as_label,
                     placeholder_id: 'download_options_placeholder',
                     decimal_separators: true,
                     thousand_separators: true
-                };
-                this.download_options.init(download_options_config);
-                this.download_options.show_as_modal_window();
+                });
 
                 /* Preview button. */
                 $('#preview_button').click({
                     selector_mgr: this.download_selectors_manager,
-                    preview_options: this.preview_options
+                    options_manager: this.options_manager
                 }, function (e) {
-                    that.preview(e.data.selector_mgr, e.data.preview_options);
+                    that.preview(e.data.selector_mgr, e.data.options_manager);
                 });
 
             }
@@ -243,14 +241,14 @@ define([
             }
         },
 
-        preview: function (selector_mgr, preview_options) {
+        preview: function (selector_mgr, options_manager) {
             var user_selection,
                 dwld_options,
                 data = {},
                 that = this,
                 w;
             user_selection = selector_mgr.get_user_selection();
-            dwld_options = preview_options.collect_user_selection();
+            dwld_options = options_manager.get_options_window('preview_options').collect_user_selection();
             data = $.extend(true, {}, data, user_selection);
             data = $.extend(true, {}, data, dwld_options);
             data.datasource = 'faostat';
@@ -266,7 +264,8 @@ define([
                 payload: {
                     query: this.create_query_string(user_selection)
                 },
-                success: that.show_preview
+                success: that.show_preview,
+                context: this
             });
         },
 
@@ -319,13 +318,18 @@ define([
 
         show_preview: function (response) {
 
+            /* Variables. */
+            var that = this,
+                hs,
+                json;
+
             /* Headers. */
-            var hs = ['Domain Code', 'Domain', 'Area Code', 'Area', 'Element Code',
+            hs = ['Domain Code', 'Domain', 'Country Code', 'Country', 'Element Code',
                       'Element', 'Item Code', 'Item', 'Year', 'Unit',
                       'Value', 'Flag', 'Flag Description'];
 
             /* Cast data, if needed. */
-            var json = response;
+            json = response;
             if (typeof json === 'string') {
                 json = $.parseJSON(response);
             }
@@ -334,8 +338,20 @@ define([
             /* Create OLAP. */
             dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
             dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
-            var faostat_pivot = new pivot();
-            faostat_pivot.render('downloadOutputArea', json, dataConfig);
+            this.pivot = new Pivot();
+            this.pivot.render('downloadOutputArea', json, dataConfig);
+
+            /* Bind options. */
+            this.options_manager.get_options_window('preview_options').get_radio_button('flags').change(function () {
+                that.pivot.showFlags($(this).is(':checked'));
+            });
+            this.options_manager.get_options_window('preview_options').get_radio_button('unit').change(function () {
+                that.pivot.showUnit($(this).is(':checked'));
+            });
+            this.options_manager.get_options_window('preview_options').get_radio_button('codes').change(function () {
+                that.pivot.showCode($(this).is(':checked'));
+            });
+
         },
 
         configurePage: function () {

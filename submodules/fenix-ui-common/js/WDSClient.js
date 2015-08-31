@@ -130,7 +130,6 @@ define(['jquery'], function ($) {
                 $.isPlainObject(config.payload.queryVars) ) {
                 config.payload.query = _template(config.payload.query, config.payload.queryVars);
             }
-            
             $.ajax({
                 type: http_method,
                 url: this.opts.serviceUrl,
@@ -142,7 +141,8 @@ define(['jquery'], function ($) {
                 },
                 success: config.success,
                 error: config.error,
-                always: config.always
+                always: config.always,
+                context: config.context
             });
         } catch (e) {
             config.error(e);

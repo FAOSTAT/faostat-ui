@@ -3,7 +3,7 @@ define(function () {
 
     'use strict';
 
-    var config = {
+    return {
         paths: {
             FENIX_UI_DOWNLOAD_OPTIONS: 'start',
             fenix_ui_download_options: '../../'
@@ -14,7 +14,5 @@ define(function () {
             }
         }
     };
-
-    return config;
 
 });
