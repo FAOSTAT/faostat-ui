@@ -499,3 +499,6 @@
 
 .navbar-brand {
   display: none; }
+
+#download_dropdown a {
+  color: #174c74 !important; }

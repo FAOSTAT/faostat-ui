@@ -3,9 +3,10 @@ define(['jquery',
         'text!faostat_ui_menu/html/templates.hbs',
         'i18n!faostat_ui_menu/nls/translate',
         'faostat_commons',
+        'chaplin',
         'bootstrap',
         'sweetAlert',
-        'amplify'], function ($, Handlebars, templates, translate, FAOSTATCommons) {
+        'amplify'], function ($, Handlebars, templates, translate, FAOSTATCommons, Chaplin) {
 
     'use strict';
 
@@ -47,7 +48,7 @@ define(['jquery',
             browse: translate.browse,
             browse_link: '#/' + this.CONFIG.lang + '/browse/',
             download: translate.download,
-            download_link: '#/' + this.CONFIG.lang + '/download/',
+            download_link: '#/' + this.CONFIG.lang + '/download/metadata/',
             compare: translate.compare,
             compare_link: '#/' + this.CONFIG.lang + '/compare/',
             search: translate.search,
@@ -135,7 +136,7 @@ define(['jquery',
     };
 
     MENU.prototype.build_download_link = function(group) {
-        return '#/' + this.CONFIG.lang + '/download/' + group.toUpperCase() + '/';
+        return '#/' + this.CONFIG.lang + '/download/metadata/' + group.toUpperCase() + '/';
     };
 
     MENU.prototype.build_browse_link = function(group) {

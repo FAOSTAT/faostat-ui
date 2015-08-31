@@ -97,11 +97,12 @@ define([
         initComponents: function () {
 
             var that = this;
-            this.metadata = new MetadataViewer();
             this.tree = new Tree();
+            this.pivot = new Pivot();
+            this.metadata = new MetadataViewer();
             this.bulk_downloads = new BulkDownloads();
-            this.download_selectors_manager = new DownloadSelectorsManager();
             this.options_manager = new OptionsManager();
+            this.download_selectors_manager = new DownloadSelectorsManager();
 
             /* Tree. */
             this.tree.init({
@@ -175,7 +176,7 @@ define([
                     header_label: i18nLabels.preview_options_label,
                     placeholder_id: 'preview_options_placeholder',
                     decimal_separators: true,
-                    thousand_separators: true,
+                    thousand_separators: true
 
                 });
 
@@ -188,6 +189,27 @@ define([
                     placeholder_id: 'download_options_placeholder',
                     decimal_separators: true,
                     thousand_separators: true
+                });
+
+                /* Disable download options until the pivot is generated. */
+                $('#download_options_modal_window_button').prop('disabled', true);
+
+                /* Download as CSV. */
+                $('#download_options_csv_button').click({
+                    selector_mgr: this.download_selectors_manager,
+                    options_manager: this.options_manager
+                }, function (e) {
+                    console.debug('click: CSV');
+                    that.csv(e.data.selector_mgr, e.data.options_manager);
+                });
+
+                /* Download as Excel. */
+                $('#download_options_excel_button').click({
+                    selector_mgr: this.download_selectors_manager,
+                    options_manager: this.options_manager
+                }, function (e) {
+                    console.debug('click: Excel');
+                    that.excel(e.data.selector_mgr, e.data.options_manager);
                 });
 
                 /* Preview button. */
@@ -241,6 +263,21 @@ define([
             }
         },
 
+        excel: function (options_manager) {
+            console.debug('download excel: start...');
+            this.pivot.exportExcel();
+            console.debug('download excel: done!');
+        },
+
+        csv: function (options_manager) {
+            var dwld_options;
+            dwld_options = this.options_manager.get_options_window('download_options').collect_user_selection();
+            console.debug(dwld_options);
+            console.debug('download csv: start...');
+            this.pivot.exportCSV();
+            console.debug('download csv: done!');
+        },
+
         preview: function (selector_mgr, options_manager) {
             var user_selection,
                 dwld_options,
@@ -270,21 +307,56 @@ define([
         },
 
         create_query_string: function (user_selection) {
-            var count, qs = "EXECUTE Warehouse.dbo.usp_GetDataTEST ";
-            qs += "@DomainCode = '" + this.options.domain + "', ";
-            qs += "@lang = '" + this.iso2faostat(this.options.lang) + "', ";
-            for (count = 1; count < 8; count += 1) {
-                qs += this.encode_codelist(count, user_selection["list" + count + "Codes"]);
-                if (count < 8) {
-                    qs += ", ";
+            try {
+                this.validate_user_selection(user_selection);
+                var count,
+                    qs = "EXECUTE Warehouse.dbo.usp_GetDataTEST ";
+                qs += "@DomainCode = '" + this.options.domain + "', ";
+                qs += "@lang = '" + this.iso2faostat(this.options.lang) + "', ";
+                for (count = 1; count < 8; count += 1) {
+                    qs += this.encode_codelist(count, user_selection["list" + count + "Codes"]);
+                    if (count < 8) {
+                        qs += ", ";
+                    }
+                }
+                qs += "@NullValues = false, ";
+                qs += "@Thousand = ',', ";
+                qs += "@Decimal = '.', ";
+                qs += "@DecPlaces = 2, ";
+                qs += "@Limit = 50";
+                return qs;
+            } catch (e) {
+                swal({
+                    title: i18nLabels.warning,
+                    type: 'warning',
+                    text: e
+                });
+            }
+        },
+
+        validate_user_selection: function (user_selection) {
+
+            /* Variables. */
+            var i, selectAll;
+
+            /* Check there's at least one selection for each box. */
+            for (i = 1; i <= this.download_selectors_manager.CONFIG.rendered_boxes.length; i += 1) {
+                if (user_selection['list' + i + 'Codes'].length < 1) {
+                    throw 'Please make at least one selection for "' + $('#tab_headers__' + i + ' li:first-child').text().trim() + '".';
                 }
             }
-            qs += "@NullValues = false, ";
-            qs += "@Thousand = ',', ";
-            qs += "@Decimal = '.', ";
-            qs += "@DecPlaces = 2, ";
-            qs += "@Limit = 50";
-            return qs;
+
+            /* Check whether he user used 'Select All' for every box. */
+            for (i = 1; i <= this.download_selectors_manager.CONFIG.rendered_boxes.length; i += 1) {
+                if (selectAll === undefined) {
+                    selectAll = $('#content__' + i + '_0').jstree().get_json('#', { "flat" : true }).length === user_selection['list' + i + 'Codes'].length;
+                } else {
+                    selectAll = selectAll && $('#content__' + i + '_0').jstree().get_json('#', { "flat" : true }).length === user_selection['list' + i + 'Codes'].length;
+                }
+            }
+            if (selectAll) {
+                throw 'Please consider the "Bulk Downloads" section if you are interested in retrieving all the values of this domain. ';
+            }
         },
 
         iso2faostat: function (iso) {
@@ -325,8 +397,8 @@ define([
 
             /* Headers. */
             hs = ['Domain Code', 'Domain', 'Country Code', 'Country', 'Element Code',
-                      'Element', 'Item Code', 'Item', 'Year', 'Unit',
-                      'Value', 'Flag', 'Flag Description'];
+                  'Element', 'Item Code', 'Item', 'Year', 'Unit',
+                  'Value', 'Flag', 'Flag Description'];
 
             /* Cast data, if needed. */
             json = response;
@@ -338,10 +410,9 @@ define([
             /* Create OLAP. */
             dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
             dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
-            this.pivot = new Pivot();
             this.pivot.render('downloadOutputArea', json, dataConfig);
 
-            /* Bind options. */
+            /* Bind preview options. */
             this.options_manager.get_options_window('preview_options').get_radio_button('flags').change(function () {
                 that.pivot.showFlags($(this).is(':checked'));
             });
@@ -351,6 +422,20 @@ define([
             this.options_manager.get_options_window('preview_options').get_radio_button('codes').change(function () {
                 that.pivot.showCode($(this).is(':checked'));
             });
+
+            /* Bind download options. */
+            this.options_manager.get_options_window('download_options').get_radio_button('flags').change(function () {
+                that.pivot.showFlags($(this).is(':checked'));
+            });
+            this.options_manager.get_options_window('download_options').get_radio_button('unit').change(function () {
+                that.pivot.showUnit($(this).is(':checked'));
+            });
+            this.options_manager.get_options_window('download_options').get_radio_button('codes').change(function () {
+                that.pivot.showCode($(this).is(':checked'));
+            });
+
+            /* Enable download options. */
+            $('#download_options_modal_window_button').prop('disabled', false);
 
         },
 

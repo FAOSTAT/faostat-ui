@@ -23,7 +23,8 @@ define(['jquery',
             placeholder_id: 'placeholder',
             url_codelists: 'http://fenixapps2.fao.org/wds_5.1/',
             url_listboxes: 'http://fenixapps2.fao.org/wds_5.1/rest/procedures/listboxes',
-            rendered: false
+            rendered: false,
+            rendered_boxes: []
         };
 
     }
@@ -156,6 +157,9 @@ define(['jquery',
 
         /* Store selector object for future reference. */
         that.CONFIG.selectors.push(selector);
+
+        /* Keep track of the rendered selector. */
+        this.CONFIG.rendered_boxes.push(selector_id);
 
     };
 
