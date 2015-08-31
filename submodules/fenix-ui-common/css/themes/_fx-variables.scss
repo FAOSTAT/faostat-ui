@@ -1,0 +1,55 @@
+// Fenix - Variables
+$fx-ui-common: './';
+
+// Layout
+$host-menu-height : 50px;
+
+// Typography
+$small-text : 12px;
+$standard-text-size: 14px;
+$standard-text : normal normal 300 $standard-text-size/normal 'Roboto Condensed';
+$standard-text-bold : normal normal 500 14px/normal 'Roboto Condensed';
+$standard-text-big : normal normal 300 16px/normal 'Roboto Condensed';
+
+$fx-text-h1: normal normal 100 36px/normal 'Roboto';
+$fx-text-h2: normal normal 100 26px/normal 'Roboto';
+$fx-text-h3: normal normal 300 28px/normal 'Roboto';
+$fx-text-h4: normal normal 500 14px/normal 'Roboto Condensed';
+
+$fx-text-smalltitle-normal: normal normal 400 10px/normal 'Roboto';
+$fx-text-smalltitle-bold: normal normal 700 10px/normal 'Roboto';
+
+// Fenix Colors
+$fenix-standard-blue: rgba(53, 166, 220, 1);
+$fx-cool-blue: #0076ff;
+$fx-secondary-color: desaturate( $fx-cool-blue, 50% );
+
+$fx-main-color-light: lighten( $fx-cool-blue, 40%); // Ideal for selection
+$fx-main-color-lighter: lighten( $fx-cool-blue, 45%); // Ideal for hovers
+
+$fenix-text: #666666;
+$fenix-secondary-text: #999999;
+
+$fenix-light-gray: #dddddd;
+$fenix-dark-blue: #4c647f;
+$fenix-dark-bg: #666666;
+$fenix-light-bg: #f8f8f8;
+$light-purple: #EEEEFF;
+$light-brown: #f3efe0;
+
+
+$fenix-hr: #d8d8d8;
+
+$fenix-thin-border: 1px solid $fenix-hr;
+
+// Specials
+$white-alpha: rgba(255, 255, 255, 0.9);
+$black-alpha : rgba(0, 0, 0, 0.8);
+
+
+// Background
+// background: color position/size repeat origin clip attachment image|initial|inherit;
+$fx-site-bg: $fenix-light-bg;
+
+// Border Radius
+$fx-border-radius: 0;

@@ -1,0 +1,3 @@
+[submodule "submodules/fenix-ui-download-options"]
+	path = submodules/fenix-ui-download-options
+	url = https://github.com/FENIX-Platform/fenix-ui-download-options.git

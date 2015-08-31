@@ -1,0 +1,504 @@
+/* HEADER */
+.fs-head {
+  background-color: #379bce;
+  height: 50px;
+  position: relative; }
+
+.fs-logo-holder {
+  width: 200px;
+  height: 50px;
+  background-color: #174c74;
+  padding: 7px 0 0 20px; }
+
+.fs-logo {
+  width: 160px;
+  height: 34px;
+  background-image: url("../images/fs-logo-new.png");
+  background-size: 160px 34px;
+  background-repeat: no-repeat; }
+
+.fs-united {
+  background-color: #379bce;
+  height: 50px;
+  position: absolute;
+  left: 200px;
+  top: 0;
+  padding: 14px 0 0 65px;
+  color: white; }
+
+.fs-united p {
+  text-transform: uppercase;
+  line-height: 7px;
+  height: 12px;
+  margin-bottom: 0; }
+
+.fs-languages {
+  background-color: #379bce;
+  height: 50px;
+  position: absolute;
+  right: 8px;
+  top: 0;
+  color: white;
+  padding: 15px 0 0 0; }
+
+.fs-languages span {
+  margin: 0 7px 0 7px;
+  cursor: pointer; }
+
+.fs-languages span:hover {
+  text-decoration: underline; }
+
+.fs-languages span.fs-lan-selected {
+  text-decoration: underline; }
+
+.fs-menu-holder {
+  padding: 0 20px 0 10px;
+  background-color: white;
+  position: relative;
+  height: 33px;
+  -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2); }
+
+.fs-menu {
+  /** Apply to menu element if selected */ }
+
+.fs-menu span {
+  cursor: pointer;
+  font: normal normal 400 12px/normal "Roboto", sans-serif;
+  text-transform: uppercase;
+  display: inline-block;
+  border-bottom: 4px solid transparent;
+  vertical-align: top;
+  white-space: nowrap;
+  margin: 0 8px;
+  max-width: 155px;
+  min-width: 20px;
+  /*overflow: hidden; Rimettere se dovesse dare problemi*/
+  padding: 8px 0 4px 0;
+  text-overflow: ellipsis;
+  position: relative; }
+
+.fs-menu span:hover {
+  border-color: #40769e;
+  transition: border-color 0.218s ease 0s; }
+
+.fs-menu span.fs-menu-selected {
+  color: #174c74;
+  font: normal normal 900 12px/normal "Roboto", sans-serif;
+  border-bottom: 4px solid #40769e;
+  transition: border-color 0.218s ease 0s; }
+
+#searchFS {
+  position: absolute;
+  top: 3px;
+  right: 20px; }
+
+#searchFS input[type="text"] {
+  /* Reset Previous Search Box */
+  box-shadow: none;
+  color: #666666;
+  font-weight: normal;
+  /* End reset */
+  border: 1px solid #d1d1d1;
+  border-radius: 20px;
+  padding: 4px 15px 4px 30px !important;
+  transition: all 0.7s ease 0s;
+  width: 100px; }
+
+#searchFS input[type="text"]:focus {
+  width: 180px; }
+
+.navbar {
+  font-size: 13px;
+  margin-bottom: 0;
+  background-color: #e6e6e6; }
+
+.navbar .fa {
+  font-size: 16px;
+  margin-right: 5px; }
+
+.navbar li a {
+  padding: 15px 25px;
+  position: relative; }
+
+.navbar li a:before {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  background-color: #379bce;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s; }
+
+.navbar li a:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 50%;
+  width: 1px;
+  background-color: #999999;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
+.navbar li a:hover:before {
+  height: 4px;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s; }
+
+.navbar li:last-child a:after {
+  background-color: transparent; }
+
+.navbar-brand {
+  display: none; }
+
+/* Faostat Download */
+.summary-item {
+  display: inline-block;
+  cursor: pointer;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #FFFFFF;
+  color: #666666;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin: 3px 3px 3px 0;
+  padding: 2px 5px; }
+
+.v-space {
+  margin-top: 16px; }
+
+.faostat-download-main-content .btn {
+  display: inline-block;
+  font-size: 12px;
+  margin-bottom: 0;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: whitesmoke;
+  border: 1px solid #999999;
+  padding: 6px; }
+
+.faostat-download-main-content .btn:hover {
+  background-color: #e6e6e6; }
+
+.faostat-download-main-content .nav.nav-tabs li a {
+  color: #666666; }
+
+.faostat-download-main-content .nav.nav-tabs li.active a {
+  color: #379bce; }
+
+.faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single {
+  margin-bottom: 15px;
+  position: relative;
+  height: 245px;
+  overflow: hidden; }
+
+.faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single .btn {
+  width: 100%; }
+
+.faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single .jstree-ocl {
+  width: 5px; }
+
+.faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single:before {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 205px;
+  top: 38px;
+  width: calc(100% - 30px);
+  border: 1px solid #dddddd;
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  -ms-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px; }
+
+.faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single:after {
+  content: 'Summary is empty';
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  font-weight: 400;
+  color: #999999;
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%); }
+
+.faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single .tab-content {
+  padding-top: 0; }
+
+.faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single .tab-content > .tab-pane {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #dddddd; }
+
+.faostat-summary-item {
+  max-height: 60px;
+  overflow-y: auto;
+  padding: 5px;
+  position: relative;
+  background-color: white;
+  z-index: 1; }
+
+.faostat-download-selector-resume-holder {
+  padding-left: 20px;
+  padding-right: 20px; }
+
+.faostat-download-selector-toolbar {
+  padding: 0 5px; }
+
+#download_preview_button {
+  width: 100%; }
+
+.modal-dialog {
+  z-index: 1051; }
+
+/* Faostat / Fenix metadata */
+.btn.json-editor-btn-collapse {
+  background-color: transparent;
+  border-color: transparent; }
+
+.btn.json-editor-btn-collapse:hover {
+  background-color: transparent; }
+
+.faostat-download-metadata-holder .well > div > div > .row {
+  border-bottom: 1px solid #dddddd; }
+
+.faostat-download-metadata-holder .well > div > div > .row:last-child {
+  border-bottom-color: transparent; }
+
+.faostat-download-metadata-holder .well > div > div > .row .row {
+  border-bottom-color: transparent; }
+
+.faostat-download-metadata-holder .well > div > div > .row .row h3 span {
+  position: relative;
+  top: 0; }
+
+.faostat-download-metadata-holder .well > div > div > .row h3 {
+  margin-bottom: 0;
+  margin-top: 0; }
+
+.faostat-download-metadata-holder .well > div > div > .row h3 span {
+  position: relative;
+  top: 8px; }
+
+.faostat-download-metadata-holder .fa-caret-square-o-right:before {
+  content: "\f0da"; }
+
+.faostat-download-metadata-holder .fa-caret-square-o-down:before {
+  content: "\f0d7"; }
+
+.faostat-download-metadata-holder .form-control {
+  background-color: transparent;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  cursor: text; }
+
+/*Vendor */
+/* Js Tree Fix */
+.faostat-download-tree-holder .jstree-container-ul .jstree-anchor {
+  padding: 3px; }
+
+.faostat-download-tree-holder .jstree-container-ul > li {
+  position: relative; }
+
+.faostat-download-tree-holder .jstree-container-ul > li > .jstree-wholerow {
+  height: 100%;
+  background-color: transparent; }
+
+.faostat-download-tree-holder .jstree-container-ul > li > .jstree-anchor {
+  font-weight: 400; }
+
+.faostat-download-tree-holder .jstree-container-ul .jstree-children .jstree-node {
+  position: relative; }
+
+.faostat-download-tree-holder .jstree-container-ul .jstree-children .jstree-node .jstree-icon {
+  width: 10px; }
+
+.faostat-download-tree-holder .jstree-container-ul .jstree-children .jstree-node .jstree-wholerow {
+  height: 100%; }
+
+/* HEADER */
+.fs-head {
+  background-color: #379bce;
+  height: 50px;
+  position: relative; }
+
+.fs-logo-holder {
+  width: 200px;
+  height: 50px;
+  background-color: #174c74;
+  padding: 7px 0 0 20px; }
+
+.fs-logo {
+  width: 160px;
+  height: 34px;
+  background-image: url("../images/fs-logo-new.png");
+  background-size: 160px 34px;
+  background-repeat: no-repeat; }
+
+.fs-united {
+  background-color: #379bce;
+  height: 50px;
+  position: absolute;
+  left: 200px;
+  top: 0;
+  padding: 14px 0 0 65px;
+  color: white; }
+
+.fs-united p {
+  text-transform: uppercase;
+  line-height: 7px;
+  height: 12px;
+  margin-bottom: 0; }
+
+.fs-languages {
+  background-color: #379bce;
+  height: 50px;
+  position: absolute;
+  right: 8px;
+  top: 0;
+  color: white;
+  padding: 15px 0 0 0; }
+
+.fs-languages span {
+  margin: 0 7px 0 7px;
+  cursor: pointer; }
+
+.fs-languages span:hover {
+  text-decoration: underline; }
+
+.fs-languages span.fs-lan-selected {
+  text-decoration: underline; }
+
+.fs-menu-holder {
+  padding: 0 20px 0 10px;
+  background-color: white;
+  position: relative;
+  height: 33px;
+  -webkit-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2); }
+
+.fs-menu {
+  /** Apply to menu element if selected */ }
+
+.fs-menu span {
+  cursor: pointer;
+  font: normal normal 400 12px/normal "Roboto", sans-serif;
+  text-transform: uppercase;
+  display: inline-block;
+  border-bottom: 4px solid transparent;
+  vertical-align: top;
+  white-space: nowrap;
+  margin: 0 8px;
+  max-width: 155px;
+  min-width: 20px;
+  /*overflow: hidden; Rimettere se dovesse dare problemi*/
+  padding: 8px 0 4px 0;
+  text-overflow: ellipsis;
+  position: relative; }
+
+.fs-menu span:hover {
+  border-color: #40769e;
+  transition: border-color 0.218s ease 0s; }
+
+.fs-menu span.fs-menu-selected {
+  color: #174c74;
+  font: normal normal 900 12px/normal "Roboto", sans-serif;
+  border-bottom: 4px solid #40769e;
+  transition: border-color 0.218s ease 0s; }
+
+#searchFS {
+  position: absolute;
+  top: 3px;
+  right: 20px; }
+
+#searchFS input[type="text"] {
+  /* Reset Previous Search Box */
+  box-shadow: none;
+  color: #666666;
+  font-weight: normal;
+  /* End reset */
+  border: 1px solid #d1d1d1;
+  border-radius: 20px;
+  padding: 4px 15px 4px 30px !important;
+  transition: all 0.7s ease 0s;
+  width: 100px; }
+
+#searchFS input[type="text"]:focus {
+  width: 180px; }
+
+.navbar {
+  font-size: 13px;
+  margin-bottom: 0;
+  background-color: #e6e6e6; }
+
+.navbar .fa {
+  font-size: 16px;
+  margin-right: 5px; }
+
+.navbar li a {
+  padding: 15px 25px;
+  position: relative; }
+
+.navbar li a:before {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  background-color: #379bce;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s; }
+
+.navbar li a:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 50%;
+  width: 1px;
+  background-color: #999999;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
+.navbar li a:hover:before {
+  height: 4px;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s; }
+
+.navbar li:last-child a:after {
+  background-color: transparent; }
+
+.navbar-brand {
+  display: none; }
+
+#download_dropdown a {
+  color: #174c74 !important; }

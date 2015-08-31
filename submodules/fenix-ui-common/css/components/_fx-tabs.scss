@@ -1,0 +1,77 @@
+/* Tabs component */
+
+.fx-tabs{
+
+  .nav-tabs {
+
+    @include fx-transfor-me(translateX(-10px));
+
+    >li {
+
+      margin-bottom: 10px;
+
+      >a {
+
+        padding: 0 10px;
+
+        color: $fenix-text;
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase;
+
+        &:before {
+          @include animate;
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background-color: $fx-cool-blue;
+          left: 0;
+          bottom: -2px;
+          pointer-events: none;
+          @include fx-transfor-me(scaleX(0));
+        }
+
+      }
+
+
+      &.active {
+
+        >a {
+          color: $fx-cool-blue;
+
+          &:before{
+            @include animate;
+            @include fx-transfor-me(scaleX(0.8));
+
+          }
+
+        }
+
+      }
+
+
+    }
+  }
+
+  .tab-content {
+    padding-top: 10px;
+
+    > div {
+      padding: 0;
+    }
+
+
+  }
+
+
+
+
+  li{
+    margin: 12px 0;
+
+  }
+
+
+
+}
