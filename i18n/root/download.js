@@ -6,5 +6,6 @@ define({
     bulk_downloads_label: 'Bulk Download',
     download_as_label: 'Download as...',
     preview_options_label: 'Preview Options',
-    preview_label: 'Preview'
+    preview_label: 'Preview',
+    error: 'Error'
 });

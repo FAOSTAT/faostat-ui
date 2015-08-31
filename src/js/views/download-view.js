@@ -175,7 +175,7 @@ define([
                     header_label: i18nLabels.preview_options_label,
                     placeholder_id: 'preview_options_placeholder',
                     decimal_separators: true,
-                    thousand_separators: true,
+                    thousand_separators: true
 
                 });
 
@@ -270,21 +270,41 @@ define([
         },
 
         create_query_string: function (user_selection) {
-            var count, qs = "EXECUTE Warehouse.dbo.usp_GetDataTEST ";
-            qs += "@DomainCode = '" + this.options.domain + "', ";
-            qs += "@lang = '" + this.iso2faostat(this.options.lang) + "', ";
-            for (count = 1; count < 8; count += 1) {
-                qs += this.encode_codelist(count, user_selection["list" + count + "Codes"]);
-                if (count < 8) {
-                    qs += ", ";
+            try {
+                this.validate_user_selection(user_selection);
+                var count,
+                    qs = "EXECUTE Warehouse.dbo.usp_GetDataTEST ";
+                qs += "@DomainCode = '" + this.options.domain + "', ";
+                qs += "@lang = '" + this.iso2faostat(this.options.lang) + "', ";
+                for (count = 1; count < 8; count += 1) {
+                    qs += this.encode_codelist(count, user_selection["list" + count + "Codes"]);
+                    if (count < 8) {
+                        qs += ", ";
+                    }
+                }
+                qs += "@NullValues = false, ";
+                qs += "@Thousand = ',', ";
+                qs += "@Decimal = '.', ";
+                qs += "@DecPlaces = 2, ";
+                qs += "@Limit = 50";
+                return qs;
+            } catch (e) {
+                swal({
+                    title: i18nLabels.error,
+                    type: 'error',
+                    text: e
+                });
+            }
+        },
+
+        validate_user_selection: function (user_selection) {
+            var i;
+            for (i = 1; i <= this.download_selectors_manager.CONFIG.rendered_boxes.length; i += 1) {
+                if (user_selection['list' + i + 'Codes'].length < 1) {
+                    throw 'Please make at least one selection for "' + $('#tab_headers__' + i + ' li:first-child').text().trim() + '".';
                 }
             }
-            qs += "@NullValues = false, ";
-            qs += "@Thousand = ',', ";
-            qs += "@Decimal = '.', ";
-            qs += "@DecPlaces = 2, ";
-            qs += "@Limit = 50";
-            return qs;
+            return true;
         },
 
         iso2faostat: function (iso) {
@@ -325,8 +345,8 @@ define([
 
             /* Headers. */
             hs = ['Domain Code', 'Domain', 'Country Code', 'Country', 'Element Code',
-                      'Element', 'Item Code', 'Item', 'Year', 'Unit',
-                      'Value', 'Flag', 'Flag Description'];
+                  'Element', 'Item Code', 'Item', 'Year', 'Unit',
+                  'Value', 'Flag', 'Flag Description'];
 
             /* Cast data, if needed. */
             json = response;
