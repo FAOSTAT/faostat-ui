@@ -31,7 +31,7 @@ define([
              BulkDownloads,
              DownloadSelectorsManager,
              OptionsManager,
-             pivot,
+             Pivot,
              pivotRenderers,
              pivotAggregators,
              dataConfig,
@@ -101,7 +101,7 @@ define([
             this.tree = new Tree();
             this.bulk_downloads = new BulkDownloads();
             this.download_selectors_manager = new DownloadSelectorsManager();
-            //this.download_options = new DownloadOptions();
+            this.options_manager = new OptionsManager();
 
             /* Tree. */
             this.tree.init({
@@ -162,7 +162,6 @@ define([
                 $('.nav-tabs a[href="#interactive_download"]').tab('show');
 
                 /* Initiate options manager. */
-                this.options_manager = new OptionsManager();
                 this.options_manager.init();
 
                 /* Add preview options. */
@@ -176,7 +175,8 @@ define([
                     header_label: i18nLabels.preview_options_label,
                     placeholder_id: 'preview_options_placeholder',
                     decimal_separators: true,
-                    thousand_separators: true
+                    thousand_separators: true,
+
                 });
 
                 /* Add download options. */
@@ -193,9 +193,9 @@ define([
                 /* Preview button. */
                 $('#preview_button').click({
                     selector_mgr: this.download_selectors_manager,
-                    preview_options: this.preview_options
+                    options_manager: this.options_manager
                 }, function (e) {
-                    that.preview(e.data.selector_mgr, e.data.preview_options);
+                    that.preview(e.data.selector_mgr, e.data.options_manager);
                 });
 
             }
@@ -241,14 +241,14 @@ define([
             }
         },
 
-        preview: function (selector_mgr, preview_options) {
+        preview: function (selector_mgr, options_manager) {
             var user_selection,
                 dwld_options,
                 data = {},
                 that = this,
                 w;
             user_selection = selector_mgr.get_user_selection();
-            dwld_options = preview_options.collect_user_selection();
+            dwld_options = options_manager.get_options_window('preview_options').collect_user_selection();
             data = $.extend(true, {}, data, user_selection);
             data = $.extend(true, {}, data, dwld_options);
             data.datasource = 'faostat';
@@ -264,7 +264,8 @@ define([
                 payload: {
                     query: this.create_query_string(user_selection)
                 },
-                success: that.show_preview
+                success: that.show_preview,
+                context: this
             });
         },
 
@@ -317,13 +318,18 @@ define([
 
         show_preview: function (response) {
 
+            /* Variables. */
+            var that = this,
+                hs,
+                json;
+
             /* Headers. */
-            var hs = ['Domain Code', 'Domain', 'Area Code', 'Area', 'Element Code',
+            hs = ['Domain Code', 'Domain', 'Country Code', 'Country', 'Element Code',
                       'Element', 'Item Code', 'Item', 'Year', 'Unit',
                       'Value', 'Flag', 'Flag Description'];
 
             /* Cast data, if needed. */
-            var json = response;
+            json = response;
             if (typeof json === 'string') {
                 json = $.parseJSON(response);
             }
@@ -332,8 +338,20 @@ define([
             /* Create OLAP. */
             dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
             dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
-            var faostat_pivot = new pivot();
-            faostat_pivot.render('downloadOutputArea', json, dataConfig);
+            this.pivot = new Pivot();
+            this.pivot.render('downloadOutputArea', json, dataConfig);
+
+            /* Bind options. */
+            this.options_manager.get_options_window('preview_options').get_radio_button('flags').change(function () {
+                that.pivot.showFlags($(this).is(':checked'));
+            });
+            this.options_manager.get_options_window('preview_options').get_radio_button('unit').change(function () {
+                that.pivot.showUnit($(this).is(':checked'));
+            });
+            this.options_manager.get_options_window('preview_options').get_radio_button('codes').change(function () {
+                that.pivot.showCode($(this).is(':checked'));
+            });
+
         },
 
         configurePage: function () {
