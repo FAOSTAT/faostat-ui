@@ -191,11 +191,15 @@ define([
                     thousand_separators: true
                 });
 
+                /* Disable download options until the pivot is generated. */
+                $('#download_options_modal_window_button').prop('disabled', true);
+
                 /* Download as CSV. */
                 $('#download_options_csv_button').click({
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
+                    console.debug('click: CSV');
                     that.csv(e.data.selector_mgr, e.data.options_manager);
                 });
 
@@ -204,6 +208,7 @@ define([
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
+                    console.debug('click: Excel');
                     that.excel(e.data.selector_mgr, e.data.options_manager);
                 });
 
@@ -259,18 +264,18 @@ define([
         },
 
         excel: function (options_manager) {
-            //var dwld_options;
-            //dwld_options = this.options_manager.get_options_window('download_options').collect_user_selection();
-            //console.debug(dwld_options);
-            //this.pivot.exportCSV();
+            console.debug('download excel: start...');
             this.pivot.exportExcel();
+            console.debug('download excel: done!');
         },
 
         csv: function (options_manager) {
             var dwld_options;
             dwld_options = this.options_manager.get_options_window('download_options').collect_user_selection();
             console.debug(dwld_options);
+            console.debug('download csv: start...');
             this.pivot.exportCSV();
+            console.debug('download csv: done!');
         },
 
         preview: function (selector_mgr, options_manager) {
@@ -407,7 +412,7 @@ define([
             dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
             this.pivot.render('downloadOutputArea', json, dataConfig);
 
-            /* Bind options. */
+            /* Bind preview options. */
             this.options_manager.get_options_window('preview_options').get_radio_button('flags').change(function () {
                 that.pivot.showFlags($(this).is(':checked'));
             });
@@ -417,6 +422,20 @@ define([
             this.options_manager.get_options_window('preview_options').get_radio_button('codes').change(function () {
                 that.pivot.showCode($(this).is(':checked'));
             });
+
+            /* Bind download options. */
+            this.options_manager.get_options_window('download_options').get_radio_button('flags').change(function () {
+                that.pivot.showFlags($(this).is(':checked'));
+            });
+            this.options_manager.get_options_window('download_options').get_radio_button('unit').change(function () {
+                that.pivot.showUnit($(this).is(':checked'));
+            });
+            this.options_manager.get_options_window('download_options').get_radio_button('codes').change(function () {
+                that.pivot.showCode($(this).is(':checked'));
+            });
+
+            /* Enable download options. */
+            $('#download_options_modal_window_button').prop('disabled', false);
 
         },
 
