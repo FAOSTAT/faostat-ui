@@ -191,11 +191,20 @@ define([
                     thousand_separators: true
                 });
 
+                /* Download as CSV. */
                 $('#download_options_csv_button').click({
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
                     that.csv(e.data.selector_mgr, e.data.options_manager);
+                });
+
+                /* Download as Excel. */
+                $('#download_options_excel_button').click({
+                    selector_mgr: this.download_selectors_manager,
+                    options_manager: this.options_manager
+                }, function (e) {
+                    that.excel(e.data.selector_mgr, e.data.options_manager);
                 });
 
                 /* Preview button. */
@@ -250,10 +259,11 @@ define([
         },
 
         excel: function (options_manager) {
-            var dwld_options;
-            dwld_options = this.options_manager.get_options_window('download_options').collect_user_selection();
-            console.debug(dwld_options);
-            this.pivot.exportCSV();
+            //var dwld_options;
+            //dwld_options = this.options_manager.get_options_window('download_options').collect_user_selection();
+            //console.debug(dwld_options);
+            //this.pivot.exportCSV();
+            this.pivot.exportExcel();
         },
 
         csv: function (options_manager) {
