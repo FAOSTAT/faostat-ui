@@ -135,10 +135,13 @@ define([
                 var target = $(e.target).attr('href');
                 if (target.indexOf('metadata') > -1) {
                     that.render_metadata();
+                    that.options.section = 'metadata';
                 } else if (target.indexOf('interactive_download') > -1) {
                     that.render_interactive_download();
+                    that.options.section = 'interactive_download';
                 } else if (target.indexOf('bulk_downloads') > -1) {
                     that.render_bulk_downloads();
+                    that.options.section = 'bulk_downloads';
                 }
             });
 
