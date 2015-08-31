@@ -16,6 +16,7 @@ define([
     'pivotRenderers',
     'pivotAggregators',
     'pivotConfig',
+    'chaplin',
     'sweetAlert',
     'underscore',
     'amplify'
@@ -34,6 +35,7 @@ define([
              pivotRenderers,
              pivotAggregators,
              dataConfig,
+             Chaplin,
              swal,
              _) {
 
@@ -107,24 +109,19 @@ define([
                 code: this.options.domain,
                 callback: {
                     onTreeRendered: this.update_breadcrumbs,
-                    onGroupClick: function (callback) {
-                        var group_code = callback.id;
-                        console.debug('Please route to: ' + group_code);
-                    },
-                    onDomainClick: function (callback) {
-                        var domain_code = callback.id;
-                        console.debug('Please route to: ' + domain_code);
+                    onClick: function (callback) {
+                        Chaplin.utils.redirectTo('download#show_' + that.options.section, {lang: that.options.lang, domain: callback.id});
                     }
                 }
             });
 
             /* Render Bulk Downloads. */
-            if (this.options.section === 'bulk') {
+            if (this.options.section === 'bulk_downloads') {
                 that.render_bulk_downloads();
             }
 
             /* Render Interactive Download. */
-            if (this.options.section === 'interactive') {
+            if (this.options.section === 'interactive_download') {
                 that.render_interactive_download();
             }
 
