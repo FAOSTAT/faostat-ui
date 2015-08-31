@@ -97,11 +97,12 @@ define([
         initComponents: function () {
 
             var that = this;
-            this.metadata = new MetadataViewer();
             this.tree = new Tree();
+            this.pivot = new Pivot();
+            this.metadata = new MetadataViewer();
             this.bulk_downloads = new BulkDownloads();
-            this.download_selectors_manager = new DownloadSelectorsManager();
             this.options_manager = new OptionsManager();
+            this.download_selectors_manager = new DownloadSelectorsManager();
 
             /* Tree. */
             this.tree.init({
@@ -190,6 +191,13 @@ define([
                     thousand_separators: true
                 });
 
+                $('#download_options_csv_button').click({
+                    selector_mgr: this.download_selectors_manager,
+                    options_manager: this.options_manager
+                }, function (e) {
+                    that.csv(e.data.selector_mgr, e.data.options_manager);
+                });
+
                 /* Preview button. */
                 $('#preview_button').click({
                     selector_mgr: this.download_selectors_manager,
@@ -239,6 +247,20 @@ define([
                 parent_node = $('#tree').jstree().get_node(parent_code.toUpperCase());
                 $('#domain_label').html('> <a>' + parent_node.text + '</a>');
             }
+        },
+
+        excel: function (options_manager) {
+            var dwld_options;
+            dwld_options = this.options_manager.get_options_window('download_options').collect_user_selection();
+            console.debug(dwld_options);
+            this.pivot.exportCSV();
+        },
+
+        csv: function (options_manager) {
+            var dwld_options;
+            dwld_options = this.options_manager.get_options_window('download_options').collect_user_selection();
+            console.debug(dwld_options);
+            this.pivot.exportCSV();
         },
 
         preview: function (selector_mgr, options_manager) {
@@ -373,7 +395,6 @@ define([
             /* Create OLAP. */
             dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
             dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
-            this.pivot = new Pivot();
             this.pivot.render('downloadOutputArea', json, dataConfig);
 
             /* Bind options. */
