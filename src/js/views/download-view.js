@@ -161,6 +161,32 @@ define([
                 });
                 $('.nav-tabs a[href="#interactive_download"]').tab('show');
 
+                var options_manager = new OptionsManager();
+                options_manager.init();
+                options_manager.add_options_window('preview_options', {
+                    ok_button: true,
+                    pdf_button: false,
+                    excel_button: false,
+                    csv_button: false,
+                    lang: this.options.lang,
+                    button_label: 'Preview Options',
+                    header_label: 'Preview Options',
+                    prefix: '_' + 'preview_',
+                    placeholder_id: 'preview_options_placeholder',
+                    decimal_separators: true,
+                    thousand_separators: true
+                });
+                options_manager.add_options_window('download_options', {
+                    pdf_button: false,
+                    lang: this.options.lang,
+                    button_label: 'Download As...',
+                    header_label: 'Download As...',
+                    prefix: '_' + 'download_',
+                    placeholder_id: 'download_options_placeholder',
+                    decimal_separators: true,
+                    thousand_separators: true
+                });
+
                 ///* Preview options. */
                 //var preview_options_config = {
                 //    ok_button: true,
