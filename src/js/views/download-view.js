@@ -11,7 +11,7 @@ define([
     'FENIX_UI_METADATA_VIEWER',
     'FAOSTAT_UI_BULK_DOWNLOADS',
     'FAOSTAT_UI_DOWNLOAD_SELECTORS_MANAGER',
-    'FENIX_UI_DOWNLOAD_OPTIONS',
+    'FAOSTAT_UI_OPTIONS_MANAGER',
     'pivot',
     'pivotRenderers',
     'pivotAggregators',
@@ -29,7 +29,7 @@ define([
              MetadataViewer,
              BulkDownloads,
              DownloadSelectorsManager,
-             DownloadOptions,
+             OptionsManager,
              pivot,
              pivotRenderers,
              pivotAggregators,
@@ -99,7 +99,7 @@ define([
             this.tree = new Tree();
             this.bulk_downloads = new BulkDownloads();
             this.download_selectors_manager = new DownloadSelectorsManager();
-            this.download_options = new DownloadOptions();
+            //this.download_options = new DownloadOptions();
 
             /* Tree. */
             this.tree.init({
@@ -161,36 +161,36 @@ define([
                 });
                 $('.nav-tabs a[href="#interactive_download"]').tab('show');
 
-                /* Preview options. */
-                var preview_options_config = {
-                    ok_button: true,
-                    pdf_button: false,
-                    excel_button: false,
-                    csv_button: false,
-                    lang: this.options.lang,
-                    button_label: 'Preview Options',
-                    header_label: 'Preview Options',
-                    prefix: '_' + 'preview_',
-                    placeholder_id: 'preview_options_placeholder',
-                    decimal_separators: true,
-                    thousand_separators: true
-                };
-                this.preview_options = new DownloadOptions();
-                this.preview_options.init(preview_options_config);
-                this.preview_options.show_as_modal_window();
-
-                /* Download options. */
-                var download_options_config = {
-                    lang: this.options.lang,
-                    button_label: 'Download As...',
-                    header_label: 'Download As...',
-                    prefix: '_' + 'download_',
-                    placeholder_id: 'download_options_placeholder',
-                    decimal_separators: true,
-                    thousand_separators: true
-                };
-                this.download_options.init(download_options_config);
-                this.download_options.show_as_modal_window();
+                ///* Preview options. */
+                //var preview_options_config = {
+                //    ok_button: true,
+                //    pdf_button: false,
+                //    excel_button: false,
+                //    csv_button: false,
+                //    lang: this.options.lang,
+                //    button_label: 'Preview Options',
+                //    header_label: 'Preview Options',
+                //    prefix: '_' + 'preview_',
+                //    placeholder_id: 'preview_options_placeholder',
+                //    decimal_separators: true,
+                //    thousand_separators: true
+                //};
+                //this.preview_options = new DownloadOptions();
+                //this.preview_options.init(preview_options_config);
+                //this.preview_options.show_as_modal_window();
+                //
+                ///* Download options. */
+                //var download_options_config = {
+                //    lang: this.options.lang,
+                //    button_label: 'Download As...',
+                //    header_label: 'Download As...',
+                //    prefix: '_' + 'download_',
+                //    placeholder_id: 'download_options_placeholder',
+                //    decimal_separators: true,
+                //    thousand_separators: true
+                //};
+                //this.download_options.init(download_options_config);
+                //this.download_options.show_as_modal_window();
 
                 /* Preview button. */
                 $('#preview_button').click({
