@@ -7,5 +7,6 @@ define({
     download_as_label: 'Download as...',
     preview_options_label: 'Preview Options',
     preview_label: 'Preview',
-    error: 'Error'
+    error: 'Error',
+    warning: 'Please Note'
 });

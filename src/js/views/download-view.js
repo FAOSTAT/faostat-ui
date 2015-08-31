@@ -290,21 +290,36 @@ define([
                 return qs;
             } catch (e) {
                 swal({
-                    title: i18nLabels.error,
-                    type: 'error',
+                    title: i18nLabels.warning,
+                    type: 'warning',
                     text: e
                 });
             }
         },
 
         validate_user_selection: function (user_selection) {
-            var i;
+
+            /* Variables. */
+            var i, selectAll;
+
+            /* Check there's at least one selection for each box. */
             for (i = 1; i <= this.download_selectors_manager.CONFIG.rendered_boxes.length; i += 1) {
                 if (user_selection['list' + i + 'Codes'].length < 1) {
                     throw 'Please make at least one selection for "' + $('#tab_headers__' + i + ' li:first-child').text().trim() + '".';
                 }
             }
-            return true;
+
+            /* Check whether he user used 'Select All' for every box. */
+            for (i = 1; i <= this.download_selectors_manager.CONFIG.rendered_boxes.length; i += 1) {
+                if (selectAll === undefined) {
+                    selectAll = $('#content__' + i + '_0').jstree().get_json('#', { "flat" : true }).length === user_selection['list' + i + 'Codes'].length;
+                } else {
+                    selectAll = selectAll && $('#content__' + i + '_0').jstree().get_json('#', { "flat" : true }).length === user_selection['list' + i + 'Codes'].length;
+                }
+            }
+            if (selectAll) {
+                throw 'Please consider the "Bulk Downloads" section if you are interested in retrieving all the values of this domain. ';
+            }
         },
 
         iso2faostat: function (iso) {
