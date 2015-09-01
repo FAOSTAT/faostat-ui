@@ -162,13 +162,27 @@ define([
                     callback: {
                         onSelectionChange: function () {
                             $('#downloadOutputArea').empty();
+                            $('#download_options_modal_window_button').prop('disabled', true);
+                            $('#preview_options_modal_window_button').prop('disabled', true);
                         }
                     }
                 });
                 $('.nav-tabs a[href="#interactive_download"]').tab('show');
 
                 /* Initiate options manager. */
-                this.options_manager.init();
+                this.options_manager.init({
+                    callback: {
+                        onCodesChange: function (isChecked) {
+                            that.pivot.showCode(isChecked);
+                        },
+                        onFlagsChange: function (isChecked) {
+                            that.pivot.showFlags(isChecked);
+                        },
+                        onUnitsChange: function (isChecked) {
+                            that.pivot.showUnit(isChecked);
+                        }
+                    }
+                });
 
                 /* Add preview options. */
                 this.options_manager.add_options_window('preview_options', {
@@ -181,8 +195,8 @@ define([
                     header_label: i18nLabels.preview_options_label,
                     placeholder_id: 'preview_options_placeholder',
                     decimal_separators: true,
-                    thousand_separators: true
-
+                    thousand_separators: true,
+                    units_checked: true
                 });
 
                 /* Add download options. */
@@ -193,7 +207,8 @@ define([
                     header_label: i18nLabels.download_as_label,
                     placeholder_id: 'download_options_placeholder',
                     decimal_separators: true,
-                    thousand_separators: true
+                    thousand_separators: true,
+                    units_checked: true
                 });
 
                 /* Disable download options until the pivot is generated. */
@@ -205,7 +220,6 @@ define([
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
-                    console.debug('click: CSV');
                     that.csv(e.data.selector_mgr, e.data.options_manager);
                 });
 
@@ -214,7 +228,6 @@ define([
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
-                    console.debug('click: Excel');
                     that.excel(e.data.selector_mgr, e.data.options_manager);
                 });
 
@@ -270,18 +283,13 @@ define([
         },
 
         excel: function (options_manager) {
-            console.debug('download excel: start...');
             this.pivot.exportExcel();
-            console.debug('download excel: done!');
         },
 
         csv: function (options_manager) {
             var dwld_options;
             dwld_options = this.options_manager.get_options_window('download_options').collect_user_selection();
-            console.debug(dwld_options);
-            console.debug('download csv: start...');
             this.pivot.exportCSV();
-            console.debug('download csv: done!');
         },
 
         preview: function (selector_mgr, options_manager) {
@@ -419,26 +427,32 @@ define([
             this.pivot.render('downloadOutputArea', json, dataConfig);
 
             /* Bind preview options. */
-            this.options_manager.get_options_window('preview_options').get_radio_button('flags').change(function () {
-                that.pivot.showFlags($(this).is(':checked'));
-            });
-            this.options_manager.get_options_window('preview_options').get_radio_button('unit').change(function () {
-                that.pivot.showUnit($(this).is(':checked'));
-            });
-            this.options_manager.get_options_window('preview_options').get_radio_button('codes').change(function () {
-                that.pivot.showCode($(this).is(':checked'));
-            });
+            //this.options_manager.get_options_window('preview_options').get_radio_button('flags').change(function () {
+            //    console.debug('preview: flags');
+            //    that.pivot.showFlags($(this).is(':checked'));
+            //});
+            //this.options_manager.get_options_window('preview_options').get_radio_button('unit').change(function () {
+            //    console.debug('preview: units');
+            //    that.pivot.showUnit($(this).is(':checked'));
+            //});
+            //this.options_manager.get_options_window('preview_options').get_radio_button('codes').change(function () {
+            //    console.debug('preview: codes');
+            //    that.pivot.showCode($(this).is(':checked'));
+            //});
 
             /* Bind download options. */
-            this.options_manager.get_options_window('download_options').get_radio_button('flags').change(function () {
-                that.pivot.showFlags($(this).is(':checked'));
-            });
-            this.options_manager.get_options_window('download_options').get_radio_button('unit').change(function () {
-                that.pivot.showUnit($(this).is(':checked'));
-            });
-            this.options_manager.get_options_window('download_options').get_radio_button('codes').change(function () {
-                that.pivot.showCode($(this).is(':checked'));
-            });
+            //this.options_manager.get_options_window('download_options').get_radio_button('flags').change(function () {
+            //    console.debug('download: flags');
+            //    that.pivot.showFlags($(this).is(':checked'));
+            //});
+            //this.options_manager.get_options_window('download_options').get_radio_button('unit').change(function () {
+            //    console.debug('download: units');
+            //    that.pivot.showUnit($(this).is(':checked'));
+            //});
+            //this.options_manager.get_options_window('download_options').get_radio_button('codes').change(function () {
+            //    console.debug('download: options');
+            //    that.pivot.showCode($(this).is(':checked'));
+            //});
 
             /* Enable download options. */
             $('#download_options_modal_window_button').prop('disabled', false);
