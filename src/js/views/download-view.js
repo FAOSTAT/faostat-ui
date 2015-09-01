@@ -419,44 +419,25 @@ define([
             if (typeof json === 'string') {
                 json = $.parseJSON(response);
             }
-            json.splice(0, 0, hs);
 
-            /* Create OLAP. */
-            dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
-            dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
-            this.pivot.render('downloadOutputArea', json, dataConfig);
+            /* Show either the pivot, or a courtesy message. */
+            if (json.length !== 0) {
 
-            /* Bind preview options. */
-            //this.options_manager.get_options_window('preview_options').get_radio_button('flags').change(function () {
-            //    console.debug('preview: flags');
-            //    that.pivot.showFlags($(this).is(':checked'));
-            //});
-            //this.options_manager.get_options_window('preview_options').get_radio_button('unit').change(function () {
-            //    console.debug('preview: units');
-            //    that.pivot.showUnit($(this).is(':checked'));
-            //});
-            //this.options_manager.get_options_window('preview_options').get_radio_button('codes').change(function () {
-            //    console.debug('preview: codes');
-            //    that.pivot.showCode($(this).is(':checked'));
-            //});
+                /* Add headers. */
+                json.splice(0, 0, hs);
 
-            /* Bind download options. */
-            //this.options_manager.get_options_window('download_options').get_radio_button('flags').change(function () {
-            //    console.debug('download: flags');
-            //    that.pivot.showFlags($(this).is(':checked'));
-            //});
-            //this.options_manager.get_options_window('download_options').get_radio_button('unit').change(function () {
-            //    console.debug('download: units');
-            //    that.pivot.showUnit($(this).is(':checked'));
-            //});
-            //this.options_manager.get_options_window('download_options').get_radio_button('codes').change(function () {
-            //    console.debug('download: options');
-            //    that.pivot.showCode($(this).is(':checked'));
-            //});
+                /* Create OLAP. */
+                dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
+                dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
+                this.pivot.render('downloadOutputArea', json, dataConfig);
 
-            /* Enable download options. */
-            $('#download_options_modal_window_button').prop('disabled', false);
-            $('#preview_options_modal_window_button').prop('disabled', false);
+                /* Enable download options. */
+                $('#download_options_modal_window_button').prop('disabled', false);
+                $('#preview_options_modal_window_button').prop('disabled', false);
+
+            } else {
+                $('#downloadOutputArea').html('<h1 class="text-center">' + i18nLabels.no_data_available + '</h1>');
+            }
 
         },
 
