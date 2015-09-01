@@ -1,0 +1,128 @@
+/* Fenix - Widgets Stack Component */
+
+
+#fx-widgets-stack {
+  z-index: 2 !important;
+}
+
+#fx-sessionstore-base{
+  overflow-x: hidden;
+  position: absolute;
+  width: 280px;
+}
+
+
+.fx-widgetstack-title-container{
+  height: 120px;
+}
+
+/* Panel */
+.extruder {
+  position: fixed;
+  cursor: default;
+  color: $fenix-text;
+}
+
+.extruder .content {
+  display: none;
+
+
+
+}
+
+.extruder.right {
+  height: 100%;
+  overflow-x: hidden;
+  .text{
+    width: 100% !important;
+    overflow: visible !important;
+    overflow-x: hidden !important;
+  }
+}
+
+.extruder-content{
+  border: 0 !important;
+  border-left: 1px solid $fenix-hr !important;
+  background-color: $white-alpha !important;
+}
+
+.extruder.right .ext_wrapper {
+  height: 100%;
+  right: 0;
+  top: 51px;
+  position: fixed !important;
+}
+
+.flap { display: none; }
+
+.fx-closepanel-container{
+  border-bottom: 1px solid $fx-cool-blue;
+  padding:5px 10px;
+
+  .fx-widget-icons{
+    color: $fx-cool-blue;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  #fx-ws-close-btn{
+    text-transform: uppercase;
+    color: $fx-cool-blue;
+    cursor: pointer;
+    line-height:1;
+    display: inline-block;
+    @include fx-transfor-me(translate(0px,-6px));
+  }
+
+}
+
+
+
+
+.ext_wrapper .content .text {width: 100% !important; }
+
+#fx-sessionstore-title {
+  padding:5px 10px;
+}
+
+#fx-sessionstore-ul-container{
+  position: relative;
+  overflow-x: hidden;
+}
+
+#fx-ws-list{
+  padding-left: 0px;
+}
+
+#fx-ws-list li {
+  list-style-type:none;
+  padding:16px 16px 35px 16px;
+  position: relative;
+  border-bottom: 1px solid $fx-cool-blue;
+}
+
+.fx-sessionstore-item-title {
+  text-transform: uppercase;
+  font: $fx-text-smalltitle-bold;
+}
+.fx-sessionstore-item-info {
+  min-height: 50px;
+  padding-left: 70px;
+}
+.fx-sessionstore-item-movemetodesk {
+  float: left;
+  text-transform: uppercase;
+  font:$fx-text-smalltitle-bold;
+  cursor: pointer;
+  margin-top: 10px;
+  position: relative;
+}
+.fx-sessionstore-item-removeme {
+  float: right;
+  text-transform: uppercase;
+  font:$fx-text-smalltitle-bold;
+  cursor: pointer;
+  margin-top: 10px;
+  position: relative;
+}
+
