@@ -6,11 +6,8 @@
 /* Fenix Utils*/
 @import '../../submodules/fenix-ui-common/css/fenix-style-no-variables';
 
-
-
 /* Base */
 @import '../../src/css/theme/default';
-
 
 /* Components */
 @import '../../src/css/components/breadcrumbs';
@@ -20,12 +17,8 @@
 @import '../../src/css/components/jstree';
 @import '../../src/css/components/submenu';
 
-
-
-
-
-
 /* Third parties */
 
 /* Pages */
 @import '../../src/css/pages/home';
+@import '../../src/css/pages/download';

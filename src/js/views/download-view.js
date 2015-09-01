@@ -193,6 +193,7 @@ define([
 
                 /* Disable download options until the pivot is generated. */
                 $('#download_options_modal_window_button').prop('disabled', true);
+                $('#preview_options_modal_window_button').prop('disabled', true);
 
                 /* Download as CSV. */
                 $('#download_options_csv_button').click({
@@ -436,6 +437,7 @@ define([
 
             /* Enable download options. */
             $('#download_options_modal_window_button').prop('disabled', false);
+            $('#preview_options_modal_window_button').prop('disabled', false);
 
         },
 
