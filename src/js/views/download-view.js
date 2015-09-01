@@ -158,7 +158,12 @@ define([
                 /* Selectors manager. */
                 this.download_selectors_manager.init({
                     placeholder_id: s.INTERACTIVE_DOWNLOAD,
-                    domain: this.options.domain
+                    domain: this.options.domain,
+                    callback: {
+                        onSelectionChange: function () {
+                            $('#downloadOutputArea').empty();
+                        }
+                    }
                 });
                 $('.nav-tabs a[href="#interactive_download"]').tab('show');
 
