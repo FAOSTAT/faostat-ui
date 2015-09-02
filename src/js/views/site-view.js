@@ -7,12 +7,11 @@ define([
     'config/Events',
     'globals/State',
     'views/base/view',
-    'fx-menu/start',
     'globals/AuthManager',
     'i18n!nls/site',
     'text!templates/site.hbs',
     'FAOSTAT_UI_MENU'
-], function ($, Chaplin, _, C, E, State, View, Menu, AuthManager, i18nLabels, template, FAOSTATMenu) {
+], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu) {
 
     'use strict';
 

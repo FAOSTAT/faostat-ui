@@ -2,11 +2,9 @@
 require([
     './submodules/fenix-ui-common/js/Compiler',
     './submodules/fenix-ui-common/js/paths',
-    './submodules/fenix-ui-menu/js/paths',
     './submodules/faostat-ui-tree/src/js/paths',
     './submodules/fenix-ui-map-creator/src/js/paths',
     './submodules/fenix-ui-chart-creator/src/js/paths',
-    './submodules/fenix-ui-table-creator/src/js/paths',
     './submodules/fenix-ui-dashboard/src/js/paths',
     './submodules/fenix-ui-metadata-viewer/js/paths',
     './submodules/fenix-ui-reports/src/js/paths',
@@ -14,18 +12,16 @@ require([
     './submodules/faostat-ui-download-selectors-manager/src/js/paths',
     './submodules/faostat-ui-menu/src/js/paths',
     './submodules/faostat-ui-options-manager/src/js/paths'
-], function (Compiler, Common, Menu, Tree, MapCreator, ChartCreator, TableCreator, Dashboard, MetadataViewer, Reports,
+], function (Compiler, Common, Tree, MapCreator, ChartCreator, Dashboard, MetadataViewer, Reports,
              BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager) {
 
     'use strict';
 
     var submodules_path = '../../submodules/',
         commonConfig = Common,
-        menuConfig = Menu,
         treeConfig = Tree,
         mapConfig = MapCreator,
         chartConfig = ChartCreator,
-        tableConfig = TableCreator,
         metadataConfig = MetadataViewer,
         reportsConfig = Reports,
         dashboardConfig = Dashboard,
@@ -34,13 +30,11 @@ require([
         faostatMenuConfig = FAOSTATMenu,
         optionsManagerConfig = OptionsManager;
 
-    menuConfig.baseUrl = submodules_path + '/fenix-ui-menu/js';
     treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/src/js';
     commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
     mapConfig.baseUrl = submodules_path + '/fenix-ui-map-creator/src/js';
     reportsConfig.baseUrl = submodules_path + '/fenix-ui-reports/src/js';
     chartConfig.baseUrl = submodules_path + '/fenix-ui-chart-creator/src/js';
-    tableConfig.baseUrl = submodules_path + '/fenix-ui-table-creator/src/js';
     dashboardConfig.baseUrl = submodules_path + '/fenix-ui-dashboard/src/js';
     metadataConfig.baseUrl = submodules_path + '/fenix-ui-metadata-viewer/js';
     bulkDownloadsConfig.baseUrl = submodules_path + '/faostat-ui-bulk-downloads/src/js';
@@ -48,10 +42,10 @@ require([
     faostatMenuConfig.baseUrl = submodules_path + '/faostat-ui-menu/src/js';
     optionsManagerConfig.baseUrl = submodules_path + '/faostat-ui-options-manager/src/js';
 
-    Compiler.resolve([commonConfig, menuConfig, treeConfig, mapConfig, chartConfig,
-            tableConfig, dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig,
+    Compiler.resolve([commonConfig, mapConfig, chartConfig,
+            dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig,
             downloadSelectorsManagerConfig, faostatMenuConfig,
-            optionsManagerConfig],
+            optionsManagerConfig, treeConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 
