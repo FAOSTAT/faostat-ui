@@ -10,7 +10,7 @@ define({
         "Value",
         "Flag", "Unit"
     ],
-    "hiddenAttributes": [
+    "hiddenAttributes": [ "Flag", "Flag Description",
         "NoRecords", "RecordOrder", "Domain Code", "Domain", "Year Code", "Unit", "Value", "Var1Order", "Var2Order", "Var3Order", "Var4Order"
     ],
     linkedAttributes: [["Element", "Element Code"], ["Country", "Country Code"], ["Item", "Item Code"]],
