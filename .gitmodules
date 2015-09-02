@@ -1,9 +1,6 @@
 [submodule "submodules/fenix-ui-common"]
 	path = submodules/fenix-ui-common
 	url = https://github.com/FENIX-Platform/fenix-ui-common.git
-[submodule "submodules/fenix-ui-menu"]
-	path = submodules/fenix-ui-menu
-	url = https://github.com/FENIX-Platform/fenix-ui-menu.git
 [submodule "submodules/faostat-ui-tree"]
 	path = submodules/faostat-ui-tree
 	url = https://github.com/FAOSTAT/faostat-ui-tree.git
@@ -16,12 +13,6 @@
 [submodule "submodules/fenix-ui-dashboard"]
 	path = submodules/fenix-ui-dashboard
 	url = https://github.com/FENIX-Platform/fenix-ui-dashboard.git
-[submodule "submodules/fenix-ui-table-creator"]
-	path = submodules/fenix-ui-table-creator
-	url = https://github.com/FENIX-Platform/fenix-ui-table-creator.git
-[submodule "submodules/fenix-ui-olap"]
-	path = submodules/fenix-ui-olap
-	url = https://github.com/FENIX-Platform/fenix-ui-olap.git
 [submodule "submodules/fenix-ui-metadata-viewer"]
 	path = submodules/fenix-ui-metadata-viewer
 	url = https://github.com/FENIX-Platform/fenix-ui-metadata-viewer.git
