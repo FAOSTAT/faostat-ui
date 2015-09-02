@@ -5,7 +5,7 @@ define({
         ["Country", "Country Code"],
         ["Item", "Item Code"]
     ],
-    "cols": ["Year", "Flag", "Flag Description"],
+    "cols": ["Year"],
     "vals": [
         "Value",
         "Flag", "Unit"
