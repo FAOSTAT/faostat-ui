@@ -7597,6 +7597,9 @@ ul[role="group"] {
       .dropdown .dropdown-menu > li > a:visited {
         background-color: transparent; }
 
+.fx-olap-holder {
+  max-width: 847px !important; }
+
 /* Third parties */
 /* Pages */
 /* Homepage */
