@@ -1,0 +1,38 @@
+{
+  "name": "fenix-ui-chaplinjs-skeleton",
+  "version": "0.1",
+  "description": "FENIX Skeleton based on ChaplinJS",
+  "homepage": "https://github.com/FENIX-Platform/fenix-ui-chaplinjs-skeleton",
+  "author": "FENIX Development Team",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:FENIX-Platform/fenix-ui-chaplinjs-skeleton.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FENIX-Platform/fenix-ui-chaplinjs-skeleton/issues"
+  },
+  "license": "GPL3",
+  "keywords": [
+    "fenix",
+    "platform"
+  ],
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.11",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-jsonlint": "~1.0.4",
+    "grunt-jsdoc": "~0.5.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "main.js"
+}

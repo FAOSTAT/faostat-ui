@@ -1,0 +1,3 @@
+[submodule "submodules/json-editor-faostat-theme"]
+	path = submodules/json-editor-faostat-theme
+	url = https://github.com/FAOSTAT4/json-editor-faostat-theme.git
