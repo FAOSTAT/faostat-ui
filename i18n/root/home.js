@@ -1,16 +1,14 @@
 /*global define*/
-define([
-    'jquery',
-    'i18n!nls/common'
-], function ($, Common) {
+define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     'use strict';
 
     return $.extend(true, {}, Common, {
 
-        "home_welcome_title" : "Welcome to " + Common["project_name"],
-        "text" : "Change me in i18n/root/home.js",
-        "authentication_credentials" : "login username/password: guest@fenix/guest"
+        'home_welcome_title' : 'Welcome to the FAOSTAT prototype',
+        'text' : 'This section is not ready yet, we apologize for any inconvenience. To find out more about the next ' +
+                 'releases, please visit the project\'s <a target="_blank" href="https://github.com/FAOSTAT/faostat-ui/milestones">roadmap page</a>.',
+        'authentication_credentials' : ''
 
     });
 
