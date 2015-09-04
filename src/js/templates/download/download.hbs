@@ -1,0 +1,112 @@
+<div class='row'>
+    <div class='intro-logo-holder col-xs-12'>
+        {{text}}
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-lg-3'>
+        <h1>{{tree_title}}</h1>
+        <div id='tree'></div>
+        <br>
+    </div>
+    <div class='col-lg-9'>
+        <h1>
+            <span id='group_label'></span> <span id='domain_label'></span>
+        </h1>
+        <div>
+            <ul class='nav nav-tabs' role='tablist'>
+                <li role='presentation'>
+                    <a href='#interactive_download' role='tab' data-toggle='tab' aria-controls='interactive_download'>
+                        <i class='fa fa-download'></i> {{interactive_download_label}}
+                    </a>
+                </li>
+                <li role='presentation' class='active'>
+                    <a href='#bulk_downloads' role='tab' data-toggle='tab' aria-controls='bulk_downloads'>
+                        <i class='fa fa-archive'></i> {{bulk_downloads_label}}
+                    </a>
+                </li>
+                <li role='presentation'>
+                    <a href='#metadata' role='tab' data-toggle='tab' aria-controls='metadata'>
+                        <i class='fa fa-info'></i> {{metadata_label}}
+                    </a>
+                </li>
+            </ul>
+            <div class='tab-content'>
+                <div role='tabpanel' class='tab-pane' id='interactive_download'>
+                    <div class='row'>
+                        <div class='col-lg-12'>
+                            <br>
+                            <p>
+                                Use this section to create a custom query to extract data from the current domain.
+                                Please use the selectors below to filter the data according to your needs.
+                                Press the <var>Preview</var> button to have an overview
+                                of your selection. Use the <var>Preview Options</var> button to customize the final
+                                output. Click on <var>Download As...</var> to get the data in the Excel or CSV format.
+                                Please consider to visit the <var>Bulk Downloads</var> sections if you need all the data
+                                contained in this domain.
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id='interactive_download_selectors'>
+
+                    </div>
+                    <hr>
+                    <div class='row'>
+                        <div class='col-lg-12'>
+                            <span id='download_options_placeholder' class='pull-right'>
+
+                            </span>
+                            <span id='preview_options_placeholder' class='pull-right'>
+
+                            </span>
+                            <button class='btn btn-primary pull-right' id='preview_button'>
+                                <i class='fa fa-search'></i> {{preview_label}}
+                            </button>
+                        </div>
+                        <div class='col-lg-12'>
+                            <span class='pull-right'>
+                                <var>
+                                    {{{preview_courtesy_message}}}
+                                </var>
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class='row'>
+                        <div class='col-lg-12'>
+                            <div id='download-wrapper' class='fx-olap-holder'>
+                                <div class='row'>
+                                    <div class='col-lg-12'>
+                                        <div id='downloadOutputArea' class='fx-olap-holder'>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role='tabpanel' class='tab-pane active' id='bulk_downloads'>
+
+                </div>
+                <div role='tabpanel' class='tab-pane' id='metadata'>
+                    <h1 class='text-center' id='metadata_loading'>
+                        <i class='fa fa-refresh fa-spin fa-5x'></i>
+                    </h1>
+                    <div id='metadata_container'>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+<div class='row' style='display: none;'>
+    <form id='xlsDataForm' action='http://faostat3.fao.org/faostat-olapws/ExportPOI2' method='POST'>
+        <input id='myJson' name='myJson' type='hidden' value=''>
+        <input id='myFlags' name='myFlags' type='hidden' value='{&quot;data&quot;:[{&quot;title&quot;:&quot;&quot;,&quot;label&quot;:&quot;Official data&quot;}]}'>
+    </form>  
+</div>

@@ -1,0 +1,20 @@
+/* Fenix - Object Box Component */
+
+.obj-box {
+  @include fx-obj-box;
+}
+
+.obj-box-radius10 {
+  @extend .obj-box;
+  @include fx-border-radius(10px);
+}
+
+.obj-box-title{
+  @extend .obj-box;
+  padding-top: 5px;
+
+  h4{
+    color: $fx-cool-blue;
+    font: $fx-text-h4;
+  }
+}
