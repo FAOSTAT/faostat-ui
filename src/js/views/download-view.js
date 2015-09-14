@@ -338,6 +338,7 @@ define([
                 qs += "@Decimal = '.', ";
                 qs += "@DecPlaces = 2, ";
                 qs += "@Limit = 50";
+                console.debug(qs);
                 return qs;
             } catch (e) {
                 swal({
@@ -405,9 +406,7 @@ define([
         show_preview: function (response) {
 
             /* Variables. */
-            var that = this,
-                hs,
-                json;
+            var hs, json;
 
             /* Headers. */
             hs = ['Domain Code', 'Domain', 'Country Code', 'Country', 'Element Code',
