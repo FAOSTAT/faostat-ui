@@ -86,7 +86,10 @@ require([
                     'pivotAggregators':       "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/aggregators",
                     'pivotRenderersFuncs':    "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/function_rendererers",
                     'pivotAggregatorsFuncs':  "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/function_aggregators",
-                    "pivotConfig":            "./globals/PivotConfig"
+                    "pivotConfig":            "./globals/PivotConfig",
+
+                    /* FAOSTAT API's client. */
+                    faostatapiclient:           '../../submodules/faostat-api-client/src/js/FAOSTATAPIClient'
 
                 },
                 shim: {
