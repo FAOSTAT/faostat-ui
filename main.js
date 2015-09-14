@@ -117,10 +117,13 @@ require([
                         exports: 'Handlebars'
                     },
                     "gt_msg": ['jquery'],
-                    "gt_msg_grid": ['jquery','gt_msg'],
-                    "HPivot": ['jquery','jqueryui'],
+                    "gt_msg_grid": ['jquery', 'gt_msg'],
+                    "HPivot": ['jquery', 'jqueryui'],
                     "pivotRenderers": ['pivotRenderersFuncs'],
-                    "pivotAggregators": ['pivotAggregatorsFuncs','jquery']
+                    "pivotAggregators": ['pivotAggregatorsFuncs', 'jquery'],
+                    faostatapiclient: {
+                        deps: ['jquery']
+                    }
                 }
             }
         });
