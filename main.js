@@ -12,9 +12,11 @@ require([
     './submodules/faostat-ui-download-selectors-manager/src/js/paths',
     './submodules/faostat-ui-menu/src/js/paths',
     './submodules/faostat-ui-options-manager/src/js/paths',
-    './submodules/json-editor-faostat-theme/src/js/paths'
+    './submodules/json-editor-faostat-theme/src/js/paths',
+    './submodules/fenix-ui-download-options/src/js/paths'
 ], function (Compiler, Common, Tree, MapCreator, ChartCreator, Dashboard, MetadataViewer, Reports,
-             BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager, FAOSTATTheme) {
+             BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager, FAOSTATTheme,
+             DownloadOptions) {
 
     'use strict';
 
@@ -30,7 +32,8 @@ require([
         downloadSelectorsManagerConfig = DownloadSelectorsManager,
         faostatMenuConfig = FAOSTATMenu,
         optionsManagerConfig = OptionsManager,
-        faostatThemeConfig = FAOSTATTheme;
+        faostatThemeConfig = FAOSTATTheme,
+        downloadOptionsConfig = DownloadOptions;
 
     treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/src/js';
     commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
@@ -44,11 +47,12 @@ require([
     faostatMenuConfig.baseUrl = submodules_path + '/faostat-ui-menu/src/js';
     optionsManagerConfig.baseUrl = submodules_path + '/faostat-ui-options-manager/src/js';
     faostatThemeConfig.baseUrl = submodules_path + '/json-editor-faostat-theme/src/js';
+    downloadOptionsConfig.baseUrl = submodules_path + '/fenix-ui-download-options/src/js';
 
     Compiler.resolve([commonConfig, mapConfig, chartConfig,
             dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig,
             downloadSelectorsManagerConfig, faostatMenuConfig,
-            optionsManagerConfig, treeConfig, faostatThemeConfig],
+            optionsManagerConfig, treeConfig, faostatThemeConfig, downloadOptionsConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 
