@@ -7220,16 +7220,6 @@ body {
   background-color: white; }
 
 /* TEMPORARY */
-.btn.btn-default.json-editor-btn-collapse {
-  color: #2395ab !important;
-  border-color: transparent !important; }
-  .btn.btn-default.json-editor-btn-collapse i {
-    color: #2395ab !important; }
-    .btn.btn-default.json-editor-btn-collapse i:before {
-      content: 'EXPAND';
-      font-size: 10px;
-      color: #666666; }
-
 .btn-table-go, .btn-scores-go {
   background-color: #2ab896;
   color: white; }
