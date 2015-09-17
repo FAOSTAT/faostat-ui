@@ -5,19 +5,19 @@ define([
     'config/Config',
     'config/Queries',
     'config/Events',
-    'text!templates/browse/browse_by_domain.hbs',
+    'text!templates/browse/browse_by_country.hbs',
     'i18n!nls/browse',
     'handlebars',
-    'fx-common/WDSClient',
     'FAOSTAT_UI_TREE',
     'amplify'
-], function (View, F, C, Q, E, template, i18nLabels, Handlebars, WDSClient, Tree) {
+], function (View, F, C, Q, E, template, i18nLabels, Handlebars, Tree) {
 
     'use strict';
 
     var s = {
 
         TREE: "tree"
+
     };
 
     var BrowseByDomainView = View.extend({

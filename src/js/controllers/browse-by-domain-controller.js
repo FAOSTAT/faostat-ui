@@ -2,23 +2,31 @@
 define([
     'controllers/base/controller',
     'views/browse-view',
-    'views/browse-view',
-    'views/browse-view'
-], function (Controller, View) {
+    'views/browse-by-domain-view',
+], function (Controller, BrowseView, DomainView) {
 
     'use strict';
 
-    var BrowseController = Controller.extend({
+    var BrowseByDomainController = Controller.extend({
+
+        //beforeAction: function (params, route) {
+        //    console.log(route.action);
+        //
+        //},
 
         show: function (params) {
 
-            console.log(params);
+            this.view = new BrowseView({
+                region: 'main'
+            });
 
-            this.view = new View({
-                region: 'main',
+            this.domain = new DomainView({
+                regions: {
+                    main: '#fs-browse-by-domain'
+                }
             });
         }
     });
 
-    return BrowseController;
+    return BrowseByDomainController;
 });

@@ -1,16 +1,14 @@
 /*global define*/
 define([
     'controllers/base/controller',
-    'views/browse-view',
+    'views/compare-view',
 ], function (Controller, View) {
 
     'use strict';
 
-    var BrowseController = Controller.extend({
+    var CompareController = Controller.extend({
 
         show: function (params) {
-
-            console.log(params);
 
             this.view = new View({
                 region: 'main',
@@ -18,5 +16,5 @@ define([
         }
     });
 
-    return BrowseController;
+    return CompareController;
 });

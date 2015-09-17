@@ -5,7 +5,7 @@ define([
     'config/Config',
     'config/Queries',
     'config/Events',
-    'text!templates/browse/browse.hbs',
+    'text!templates/browse/browse_by_domain.hbs',
     'i18n!nls/browse',
     'handlebars',
     'fx-common/WDSClient',
@@ -20,7 +20,7 @@ define([
         TREE: "tree"
     };
 
-    var BrowseView = View.extend({
+    var BrowseByDomainView = View.extend({
 
         autoRender: true,
 
@@ -34,11 +34,9 @@ define([
 
         attach: function () {
 
-            console.log(F.browse);
-
             View.prototype.attach.call(this, arguments);
 
-            //update State
+            //update State. needed?
             amplify.publish(E.STATE_CHANGE, {browse: 'browse'});
 
             this.initVariables();
@@ -80,5 +78,5 @@ define([
         }
     });
 
-    return BrowseView;
+    return BrowseByDomainView;
 });

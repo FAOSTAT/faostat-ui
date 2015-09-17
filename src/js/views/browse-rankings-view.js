@@ -5,13 +5,12 @@ define([
     'config/Config',
     'config/Queries',
     'config/Events',
-    'text!templates/browse/browse_by_domain.hbs',
+    'text!templates/browse/browse_rankings.hbs',
     'i18n!nls/browse',
     'handlebars',
-    'fx-common/WDSClient',
     'FAOSTAT_UI_TREE',
     'amplify'
-], function (View, F, C, Q, E, template, i18nLabels, Handlebars, WDSClient, Tree) {
+], function (View, F, C, Q, E, template, i18nLabels, Handlebars, Tree) {
 
     'use strict';
 
@@ -20,7 +19,7 @@ define([
         TREE: "tree"
     };
 
-    var BrowseByDomainView = View.extend({
+    var BrowseRankingsView = View.extend({
 
         autoRender: true,
 
@@ -78,5 +77,5 @@ define([
         }
     });
 
-    return BrowseByDomainView;
+    return BrowseRankingsView;
 });

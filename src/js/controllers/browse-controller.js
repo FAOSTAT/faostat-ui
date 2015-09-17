@@ -1,7 +1,7 @@
 /*global define*/
 define([
     'controllers/base/controller',
-    'views/browse-view'
+    'views/browse-view',
 ], function (Controller, View) {
 
     'use strict';
@@ -10,8 +10,10 @@ define([
 
         show: function (params) {
 
+            console.log(params);
+
             this.view = new View({
-                region: 'main'
+                region: 'main',
             });
         }
     });

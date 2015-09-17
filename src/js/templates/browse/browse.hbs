@@ -7,9 +7,26 @@
 </div>
 
 <div class="row">
-    <div id="type"></div>
+    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <li class="active"><a href="#fs-browse-by-domain" data-toggle="tab">{{browse_by_domain}}</a></li>
+        <li><a href="#fs-browse-by-country" data-toggle="tab">{{browse_by_country}}</a></li>
+        <li><a href="#fs-browse-rankings" data-toggle="tab">{{rankings}}</a></li>
+    </ul>
 </div>
 
-<div class="row">
-    <div id="container"></div>
+<div class="tab-content">
+
+    <div class="tab-pane active" id="fs-browse-by-domain" style="margin-top:25px;">
+            {{browse_by_domain}}
+    </div>
+
+    <div class="tab-pane" id="fs-browse-by-country">
+            {{browse_by_country}}
+    </div>
+
+    <div class="tab-pane" id="fs-browse-rankings">
+            {{rankings}}
+    </div>
+
 </div>
+

@@ -47,6 +47,7 @@ define([
         },
 
         bindEventListeners: function () {
+            console.log(this);
             amplify.subscribe(E.STATE_CHANGE, this, this.onStateUpdate);
         },
 
