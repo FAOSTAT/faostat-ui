@@ -88,14 +88,14 @@ require([
                     wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
 
                     /* Pivot imports. */
-                    'fx-olap/nls':            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/nls",
-                    'gt_msg':                 "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/lib/grid/gt_msg_en",
-                    'gt_msg_grid':            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/lib/grid/gt_grid_all",
-                    'pivot':                  "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/pivot",
-                    'pivotRenderers':         "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/rendererers",
-                    'pivotAggregators':       "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/aggregators",
-                    'pivotRenderersFuncs':    "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/function_rendererers",
-                    'pivotAggregatorsFuncs':  "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.0/js/rend/function_aggregators",
+                    'fx-olap/nls':            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.1/nls",
+                    'gt_msg':                 "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.1/lib/grid/gt_msg_en",
+                    'gt_msg_grid':            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.1/lib/grid/gt_grid_all",
+                    'pivot':                  "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.1/js/pivot",
+                    'pivotRenderers':         "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.1/js/rend/rendererers",
+                    'pivotAggregators':       "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.1/js/rend/aggregators",
+                    'pivotRenderersFuncs':    "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.1/js/rend/function_rendererers",
+                    'pivotAggregatorsFuncs':  "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.1/js/rend/function_aggregators",
                     "pivotConfig":            "./globals/PivotConfig",
 
                     /* FAOSTAT API's client. */
