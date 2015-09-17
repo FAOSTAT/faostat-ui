@@ -215,7 +215,8 @@ define([
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
-                    that.csv(e.data.selector_mgr, e.data.options_manager);
+                    that.pivot_caller = 'CSV';
+                    that.preview(e.data.selector_mgr, e.data.options_manager);
                 });
 
                 /* Download as Excel. */
@@ -223,7 +224,8 @@ define([
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
-                    that.excel(e.data.selector_mgr, e.data.options_manager);
+                    that.pivot_caller = 'XLS';
+                    that.preview(e.data.selector_mgr, e.data.options_manager);
                 });
 
                 /* Preview button. */
@@ -277,15 +279,14 @@ define([
             }
         },
 
-        excel: function (options_manager) {
+        excel: function () {
             this.pivot.exportExcel();
+            this.pivot_caller = null;
         },
 
-        csv: function (options_manager) {
-            var dwld_options;
-            dwld_options = this.options_manager.get_options_window('download_options').collect_user_selection();
+        csv: function () {
             this.pivot.exportCSV();
-            console.debug(this.pivot.exportCSV);
+            this.pivot_caller = null;
         },
 
         preview: function (selector_mgr, options_manager) {
@@ -401,7 +402,7 @@ define([
         show_preview: function (response) {
 
             /* Variables. */
-            var hs, json;
+            var hs, json, that = this;
 
             /* Headers. */
             hs = ['Domain Code', 'Domain', 'Country Code', 'Country', 'Element Code',
@@ -425,7 +426,11 @@ define([
                 dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
                 dataConfig = _.extend(dataConfig, {
                     onDataLoaded: function () {
-                        alert('onDataLoaded');
+                        if (that.pivot_caller === 'CSV') {
+                            that.csv();
+                        } else if (that.pivot_caller === 'XLS') {
+                            that.excel();
+                        }
                     }
                 });
                 this.pivot.render('downloadOutputArea', json, dataConfig);
