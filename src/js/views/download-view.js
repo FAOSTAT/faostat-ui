@@ -426,6 +426,7 @@ define([
                 dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
                 dataConfig = _.extend(dataConfig, {
                     onDataLoaded: function () {
+                        $('.gt-hd-split').html('↔');
                         if (that.pivot_caller === 'CSV') {
                             that.csv();
                         } else if (that.pivot_caller === 'XLS') {
