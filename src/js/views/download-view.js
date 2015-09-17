@@ -1,5 +1,6 @@
 /*global define, _:false, $, console, amplify, FM*/
 /*jslint todo: true */
+/*jslint nomen: true */
 define([
     'views/base/view',
     'config/Config',
@@ -284,6 +285,7 @@ define([
             var dwld_options;
             dwld_options = this.options_manager.get_options_window('download_options').collect_user_selection();
             this.pivot.exportCSV();
+            console.debug(this.pivot.exportCSV);
         },
 
         preview: function (selector_mgr, options_manager) {
@@ -332,7 +334,6 @@ define([
                 qs += "@Decimal = '.', ";
                 qs += "@DecPlaces = 2, ";
                 qs += "@Limit = 50";
-                console.debug(qs);
                 return qs;
             } catch (e) {
                 swal({
@@ -422,6 +423,11 @@ define([
                 /* Create OLAP. */
                 dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
                 dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
+                dataConfig = _.extend(dataConfig, {
+                    onDataLoaded: function () {
+                        alert('onDataLoaded');
+                    }
+                });
                 this.pivot.render('downloadOutputArea', json, dataConfig);
 
             } else {
