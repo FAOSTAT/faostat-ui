@@ -1,3 +1,0 @@
-#FENIX Chart Creator
-====================
-
