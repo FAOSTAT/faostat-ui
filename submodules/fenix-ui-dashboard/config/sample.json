@@ -1,0 +1,80 @@
+{
+    "country": "{{COUNTRY_NAME}}",
+    "heading": {
+        "text": {"EN": "{{COUNTRY_NAME}} Statistical profile"}
+    },
+    "widgets": [
+        {
+            "id": "widget-6",
+            "type": "chart",
+            "title": "Exports",
+            "urlOrig":"http://faostat3.fao.org/d3s2/v2/msd/resources/uid/CountrySTAT_215CFE020?dsd=true&full=true&order=time",
+            "url":"http://faostat3.fao.org/d3s2/v2/msd/resources/uid/CountrySTAT_fertilizer_demo?dsd=true&full=true&order=time",
+            "size": {
+                "css": "fx-dashboard-grid-item w5"
+            },
+            "filter": {
+                "Fertilizer": [{ "componentName": "Fertilizer", "code": "283421", "label": "Potassium nitrate"},
+                    { "componentName": "Fertilizer", "code": "310530", "label": "Diammonium phosphate (DAP)"}] ,
+                "Element": [{ "componentName": "Element", "code": "5900", "label": "Export Quantity"}]
+            },
+            "config" : {
+                "seriesSubject": ["item"],
+                "options" : {
+                    "title": {
+                        "text": {"EN": "{{COUNTRY_NAME}} Fertilizers Export Quantity"}
+                    },
+                    "tooltip": {
+                        "valueSuffix": " TN"
+                    }
+
+                }
+            }
+        },
+        {
+            "id": "widget-9",
+            "type": "chart",
+            "title": "Imports",
+            "urlOrig":"http://faostat3.fao.org/d3s2/v2/msd/resources/uid/CountrySTAT_215CFE020?dsd=true&full=true&order=time",
+            "url":"http://faostat3.fao.org/d3s2/v2/msd/resources/uid/CountrySTAT_fertilizer_demo?dsd=true&full=true&order=time",
+            "size": {
+                "css": "fx-dashboard-grid-item w5"
+            },
+            "filter": {
+                "Fertilizer": [{ "componentName": "Fertilizer", "code": "283421", "label": "Potassium nitrate"},
+                    { "componentName": "Fertilizer", "code": "310530", "label": "Diammonium phosphate (DAP)"}] ,
+                "Element": [{ "componentName": "Element", "code": "5600", "label": "Import Quantity"}]
+            },
+            "config" : {
+                "seriesSubject": ["item"],
+                "options" : {
+                    "title": {
+                        "text": {"EN": "{{COUNTRY_NAME}} Fertilizers Import Quantity"}
+                    },
+                    "tooltip": {
+                        "valueSuffix": " TN"
+                    }
+
+                }
+            }
+        },
+        {
+            "id": "widget-1",
+            "type": "table",
+            "title": "All Fertilizers Imports and Exports",
+            "size": {
+                "css": "fx-dashboard-grid-item w3"
+            },
+            "config" : {
+                "options" : {
+                    "title": {
+                        "text": {"EN": "{{COUNTRY_NAME}}"}
+                    }
+                }},
+            "urlTest":"http://faostat3.fao.org/d3s2/v2/msd/resources/uid/AFO_ProductionCapacities?dsd=true&full=true&order=time",
+            "url":"http://faostat3.fao.org/d3s2/v2/msd/resources/uid/CountrySTAT_fertilizer_demo?dsd=true&full=true&order=time"
+        }
+
+
+    ]
+}

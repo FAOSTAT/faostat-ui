@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema#",
+  "type": "object",
+  "title": "FAOSTAT API",
+  "description": "",
+  "definitions": {
+    "api_key": {
+      "type": "string",
+      "title": "API Key",
+      "description": "Not available in Version 1.0."
+    },
+    "client_key": {
+      "type": "string",
+      "title": "Client Key",
+      "description": "Not available in Version 1.0."
+    },
+    "datasource": {
+      "type": "string",
+      "title": "Datasource",
+      "description": "Name code of the datasource.",
+      "enum": [
+        "faostat"
+      ]
+    },
+    "lang": {
+      "type": "string",
+      "title": "Language",
+      "description": "Language of the data retrieved.",
+      "enum": [
+        "en",
+        "fr",
+        "es"
+      ]
+    },
+    "code": {
+      "type": "string",
+      "title": "Code",
+      "description": "Object's code."
+    },
+    "label": {
+      "type": "string",
+      "title": "Label",
+      "description": "Object's label."
+    },
+    "ord": {
+      "type": "integer",
+      "title": "Ord",
+      "description": "Object's order."
+    }
+  },
+  "links": [
+    {
+      "href": "{lang}/groups/",
+      "method": "GET",
+      "rel": "groups",
+      "description": "List of available FAOSTAT domains.",
+      "title": "Groups",
+      "schema": {
+        "type": "object",
+        "name": "Groups Input",
+        "description": "Input of 'groups' service.",
+        "properties": {
+          "datasource": {
+            "$ref": "#/definitions/datasource"
+          },
+          "lang": {
+            "$ref": "#/definitions/lang"
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "title": "Metadata",
+            "description": "Metadata for the 'groups' service."
+          },
+          "data": {
+            "type": "array",
+            "title": "Data",
+            "description": "Data for the 'groups' service.",
+            "items": {
+              "type": "object",
+              "title": "Group",
+              "description": "FAOSTAT group.",
+              "properties": {
+                "GroupCode": {
+                  "$ref": "#/definitions/code"
+                },
+                "GroupNameE": {
+                  "$ref": "#/definitions/label"
+                },
+                "Ord": {
+                  "$ref": "#/definitions/ord"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "href": "{lang}/groupsanddomains/",
+      "method": "GET",
+      "rel": "groupsanddomains",
+      "description": "List of available FAOSTAT groups and domains.",
+      "title": "Groups and Domains",
+      "schema": {
+        "type": "object",
+        "name": "Groups and Domains Input",
+        "description": "Input of 'groupsanddomains' service.",
+        "properties": {
+          "datasource": {
+            "$ref": "#/definitions/datasource"
+          },
+          "lang": {
+            "$ref": "#/definitions/lang"
+          }
+        }
+      },
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "title": "Metadata",
+            "description": "Metadata for the 'groupsanddomains' service."
+          },
+          "data": {
+            "type": "array",
+            "title": "Data",
+            "description": "Data for the 'groupsanddomains' service.",
+            "items": {
+              "type": "object",
+              "title": "Domain",
+              "description": "FAOSTAT domain.",
+              "properties": {
+                "GroupCode": {
+                  "$ref": "#/definitions/code"
+                },
+                "GroupNameE": {
+                  "$ref": "#/definitions/label"
+                },
+                "DomainCode": {
+                  "$ref": "#/definitions/code"
+                },
+                "DomainNameE": {
+                  "$ref": "#/definitions/label"
+                },
+                "Ord": {
+                  "$ref": "#/definitions/ord"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
