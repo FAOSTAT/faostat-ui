@@ -302,7 +302,7 @@ define([
             data.datasource = 'faostat';
             data.domainCode = this.options.domain;
             data.lang = this.options.lang_faostat;
-            data.limit = 50;
+            data.limit = -1;
             w = new WDSClient({
                 datasource: 'faostatdb',
                 outputType : C.WDS_OUTPUT_TYPE
