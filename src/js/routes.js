@@ -13,11 +13,13 @@ define(function () {
         match(':lang/download/interactive/:domain', 'download#show_interactive_download');
 
         match(':lang/browse/domain/:domain', 'browse-by-domain#show');
-        //match(':lang/browse/domain/:domain', 'browse#show');
         match(':lang/browse/rankings/:domain', 'browse#show');
         match(':lang/browse/country/:domain', 'browse#show');
 
         match(':lang/compare', 'compare#show');
+
+        match(':lang/standards', 'standards#show');
+        match(':lang/standards/methodology', 'standards#show_methodology');
 
         match('protected', 'protected#show');
         match('about', 'about#show');
