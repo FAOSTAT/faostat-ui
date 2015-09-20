@@ -79,7 +79,16 @@ define([
 
         initComponents: function () {
 
+            /* Variables. */
             var that = this;
+
+            /* Methodology. */
+            if (this.options.section === 'methodology') {
+                this.methodology = new Methodology();
+                this.methodology.init({
+                    placeholder_id: 'standards_content'
+                })
+            }
 
         },
 
