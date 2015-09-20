@@ -31,9 +31,6 @@
 [submodule "submodules/faostat-ui-options-manager"]
 	path = submodules/faostat-ui-options-manager
 	url = https://github.com/FAOSTAT/faostat-ui-options-manager.git
-[submodule "submodules/faostat-api-client"]
-	path = submodules/faostat-api-client
-	url = https://github.com/FAOSTAT/faostat-api-client.git
 [submodule "submodules/json-editor-faostat-theme"]
 	path = submodules/json-editor-faostat-theme
 	url = https://github.com/FAOSTAT/json-editor-faostat-theme.git

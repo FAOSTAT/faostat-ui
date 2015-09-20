@@ -141,10 +141,22 @@ module.exports = function(grunt) {
                     destination: 'docs'
                 }
             }
+        },
+        jsonschema_amd_restclient_generator: {
+            custom_options: {
+                options: {
+                    base_url: 'http://fenixapps2.fao.org/api/v1.0/',
+                    output_name: 'FAOSTATAPIClient',
+                    output_folder: 'src/js'
+                }
+            }
         }
     });
 
 //TODO task for removing README.md from any subdirs
+
+    /* Load API client generator tasks. */
+    grunt.loadNpmTasks('grunt-jsonschema-amd-restclient-generator');
 
     grunt.registerTask('docs', [
         'clean:docs',
@@ -156,6 +168,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('default', [
+        'jsonschema_amd_restclient_generator',
         'clean',
         'jsonlint',
         'jshint',

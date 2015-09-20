@@ -103,7 +103,7 @@ require([
                     "pivotConfig":            "./globals/PivotConfig",
 
                     /* FAOSTAT API's client. */
-                    faostatapiclient:           '../../submodules/faostat-api-client/src/js/FAOSTATAPIClient'
+                    faostatapiclient:           'FAOSTATAPIClient'
 
                 },
                 shim: {
