@@ -46,3 +46,6 @@
 [submodule "submodules/faostat-ui-standards-units"]
 	path = submodules/faostat-ui-standards-units
 	url = https://github.com/FAOSTAT/faostat-ui-standards-units.git
+[submodule "submodules/faostat-ui-standards-abbreviations"]
+	path = submodules/faostat-ui-standards-abbreviations
+	url = https://github.com/FAOSTAT/faostat-ui-standards-abbreviations.git

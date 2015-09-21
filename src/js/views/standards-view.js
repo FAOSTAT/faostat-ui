@@ -10,6 +10,7 @@ define([
     'faostatapiclient',
     'FAOSTAT_UI_STANDARDS_METHODOLOGY',
     'FAOSTAT_UI_STANDARDS_UNITS',
+    'FAOSTAT_UI_STANDARDS_ABBREVIATIONS',
     'chaplin',
     'sweetAlert',
     'underscore',
@@ -22,6 +23,7 @@ define([
              FAOSTATAPIClient,
              Methodology,
              Units,
+             Abbreviations,
              Chaplin,
              swal,
              _) {
@@ -96,6 +98,14 @@ define([
             if (this.options.section === 'units') {
                 this.units = new Units();
                 this.units.init({
+                    placeholder_id: 'standards_content'
+                });
+            }
+
+            /* Abbreviations. */
+            if (this.options.section === 'abbreviations') {
+                this.abbreviations = new Abbreviations();
+                this.abbreviations.init({
                     placeholder_id: 'standards_content'
                 });
             }

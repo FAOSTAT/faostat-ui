@@ -23,6 +23,7 @@ define(function () {
         match(':lang/standards/methodologies', 'standards#show_methodologies');
         match(':lang/standards/methodologies/:id', 'standards#show_methodology');
         match(':lang/standards/units', 'standards#show_units');
+        match(':lang/standards/abbreviations', 'standards#show_abbreviations');
 
 
         match('protected', 'protected#show');

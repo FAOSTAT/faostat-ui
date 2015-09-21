@@ -16,10 +16,11 @@ require([
     './submodules/fenix-ui-download-options/src/js/paths',
     './submodules/faostat-ui-download-selector/src/js/paths',
     './submodules/faostat-ui-standards-methodology/src/js/paths',
-    './submodules/faostat-ui-standards-units/src/js/paths'
+    './submodules/faostat-ui-standards-units/src/js/paths',
+    './submodules/faostat-ui-standards-abbreviations/src/js/paths'
 ], function (Compiler, Common, Tree, MapCreator, ChartCreator, Dashboard, MetadataViewer, Reports,
              BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager, FAOSTATTheme,
-             DownloadOptions, DownloadSelector, Methodology, Units) {
+             DownloadOptions, DownloadSelector, Methodology, Units, Abbreviations) {
 
     'use strict';
 
@@ -39,7 +40,8 @@ require([
         downloadOptionsConfig = DownloadOptions,
         downloadSelectorConfig = DownloadSelector,
         methodologyConfig = Methodology,
-        unitsConfig = Units;
+        unitsConfig = Units,
+        abbreviationsConfig = Abbreviations;
 
     treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/src/js';
     commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
@@ -57,12 +59,13 @@ require([
     downloadSelectorConfig.baseUrl = submodules_path + '/faostat-ui-download-selector/src/js';
     methodologyConfig.baseUrl = submodules_path + '/faostat-ui-standards-methodology/src/js';
     unitsConfig.baseUrl = submodules_path + '/faostat-ui-standards-units/src/js';
+    abbreviationsConfig.baseUrl = submodules_path + '/faostat-ui-standards-abbreviations/src/js';
 
     Compiler.resolve([commonConfig, mapConfig, chartConfig,
             dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig,
             downloadSelectorsManagerConfig, faostatMenuConfig,
             optionsManagerConfig, treeConfig, faostatThemeConfig, downloadOptionsConfig,
-            downloadSelectorConfig, methodologyConfig, unitsConfig],
+            downloadSelectorConfig, methodologyConfig, unitsConfig, abbreviationsConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 
@@ -151,4 +154,5 @@ require([
             controllerSuffix: C.CHAPLINJS_CONTROLLER_SUFFIX
         });
     });
+
 });
