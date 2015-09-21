@@ -1,4 +1,6 @@
     /*global define*/
 define({
-    "root": true
+    "root": true,
+    "es" : true,
+    "fr" : true
 });
