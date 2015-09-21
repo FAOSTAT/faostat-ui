@@ -22,6 +22,7 @@ define(function () {
         match(':lang/standards', 'standards#show');
         match(':lang/standards/methodologies', 'standards#show_methodologies');
         match(':lang/standards/methodologies/:id', 'standards#show_methodology');
+        match(':lang/standards/units', 'standards#show_units');
 
 
         match('protected', 'protected#show');

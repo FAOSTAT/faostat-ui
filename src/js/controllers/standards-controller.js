@@ -22,6 +22,11 @@ define(['jquery', 'controllers/base/controller', 'views/standards-view'], functi
         show_methodology: function (params) {
             this.show(params, 'methodology');
             $('#methodology_link').css('background-color', '#eee');
+        },
+
+        show_units: function (params) {
+            this.show(params, 'units');
+            $('#units_link').css('background-color', '#eee');
         }
 
     });

@@ -15,10 +15,11 @@ require([
     './submodules/json-editor-faostat-theme/src/js/paths',
     './submodules/fenix-ui-download-options/src/js/paths',
     './submodules/faostat-ui-download-selector/src/js/paths',
-    './submodules/faostat-ui-standards-methodology/src/js/paths'
+    './submodules/faostat-ui-standards-methodology/src/js/paths',
+    './submodules/faostat-ui-standards-units/src/js/paths'
 ], function (Compiler, Common, Tree, MapCreator, ChartCreator, Dashboard, MetadataViewer, Reports,
              BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager, FAOSTATTheme,
-             DownloadOptions, DownloadSelector, Methodology) {
+             DownloadOptions, DownloadSelector, Methodology, Units) {
 
     'use strict';
 
@@ -37,7 +38,8 @@ require([
         faostatThemeConfig = FAOSTATTheme,
         downloadOptionsConfig = DownloadOptions,
         downloadSelectorConfig = DownloadSelector,
-        methodologyConfig = Methodology;
+        methodologyConfig = Methodology,
+        unitsConfig = Units;
 
     treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/src/js';
     commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
@@ -54,12 +56,13 @@ require([
     downloadOptionsConfig.baseUrl = submodules_path + '/fenix-ui-download-options/src/js';
     downloadSelectorConfig.baseUrl = submodules_path + '/faostat-ui-download-selector/src/js';
     methodologyConfig.baseUrl = submodules_path + '/faostat-ui-standards-methodology/src/js';
+    unitsConfig.baseUrl = submodules_path + '/faostat-ui-standards-units/src/js';
 
     Compiler.resolve([commonConfig, mapConfig, chartConfig,
             dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig,
             downloadSelectorsManagerConfig, faostatMenuConfig,
             optionsManagerConfig, treeConfig, faostatThemeConfig, downloadOptionsConfig,
-            downloadSelectorConfig, methodologyConfig],
+            downloadSelectorConfig, methodologyConfig, unitsConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 

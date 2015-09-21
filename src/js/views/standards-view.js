@@ -9,6 +9,7 @@ define([
     'i18n!nls/standards',
     'faostatapiclient',
     'FAOSTAT_UI_STANDARDS_METHODOLOGY',
+    'FAOSTAT_UI_STANDARDS_UNITS',
     'chaplin',
     'sweetAlert',
     'underscore',
@@ -20,6 +21,7 @@ define([
              i18nLabels,
              FAOSTATAPIClient,
              Methodology,
+             Units,
              Chaplin,
              swal,
              _) {
@@ -86,6 +88,14 @@ define([
                 this.methodology = new Methodology();
                 this.methodology.init({
                     methodology_id: this.options.id,
+                    placeholder_id: 'standards_content'
+                });
+            }
+
+            /* Units. */
+            if (this.options.section === 'units') {
+                this.units = new Units();
+                this.units.init({
                     placeholder_id: 'standards_content'
                 });
             }

@@ -43,3 +43,6 @@
 [submodule "submodules/faostat-ui-standards-methodology"]
 	path = submodules/faostat-ui-standards-methodology
 	url = https://github.com/FAOSTAT/faostat-ui-standards-methodology.git
+[submodule "submodules/faostat-ui-standards-units"]
+	path = submodules/faostat-ui-standards-units
+	url = https://github.com/FAOSTAT/faostat-ui-standards-units.git

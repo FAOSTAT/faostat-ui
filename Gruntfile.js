@@ -164,17 +164,22 @@ module.exports = function(grunt) {
         'jsdoc'
     ]);
 
-    grunt.registerTask('clen', [
+    grunt.registerTask('clean', [
         'clean'
     ]);
 
-    grunt.registerTask('default', [
+    grunt.registerTask('default_PROD', [
         'jsonschema_amd_restclient_generator',
         'clean',
         'jsonlint',
         'jshint',
         'copy'
     ]);
+
+    grunt.registerTask('default', [
+        'jsonschema_amd_restclient_generator'
+    ]);
+
 };
 
 
