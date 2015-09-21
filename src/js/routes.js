@@ -19,7 +19,7 @@ define(function () {
         match(':lang/compare', 'compare#show');
 
         match(':lang/standards', 'standards#show');
-        match(':lang/standards/methodology', 'standards#show_methodology');
+        match(':lang/standards/methodologies', 'standards#show_methodologies');
 
         match('protected', 'protected#show');
         match('about', 'about#show');

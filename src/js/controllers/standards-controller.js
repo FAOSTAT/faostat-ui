@@ -14,7 +14,7 @@ define(['controllers/base/controller', 'views/standards-view'], function (Contro
             });
         },
 
-        show_methodology: function (params) {
+        show_methodologies: function (params) {
             this.show(params, 'methodology');
             $('#methodology_link').css('background-color', '#eee');
         }
