@@ -144,7 +144,7 @@ define([
                     onClick: function (callback) {
                         self.options.code = callback.id;
 
-                        // ccange URL
+                        // change URL
                         self.changeURL(false)
 
                         // init view
@@ -521,8 +521,6 @@ define([
 
         changeURL: function(reload) {
 
-            console.log("iuahjiuahiuah");
-
             var section = this.options.section,
                 lang = this.options.lang,
                 code = this.options.code;
@@ -550,6 +548,8 @@ define([
 
             // NOTE: Added using data attribute (data-section) in the template.
             // this is used for the routing
+            // force the off of the binding
+            this.$el.find('a[data-toggle="tab"]').off();
             this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 self.options.section  = $(e.target).data('section');
                 self.changeURL();
