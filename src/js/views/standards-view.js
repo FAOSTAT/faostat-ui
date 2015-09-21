@@ -58,7 +58,7 @@ define([
 
             View.prototype.attach.call(this, arguments);
 
-            //update State
+            /* Update State. */
             amplify.publish(E.STATE_CHANGE, {standards: 'standards'});
 
             this.initVariables();
@@ -81,15 +81,13 @@ define([
 
         initComponents: function () {
 
-            /* Variables. */
-            var that = this;
-
             /* Methodology. */
             if (this.options.section === 'methodology') {
                 this.methodology = new Methodology();
                 this.methodology.init({
+                    methodology_id: this.options.id,
                     placeholder_id: 'standards_content'
-                })
+                });
             }
 
         },

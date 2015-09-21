@@ -20,6 +20,7 @@ define(function () {
 
         match(':lang/standards', 'standards#show');
         match(':lang/standards/methodologies', 'standards#show_methodologies');
+        match(':lang/standards/methodologies/:id', 'standards#show_methodology');
 
         match('protected', 'protected#show');
         match('about', 'about#show');

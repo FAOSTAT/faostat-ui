@@ -1,5 +1,5 @@
 /*global define*/
-define(['controllers/base/controller', 'views/standards-view'], function (Controller, View) {
+define(['jquery', 'controllers/base/controller', 'views/standards-view'], function ($, Controller, View) {
 
     'use strict';
 
@@ -9,12 +9,17 @@ define(['controllers/base/controller', 'views/standards-view'], function (Contro
             this.view = new View({
                 region: 'main',
                 section: section,
-                lang: params.lang
-                //,domain: params.domain.toUpperCase()
+                lang: params.lang,
+                id: params.id !== undefined ? params.id.toUpperCase() : undefined
             });
         },
 
         show_methodologies: function (params) {
+            this.show(params, 'methodology');
+            $('#methodology_link').css('background-color', '#eee');
+        },
+
+        show_methodology: function (params) {
             this.show(params, 'methodology');
             $('#methodology_link').css('background-color', '#eee');
         }
