@@ -17,6 +17,7 @@ define({
     "item": "Item",
     "element": "element",
     "area": "Area",
-    "year": "Year"
+    "year": "Year",
+    no_data_available: 'No data available for the current selection.'
 
 });
