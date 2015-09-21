@@ -409,7 +409,7 @@ define([
                 qs += "@Limit = 50";
                 return qs;
             } catch (e) {
-                amplify.publish(E.STATE_CHANGE, {
+                amplify.publish(E.NOTIFICATION_WARNING, {
                     title: i18nLabels.warning,
                     text: e
                 });
@@ -437,6 +437,7 @@ define([
                 }
             }
             if (selectAll) {
+                // TODO: Alert?
                 throw 'Please consider the "Bulk Downloads" section if you are interested in retrieving all the values of this domain. ';
             }
         },
@@ -506,10 +507,11 @@ define([
                         }
                     }
                 });
-                this.pivot.render('downloadOutputArea', json, dataConfig);
+                // TODO: fix olap to render on selector
+                this.pivot.render(this.$download_ouput_area.selector.replace('#', ''), json, dataConfig);
 
             } else {
-                $('#downloadOutputArea').html('<h1 class="text-center">' + i18nLabels.no_data_available + '</h1>');
+                this.$download_ouput_area.html('<h1 class="text-center">' + i18nLabels.no_data_available + '</h1>');
             }
 
         },
