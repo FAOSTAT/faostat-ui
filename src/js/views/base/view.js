@@ -4,6 +4,7 @@ define([
   'chaplin',
   'lib/view-helper' // Just load the view helpers, no return value
 ], function(Handlebars, Chaplin) {
+
   'use strict';
 
   var View = Chaplin.View.extend({

@@ -283,10 +283,10 @@ define([
                     units_checked: true
                 });
 
+
                 /* Download as CSV. */
-                // handle dispose
-                this.$download_options_csv_button.off();
-                this.$download_options_csv_button.click({
+                this.$el.find(s.DOWNLOAD_OPTIONS_CSV_BUTTON).off();
+                this.$el.find(s.DOWNLOAD_OPTIONS_CSV_BUTTON).click({
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
@@ -295,9 +295,8 @@ define([
                 });
 
                 /* Download as Excel. */
-                // TODO: bind on jquery for memory management
-                this.$download_options_excel_button.off();
-                this.$download_options_excel_button.click({
+                this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON).off();
+                this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON).click({
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
@@ -306,8 +305,8 @@ define([
                 });
 
                 /* Preview button. */
-                this.$preview_button.off();
-                this.$preview_button.click({
+                this.$el.find(s.PREVIEW_BUTTON).off();
+                this.$el.find(s.PREVIEW_BUTTON).click({
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
@@ -525,9 +524,11 @@ define([
                 lang = this.options.lang,
                 code = this.options.code;
 
-            console.log(section, lang, code);
+            //console.log(section, lang, code);
 
             if (reload) {
+
+                // TODO: how to handle?
 
             }else {
 
