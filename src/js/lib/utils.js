@@ -26,6 +26,7 @@ define([
 
             var lang = requirejs.s.contexts._.config.i18n.locale;
             return keyword[lang.toUpperCase()];
+
         }
         else {
             return keyword;
@@ -35,8 +36,8 @@ define([
     Handlebars.registerHelper('i18n', function (keyword) {
 
         var lang = requirejs.s.contexts._.config.i18n.locale;
-
         return keyword[lang.toUpperCase()];
+
     });
 
     utils.getLabel = function (obj) {

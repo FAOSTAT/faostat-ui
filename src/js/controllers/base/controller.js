@@ -10,7 +10,9 @@ define(['chaplin',
         beforeAction: function (params, options) {
 
             this.reuse('site', SiteView);
+
         }
+
     });
 
     return Controller;

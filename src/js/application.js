@@ -18,6 +18,7 @@ define([
         title: C.CHAPLINJS_APPLICATION_TITLE,
 
         start: function () {
+
             // You can fetch some data here and start app
             // (by calling supermethod) after that.
 
@@ -26,6 +27,7 @@ define([
             this.bindEventListeners();
 
             Chaplin.Application.prototype.start.apply(this, args);
+
         },
 
         bindEventListeners: function () {

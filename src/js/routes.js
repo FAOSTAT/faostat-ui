@@ -29,6 +29,7 @@ define(function () {
         match('protected', 'protected#show');
         match('about', 'about#show');
         match('*anything', '404#show');
+
     };
 
 });
