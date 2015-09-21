@@ -90,6 +90,7 @@ require([
                     json: "../../json",
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
                     wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
+                    q: '{FENIX_CDN}/js/q/1.1.2/q',
 
                     /* Pivot imports. */
                     'fx-olap/nls':            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.1/nls",
