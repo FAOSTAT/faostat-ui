@@ -1,4 +1,4 @@
- /*global define*/
+/*global define*/
 define(function ( ) {
 
     'use strict';
@@ -8,7 +8,9 @@ define(function ( ) {
         NOT_AUTHORIZED : "fx.fenix.security.not_authorized",
 
         STATE_CHANGE : 'fx.fenix.state.change',
-        MENU_UPDATE : 'fx.fenix.menu.change'
+        MENU_UPDATE : 'fx.fenix.menu.change',
+
+        NOTIFICATION_WARNING : 'fs.notification.warning'
 
     };
 });
