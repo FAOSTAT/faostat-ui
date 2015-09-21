@@ -10,16 +10,16 @@ define(['controllers/base/controller', 'views/download-view'], function (Control
                 region: 'main',
                 section: section,
                 lang: params.lang,
-                domain: params.domain.toUpperCase()
+                code: params.code.toUpperCase()
             });
         },
 
         show_bulk_downloads: function (params) {
-            this.show(params, 'bulk_downloads');
+            this.show(params, 'bulk');
         },
 
         show_interactive_download: function (params) {
-            this.show(params, 'interactive_download');
+            this.show(params, 'interactive');
         },
 
         show_metadata: function (params) {

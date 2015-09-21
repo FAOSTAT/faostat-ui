@@ -18,6 +18,7 @@ define([
     'pivotAggregators',
     'pivotConfig',
     'chaplin',
+    'sweetAlert',
     'underscore',
     'amplify'
 ], function (View,
@@ -36,43 +37,22 @@ define([
              pivotAggregators,
              dataConfig,
              Chaplin,
+             swal,
              _) {
 
     'use strict';
 
     var s,
-        state,
         DownloadView;
 
     s = {
 
         TREE: "#tree",
-
         METADATA: "metadata_container",
-        METADATA_TAB: "a[href='#metadata']",
+        INTERACTIVE_DOWNLOAD: "interactive_download_selectors",
+        BULK_DOWNLOADS: "bulk_downloads"
 
-        INTERACTIVE_DOWNLOAD: "interactive_download",
-        INTERACTIVE_DOWNLOAD_SELECTORS: "interactive_download_selectors",
-        INTERACTIVE_DOWNLOAD_TAB: "a[href='#interactive_download']",
-
-        BULK_DOWNLOADS: "bulk_downloads",
-        BULK_DOWNLOADS_TAB: "a[href='#bulk_downloads']",
-
-        DOWNLOAD_OUTPUT_AREA: "#downloadOutputArea",
-
-        DOWNLOAD_OPTIONS_CSV_BUTTON: '#download_options_csv_button',
-        DOWNLOAD_OPTIONS_EXCEL_BUTTON: '#download_options_excel_button',
-        PREVIEW_BUTTON: '#preview_button',
-
-        PREVIEW_OPTIONS_PLACEHOLDER: 'preview_options_placeholder',
-        DOWNLOAD_OPTIONS_PLACEHOLDER: 'download_options_placeholder'
-    },
-
-        // TODO: Could be useful to pass to a FSM (i.e. for the FBS etc)
-        state = {
-            section: null,
-            code: null
-        };
+    };
 
     DownloadView = View.extend({
 
@@ -101,157 +81,104 @@ define([
 
             this.initComponents();
 
+            this.bindEventListeners();
+
             this.configurePage();
         },
 
         initVariables: function () {
 
             this.$tree = this.$el.find(s.TREE);
-
+            this.$interactive_download = this.$el.find(s.INTERACTIVE_DOWNLOAD);
             this.$metadata = this.$el.find(s.METADATA);
-            this.$metadata_tab = this.$el.find(s.METADATA_TAB);
+            this.bulk_downloads = this.$el.find(s.BULK_DOWNLOADS);
 
-            // TODO fix the mix of ids?
-            // TODO in theory should be the "main content"? not only the selectors?
-            this.$interactive = this.$el.find("#" + s.INTERACTIVE_DOWNLOAD_SELECTORS);
-            this.$interactive_tab = this.$el.find(s.INTERACTIVE_DOWNLOAD_TAB);
-
-
-            // TODO fix the mix of ids?
-            this.$bulk = this.$el.find("#" + s.BULK_DOWNLOADS);
-            this.$bulk_tab = this.$el.find(s.BULK_DOWNLOADS_TAB);
-
-            this.$download_ouput_area = this.$el.find(s.DOWNLOAD_OUTPUT_AREA);
-
-            // Preview buttons
-            this.$download_options_csv_button = this.$el.find(s.DOWNLOAD_OPTIONS_CSV_BUTTON);
-            this.$download_options_excel_button = this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON);
-            this.$preview_button = this.$el.find(s.PREVIEW_BUTTON);
         },
 
         initComponents: function () {
 
-            var code = this.options.code,
-                self = this;
-
+            var that = this;
             this.tree = new Tree();
-            this.tree.init({
-                placeholder_id: s.TREE,
-                code: code,
-                callback: {
-                    // Render Section
-                    onTreeRendered: _.bind(this.initiateSection, self),
-                    onClick: function (callback) {
-                        self.options.code = callback.id;
-
-                        // ccange URL
-                        self.changeURL(false)
-
-                        // init view
-                        self.initiateSection();
-                    }
-                }
-            });
-
-        },
-
-        // It's used to clear all the old informations.
-        initiateSection: function() {
-
-            this.$interactive.empty();
-            this.$metadata.empty();
-            this.$bulk.empty();
-
-            // init components
-            // TODO: check if everything should be here
             this.pivot = new Pivot();
             this.metadata = new MetadataViewer();
             this.bulk_downloads = new BulkDownloads();
             this.options_manager = new OptionsManager();
             this.download_selectors_manager = new DownloadSelectorsManager();
 
-            // render the right section
-            this.renderSection();
+            /* Tree. */
+            this.tree.init({
+                placeholder_id: s.TREE,
+                code: this.options.domain,
+                callback: {
+                    onTreeRendered: this.update_breadcrumbs,
+                    onClick: function (callback) {
+                        Chaplin.utils.redirectTo('download#show_' + that.options.section, {lang: that.options.lang, domain: callback.id});
+                    }
+                }
+            });
 
-            // TODO: update download internal breadcumb and tipo on download section
+            /* Render Bulk Downloads. */
+            if (this.options.section === 'bulk_downloads') {
+                that.render_bulk_downloads();
+            }
 
-            // binding events
-            this.bindEventListeners();
+            /* Render Interactive Download. */
+            if (this.options.section === 'interactive_download') {
+                that.render_interactive_download();
+            }
+
+            /* Render Metadata. */
+            if (this.options.section === 'metadata') {
+                this.render_metadata();
+            }
+
+            /* onTabChange. */
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var target = $(e.target).attr('href');
+                if (target.indexOf('metadata') > -1) {
+                    that.render_metadata();
+                    that.options.section = 'metadata';
+                } else if (target.indexOf('interactive_download') > -1) {
+                    that.render_interactive_download();
+                    that.options.section = 'interactive_download';
+                } else if (target.indexOf('bulk_downloads') > -1) {
+                    that.render_bulk_downloads();
+                    that.options.section = 'bulk_downloads';
+                }
+            });
+
         },
 
-        renderSection: function(isChangeURL) {
-
-            var codeType = this.tree.getCodeType(),
-                section = this.options.section,
-                code = this.options.code;
-
-            // show hide interactive tab if needed
-            if (codeType === 'group') {
-                this.$interactive_tab.parent('li').hide();
-            }
-            else {
-                this.$interactive_tab.parent('li').show();
-            }
-
-            // show the right section
-            if (section === 'metadata') {
-                this.renderMetadata(code);
-            }
-
-            else if (section === 'bulk') {
-                this.renderBulkDownloads(code);
-            }
-
-            else if (section === 'interactive' && codeType !== 'group') {
-                this.renderInteractiveDownload(code);
-            }
-
-            else {
-                // TODO: in theory it's a wrong section
-                // Take default action
-                this.renderMetadata(code);
-            }
-
-        },
-
-        renderInteractiveDownload: function (code) {
-
-            // TODO: changeURL (without refresh)
-
-            this.$interactive_tab.tab('show');
+        render_interactive_download: function () {
 
             if (this.download_selectors_manager.isNotRendered()) {
 
-                var selector_manager_id = s.INTERACTIVE_DOWNLOAD_SELECTORS,
-                    code = code,
-                    self = this;
+                /* That... */
+                var that = this;
 
                 /* Selectors manager. */
-                // TODO: destroy the old this.download_selectors_manager for memory management
-
                 this.download_selectors_manager.init({
-                    placeholder_id: selector_manager_id,
-                    domain: code,
+                    placeholder_id: s.INTERACTIVE_DOWNLOAD,
+                    domain: this.options.domain,
                     callback: {
                         onSelectionChange: function () {
-                            // TODO: For memory management improvment should be the destroy of the pivot?
-                            // for the listeners etc
-                            self.$download_ouput_area.empty();
+                            $('#downloadOutputArea').empty();
                         }
                     }
                 });
+                $('.nav-tabs a[href="#interactive_download"]').tab('show');
 
                 /* Initiate options manager. */
                 this.options_manager.init({
                     callback: {
                         onCodesChange: function (isChecked) {
-                            self.pivot.showCode(isChecked);
+                            that.pivot.showCode(isChecked);
                         },
                         onFlagsChange: function (isChecked) {
-                            self.pivot.showFlags(isChecked);
+                            that.pivot.showFlags(isChecked);
                         },
                         onUnitsChange: function (isChecked) {
-                            self.pivot.showUnit(isChecked);
+                            that.pivot.showUnit(isChecked);
                         }
                     }
                 });
@@ -265,7 +192,7 @@ define([
                     lang: this.options.lang,
                     button_label: i18nLabels.preview_options_label,
                     header_label: i18nLabels.preview_options_label,
-                    placeholder_id: s.PREVIEW_OPTIONS_PLACEHOLDER,
+                    placeholder_id: 'preview_options_placeholder',
                     decimal_separators: true,
                     thousand_separators: true,
                     units_checked: true
@@ -277,73 +204,61 @@ define([
                     lang: this.options.lang,
                     button_label: i18nLabels.download_as_label,
                     header_label: i18nLabels.download_as_label,
-                    placeholder_id: s.DOWNLOAD_OPTIONS_PLACEHOLDER,
+                    placeholder_id: 'download_options_placeholder',
                     decimal_separators: true,
                     thousand_separators: true,
                     units_checked: true
                 });
 
                 /* Download as CSV. */
-                // handle dispose
-                this.$download_options_csv_button.off();
-                this.$download_options_csv_button.click({
+                $('#download_options_csv_button').click({
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
-                    self.pivot_caller = 'CSV';
-                    self.preview(e.data.selector_mgr, e.data.options_manager);
+                    that.pivot_caller = 'CSV';
+                    that.preview(e.data.selector_mgr, e.data.options_manager);
                 });
 
                 /* Download as Excel. */
-                // TODO: bind on jquery for memory management
-                this.$download_options_excel_button.off();
-                this.$download_options_excel_button.click({
+                $('#download_options_excel_button').click({
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
-                    self.pivot_caller = 'XLS';
-                    self.preview(e.data.selector_mgr, e.data.options_manager);
+                    that.pivot_caller = 'XLS';
+                    that.preview(e.data.selector_mgr, e.data.options_manager);
                 });
 
                 /* Preview button. */
-                this.$preview_button.off();
-                this.$preview_button.click({
+                $('#preview_button').click({
                     selector_mgr: this.download_selectors_manager,
                     options_manager: this.options_manager
                 }, function (e) {
-                    self.preview(e.data.selector_mgr, e.data.options_manager);
+                    that.preview(e.data.selector_mgr, e.data.options_manager);
                 });
+
             }
 
         },
 
-        renderBulkDownloads: function (code) {
-
-            // TODO: changeURL (without refresh)
-
-            this.$bulk_tab.tab('show');
-
+        render_bulk_downloads: function () {
             if (this.bulk_downloads.isNotRendered()) {
                 this.bulk_downloads.init({
                     placeholder_id: s.BULK_DOWNLOADS,
-                    domain: code
+                    domain: this.options.domain
                 });
                 this.bulk_downloads.create_flat_list();
+                $('.nav-tabs a[href="#bulk_downloads"]').tab('show');
             }
         },
 
-        renderMetadata: function (code) {
-
-            // TODO: changeURL (without refresh)
-            this.$metadata_tab.tab('show');
-
+        render_metadata : function () {
+            $('.nav-tabs a[href="#metadata"]').tab('show');
             if (this.metadata.isNotRendered()) {
                 this.metadata.init({
                     placeholder_id: s.METADATA,
-                    domain: code,
+                    domain: this.options.domain,
                     callback: {
                         onMetadataRendered: function () {
-                            // TODO: used a generic loading for all faostat?
                             $('#metadata_loading').css('display', 'none');
                         }
                     }
@@ -351,6 +266,18 @@ define([
             }
         },
 
+        update_breadcrumbs: function (node_code) {
+            var node,
+                parent_code,
+                parent_node;
+            node = $('#tree').jstree().get_node(node_code.toUpperCase());
+            $('#group_label').html('<a>' + node.text + '</a>');
+            parent_code = node.parent;
+            if (parent_code !== '#') {
+                parent_node = $('#tree').jstree().get_node(parent_code.toUpperCase());
+                $('#domain_label').html('> <a>' + parent_node.text + '</a>');
+            }
+        },
 
         excel: function () {
             this.pivot.exportExcel();
@@ -395,7 +322,7 @@ define([
                 this.validate_user_selection(user_selection);
                 var count,
                     qs = "EXECUTE Warehouse.dbo.usp_GetDataTEST ";
-                qs += "@DomainCode = '" + this.options.code + "', ";
+                qs += "@DomainCode = '" + this.options.domain + "', ";
                 qs += "@lang = '" + this.iso2faostat(this.options.lang) + "', ";
                 for (count = 1; count < 8; count += 1) {
                     qs += this.encode_codelist(count, user_selection["list" + count + "Codes"]);
@@ -410,8 +337,9 @@ define([
                 qs += "@Limit = 50";
                 return qs;
             } catch (e) {
-                amplify.publish(E.STATE_CHANGE, {
+                swal({
                     title: i18nLabels.warning,
+                    type: 'warning',
                     text: e
                 });
             }
@@ -442,15 +370,14 @@ define([
             }
         },
 
-        // TODO: move to a common util place
         iso2faostat: function (iso) {
             switch (iso.toLowerCase()) {
-                case 'fr':
-                    return 'F';
-                case 'es':
-                    return 'S';
-                default:
-                    return 'E';
+            case 'fr':
+                return 'F';
+            case 'es':
+                return 'S';
+            default:
+                return 'E';
             }
         },
 
@@ -479,8 +406,8 @@ define([
 
             /* Headers. */
             hs = ['Domain Code', 'Domain', 'Country Code', 'Country', 'Element Code',
-                'Element', 'Item Code', 'Item', 'Year', 'Unit',
-                'Value', 'Flag', 'Flag Description'];
+                  'Element', 'Item Code', 'Item', 'Year', 'Unit',
+                  'Value', 'Flag', 'Flag Description'];
 
             /* Cast data, if needed. */
             json = response;
@@ -519,64 +446,17 @@ define([
 
         },
 
-        changeURL: function(reload) {
-
-            console.log("iuahjiuahiuah");
-
-            var section = this.options.section,
-                lang = this.options.lang,
-                code = this.options.code;
-
-            console.log(section, lang, code);
-
-            if (reload) {
-
-            }else {
-
-                var url = Chaplin.utils.reverse(
-                    section, [lang, code]
-                );
-
-                // TODO: Use Chaplin 'route' function
-                console.warn('TODO: change Backbone binding');
-                Backbone.history.navigate(url, {trigger:false});
-            }
-
-        },
-
         bindEventListeners: function () {
-
-            var self = this;
-
-            // NOTE: Added using data attribute (data-section) in the template.
-            // this is used for the routing
-            this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                self.options.section  = $(e.target).data('section');
-                self.changeURL();
-                self.renderSection();
-            });
 
         },
 
         unbindEventListeners: function () {
 
-            this.$el.find('a[data-toggle="tab"]').off();
-
         },
 
         dispose: function () {
 
-            console.warn("TODO: dispose correctly");
-
             this.unbindEventListeners();
-
-            // TODO: dispose of all the components
-            //this.tree = new Tree();
-            //this.pivot = new Pivot();
-            //this.metadata = new MetadataViewer();
-            //this.bulk_downloads = new BulkDownloads();
-            //this.options_manager = new OptionsManager();
-            //this.download_selectors_manager = new DownloadSelectorsManager();
 
             View.prototype.dispose.call(this, arguments);
         }

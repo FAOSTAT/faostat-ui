@@ -5,22 +5,24 @@ define(function () {
 
     return function (match) {
 
-        match('', 'home#show');
-        match('home', 'home#show');
+        //match('', 'home#show');
+        match('home/test', 'home#show', {name: 'home'});
+        match(':lang/home', 'home#show', {name: 'home2'});
 
-        match(':lang/download/bulk/:domain', 'download#show_bulk_downloads');
-        match(':lang/download/metadata/:domain', 'download#show_metadata');
-        match(':lang/download/interactive/:domain', 'download#show_interactive_download');
+        match(':lang/download/bulk/:code', 'download#show_bulk_downloads', {name: 'bulk'});
+        match(':lang/download/metadata/:code', 'download#show_metadata', {name: 'metadata'});
+        match(':lang/download/interactive/:code', 'download#show_interactive_download', {name: 'interactive'});
 
-        match(':lang/browse/domain/:domain', 'browse-by-domain#show');
-        match(':lang/browse/rankings/:domain', 'browse#show');
-        match(':lang/browse/country/:domain', 'browse#show');
+        match(':lang/browse/domain/:code', 'browse-by-domain#show');
+        match(':lang/browse/rankings/:code', 'browse#show');
+        match(':lang/browse/country/:code', 'browse#show');
 
         match(':lang/compare', 'compare#show');
 
         match(':lang/standards', 'standards#show');
         match(':lang/standards/methodologies', 'standards#show_methodologies');
         match(':lang/standards/methodologies/:id', 'standards#show_methodology');
+
 
         match('protected', 'protected#show');
         match('about', 'about#show');

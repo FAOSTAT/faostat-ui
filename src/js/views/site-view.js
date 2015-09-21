@@ -10,8 +10,9 @@ define([
     'globals/AuthManager',
     'i18n!nls/site',
     'text!templates/site.hbs',
-    'FAOSTAT_UI_MENU'
-], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu) {
+    'FAOSTAT_UI_MENU',
+    'sweetAlert'
+], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, swal) {
 
     'use strict';
 
@@ -47,8 +48,8 @@ define([
         },
 
         bindEventListeners: function () {
-            console.log(this);
             amplify.subscribe(E.STATE_CHANGE, this, this.onStateUpdate);
+            amplify.subscribe(E.NOTIFICATION_WARNING, this, this.onNotificationWarning);
         },
 
         initComponents: function () {
@@ -121,6 +122,15 @@ define([
         onMenuUpdate: function () {
 
             this.topMenu.select(State.menu);
+        },
+
+        onNotificationWarning: function (data) {
+
+            swal({
+                title: data.title,
+                type: 'warning',
+                text: data.text
+            });
         }
     });
 
