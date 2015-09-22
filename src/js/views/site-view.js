@@ -50,6 +50,8 @@ define([
         bindEventListeners: function () {
             amplify.subscribe(E.STATE_CHANGE, this, this.onStateUpdate);
             amplify.subscribe(E.NOTIFICATION_WARNING, this, this.onNotificationWarning);
+
+            // TODO: bind multilingual switch
         },
 
         initComponents: function () {
