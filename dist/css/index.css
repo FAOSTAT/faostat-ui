@@ -7593,6 +7593,27 @@ ul[role="group"] {
   cursor: col-resize;
   top: 3px; }
 
+.gt-hd-row td {
+  background-color: #337ab7; }
+
+.gt-hd-row .gt-hd-row-over {
+  background-color: #174c74 !important; }
+
+.gt-hd-row td .gt-inner {
+  color: #fff; }
+
+.pvtRows:before {
+  top: 0 !important;
+  margin-right: 31px; }
+
+.pvtCols:before {
+  top: 0 !important;
+  margin-right: 8px; }
+
+.pvtAxisContainer li span.pvtAttr {
+  background-color: #fff !important;
+  border: 1px solid #ddd !important; }
+
 /* Third parties */
 /* Pages */
 /* Homepage */
@@ -8272,3 +8293,15 @@ div[role='tabpanel'] div ul li[role='treeitem'] .jstree-wholerow {
 
 .navbar.navbar-default {
   background-color: #0d6cac !important; }
+
+.preview_options_placeholder .standard-hr {
+  margin-top: 4px !important;
+  margin-bottom: 4px !important; }
+.preview_options_placeholder label {
+  margin-left: 0 !important;
+  padding-left: 4px !important; }
+.preview_options_placeholder input.form-control {
+  margin-top: 6px !important; }
+
+.preview_options_hr {
+  margin-bottom: 10px !important; }

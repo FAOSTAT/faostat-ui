@@ -257,7 +257,7 @@ define([
                 });
 
                 /* Add preview options. */
-                this.options_manager.add_options_window('preview_options', {
+                this.options_manager.add_options_panel('preview_options', {
                     ok_button: true,
                     pdf_button: false,
                     excel_button: false,
