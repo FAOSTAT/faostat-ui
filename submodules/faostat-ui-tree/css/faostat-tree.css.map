@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";AAIE,yCAAc;EACZ,WAAW,EAAE,MAAM;EACnB,WAAW,EAAE,MAAM;EACnB,MAAM,EAAE,IAAI",
+"sources": ["faostat-tree.scss"],
+"names": [],
+"file": "faostat-tree.css"
+}

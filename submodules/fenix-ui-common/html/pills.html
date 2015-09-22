@@ -1,0 +1,19 @@
+
+<div class="fx-pills">
+	<ul class="nav nav-pills nav-stacked col-md-3">
+	{{#each items}}
+		{{#with this}}
+		<li class="{{#if active}}active{{/if}}"><a href="#{{id}}" data-id="{{id}}" data-toggle="tab">{{{title}}}</a></li>
+		{{/with}}
+	{{/each}}
+	</ul>
+	<div class="tab-content col-md-9">
+	{{#each items}}
+		{{#with this}}    
+		<div class="tab-pane {{#if active}}active{{/if}}" id="{{id}}">
+			{{{html}}}
+		</div>
+		{{/with}}
+	{{/each}}
+	</div>
+</div>

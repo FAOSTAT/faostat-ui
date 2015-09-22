@@ -1,0 +1,27 @@
+/* TEAM */
+
+Statistician, DBA: Amanda Gordon
+Contact: amanda.gordon [at] fao.com
+From: Rome, Italy
+
+Software engineer: Simone Murzilli
+Contact: simone.murzilli [at] fao.com
+From: Rome, Italy
+Github: simonefenix
+
+Software engineer: Daniele Salvatore
+Contact: daniele.salvatore [at] fao.com
+From: Rome, Italy
+Github: danielefenix
+
+Software engineer: Guido Barbaglia
+Contact: guido.barbaglia [at] gmail.com
+From: Caserta, Italy
+Location: Rome, Italy
+Twitter: @Kalimaha
+Github: Kalimaha
+
+Designer: Nicola Selleri
+Contact: nicola.selleri [at] fao.org
+Location: Rome, Italy
+Github: nicolafenix

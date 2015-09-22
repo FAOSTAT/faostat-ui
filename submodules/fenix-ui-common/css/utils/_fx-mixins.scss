@@ -1,0 +1,401 @@
+// Fenix - Mixins 
+
+
+@mixin fx-anchor-plain{
+  color: $fenix-text;
+  &:hover {
+    text-decoration: none;
+  }
+  &:active {
+    text-decoration: none;
+  }
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+@mixin retina-image($img-url, $real-width, $real-height) {
+  width: $real-width;
+  height: $real-height;
+  background-image: url($img-url);
+  background-size: $real-width $real-height;
+  background-repeat: no-repeat;
+}
+
+@mixin fx-fill-me () {
+  height: 100%;
+  width: 100%;
+}
+
+
+// CSS TRANSFORMS 
+
+@mixin fx-transfor-me($value){
+  -ms-transform: $value; // IE 9 
+  -webkit-transform: $value; // Chrome, Safari, Opera 
+  transform: $value;
+}
+
+@mixin fx-transfor3d-me($value){
+  -webkit-transform: $value; // Chrome, Safari, Opera 
+  transform: $value;
+}
+
+
+// CSS TRANSITION 
+
+@mixin fx-transition($property, $duration, $ease, $delay){
+  // For Safari 3.1 to 6.0 
+  -webkit-transition-property: $property;
+  -webkit-transition-duration: $duration;
+  -webkit-transition-timing-function: $ease;
+  -webkit-transition-delay: $delay;
+  // Standard syntax 
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: $ease;
+  transition-delay: $delay;
+}
+
+
+// 3D flow 
+
+@mixin fx-scroll-me{
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; //Momentum  
+  -moz-overflow-scrolling: touch; //Momentum  
+
+  > * {
+    -webkit-transform: translate3d(0,0,0); // Momentum 
+    -moz-transform: translate3d(0,0,0); // Momentum 
+  }
+
+}
+
+// Blurred 
+@mixin fx-blur($intensity) {
+  -webkit-filter: blur($intensity);
+  -moz-filter: blur($intensity);
+  -o-filter: blur($intensity);
+  -ms-filter: blur($intensity);
+}
+
+
+// Color Mixins
+@mixin fx-gradient($top-color, $bottom-color) {
+  background-color: $top-color;
+  background-image: -moz-linear-gradient(top, $top-color, $bottom-color);
+  background-image: -ms-linear-gradient(top, $top-color, $bottom-color);
+  background-image: -o-linear-gradient(top, $top-color, $bottom-color);
+  background-image: -webkit-gradient(linear, center top, center bottom, from($top-color), to($bottom-color));
+  background-image: -webkit-linear-gradient(top, $top-color, $bottom-color);
+  background-image: linear-gradient(top, $top-color, $bottom-color);
+  background-image: linear-gradient(to bottom, $top-color, $bottom-color);
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-repeat: no-repeat;
+}
+
+@mixin fx-half-gradient($left-color, $right-color) {
+  background: $left-color; // Old browsers 
+  background: -moz-linear-gradient(left,  $left-color 0%, $left-color 50%, $right-color 50%, $right-color 100%); // FF3.6+ 
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,$left-color), color-stop(50%,$left-color), color-stop(51%,$right-color), color-stop(100%,$right-color)); // Chrome,Safari4+ 
+  background: -webkit-linear-gradient(left,  $left-color 0%,$left-color 50%,$right-color 50%,$right-color 100%); // Chrome10+,Safari5.1+ 
+  background: -o-linear-gradient(left,  $left-color 0%,$left-color 50%,$right-color 50%,$right-color 100%); // Opera 11.10+ 
+  background: -ms-linear-gradient(left,  $left-color 0%,$left-color 50%,$right-color 50%,$right-color 100%); // IE10+ 
+  background: linear-gradient(to right,  $left-color 0%,$left-color 50%,$right-color 50%,$right-color 100%); // W3C 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$left-color}', endColorstr='#{$right-color}',GradientType=1 ); // IE6-9 
+  background-repeat: no-repeat;
+}
+
+
+@mixin fx-white-to-transparent{
+  background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); // FF3.6+ 
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); // Chrome,Safari4+ 
+  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); // Chrome10+,Safari5.1+ 
+  background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); // Opera 11.10+ 
+  background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); // IE10+ 
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); // W3C 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); // IE6-9 
+}
+
+
+@mixin fx-transparent-to-white{
+  background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); // FF3.6+ 
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); // Chrome,Safari4+ 
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); // Chrome10+,Safari5.1+ 
+  background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); // Opera 11.10+ 
+  background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); // IE10+ 
+  background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); // W3C 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); // IE6-9 
+}
+
+@mixin fx-border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+
+@mixin fx-no-border{
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+
+  border: none;
+}
+
+
+@mixin fx-no-border-radius{
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius:0;
+
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+
+
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+
+
+}
+
+
+
+
+
+
+@mixin fx-box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin fx-noshadow{
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+
+// Animations 
+@mixin animate {
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -ms-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+
+@mixin animate-in-out {
+  -webkit-transition: all 800ms cubic-bezier(0.715, 0.010, 0.035, 1); // older webkit 
+  -webkit-transition: all 800ms cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  -moz-transition: all 800ms cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  -o-transition: all 800ms cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  transition: all 800ms cubic-bezier(0.715, 0.010, 0.035, 1.010); // custom 
+
+  -webkit-transition-timing-function: cubic-bezier(0.715, 0.010, 0.035, 1); // older webkit 
+  -webkit-transition-timing-function: cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  -moz-transition-timing-function: cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  -o-transition-timing-function: cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  transition-timing-function: cubic-bezier(0.715, 0.010, 0.035, 1.010); // custom 
+}
+
+@mixin animate-in-out-faster {
+  -webkit-transition: all 600ms cubic-bezier(0.715, 0.010, 0.035, 1); // older webkit 
+  -webkit-transition: all 600ms cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  -moz-transition: all 600ms cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  -o-transition: all 600ms cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  transition: all 600ms cubic-bezier(0.715, 0.010, 0.035, 1.010); // custom 
+
+  -webkit-transition-timing-function: cubic-bezier(0.715, 0.010, 0.035, 1); // older webkit 
+  -webkit-transition-timing-function: cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  -moz-transition-timing-function: cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  -o-transition-timing-function: cubic-bezier(0.715, 0.010, 0.035, 1.010);
+  transition-timing-function: cubic-bezier(0.715, 0.010, 0.035, 1.010); // custom 
+}
+
+
+@mixin fx-obj-box{
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: white;
+  border-color: $fenix-hr;
+  border-image: none;
+  @include fx-border-radius($fx-border-radius);
+  border-style: solid;
+  border-width: 1px 1px 2px;
+  margin: 10px 0 20px;
+  padding: 20px;
+  width: auto;
+}
+
+@mixin fx-obj-box-plain{
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: white;
+  border-color: $fenix-hr;
+  border-image: none;
+  @include fx-border-radius($fx-border-radius);
+  border-style: solid;
+  border-width: 1px 1px 2px;
+  padding: 0px;
+  width: auto;
+}
+
+
+@mixin fx-btn-filled{
+  background-color: $fx-cool-blue;
+  color: white;
+  border-color: transparent;
+  font: $standard-text;
+
+  &:hover {
+    background-color: transparent;
+    color: $fx-cool-blue;
+    border-color: $fx-cool-blue;
+  }
+  &:active {
+    background-color: transparent;
+    color: $fx-cool-blue;
+    border-color: $fx-cool-blue;
+    @include fx-box-shadow(0, 0, 0, white);
+  }
+}
+
+@mixin fx-btn-border{
+  background-color: transparent;
+  color: $fx-cool-blue;
+  border-color: $fx-cool-blue;
+  font: $standard-text;
+
+  &:hover {
+    background-color: $fx-cool-blue;
+    color: white;
+    border-color: $fx-cool-blue;
+  }
+  &:active {
+    background-color: $fx-cool-blue;
+    color: white;
+    border-color: $fx-cool-blue;
+    @include fx-box-shadow(0, 0, 0, white);
+  }
+}
+
+@mixin fx-btn-transparent{
+  background-color: transparent;
+  color: $fenix-text;
+  border-color: transparent;
+  font: $standard-text;
+
+  &:hover {
+    background-color: transparent;
+    color: $fenix-text;
+    border-color: transparent;
+  }
+  &:active {
+    background-color: transparent;
+    color: $fenix-text;
+    border-color: transparent;
+    @include fx-box-shadow(0, 0, 0, white);
+  }
+}
+
+@mixin fx-btn-reset{
+  background-color: transparent;
+  color: $fenix-text;
+  border-color: transparent;
+  font: $standard-text;
+
+  &:hover {
+    background-color: transparent;
+    color: $fenix-text;
+    border-color: transparent;
+  }
+  &:active {
+    background-color: transparent;
+    color: $fenix-text;
+    border-color: transparent;
+    @include fx-box-shadow(0, 0, 0, white);
+  }
+}
+
+@mixin fx-small-icons($locX:0,$locY:0){
+  height: 15px;
+  width: 15px;
+  background: url("#{$fx-ui-common}css/img/fenix-catalog-sprite-small.svg") no-repeat $locX $locY;
+  background-size: 150px 30px;
+}
+
+@mixin fx-circle-number{
+    color: white;
+    display: inline-block;
+    font: $standard-text-bold;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    text-align: center;
+    background-color: $fx-cool-blue;
+    @include fx-border-radius(100%);
+    @include fx-transfor-me(translate(0, -50%));
+}
+
+
+
+// Aspect Ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+
+@mixin truncate-multi($font-size,$line-height,$lines-to-show) {
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  width: 100%;
+  height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  font-size: $font-size;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines-to-show;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
