@@ -7319,7 +7319,6 @@ footer.fao-footer {
 
 /* Header */
 .container.fao-header {
-  height: 90px;
   position: relative;
   background-color: #0d6cac; }
   .container.fao-header .fao-logo {
@@ -7587,6 +7586,13 @@ ul[role="group"] {
       .dropdown .dropdown-menu > li > a:visited {
         background-color: transparent; }
 
+/* Third parties */
+/* Pages */
+/* Specific styles of the different pages (if needed) */
+/* Homepage */
+[data-page='home'] .container-breadcrumb {
+  display: none; }
+
 .gt-hd-split {
   background-color: transparent;
   width: auto;
@@ -7613,12 +7619,6 @@ ul[role="group"] {
 .pvtAxisContainer li span.pvtAttr {
   background-color: #fff !important;
   border: 1px solid #ddd !important; }
-
-/* Third parties */
-/* Pages */
-/* Homepage */
-[data-page='home'] .container-breadcrumb {
-  display: none; }
 
 /* Modules. */
 #metadata_container .well.well-sm {
