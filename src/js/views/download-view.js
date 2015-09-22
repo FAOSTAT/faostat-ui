@@ -19,6 +19,7 @@ define([
     'pivotConfig',
     'chaplin',
     'underscore',
+    'globals/Common',
     'amplify'
 ], function (View,
              C,
@@ -36,7 +37,8 @@ define([
              pivotAggregators,
              dataConfig,
              Chaplin,
-             _) {
+             _,
+             Common) {
 
     'use strict';
 
@@ -145,7 +147,9 @@ define([
                         self.options.code = callback.id;
 
                         // change URL
-                        self.changeURL(false)
+                        //self.changeURL(false)
+                        Common.changeURL(self.options.section, [self.options.lang, self.options.code], false);
+
 
                         // init view
                         self.initiateSection();
@@ -520,31 +524,6 @@ define([
 
         },
 
-        changeURL: function(reload) {
-
-            var section = this.options.section,
-                lang = this.options.lang,
-                code = this.options.code;
-
-            //console.log(section, lang, code);
-
-            if (reload) {
-
-                // TODO: how to handle?
-
-            }else {
-
-                var url = Chaplin.utils.reverse(
-                    section, [lang, code]
-                );
-
-                // TODO: Use Chaplin 'route' function
-                console.warn('TODO: change Backbone binding');
-                Backbone.history.navigate(url, {trigger:false});
-            }
-
-        },
-
         bindEventListeners: function () {
 
             var self = this;
@@ -555,7 +534,7 @@ define([
             this.$el.find('a[data-toggle="tab"]').off();
             this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 self.options.section  = $(e.target).data('section');
-                self.changeURL();
+                Common.changeURL(self.options.section, [self.options.lang, self.options.code], false);
                 self.renderSection();
             });
 

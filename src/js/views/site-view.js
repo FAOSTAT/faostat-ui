@@ -131,7 +131,9 @@ define([
                 type: 'warning',
                 text: data.text
             });
+
         }
+
     });
 
     return SiteView;
