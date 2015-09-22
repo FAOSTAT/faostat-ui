@@ -72,9 +72,12 @@ require([
             config: {
 
                 /* Set the config for the i18n. */
-                i18n: {
-                    locale: 'en'
-                },
+                //i18n: {
+                //    locale: 'es'
+                //},
+
+                //locale: 'es',
+
 
                 /* The path where your JavaScripts are located. */
                 baseUrl: './src/js',
@@ -139,6 +142,30 @@ require([
             }
         });
 
+    var getQueryString = function ( field, url ) {
+        var href = url ? url : window.location.href;
+        var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+        var string = reg.exec(href);
+        return string ? string[1] : null;
+    };
+
+    var getFAOSTATLang = function ( locale ) {
+      switch(locale) {
+          case 'en': return 'E';
+          case 'es': return 'S';
+          case 'fr': return 'F';
+          default: return 'E';
+      }
+    };
+
+    var locale = getQueryString('locale') || 'en';
+
+    localStorage.setItem('locale', locale);
+    localStorage.setItem('faostat_lang', getFAOSTATLang(localStorage.getItem('locale')));
+
+    require.config({'locale': locale});
+
+
     /* Bootstrap the application. */
     require([
         'application',
@@ -146,6 +173,7 @@ require([
         'config/Config',
         'domReady!'
     ], function (Application, routes, C) {
+
         var app = new Application({
             routes: routes,
             root: C.CHAPLINJS_PROJECT_ROOT,
@@ -153,6 +181,8 @@ require([
             pushState: C.CHAPLINJS_PUSH_STATE,
             controllerSuffix: C.CHAPLINJS_CONTROLLER_SUFFIX
         });
+
     });
+
 
 });
