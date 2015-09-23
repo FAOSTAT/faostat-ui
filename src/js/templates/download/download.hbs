@@ -32,11 +32,12 @@
                     </a>
                 </li>
             </ul>
+
+            <!-- Interactive Download -->
             <div class='tab-content'>
                 <div role='tabpanel' class='tab-pane' id='interactive_download'>
                     <div class='row'>
                         <div class='col-lg-12'>
-                            <br>
                             <p>
                                 <!--TODO multilingual -->
                                 Use this section to create a custom query to extract data from the current domain.
@@ -49,11 +50,11 @@
                             </p>
                         </div>
                     </div>
-                    <hr>
-                    <div id='interactive_download_selectors'>
 
-                    </div>
-                    <hr class='preview_options_hr'>
+
+                    <div id='interactive_download_selectors'> </div>
+
+                    <!--<hr class='preview_options_hr'>-->
                     <div class='row'>
                         <div class='col-lg-8'>
                             <span id='preview_options_placeholder' class='preview_options_placeholder pull-left'>
@@ -69,18 +70,20 @@
                             </button>
                         </div>
                     </div>
-                    <hr style='margin-top: 0;'>
+                    <!--<hr style='margin-top: 0;'>-->
                 </div>
 
-                <div role='tabpanel' class='tab-pane active' id='bulk_downloads'>
+                <!-- Bulk Downloads -->
+                <div role='tabpanel' class='tab-pane active' id='bulk_downloads'></div>
 
-                </div>
+                <!-- Metadata -->
                 <div role='tabpanel' class='tab-pane' id='metadata'>
                     <h1 class='text-center' id='metadata_loading'>
                         <i class='fa fa-refresh fa-spin fa-5x'></i>
                     </h1>
                     <div id='metadata_container'></div>
                 </div>
+
             </div>
         </div>
         <br>
@@ -109,6 +112,6 @@
     <form id='xlsDataForm' action='http://faostat3.fao.org/faostat-olapws/ExportPOI2' method='POST'>
         <input id='myJson' name='myJson' type='hidden' value=''>
         <input id='myFlags' name='myFlags' type='hidden' value='{&quot;data&quot;:[{&quot;title&quot;:&quot;&quot;,&quot;label&quot;:&quot;Official data&quot;}]}'>
-    </form>  
+    </form>
 </div>
 <br>

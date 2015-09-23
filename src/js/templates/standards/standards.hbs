@@ -1,42 +1,31 @@
+<!--TODO: remove active class -->
+<!-- TODO: remove <br> -->
+<br>
+
+<!-- Tabs -->
 <div class='row'>
     <div class='col-lg-12'>
-        <ul class='nav navbar-nav pull-right'>
-            <!--<li>-->
-                <!--<a href='#/en/standards/methodologies/' id='methodology_link'>-->
-                    <!--Methodology-->
-                <!--</a>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<a href='#/en/standards/classifications/' id='classifications_link'>-->
-                    <!--Classifications-->
-                <!--</a>-->
-            <!--</li>-->
-            <li>
-                <a href='#/en/standards/units/' id='units_link'>
-                    Units
+        <ul class='nav nav-tabs' role='tablist'>
+            <li class='active' role='presentation'>
+                <a href='#fs-units' data-section='units' role='tab' data-toggle='tab'>
+                    {{units}}
                 </a>
             </li>
-            <!--<li>-->
-                <!--<a href='#/en/standards/glossary/' id='glossary_link'>-->
-                    <!--Glossary-->
-                <!--</a>-->
-            <!--</li>-->
-            <li>
-                <a href='#/en/standards/abbreviations/' id='abbreviations_link'>
-                    Abbreviations
+            <li role='presentation'>
+                <a href='#fs-abbreviations' data-section='abbreviations' role='tab' data-toggle='tab'>
+                    {{abbreviations}}
                 </a>
             </li>
         </ul>
     </div>
 </div>
 
-<div class='row'>
-    <div class='col-lg-12'>
-        <div id='standards_content'>
-            <p>
-                Your content here.
-            </p>
-        </div>
-    </div>
-    <br><br><br><br>
-</div>                       ,
+<!-- Tab Contents -->
+<div class="tab-content">
+
+    <div class="tab-pane active" id="fs-units"></div>
+
+    <div class="tab-pane" id="fs-abbreviations"></div>
+
+</div>
+<br><br><br><br>

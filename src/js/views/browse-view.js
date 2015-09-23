@@ -154,9 +154,9 @@ define([
 
             this.unbindEventListeners();
 
-            if ( this.view_domain != undefined) this.view_domain.dispose();
-            if ( this.view_country != undefined) this.view_country.dispose();
-            if ( this.view_rankings != undefined) this.view_rankings.dispose();
+            if ( this.view_domain !== undefined) this.view_domain.dispose();
+            if ( this.view_country !== undefined) this.view_country.dispose();
+            if ( this.view_rankings !== undefined) this.view_rankings.dispose();
 
             View.prototype.dispose.call(this, arguments);
         }

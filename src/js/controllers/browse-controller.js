@@ -13,7 +13,7 @@ define([
             console.log(params);
 
             this.view = new View({
-                region: 'main',
+                region: 'main'
             });
         }
     });

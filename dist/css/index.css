@@ -7237,6 +7237,66 @@ body {
     border-color: transparent;
     color: #666666; }
 
+.nav-tabs {
+  -ms-transform: translateX(-10px);
+  -webkit-transform: translateX(-10px);
+  transform: translateX(-10px); }
+  .nav-tabs > li {
+    padding: 0px 0px 0px 10px;
+    margin-bottom: 0; }
+    .nav-tabs > li > a {
+      padding: 5px 10px 5px;
+      color: #666666;
+      font-weight: 500;
+      font-size: 12px;
+      text-transform: uppercase; }
+      .nav-tabs > li > a:hover, .nav-tabs > li > a:active, .nav-tabs > li > a:visited, .nav-tabs > li > a:focus, .nav-tabs > li > a .nav-tabs > li.active > a, .nav-tabs > li > a .nav-tabs > li.active > a:focus, .nav-tabs > li > a .nav-tabs > li.active > a:hover {
+        background-color: transparent;
+        border-color: transparent; }
+      .nav-tabs > li > a:before {
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -ms-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #2395ab;
+        left: 0;
+        bottom: -2px;
+        pointer-events: none;
+        -ms-transform: scaleX(0);
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0); }
+    .nav-tabs > li.active > a {
+      color: #2395ab;
+      background-color: transparent;
+      border-color: transparent; }
+      .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:active, .nav-tabs > li.active > a:visited, .nav-tabs > li.active > a:focus {
+        color: #2395ab;
+        background-color: transparent;
+        border-color: transparent; }
+      .nav-tabs > li.active > a:before {
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -ms-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+        -ms-transform: scaleX(0.8);
+        -webkit-transform: scaleX(0.8);
+        transform: scaleX(0.8); }
+
+/*.tab-content {
+  padding-top: 10px;
+
+  > div {
+    padding: 0;
+  }
+
+
+}*/
 /* Components */
 /* BreadCrumbs */
 #breadcumb_container {

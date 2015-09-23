@@ -7,26 +7,19 @@ define([
     'config/Events',
     'text!templates/standards/standards.hbs',
     'i18n!nls/standards',
-    'faostatapiclient',
-    'FAOSTAT_UI_STANDARDS_METHODOLOGY',
-    'FAOSTAT_UI_STANDARDS_UNITS',
-    'FAOSTAT_UI_STANDARDS_ABBREVIATIONS',
-    'chaplin',
-    'sweetAlert',
     'underscore',
+    'views/standards-units-view',
+    'views/standards-abbreviations-view',
     'amplify'
 ], function (View,
              C,
              E,
              template,
              i18nLabels,
-             FAOSTATAPIClient,
-             Methodology,
-             Units,
-             Abbreviations,
-             Chaplin,
-             swal,
-             _) {
+             _,
+             UnitsView,
+             AbbreviationsView
+             ) {
 
     'use strict';
 
@@ -35,10 +28,8 @@ define([
 
     s = {
 
-        TREE: "#tree",
-        METADATA: "metadata_container",
-        INTERACTIVE_DOWNLOAD: "interactive_download_selectors",
-        BULK_DOWNLOADS: "bulk_downloads"
+        UNITS: "#fs-units",
+        ABBREVIATIONS: "#fs-abbreviations"
 
     };
 
@@ -60,6 +51,8 @@ define([
 
         attach: function () {
 
+            console.log("standards");
+
             View.prototype.attach.call(this, arguments);
 
             /* Update State. */
@@ -76,39 +69,17 @@ define([
 
         initVariables: function () {
 
-            //this.$tree = this.$el.find(s.TREE);
-            //this.$interactive_download = this.$el.find(s.INTERACTIVE_DOWNLOAD);
-            //this.$metadata = this.$el.find(s.METADATA);
-            //this.bulk_downloads = this.$el.find(s.BULK_DOWNLOADS);
+            this.$units = this.$el.find(s.UNITS);
+            this.$abbreviations = this.$el.find(s.ABBREVIATIONS);
 
         },
 
         initComponents: function () {
 
-            /* Methodology. */
-            if (this.options.section === 'methodology') {
-                this.methodology = new Methodology();
-                this.methodology.init({
-                    methodology_id: this.options.id,
-                    placeholder_id: 'standards_content'
-                });
-            }
+            // TODO: switch
+            this.initUnits();
+            //this.initAbbreviations();
 
-            /* Units. */
-            if (this.options.section === 'units') {
-                this.units = new Units();
-                this.units.init({
-                    placeholder_id: 'standards_content'
-                });
-            }
-
-            /* Abbreviations. */
-            if (this.options.section === 'abbreviations') {
-                this.abbreviations = new Abbreviations();
-                this.abbreviations.init({
-                    placeholder_id: 'standards_content'
-                });
-            }
 
         },
 
@@ -118,9 +89,58 @@ define([
 
         bindEventListeners: function () {
 
+            var self = this;
+
+            // bind tabs listeners
+            this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+                var tab = $(e.target).attr("href") // activated tab
+
+                if (tab == self.$units.selector) {
+                    self.initUnits();
+                }
+
+                if (tab == self.$abbreviations.selector) {
+                    self.initAbbreviations();
+                }
+
+            });
+
         },
 
+        initUnits: function() {
+
+            console.log("initUnits");
+
+            if ( this.view_units === null || this.view_units === undefined) {
+
+                // init browse by domain
+                this.view_units = new UnitsView();
+                this.$units.html(this.view_units.$el);
+                //this.view_units.render();
+            }
+
+        },
+
+        initAbbreviations: function() {
+
+            console.log("initAbbreviations");
+
+            if ( this.view_abbreviations === null || this.view_abbreviations === undefined) {
+
+                // init browse by domain
+                this.view_abbreviations = new AbbreviationsView();
+                this.$abbreviations.html(this.view_abbreviations.$el);
+                //this.view_abbreviations.render();
+
+            }
+        },
+
+
         unbindEventListeners: function () {
+
+            // unbind tabs listeners
+            this.$el.find('a[data-toggle="tab"]').off('shown.bs.tab');
 
         },
 

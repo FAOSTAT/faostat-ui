@@ -100,6 +100,8 @@ require([
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
                     wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
+                    // TODO: move to CDN
+
 
                     /* Pivot imports. */
                     'fx-olap/nls':            "//fenixrepo.fao.org/cdn/fenix/fenix-ui-olap/4.2.1/nls",
@@ -113,7 +115,8 @@ require([
                     "pivotConfig":            "./globals/PivotConfig",
 
                     /* FAOSTAT API's client. */
-                    faostatapiclient:           'FAOSTATAPIClient'
+                    faostatapiclient:           'FAOSTATAPIClient',
+                    list: '//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min'
 
                 },
                 shim: {
