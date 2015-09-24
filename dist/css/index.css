@@ -7243,7 +7243,7 @@ body {
   -webkit-transform: translateX(-10px);
   transform: translateX(-10px); }
   .nav-tabs > li {
-    padding: 0px 0px 0px 10px;
+    padding: 0px 0px 0px 0px;
     margin-bottom: 0; }
     .nav-tabs > li > a {
       padding: 5px 10px 5px;
