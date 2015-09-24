@@ -7238,6 +7238,7 @@ body {
     color: #666666; }
 
 .nav-tabs {
+  margin-left: 10px;
   -ms-transform: translateX(-10px);
   -webkit-transform: translateX(-10px);
   transform: translateX(-10px); }
