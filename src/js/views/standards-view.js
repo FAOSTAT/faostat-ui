@@ -110,8 +110,6 @@ define([
 
         initUnits: function() {
 
-            console.log("initUnits");
-
             if ( this.view_units === null || this.view_units === undefined) {
 
                 // init browse by domain
@@ -124,16 +122,14 @@ define([
 
         initAbbreviations: function() {
 
-            console.log("initAbbreviations");
-
             if ( this.view_abbreviations === null || this.view_abbreviations === undefined) {
 
                 // init browse by domain
                 this.view_abbreviations = new AbbreviationsView();
                 this.$abbreviations.html(this.view_abbreviations.$el);
                 //this.view_abbreviations.render();
-
             }
+
         },
 
 
@@ -147,6 +143,9 @@ define([
         dispose: function () {
 
             this.unbindEventListeners();
+
+            if ( this.view_units !== undefined) this.view_units.dispose();
+            if ( this.view_abbreviations !== undefined) this.view_abbreviations.dispose();
 
             View.prototype.dispose.call(this, arguments);
         }

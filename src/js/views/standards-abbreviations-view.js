@@ -50,7 +50,6 @@ define([
 
         initialize: function (options) {
             this.o = $.extend({}, o, options);
-            console.log(this.o);
         },
 
         getTemplateData: function () {
@@ -99,7 +98,6 @@ define([
             dynamic_data = {
                 rows: json.data
             };
-            console.log(json);
             $.extend(dynamic_data, i18nLabels);
             html = template(dynamic_data);
             this.$table.append(html);

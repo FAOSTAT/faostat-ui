@@ -8,7 +8,7 @@ define(['jquery', 'i18n!nls/standards'], function ($, Standards) {
         title: 'Abbreviations List',
         code_title: 'Acronym',
         label_title: 'Definition',
-        sort_by_title: 'Sort By Definition'
+        sort_by_title: 'Sort By Acronym'
         
     });
 });

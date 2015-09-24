@@ -59,8 +59,6 @@ define([
 
         attach: function () {
 
-            console.log("Units");
-
             View.prototype.attach.call(this, arguments);
 
             /* Update State. */
