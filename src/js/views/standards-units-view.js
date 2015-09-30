@@ -5,6 +5,7 @@ define([
     'views/base/view',
     'config/Config',
     'config/Events',
+    'globals/Common',
     'text!templates/standards/standards-units.hbs',
     'text!templates/standards/standards-table.hbs',
     'i18n!nls/standards-units',
@@ -15,6 +16,7 @@ define([
 ], function (View,
              C,
              E,
+             Common,
              template,
              templateTable,
              i18nLabels,
@@ -74,6 +76,8 @@ define([
         },
 
         initVariables: function () {
+
+            this.o.lang = Common.getLocale();
 
             this.FAOSTATAPIClient = new FAOSTATAPIClient();
 

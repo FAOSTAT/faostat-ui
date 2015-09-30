@@ -5,6 +5,7 @@ define([
     'views/base/view',
     'config/Config',
     'config/Events',
+    'globals/Common',
     'text!templates/standards/standards-abbreviations.hbs',
     'text!templates/standards/standards-table.hbs',
     'i18n!nls/standards-abbreviations',
@@ -15,6 +16,7 @@ define([
 ], function (View,
              C,
              E,
+             Common,
              template,
              templateTable,
              i18nLabels,
@@ -74,6 +76,10 @@ define([
 
         initVariables: function () {
 
+            this.o.lang = Common.getLocale();
+            console.log(Common.getLocale());
+            console.log(this.o.lang);
+
             this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
             this.$table = this.$el.find(s.TABLE);
@@ -81,6 +87,8 @@ define([
         },
 
         initComponents: function () {
+
+            console.log(this.o.lang);
 
             // TODO: lang
             this.FAOSTATAPIClient.abbreviations({

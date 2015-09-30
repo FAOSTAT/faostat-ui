@@ -108,6 +108,10 @@ define([
 
         initVariables: function () {
 
+            // added language
+            // TODO: change parameter path/name?
+            this.options.lang = Common.getLocale();
+
             this.$tree = this.$el.find(s.TREE);
 
             this.$metadata = this.$el.find(s.METADATA);
@@ -148,7 +152,7 @@ define([
 
                         // change URL
                         //self.changeURL(false)
-                        Common.changeURL(self.options.section, [self.options.lang, self.options.code], false);
+                        Common.changeURL(self.options.section, [self.options.code], false);
 
 
                         // init view
@@ -534,7 +538,7 @@ define([
             this.$el.find('a[data-toggle="tab"]').off();
             this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 self.options.section  = $(e.target).data('section');
-                Common.changeURL(self.options.section, [self.options.lang, self.options.code], false);
+                Common.changeURL(self.options.section, [self.options.code], false);
                 self.renderSection();
             });
 
