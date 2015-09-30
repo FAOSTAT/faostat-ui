@@ -7,11 +7,11 @@ define(function () {
 
         //match('', 'home#show');
         match('home/test', 'home#show', {name: 'home'});
-        match(':lang/home', 'home#show', {name: 'home2'});
+        match('home', 'home#show', {name: 'home2'});
 
-        match(':lang/download/bulk/:code', 'download#show_bulk_downloads', {name: 'bulk'});
-        match(':lang/download/metadata/:code', 'download#show_metadata', {name: 'metadata'});
-        match(':lang/download/interactive/:code', 'download#show_interactive_download', {name: 'interactive'});
+        match('download/bulk/:code', 'download#show_bulk_downloads', {name: 'bulk'});
+        match('download/metadata/:code', 'download#show_metadata', {name: 'metadata'});
+        match('download/interactive/:code', 'download#show_interactive_download', {name: 'interactive'});
 
         //match(':lang/browse/domain/:code', 'browse-by-domain#show');
         //match(':lang/browse/rankings/:code', 'browse#show');
@@ -19,11 +19,11 @@ define(function () {
 
         //match(':lang/compare', 'compare#show');
 
-        match(':lang/standards', 'standards#show');
-        match(':lang/standards/methodologies', 'standards#show_methodologies');
-        match(':lang/standards/methodologies/:id', 'standards#show_methodology');
-        match(':lang/standards/units', 'standards#show_units');
-        match(':lang/standards/abbreviations', 'standards#show_abbreviations');
+        match('standards', 'standards#show');
+        match('standards/methodologies', 'standards#show_methodologies');
+        match('standards/methodologies/:id', 'standards#show_methodology');
+        match('standards/units', 'standards#show_units');
+        match('standards/abbreviations', 'standards#show_abbreviations');
 
 
         match('protected', 'protected#show');

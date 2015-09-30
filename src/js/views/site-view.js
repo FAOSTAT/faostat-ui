@@ -11,15 +11,17 @@ define([
     'i18n!nls/site',
     'text!templates/site.hbs',
     'FAOSTAT_UI_MENU',
-    'sweetAlert'
-], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, swal) {
+    'sweetAlert',
+    'globals/Common',
+], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, swal, Common) {
 
     'use strict';
 
     var s = {
         TOP_MENU_CONTAINER: '#top-menu-container',
         BREADCRUMB_CONTAINER: "#breadcrumb-container",
-        FOOTER_MENU_CONTAINER: "#footer-menu-container"
+        FOOTER_MENU_CONTAINER: "#footer-menu-container",
+        LANG: "#footer-menu-container"
     };
 
     var SiteView = View.extend({
@@ -48,10 +50,25 @@ define([
         },
 
         bindEventListeners: function () {
+
+            var self = this;
+
             amplify.subscribe(E.STATE_CHANGE, this, this.onStateUpdate);
             amplify.subscribe(E.NOTIFICATION_WARNING, this, this.onNotificationWarning);
 
             // TODO: bind multilingual switch
+/*            this.$el.find('[data-locale=fr]').click(function(e) {
+                console.log(e);
+                console.log(this);
+                console.log(this.data("data-locale"))
+
+            });*/
+
+            this.$el.find('.fs-lang').click(function(e) {
+
+                console.log(this.getAttribute("data-locale"))
+                self.changeLanguage(this.getAttribute("data-locale"));
+            });
         },
 
         initComponents: function () {
@@ -99,11 +116,14 @@ define([
             /* FAOSTAT menu. */
             /* Initiate the menu. */
             var menu = new FAOSTATMenu();
+            // TODO: fix menu language and check how is it taken
             menu.init({
                 lang: 'en',
                 prefix: 'faostat_download_',
                 datasource: 'faostatdb'
             });
+
+
 
         },
 
@@ -134,6 +154,17 @@ define([
                 text: data.text
             });
 
+        },
+
+        changeLanguage: function(lang) {
+            // TODO: Check if english is used
+            Common.setLocale(lang);
+            var uri = Common.updateQueryStringParameter(window.location.href, 'locale', Common.getLocale());
+
+            // TODO: rewrite. dirty change url
+            window.location.replace(uri);
+            window.location.reload();
+            //window.open(uri, '_self')
         }
 
     });
