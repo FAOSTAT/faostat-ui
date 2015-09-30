@@ -3,14 +3,31 @@
 
 li[role="treeitem"]{
 
+  //background-color: white !important;
+
+/*
   &:nth-child(odd){
+    background-color: #fff !important;
+  }*/
+
+
+  &:nth-child(odd){
+    background-color: #fff !important;
+  }
+
+  &:nth-child(even){
     background-color: #fff !important;
   }
 
 }
 
-ul[role="group"]{
-  background-color: white;
+
+ul[role="group"] {
+  background-color: white !important;
+
+  .jstree-node {
+    background-color: red;
+  }
 }
 
 

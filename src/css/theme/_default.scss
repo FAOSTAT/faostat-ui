@@ -88,4 +88,15 @@ body{
   }
 }
 
+a {
+  color: #ddd;
+  cursor: pointer;
+}
+a:focus {
+  outline: none;
+}
+a:active {
+  outline: none;
+}
+
 
