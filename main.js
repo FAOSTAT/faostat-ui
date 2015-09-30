@@ -116,7 +116,8 @@ require([
 
                     /* FAOSTAT API's client. */
                     faostatapiclient:           'FAOSTATAPIClient',
-                    list: '//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min'
+                    list: '//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min',
+                    list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min'
 
                 },
                 shim: {
@@ -152,30 +153,24 @@ require([
         return string ? string[1] : null;
     };
 
-    var getFAOSTATLang = function ( locale ) {
-      switch(locale) {
-          case 'en': return 'E';
-          case 'es': return 'S';
-          case 'fr': return 'F';
-          default: return 'E';
-      }
-    };
-
     var locale = getQueryString('locale') || 'en';
-
-    localStorage.setItem('locale', locale);
-    localStorage.setItem('faostat_lang', getFAOSTATLang(localStorage.getItem('locale')));
-
     require.config({'locale': locale});
-
 
     /* Bootstrap the application. */
     require([
         'application',
         'routes',
         'config/Config',
+        'globals/Common',
+        'amplify',
         'domReady!'
-    ], function (Application, routes, C) {
+    ], function (Application, routes, C, Common) {
+
+        Common.setLocale(requirejs.s.contexts._.config.locale);
+
+        // TODO: use locale or lang?
+        //amplify.store( 'locale', requirejs.s.contexts._.config.locale);
+        //amplify.store( 'lang', requirejs.s.contexts._.config.locale);
 
         var app = new Application({
             routes: routes,
