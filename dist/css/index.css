@@ -7237,6 +7237,16 @@ body {
     border-color: transparent;
     color: #666666; }
 
+a {
+  color: #ddd;
+  cursor: pointer; }
+
+a:focus {
+  outline: none; }
+
+a:active {
+  outline: none; }
+
 .nav-tabs {
   margin-left: 10px;
   -ms-transform: translateX(-10px);
@@ -7535,11 +7545,20 @@ footer.fao-footer {
     border-color: transparent; }
 
 /* Jstree Mood */
-li[role="treeitem"]:nth-child(odd) {
-  background-color: #fff !important; }
+li[role="treeitem"] {
+  /*
+    &:nth-child(odd){
+      background-color: #fff !important;
+    }*/ }
+  li[role="treeitem"]:nth-child(odd) {
+    background-color: #fff !important; }
+  li[role="treeitem"]:nth-child(even) {
+    background-color: #fff !important; }
 
 ul[role="group"] {
-  background-color: white; }
+  background-color: white !important; }
+  ul[role="group"] .jstree-node {
+    background-color: red; }
 
 .jstree-container-ul {
   width: calc(100% - 25px); }
@@ -7701,17 +7720,6 @@ ul[role="group"] {
   background-color: #fff; }
 #metadata_container .form-control {
   font-weight: 100; }
-
-.jstree-default-responsive .jstree-anchor {
-  white-space: normal;
-  line-height: normal;
-  height: auto; }
-
-li[role="treeitem"]:nth-child(odd) {
-  background-color: #fff !important; }
-
-.jstree-default > .jstree-container-ul > .jstree-node {
-  border-left: 1px #666 !important; }
 
 .summary-item {
   display: inline-block;
