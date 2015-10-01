@@ -218,8 +218,10 @@ define([
             // TODO: get all the filters mapping
         },
 
-        removeFilterBox: function() {
+        removeFilterBox: function(e) {
             console.warn("TODO: dispose of the box and the filters");
+            console.log(e);
+            console.log(this);
 
             amplify.publish(EC.FILTER_BOX_REMOVE, {filter: this});
             this.$el.empty();
@@ -229,7 +231,7 @@ define([
 
             //amplify.publish(E.STATE_CHANGE, {compare: 'compare'});
             console.log(this);
-            this.$REMOVE_FILTER_BOX.on('click', this.removeFilterBox, this);
+            this.$REMOVE_FILTER_BOX.on('click', _.bind(this.removeFilterBox, this));
         },
 
         unbindEventListeners: function () {

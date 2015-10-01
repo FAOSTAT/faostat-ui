@@ -58,7 +58,7 @@ define([
 
             //update State
             amplify.publish(E.STATE_CHANGE, {compare: 'compare'});
-            amplify.subscribe(EC.FILTER_BOX_REMOVE, this.onFilterBoxRemove);
+            amplify.subscribe(EC.FILTER_BOX_REMOVE, _.bind(this.onFilterBoxRemove, this));
 
             this.initVariables();
 
@@ -96,14 +96,15 @@ define([
         // filters
         addFilter: function() {
             // TODO: keep track of the filters
-            var filterBox = new FilterBoxView({
+            var f = new FilterBoxView({
                 filterBoxID: ++filterBoxIDs
             });
 
-            this.$FILTERS_CONTAINER.prepend(filterBox.$el);
+            this.$FILTERS_CONTAINER.prepend(f.$el);
             // cache the filterBox
-            filterBox[filterBox.filterBoxID] = filterBox;
-            return filterBox;
+            filterBox[f.o.filterBoxID] = f;
+            console.log(filterBox);
+            return f;
         },
 
         onFilterBoxRemove: function(box) {
@@ -114,7 +115,10 @@ define([
         },
 
         removeFilterBox: function(box) {
-            console.log(filterBox[box.o.filterBoxID]);
+            console.log(box);
+            console.log(filterBox);
+            console.log(filterBox[box.filter.o.filterBoxID]);
+            delete filterBox[box.filter.o.filterBoxID];
             console.log(filterBox);
         },
 
