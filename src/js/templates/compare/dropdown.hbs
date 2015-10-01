@@ -1,4 +1,5 @@
-<div>
-    <div data-role="title">{{title}}</div>
-    <div data-role="dropdown"></div>
-</div>
+<select data-role="dd" class="js-example-basic-single">
+    {{#each data}}
+        <option value="{{code}}">{{label}}</option>
+    {{/each}}
+</select>

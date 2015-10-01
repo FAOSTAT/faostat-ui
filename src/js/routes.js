@@ -17,7 +17,7 @@ define(function () {
         //match(':lang/browse/rankings/:code', 'browse#show');
         //match(':lang/browse/country/:code', 'browse#show');
 
-        //match(':lang/compare', 'compare#show');
+        match('compare', 'compare#show');
 
         match('standards', 'standards#show');
         match('standards/methodologies', 'standards#show_methodologies');

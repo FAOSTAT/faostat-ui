@@ -1,26 +1,34 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
     'views/base/view',
+    'globals/Common',
     'config/FAOSTAT',
     'config/Config',
     'config/Queries',
     'config/Events',
+    'config/EventsCompare',
+    'config/compare/Config',
     'text!templates/compare/compare.hbs',
-    'text!templates/compare/compare_box.hbs',
-    'text!templates/compare/compare_filters.hbs',
-    'text!templates/compare/compare_resume.hbs',
     'i18n!nls/compare',
     'handlebars',
-    // TODO the views probably can be loaded at runtime?
-    'views/compare-view',
+    'faostatapiclient',
+    'views/compare-filter-box-view',
     'amplify'
-], function (View, F, C, Q, E, template, templateBox, templateFilters, templateResume, i18nLabels, Handlebars) {
+], function (View, Common, F, C, Q, E, EC, CC, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView) {
 
     'use strict';
 
     var s = {
 
+        FILTERS_CONTAINER: '[data-role="filters_container"]',
+        ADD_FILTER: '[data-role="add_filter"]',
+        TIMERANGE: '[data-role="timerange"]',
+        APPLY: '[data-role="apply"]',
     };
+
+    var filtersIDs = 0;
+
+    var filters = {};
 
     var CompareView = View.extend({
 
@@ -36,6 +44,10 @@ define([
             }
         },
 
+        initialize: function (options) {
+            this.o = options;
+        },
+
         getTemplateData: function () {
             return i18nLabels;
         },
@@ -46,6 +58,7 @@ define([
 
             //update State
             amplify.publish(E.STATE_CHANGE, {compare: 'compare'});
+            amplify.subscribe(EC.FILTER_REMOVED, this.onFilterRemove);
 
             this.initVariables();
 
@@ -58,9 +71,20 @@ define([
 
         initVariables: function () {
 
+            this.o.lang = Common.getLocale();
+
+            this.FAOSTATAPIClient = new FAOSTATAPIClient();
+
+            this.$FILTERS_CONTAINER = this.$el.find(s.FILTERS_CONTAINER);
+            this.$ADD_FILTER = this.$el.find(s.ADD_FILTER);
+
+            //console.log(this.$filters);
+
         },
 
         initComponents: function () {
+
+            var filter = this.addFilter();
 
         },
 
@@ -68,8 +92,35 @@ define([
 
         },
 
+
+        // filters
+        addFilter: function() {
+            console.log("here");
+
+            // TODO: keep track of the filters
+            var filterBox = new FilterBoxView({
+                filterID: ++filtersIDs
+            });
+            filters[filterBox.filterID] = filterBox;
+            this.$FILTERS_CONTAINER.prepend(filterBox.$el);
+
+        },
+
+        onFilterRemove: function(filter) {
+            console.warn('TODO: internal filter remove');
+            this.removeFilter(filter);
+        },
+
+        removeFilter: function(filter) {
+            console.warn('TODO: internal filter remove');
+
+        },
+
+
+
         bindEventListeners: function () {
 
+            this.$ADD_FILTER.on('click', _.bind(this.addFilter, this));
         },
 
         unbindEventListeners: function () {

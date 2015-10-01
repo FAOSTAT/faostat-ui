@@ -11,7 +11,7 @@ define([
         show: function (params) {
 
             this.view = new View({
-                region: 'main',
+                region: 'main'
             });
         }
     });

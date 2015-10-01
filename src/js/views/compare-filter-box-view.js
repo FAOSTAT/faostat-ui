@@ -5,17 +5,18 @@ define([
     'config/FAOSTAT',
     'config/Config',
     'config/Events',
+    'config/EventsCompare',
     'config/compare/Config',
-    'text!templates/compare/compare_selector.hbs',
+    'text!templates/compare/compare_filter_box.hbs',
     //'text!templates/compare/dropdown.hbs',
     'i18n!nls/compare',
     'handlebars',
     'faostatapiclient',
     'underscore',
-    'compare-filter-view-backup',
-    'lib/compare-filter',
+    'views/compare-filter-view-backup',
+    'lib/compare/compare-filter',
     'amplify'
-], function (View, Common, F, C, E, CC, template, i18nLabels, Handlebars, FAOSTATAPIClient, _, FilterView, Filter) {
+], function (View, Common, F, C, E, EC, CC, template, i18nLabels, Handlebars, FAOSTATAPIClient, _, FilterView, Filter) {
 
     'use strict';
 
@@ -28,6 +29,8 @@ define([
     };
 
     var filters = {};
+    var groups = {};
+    var domains = {};
 
     // list of the dimensions by code
     var dimensions = {
@@ -84,35 +87,88 @@ define([
         },
 
         configurePage: function () {
+            var self = this;
 
             this.FAOSTATAPIClient.groupsanddomains({
                 lang: this.o.lang
-            }).then(_.bind(function(json) {
+            }).then(function(json) {
 
-                console.log(json);
+                // caching goups and domains
+                self.GROUPS_AND_DOMAINS = json;
 
-                this.groups = this.filterGroups(json.data);
-                console.log(this.groups);
-/*                this.groupsView = new FilterView({
-                    data: this.groups
-                });*/
+                // create goups filter
+                self.createGroupFilter(self.GROUPS_AND_DOMAINS);
+            });
 
-                this.groupsView = new Filter({
-                    data: this.groups
-                });
+        },
 
-                //this.filters = new FiltersView();
-                this.$FILTERS_CONTAINER.html(this.filters.$el);
+        createGroupFilter: function(json) {
+            var self = this;
 
-                console.log("wejr");
-                console.log(this.groupsView);
+            console.log(json);
 
-                console.log(this.groupsView);
+            var groupsData = this.filterGroups(json.data);
+            var filter = new Filter({
+                container: this.$GROUPS,
+                title: i18nLabels.groups,
+                data: groupsData
+            });
 
-                this.$GROUPS.html(this.groupsView.$el);
+            // cache groups dropdown
+            groups = {
+                filter: filter,
+                // TODO: keep track of the filter
+                json: json
+            };
 
-               // this.initGroups();
-            }, this));
+            groups.$DD = filter.getDropDown();
+            groups.$DD.change(function(e) {
+                self.onGroupChange(e.val);
+            });
+        },
+
+        createDomainFilter: function(json) {
+            var self = this;
+
+            console.log(json);
+
+           var filter = new Filter({
+                container: this.$DOMAINS,
+                title: i18nLabels.domains,
+                data: json
+            });
+
+            console.log(filter);
+
+            // cache groups dropdown
+            domains = {
+                filter: filter,
+                // TODO: keep track of the filter
+                json: json
+            };
+
+            domains.$DD = filter.getDropDown();
+            domains.$DD.change(function(e) {
+                self.onDomainChange(e.val);
+            });
+        },
+
+        onGroupChange: function(code) {
+            var json = this.GROUPS_AND_DOMAINS;
+
+            // TODO: dispose domains and filters container
+
+            // get the domains list
+            var domains = this.filterDomains(json.data, code);
+
+            // create domains filters
+            this.createDomainFilter(domains);
+
+        },
+
+        onDomainChange: function(code) {
+            // get the domains list
+            console.log(code);
         },
 
         filterGroups: function(data) {
@@ -133,100 +189,26 @@ define([
             return groups;
         },
 
-        filterDomains: function(data) {
-            var groups = [];
-            for (var i = 0, i = data.length; i < len; i++) {
+        filterDomains: function(data, groupCode) {
+            var domains = [],
+                codes = _.where(data, {code: groupCode});
 
-            }
-        },
-
-        initGroups: function(groups) {
-
-            this.FAOSTATAPIClient.groups({
-                lang: this.o.lang,
-                blacklist: CC.groups.blacklist
-            }).then(_.bind(function(data) {
-
-                console.log(this);
-
-                console.log(data);
-
-                var template, dynamic_data, html;
-                /* Load main structure. */
-                template = Handlebars.compile(templateDropDown);
-                html = template(data);
-
-                this.$GROUPS.html(html);
-
-                // TODO: get the first group
-                this.initDomains('Q');
-
-            }, this));
-
-        },
-
-
-        // filters
-        initGroupsBK: function() {
-
-            this.FAOSTATAPIClient.groups({
-                lang: this.o.lang,
-                blacklist: CC.groups.blacklist
-            }).then(_.bind(function(data) {
-
-                console.log(this);
-
-                console.log(data);
-
-                var template, dynamic_data, html;
-
-                /* Load main structure. */
-                template = Handlebars.compile(templateDropDown);
-                html = template(data);
-
-                this.$GROUPS.html(html);
-
-                // TODO: get the first group
-                this.initDomains('Q');
-
-            }, this));
-
-        },
-
-        initDomainsBK: function(code) {
-
-            this.FAOSTATAPIClient.domains({
-                lang: this.o.lang,
-                blacklist: CC.domains.blacklist
-            }).then(function(data) {
-
-                console.log(data);
-
-                var template, dynamic_data, html;
-
-                /* Load main structure. */
-                template = Handlebars.compile(templateDropDown);
-                html = template(data);
-
-                this.$GROUPS.html(html);
-
+            // TODO: add blacklist
+            _.forEach(codes, function(v) {
+                console.log(v);
+                domains.push({
+                        code: v.DomainCode,
+                        label: v.DomainNameE,
+                    }
+                );
             });
-            //_.bind(this.test, this));
-
-            this.$DOMAINS.html(html);
-
+            console.log(domains);
+            return domains;
         },
 
-        test: function(data) {
-
-
-
-        },
-
-        initFilters: function() {
+        createFilters: function() {
 
             // parse the dimensions to create dinamically the dropdowns needed
-
 
         },
 
@@ -241,6 +223,15 @@ define([
         unbindEventListeners: function () {
 
 
+        },
+
+        disposeDomains: function () {
+            console.warn('TODO dispose domains');
+            this.$DOMAINS.empty();
+        },
+
+        disposeFilters: function () {
+            console.warn('TODO dispose filters');
         },
 
         dispose: function () {
