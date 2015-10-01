@@ -26,9 +26,9 @@ define([
         APPLY: '[data-role="apply"]',
     };
 
-    var filtersIDs = 0;
+    var filterBoxIDs = 0;
 
-    var filters = {};
+    var filterBox = {};
 
     var CompareView = View.extend({
 
@@ -58,7 +58,7 @@ define([
 
             //update State
             amplify.publish(E.STATE_CHANGE, {compare: 'compare'});
-            amplify.subscribe(EC.FILTER_REMOVED, this.onFilterRemove);
+            amplify.subscribe(EC.FILTER_BOX_REMOVE, this.onFilterBoxRemove);
 
             this.initVariables();
 
@@ -95,25 +95,27 @@ define([
 
         // filters
         addFilter: function() {
-            console.log("here");
-
             // TODO: keep track of the filters
             var filterBox = new FilterBoxView({
-                filterID: ++filtersIDs
+                filterBoxID: ++filterBoxIDs
             });
-            filters[filterBox.filterID] = filterBox;
+
             this.$FILTERS_CONTAINER.prepend(filterBox.$el);
-
+            // cache the filterBox
+            filterBox[filterBox.filterBoxID] = filterBox;
+            return filterBox;
         },
 
-        onFilterRemove: function(filter) {
+        onFilterBoxRemove: function(box) {
             console.warn('TODO: internal filter remove');
-            this.removeFilter(filter);
+            //this.removeFilter(filterBox);
+            console.log(this);
+            this.removeFilterBox(box);
         },
 
-        removeFilter: function(filter) {
-            console.warn('TODO: internal filter remove');
-
+        removeFilterBox: function(box) {
+            console.log(filterBox[box.o.filterBoxID]);
+            console.log(filterBox);
         },
 
 

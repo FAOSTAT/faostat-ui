@@ -24,7 +24,8 @@ define([
 
         GROUPS: '[data-role="groups"]',
         DOMAINS: '[data-role="domains"]',
-        FILTERS: '[data-role="filters"]'
+        FILTERS: '[data-role="filters"]',
+        REMOVE_FILTER_BOX: '[data-role="remove_filter_box"]'
 
     };
 
@@ -79,6 +80,7 @@ define([
             this.$GROUPS = this.$el.find(s.GROUPS);
             this.$DOMAINS = this.$el.find(s.DOMAINS);
             this.$FILTERS = this.$el.find(s.FILTERS);
+            this.$REMOVE_FILTER_BOX = this.$el.find(s.REMOVE_FILTER_BOX);
 
         },
 
@@ -216,8 +218,18 @@ define([
             // TODO: get all the filters mapping
         },
 
+        removeFilterBox: function() {
+            console.warn("TODO: dispose of the box and the filters");
+
+            amplify.publish(EC.FILTER_BOX_REMOVE, {filter: this});
+            this.$el.empty();
+        },
+
         bindEventListeners: function () {
 
+            //amplify.publish(E.STATE_CHANGE, {compare: 'compare'});
+            console.log(this);
+            this.$REMOVE_FILTER_BOX.on('click', this.removeFilterBox, this);
         },
 
         unbindEventListeners: function () {
