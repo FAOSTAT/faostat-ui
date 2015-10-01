@@ -94,6 +94,7 @@ require([
                     text: '{FENIX_CDN}/js/requirejs/plugins/text/2.0.12/text',
                     rsvp: '{FENIX_CDN}/js/rsvp/3.0.17/rsvp',
                     amplify: '{FENIX_CDN}/js/amplify/1.1.2/amplify.min',
+                    select2: '{FENIX_CDN}/js/select2/3.5.4/select2.min',
                     nls: "../../i18n",
                     config: "../../config",
                     json: "../../json",
