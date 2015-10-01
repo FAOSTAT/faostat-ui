@@ -5,7 +5,7 @@ define(function ( ) {
 
     return {
 
-        FILTER_REMOVED: "fs.compare.box_removed"
+        FILTER_BOX_REMOVE: "fs.compare.filter_box_remove"
 
     };
 });
