@@ -13,7 +13,9 @@ define({
 
     "results": "Results",
     "group": "Group",
+    "groups": "Groups",
     "domain": "Domain",
+    "domains": "Domains",
     "item": "Item",
     "element": "element",
     "area": "Area",
