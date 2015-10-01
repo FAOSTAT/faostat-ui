@@ -5,12 +5,7 @@ define(function ( ) {
 
     return {
 
-        NOT_AUTHORIZED : "fx.fenix.security.not_authorized",
-
-        STATE_CHANGE : 'fx.fenix.state.change',
-        MENU_UPDATE : 'fx.fenix.menu.change',
-
-        NOTIFICATION_WARNING : 'fs.notification.warning'
+        FILTER_REMOVED: "fs.compare.box_removed"
 
     };
 });
