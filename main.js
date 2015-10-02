@@ -184,6 +184,8 @@ require([
 
         // TEST
 
+        var domainCode = 'RV';
+
         $.ajax({
                 url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/areagroup/' + domainCode + '/',
                 type: "GET",
@@ -205,6 +207,7 @@ require([
                 }
             }
         );
+
 
         $.ajax({
                 url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/elementgroup/' + domainCode + '/',
@@ -252,8 +255,7 @@ require([
 
 
         // test with loop
-        var ids = ['areagroup', 'elementgroup', 'itemgroup'],
-            domainCode = 'RV';
+        var ids = ['areagroup', 'elementgroup', 'itemgroup'];
 
         _.each(ids, function (id) {
             $.ajax({
@@ -278,6 +280,7 @@ require([
                 }
             );
         });
+
 
     });
 
