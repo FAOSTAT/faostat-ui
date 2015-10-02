@@ -101,6 +101,8 @@ require([
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
                     wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
+                    'jquery.rangeSlider': '{FENIX_CDN}/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
+                    'jquery-ui-custom': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
                     // TODO: move to CDN
 
 
@@ -142,6 +144,12 @@ require([
                     "pivotAggregators": ['pivotAggregatorsFuncs', 'jquery'],
                     faostatapiclient: {
                         deps: ['jquery']
+                    },
+                    'jquery-ui-custom': {
+                        deps: ['jquery']
+                    },
+                    'jquery.rangeSlider': {
+                        deps: ['jquery', 'jquery-ui-custom']
                     }
                 }
             }
@@ -187,7 +195,7 @@ require([
         var domainCode = 'RV';
 
         $.ajax({
-                url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/areagroup/' + domainCode + '/',
+                url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/itemgroup/' + domainCode + '/',
                 type: "GET",
                 data: {
                     datasource: 'faostat',
@@ -208,6 +216,72 @@ require([
             }
         );
 
+        $.ajax({
+                url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/itemgroup/QC/',
+                type: "GET",
+                data: {
+                    datasource: 'faostat',
+                    domains: domainCode,
+                    whitelist: [],
+                    blacklist: [],
+                    subcodelists: null,
+                    show_lists: null,
+                    show_full_metadata: null,
+                    ord: null
+                },
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            }
+        );
+
+        $.ajax({
+                url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/itemgroup/QP/',
+                type: "GET",
+                data: {
+                    datasource: 'faostat',
+                    domains: domainCode,
+                    whitelist: [],
+                    blacklist: [],
+                    subcodelists: null,
+                    show_lists: null,
+                    show_full_metadata: null,
+                    ord: null
+                },
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            }
+        );
+
+        $.ajax({
+                url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/itemgroup/QL/',
+                type: "GET",
+                data: {
+                    datasource: 'faostat',
+                    domains: domainCode,
+                    whitelist: [],
+                    blacklist: [],
+                    subcodelists: null,
+                    show_lists: null,
+                    show_full_metadata: null,
+                    ord: null
+                },
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            }
+        );
+/*
 
         $.ajax({
                 url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/elementgroup/' + domainCode + '/',
@@ -279,7 +353,7 @@ require([
                     }
                 }
             );
-        });
+        });*/
 
 
     });
