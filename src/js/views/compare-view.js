@@ -25,7 +25,8 @@ define([
         FILTERS_CONTAINER: '[data-role="filters_container"]',
         ADD_FILTER: '[data-role="add_filter"]',
         TIMERANGE: '[data-role="timerange"]',
-        APPLY: '[data-role="apply"]',
+        COMPARE_DATA: '[data-role="compare_data"]',
+
     };
 
     var filterBoxIDs = 0;
@@ -80,6 +81,7 @@ define([
             this.$FILTERS_CONTAINER = this.$el.find(s.FILTERS_CONTAINER);
             this.$ADD_FILTER = this.$el.find(s.ADD_FILTER);
             this.$TIMERANGE = this.$el.find(s.TIMERANGE);
+            this.$COMPARE_DATA = this.$el.find(s.COMPARE_DATA);
 
             //console.log(this.$filters);
 
@@ -87,21 +89,17 @@ define([
 
         initComponents: function () {
 
+            // add initial filter
             var filter = this.addFilter();
 
-            this.initTimerange();
+            // init timerange
+            this.$TIMERANGE.rangeSlider(CC.timerange.options);
 
         },
 
         configurePage: function () {
 
         },
-
-        initTimerange: function () {
-
-            this.$TIMERANGE.rangeSlider(CC.timerange.options);
-        },
-
 
         // filters
         addFilter: function() {
@@ -113,30 +111,66 @@ define([
             this.$FILTERS_CONTAINER.prepend(f.$el);
             // cache the filterBox
             filterBox[f.o.filterBoxID] = f;
-            console.log(filterBox);
             return f;
         },
 
         onFilterBoxRemove: function(box) {
             console.warn('TODO: internal filter remove');
             //this.removeFilter(filterBox);
-            console.log(this);
             this.removeFilterBox(box);
         },
 
         removeFilterBox: function(box) {
-            console.log(box);
-            console.log(filterBox);
-            console.log(filterBox[box.filter.o.filterBoxID]);
             delete filterBox[box.filter.o.filterBoxID];
             console.log(filterBox);
         },
 
+        getFiltersFromBoxes: function() {
+
+          // get the filters from each box to create the chart and the table
+
+        },
+
+        compareData: function() {
+            console.log("Compare Data");
+
+            // get years TODO: get all the years in the timerange?
+            var timerange = this.$TIMERANGE.rangeSlider("values"),
+                minYear = timerange.min,
+                maxYear = timerange.max;
+
+
+            // get for each filterBox the relative filters (domain, items etc...)
+            var filters = this._getFiltersSelections();
+
+
+            // check the estimated series dimensions
+
+            // retrieve with getData the data for the single box
+
+            // create chart
+
+            // create table
+
+        },
+
+        _getFiltersSelections: function() {
+            var filters = [];
+            _.each(Object.keys(filterBox), _.bind(function(filterID) {
+                console.log(filterID);
+                var filter = filterBox[filterID];
+                filters.push(filter.getFilters());
+            }, this));
+            console.log(filters);
+            return filters;
+        },
 
 
         bindEventListeners: function () {
 
             this.$ADD_FILTER.on('click', _.bind(this.addFilter, this));
+            this.$COMPARE_DATA.on('click', _.bind(this.compareData, this));
+
         },
 
         unbindEventListeners: function () {

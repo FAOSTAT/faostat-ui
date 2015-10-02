@@ -4,12 +4,13 @@ define([
     /* TODO: move to another folder? */
     'text!lib/compare/templates/compare_filter.hbs',
     'text!lib/compare/templates/dropdown.hbs',
+    'i18n!nls/common',
     'handlebars',
     'faostatapiclient',
     'underscore',
     'select2',
     'amplify'
-], function (Common, templateFilter, templateDropDown, Handlebars, FAOSTATAPIClient, _) {
+], function (Common, templateFilter, templateDropDown, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
 
     'use strict';
 
@@ -62,7 +63,7 @@ define([
         }
 
         if (this.o.ddOptions.addEmptySelection) {
-            this.$DD.prepend("<option>terfd</option>");
+            this.$DD.prepend("<option></option>");
         }
 
         this.$DD.select2();
@@ -78,13 +79,28 @@ define([
         return template(data);
     };
 
-    CompareFilter.prototype.getSelectedOptions = function (data) {
-        // TODO: get selected options
+    CompareFilter.prototype.getDropDown = function (data) {
+        return this.$DD;
     };
 
-    CompareFilter.prototype.getDropDown = function () {
-        // TODO: get dropdown
-        return this.$DD;
+    CompareFilter.prototype.getFilter = function () {
+        console.log("getFilter");
+        var f = {
+            id: this.o.metadata.parameters.id,
+            parameter: this.o.metadata.parameters.parameter,
+            codes: this.$DD.val()
+        };
+
+        // TODO: remove the alert?
+        if (f.codes.length <= 0) {
+            amplify.publish(E.NOTIFICATION_WARNING, {
+                title: i18nLabels.warning,
+                text: 'Select at least one ' + this.o.metadata.parameters.id
+            });
+        }
+
+        // if nothing is selected set an alert?
+        return f;
     };
 
     CompareFilter.prototype.unbindEventListeners = function () {

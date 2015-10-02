@@ -238,10 +238,13 @@ define([
                                 addEmptySelection: true,
                                 placeholder: "SELECT a",
                                 allowClear: true
-                            }
+                            };
+
 
                             filters[id] = {};
                             filters[id].filter = new Filter(v);
+
+                            console.log(filters);
 
                         }catch(e) {
                             console.error(e);
@@ -284,6 +287,10 @@ define([
                         })
                    );
                 }
+                else {
+                    // TODO: check how to handle i.e. the year that is crop selectors
+                    console.warn("TODO: check how to handle i.e. the year that is crop selectors");
+                }
 
             }, this));
 
@@ -301,7 +308,44 @@ define([
 
 
         getFilters: function () {
+
+            // filters to be returned to the compare-view
+
+            var f = [];
             // TODO: get all the filters mapping
+            // for all the filters get
+            // the id
+            // i.e. metadata.parameters.parameter: "@List1Codes",
+            // with the relative values
+            // to pass to the getData
+
+            // TODO: how to handle the domain?
+            var domain = {};
+
+            domain.id = 'domain';
+            domain.parameter = '@List1Codes';
+            // TODO: change domains variable name
+            domain.codes = [domains.$DD.val()];
+            f.push(domain);
+
+            console.log(Object.keys(filters));
+
+            // Get all the selected values from the filters multiselections dropdown
+            try {
+                _.each(Object.keys(filters), function (filterKey) {
+                    console.log(filterKey);
+                    console.log("daje");
+                    f.push(filters[filterKey].filter.getFilter());
+                    console.log("daje2");
+                });
+            }catch(e) {
+                console.error(e);
+            }
+
+
+            console.log(f);
+
+            return f;
         },
 
         removeFilterBox: function(e) {
