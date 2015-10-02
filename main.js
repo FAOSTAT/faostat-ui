@@ -181,6 +181,104 @@ require([
             controllerSuffix: C.CHAPLINJS_CONTROLLER_SUFFIX
         });
 
+
+        // TEST
+
+        $.ajax({
+                url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/areagroup/' + domainCode + '/',
+                type: "GET",
+                data: {
+                    datasource: 'faostat',
+                    domains: domainCode,
+                    whitelist: [],
+                    blacklist: [],
+                    subcodelists: null,
+                    show_lists: null,
+                    show_full_metadata: null,
+                    ord: null
+                },
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            }
+        );
+
+        $.ajax({
+                url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/elementgroup/' + domainCode + '/',
+                type: "GET",
+                data: {
+                    datasource: 'faostat',
+                    domains: domainCode,
+                    whitelist: [],
+                    blacklist: [],
+                    subcodelists: null,
+                    show_lists: null,
+                    show_full_metadata: null,
+                    ord: null
+                },
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            }
+        );
+
+        $.ajax({
+                url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/itemgroup/' + domainCode + '/',
+                type: "GET",
+                data: {
+                    datasource: 'faostat',
+                    domains: domainCode,
+                    whitelist: [],
+                    blacklist: [],
+                    subcodelists: null,
+                    show_lists: null,
+                    show_full_metadata: null,
+                    ord: null
+                },
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            }
+        );
+
+
+        // test with loop
+        var ids = ['areagroup', 'elementgroup', 'itemgroup'],
+            domainCode = 'RV';
+
+        _.each(ids, function (id) {
+            $.ajax({
+                    url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/' + id + '/' + domainCode + '/',
+                    type: "GET",
+                    data: {
+                        datasource: 'faostat',
+                        domains: domainCode,
+                        whitelist: [],
+                        blacklist: [],
+                        subcodelists: null,
+                        show_lists: null,
+                        show_full_metadata: null,
+                        ord: null
+                    },
+                    success: function (result) {
+                        console.log(result);
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                }
+            );
+        });
+
     });
 
 
