@@ -5,6 +5,18 @@ define(function () {
 
         return {
 
+            timerange: {
+               options: {
+                   bounds: {
+                       min: 1961,
+                       max: 2050
+                   },
+                   defaultValues:{
+                       min: 1990,
+                       max: 2013
+                   }
+               }
+            },
 
             groups: {
                 blacklist: ""
