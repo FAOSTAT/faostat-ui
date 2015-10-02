@@ -331,16 +331,9 @@ define([
             console.log(Object.keys(filters));
 
             // Get all the selected values from the filters multiselections dropdown
-            try {
-                _.each(Object.keys(filters), function (filterKey) {
-                    console.log(filterKey);
-                    console.log("daje");
-                    f.push(filters[filterKey].filter.getFilter());
-                    console.log("daje2");
-                });
-            }catch(e) {
-                console.error(e);
-            }
+            _.each(Object.keys(filters), function (filterKey) {
+                f.push(filters[filterKey].filter.getFilter());
+            });
 
 
             console.log(f);
