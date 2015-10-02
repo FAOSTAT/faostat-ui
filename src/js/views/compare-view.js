@@ -1,5 +1,6 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
+    'jquery',
     'views/base/view',
     'globals/Common',
     'config/FAOSTAT',
@@ -13,8 +14,9 @@ define([
     'handlebars',
     'faostatapiclient',
     'views/compare-filter-box-view',
+    'jquery.rangeSlider',
     'amplify'
-], function (View, Common, F, C, Q, E, EC, CC, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView) {
+], function ($, View, Common, F, C, Q, E, EC, CC, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView) {
 
     'use strict';
 
@@ -77,6 +79,7 @@ define([
 
             this.$FILTERS_CONTAINER = this.$el.find(s.FILTERS_CONTAINER);
             this.$ADD_FILTER = this.$el.find(s.ADD_FILTER);
+            this.$TIMERANGE = this.$el.find(s.TIMERANGE);
 
             //console.log(this.$filters);
 
@@ -86,10 +89,17 @@ define([
 
             var filter = this.addFilter();
 
+            this.initTimerange();
+
         },
 
         configurePage: function () {
 
+        },
+
+        initTimerange: function () {
+
+            this.$TIMERANGE.rangeSlider(CC.timerange.options);
         },
 
 
