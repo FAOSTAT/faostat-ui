@@ -1,15 +1,15 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
-    '../../views/base/view',
     'globals/Common',
-    'text!templates/compare/compare_filter.hbs',
-    'text!templates/compare/dropdown.hbs',
+    /* TODO: move to another folder? */
+    'text!lib/compare/templates/compare_filter.hbs',
+    'text!lib/compare/templates/dropdown.hbs',
     'handlebars',
     'faostatapiclient',
     'underscore',
     'select2',
     'amplify'
-], function ( View, Common, templateFilter, templateDropDown, Handlebars, FAOSTATAPIClient, _) {
+], function (Common, templateFilter, templateDropDown, Handlebars, FAOSTATAPIClient, _) {
 
     'use strict';
 
@@ -20,11 +20,17 @@ define([
 
     };
 
+    var dropDownOptions = {
+
+    }
+
     function CompareFilter(options) {
         this.o = options || {};
 
+        // default dropdownOptions
+        this.o.ddOptions = $.extend({}, dropDownOptions, this.o.ddOptions || {});
+
         // store container variable
-        console.log(this.o.container);
         this.$CONTAINER = this.o.container;
 
         this.initVariables();
@@ -39,8 +45,6 @@ define([
         // init lang
         this.o.lang = Common.getLocale();
 
-        //this.$DD = this.
-
     },
 
     CompareFilter.prototype.initComponents = function () {
@@ -52,6 +56,15 @@ define([
         this.$DD_CONTAINER.html(this.createDropdown(this.o));
 
         this.$DD = this.$DD_CONTAINER.find(s.$DD);
+
+        if (this.o.ddOptions.multiple) {
+            this.$DD.attr('multiple', 'multiple');
+        }
+
+        if (this.o.ddOptions.addEmptySelection) {
+            this.$DD.prepend("<option>terfd</option>");
+        }
+
         this.$DD.select2();
     };
 
@@ -61,8 +74,7 @@ define([
     };
 
     CompareFilter.prototype.createDropdown = function (data) {
-        var template;
-        template = Handlebars.compile(templateDropDown);
+        var template = Handlebars.compile(templateDropDown);
         return template(data);
     };
 

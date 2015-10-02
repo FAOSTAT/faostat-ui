@@ -1,5 +1,6 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
+    'jquery',
     'views/base/view',
     'globals/Common',
     'config/FAOSTAT',
@@ -8,15 +9,17 @@ define([
     'config/EventsCompare',
     'config/compare/Config',
     'text!templates/compare/compare_filter_box.hbs',
+    'text!templates/compare/filter_container.hbs',
     //'text!templates/compare/dropdown.hbs',
     'i18n!nls/compare',
     'handlebars',
     'faostatapiclient',
     'underscore',
-    'views/compare-filter-view-backup',
+    //'views/compare-filter-view-backup',
     'lib/compare/compare-filter',
-    'amplify'
-], function (View, Common, F, C, E, EC, CC, template, i18nLabels, Handlebars, FAOSTATAPIClient, _, FilterView, Filter) {
+    'q',
+    'amplify',
+], function ($, View, Common, F, C, E, EC, CC, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
 
     'use strict';
 
@@ -29,12 +32,11 @@ define([
 
     };
 
-    var filters = {};
     var groups = {};
     var domains = {};
 
-    // list of the dimensions by code
-    var dimensions = {
+    // list of the dimensions
+    var filters = {
 
     };
 
@@ -107,8 +109,6 @@ define([
         createGroupFilter: function(json) {
             var self = this;
 
-            console.log(json);
-
             var groupsData = this.filterGroups(json.data);
             var filter = new Filter({
                 container: this.$GROUPS,
@@ -131,16 +131,11 @@ define([
 
         createDomainFilter: function(json) {
             var self = this;
-
-            console.log(json);
-
-           var filter = new Filter({
+            var filter = new Filter({
                 container: this.$DOMAINS,
                 title: i18nLabels.domains,
                 data: json
             });
-
-            console.log(filter);
 
             // cache groups dropdown
             domains = {
@@ -169,8 +164,11 @@ define([
         },
 
         onDomainChange: function(code) {
-            // get the domains list
-            console.log(code);
+            this.domainCode = code;
+
+            // get dimensions and create new filters
+            this.createFiltersByDomain();
+
         },
 
         filterGroups: function(data) {
@@ -197,40 +195,129 @@ define([
 
             // TODO: add blacklist
             _.forEach(codes, function(v) {
-                console.log(v);
+                // TODO: mkae it multilanguage and dinnamic
                 domains.push({
                         code: v.DomainCode,
                         label: v.DomainNameE,
                     }
                 );
             });
-            console.log(domains);
             return domains;
         },
 
-        createFilters: function() {
+        // Filters by domains
+        createFiltersByDomain: function() {
+
+            // remove filters (dispose)
+            this.$FILTERS.empty();
+
+            // clean old filters
+            filters = {};
 
             // parse the dimensions to create dinamically the dropdowns needed
+            this.FAOSTATAPIClient.dimensions({
+                lang: this.o.lang,
+                domain_code: this.domainCode
+            }).then(_.bind(this._preloadDomainDimensions, this))
+                .then(_.bind(function(json) {
+                    console.log(json);
+                    _.each(json, _.bind(function(v, a) {
+
+                        try {
+                            console.log(v);
+
+                            var id = v.metadata.parameters.id;
+
+                            // TODO: to be changed
+                            v.container = this.createFilterContainer(id);
+
+                            // TODO: get label from metadata
+                            v.title = i18nLabels[id];
+                            v.ddOptions = {
+                                multiple: true,
+                                addEmptySelection: true,
+                                placeholder: "SELECT a",
+                                allowClear: true
+                            }
+
+                            filters[id] = {};
+                            filters[id].filter = new Filter(v);
+
+                        }catch(e) {
+                            console.error(e);
+                        }
+
+                    }, this));
+            }, this));
 
         },
+
+        _preloadDomainDimensions: function (json) {
+
+            var r = [],
+                domainCode = this.domainCode,
+                lang = this.o.lang,
+                self = this;
+
+            this.filtersCodeLists = {};
+
+            // Q.all to return all the request at the same time
+            _.each(json.data, _.bind(function (c) {
+
+                var id = c.id;
+
+                // add check on the blacklist
+                if (CC.filters.blacklistCodesID.indexOf(id) <= -1) {
+
+                   r.push(
+                     self.FAOSTATAPIClient.codes({
+                            id: id,
+                            lang: lang,
+                            domain_code: domainCode,
+                            domains: domainCode,
+                            whitelist: [],
+                            blacklist: [],
+                            subcodelists: null,
+                            show_lists: null,
+                            show_full_metadata: null,
+                            ord: null
+                        })
+                   );
+                }
+
+            }, this));
+
+            return Q.all(r);
+
+        },
+
+        createFilterContainer: function (id) {
+
+            var template = Handlebars.compile(templateFilterContainer);
+            this.$FILTERS.append(template({id: id}));
+            return this.$FILTERS.find('[data-role="filter-'+ id +'"]');
+
+        },
+
 
         getFilters: function () {
             // TODO: get all the filters mapping
         },
 
         removeFilterBox: function(e) {
+
             console.warn("TODO: dispose of the box and the filters");
             console.log(e);
             console.log(this);
 
             amplify.publish(EC.FILTER_BOX_REMOVE, {filter: this});
             this.$el.empty();
+
         },
 
         bindEventListeners: function () {
 
             //amplify.publish(E.STATE_CHANGE, {compare: 'compare'});
-            console.log(this);
             this.$REMOVE_FILTER_BOX.on('click', _.bind(this.removeFilterBox, this));
         },
 

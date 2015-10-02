@@ -49,7 +49,6 @@ define(['chaplin', 'amplify'], function (Chaplin) {
 
     Common.prototype.changeURLLanguage = function() {
         var locale = (this.lang !== DEFAULT_LANGUAGE)? this.lang: undefined;
-        console.log(this.lang);
         return this.lang;
         //return (this.lang !== DEFAULT_LANGUAGE)? this.lang: undefined;
         //return (amplify.store('locale') !== DEFAULT_LANGUAGE)? amplify.store('locale'): undefined;
@@ -58,7 +57,6 @@ define(['chaplin', 'amplify'], function (Chaplin) {
     Common.prototype.updateQueryStringParameter = function(uri, key, value) {
         var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
         var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-        console.log(uri, key, value);
         if (value) {
             if (uri.match(re)) {
                 return uri.replace(re, '$1' + key + "=" + value + '$2');

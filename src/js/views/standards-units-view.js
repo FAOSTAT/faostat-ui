@@ -4,6 +4,7 @@
 define([
     'views/base/view',
     'config/Config',
+
     'config/Events',
     'globals/Common',
     'text!templates/standards/standards-units.hbs',
@@ -89,7 +90,8 @@ define([
 
             // TODO: lang
             this.FAOSTATAPIClient.units({
-                lang: this.o.lang
+                datasource: C.DATASOURCE,
+                lang: this.o.lang,
             }).then(_.bind(this.showTable, this));
 
         },

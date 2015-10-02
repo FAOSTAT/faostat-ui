@@ -92,6 +92,7 @@ define([
 
             // TODO: lang
             this.FAOSTATAPIClient.abbreviations({
+                datasource: C.DATASOURCE,
                 lang: this.o.lang
             }).then(_.bind(this.showTable, this));
 
