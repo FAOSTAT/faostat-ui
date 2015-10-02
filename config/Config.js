@@ -5,6 +5,8 @@ define(function () {
 
         return {
 
+            "DATASOURCE": "faostat",
+
             //Chaplin JS configuration
             CHAPLINJS_CONTROLLER_SUFFIX: '-controller',
             CHAPLINJS_PROJECT_ROOT: '',

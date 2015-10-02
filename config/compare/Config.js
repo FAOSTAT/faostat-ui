@@ -5,7 +5,6 @@ define(function () {
 
         return {
 
-            blacklist: "",
 
             groups: {
                 blacklist: ""
@@ -13,6 +12,11 @@ define(function () {
 
             domains: {
                 blacklist: ""
+            },
+
+            // this will blacklist all the IDs that should not be created as filters
+            filters: {
+                blacklistCodesID: ['yeargroup']
             }
 
 

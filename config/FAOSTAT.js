@@ -4,6 +4,9 @@ define(function () {
     'use strict';
 
     return {
+
+        "DATASOURCE": "faostat",
+
         "analysis": {
             "FAOSTAT_UI_ANALYSIS_GHG_QA_QC": {
                 "datasource": "faostatdata",
