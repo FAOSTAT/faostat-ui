@@ -101,15 +101,26 @@ define([
         configurePage: function () {
             var self = this;
 
-            this.FAOSTATAPIClient.groupsanddomains({
+/*           this.FAOSTATAPIClient.groupsanddomains({
+                datasource: C.DATASOURCE,
                 lang: this.o.lang
             }).then(function(json) {
+
+               console.log(json);
 
                 // caching goups and domains
                 self.GROUPS_AND_DOMAINS = json;
 
                 // create goups filter
                 self.createGroupFilter(self.GROUPS_AND_DOMAINS);
+            });*/
+
+            this.FAOSTATAPIClient.groups({
+                datasource: C.DATASOURCE,
+                lang: this.o.lang,
+                blacklist: CC.groups.blacklist || []
+            }).then(function(json) {
+                self.createGroupFilter(json);
             });
 
         },
@@ -139,15 +150,42 @@ define([
             groups.$DD.change(function(e) {
                 self.onGroupChange(e.val, e.added.text);
             });
+        },
 
+        createGroupFilterBK: function(json) {
+            var self = this;
+
+            var groupsData = this.filterGroups(json.data);
+            var filter = new Filter({
+                container: this.$GROUPS,
+                title: i18nLabels.groups,
+                data: groupsData
+            });
+
+            // cache groups dropdown
+            groups = {
+                filter: filter,
+                // TODO: keep track of the filter
+                json: json
+            };
+
+            groups.$DD = filter.getDropDown();
+
+            // TODO: make it nicer the default code selection
+            self.onGroupChange(groups.$DD.find(":selected").val(), groups.$DD.find(":selected").text());
+
+            groups.$DD.change(function(e) {
+                self.onGroupChange(e.val, e.added.text);
+            });
         },
 
         createDomainFilter: function(json) {
             var self = this;
+
             var filter = new Filter({
                 container: this.$DOMAINS,
                 title: i18nLabels.domains,
-                data: json
+                data: json.data
             });
 
             // cache groups dropdown
@@ -168,7 +206,26 @@ define([
         },
 
         onGroupChange: function(code, label) {
-            var json = this.GROUPS_AND_DOMAINS;
+
+            var self = this;
+
+            // TODO: dispose domains and filters container
+
+            this.$GROUP_HEADING_TITLE.html(label);
+
+            this.FAOSTATAPIClient.domains({
+                group_code: code,
+                datasource: C.DATASOURCE,
+                lang: this.o.lang,
+                blacklist: CC.domains.blacklist || []
+            }).then(function(json) {
+                console.log(json);
+                self.createDomainFilter(json);
+            });
+
+        },
+
+        onGroupChangeBK: function(code, label) {
 
             // TODO: dispose domains and filters container
 
@@ -183,12 +240,15 @@ define([
         },
 
         onDomainChange: function(code, label) {
+
             this.domainCode = code;
+
+            this.$DOMAIN_HEADING_TITLE.html(label);
 
             // get dimensions and create new filters
             this.createFiltersByDomain();
 
-            this.$DOMAIN_HEADING_TITLE.html(label);
+
 
         },
 
@@ -237,6 +297,7 @@ define([
 
             // parse the dimensions to create dinamically the dropdowns needed
             this.FAOSTATAPIClient.dimensions({
+                datasource: C.DATASOURCE,
                 lang: this.o.lang,
                 domain_code: this.domainCode
             }).then(_.bind(this._preloadDomainDimensions, this))
@@ -295,6 +356,7 @@ define([
 
                    r.push(
                      self.FAOSTATAPIClient.codes({
+                            datasource: C.DATASOURCE,
                             id: id,
                             lang: lang,
                             domain_code: domainCode,
