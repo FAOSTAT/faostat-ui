@@ -30,7 +30,9 @@ define([
         FILTERS: '[data-role="filters"]',
         REMOVE_FILTER_BOX: '[data-role="remove_filter_box"]',
         COLLAPSE_FILTER_BOX: '[data-role="collapse_filter_box"]',
-        PANEL_BODY: '[data-role="panel_body_filter_box"]'
+        PANEL_BODY: '[data-role="panel_body_filter_box"]',
+        GROUP_HEADING_TITLE: '[data-role="group-heading-title"]',
+        DOMAIN_HEADING_TITLE: '[data-role="domain-heading-title"]'
 
     };
 
@@ -87,7 +89,8 @@ define([
             this.$REMOVE_FILTER_BOX = this.$el.find(s.REMOVE_FILTER_BOX);
             this.$COLLAPSE_FILTER_BOX = this.$el.find(s.COLLAPSE_FILTER_BOX);
             this.$PANEL_BODY = this.$el.find(s.PANEL_BODY);
-
+            this.$GROUP_HEADING_TITLE = this.$el.find(s.GROUP_HEADING_TITLE);
+            this.$DOMAIN_HEADING_TITLE = this.$el.find(s.DOMAIN_HEADING_TITLE);
 
         },
 
@@ -130,7 +133,8 @@ define([
 
             groups.$DD = filter.getDropDown();
             groups.$DD.change(function(e) {
-                self.onGroupChange(e.val);
+                self.onGroupChange(e.val, e.added.text);
+
             });
         },
 
@@ -151,11 +155,11 @@ define([
 
             domains.$DD = filter.getDropDown();
             domains.$DD.change(function(e) {
-                self.onDomainChange(e.val);
+                self.onDomainChange(e.val, e.added.text);
             });
         },
 
-        onGroupChange: function(code) {
+        onGroupChange: function(code, label) {
             var json = this.GROUPS_AND_DOMAINS;
 
             // TODO: dispose domains and filters container
@@ -166,13 +170,17 @@ define([
             // create domains filters
             this.createDomainFilter(domains);
 
+            this.$GROUP_HEADING_TITLE.html(label);
+
         },
 
-        onDomainChange: function(code) {
+        onDomainChange: function(code, label) {
             this.domainCode = code;
 
             // get dimensions and create new filters
             this.createFiltersByDomain();
+
+            this.$DOMAIN_HEADING_TITLE.html(label);
 
         },
 
