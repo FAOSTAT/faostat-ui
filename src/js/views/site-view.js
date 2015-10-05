@@ -187,12 +187,16 @@ define([
 
         changeLanguage: function(lang) {
             // TODO: Check if english is used
+
+            Common.changeURLLanguage(lang);
+
+           /*
             Common.setLocale(lang);
-            var uri = Common.updateQueryStringParameter(window.location.href, 'locale', Common.getLocale());
+           var uri = Common.updateQueryStringParameter(window.location.href, 'locale', Common.getLocale());
 
             // TODO: rewrite. dirty change url
             window.location.replace(uri);
-            window.location.reload();
+            window.location.reload();*/
             //window.open(uri, '_self')
         }
 
