@@ -11,9 +11,10 @@ define([
     'i18n!nls/site',
     'text!templates/site.hbs',
     'FAOSTAT_UI_MENU',
+    'lib/common/waiting',
     'sweetAlert',
     'globals/Common',
-], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, swal, Common) {
+], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, swal, Common) {
 
     'use strict';
 
@@ -56,7 +57,8 @@ define([
             amplify.subscribe(E.STATE_CHANGE, this, this.onStateUpdate);
             amplify.subscribe(E.NOTIFICATION_WARNING, this, this.onNotificationWarning);
             amplify.subscribe(E.NOTIFICATION_ACCEPT, this, this.onNotificationAccept);
-
+            amplify.subscribe(E.WAITING_SHOW, this, Waiting.showPleaseWait);
+            amplify.subscribe(E.WAITING_HIDE, this,  Waiting.hidePleaseWait);
 
             // TODO: bind multilingual switch
             /*            this.$el.find('[data-locale=fr]').click(function(e) {
@@ -71,6 +73,7 @@ define([
                 console.log(this.getAttribute("data-locale"))
                 self.changeLanguage(this.getAttribute("data-locale"));
             });
+
         },
 
         initComponents: function () {
@@ -125,8 +128,6 @@ define([
                 datasource: 'faostatdb'
             });
 
-
-
         },
 
         onMenuRendered: function () {
@@ -147,6 +148,9 @@ define([
 
             this.topMenu.select(State.menu);
         },
+
+
+        // Notifications
 
         onNotificationWarning: function (data) {
 
@@ -178,8 +182,6 @@ define([
                     }
                     swal("Nice!", "You wrote: " + inputValue, "success");
                 });
-
-
         },
 
 
@@ -193,6 +195,7 @@ define([
             window.location.reload();
             //window.open(uri, '_self')
         }
+
 
     });
 

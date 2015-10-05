@@ -92,6 +92,7 @@ define([
         };
 
         // TODO: remove the alert?
+        //console.log(f);
         if (f.codes.length <= 0) {
             amplify.publish(E.NOTIFICATION_WARNING, {
                 title: i18nLabels.warning,
