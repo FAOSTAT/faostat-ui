@@ -55,14 +55,16 @@ define([
 
             amplify.subscribe(E.STATE_CHANGE, this, this.onStateUpdate);
             amplify.subscribe(E.NOTIFICATION_WARNING, this, this.onNotificationWarning);
+            amplify.subscribe(E.NOTIFICATION_ACCEPT, this, this.onNotificationAccept);
+
 
             // TODO: bind multilingual switch
-/*            this.$el.find('[data-locale=fr]').click(function(e) {
-                console.log(e);
-                console.log(this);
-                console.log(this.data("data-locale"))
+            /*            this.$el.find('[data-locale=fr]').click(function(e) {
+             console.log(e);
+             console.log(this);
+             console.log(this.data("data-locale"))
 
-            });*/
+             });*/
 
             this.$el.find('.fs-lang').click(function(e) {
 
@@ -155,6 +157,31 @@ define([
             });
 
         },
+
+        onNotificationAccept: function (data, callback) {
+
+            swal({
+                    title: "An input!",
+                    text: "Write something interesting:",
+                    type: "input",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    animation: "slide-from-top",
+                    inputPlaceholder: "Write something"
+                },
+                function(inputValue){
+                    if (inputValue === false)
+                        return false;
+                    if (inputValue === "") {
+                        swal.showInputError("You need to write something!");
+                        return false;
+                    }
+                    swal("Nice!", "You wrote: " + inputValue, "success");
+                });
+
+
+        },
+
 
         changeLanguage: function(lang) {
             // TODO: Check if english is used

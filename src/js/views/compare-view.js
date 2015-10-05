@@ -121,8 +121,11 @@ define([
         },
 
         removeFilterBox: function(box) {
-            delete filterBox[box.filter.o.filterBoxID];
-            console.log(filterBox);
+            if ( Object.keys(filterBox).length > 1 ) {
+                delete filterBox[box.filter.o.filterBoxID];
+                box.filter.$el.empty();
+                console.log(filterBox);
+            }
         },
 
         getFiltersFromBoxes: function() {

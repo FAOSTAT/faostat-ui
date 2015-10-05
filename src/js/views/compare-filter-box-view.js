@@ -28,7 +28,9 @@ define([
         GROUPS: '[data-role="groups"]',
         DOMAINS: '[data-role="domains"]',
         FILTERS: '[data-role="filters"]',
-        REMOVE_FILTER_BOX: '[data-role="remove_filter_box"]'
+        REMOVE_FILTER_BOX: '[data-role="remove_filter_box"]',
+        COLLAPSE_FILTER_BOX: '[data-role="collapse_filter_box"]',
+        PANEL_BODY: '[data-role="panel_body_filter_box"]'
 
     };
 
@@ -83,6 +85,9 @@ define([
             this.$DOMAINS = this.$el.find(s.DOMAINS);
             this.$FILTERS = this.$el.find(s.FILTERS);
             this.$REMOVE_FILTER_BOX = this.$el.find(s.REMOVE_FILTER_BOX);
+            this.$COLLAPSE_FILTER_BOX = this.$el.find(s.COLLAPSE_FILTER_BOX);
+            this.$PANEL_BODY = this.$el.find(s.PANEL_BODY);
+
 
         },
 
@@ -346,16 +351,29 @@ define([
             console.warn("TODO: dispose of the box and the filters");
             console.log(e);
             console.log(this);
-
+            // TODO: onRemove the filter add popup to check if the user want to remove it?
+            //amplify.publish(E.NOTIFICATION_ACCEPT, {filter: this});
             amplify.publish(EC.FILTER_BOX_REMOVE, {filter: this});
-            this.$el.empty();
+        },
+
+        collapseFilterBox: function(e) {
+            var self = this;
+
+            this.$PANEL_BODY.toggle("fast", function() {
+                self.$COLLAPSE_FILTER_BOX.removeClass("fa-chevron-up");
+                self.$COLLAPSE_FILTER_BOX.removeClass("fa-chevron-down");
+                if ( self.$PANEL_BODY.is(":visible")) {
+                    self.$COLLAPSE_FILTER_BOX.addClass("fa-chevron-down");
+                } else {
+                    self.$COLLAPSE_FILTER_BOX.addClass("fa-chevron-up");
+                }
+            });
 
         },
 
         bindEventListeners: function () {
-
-            //amplify.publish(E.STATE_CHANGE, {compare: 'compare'});
             this.$REMOVE_FILTER_BOX.on('click', _.bind(this.removeFilterBox, this));
+            this.$COLLAPSE_FILTER_BOX.on('click', _.bind(this.collapseFilterBox, this));
         },
 
         unbindEventListeners: function () {
