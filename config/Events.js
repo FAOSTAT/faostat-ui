@@ -11,7 +11,10 @@ define(function ( ) {
         MENU_UPDATE : 'fx.fenix.menu.change',
 
         NOTIFICATION_WARNING : 'fs.notification.warning',
-        NOTIFICATION_ACCEPT : 'fs.notification.accept'
+        NOTIFICATION_ACCEPT : 'fs.notification.accept',
+
+        WAITING_SHOW : 'fs.waiting.show',
+        WAITING_HIDE : 'fs.waiting.hide'
 
     };
 });
