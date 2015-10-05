@@ -132,10 +132,14 @@ define([
             };
 
             groups.$DD = filter.getDropDown();
+
+            // TODO: make it nicer the default code selection
+            self.onGroupChange(groups.$DD.find(":selected").val(), groups.$DD.find(":selected").text());
+
             groups.$DD.change(function(e) {
                 self.onGroupChange(e.val, e.added.text);
-
             });
+
         },
 
         createDomainFilter: function(json) {
@@ -154,6 +158,10 @@ define([
             };
 
             domains.$DD = filter.getDropDown();
+
+            // TODO: make it nicer the default code selection
+            self.onDomainChange(domains.$DD.find(":selected").val(), domains.$DD.find(":selected").text());
+
             domains.$DD.change(function(e) {
                 self.onDomainChange(e.val, e.added.text);
             });
