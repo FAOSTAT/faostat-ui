@@ -7,10 +7,11 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
         "title": "Compare Data",
         "selectors": "Selectors",
+        "filters": "Filters",
         "add_new_selector": "Add New Selector",
         "compare_data": "Compare Data",
         "add_filter": "Add Filter",
-        "remove_filter": "Remove Filter",
+        "remove_filter": "Remove Filter"
 
     });
 });
