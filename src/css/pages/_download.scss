@@ -247,3 +247,17 @@
 .faostat-download-tree-holder .jstree-container-ul .jstree-children .jstree-node .jstree-wholerow {
   height: 100%;
 }
+
+// TODO: dirty fix, remove ID to bulk_downloads
+#bulk_downloads h3 {
+  a {
+    color: $fenix-text;
+    cursor: pointer;
+  }
+  a:focus {
+    outline: none;
+  }
+  a:active {
+    outline: none;
+  }
+}

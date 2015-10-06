@@ -88,36 +88,5 @@ body{
   }
 }
 
-a {
-  color: $fenix-text;
-  cursor: pointer;
-}
-a:focus {
-  outline: none;
-}
-a:active {
-  outline: none;
-}
-
-
-/** site **/
-
-.fs-languages {
-
-  background-color: #379bce;
-  height: 50px;
-  position: absolute;
-  right: 8px;
-  top: 0;
-  color: white;
-  padding: 15px 0 0 0;
-
-  a {
-    color: $fenix-light-gray !important;
-    cursor: pointer;
-  }
-
-}
-
 
 

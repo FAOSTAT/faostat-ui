@@ -57,8 +57,11 @@ define([
             var self = this;
 
             amplify.subscribe(E.STATE_CHANGE, this, this.onStateUpdate);
+
+            amplify.subscribe(E.NOTIFICATION_INFO, this, this.onNotificationInfo);
             amplify.subscribe(E.NOTIFICATION_WARNING, this, this.onNotificationWarning);
             amplify.subscribe(E.NOTIFICATION_ACCEPT, this, this.onNotificationAccept);
+
             amplify.subscribe(E.WAITING_SHOW, this, Waiting.showPleaseWait);
             amplify.subscribe(E.WAITING_HIDE, this, Waiting.hidePleaseWait);
 
@@ -172,6 +175,15 @@ define([
 
 
         // Notifications
+        onNotificationInfo: function (data) {
+
+            swal({
+                title: data.title,
+                type: 'info',
+                text: data.text
+            });
+
+        },
 
         onNotificationWarning: function (data) {
 
