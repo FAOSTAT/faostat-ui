@@ -6,7 +6,8 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
     return $.extend(true, {}, Common, {
 
         units: 'Units',
-        abbreviations: 'abbreviations'
+        abbreviations: 'abbreviations',
+        filter_results: 'Filter Results'
 
     });
 });
