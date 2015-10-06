@@ -72,6 +72,18 @@ define([
                 self.changeLanguage(this.getAttribute("data-locale"));
             });
 
+            // scrolling
+            $(document).on( 'scroll', function(){
+
+                if ($(window).scrollTop() > 100) {
+                    $('.scroll-top-wrapper').addClass('show');
+                } else {
+                    $('.scroll-top-wrapper').removeClass('show');
+                }
+            });
+
+            $('.scroll-top-wrapper').on('click', this.scrollToTop);
+
         },
 
         initComponents: function () {
@@ -126,6 +138,14 @@ define([
                 datasource: 'faostatdb'
             });
 
+        },
+
+        scrollToTop: function() {
+            var verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
+            var element = $('body');
+            var offset = element.offset();
+            var offsetTop = offset.top;
+            $('html, body').animate({scrollTop: offsetTop}, 400, 'linear');
         },
 
         onMenuRendered: function () {
@@ -184,7 +204,6 @@ define([
                     swal("Nice!", "You wrote: " + inputValue, "success");
                 });
         },
-
 
         changeLanguage: function(lang) {
             // TODO: Check if english is used
