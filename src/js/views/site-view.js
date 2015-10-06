@@ -67,7 +67,7 @@ define([
 
 
             /* Switch Language */
-            this.$el.find('.fs-lang').click(function(e) {
+            this.$el.find('.fs-languages').find('a').click(function(e) {
                 console.log(this.getAttribute("data-locale"))
                 self.changeLanguage(this.getAttribute("data-locale"));
             });
