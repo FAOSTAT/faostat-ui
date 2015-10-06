@@ -142,7 +142,7 @@ define([
             State = $.extend(true, State, s);
 
             amplify.publish(E.MENU_UPDATE);
-            
+
         },
 
         onMenuUpdate: function () {
