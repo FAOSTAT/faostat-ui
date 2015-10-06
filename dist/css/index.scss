@@ -27,9 +27,11 @@
 @import '../../src/css/pages/home';
 @import '../../src/css/pages/download';
 
+/* Menu and some Header stuff TODO: remove the header related css from here */
+@import '../../submodules/faostat-ui-menu/css/faostat-ui-menu';
+
 /* Modules. */
 @import '../../submodules/fenix-ui-metadata-viewer/css/fenix-ui-metadata-viewer';
 //@import '../../submodules/faostat-ui-tree/css/faostat-tree';
 @import '../../submodules/faostat-ui-download-selector/css/faostat-download-selector';
-@import '../../submodules/faostat-ui-menu/css/faostat-ui-menu';
 @import '../../submodules/fenix-ui-download-options/css/fenix-ui-download-options';
