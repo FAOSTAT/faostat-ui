@@ -102,7 +102,7 @@ require([
                     wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
                     'jquery.rangeSlider': '{FENIX_CDN}/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
-                    'jquery-ui-custom': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
+                    'jquery-ui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
                     // TODO: move to CDN
 
 
@@ -120,8 +120,10 @@ require([
                     /* FAOSTAT API's client. */
                     faostatapiclient:           'FAOSTATAPIClient',
                     list: '//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min',
-                    list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min'
+                    list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min',
 
+                    /* Google Analytics */
+                    "ga": "//www.google-analytics.com/analytics"
                 },
                 shim: {
                     bootstrap: {
@@ -145,24 +147,47 @@ require([
                     faostatapiclient: {
                         deps: ['jquery']
                     },
-                    'jquery-ui-custom': {
+                    'jquery-ui': {
                         deps: ['jquery']
                     },
                     'jquery.rangeSlider': {
-                        deps: ['jquery', 'jquery-ui-custom']
+                        deps: ['jquery', 'jquery-ui']
+                    },
+                    "ga": {
+                        exports: "__ga__"
                     }
                 }
             }
         });
 
+    // Google Analytics
+    window.GoogleAnalyticsObject = "__ga__";
+    window.__ga__ = {
+        //q: [["create", "UA-68486942-1", "auto"]],
+        l: Date.now()
+    };
+
+
     var getQueryString = function ( field, url ) {
         var href = url ? url : window.location.href;
         var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+        console.log(href);
         var string = reg.exec(href);
+        console.log(string);
         return string ? string[1] : null;
     };
 
-    var locale = getQueryString('locale') || 'en';
+
+    var getLocale = function ( url ) {
+        var href = url ? url : window.location.href;
+        var langString = href.substring(href.indexOf('#')+1, href.length -1);
+        langString = langString.substring(0, langString.indexOf('/')).replace('/', '');
+        return (langString.length == 2)? langString.toLocaleLowerCase(): null;
+    };
+
+
+    //var locale = getQueryString('locale') || 'en';
+    var locale = getLocale() || 'en';
     require.config({'locale': locale});
 
     /* Bootstrap the application. */
@@ -171,11 +196,17 @@ require([
         'routes',
         'config/Config',
         'globals/Common',
+        'config/Events',
+        'globals/GoogleAnalyticsManager',
         'amplify',
         'domReady!'
-    ], function (Application, routes, C, Common) {
+    ], function (Application, routes, C, Common, E, GoogleAnalyticsManager) {
 
         Common.setLocale(requirejs.s.contexts._.config.locale);
+
+        // Mapping GoogleAnalyticsManager
+        amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
+        amplify.publish(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
 
         // TODO: use locale or lang?
         //amplify.store( 'locale', requirejs.s.contexts._.config.locale);
@@ -189,6 +220,16 @@ require([
             controllerSuffix: C.CHAPLINJS_CONTROLLER_SUFFIX
         });
 
+
+
+        $.ajax({
+                url: 'http://test.fao.org/',
+                type: "GET",
+                data: {
+                    blacklist: "['asijhoiajd']"
+                }
+            }
+        );
 
         // TEST
 
@@ -238,6 +279,10 @@ require([
             }
         );
 
+
+
+
+
         $.ajax({
                 url: 'http://fenixapps2.fao.org/api/v1.0/en/codes/itemgroup/QP/',
                 type: "GET",
@@ -281,6 +326,19 @@ require([
                 }
             }
         );
+
+
+        $.ajax({
+            url: 'http://fenixapps2.fao.org/api/v1.0/en/domains/Q/',
+            data: {
+                "datasource": 'faostat', "whitelist": [], "blacklist": ['QC']
+            },
+            type: 'GET',
+            success: function (result) {
+                console.log(result);
+            }
+        });
+
 /*
 
         $.ajax({
