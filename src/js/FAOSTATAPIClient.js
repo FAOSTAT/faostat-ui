@@ -23,7 +23,7 @@ define(['jquery', 'q'], function ($, Q) {
         return Q($.ajax({
             url: this.CONFIG.base_url +  config.lang + '/abbreviations/',
             data: {
-
+    
 },
             type: 'GET'
         }));
@@ -65,7 +65,7 @@ FAOSTATAPIClient.prototype.apply_abbreviations_defaults = function (config) {
         return Q($.ajax({
             url: this.CONFIG.base_url +  config.lang + '/glossary/',
             data: {
-
+    
 },
             type: 'GET'
         }));
@@ -107,7 +107,7 @@ FAOSTATAPIClient.prototype.apply_glossary_defaults = function (config) {
         return Q($.ajax({
             url: this.CONFIG.base_url +  config.lang + '/units/',
             data: {
-
+    
 },
             type: 'GET'
         }));
@@ -149,7 +149,7 @@ FAOSTATAPIClient.prototype.apply_units_defaults = function (config) {
         return Q($.ajax({
             url: this.CONFIG.base_url +  config.lang + '/classifications/' + config.domain_code + '/',
             data: {
-
+    
 },
             type: 'GET'
         }));
@@ -191,7 +191,7 @@ FAOSTATAPIClient.prototype.apply_classifications_defaults = function (config) {
         return Q($.ajax({
             url: this.CONFIG.base_url +  config.lang + '/methodologies/' + config.id + '/',
             data: {
-
+    
 },
             type: 'GET'
         }));
@@ -233,7 +233,7 @@ FAOSTATAPIClient.prototype.apply_methodology_defaults = function (config) {
         return Q($.ajax({
             url: this.CONFIG.base_url +  config.lang + '/methodologies/',
             data: {
-
+    
 },
             type: 'GET'
         }));
@@ -317,7 +317,7 @@ FAOSTATAPIClient.prototype.apply_dimensions_defaults = function (config) {
         return Q($.ajax({
             url: this.CONFIG.base_url +  config.lang + '/data/',
             data: {
-
+    
 },
             type: 'GET'
         }));

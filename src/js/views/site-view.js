@@ -14,7 +14,9 @@ define([
     'lib/common/waiting',
     'sweetAlert',
     'globals/Common',
-], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, swal, Common) {
+    // TODO: move analytics in another section?
+    'globals/GoogleAnalyticsManager'
+], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, swal, Common, GoogleAnalyticsManager) {
 
     'use strict';
 
@@ -58,18 +60,14 @@ define([
             amplify.subscribe(E.NOTIFICATION_WARNING, this, this.onNotificationWarning);
             amplify.subscribe(E.NOTIFICATION_ACCEPT, this, this.onNotificationAccept);
             amplify.subscribe(E.WAITING_SHOW, this, Waiting.showPleaseWait);
-            amplify.subscribe(E.WAITING_HIDE, this,  Waiting.hidePleaseWait);
+            amplify.subscribe(E.WAITING_HIDE, this, Waiting.hidePleaseWait);
 
-            // TODO: bind multilingual switch
-            /*            this.$el.find('[data-locale=fr]').click(function(e) {
-             console.log(e);
-             console.log(this);
-             console.log(this.data("data-locale"))
+            amplify.subscribe(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
+            amplify.subscribe(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
 
-             });*/
 
+            /* Switch Language */
             this.$el.find('.fs-lang').click(function(e) {
-
                 console.log(this.getAttribute("data-locale"))
                 self.changeLanguage(this.getAttribute("data-locale"));
             });
@@ -127,6 +125,9 @@ define([
                 prefix: 'faostat_download_',
                 datasource: 'faostatdb'
             });
+
+            // page view event
+            amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
 
         },
 

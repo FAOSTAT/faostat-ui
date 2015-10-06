@@ -1,7 +1,10 @@
 /*global define, amplify*/
-define(['chaplin',
-    'views/site-view'
-], function (Chaplin, SiteView) {
+define(
+    ['chaplin',
+    'views/site-view',
+    'config/Events',
+    'amplify'
+], function (Chaplin, SiteView, E) {
     'use strict';
 
     var Controller = Chaplin.Controller.extend({
