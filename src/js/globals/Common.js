@@ -1,5 +1,5 @@
 /*global define*/
-define(['chaplin', 'amplify'], function (Chaplin) {
+define(['chaplin', 'config/Events', 'amplify'], function (Chaplin, E) {
 
     'use strict';
 
@@ -40,6 +40,9 @@ define(['chaplin', 'amplify'], function (Chaplin) {
             // TODO: Use Chaplin 'route' function
             console.warn('TODO: change Backbone binding');
             Backbone.history.navigate(uri, {trigger:false});
+
+            // Google Analytics change page
+            amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
         }
     };
 

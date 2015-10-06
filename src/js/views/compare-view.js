@@ -59,6 +59,9 @@ define([
 
             View.prototype.attach.call(this, arguments);
 
+            // Google Analytics change page
+            amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
+
             //update State
             amplify.publish(E.STATE_CHANGE, {compare: 'compare'});
             amplify.subscribe(EC.FILTER_BOX_REMOVE, _.bind(this.onFilterBoxRemove, this));
@@ -115,17 +118,21 @@ define([
         },
 
         onFilterBoxRemove: function(box) {
+
             console.warn('TODO: internal filter remove');
             //this.removeFilter(filterBox);
             this.removeFilterBox(box);
+
         },
 
         removeFilterBox: function(box) {
+
             if ( Object.keys(filterBox).length > 1 ) {
                 delete filterBox[box.filter.o.filterBoxID];
                 box.filter.$el.empty();
                 console.log(filterBox);
             }
+
         },
 
         getFiltersFromBoxes: function() {
@@ -135,6 +142,14 @@ define([
         },
 
         compareData: function() {
+
+            // add compare event
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                category: F.GOOGLE_ANALYTICS.COMPARE.category,
+                action: F.GOOGLE_ANALYTICS.COMPARE.action.compare_data
+            });
+
+
             console.log("Compare Data");
 
             // get years TODO: get all the years in the timerange?

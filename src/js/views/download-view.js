@@ -96,6 +96,9 @@ define([
 
             View.prototype.attach.call(this, arguments);
 
+            // Google Analytics change page
+            amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
+
             //update State
             amplify.publish(E.STATE_CHANGE, {download: 'download'});
 
@@ -153,7 +156,6 @@ define([
                         // change URL
                         //self.changeURL(false)
                         Common.changeURL(self.options.section, [self.options.code], false);
-
 
                         // init view
                         self.initiateSection();

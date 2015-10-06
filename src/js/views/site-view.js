@@ -126,9 +126,6 @@ define([
                 datasource: 'faostatdb'
             });
 
-            // page view event
-            amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
-
         },
 
         onMenuRendered: function () {
@@ -140,9 +137,12 @@ define([
 
         onStateUpdate: function (s) {
 
+            console.log(s);
+
             State = $.extend(true, State, s);
 
             amplify.publish(E.MENU_UPDATE);
+            
         },
 
         onMenuUpdate: function () {
