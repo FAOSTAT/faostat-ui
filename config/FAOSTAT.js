@@ -20,6 +20,12 @@ define(function () {
                     'action': {
                         'show_table': 'Show Tables - TABLE'
                     }
+                },
+                COMPARE: {
+                    'category': 'COMPARE',
+                    'action': {
+                        'compare_data': 'Compare the data'
+                    }
                 }
         },
 
