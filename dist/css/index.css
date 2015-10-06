@@ -7237,29 +7237,6 @@ body {
     border-color: transparent;
     color: #666666; }
 
-a {
-  color: #666666;
-  cursor: pointer; }
-
-a:focus {
-  outline: none; }
-
-a:active {
-  outline: none; }
-
-/** site **/
-.fs-languages {
-  background-color: #379bce;
-  height: 50px;
-  position: absolute;
-  right: 8px;
-  top: 0;
-  color: white;
-  padding: 15px 0 0 0; }
-  .fs-languages a {
-    color: #dddddd !important;
-    cursor: pointer; }
-
 .nav-tabs {
   margin-left: 10px;
   -ms-transform: translateX(-10px);
@@ -7718,6 +7695,31 @@ ul[role="group"] {
 /* Third parties */
 /* Pages */
 /* Specific styles of the different pages (if needed) */
+/* footer */
+.fao-footer a {
+  color: white;
+  cursor: pointer; }
+.fao-footer a:focus {
+  outline: none; }
+.fao-footer a:active {
+  outline: none; }
+
+/* headers lang */
+.fs-languages {
+  height: 50px;
+  position: absolute;
+  right: 16px;
+  top: 0;
+  color: white;
+  padding: 15px 0px 0px 0; }
+  .fs-languages a {
+    color: white;
+    cursor: pointer; }
+  .fs-languages a:focus {
+    outline: none; }
+  .fs-languages a:active {
+    outline: none; }
+
 /* Homepage */
 [data-page='home'] .container-breadcrumb {
   display: none; }
@@ -7922,6 +7924,14 @@ ul[role="group"] {
 
 .faostat-download-tree-holder .jstree-container-ul .jstree-children .jstree-node .jstree-wholerow {
   height: 100%; }
+
+#bulk_downloads h3 a {
+  color: #666666;
+  cursor: pointer; }
+#bulk_downloads h3 a:focus {
+  outline: none; }
+#bulk_downloads h3 a:active {
+  outline: none; }
 
 /* Modules. */
 #metadata_container .well.well-sm {

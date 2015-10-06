@@ -11,7 +11,6 @@
 @import '../../src/css/theme/faostat-tabs';
 @import '../../src/css/theme/scroll-up';
 
-
 /* Components */
 @import '../../src/css/components/breadcrumbs';
 @import '../../src/css/components/fao-footer';
@@ -24,6 +23,7 @@
 
 /* Pages */
 /* Specific styles of the different pages (if needed) */
+@import '../../src/css/pages/site';
 @import '../../src/css/pages/home';
 @import '../../src/css/pages/download';
 
