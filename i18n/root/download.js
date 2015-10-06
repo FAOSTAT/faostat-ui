@@ -5,6 +5,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
+            title: 'Download Data',
             tree_title: 'FAOSTAT Domains',
             metadata_label: 'Metadata',
             interactive_download_label: 'Interactive Download',
