@@ -222,7 +222,7 @@ require([
 
 
 
-        $.ajax({
+    /*    $.ajax({
                 url: 'http://test.fao.org/',
                 type: "GET",
                 data: {
@@ -337,7 +337,7 @@ require([
             success: function (result) {
                 console.log(result);
             }
-        });
+        });*/
 
 /*
 
