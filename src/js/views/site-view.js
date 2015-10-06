@@ -93,12 +93,12 @@ define([
 
             // territorial notes
             this.$el.find(s.TERRITORIAL_NOTES).on('click', function(e) {
-                amplify.publish(E.NOTIFICATION_INFO, {title: i18nLabels.territoiral_notes_info });
+                amplify.publish(E.NOTIFICATION_INFO, {title: i18nLabels.territorial_notes_info });
             });
 
             // feedback system
             this.$el.find(s.FEEDBACK_SYSTEM).on('click', function(e) {
-                console.warn('The feeback system opens in a popup on faostat3.fao.org');
+                console.warn('The feeback system opens in a popup in faostat3.fao.org');
                 window.open(C.FEEDBACK_SYSTEM_URL, "_target=black")
             });
 
