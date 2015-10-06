@@ -21,6 +21,10 @@ define([
     'use strict';
 
     var s = {
+        TERRITORIAL_NOTES: '#territorial-notes',
+        FEEDBACK_SYSTEM: '#feedback-system',
+        LANGUAGES: '.fs-languages',
+
         TOP_MENU_CONTAINER: '#top-menu-container',
         BREADCRUMB_CONTAINER: "#breadcrumb-container",
         FOOTER_MENU_CONTAINER: "#footer-menu-container",
@@ -70,7 +74,7 @@ define([
 
 
             /* Switch Language */
-            this.$el.find('.fs-languages').find('a').click(function(e) {
+            this.$el.find(s.LANGUAGES).find('a').on('click', function(e) {
                 console.log(this.getAttribute("data-locale"))
                 self.changeLanguage(this.getAttribute("data-locale"));
             });
@@ -87,10 +91,23 @@ define([
 
             $('.scroll-top-wrapper').on('click', this.scrollToTop);
 
+            // territorial notes
+            this.$el.find(s.TERRITORIAL_NOTES).on('click', function(e) {
+                amplify.publish(E.NOTIFICATION_INFO, {title: i18nLabels.territoiral_notes_info });
+            });
+
+            // feedback system
+            this.$el.find(s.FEEDBACK_SYSTEM).on('click', function(e) {
+                console.warn('The feeback system opens in a popup on faostat3.fao.org');
+                window.open(C.FEEDBACK_SYSTEM_URL, "_target=black")
+            });
+
         },
 
         initComponents: function () {
 
+            // this is not currently used
+            // TODO: to not delete, use for the old menu and auth
             var self = this,
                 menuConf = {
 
