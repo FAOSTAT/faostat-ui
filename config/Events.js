@@ -10,6 +10,7 @@ define(function ( ) {
         STATE_CHANGE : 'fx.fenix.state.change',
         MENU_UPDATE : 'fx.fenix.menu.change',
 
+        NOTIFICATION_INFO : 'fs.notification.info',
         NOTIFICATION_WARNING : 'fs.notification.warning',
         NOTIFICATION_ACCEPT : 'fs.notification.accept',
 
