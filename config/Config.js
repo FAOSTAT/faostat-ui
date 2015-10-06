@@ -5,9 +5,10 @@ define(function () {
 
         return {
 
+            // Configuration
             "DATASOURCE": "faostat",
-
             "GOOGLE_ANALYTICS_ID": "UA-68486942-1",
+            "FEEDBACK_SYSTEM_URL": "http://fenixapps.fao.org/feedbacksystem/",
 
             //Chaplin JS configuration
             CHAPLINJS_CONTROLLER_SUFFIX: '-controller',
