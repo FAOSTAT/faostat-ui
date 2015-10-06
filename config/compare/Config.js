@@ -20,11 +20,11 @@ define(function () {
             },
 
             groups: {
-                blacklist: ""
+                blacklist: ['P']
             },
 
             domains: {
-                blacklist: ""
+                blacklist: "['QC']"
             },
 
             // this will blacklist all the IDs that should not be created as filters

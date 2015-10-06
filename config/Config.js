@@ -7,6 +7,8 @@ define(function () {
 
             "DATASOURCE": "faostat",
 
+            "GOOGLE_ANALYTICS_ID": "UA-68486942-1",
+
             //Chaplin JS configuration
             CHAPLINJS_CONTROLLER_SUFFIX: '-controller',
             CHAPLINJS_PROJECT_ROOT: '',

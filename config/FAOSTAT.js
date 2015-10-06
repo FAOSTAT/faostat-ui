@@ -7,6 +7,22 @@ define(function () {
 
         "DATASOURCE": "faostat",
 
+        // GOOGLE ANALYTICS BINDINGS
+        GOOGLE_ANALYTICS: {
+                BROWSE_BY_DOMAIN: {
+                  'category': 'BROWSE_BY_DOMAIN',
+                  'action': {
+                      'show_table': 'Show Tables - TABLE'
+                  }
+                },
+                DOWNLOAD_STANDARD: {
+                    'category': 'DOWNLOAD_STANDARD',
+                    'action': {
+                        'show_table': 'Show Tables - TABLE'
+                    }
+                }
+        },
+
         "analysis": {
             "FAOSTAT_UI_ANALYSIS_GHG_QA_QC": {
                 "datasource": "faostatdata",

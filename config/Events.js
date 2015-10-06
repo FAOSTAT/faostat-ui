@@ -14,7 +14,10 @@ define(function ( ) {
         NOTIFICATION_ACCEPT : 'fs.notification.accept',
 
         WAITING_SHOW : 'fs.waiting.show',
-        WAITING_HIDE : 'fs.waiting.hide'
+        WAITING_HIDE : 'fs.waiting.hide',
+
+        GOOGLE_ANALYTICS_PAGE_VIEW : 'fs.google_analytics.page_view',
+        GOOGLE_ANALYTICS_EVENT : 'fs.google_analytics.event'
 
     };
 });
