@@ -10,6 +10,7 @@ define([
     'underscore',
     'views/standards-units-view',
     'views/standards-abbreviations-view',
+    'views/standards-methodology-view',
     'amplify'
 ], function (View,
              C,
@@ -18,7 +19,8 @@ define([
              i18nLabels,
              _,
              UnitsView,
-             AbbreviationsView
+             AbbreviationsView,
+             MethodologyView
              ) {
 
     'use strict';
@@ -29,7 +31,8 @@ define([
     s = {
 
         UNITS: "#fs-units",
-        ABBREVIATIONS: "#fs-abbreviations"
+        ABBREVIATIONS: "#fs-abbreviations",
+        METHODOLOGY: "#fs-methodology"
 
     };
 
@@ -71,6 +74,7 @@ define([
 
             this.$units = this.$el.find(s.UNITS);
             this.$abbreviations = this.$el.find(s.ABBREVIATIONS);
+            this.$methodology = this.$el.find(s.METHODOLOGY);
 
         },
 
@@ -100,8 +104,12 @@ define([
                     self.initUnits();
                 }
 
-                if (tab == self.$abbreviations.selector) {
+                else if (tab == self.$abbreviations.selector) {
                     self.initAbbreviations();
+                }
+
+                else if (tab == self.$methodology.selector) {
+                    self.initMethodology();
                 }
 
             });
@@ -127,6 +135,18 @@ define([
                 // init browse by domain
                 this.view_abbreviations = new AbbreviationsView();
                 this.$abbreviations.html(this.view_abbreviations.$el);
+                //this.view_abbreviations.render();
+            }
+
+        },
+
+        initMethodology: function() {
+
+            if ( this.view_methodology === null || this.view_methodology === undefined) {
+
+                // init browse by domain
+                this.view_methodology = new MethodologyView();
+                this.$methodology.html(this.view_methodology.$el);
                 //this.view_abbreviations.render();
             }
 
