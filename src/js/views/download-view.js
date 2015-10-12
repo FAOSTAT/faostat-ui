@@ -68,13 +68,14 @@ define([
 
         PREVIEW_OPTIONS_PLACEHOLDER: 'preview_options_placeholder',
         DOWNLOAD_OPTIONS_PLACEHOLDER: 'download_options_placeholder'
-    },
 
-        // TODO: Could be useful to pass to a FSM (i.e. for the FBS etc)
-        state = {
-            section: null,
-            code: null
-        };
+    };
+
+    // TODO: Could be useful to pass to a FSM (i.e. for the FBS etc)
+    state = {
+        section: null,
+        code: null
+    };
 
     DownloadView = View.extend({
 
@@ -166,7 +167,7 @@ define([
         },
 
         // It's used to clear all the old informations.
-        initiateSection: function() {
+        initiateSection: function () {
 
             this.$interactive.empty();
             this.$metadata.empty();
@@ -189,7 +190,7 @@ define([
             this.bindEventListeners();
         },
 
-        renderSection: function(isChangeURL) {
+        renderSection: function (isChangeURL) {
 
             var codeType = this.tree.getCodeType(),
                 section = this.options.section,
@@ -387,7 +388,7 @@ define([
             data.limit = -1;
             w = new WDSClient({
                 datasource: 'faostatdb',
-                outputType : C.WDS_OUTPUT_TYPE
+                outputType: C.WDS_OUTPUT_TYPE
             });
             w.retrieve({
                 outputType: 'array',
@@ -441,9 +442,9 @@ define([
             /* Check whether he user used 'Select All' for every box. */
             for (i = 1; i <= this.download_selectors_manager.CONFIG.rendered_boxes.length; i += 1) {
                 if (selectAll === undefined) {
-                    selectAll = $('#content__' + i + '_0').jstree().get_json('#', { "flat" : true }).length === user_selection['list' + i + 'Codes'].length;
+                    selectAll = $('#content__' + i + '_0').jstree().get_json('#', {"flat": true}).length === user_selection['list' + i + 'Codes'].length;
                 } else {
-                    selectAll = selectAll && $('#content__' + i + '_0').jstree().get_json('#', { "flat" : true }).length === user_selection['list' + i + 'Codes'].length;
+                    selectAll = selectAll && $('#content__' + i + '_0').jstree().get_json('#', {"flat": true}).length === user_selection['list' + i + 'Codes'].length;
                 }
             }
             if (selectAll) {
@@ -539,7 +540,7 @@ define([
             // force the off of the binding
             this.$el.find('a[data-toggle="tab"]').off();
             this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                self.options.section  = $(e.target).data('section');
+                self.options.section = $(e.target).data('section');
                 Common.changeURL(self.options.section, [self.options.code], false);
                 self.renderSection();
             });
