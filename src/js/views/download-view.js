@@ -20,6 +20,7 @@ define([
     'chaplin',
     'underscore',
     'globals/Common',
+    'faostatapiclient',
     'amplify'
 ], function (View,
              C,
@@ -38,7 +39,8 @@ define([
              dataConfig,
              Chaplin,
              _,
-             Common) {
+             Common,
+             FAOSTATAPIClient) {
 
     'use strict';
 
@@ -137,6 +139,10 @@ define([
             this.$download_options_csv_button = this.$el.find(s.DOWNLOAD_OPTIONS_CSV_BUTTON);
             this.$download_options_excel_button = this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON);
             this.$preview_button = this.$el.find(s.PREVIEW_BUTTON);
+
+            /* Initiate FAOSTAT API's client. */
+            this.api = new FAOSTATAPIClient();
+
         },
 
         initComponents: function () {
@@ -378,8 +384,10 @@ define([
                 data = {},
                 that = this,
                 w;
+
             user_selection = selector_mgr.get_user_selection();
             dwld_options = options_manager.get_options_window('preview_options').collect_user_selection();
+
             data = $.extend(true, {}, data, user_selection);
             data = $.extend(true, {}, data, dwld_options);
             data.datasource = 'faostat';
@@ -394,14 +402,31 @@ define([
             /* Add loading. */
             amplify.publish(E.WAITING_SHOW, {});
 
-            w.retrieve({
-                outputType: 'array',
-                payload: {
-                    query: this.create_query_string(user_selection)
-                },
-                success: that.show_preview,
-                context: this
+            //w.retrieve({
+            //    outputType: 'array',
+            //    payload: {
+            //        query: this.create_query_string(user_selection)
+            //    },
+            //    success: that.show_preview,
+            //    context: this
+            //});
+
+            this.api.data({
+                domain_code: this.options.code,
+                list_1_codes: user_selection.list1Codes || null,
+                list_2_codes: user_selection.list2Codes || null,
+                list_3_codes: user_selection.list3Codes || null,
+                list_4_codes: user_selection.list4Codes || null,
+                list_5_codes: user_selection.list5Codes || null,
+                list_6_codes: user_selection.list6Codes || null,
+                list_7_codes: user_selection.list7Codes || null,
+                limit: -1,
+                output_type: 'arrays',
+                lang: this.options.lang_faostat
+            }).then(function (json) {
+                that.show_preview(json.data);
             });
+
         },
 
         create_query_string: function (user_selection) {
@@ -502,6 +527,9 @@ define([
             if (typeof json === 'string') {
                 json = $.parseJSON(response);
             }
+            json.shift();
+            console.debug(json.length);
+            console.debug(json[0]);
 
             /* Show either the pivot, or a courtesy message. */
             if (json.length !== 0) {
