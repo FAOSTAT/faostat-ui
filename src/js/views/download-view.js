@@ -390,6 +390,10 @@ define([
                 datasource: 'faostatdb',
                 outputType: C.WDS_OUTPUT_TYPE
             });
+
+            /* Add loading. */
+            amplify.publish(E.WAITING_SHOW, {});
+
             w.retrieve({
                 outputType: 'array',
                 payload: {
@@ -520,6 +524,7 @@ define([
                 });
                 // TODO: fix olap to render on selector
                 this.pivot.render(this.$download_ouput_area.selector.replace('#', ''), json, dataConfig);
+                amplify.publish(E.WAITING_HIDE, {});
 
             } else {
                 this.$download_ouput_area.html('<h1 class="text-center">' + i18nLabels.no_data_available + '</h1>');
