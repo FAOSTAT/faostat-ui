@@ -44,11 +44,7 @@ define([
 
     'use strict';
 
-    var s,
-        state,
-        DownloadView;
-
-    s = {
+    var s = {
 
         TREE: "#tree",
 
@@ -74,12 +70,12 @@ define([
     };
 
     // TODO: Could be useful to pass to a FSM (i.e. for the FBS etc)
-    state = {
+    var state = {
         section: null,
         code: null
     };
 
-    DownloadView = View.extend({
+    var DownloadView = View.extend({
 
         autoRender: true,
 
@@ -424,7 +420,7 @@ define([
                 output_type: 'arrays',
                 lang: this.options.lang_faostat
             }).then(function (json) {
-                that.show_preview(json.data);
+                that.show_preview(json);
             });
 
         },
@@ -518,24 +514,22 @@ define([
             var hs, json, that = this;
 
             /* Headers. */
-            hs = ['Domain Code', 'Domain', 'Country Code', 'Country', 'Element Code',
-                'Element', 'Item Code', 'Item', 'Year', 'Unit',
-                'Value', 'Flag', 'Flag Description'];
+            hs = ['NumberOfRows', 'RowNumber'];
 
             /* Cast data, if needed. */
             json = response;
             if (typeof json === 'string') {
                 json = $.parseJSON(response);
             }
-            json.shift();
-            console.debug(json.length);
-            console.debug(json[0]);
+
+            /* Add headers for pivot table. */
+            hs = hs.concat(this.create_table_headers(json.metadata.dsd));
 
             /* Show either the pivot, or a courtesy message. */
-            if (json.length !== 0) {
+            if (json.data.length !== 0) {
 
                 /* Add headers. */
-                json.splice(0, 0, hs);
+                json.data.splice(0, 0, hs);
 
                 /* Create OLAP. */
                 dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
@@ -551,13 +545,32 @@ define([
                     }
                 });
                 // TODO: fix olap to render on selector
-                this.pivot.render(this.$download_ouput_area.selector.replace('#', ''), json, dataConfig);
-                amplify.publish(E.WAITING_HIDE, {});
+                this.pivot.render(this.$download_ouput_area.selector.replace('#', ''), json.data, dataConfig);
+
 
             } else {
                 this.$download_ouput_area.html('<h1 class="text-center">' + i18nLabels.no_data_available + '</h1>');
             }
 
+            /* Close waiting window. */
+            amplify.publish(E.WAITING_HIDE, {});
+
+        },
+
+        create_table_headers: function (dsd) {
+            var headers = [], i;
+            for (i = 0; i < dsd.length; i += 1) {
+                headers.push('tmp');
+            }
+            for (i = 0; i < dsd.length; i += 1) {
+                headers[Number(dsd[i].index)] = dsd[i].label;
+            }
+            for (i = dsd.length; i >= 0; i -= 1) {
+                if (headers[i] === 'tmp') {
+                    headers.shift();
+                }
+            }
+            return headers;
         },
 
         configurePage: function () {
@@ -588,8 +601,6 @@ define([
 
         dispose: function () {
 
-            console.warn("TODO: dispose correctly");
-
             this.unbindEventListeners();
 
             // TODO: dispose of all the components
@@ -605,4 +616,5 @@ define([
     });
 
     return DownloadView;
+
 });
