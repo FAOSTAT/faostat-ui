@@ -10,7 +10,6 @@ define([
     'text!templates/standards/standards-methodology-output.hbs',
     'i18n!nls/standards-methodology',
     'faostatapiclient',
-    'list',
     'handlebars',
     'jstree',
     'amplify',
@@ -22,7 +21,6 @@ define([
              templateOutput,
              i18nLabels,
              FAOSTATAPIClient,
-             List,
              Handlebars) {
 
     'use strict';
@@ -159,11 +157,7 @@ define([
                 lang: this.o.lang
             }).then(function(json) {
 
-                console.log(json);
-
                 var template, dynamic_data, html;
-
-                console.log(json.data[0]);
 
                 /* Load main structure. */
                 template = Handlebars.compile(templateOutput);

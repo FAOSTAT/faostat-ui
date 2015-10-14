@@ -4,7 +4,6 @@
 define([
     'views/base/view',
     'config/Config',
-
     'config/Events',
     'globals/Common',
     'text!templates/standards/standards-units.hbs',

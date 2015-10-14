@@ -177,7 +177,7 @@ define([
 
         onStateUpdate: function (s) {
 
-            console.log(s);
+            //console.log(s);
 
             State = $.extend(true, State, s);
 

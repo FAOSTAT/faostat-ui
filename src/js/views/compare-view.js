@@ -175,7 +175,6 @@ define([
             amplify.publish(E.WAITING_SHOW, {});
 
             setTimeout(function(){
-                console.log("aiuhidauhidasuh");
                 amplify.publish(E.WAITING_HIDE, {})
             }, 1000);
 

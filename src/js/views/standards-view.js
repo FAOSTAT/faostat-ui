@@ -11,6 +11,7 @@ define([
     'views/standards-units-view',
     'views/standards-abbreviations-view',
     'views/standards-methodology-view',
+    'views/standards-classifications-view',
     'amplify'
 ], function (View,
              C,
@@ -20,7 +21,8 @@ define([
              _,
              UnitsView,
              AbbreviationsView,
-             MethodologyView
+             MethodologyView,
+             ClassificationsView
              ) {
 
     'use strict';
@@ -32,7 +34,8 @@ define([
 
         UNITS: "#fs-units",
         ABBREVIATIONS: "#fs-abbreviations",
-        METHODOLOGY: "#fs-methodology"
+        METHODOLOGY: "#fs-methodology",
+        CLASSIFICATIONS: "#fs-classifications"
 
     };
 
@@ -54,8 +57,6 @@ define([
 
         attach: function () {
 
-            console.log("standards");
-
             View.prototype.attach.call(this, arguments);
 
             /* Update State. */
@@ -75,6 +76,7 @@ define([
             this.$units = this.$el.find(s.UNITS);
             this.$abbreviations = this.$el.find(s.ABBREVIATIONS);
             this.$methodology = this.$el.find(s.METHODOLOGY);
+            this.$classifications = this.$el.find(s.CLASSIFICATIONS);
 
         },
 
@@ -112,6 +114,10 @@ define([
                     self.initMethodology();
                 }
 
+                else if (tab == self.$classifications.selector) {
+                    self.initClassifications();
+                }
+
             });
 
         },
@@ -120,10 +126,10 @@ define([
 
             if ( this.view_units === null || this.view_units === undefined) {
 
-                // init browse by domain
+                // init units section
                 this.view_units = new UnitsView();
                 this.$units.html(this.view_units.$el);
-                //this.view_units.render();
+
             }
 
         },
@@ -132,10 +138,10 @@ define([
 
             if ( this.view_abbreviations === null || this.view_abbreviations === undefined) {
 
-                // init browse by domain
+                // init abbreviations section
                 this.view_abbreviations = new AbbreviationsView();
                 this.$abbreviations.html(this.view_abbreviations.$el);
-                //this.view_abbreviations.render();
+
             }
 
         },
@@ -144,10 +150,23 @@ define([
 
             if ( this.view_methodology === null || this.view_methodology === undefined) {
 
-                // init browse by domain
+                // init methodology section
                 this.view_methodology = new MethodologyView();
                 this.$methodology.html(this.view_methodology.$el);
-                //this.view_abbreviations.render();
+
+            }
+
+        },
+
+
+        initClassifications: function() {
+
+            if ( this.view_classifications === null || this.view_classifications === undefined) {
+
+                // init classifications section
+                this.view_classifications = new ClassificationsView();
+                this.$classifications.html(this.view_classifications.$el);
+
             }
 
         },
