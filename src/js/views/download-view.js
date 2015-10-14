@@ -409,13 +409,13 @@ define([
 
             this.api.data({
                 domain_code: this.options.code,
-                list_1_codes: user_selection.list1Codes || null,
-                list_2_codes: user_selection.list2Codes || null,
-                list_3_codes: user_selection.list3Codes || null,
-                list_4_codes: user_selection.list4Codes || null,
-                list_5_codes: user_selection.list5Codes || null,
-                list_6_codes: user_selection.list6Codes || null,
-                list_7_codes: user_selection.list7Codes || null,
+                List1Codes: user_selection.list1Codes || null,
+                List2Codes: user_selection.list2Codes || null,
+                List3Codes: user_selection.list3Codes || null,
+                List4Codes: user_selection.list4Codes || null,
+                List5Codes: user_selection.list5Codes || null,
+                List6Codes: user_selection.list6Codes || null,
+                List7Codes: user_selection.list7Codes || null,
                 limit: -1,
                 output_type: 'arrays',
                 lang: this.options.lang_faostat
