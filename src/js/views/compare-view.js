@@ -157,6 +157,13 @@ define([
                 minYear = timerange.min,
                 maxYear = timerange.max;
 
+            var years = []
+            for (var i=minYear; i <= maxYear; i++) {
+                years.push(i);
+            }
+
+            console.log(years);
+
 
             // get for each filterBox the relative filters (domain, items etc...)
             var filters = this._getFiltersSelections();
@@ -170,21 +177,15 @@ define([
 
             // create table
 
-
-            // Waiting
-            amplify.publish(E.WAITING_SHOW, {});
-
-            setTimeout(function(){
-                amplify.publish(E.WAITING_HIDE, {})
-            }, 1000);
-
             console.log(filters);
             var r = {};
             _.each(filters[0], function(v) {
                 r[v.parameter] = v.codes
             });
 
-            console.log(r);
+            // TODO: to be fixed
+
+            // TODO: retrieve dinamically the years
 
             r = $.extend({}, r, {
                 datasource: C.DATASOURCE,
@@ -194,13 +195,11 @@ define([
                 thousand_separator:",",
                 decimal_separator:".",
                 decimal_places:2,
-                List4Codes: [2011],
-                List5Codes: [],
-                List6Codes: [],
-                List7Codes: [],
-                List8Codes: [],
-                List9Codes: [],
-                List10Codes: []
+                List4Codes: years,
+                List5Codes: null,
+                List6Codes: null,
+                List7Codes: null
+
             });
 
             console.log(r);
@@ -208,21 +207,6 @@ define([
             this.FAOSTATAPIClient.data(r).then(function(json) {
                 console.log(json);
             });
-
-/*            datasource:production
-            output_type:arrays
-            api_key:n.a.
-                client_key:n.a.
-                domain_code:GL
-            List1Codes[]:3
-            List2Codes[]:7217
-            List3Codes[]:5070
-            List4Codes[]:2011
-            null_values:false
-            thousand_separator:,
-            decimal_separator:.
-            decimal_places:2
-            limit:-1*/
 
         },
 
