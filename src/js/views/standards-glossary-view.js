@@ -6,13 +6,13 @@ define([
     'config/Config',
     'config/Events',
     'globals/Common',
-    'text!templates/standards/standards-units.hbs',
-    'text!templates/standards/standards-table.hbs',
-    'i18n!nls/standards-units',
+    'text!templates/standards/standards-glossary.hbs',
+    'text!templates/standards/standards-glossary-table.hbs',
+    'i18n!nls/standards-glossary',
     'faostatapiclient',
     'list',
     'handlebars',
-    'amplify',
+    'amplify'
 ], function (View,
              C,
              E,
@@ -28,21 +28,21 @@ define([
 
     var s,
         o,
-        UnitsView;
+        GlossaryView;
 
     s = {
 
-        TABLE: "#fs-units-table"
+        TABLE: "#fs-glossary-table"
 
     },
 
     o = {
 
-        tableSearchFilters: ['fs-mes-code', 'fs-mes-label' ]
+        tableSearchFilters: ['fs-mes-code', 'fs-mes-label', 'fs-mes-source' ]
 
     };
 
-    UnitsView = View.extend({
+    GlossaryView = View.extend({
 
         autoRender: true,
 
@@ -87,9 +87,9 @@ define([
         initComponents: function () {
 
             // TODO: lang
-            this.FAOSTATAPIClient.units({
+            this.FAOSTATAPIClient.glossary({
                 datasource: C.DATASOURCE,
-                lang: this.o.lang,
+                lang: this.o.lang
             }).then(_.bind(this.showTable, this));
 
         },
@@ -99,7 +99,6 @@ define([
             var template, dynamic_data, html;
 
             /* Load main structure. */
-            //source = $(templates).filter('#faostat_ui_standards_units_table').html();
             template = Handlebars.compile(templateTable);
             dynamic_data = {
                 rows: json.data
@@ -113,7 +112,7 @@ define([
                 valueNames: this.o.tableSearchFilters
             };
 
-            var list = new List(this.$table.selector.replace('#',''), options);
+            new List(this.$table.selector.replace('#',''), options);
 
         },
 
@@ -137,6 +136,6 @@ define([
         }
     });
 
-    return UnitsView;
+    return GlossaryView;
 
 });

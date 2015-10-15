@@ -12,6 +12,7 @@ define([
     'views/standards-abbreviations-view',
     'views/standards-methodology-view',
     'views/standards-classifications-view',
+    'views/standards-glossary-view',
     'amplify'
 ], function (View,
              C,
@@ -22,7 +23,8 @@ define([
              UnitsView,
              AbbreviationsView,
              MethodologyView,
-             ClassificationsView
+             ClassificationsView,
+             GlossaryView
              ) {
 
     'use strict';
@@ -35,7 +37,8 @@ define([
         UNITS: "#fs-units",
         ABBREVIATIONS: "#fs-abbreviations",
         METHODOLOGY: "#fs-methodology",
-        CLASSIFICATIONS: "#fs-classifications"
+        CLASSIFICATIONS: "#fs-classifications",
+        GLOSSARY: "#fs-glossary"
 
     };
 
@@ -77,6 +80,7 @@ define([
             this.$abbreviations = this.$el.find(s.ABBREVIATIONS);
             this.$methodology = this.$el.find(s.METHODOLOGY);
             this.$classifications = this.$el.find(s.CLASSIFICATIONS);
+            this.$glossary = this.$el.find(s.GLOSSARY);
 
         },
 
@@ -116,6 +120,10 @@ define([
 
                 else if (tab == self.$classifications.selector) {
                     self.initClassifications();
+                }
+
+                else if (tab == self.$glossary.selector) {
+                    self.initGlossary();
                 }
 
             });
@@ -158,7 +166,6 @@ define([
 
         },
 
-
         initClassifications: function() {
 
             if ( this.view_classifications === null || this.view_classifications === undefined) {
@@ -166,6 +173,18 @@ define([
                 // init classifications section
                 this.view_classifications = new ClassificationsView();
                 this.$classifications.html(this.view_classifications.$el);
+
+            }
+
+        },
+
+        initGlossary: function() {
+
+            if ( this.view_glossary === null || this.view_glossary === undefined) {
+
+                // init classifications section
+                this.view_glossary = new GlossaryView();
+                this.$glossary.html(this.view_glossary.$el);
 
             }
 
