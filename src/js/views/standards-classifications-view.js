@@ -39,13 +39,13 @@ define([
         //TABLE: "#fs-methodology-table",
         TREE: "#fs-classifications-tree",
         INTRO: "#fs-classifications-intro",
-        OUTPUT: "#fs-classifications-output"
+        OUTPUT: "#fs-classifications-output",
+        TABLE: '#fs-classifications-table'
 
     },
-
     o = {
 
-        tableSearchFilters: ['fs-mes-label' ]
+        tableSearchFilters: ['fs-mes-code', 'fs-mes-label', 'fs-mes-description' ]
 
     };
 
@@ -59,7 +59,6 @@ define([
 
         initialize: function (options) {
             this.o = $.extend({}, o, options);
-            console.log(template);
         },
 
         getTemplateData: function () {
@@ -128,21 +127,8 @@ define([
 
                     onGroupClick: _.bind(function (callback) {
 
-                        console.log(callback);
-                        //TODO: make intro visible and output hidden
-
-                        //var type = this.tree.getCodeType(),
-                        //    code = callback.id,
-                        //    label = callback.i;
-                        //
-                        //console.log(callback);
-                        //
-                        //if ( type === 'domain') {
-                        //    // show classifications of the domaincode
-                        //}
-                        //else if (type === 'group') {
-                        //    //TODO: make intro visible and output hidden
-                        //}
+                        this.$output.hide();
+                        this.$intro.show();
 
                     }, this)
                 }
@@ -150,10 +136,12 @@ define([
 
         },
 
-
         showClassification: function(code, label) {
 
             // hide intro
+            this.$intro.hide();
+
+
             this.$intro.hide();
 
 
@@ -164,56 +152,29 @@ define([
                 lang: this.o.lang
             }).then(_.bind(function(json){
 
-                console.log(json.data);
-
                 var template, dynamic_data, html;
 
                 /* Load main structure. */
-                console.log(templateOutput);
                 template = Handlebars.compile(templateOutput);
 
                 dynamic_data = $.extend({}, i18nLabels);
-                dynamic_data.data = json.data;
-                dynamic_data.classibiction_title = label;
+                dynamic_data.rows = json.data;
+                dynamic_data.classsification_title = i18nLabels.classification + ' - ' + label;
 
                 html = template(dynamic_data);
                 this.$output.html(html);
+
+                // add list.js
+                var options = {
+                    valueNames: this.o.tableSearchFilters
+                };
+
+                var list = new List(s.TABLE.replace('#',''), options);
+
+                // render output
                 this.$output.show();
 
             }, this));
-
-            // show
-            // fill template
-
-
-
-            //
-            //var self = this;
-            //this.$intro.hide();
-            //
-            //// TODO: lang
-            //this.FAOSTATAPIClient.methodology({
-            //    id: id,
-            //    datasource: C.DATASOURCE,
-            //    lang: this.o.lang
-            //}).then(function(json) {
-            //
-            //    console.log(json);
-            //
-            //    var template, dynamic_data, html;
-            //
-            //    console.log(json.data[0]);
-            //
-            //    /* Load main structure. */
-            //    template = Handlebars.compile(templateOutput);
-            //
-            //    dynamic_data = $.extend({}, i18nLabels, json.data[0]);
-            //    dynamic_data.methodology_title = label;
-            //
-            //    html = template(dynamic_data);
-            //    self.$output.html(html);
-            //
-            //});
 
         },
 
