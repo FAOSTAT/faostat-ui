@@ -21,6 +21,7 @@ define({
     "area": "Area",
     "year": "Year",
     no_data_available: 'No data available for the current selection.',
-    faostat_domains: 'FAOSTAT Domains'
+    faostat_domains: 'FAOSTAT Domains',
+    loading: 'Loading'
 
 });
