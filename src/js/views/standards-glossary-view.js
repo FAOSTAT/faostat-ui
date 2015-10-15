@@ -86,6 +86,11 @@ define([
 
         initComponents: function () {
 
+            amplify.publish(E.LOADING_SHOW, {container: this.$table});
+
+            setTimeout(function(){  amplify.publish(E.LOADING_HIDE, {container: '#breadcrumb-container'}) }, 1000);
+
+
             // TODO: lang
             this.FAOSTATAPIClient.glossary({
                 datasource: C.DATASOURCE,
@@ -95,6 +100,8 @@ define([
         },
 
         showTable: function(json) {
+
+            amplify.publish(E.LOADING_HIDE, {container: this.$table});
 
             var template, dynamic_data, html;
 

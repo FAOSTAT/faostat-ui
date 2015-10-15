@@ -219,7 +219,8 @@ define([
                 group_code: code,
                 datasource: C.DATASOURCE,
                 lang: this.o.lang,
-                //blacklist: CC.domains.blacklist || null
+                whitelist: CC.domains.whitelist || [],
+                blacklist: CC.domains.blacklist || []
             }).then(function(json) {
                 console.log(json);
                 self.createDomainFilter(json);

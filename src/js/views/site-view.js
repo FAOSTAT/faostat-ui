@@ -12,11 +12,12 @@ define([
     'text!templates/site.hbs',
     'FAOSTAT_UI_MENU',
     'lib/common/waiting',
+    'lib/common/loading',
     'sweetAlert',
     'globals/Common',
     // TODO: move analytics in another section?
     'globals/GoogleAnalyticsManager'
-], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, swal, Common, GoogleAnalyticsManager) {
+], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager) {
 
     'use strict';
 
@@ -68,6 +69,9 @@ define([
 
             amplify.subscribe(E.WAITING_SHOW, this, Waiting.showPleaseWait);
             amplify.subscribe(E.WAITING_HIDE, this, Waiting.hidePleaseWait);
+
+            amplify.subscribe(E.LOADING_SHOW, this, Loading.show);
+            amplify.subscribe(E.LOADING_HIDE, this, Loading.hide);
 
             amplify.subscribe(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
             amplify.subscribe(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
