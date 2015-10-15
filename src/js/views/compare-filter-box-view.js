@@ -206,6 +206,11 @@ define([
 
             var self = this;
 
+
+            console.log("onGroupChange");
+
+            console.log(CC.domains.blacklist);
+
             // TODO: dispose domains and filters container
 
             this.$GROUP_HEADING_TITLE.html(label);
@@ -214,7 +219,7 @@ define([
                 group_code: code,
                 datasource: C.DATASOURCE,
                 lang: this.o.lang,
-                blacklist: CC.domains.blacklist || []
+                //blacklist: CC.domains.blacklist || null
             }).then(function(json) {
                 console.log(json);
                 self.createDomainFilter(json);
