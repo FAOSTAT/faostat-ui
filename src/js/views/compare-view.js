@@ -193,7 +193,14 @@ define([
                 null_values:false,
                 thousand_separator:",",
                 decimal_separator:".",
-                decimal_places:2
+                decimal_places:2,
+                List4Codes: [2011],
+                List5Codes: [],
+                List6Codes: [],
+                List7Codes: [],
+                List8Codes: [],
+                List9Codes: [],
+                List10Codes: []
             });
 
             console.log(r);

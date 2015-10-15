@@ -165,6 +165,10 @@ define([
                 html = template(dynamic_data);
                 self.$output.html(html);
 
+                //$('font').attr("color", '#');
+                //$('strong').contents().unwrap();
+                //$('font').contents().unwrap();
+
             });
 
         },

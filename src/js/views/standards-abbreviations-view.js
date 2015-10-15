@@ -86,6 +86,8 @@ define([
 
         initComponents: function () {
 
+            amplify.publish(E.LOADING_SHOW, {container: this.$table});
+
             // TODO: lang
             this.FAOSTATAPIClient.abbreviations({
                 datasource: C.DATASOURCE,
@@ -95,6 +97,8 @@ define([
         },
 
         showTable: function(json) {
+
+            amplify.publish(E.LOADING_HIDE, {container: this.$table});
 
             var template, dynamic_data, html;
 

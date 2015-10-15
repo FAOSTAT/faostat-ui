@@ -74,19 +74,6 @@ define([
 
             this.initVariables();
 
-            //var self = this;
-            //
-            //setTimeout(function(){
-            //
-            //
-            //    self.initComponents();
-            //
-            //    self.bindEventListeners();
-            //
-            //    self.configurePage();
-            //
-            //}, 1000);
-
             this.initComponents();
 
             this.bindEventListeners();
