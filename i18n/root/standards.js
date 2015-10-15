@@ -9,7 +9,8 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         abbreviations: 'abbreviations',
         filter_results: 'Filter Results',
         methodology: 'Methodology',
-        classifications: 'Classifications'
+        classifications: 'Classifications',
+        glossary: 'Glossary'
 
     });
 });
