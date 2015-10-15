@@ -11,7 +11,7 @@ define([
         label = i18nLabels.loading,
         renderType = 'append', //or 'prepend'
         showLabel = false;
-    
+
 
     function Loading() {
 

@@ -41,7 +41,7 @@ define(['chaplin', 'config/Events', 'amplify'], function (Chaplin, E) {
             console.warn('TODO Common.changeURL: change Backbone binding');
             console.warn('TODO Common.changeURL: check if the Backbone trigger should be set on true or false');
             //# TODO: if trigger should be set on false or true and the difference
-            Backbone.history.navigate(uri, {trigger:true});
+            Backbone.history.navigate(uri, {trigger:false});
 
             // Google Analytics change page
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
