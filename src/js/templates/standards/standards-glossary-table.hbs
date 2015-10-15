@@ -15,21 +15,15 @@
     <tbody class="list">
     {{#each rows}}
         <tr>
-            {{#if this.code}}
-                <td class="fs-mes-code">
-                    {{{this.code}}}
-                </td>
-            {{/if}}
-            {{#if this.label}}
-                <td class="fs-mes-label">
-                    {{{this.label}}}
-                </td>
-            {{/if}}
-            {{#if this.source}}
-                <td class="fs-mes-source">
-                    {{{this.source}}}
-                </td>
-            {{/if}}
+            <td class="fs-mes-code">
+                {{{this.code}}}
+            </td>
+            <td class="fs-mes-label">
+                {{{this.label}}}
+            </td>
+            <td class="fs-mes-source">
+                {{{this.source}}}
+            </td>
         </tr>
     {{/each}}
     </tbody>

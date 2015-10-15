@@ -12,16 +12,12 @@
     <tbody class="list">
     {{#each rows}}
         <tr>
-            {{#if this.code}}
-                <td class="fs-mes-code">
-                    {{{this.code}}}
-                </td>
-            {{/if}}
-            {{#if this.label}}
-                <td class="fs-mes-label">
-                    {{{this.label}}}
-                </td>
-            {{/if}}
+            <td class="fs-mes-code">
+                {{{this.code}}}
+            </td>
+            <td class="fs-mes-label">
+                {{{this.label}}}
+            </td>
         </tr>
     {{/each}}
     </tbody>

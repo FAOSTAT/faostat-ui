@@ -32,21 +32,15 @@
         <tbody class="list">
         {{#each rows}}
             <tr>
-                {{#if this.code}}
-                    <td class="fs-mes-code">
-                        {{{this.code}}}
-                    </td>
-                {{/if}}
-                {{#if this.label}}
-                    <td class="fs-mes-label">
-                        {{{this.label}}}
-                    </td>
-                {{/if}}
-                {{#if this.description}}
-                    <td class="fs-mes-description">
-                        {{{this.description}}}
-                    </td>
-                {{/if}}
+                <td class="fs-mes-code">
+                    {{{this.code}}}
+                </td>
+                <td class="fs-mes-label">
+                    {{{this.label}}}
+                </td>
+                <td class="fs-mes-description">
+                    {{{this.description}}}
+                </td>
             </tr>
         {{/each}}
         </tbody>
