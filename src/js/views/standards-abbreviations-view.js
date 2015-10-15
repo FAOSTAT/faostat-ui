@@ -77,8 +77,6 @@ define([
         initVariables: function () {
 
             this.o.lang = Common.getLocale();
-            console.log(Common.getLocale());
-            console.log(this.o.lang);
 
             this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
@@ -87,8 +85,6 @@ define([
         },
 
         initComponents: function () {
-
-            console.log(this.o.lang);
 
             // TODO: lang
             this.FAOSTATAPIClient.abbreviations({

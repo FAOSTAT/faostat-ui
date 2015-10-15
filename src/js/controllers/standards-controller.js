@@ -15,24 +15,26 @@ define(['jquery', 'controllers/base/controller', 'views/standards-view'], functi
         },
 
         show_methodologies: function (params) {
-            this.show(params, 'methodology');
-            $('#methodology_link').css('background-color', '#eee');
-        },
-
-        show_methodology: function (params) {
-            this.show(params, 'methodology');
-            $('#methodology_link').css('background-color', '#eee');
+             //TODO: can be switched to the "name" section from ChaplinJS routes.js definition?
+            this.show(params, 'methodologies');
         },
 
         show_units: function (params) {
             this.show(params, 'units');
-            $('#units_link').css('background-color', '#eee');
         },
 
         show_abbreviations: function (params) {
             this.show(params, 'abbreviations');
-            $('#abbreviations_link').css('background-color', '#eee');
+        },
+
+        show_glossary: function (params) {
+            this.show(params, 'glossary');
+        },
+
+        show_classifications: function (params) {
+            this.show(params, 'classifications');
         }
+
 
     });
 

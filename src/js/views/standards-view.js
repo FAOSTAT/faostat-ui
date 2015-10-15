@@ -13,6 +13,7 @@ define([
     'views/standards-methodology-view',
     'views/standards-classifications-view',
     'views/standards-glossary-view',
+    'globals/Common',
     'amplify'
 ], function (View,
              C,
@@ -24,7 +25,8 @@ define([
              AbbreviationsView,
              MethodologyView,
              ClassificationsView,
-             GlossaryView
+             GlossaryView,
+             Common
              ) {
 
     'use strict';
@@ -34,11 +36,11 @@ define([
 
     s = {
 
-        UNITS: "#fs-units",
-        ABBREVIATIONS: "#fs-abbreviations",
-        METHODOLOGY: "#fs-methodology",
-        CLASSIFICATIONS: "#fs-classifications",
-        GLOSSARY: "#fs-glossary"
+        UNITS: "#units",
+        ABBREVIATIONS: "#abbreviations",
+        METHODOLOGY: "#methodologies",
+        CLASSIFICATIONS: "#classifications",
+        GLOSSARY: "#glossary"
 
     };
 
@@ -51,7 +53,7 @@ define([
         template: template,
 
         initialize: function (options) {
-            this.options = options;
+            this.o = $.extend({}, options);
         },
 
         getTemplateData: function () {
@@ -86,14 +88,12 @@ define([
 
         initComponents: function () {
 
-            // TODO: switch
-            this.initUnits();
-            //this.initAbbreviations();
-
-
         },
 
         configurePage: function () {
+
+            // switch to the right navigation tab
+            this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
 
         },
 
@@ -104,29 +104,38 @@ define([
             // bind tabs listeners
             this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 
-                var tab = $(e.target).attr("href") // activated tab
+                var section = $(e.target).data("section"); // activated tab
 
-                if (tab == self.$units.selector) {
-                    self.initUnits();
-                }
+                // switch tab
+                self.switchStandardsTab(section);
 
-                else if (tab == self.$abbreviations.selector) {
-                    self.initAbbreviations();
-                }
-
-                else if (tab == self.$methodology.selector) {
-                    self.initMethodology();
-                }
-
-                else if (tab == self.$classifications.selector) {
-                    self.initClassifications();
-                }
-
-                else if (tab == self.$glossary.selector) {
-                    self.initGlossary();
-                }
+                Common.changeURL(section, [], false);
 
             });
+
+        },
+
+        switchStandardsTab: function(section) {
+
+            if (section == this.$units.data("section")) {
+                this.initUnits();
+            }
+
+            else if (section == this.$abbreviations.data("section")) {
+                this.initAbbreviations();
+            }
+
+            else if (section == this.$methodology.data("section")) {
+                this.initMethodology();
+            }
+
+            else if (section == this.$classifications.data("section")) {
+                this.initClassifications();
+            }
+
+            else if (section == this.$glossary.data("section")) {
+                this.initGlossary();
+            }
 
         },
 

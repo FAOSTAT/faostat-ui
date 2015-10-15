@@ -54,7 +54,6 @@ define([
 
         initialize: function (options) {
             this.o = $.extend({}, o, options);
-            console.log(this.o);
         },
 
         getTemplateData: function () {
@@ -103,8 +102,6 @@ define([
         showMethodologies: function(json) {
 
             var self = this;
-
-            console.log(json);
 
             var data = json.data;
             var payload = [];
