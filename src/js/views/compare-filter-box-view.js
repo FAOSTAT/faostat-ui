@@ -44,6 +44,9 @@ define([
 
     };
 
+    // TODO: cache of the dimensions paramenter (a the moment the i.e. /codes/areagroup don't return the paramenter)
+    var DIMENSION_PARAMETER_MAPPING = {};
+
     var CompareFiltersBoxView = View.extend({
 
         autoRender: true,
@@ -149,33 +152,6 @@ define([
             });
         },
 
-        createGroupFilterBK: function(json) {
-            var self = this;
-
-            var groupsData = this.filterGroups(json.data);
-            var filter = new Filter({
-                container: this.$GROUPS,
-                title: i18nLabels.groups,
-                data: groupsData
-            });
-
-            // cache groups dropdown
-            groups = {
-                filter: filter,
-                // TODO: keep track of the filter
-                json: json
-            };
-
-            groups.$DD = filter.getDropDown();
-
-            // TODO: make it nicer the default code selection
-            self.onGroupChange(groups.$DD.find(":selected").val(), groups.$DD.find(":selected").text());
-
-            groups.$DD.change(function(e) {
-                self.onGroupChange(e.val, e.added.text);
-            });
-        },
-
         createDomainFilter: function(json) {
             var self = this;
 
@@ -206,11 +182,6 @@ define([
 
             var self = this;
 
-
-            console.log("onGroupChange");
-
-            console.log(CC.domains.blacklist);
-
             // TODO: dispose domains and filters container
 
             this.$GROUP_HEADING_TITLE.html(label);
@@ -222,23 +193,8 @@ define([
                 whitelist: CC.domains.whitelist || [],
                 blacklist: CC.domains.blacklist || []
             }).then(function(json) {
-                console.log(json);
                 self.createDomainFilter(json);
             });
-
-        },
-
-        onGroupChangeBK: function(code, label) {
-
-            // TODO: dispose domains and filters container
-
-            // get the domains list
-            var domains = this.filterDomains(json.data, code);
-
-            // create domains filters
-            this.createDomainFilter(domains);
-
-            this.$GROUP_HEADING_TITLE.html(label);
 
         },
 
@@ -250,8 +206,6 @@ define([
 
             // get dimensions and create new filters
             this.createFiltersByDomain();
-
-
 
         },
 
@@ -273,22 +227,6 @@ define([
             return groups;
         },
 
-        filterDomains: function(data, groupCode) {
-            var domains = [],
-                codes = _.where(data, {code: groupCode});
-
-            // TODO: add blacklist
-            _.forEach(codes, function(v) {
-                // TODO: mkae it multilanguage and dinnamic
-                domains.push({
-                        code: v.DomainCode,
-                        label: v.DomainNameE,
-                    }
-                );
-            });
-            return domains;
-        },
-
         // Filters by domains
         createFiltersByDomain: function() {
 
@@ -306,10 +244,25 @@ define([
             }).then(_.bind(this._preloadDomainDimensions, this))
                 .then(_.bind(function(json) {
                     console.log(json);
-                    _.each(json, _.bind(function(v, a) {
+                    _.each(json, _.bind(function(v) {
 
                         try {
-                            console.log(v);
+
+/*                            var obj = {};
+
+                            var id = v.metadata.parameters.id;
+                            obj.title = i18nLabels[id];
+                            obj.parameter = DIMENSION_PARAMETER_MAPPING[id];
+                            obj.ddOptions = {
+                                multiple: true,
+                                addEmptySelection: true,
+                                //placeholder: "SELECT a",
+                                allowClear: true
+                            };
+
+                            filters[id] = {};
+                            filters[id].filter = new Filter(v);*/
+
 
                             var id = v.metadata.parameters.id;
 
@@ -318,10 +271,12 @@ define([
 
                             // TODO: get label from metadata
                             v.title = i18nLabels[id];
+                            v.parameter = DIMENSION_PARAMETER_MAPPING[id];
+
                             v.ddOptions = {
                                 multiple: true,
                                 addEmptySelection: true,
-                                placeholder: "SELECT a",
+                                //placeholder: "SELECT a",
                                 allowClear: true
                             };
 
@@ -329,7 +284,7 @@ define([
                             filters[id] = {};
                             filters[id].filter = new Filter(v);
 
-                            console.log(filters);
+                            console.log(v);
 
                         }catch(e) {
                             console.error(e);
@@ -347,12 +302,16 @@ define([
                 lang = this.o.lang,
                 self = this;
 
-            this.filtersCodeLists = {};
+            // TODO: cache of the dimensions paramenter (a the moment the i.e. /codes/areagroup don't return the paramenter)
+            DIMENSION_PARAMETER_MAPPING = {};
 
             // Q.all to return all the request at the same time
             _.each(json.data, _.bind(function (c) {
 
                 var id = c.id;
+
+                // caching the parameter to use with the getData
+                DIMENSION_PARAMETER_MAPPING[id] = c.parameter;
 
                 // add check on the blacklist
                 if (CC.filters.blacklistCodesID.indexOf(id) <= -1) {
@@ -409,12 +368,10 @@ define([
             var domain = {};
 
             domain.id = 'domain';
-            domain.parameter = '@List1Codes';
+            //domain.parameter = '@List1Codes';
             // TODO: change domains variable name
             domain.codes = [domains.$DD.val()];
             f.push(domain);
-
-            console.log(Object.keys(filters));
 
             // Get all the selected values from the filters multiselections dropdown
             _.each(Object.keys(filters), function (filterKey) {
@@ -430,8 +387,6 @@ define([
         removeFilterBox: function(e) {
 
             console.warn("TODO: dispose of the box and the filters");
-            console.log(e);
-            console.log(this);
             // TODO: onRemove the filter add popup to check if the user want to remove it?
             //amplify.publish(E.NOTIFICATION_ACCEPT, {filter: this});
             amplify.publish(EC.FILTER_BOX_REMOVE, {filter: this});

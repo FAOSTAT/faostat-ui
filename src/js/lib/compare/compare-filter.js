@@ -84,10 +84,9 @@ define([
     };
 
     CompareFilter.prototype.getFilter = function () {
-        console.log("getFilter");
         var f = {
             id: this.o.metadata.parameters.id,
-            parameter: this.o.metadata.parameters.parameter,
+            parameter: this.o.parameter,
             codes: this.$DD.val()
         };
 
@@ -100,7 +99,7 @@ define([
             });
         }
 
-        // if nothing is selected set an alert?
+        // TODO: if nothing is selected set an alert?
         return f;
     };
 
