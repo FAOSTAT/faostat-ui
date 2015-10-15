@@ -17,6 +17,9 @@ define(function ( ) {
         WAITING_SHOW : 'fs.waiting.show',
         WAITING_HIDE : 'fs.waiting.hide',
 
+        LOADING_SHOW : 'fs.loading.show',
+        LOADING_HIDE : 'fs.loading.hide',
+
         GOOGLE_ANALYTICS_PAGE_VIEW : 'fs.google_analytics.page_view',
         GOOGLE_ANALYTICS_EVENT : 'fs.google_analytics.event'
 

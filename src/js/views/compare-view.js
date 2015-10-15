@@ -178,6 +178,45 @@ define([
                 amplify.publish(E.WAITING_HIDE, {})
             }, 1000);
 
+            console.log(filters);
+            var r = {};
+            _.each(filters[0], function(v) {
+                r[v.parameter] = v.codes
+            });
+
+            console.log(r);
+
+            r = $.extend({}, r, {
+                datasource: C.DATASOURCE,
+                lang: this.o.lang,
+                limit:-1,
+                null_values:false,
+                thousand_separator:",",
+                decimal_separator:".",
+                decimal_places:2
+            });
+
+            console.log(r);
+
+            this.FAOSTATAPIClient.data(r).then(function(json) {
+                console.log(json);
+            });
+
+/*            datasource:production
+            output_type:arrays
+            api_key:n.a.
+                client_key:n.a.
+                domain_code:GL
+            List1Codes[]:3
+            List2Codes[]:7217
+            List3Codes[]:5070
+            List4Codes[]:2011
+            null_values:false
+            thousand_separator:,
+            decimal_separator:.
+            decimal_places:2
+            limit:-1*/
+
         },
 
         _getFiltersSelections: function() {

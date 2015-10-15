@@ -24,7 +24,7 @@ define(function () {
             },
 
             domains: {
-                blacklist: "['QC']"
+                blacklist: ['QC']
             },
 
             // this will blacklist all the IDs that should not be created as filters

@@ -368,9 +368,10 @@ define([
             var domain = {};
 
             domain.id = 'domain';
-            //domain.parameter = '@List1Codes';
+            // TODO: the parameter in theory should be dynamic
+            domain.parameter = 'domain_code';
             // TODO: change domains variable name
-            domain.codes = [domains.$DD.val()];
+            domain.codes = domains.$DD.val();
             f.push(domain);
 
             // Get all the selected values from the filters multiselections dropdown
