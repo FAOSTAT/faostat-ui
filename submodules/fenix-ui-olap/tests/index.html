@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <!-- Third Party CSS -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/pivot.css">
+        <!--link rel="stylesheet" type="text/css" href="../lib/highlight/style.css" />
+        <link rel="stylesheet" type="text/css" href="../lib/grid/calendar/calendar-blue.css" /-->
+        <link rel="stylesheet" type="text/css" href="../lib/grid/gt_grid_height.css" />
+        <!--link rel="stylesheet" type="text/css" href="../css/fx-olap.css" /-->
+        <!--link rel="stylesheet" href="../../fenix-ui-common/css/fenix-style.css"-->
+        <!--link rel="stylesheet" type="text/css" href="../css/standalone.css" /-->
+		 <link rel="stylesheet" type="text/css" href="../lib/HierachicalRender/jbPivot.css" />
+		<style>
+		.mybutton-cls {background : url(../images/mybutton.png) no-repeat center center;}
+		</style>
+    </head>
+    <body>
+		 <!--div id="fx-olap-ui"></div>
+		 <div id="fx-olap-holder-div"></div>
+		 <div id="myGrid1_div"></div>
+		 <div id="fx-olap-graph-div"></div>
+		 <div id="mesFlags" style="clear:both"></div-->
+		 
+		 <br>
+		 <label for="pivot1_chkTreeview">Treeview/sorting columns</label>
+		 <input  onchange="pp.changechkTreeview()" type="checkbox" id="pivot1_chkTreeview"/>
+		 <label for="pivot2_chkTreeview">Treeview/sorting columns</label>
+		 <input  onchange="pp2.changechkTreeview()" type="checkbox" id="pivot2_chkTreeview"/>
+		 <hr>
+		 <input type="button" onclick="pp.exportExcel()" value="exportExcel"/>
+		 <input type="button" onclick="pp.exportCSV(false,true)" value="exportCSV"/>
+		  
+		 <input type="button" onclick="pp2.exportExcel()" value="exportExcel2"/>
+		 <input type="button" onclick="pp2.exportCSV()" value="exportCSV2"/>
+		  
+		 <input type="checkbox" onchange="pp.showCode()" id="shCode" /><label for="shCode">showCode</label>
+		 <input type="checkbox" onchange="pp.showUnit()" id="shUnit" /><label for="shUnit">showUnit</label>
+		 <input type="checkbox" onchange="pp.showFlags()" id="shFlags" /><label for="shFlags">showFlags</label>
+		 <div id="pivot1"></div>
+		 <hr>
+		 <div id="pivot2"></div>
+	 
+	 <form id="xlsDataForm" action="http://faostat3.fao.org/faostat-olapws/ExportPOI2" method="POST">
+	 <input id="myJson" name="myJson" type="hidden" value="">
+	 <input id="myFlags" name="myFlags" type="hidden" value="{&quot;data&quot;:[{&quot;title&quot;:&quot;&quot;,&quot;label&quot;:&quot;Official data&quot;}]}">
+	 </form>
+	 
+	 	 <!--textarea id="myJson"  name="myJson" ></textarea-->
+		 <!--button id="pivot_download" style="display:none" class="btn btn-default" type="button">
+		 <i class="glyphicon glyphicon-download"></i>Download XLS File</button>
+		 <form id="xlsDataForm" action="http://faostat3.fao.org/faostat-olapws/ExportPOI2" method="POST">
+		 <input id="myJson" name="myJson" type="hidden" value=""/>
+		 <input id="myFlags" name="myFlags" type="hidden"
+		 value='{"data":[{"title":"","label":"Official data"}]}'/>
+		 <input type="submit" />
+		 </form-->
+	
+	
+    <script type="text/javascript" data-main="main" src="../lib/require.js"></script>
+
+    </body>
+</html>

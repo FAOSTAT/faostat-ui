@@ -1,0 +1,270 @@
+$fx-border-radius: 0;
+$custom-color1: #e6e6e6; // Grigio hover dei pulsanti Faostat
+$custom-color2: #f5f5f5; //Background dei pulsanti di Faostat
+$custom-color3: #fcfaee;
+$custom-color4: #457f25;
+$fenix-text: #666666;
+$fenix-secondary-text: #999999;
+$fx-cool-blue: #379bce;
+$fenix-light-gray: #dddddd;
+$fenix-dark-blue: #4c647f;
+$fenix-dark-bg: #666666;
+$fenix-light-bg: #f9f7f3;
+$light-purple: #EEEEFF;
+$light-brown: #f3efe0;
+
+.summary-item {
+  display: inline-block;
+  cursor: pointer;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #FFFFFF;
+  color: #666666;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin: 3px 3px 3px 0;
+  padding: 2px 5px;
+}
+
+.v-space {
+  margin-top: 16px;
+}
+
+.faostat-download-main-content{
+
+
+  .btn{
+    display: inline-block;
+    font-size: 12px;
+    margin-bottom: 0;
+
+
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: $custom-color2;
+    border: 1px solid $fenix-secondary-text;
+    padding: 6px;
+
+
+    &:hover{
+      background-color: $custom-color1;
+    }
+
+  }
+
+  .nav.nav-tabs{
+    /// Style of the main tab of the selectors (meta/bulk/custom)
+    li{
+
+      a{
+        color: $fenix-text;
+      }
+
+      &.active{
+
+        a{
+          color: $fx-cool-blue;
+        }
+
+
+      }
+
+
+    }
+
+
+  }
+
+
+
+
+  .faostat-downlaod-selector-grid-main{
+    /// Style of the single tab of the selector grid (dimensions)
+
+
+    .faostat-downlaod-selector-single{
+      margin-bottom: 15px;
+      position: relative;
+      height: 245px;
+      overflow: hidden;
+
+      .btn{
+        width: 100%;
+      }
+
+
+
+      .jstree-ocl{
+        width: 5px;
+      }
+
+
+
+      &:before{
+        content: '';
+        display: block;
+        position: absolute;
+        height: 205px;
+        top: 38px;
+        width: calc(100% - 30px);
+        border: 1px solid $fenix-light-gray;
+      }
+
+      &:after{
+        content: 'Summary is empty';
+        position: absolute;
+        bottom: 35px;
+        left: 50%;
+        font-weight: 400;
+        color: $fenix-secondary-text;
+      }
+
+      .nav.nav-tabs{
+
+
+
+
+
+      }
+
+      .tab-content{
+        padding-top: 0;
+
+        >.tab-pane{
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+          margin-bottom: 5px;
+          border-bottom: 1px solid $fenix-light-gray;
+
+        }
+      }
+
+
+    }
+
+  }
+
+}
+
+.faostat-summary-item{
+
+  max-height: 60px;
+  overflow-y: auto;
+  padding: 5px;
+  //background-color: $fx-light;
+  position: relative;
+  background-color: white;
+  z-index: 1;
+
+
+
+}
+
+.faostat-download-selector-resume-holder{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.faostat-download-selector-toolbar{
+
+  padding: 0 5px;
+}
+
+#download_preview_button{
+  width: 100%;
+}
+
+.modal-dialog{
+  z-index: 1051; //Not Good
+}
+
+@mixin fx-transfor-me($value){
+  -ms-transform: $value; // IE 9
+  -webkit-transform: $value; // Chrome, Safari, Opera
+  transform: $value;
+}
+
+@mixin fx-border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.faostat-downlaod-selector-single{
+  margin-bottom: 15px;
+  position: relative;
+  height: 245px;
+  overflow: hidden;
+
+  .btn{
+    width: 100%;
+  }
+
+
+
+  .jstree-ocl{
+    width: 5px;
+  }
+
+
+
+  &:before{
+    content: '';
+    display: block;
+    position: absolute;
+    height: 205px;
+    top: 38px;
+    width: calc(100% - 30px);
+    border: 1px solid $fenix-light-gray;
+    @include fx-border-radius(0 0 4px 4px);
+  }
+
+  &:after{
+    content: 'Summary is empty';
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    font-weight: 400;
+    color: $fenix-secondary-text;
+    @include fx-transfor-me(translateX(-50%));
+  }
+
+  .nav.nav-tabs{
+
+
+
+
+
+  }
+
+  .tab-content{
+    padding-top: 0;
+
+    >.tab-pane{
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 5px;
+      border-bottom: 1px solid $fenix-light-gray;
+
+    }
+  }
+
+
+}
+
+div[role='tabpanel'] div ul {
+  li[role='treeitem'] .jstree-wholerow {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+}
+
+.faostat-download-selector-toolbar {
+  .form-control {
+    background-color: #fff;
+    border-color: #2ab896;
+  }
+}

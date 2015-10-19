@@ -1,0 +1,7 @@
+.jstree-default-responsive .jstree-anchor {
+  white-space: normal;
+  line-height: normal;
+  height: auto; }
+
+.jstree-default > .jstree-container-ul > .jstree-node {
+  border-left: 1px #666 !important; }
