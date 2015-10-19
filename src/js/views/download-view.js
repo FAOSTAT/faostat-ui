@@ -558,12 +558,16 @@ define([
         },
 
         create_table_headers: function (dsd) {
-            var headers = [], i;
+            var headers = [], i, lbl;
             for (i = 0; i < dsd.length; i += 1) {
                 headers.push('tmp');
             }
             for (i = 0; i < dsd.length; i += 1) {
-                headers[Number(dsd[i].index)] = dsd[i].label;
+                lbl = dsd[i].label;
+                if (lbl === 'Unit Description') {
+                    lbl = 'Unit';
+                }
+                headers[Number(dsd[i].index)] = lbl;
             }
             for (i = dsd.length; i >= 0; i -= 1) {
                 if (headers[i] === 'tmp') {

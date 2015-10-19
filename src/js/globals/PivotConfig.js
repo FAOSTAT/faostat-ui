@@ -9,7 +9,7 @@ define({
     "vals": [
         "Value",
         "Flag",
-        "Unit Description"
+        "Unit"
     ],
     "hiddenAttributes": [
         "Flag",
@@ -19,7 +19,6 @@ define({
         "Domain Code",
         "Domain",
         "Year Code",
-        "Unit",
         "Value",
         "Var1Order",
         "Var2Order",
