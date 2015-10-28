@@ -1,0 +1,36 @@
+{
+  "name": "fenix-ui-olap",
+  "version": "0.0.1",
+  "description": "Component to browse FENIX resources ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FENIX-Platform/fenix-ui-olap.git"
+  },
+  "keywords": [
+    "FENIX"
+  ],
+  "author": "FENIX Development Team",
+  "license": "GPL3",
+  "bugs": {
+    "url": "https://github.com/FENIX-Platform/fenix-ui-olap/issues"
+  },
+  "homepage": "https://github.com/FENIX-Platform/fenix-ui-olap",
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "bootstrap": "~3.2.0",
+    "requirejs": "~2.1.14"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-uglify": "~0.8.0",
+    "grunt-contrib-concat": "~0.5.1",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-jshint": "~0.11.0",
+    "grunt-contrib-copy": "~0.8.0"
+  }
+}

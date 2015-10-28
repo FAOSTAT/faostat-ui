@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>WDS 5.1 Test Page</title>
+        <script type='application/javascript' src='//fenixrepo.fao.org/cdn/js/requirejs/2.1.8/require.min.js'></script>
+        <script type='application/javascript'>
+            function test() {
+                require.config({
+                    paths: {
+						text:      "//fenixrepo.fao.org/cdn/js/requirejs/plugins/text/2.0.12/text",
+						i18n:      "//fenixrepo.fao.org/cdn/js/requirejs/plugins/i18n/2.0.4/i18n",
+						domready:  "//fenixrepo.fao.org/cdn/js/requirejs/plugins/domready/2.0.1/domReady",
+						jquery:    "//fenixrepo.fao.org/cdn/js/jquery/2.1.1/jquery.min",                    	
+                        WDS_CLIENT: '../js/WDSClient'
+                    }
+                });
+                require(['jquery', 'WDS_CLIENT'], function($, WDS) {
+                    
+                    var w = new WDS({
+                        datasource: 'localpostgres',
+//                        serviceUrl: 'http://localhost:8080/wds/rest/crud'
+                    });
+
+                    w.create({
+                        payload: {
+                            query: [
+                                {
+                                    'name': 'Mario',
+                                    'items': 13
+                                },
+                                {
+                                    'name': 'Nicola',
+                                    'items': 17
+                                }
+                            ]
+                        },
+                        collection: 'TestTable',
+                        success: function(response) {
+                            $('#out_create').html(JSON.stringify(response));
+                        },
+                        error: function(a) {
+                            typeof a == 'object' ? alert(a.responseText) : alert(a);
+                        }
+                    });
+                    w.retrieve({
+                        payload: {
+                            query: 'SELECT {param} FROM "{table}" ',
+                            queryVars: {
+                                param: 'name',
+                                table: 'TestTable' 
+                            }
+                        },
+                        success: function(response) {
+                            $('#out_retrieve').html(JSON.stringify(response));
+                        },
+                        error: function(a) {
+                            typeof a == 'object' ? alert(a.responseText) : alert(a);
+                        }
+                    });
+                    w.update({
+                        payload: {
+                            "query": 'SELECT name, price, items FROM "TestTable" WHERE name = \'Guido\'',
+                            "update": {
+                                "price": 99.99,
+                                "name": "Update This!"
+                            }
+                        },
+                        collection: 'TestTable',
+                        success: function(response) {
+                            $('#out_update').html(JSON.stringify(response));
+                        },
+                        error: function(a) {
+                            typeof a == 'object' ? alert(a.responseText) : alert(a);
+                        }
+                    });
+                    w.delete({
+                        payload: {
+                            'query': 'DELETE FROM "TestTable" WHERE name = \'Guido\''
+                        },
+                        collection: 'TestTable',
+                        success: function(response) {
+                            $('#out_delete').html(JSON.stringify(response));
+                        },
+                        error: function(a) {
+                            typeof a == 'object' ? alert(a.responseText) : alert(a);
+                        }
+                    });
+                });
+            }
+        </script>
+    </head>
+    <body onload='test();'>
+        <label for='out_create'><h3>Create</h3></label>
+        <div id='out_create'></div>
+        <label for='out_retrieve'><h3>Retrieve</h3></label>
+        <div id='out_retrieve'></div>
+        <label for='out_update'><h3>Update</h3></label>
+        <div id='out_update'></div>
+        <label for='out_delete'><h3>Delete</h3></label>
+        <div id='out_delete'></div>
+    </body>
+</html>

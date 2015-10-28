@@ -1,0 +1,44 @@
+
+
+
+
+<li class="fx-uploader-item">
+
+    <div class="uploader-item-header">
+
+        <h3 class="item-title">{{ model.name }}</h3>
+        <span class="label label-warning file-type">{{ model.type }}</span>
+        <div class="file-description">{{ model.type }} - {{ model.size }}, last modified:{{ model.lastModifiedDate}}</div>
+
+
+        <div class="fx-uploader-item-remove"><span class="fx-widget-icons icojam_button_delete_1"></span></div>
+
+
+    </div>
+
+
+    <div class="fx-uploader-item-list-container">
+        <ul class="fx-uploader-item-list list-unstyled">
+            <li data-step="pre_process" data-status="waiting" class="truncate">
+                <i class="fa fa-refresh fa-spin step-icon"></i> <span data-role="title">Pre-processing</span> <span data-role="info"></span>
+            </li>
+            <li data-step="metadata" data-status="waiting" class="truncate">
+                <i class="fa fa-refresh fa-spin step-icon"></i> <span data-role="title">Metadata</span> <span data-role="info"></span>
+            </li>
+            <li data-step="upload" data-status="waiting" class="truncate">
+                <i class="fa fa-refresh fa-spin step-icon"></i> <span data-role="title">Uploading</span> <span data-role="info"></span>
+            </li>
+            <li data-step="close" data-status="waiting" class="truncate">
+                <i class="fa fa-refresh fa-spin step-icon"></i>  <span data-role="title">Close file</span> <span data-role="info"></span>
+            </li>
+            <li data-step="post_process" data-status="waiting" class="truncate">
+                <i class="fa fa-refresh fa-spin step-icon"></i>  <span data-role="title">Post-processing</span> <span data-role="info"></span>
+            </li>
+        </ul>
+    </div>
+
+</li>
+
+
+
+

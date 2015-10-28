@@ -1,0 +1,28 @@
+/* Fenix Datepicker - Components */
+
+.datepicker {
+  font-size: $small-text;
+
+  .datepicker-days{
+     .day{
+       @include fx-border-radius(0);
+     }
+
+    .day.active{
+      background-color: $fx-cool-blue;
+    }
+
+    .day.today:before{
+      border-bottom-color:$fx-cool-blue;
+    }
+
+    .day.active.today:before{
+      border-bottom-color:white;
+    }
+
+  }
+
+
+}
+
+

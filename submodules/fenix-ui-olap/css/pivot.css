@@ -1,0 +1,147 @@
+.pvtUnused li{display:inline;}
+.pvtUnused {display:block;}
+.pvtUnused:before {
+	content: 'AGG'; position: relative;
+	top: 5px;left: 0;font-size: 12px;
+	font-weight: 700;text-transform: uppercase; 
+}
+
+#pivot1_nested_by{display:none}
+#pivot1_filtre_Value{display:none !important}
+#pivot1_fx-olap-ui > table > tbody {  border: 0; }
+#pivot1_fx-olap-ui > table > tbody > tr {position: relative; }
+
+.pvtFilterLabel input[type="checkbox"]{display:inline-block !important;}
+.pvtRows{position: relative;padding-left: 65px; }
+.pvtRows:before {
+content: 'ROW';position: relative;
+top: 5px;left: 0;font-size: 12px;
+font-weight: 700;text-transform: uppercase; 
+}
+.tVal{width:100%;border:0px solid red}
+.tVal td{width:33%;border:0px solid red}
+.pvtRows:after {
+content: '';position: absolute;
+width: 100%;height: 1px;
+bottom: 0;left: 0;
+background-color: #e4e4e4; 
+}
+
+#pivot1_fx-olap-ui_fx-olap-holder-div { overflow: auto; }
+#pivot1_fx-olap-ui #pivot1_fx-olap-ui_finaltable {  overflow: auto;  width: 100%;  height: 400px; }
+#pivot1_fx-olap-ui_fx-olap-holder-div{  width: 800px; height: 500px;  overflow: auto;}
+
+
+.invi{display:none !important;}
+.pvtCols {position: relative;padding-left: 65px; }
+	  
+.pvtCols:after {
+content: '';position: absolute;width: 100%;
+height: 1px;bottom: 0;left: 0;
+background-color: #e4e4e4;}
+		
+.pvtCols:before {
+content: 'COLUMN';position: relative;
+top: 5px;left: 0;font-size: 12px;
+font-weight: 700;text-transform: uppercase;}
+
+.fx-olap-holder {  overflow: hidden; }
+
+.pvtVals{display:inline}
+.pvtRenderer{display:block}
+/*.pvtAttrDropdown{display:none}*/
+
+/* Afo Pivot */
+.pvtAxisContainer, .pvtVals {  background: transparent; }
+
+.fx-olap-holder * {  box-sizing: content-box; }
+table.pvtTable {
+  /*font-family:arial;*/
+    /*font-size: 8pt;*/
+    text-align: left;
+    border-collapse: collapse;
+}
+table.pvtTable tr th, table.pvtTable tr th {
+    background-color: #e6EEEE;
+    border: 1px solid #CDCDCD;
+    /*font-size: 8pt;*/
+    padding: 5px;
+}
+
+table.pvtTable .pvtColLabel {text-align: center;}
+table.pvtTable .pvtTotalLabel {text-align: right;}
+
+table.pvtTable tr td {
+    /*color: #3D3D3D;*/
+    padding: 5px;
+    background-color: #FFF;
+    border: 0px solid #CDCDCD;
+    vertical-align: top;
+    text-align: right;
+}
+
+.pvtTotal, .pvtGrandTotal { font-weight: bold; }
+.pvtVals { text-align: center;}
+.pvtAggregator { margin-bottom: 5px ;}
+
+.pvtAxisContainer, .pvtVals {
+
+    padding: 5px;
+    min-width: 20px;
+    min-height: 20px;
+}
+.pvtAxisContainer li {
+    padding: 8px 6px;
+    list-style-type: none;
+    cursor:move;
+}
+.pvtAxisContainer li.pvtPlaceholder {
+    -webkit-border-radius: 5px;
+    padding: 3px 15px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px dashed #aaa;
+}
+
+.pvtAxisContainer li span.pvtAttr {
+    background: #F3F3F3;
+    padding: 2px 5px;
+    white-space:nowrap;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.pvtTriangle {
+    cursor:pointer;
+    /*color: grey;*/
+}
+
+.pvtHorizList li { display: inline; }
+.pvtVertList { vertical-align: top; }
+
+.pvtFilteredAttribute { font-style: italic }
+
+.pvtFilterBox{
+    z-index: 100;
+    width: 280px;
+    background-color: #fff;
+    position: absolute;
+    padding: 20px;
+    text-align: center;
+}
+
+.pvtFilterBox h4{ margin:0; }
+
+.pvtCheckContainer{
+    text-align: left;
+    overflow: scroll;
+    width: 100%;
+    max-height: 200px;
+}
+.pvtCheckContainer p{ margin: 5px; }
+
+/**Modif***/
+.ordre{display:none}
+
+

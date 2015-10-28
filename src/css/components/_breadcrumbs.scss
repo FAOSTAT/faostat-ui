@@ -1,0 +1,45 @@
+/* BreadCrumbs */
+
+#breadcumb_container{
+  height: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.breadcrumb{
+  background-color: transparent;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px 0;
+  margin-bottom: 0;
+
+
+
+
+
+  li{
+
+
+
+    a{
+      color: $fenix-text;
+      text-transform: uppercase;
+
+
+      &:hover{
+
+      }
+
+    }
+
+  }
+
+
+
+}
+
+.breadcrumb > li + li:before{
+  content: '|';
+  color: $fenix-text;
+}

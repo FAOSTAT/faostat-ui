@@ -1,0 +1,27 @@
+/*  Fenix - Base Theme */
+
+body{
+  background: $fx-site-bg;
+  padding-top: $host-menu-height;
+}
+
+.title-ico{
+  height: 30px;
+  width: 30px;
+  margin: -4px 10px 0 0;
+}
+
+
+.page-header {
+  margin: 20px 0 0 0;
+  border: none;
+
+  h1{
+    text-align: center;
+  }
+
+  p{
+    text-align: center;
+  }
+}
+

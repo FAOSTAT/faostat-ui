@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="Layer_1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="Flag.svg" sodipodi:version="0.32" inkscape:version="0.47 r22583" inkscape:output_extension="org.inkscape.output.svg.inkscape"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="396px" height="403px"
+	 viewBox="0 53.5 396 403" enable-background="new 0 53.5 396 403" xml:space="preserve">
+<defs>
+	
+	
+		<inkscape:perspective  id="perspective3816" sodipodi:type="inkscape:persp3d" inkscape:vp_y="0 : 1000 : 0" inkscape:vp_x="0 : 256 : 1" inkscape:vp_z="396 : 256 : 1" inkscape:persp3d-origin="198 : 170.66667 : 1">
+		</inkscape:perspective>
+</defs>
+<sodipodi:namedview  id="base" inkscape:cy="252.54841" inkscape:cx="259.91347" inkscape:zoom="1.2761068" showgrid="false" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" objecttolerance="10.0" gridtolerance="10.0" guidetolerance="10.0" inkscape:window-maximized="0" inkscape:current-layer="Layer_1" inkscape:window-y="-8" inkscape:window-x="-8" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-width="1264" inkscape:window-height="972">
+	</sodipodi:namedview>
+<g>
+	<defs>
+		<path id="SVGID_1_" d="M33.397,349.274c28.069,49.667,77.898,85.421,136.519,94.321h57.361
+			c81.642-12.384,146.202-76.854,158.729-158.468v-57.982c-0.233-1.593-0.504-3.168-0.782-4.743
+			c-106.768,31.524-201.565,87.329-252.699,132.559c44.204-56.488,124.307-109.395,211.933-140.316
+			C247.256,227.227,136.853,271.098,33.397,349.274 M8.965,256.105c0,23.101,4.122,45.204,11.681,65.64
+			c85.583-62.985,214.605-111.113,343.051-113.525c5.669-1.737,11.356-3.429,17.026-4.967
+			C357.848,124.266,284.944,66.5,198.597,66.5C93.873,66.5,8.965,151.399,8.965,256.105"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  overflow="visible"/>
+	</clipPath>
+	<radialGradient id="SVGID_3_" cx="197.4839" cy="255.0547" r="188.5329" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="1" style="stop-color:#73CBEA"/>
+	</radialGradient>
+	<rect x="8.964" y="66.509" clip-path="url(#SVGID_2_)" fill="url(#SVGID_3_)" width="377.04" height="377.092"/>
+</g>
+<g>
+	<defs>
+		<path id="SVGID_4_" d="M33.397,349.274c32.551,57.586,94.339,96.48,165.199,96.48c104.706,0,189.614-84.898,189.614-189.65
+			c0-11.483-1.025-22.75-2.987-33.702c-106.768,31.524-201.565,87.329-252.699,132.559
+			c44.204-56.488,124.289-109.395,211.914-140.316C247.256,227.227,136.853,271.134,33.397,349.274 M17.604,312.836
+			c0.927,2.988,1.971,5.967,3.06,8.909c85.564-62.985,214.587-111.113,343.033-113.525c5.669-1.737,11.356-3.429,17.026-4.967
+			c-1.764-6.165-3.87-12.203-6.255-18.125C231.651,187.144,112.699,229.674,17.604,312.836"/>
+	</defs>
+	<clipPath id="SVGID_5_">
+		<use xlink:href="#SVGID_4_"  overflow="visible"/>
+	</clipPath>
+	
+		<linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="-120.2812" y1="650.3818" x2="-111.0646" y2="650.3818" gradientTransform="matrix(0 25.8203 40.0051 0 -25815.6953 3287.2246)">
+		<stop  offset="0" style="stop-color:#AEC700"/>
+		<stop  offset="1" style="stop-color:#006228"/>
+	</linearGradient>
+	<rect x="17.604" y="185.128" clip-path="url(#SVGID_5_)" fill="url(#SVGID_6_)" width="370.607" height="260.627"/>
+</g>
+</svg>

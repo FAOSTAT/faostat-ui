@@ -1,0 +1,131 @@
+.summary-item {
+  display: inline-block;
+  cursor: pointer;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #FFFFFF;
+  color: #666666;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin: 3px 3px 3px 0;
+  padding: 2px 5px; }
+
+.v-space {
+  margin-top: 16px; }
+
+.faostat-download-main-content .btn {
+  display: inline-block;
+  font-size: 12px;
+  margin-bottom: 0;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: whitesmoke;
+  border: 1px solid #999999;
+  padding: 6px; }
+  .faostat-download-main-content .btn:hover {
+    background-color: #e6e6e6; }
+.faostat-download-main-content .nav.nav-tabs li a {
+  color: #666666; }
+.faostat-download-main-content .nav.nav-tabs li.active a {
+  color: #379bce; }
+.faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single {
+  margin-bottom: 15px;
+  position: relative;
+  height: 245px;
+  overflow: hidden; }
+  .faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single .btn {
+    width: 100%; }
+  .faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single .jstree-ocl {
+    width: 5px; }
+  .faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single:before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 205px;
+    top: 38px;
+    width: calc(100% - 30px);
+    border: 1px solid #dddddd; }
+  .faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single:after {
+    content: 'Summary is empty';
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    font-weight: 400;
+    color: #999999; }
+  .faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single .tab-content {
+    padding-top: 0; }
+    .faostat-download-main-content .faostat-downlaod-selector-grid-main .faostat-downlaod-selector-single .tab-content > .tab-pane {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 5px;
+      border-bottom: 1px solid #dddddd; }
+
+.faostat-summary-item {
+  max-height: 60px;
+  overflow-y: auto;
+  padding: 5px;
+  position: relative;
+  background-color: white;
+  z-index: 1; }
+
+.faostat-download-selector-resume-holder {
+  padding-left: 20px;
+  padding-right: 20px; }
+
+.faostat-download-selector-toolbar {
+  padding: 0 5px; }
+
+#download_preview_button {
+  width: 100%; }
+
+.modal-dialog {
+  z-index: 1051; }
+
+.faostat-downlaod-selector-single {
+  margin-bottom: 15px;
+  position: relative;
+  height: 245px;
+  overflow: hidden; }
+  .faostat-downlaod-selector-single .btn {
+    width: 100%; }
+  .faostat-downlaod-selector-single .jstree-ocl {
+    width: 5px; }
+  .faostat-downlaod-selector-single:before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 205px;
+    top: 38px;
+    width: calc(100% - 30px);
+    border: 1px solid #dddddd;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px; }
+  .faostat-downlaod-selector-single:after {
+    content: 'Summary is empty';
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    font-weight: 400;
+    color: #999999;
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); }
+  .faostat-downlaod-selector-single .tab-content {
+    padding-top: 0; }
+    .faostat-downlaod-selector-single .tab-content > .tab-pane {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 5px;
+      border-bottom: 1px solid #dddddd; }
+
+div[role='tabpanel'] div ul li[role='treeitem'] .jstree-wholerow {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd; }
+
+.faostat-download-selector-toolbar .form-control {
+  background-color: #fff;
+  border-color: #2ab896; }

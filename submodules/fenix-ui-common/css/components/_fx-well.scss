@@ -1,0 +1,7 @@
+/* Fenix - Well Component */
+
+.well {
+  background-color: transparent;
+  border: none;
+  @include fx-box-shadow(0, 0, 0, white);
+}
