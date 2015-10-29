@@ -49,6 +49,3 @@
 [submodule "submodules/faostat-ui-standards-abbreviations"]
 	path = submodules/faostat-ui-standards-abbreviations
 	url = https://github.com/FAOSTAT/faostat-ui-standards-abbreviations.git
-[submodule "submodules/fenix-ui-olap"]
-	path = submodules/fenix-ui-olap
-	url = https://github.com/FENIX-Platform/fenix-ui-olap.git
