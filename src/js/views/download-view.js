@@ -504,6 +504,7 @@ define([
 
             /* Variables. */
             var downloadOutputArea = $('#downloadOutputArea');
+            console.debug(response.data[0]);
 
             try {
                 downloadOutputArea.data('jbPivot').reset();
@@ -515,6 +516,7 @@ define([
                         Item : {field: 'Item', sort: 'asc', showAll: true, agregateType: 'distinct'},
                         Element : {field: 'Element', sort: 'asc', showAll: true, agregateType: 'distinct'},
                         Unit : {field: 'Unit', sort: 'asc', showAll: true, agregateType: 'distinct'},
+                        Flag : {field: 'Flag', sort: 'asc', showAll: true, agregateType: 'distinct'},
                         Year : {field: 'Year', sort: 'desc', showAll: true, agregateType: 'distinct'},
                         average: {field: 'Value', agregateType: 'average', groupType: 'none', label: 'Value', formatter: function (V, f) {
                             var res = null;
@@ -526,7 +528,7 @@ define([
                     },
                     yfields: ['Year'],
                     xfields: ['Country', 'Element', 'Item'],
-                    zfields: ['average', 'Unit'],
+                    zfields: ['average', 'Unit', 'Flag'],
                     data: response.data
                 });
             }
