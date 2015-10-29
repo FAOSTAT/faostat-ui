@@ -529,7 +529,8 @@ define([
                     yfields: ['Year'],
                     xfields: ['Country', 'Element', 'Item'],
                     zfields: ['average', 'Unit', 'Flag'],
-                    data: response.data
+                    data: response.data,
+                    copyright: false
                 });
             }
 

@@ -104,14 +104,8 @@ require([
                     'jquery.rangeSlider': '{FENIX_CDN}/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
                     //'jquery-ui': 'jquery-ui',
                     'jqueryui': 'jquery-ui',
-                    jbPivot: 'jbPivot',
+                    jbPivot: '../../submodules/faostat-ui-pivot/dist/js/jbPivot',
                     // TODO: move to CDN
-
-
-                    /* Pivot imports. */
-                    'fx-olap/nls':            "../../submodules/fenix-ui-olap/nls",
-                    'gt_msg':                 "../../submodules/fenix-ui-olap/lib/grid/gt_msg_en",
-                    'gt_msg_grid':            "../../submodules/fenix-ui-olap/lib/grid/gt_grid_all",
 
                     /* FAOSTAT API's client. */
                     faostatapiclient:           'FAOSTATAPIClient',
@@ -137,13 +131,9 @@ require([
                     },
                     "gt_msg": ['jquery'],
                     "gt_msg_grid": ['jquery', 'gt_msg'],
-                    "HPivot": ['jquery', 'jqueryui'],
                     faostatapiclient: {
                         deps: ['jquery']
                     },
-                    //'jquery-ui': {
-                    //    deps: ['jquery']
-                    //},
                     'jqueryui': {
                         deps: ['jquery']
                     },
