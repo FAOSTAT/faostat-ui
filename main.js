@@ -102,8 +102,9 @@ require([
                     wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
                     'jquery.rangeSlider': '{FENIX_CDN}/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
-                    'jquery-ui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
-                    'jqueryui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
+                    //'jquery-ui': 'jquery-ui',
+                    'jqueryui': 'jquery-ui',
+                    jbPivot: 'jbPivot',
                     // TODO: move to CDN
 
 
@@ -111,12 +112,6 @@ require([
                     'fx-olap/nls':            "../../submodules/fenix-ui-olap/nls",
                     'gt_msg':                 "../../submodules/fenix-ui-olap/lib/grid/gt_msg_en",
                     'gt_msg_grid':            "../../submodules/fenix-ui-olap/lib/grid/gt_grid_all",
-                    'pivot':                  "../../submodules/fenix-ui-olap/js/pivot",
-                    'pivotRenderers':         "../../submodules/fenix-ui-olap/js/rend/rendererers",
-                    'pivotAggregators':       "../../submodules/fenix-ui-olap/js/rend/aggregators",
-                    'pivotRenderersFuncs':    "../../submodules/fenix-ui-olap/js/rend/function_rendererers",
-                    'pivotAggregatorsFuncs':  "../../submodules/fenix-ui-olap/js/rend/function_aggregators",
-                    "pivotConfig":            "./globals/PivotConfig",
 
                     /* FAOSTAT API's client. */
                     faostatapiclient:           'FAOSTATAPIClient',
@@ -143,19 +138,20 @@ require([
                     "gt_msg": ['jquery'],
                     "gt_msg_grid": ['jquery', 'gt_msg'],
                     "HPivot": ['jquery', 'jqueryui'],
-                    "pivotRenderers": ['pivotRenderersFuncs'],
-                    "pivotAggregators": ['pivotAggregatorsFuncs', 'jquery'],
                     faostatapiclient: {
                         deps: ['jquery']
                     },
-                    'jquery-ui': {
-                        deps: ['jquery']
-                    },
+                    //'jquery-ui': {
+                    //    deps: ['jquery']
+                    //},
                     'jqueryui': {
                         deps: ['jquery']
                     },
+                    jbPivot: {
+                        deps: ['jquery', 'jqueryui']
+                    },
                     'jquery.rangeSlider': {
-                        deps: ['jquery', 'jquery-ui']
+                        deps: ['jquery', 'jqueryui']
                     },
                     "ga": {
                         exports: "__ga__"
