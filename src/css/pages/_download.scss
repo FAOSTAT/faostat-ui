@@ -33,9 +33,9 @@
 }
 
 // TODO: is it needed?
-.fx-olap-holder {
-  max-width: 847px;
-}
+//.fx-olap-holder {
+//  max-width: 847px;
+//}
 
 
 // MOVED FROM THE MENU SECTION....
@@ -260,4 +260,12 @@
   a:active {
     outline: none;
   }
+}
+
+.tVal {
+  width: 100% !important;
+}
+
+#download-wrapper {
+  overflow-y: auto !important;
 }

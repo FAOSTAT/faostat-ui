@@ -13,15 +13,12 @@ define([
     'FAOSTAT_UI_BULK_DOWNLOADS',
     'FAOSTAT_UI_DOWNLOAD_SELECTORS_MANAGER',
     'FAOSTAT_UI_OPTIONS_MANAGER',
-    'pivot',
-    'pivotRenderers',
-    'pivotAggregators',
-    'pivotConfig',
     'chaplin',
     'underscore',
     'globals/Common',
     'faostatapiclient',
-    'amplify'
+    'amplify',
+    'jbPivot'
 ], function (View,
              C,
              E,
@@ -33,10 +30,6 @@ define([
              BulkDownloads,
              DownloadSelectorsManager,
              OptionsManager,
-             Pivot,
-             pivotRenderers,
-             pivotAggregators,
-             dataConfig,
              Chaplin,
              _,
              Common,
@@ -177,7 +170,6 @@ define([
 
             // init components
             // TODO: check if everything should be here
-            this.pivot = new Pivot();
             this.metadata = new MetadataViewer();
             this.bulk_downloads = new BulkDownloads();
             this.options_manager = new OptionsManager();
@@ -417,7 +409,7 @@ define([
                 List6Codes: user_selection.list6Codes || null,
                 List7Codes: user_selection.list7Codes || null,
                 limit: -1,
-                output_type: 'arrays',
+                //output_type: 'arrays',
                 lang: this.options.lang_faostat
             }).then(function (json) {
                 that.show_preview(json);
@@ -511,45 +503,32 @@ define([
         show_preview: function (response) {
 
             /* Variables. */
-            var hs, json, that = this;
+            var downloadOutputArea = $('#downloadOutputArea');
 
-            /* Headers. */
-            hs = ['NumberOfRows', 'RowNumber'];
-
-            /* Cast data, if needed. */
-            json = response;
-            if (typeof json === 'string') {
-                json = $.parseJSON(response);
-            }
-
-            /* Add headers for pivot table. */
-            hs = hs.concat(this.create_table_headers(json.metadata.dsd));
-
-            /* Show either the pivot, or a courtesy message. */
-            if (json.data.length !== 0) {
-
-                /* Add headers. */
-                json.data.splice(0, 0, hs);
-
-                /* Create OLAP. */
-                dataConfig = _.extend(dataConfig, {aggregatorDisplay: pivotAggregators});
-                dataConfig = _.extend(dataConfig, {rendererDisplay: pivotRenderers});
-                dataConfig = _.extend(dataConfig, {
-                    onDataLoaded: function () {
-                        $('.gt-hd-split').html('↔');
-                        if (that.pivot_caller === 'CSV') {
-                            that.csv();
-                        } else if (that.pivot_caller === 'XLS') {
-                            that.excel();
-                        }
-                    }
+            try {
+                downloadOutputArea.data('jbPivot').reset();
+                downloadOutputArea.data('jbPivot').insertRecords(response.data);
+            } catch (e) {
+                downloadOutputArea.jbPivot({
+                    fields: {
+                        Country : {field: 'Country', sort: 'asc', showAll: true, agregateType: 'distinct'},
+                        Item : {field: 'Item', sort: 'asc', showAll: true, agregateType: 'distinct'},
+                        Element : {field: 'Element', sort: 'asc', showAll: true, agregateType: 'distinct'},
+                        Unit : {field: 'Unit', sort: 'asc', showAll: true, agregateType: 'distinct'},
+                        Year : {field: 'Year', sort: 'desc', showAll: true, agregateType: 'distinct'},
+                        average: {field: 'Value', agregateType: 'average', groupType: 'none', label: 'Value', formatter: function (V, f) {
+                            var res = null;
+                            if (typeof V === "number") {
+                                res = V.toFixed(2);
+                            }
+                            return res;
+                        }}
+                    },
+                    yfields: ['Year'],
+                    xfields: ['Country', 'Element', 'Item'],
+                    zfields: ['average', 'Unit'],
+                    data: response.data
                 });
-                // TODO: fix olap to render on selector
-                this.pivot.render(this.$download_ouput_area.selector.replace('#', ''), json.data, dataConfig);
-
-
-            } else {
-                this.$download_ouput_area.html('<h1 class="text-center">' + i18nLabels.no_data_available + '</h1>');
             }
 
             /* Close waiting window. */
