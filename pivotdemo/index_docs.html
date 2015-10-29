@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FAOSTAT API Client Test</title>
+        <script type='application/javascript' src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
+        <script type='application/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/q.js/2.0.3/q.min.js'></script>
+        <script type='application/javascript' src='https://raw.githubusercontent.com/FAOSTAT/faostat-api-client/master/dist/latest/FAOSTATAPIClient.min.js'></script>
+        <script type='application/javascript'>
+            function test() {
+
+                /* Initiate FAOSTAT API's client. */
+                var api = new FAOSTATAPIClient();
+
+                /* Fetch FAOSTAT groups and domains. */
+                api.groups().then(function (response) {
+                    /* Do something with the result. */
+                    $('#placeholder').innerHTML(JSON.stringify(response));
+                });
+
+            }
+        </script>
+    </head>
+    <body>
+        <div id='placeholder'></div>
+        <button id='test_button'>
+            TEST 'groups' service
+        </button>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+/*global define,Q*/
+define(['jquery'{{#if q}}, 'q'{{/if}}], function (${{#if q}}, Q{{/if}}) {
+
+    'use strict';
+
+    function {{module_name}}(config) {
+
+        /* Store configuration. */
+        this.CONFIG = {
+            base_url: {{{base_url}}}
+        };
+
+        /* Extend default configuration. */
+        this.CONFIG = $.extend(true, {}, this.CONFIG, config || {});
+
+    }
+
+    {{#each methods}}
+        {{{this}}}
+    {{/each}}
+
+    return {{module_name}};
+
+});
