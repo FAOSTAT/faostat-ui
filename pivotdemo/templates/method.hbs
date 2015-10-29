@@ -1,0 +1,59 @@
+{{module_name}}.prototype.{{rel}} = function(config) {
+    config = $.extend(true, {}, this.CONFIG, config || {});
+    config = this.apply_{{rel}}_defaults(config);
+    if (this.is_valid_{{rel}}(config)) {
+        {{#if q}}
+            return Q($.ajax({
+                url: this.CONFIG.base_url + {{{url}}},
+                traditional: true,
+                data: {{{data}}},
+                type: {{{method}}}
+            }));
+        {{else}}
+            $.ajax({
+                url: this.CONFIG.base_url + {{{url}}},
+                traditional: true,
+                data: {{{data}}},
+                type: {{{method}}},
+                success: config.success,
+                error: config.error,
+                context: config.context,
+                always: config.always
+            });
+        {{/if}}
+    }
+    throw 400;
+};
+
+{{module_name}}.prototype.is_valid_{{rel}} = function(config) {
+    var parameters = [{{{parameters}}}], i;
+    for (i = 0; i < parameters.length; i += 1) {
+        if (config[parameters[i]] === undefined) {
+            throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
+        }
+    }
+    return true;
+};
+
+{{module_name}}.prototype.apply_{{rel}}_defaults = function (config) {
+    var i,
+        parameters = [{{{parameters}}}],
+        defaults = {
+            {{{defaults}}}
+        },
+        key;
+    for (i = 0; i < Object.keys(defaults).length; i += 1) {
+        if (defaults[Object.keys(defaults)[i]] === '[]') {
+            defaults[Object.keys(defaults)[i]] = [];
+        }
+    }
+    for (i = 0; i < parameters.length; i += 1) {
+        key =  parameters[i];
+        try {
+            config[key] = config[key] !== undefined ? config[key] : defaults[key];
+        } catch (ignore) {
+            /* No default value available for this parameter. */
+        }
+    }
+    return config;
+};
