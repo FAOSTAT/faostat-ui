@@ -103,6 +103,7 @@ require([
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
                     'jquery.rangeSlider': '{FENIX_CDN}/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
                     'jquery-ui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
+                    'jqueryui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
                     // TODO: move to CDN
 
 
@@ -148,6 +149,9 @@ require([
                         deps: ['jquery']
                     },
                     'jquery-ui': {
+                        deps: ['jquery']
+                    },
+                    'jqueryui': {
                         deps: ['jquery']
                     },
                     'jquery.rangeSlider': {
