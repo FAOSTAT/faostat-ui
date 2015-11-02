@@ -24,11 +24,15 @@ define(function () {
             },
 
             domains: {
-                blacklist: ['QC']
+                blacklist: ['QD']
             },
 
             // this will blacklist all the IDs that should not be created as filters
             filters: {
+                blacklistCodesID: ['yeargroup']
+            },
+
+            series: {
                 blacklistCodesID: ['yeargroup']
             },
 
@@ -37,7 +41,17 @@ define(function () {
 
             // chart definition
             chart: {
-
+                model: null,
+                adapter: {
+                    adapterType: 'faostat',
+                    type: "timeserie",
+                    xDimensions: 'yeargroup',
+                    yDimensions: 'unit',
+                    valueDimensions: 'value',
+                    seriesDimensions: ['areagroup', 'elementgroup', 'itemgroup']
+                },
+                template: {},
+                creator: {}
             }
 
         };
