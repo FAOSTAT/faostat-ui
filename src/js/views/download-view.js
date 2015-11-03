@@ -137,7 +137,9 @@ define([
             /* Initiate pivot exporter. */
             this.pivot_exporter = new PivotExporter({
                 placeholder_id: 'downloadOutputArea',
-                filename: 'FAOSTAT'
+                filename: 'FAOSTAT',
+                url_csv2excel: 'http://fenixapps2.fao.org/api/v1.0/csv2excel/',
+                url_output: 'http://fenixapps2.fao.org/api/v1.0/excels/'
             });
 
         },
@@ -555,7 +557,6 @@ define([
                         metadata = '"Datasource", "FAOSTAT"\n"Domain Name", "';
                         metadata += $("#" + that.options.code + " a").text();
                         metadata += '"\n"Retrieved", ' + new Date();
-                        console.debug(metadata);
                         that.pivot_exporter.excel(metadata);
                     }
                 }, 100);

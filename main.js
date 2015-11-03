@@ -106,6 +106,7 @@ require([
                     'jqueryui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
                     jbPivot: '{FENIX_CDN}/js/jbpivot/0.1.0/jbPivot',
                     pivot_exporter: '../../submodules/faostat-ui-pivot/src/js/PivotExporter',
+                    swal: 'lib/sweet-alert',
                     // TODO: move to CDN
 
                     /* FAOSTAT API's client. */
