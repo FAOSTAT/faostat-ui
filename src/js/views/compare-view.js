@@ -149,6 +149,8 @@ define([
 
             var self = this;
 
+            this.$CHART.empty();
+
             // Google Analytics Add CompareData Event
             amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
                 category: F.GOOGLE_ANALYTICS.COMPARE.category,
