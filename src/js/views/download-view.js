@@ -137,7 +137,9 @@ define([
             /* Initiate pivot exporter. */
             this.pivot_exporter = new PivotExporter({
                 placeholder_id: 'downloadOutputArea',
-                filename: 'FAOSTAT'
+                filename: 'FAOSTAT',
+                url_csv2excel: 'http://fenixapps2.fao.org/api/v1.0/csv2excel/',
+                url_output: 'http://fenixapps2.fao.org/api/v1.0/excels/'
             });
 
         },
