@@ -6,7 +6,7 @@ define([
     'config/Queries',
     'config/Events',
     'text!templates/browse/browse_rankings.hbs',
-    'i18n!nls/browse',
+    'i18n!nls/browse_rankings',
     'handlebars',
     'globals/Common',
     'FAOSTAT_UI_TREE',

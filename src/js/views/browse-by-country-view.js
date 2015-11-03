@@ -6,7 +6,7 @@ define([
     'config/Queries',
     'config/Events',
     'text!templates/browse/browse_by_country.hbs',
-    'i18n!nls/browse',
+    'i18n!nls/browse_by_country',
     'handlebars',
     'globals/Common',
     'amplify'

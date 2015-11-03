@@ -7,7 +7,7 @@ define([
     'config/Events',
     'config/browse_by_domain/Config',
     'text!templates/browse/browse_by_domain.hbs',
-    'i18n!nls/browse',
+    'i18n!nls/browse_by_domain',
     'handlebars',
     'globals/Common',
     'FAOSTAT_UI_TREE',
