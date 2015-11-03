@@ -7,13 +7,8 @@ define(function () {
 
         defaultCode: 'Q',
 
-        groups: {
-            blacklist: ['P']
-        },
-
-        domains: {
-            blacklist: ['QD']
-        }
+        blacklist: ['TM']
 
     };
 });
+
