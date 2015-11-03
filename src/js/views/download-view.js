@@ -1,4 +1,4 @@
-/*global define, _:false, $, console, amplify, FM*/
+/*global define, _:false, $, console, amplify, FM, setInterval, clearInterval*/
 /*jslint todo: true */
 /*jslint nomen: true */
 define([
@@ -17,6 +17,7 @@ define([
     'underscore',
     'globals/Common',
     'faostatapiclient',
+    'pivot_exporter',
     'amplify',
     'jbPivot'
 ], function (View,
@@ -33,7 +34,8 @@ define([
              Chaplin,
              _,
              Common,
-             FAOSTATAPIClient) {
+             FAOSTATAPIClient,
+             PivotExporter) {
 
     'use strict';
 
@@ -131,6 +133,12 @@ define([
 
             /* Initiate FAOSTAT API's client. */
             this.api = new FAOSTATAPIClient();
+
+            /* Initiate pivot exporter. */
+            this.pivot_exporter = new PivotExporter({
+                placeholder_id: 'downloadOutputArea',
+                filename: 'FAOSTAT'
+            });
 
         },
 
@@ -357,21 +365,23 @@ define([
 
 
         excel: function () {
-            this.pivot.exportExcel();
-            this.pivot_caller = null;
+            //this.pivot.exportExcel();
+            //this.pivot_caller = null;
+            this.pivot_exporter.excel();
         },
 
         csv: function () {
-            this.pivot.exportCSV();
-            this.pivot_caller = null;
+            //this.pivot.exportCSV();
+            //this.pivot_caller = null;
+            this.pivot_exporter.csv();
         },
 
         preview: function (selector_mgr, options_manager) {
+
             var user_selection,
                 dwld_options,
                 data = {},
-                that = this,
-                w;
+                that = this;
 
             user_selection = selector_mgr.get_user_selection();
             dwld_options = options_manager.get_options_window('preview_options').collect_user_selection();
@@ -382,22 +392,9 @@ define([
             data.domainCode = this.options.domain;
             data.lang = this.options.lang_faostat;
             data.limit = -1;
-            w = new WDSClient({
-                datasource: 'faostatdb',
-                outputType: C.WDS_OUTPUT_TYPE
-            });
 
             /* Add loading. */
             amplify.publish(E.WAITING_SHOW, {});
-
-            //w.retrieve({
-            //    outputType: 'array',
-            //    payload: {
-            //        query: this.create_query_string(user_selection)
-            //    },
-            //    success: that.show_preview,
-            //    context: this
-            //});
 
             this.api.data({
                 domain_code: this.options.code,
@@ -409,7 +406,6 @@ define([
                 List6Codes: user_selection.list6Codes || null,
                 List7Codes: user_selection.list7Codes || null,
                 limit: -1,
-                //output_type: 'arrays',
                 lang: this.options.lang_faostat
             }).then(function (json) {
                 that.show_preview(json);
@@ -447,7 +443,8 @@ define([
         validate_user_selection: function (user_selection) {
 
             /* Variables. */
-            var i, selectAll;
+            var i,
+                selectAll;
 
             /* Check there's at least one selection for each box. */
             for (i = 1; i <= this.download_selectors_manager.CONFIG.rendered_boxes.length; i += 1) {
@@ -503,8 +500,11 @@ define([
         show_preview: function (response) {
 
             /* Variables. */
-            var downloadOutputArea = $('#downloadOutputArea');
-            console.debug(response.data[0]);
+            var downloadOutputArea = $('#downloadOutputArea'),
+                timer,
+                test,
+                that = this,
+                metadata;
 
             try {
                 downloadOutputArea.data('jbPivot').reset();
@@ -530,12 +530,36 @@ define([
                     xfields: ['Country', 'Element', 'Item'],
                     zfields: ['average', 'Unit', 'Flag'],
                     data: response.data,
-                    copyright: false
+                    copyright: false,
+                    summary: false
                 });
             }
 
             /* Close waiting window. */
             amplify.publish(E.WAITING_HIDE, {});
+
+            /* Export CSV or Excel, if required. */
+            if (this.pivot_caller === 'CSV') {
+                timer = setInterval(function () {
+                    test = downloadOutputArea.html();
+                    if (test !== '') {
+                        clearInterval(timer);
+                        that.pivot_exporter.csv();
+                    }
+                }, 100);
+            } else if (this.pivot_caller === 'XLS') {
+                timer = setInterval(function () {
+                    test = downloadOutputArea.html();
+                    if (test !== '') {
+                        clearInterval(timer);
+                        metadata = '"Datasource", "FAOSTAT"\n"Domain Name", "';
+                        metadata += $("#" + that.options.code + " a").text();
+                        metadata += '"\n"Retrieved", ' + new Date();
+                        console.debug(metadata);
+                        that.pivot_exporter.excel(metadata);
+                    }
+                }, 100);
+            }
 
         },
 
