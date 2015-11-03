@@ -8,9 +8,9 @@ define([
     'text!templates/browse/browse_by_country.hbs',
     'i18n!nls/browse',
     'handlebars',
-    'FAOSTAT_UI_TREE',
+    'globals/Common',
     'amplify'
-], function (View, F, C, Q, E, template, i18nLabels, Handlebars, Tree) {
+], function (View, F, C, Q, E, template, i18nLabels, Handlebars, Common) {
 
     'use strict';
 
@@ -32,7 +32,9 @@ define([
         template: template,
 
         initialize: function (options) {
+
             this.o = $.extend(true, {}, o, options);
+
         },
 
         getTemplateData: function () {
@@ -59,6 +61,8 @@ define([
 
             console.log("BrowseByCountryView");
 
+            // TODO: handle change state
+            this.changeState();
 
         },
 
@@ -81,6 +85,8 @@ define([
 
         changeState: function() {
             console.warn("TODO: read internal state anche change URL state");
+            // TODO: handle the country selection
+            Common.changeURL(this.o.section, [], false);
         },
 
         dispose: function () {

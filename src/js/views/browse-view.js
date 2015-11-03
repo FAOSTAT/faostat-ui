@@ -41,6 +41,7 @@ define([
 
             this.o = $.extend(true, {}, options);
             this.options = $.extend(true, {}, options);
+
         },
 
         getTemplateData: function () {
@@ -48,8 +49,6 @@ define([
         },
 
         attach: function () {
-
-            console.log(this);
 
             View.prototype.attach.call(this, arguments);
 

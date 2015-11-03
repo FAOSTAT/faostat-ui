@@ -5,13 +5,14 @@ define([
     'config/Config',
     'config/Queries',
     'config/Events',
+    'config/browse_by_domain/Config',
     'text!templates/browse/browse_by_domain.hbs',
     'i18n!nls/browse',
     'handlebars',
     'globals/Common',
     'FAOSTAT_UI_TREE',
     'amplify'
-], function (View, F, C, Q, E, template, i18nLabels, Handlebars, Common, Tree) {
+], function (View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree) {
 
     'use strict';
 
@@ -20,6 +21,7 @@ define([
             TREE: "#fs-browse-by-domain-tree"
 
         },
+
         o = {
 
         };
@@ -35,6 +37,11 @@ define([
         initialize: function (options) {
             console.log(options);
             this.o = $.extend(true, {}, o, options);
+
+            // setting the defualt code if missing
+            if (this.o.code === null || this.o.code === undefined) {
+                this.o.code = CM.defaultCode;
+            }
         },
 
         getTemplateData: function () {
@@ -74,21 +81,34 @@ define([
             this.tree.init({
                 placeholder_id: this.$tree,
                 code: this.o.code,
+                groups: {
+                    blacklist: CM.groups.blacklist
+                },
+                domains: {
+                    blacklist: CM.domains.blacklist
+                },
                 callback: {
 
                     onClick: _.bind(function (callback) {
 
                        // TODO: here
                         console.log(callback);
+                        this.o.code = callback.id;
+                        this.o.label = callback.label;
 
-                    }, this)
+                        // change url state
+
+                        this.changeState();
+
+                    }, this),
+
+                    // TODO get label on end of tree creation
                 }
             });
 
         },
 
         configurePage: function () {
-
 
         },
 
@@ -101,7 +121,7 @@ define([
         },
 
         changeState: function() {
-            console.warn("TODO: read internal state anche change URL state");
+            Common.changeURL(this.o.section + '_code', [this.o.code], false);
         },
 
         dispose: function () {

@@ -8,9 +8,10 @@ define([
     'text!templates/browse/browse_rankings.hbs',
     'i18n!nls/browse',
     'handlebars',
+    'globals/Common',
     'FAOSTAT_UI_TREE',
     'amplify'
-], function (View, F, C, Q, E, template, i18nLabels, Handlebars, Tree) {
+], function (View, F, C, Q, E, template, i18nLabels, Handlebars, Common, Tree) {
 
     'use strict';
 
@@ -59,6 +60,9 @@ define([
 
             console.log("BrowseRankingsView");
 
+            // TODO: handle change state
+            this.changeState();
+
         },
 
         initComponents: function () {
@@ -79,7 +83,10 @@ define([
         },
 
         changeState: function() {
+            console.log(":here");
             console.warn("TODO: read internal state anche change URL state");
+            // TODO: handle the country selection
+            Common.changeURL(this.o.section, [], false);
         },
 
         dispose: function () {
