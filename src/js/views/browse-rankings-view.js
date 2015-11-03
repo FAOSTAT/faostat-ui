@@ -58,8 +58,6 @@ define([
 
         initVariables: function () {
 
-            console.log("BrowseRankingsView");
-
             // TODO: handle change state
             this.changeState();
 
@@ -70,7 +68,6 @@ define([
         },
 
         configurePage: function () {
-
 
         },
 

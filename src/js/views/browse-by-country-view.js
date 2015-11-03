@@ -59,8 +59,6 @@ define([
 
         initVariables: function () {
 
-            console.log("BrowseByCountryView");
-
             // TODO: handle change state
             this.changeState();
 

@@ -9,7 +9,6 @@ define([
     var BrowseController = Controller.extend({
 
         show: function (params, section) {
-            console.log(params);
             this.view = new View({
                 region: 'main',
                 section: section,

@@ -68,8 +68,6 @@ define([
 
         initVariables: function () {
 
-            console.log("BrowseByDomainView");
-
             this.o.lang = Common.getLocale();
 
             //this.$table = this.$el.find(s.TABLE);
@@ -86,12 +84,7 @@ define([
                 placeholder_id: this.$TREE,
                 lang: this.o.lang,
                 code: this.o.code,
-                groups: {
-                    blacklist: CM.groups.blacklist
-                },
-                domains: {
-                    blacklist: CM.domains.blacklist
-                },
+                blacklist: CM.blacklist || [],
                 callback: {
 
                     onClick: _.bind(function (callback) {
