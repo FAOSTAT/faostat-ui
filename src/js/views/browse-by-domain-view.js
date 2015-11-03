@@ -18,7 +18,9 @@ define([
 
     var s = {
 
-            TREE: "#fs-browse-by-domain-tree"
+            TREE: "#fs-browse-by-domain-tree",
+            VIEW_TITLE: "#fs-browse-by-domain-view-title",
+            VIEW: "#fs-browse-by-domain-view"
 
         },
 
@@ -71,7 +73,9 @@ define([
             this.o.lang = Common.getLocale();
 
             //this.$table = this.$el.find(s.TABLE);
-            this.$tree = this.$el.find(s.TREE);
+            this.$TREE = this.$el.find(s.TREE);
+            this.$VIEW_TITLE = this.$el.find(s.VIEW_TITLE);
+            this.$VIEW = this.$el.find(s.VIEW);
 
         },
 
@@ -79,7 +83,7 @@ define([
 
             this.tree = new Tree();
             this.tree.init({
-                placeholder_id: this.$tree,
+                placeholder_id: this.$TREE,
                 lang: this.o.lang,
                 code: this.o.code,
                 groups: {
@@ -97,15 +101,41 @@ define([
                         this.o.code = callback.id;
                         this.o.label = callback.label;
 
+                        // update view
+                        this.updateView();
+
+                        // change url state
+                        this.changeState();
+
+                    }, this),
+
+                    onTreeRendered:  _.bind(function (callback) {
+
+                        this.o.code = callback.id;
+                        this.o.label = callback.label;
+
+                        // update view
+                        this.updateView();
+
                         // change url state
 
-                        this.changeState();
+                        // initialize the view
+
+                        //this.changeState();
 
                     }, this)
 
-                    // TODO get label on end of tree creation
+
                 }
             });
+
+        },
+
+        updateView: function() {
+            var code = this.o.code,
+                label = this.o.label;
+
+            this.$VIEW_TITLE.html(label);
 
         },
 
