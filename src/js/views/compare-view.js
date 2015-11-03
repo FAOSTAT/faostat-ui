@@ -14,9 +14,11 @@ define([
     'handlebars',
     'faostatapiclient',
     'views/compare-filter-box-view',
+    'q',
+    'fx-c-c/start',
     'jquery.rangeSlider',
     'amplify'
-], function ($, View, Common, F, C, Q, E, EC, CC, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView) {
+], function ($, View, Common, F, C, Queries, E, EC, CC, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator) {
 
     'use strict';
 
@@ -26,6 +28,7 @@ define([
         ADD_FILTER: '[data-role="add_filter"]',
         TIMERANGE: '[data-role="timerange"]',
         COMPARE_DATA: '[data-role="compare_data"]',
+        CHART: '[data-role="chart"]'
 
     };
 
@@ -85,6 +88,7 @@ define([
             this.$ADD_FILTER = this.$el.find(s.ADD_FILTER);
             this.$TIMERANGE = this.$el.find(s.TIMERANGE);
             this.$COMPARE_DATA = this.$el.find(s.COMPARE_DATA);
+            this.$CHART = this.$el.find(s.CHART);
 
             //console.log(this.$filters);
 
@@ -143,82 +147,90 @@ define([
 
         compareData: function() {
 
+            var self = this;
+
             // Google Analytics Add CompareData Event
             amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
                 category: F.GOOGLE_ANALYTICS.COMPARE.category,
                 action: F.GOOGLE_ANALYTICS.COMPARE.action.compare_data
             });
 
+            this._retrieveData().then(function(models) {
 
-            console.log("Compare Data");
+                // create Chart
+                var c = new ChartCreator();
+                $.when(c.init($.extend(true, {}, CC.chart, {model: models[0]}))).then(
+                    function (creator) {
+                        for (var i=1; i < models.length; i++) {
+                            if (models[i].data.length > 0) {
+                                creator.addTimeserieData($.extend(true, {}, CC.chart, {model: models[i]}));
+
+                            }
+                        }
+
+                        // render chart
+
+                        creator.createChart({
+                            // TODO: add template
+                            container: self.$CHART
+                        });
+                });
+
+                // TODO: create table
+
+
+            });
+        },
+
+        _retrieveData: function() {
 
             // get years TODO: get all the years in the timerange?
             var timerange = this.$TIMERANGE.rangeSlider("values"),
                 minYear = timerange.min,
                 maxYear = timerange.max;
 
-            var years = []
+            var years = [];
             for (var i=minYear; i <= maxYear; i++) {
                 years.push(i);
             }
-
-            console.log(years);
 
 
             // get for each filterBox the relative filters (domain, items etc...)
             var filters = this._getFiltersSelections();
 
-
-            // check the estimated series dimensions
+            // TODO: check the estimated series dimensions
 
             // retrieve with getData the data for the single box
+            var requests = [];
+            _.each(filters, _.bind(function(filter) {
+                var r = {};
+                _.each(filter, function(filterParameter) {
+                    console.log(filterParameter);
+                    r[filterParameter.parameter] = filterParameter.codes
+                });
 
-            // create chart
+                r = $.extend(true, {}, CC.getData, {
+                    datasource: C.DATASOURCE,
+                    lang: this.o.lang,
+                    List4Codes: years
+                }, r);
 
-            // create table
+                requests.push(this.FAOSTATAPIClient.data(r));
 
-            console.log(filters);
-            var r = {};
-            _.each(filters[0], function(v) {
-                r[v.parameter] = v.codes
-            });
+            }, this));
 
-            // TODO: to be fixed
-
-            // TODO: retrieve dinamically the years
-
-            r = $.extend({}, r, {
-                datasource: C.DATASOURCE,
-                lang: this.o.lang,
-                limit:-1,
-                null_values:false,
-                thousand_separator:",",
-                decimal_separator:".",
-                decimal_places:2,
-                List4Codes: years,
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null
-
-            });
-
-            console.log(r);
-
-            this.FAOSTATAPIClient.data(r).then(function(json) {
-                console.log(json);
-            });
+            return Q.all(requests)
 
         },
 
         _getFiltersSelections: function() {
+
             var filters = [];
-            _.each(Object.keys(filterBox), _.bind(function(filterID) {
-                console.log(filterID);
-                var filter = filterBox[filterID];
-                filters.push(filter.getFilters());
-            }, this));
-            console.log(filters);
+            _.each(Object.keys(filterBox), function(filterID) {
+                filters.push(filterBox[filterID].getFilters());
+            });
             return filters;
+
         },
 
 

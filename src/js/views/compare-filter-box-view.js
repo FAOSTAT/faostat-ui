@@ -36,14 +36,6 @@ define([
 
     };
 
-    var groups = {};
-    var domains = {};
-
-    // list of the dimensions
-    var filters = {
-
-    };
-
     // TODO: cache of the dimensions paramenter (a the moment the i.e. /codes/areagroup don't return the paramenter)
     var DIMENSION_PARAMETER_MAPPING = {};
 
@@ -55,8 +47,17 @@ define([
 
         template: template,
 
+
         initialize: function (options) {
             this.o = options || {};
+
+            this.o.groups = {};
+            this.o.domains = {};
+
+            // list of the dimensions
+            this.o.filters=  {
+
+            };
         },
 
         getTemplateData: function () {
@@ -136,18 +137,18 @@ define([
             });
 
             // cache groups dropdown
-            groups = {
+            this.o.groups = {
                 filter: filter,
                 // TODO: keep track of the filter
                 json: json
             };
 
-            groups.$DD = filter.getDropDown();
+            this.o.groups.$DD = filter.getDropDown();
 
             // TODO: make it nicer the default code selection
-            self.onGroupChange(groups.$DD.find(":selected").val(), groups.$DD.find(":selected").text());
+            self.onGroupChange(this.o.groups.$DD.find(":selected").val(), this.o.groups.$DD.find(":selected").text());
 
-            groups.$DD.change(function(e) {
+            this.o.groups.$DD.change(function(e) {
                 self.onGroupChange(e.val, e.added.text);
             });
         },
@@ -162,18 +163,18 @@ define([
             });
 
             // cache groups dropdown
-            domains = {
+            this.o.domains = {
                 filter: filter,
                 // TODO: keep track of the filter
                 json: json
             };
 
-            domains.$DD = filter.getDropDown();
+            this.o.domains.$DD = filter.getDropDown();
 
             // TODO: make it nicer the default code selection
-            self.onDomainChange(domains.$DD.find(":selected").val(), domains.$DD.find(":selected").text());
+            self.onDomainChange(this.o.domains.$DD.find(":selected").val(), this.o.domains.$DD.find(":selected").text());
 
-            domains.$DD.change(function(e) {
+            this.o.domains.$DD.change(function(e) {
                 self.onDomainChange(e.val, e.added.text);
             });
         },
@@ -234,7 +235,7 @@ define([
             this.$FILTERS.empty();
 
             // clean old filters
-            filters = {};
+            this.o.filters = {};
 
             // parse the dimensions to create dinamically the dropdowns needed
             this.FAOSTATAPIClient.dimensions({
@@ -281,8 +282,8 @@ define([
                             };
 
 
-                            filters[id] = {};
-                            filters[id].filter = new Filter(v);
+                            this.o.filters[id] = {};
+                            this.o.filters[id].filter = new Filter(v);
 
                             console.log(v);
 
@@ -371,16 +372,13 @@ define([
             // TODO: the parameter in theory should be dynamic
             domain.parameter = 'domain_code';
             // TODO: change domains variable name
-            domain.codes = domains.$DD.val();
+            domain.codes = this.o.domains.$DD.val();
             f.push(domain);
 
             // Get all the selected values from the filters multiselections dropdown
-            _.each(Object.keys(filters), function (filterKey) {
-                f.push(filters[filterKey].filter.getFilter());
-            });
-
-
-            console.log(f);
+            _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
+                f.push(this.o.filters[filterKey].filter.getFilter());
+            }, this));
 
             return f;
         },
