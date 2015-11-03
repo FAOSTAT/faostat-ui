@@ -1,5 +1,7 @@
 /*global define*/
-define(['jquery', 'controllers/base/controller', 'views/standards-view'], function ($, Controller, View) {
+define([
+    'controllers/base/controller',
+    'views/standards-view'], function (Controller, View) {
 
     'use strict';
 
@@ -34,7 +36,6 @@ define(['jquery', 'controllers/base/controller', 'views/standards-view'], functi
         show_classifications: function (params) {
             this.show(params, 'classifications');
         }
-
 
     });
 

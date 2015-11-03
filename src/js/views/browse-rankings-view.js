@@ -49,6 +49,7 @@ define([
 
         initVariables: function () {
 
+            console.log("BrowseRankingsView");
 
         },
 
@@ -67,6 +68,10 @@ define([
 
         unbindEventListeners: function () {
 
+        },
+
+        changeState: function() {
+            console.warn("TODO: read internal state anche change URL state");
         },
 
         dispose: function () {

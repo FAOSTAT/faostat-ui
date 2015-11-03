@@ -53,7 +53,7 @@ define([
         template: template,
 
         initialize: function (options) {
-            this.o = $.extend({}, options);
+            this.o = $.extend(true, {}, options);
         },
 
         getTemplateData: function () {

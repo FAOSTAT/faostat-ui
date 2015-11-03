@@ -18,9 +18,9 @@ define([
     'use strict';
 
     var s = {
-        DOMAIN: "#fs-browse-by-domain",
-        COUNTRY: "#fs-browse-by-country",
-        RANKINGS: "#fs-browse-rankings"
+        DOMAIN: "#browse_by_domain",
+        COUNTRY: "#browse_by_country",
+        RANKINGS: "#browse_rankings"
     };
 
     var BrowseView = View.extend({
@@ -35,6 +35,11 @@ define([
         events: {
             'click': function(a) {
             }
+        },
+
+        initialize: function (options) {
+            this.o = $.extend(true, {}, options);
+            console.log(this.o);
         },
 
         getTemplateData: function () {
@@ -73,6 +78,9 @@ define([
 
         configurePage: function () {
 
+            // switch to the right navigation tab
+            this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
+
         },
 
         bindEventListeners: function () {
@@ -82,20 +90,30 @@ define([
             // bind tabs listeners
             this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 
-                var tab = $(e.target).attr("href") // activated tab
+                var section = $(e.target).data("section"); // activated tab
 
-                if (tab == self.$domain.selector) {
-                    self.initBrowseByDomain();
-                }
+                // switch tab
+                self.switchStandardsTab(section);
 
-                if (tab == self.$country.selector) {
-                    self.initBrowseByCountry();
-                }
+                //Common.changeURL(section, [], false);
 
-                if (tab == self.$rankings.selector) {
-                    self.initBrowseRankings();
-                }
             });
+
+        },
+
+        switchStandardsTab: function(section) {
+
+            if (section == this.$domain.data("section")) {
+                this.initBrowseByDomain();
+            }
+
+            else if (section == this.$country.data("section")) {
+                this.initBrowseByCountry();
+            }
+
+            else if (section == this.$rankings.data("section")) {
+                this.initBrowseRankings();
+            }
 
         },
 
@@ -114,9 +132,10 @@ define([
                 this.view_domain = new DomainView();
                 this.$domain.html(this.view_domain.$el);
 
-                // TODO: check default options to pass to the renderer i.e. 'domain code' if passed
-
-                this.view_domain.render();
+            }
+            else {
+                // TODO: force URL changing of the current view
+                this.view_domain.changeState();
             }
 
         },
@@ -129,9 +148,10 @@ define([
                 this.view_country= new CountryView();
                 this.$country.html(this.view_country.$el);
 
-                // TODO: check default options to pass to the renderer i.e. 'domain code' if passed
-
-                this.view_country.render();
+            }
+            else {
+                // TODO: force URL changing of the current view
+                this.view_country.changeState();
             }
 
         },
@@ -144,9 +164,10 @@ define([
                 this.view_rankings = new RankingsView();
                 this.$rankings.html(this.view_rankings.$el);
 
-                // TODO: check default options to pass to the renderer i.e. 'domain code' if passed
-
-                this.view_rankings.render();
+            }
+            else {
+                // TODO: force URL changing of the current view
+                this.view_rankings.changeState();
             }
         },
 

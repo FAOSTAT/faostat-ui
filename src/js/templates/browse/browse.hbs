@@ -2,25 +2,41 @@
 
 <div class="row">
     <div class='col-lg-12'>
-        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-            <li class="active"><a href="#fs-browse-by-domain" data-toggle="tab">{{browse_by_domain}}</a></li>
-            <li><a href="#fs-browse-by-country" data-toggle="tab">{{browse_by_country}}</a></li>
-            <li><a href="#fs-browse-rankings" data-toggle="tab">{{rankings}}</a></li>
+        <ul class='nav nav-tabs' role='tablist'>
+
+            <li role='presentation'>
+                <a href='#browse_by_domain' data-section='browse_by_domain' role='tab' data-toggle='tab'>
+                    {{browse_by_domain}}
+                </a>
+            </li>
+
+            <li role='presentation'>
+                <a href='#browse_by_country' data-section='browse_by_country' role='tab' data-toggle='tab'>
+                    {{browse_by_country}}
+                </a>
+            </li>
+
+            <li role='presentation'>
+                <a href='#browse_ranking' data-section='browse_ranking' role='tab' data-toggle='tab'>
+                    {{rankings}}
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>
 
 <div class="tab-content">
 
-    <div class="tab-pane active" id="fs-browse-by-domain" style="margin-top:25px;">
+    <div class="tab-pane" id="browse_by_domain" data-section='browse_by_domain' style="margin-top:25px;">
             {{browse_by_domain}}
     </div>
 
-    <div class="tab-pane" id="fs-browse-by-country">
+    <div class="tab-pane" id="browse_by_country" data-section='browse_by_country' >
             {{browse_by_country}}
     </div>
 
-    <div class="tab-pane" id="fs-browse-rankings">
+    <div class="tab-pane" id="browse_rankings" data-section='browse_rankings' >
             {{rankings}}
     </div>
 </div>

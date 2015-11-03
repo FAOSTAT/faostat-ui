@@ -20,7 +20,7 @@ define([
 
     };
 
-    var BrowseByDomainView = View.extend({
+    var BrowseByCountryView = View.extend({
 
         autoRender: true,
 
@@ -50,6 +50,8 @@ define([
 
         initVariables: function () {
 
+            console.log("BrowseByCountryView");
+
 
         },
 
@@ -70,6 +72,10 @@ define([
 
         },
 
+        changeState: function() {
+          console.warn("TODO: read internal state anche change URL state");
+        },
+
         dispose: function () {
 
             this.unbindEventListeners();
@@ -78,5 +84,5 @@ define([
         }
     });
 
-    return BrowseByDomainView;
+    return BrowseByCountryView;
 });
