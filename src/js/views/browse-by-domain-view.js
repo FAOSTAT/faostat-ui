@@ -80,6 +80,7 @@ define([
             this.tree = new Tree();
             this.tree.init({
                 placeholder_id: this.$tree,
+                lang: this.o.lang,
                 code: this.o.code,
                 groups: {
                     blacklist: CM.groups.blacklist
@@ -100,7 +101,7 @@ define([
 
                         this.changeState();
 
-                    }, this),
+                    }, this)
 
                     // TODO get label on end of tree creation
                 }
