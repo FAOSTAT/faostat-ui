@@ -557,7 +557,6 @@ define([
                         metadata = '"Datasource", "FAOSTAT"\n"Domain Name", "';
                         metadata += $("#" + that.options.code + " a").text();
                         metadata += '"\n"Retrieved", ' + new Date();
-                        console.debug(metadata);
                         that.pivot_exporter.excel(metadata);
                     }
                 }, 100);
