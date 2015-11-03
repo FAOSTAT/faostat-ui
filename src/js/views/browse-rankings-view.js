@@ -16,8 +16,12 @@ define([
 
     var s = {
 
-        TREE: "tree"
-    };
+            TREE: "tree"
+        },
+        
+        o = {
+
+        };
 
     var BrowseRankingsView = View.extend({
 
@@ -26,6 +30,10 @@ define([
         className: 'browse',
 
         template: template,
+
+        initialize: function (options) {
+            this.o = $.extend(true, {}, o, options);
+        },
 
         getTemplateData: function () {
             return i18nLabels;

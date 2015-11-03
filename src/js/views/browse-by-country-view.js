@@ -16,9 +16,12 @@ define([
 
     var s = {
 
-        TREE: "tree"
+            TREE: "tree"
+        },
 
-    };
+        o = {
+
+        };
 
     var BrowseByCountryView = View.extend({
 
@@ -27,6 +30,10 @@ define([
         className: 'browse',
 
         template: template,
+
+        initialize: function (options) {
+            this.o = $.extend(true, {}, o, options);
+        },
 
         getTemplateData: function () {
             return i18nLabels;
@@ -73,7 +80,7 @@ define([
         },
 
         changeState: function() {
-          console.warn("TODO: read internal state anche change URL state");
+            console.warn("TODO: read internal state anche change URL state");
         },
 
         dispose: function () {

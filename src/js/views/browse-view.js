@@ -38,8 +38,9 @@ define([
         },
 
         initialize: function (options) {
+
             this.o = $.extend(true, {}, options);
-            console.log(this.o);
+            this.options = $.extend(true, {}, options);
         },
 
         getTemplateData: function () {
@@ -93,7 +94,8 @@ define([
                 var section = $(e.target).data("section"); // activated tab
 
                 // switch tab
-                self.switchStandardsTab(section);
+                self.options = $.extend(true, {}, self.options, {section: section});
+                self.switchStandardsTab(section, self.options);
 
                 //Common.changeURL(section, [], false);
 
@@ -101,18 +103,18 @@ define([
 
         },
 
-        switchStandardsTab: function(section) {
+        switchStandardsTab: function(section, options) {
 
             if (section == this.$domain.data("section")) {
-                this.initBrowseByDomain();
+                this.initBrowseByDomain(options);
             }
 
             else if (section == this.$country.data("section")) {
-                this.initBrowseByCountry();
+                this.initBrowseByCountry(options);
             }
 
             else if (section == this.$rankings.data("section")) {
-                this.initBrowseRankings();
+                this.initBrowseRankings(options);
             }
 
         },
@@ -124,12 +126,12 @@ define([
 
         },
 
-        initBrowseByDomain: function() {
+        initBrowseByDomain: function(options) {
 
             if ( this.view_domain === null || this.view_domain === undefined) {
 
                 // init browse by domain
-                this.view_domain = new DomainView();
+                this.view_domain = new DomainView(options);
                 this.$domain.html(this.view_domain.$el);
 
             }
@@ -140,12 +142,12 @@ define([
 
         },
 
-        initBrowseByCountry: function() {
+        initBrowseByCountry: function(options) {
 
             if ( this.view_country === null || this.view_country === undefined) {
 
                 // init browse by domain
-                this.view_country= new CountryView();
+                this.view_country= new CountryView(options);
                 this.$country.html(this.view_country.$el);
 
             }
@@ -156,12 +158,12 @@ define([
 
         },
 
-        initBrowseRankings: function() {
+        initBrowseRankings: function(options) {
 
             if ( this.view_rankings === null || this.view_rankings === undefined) {
 
                 // init rankings
-                this.view_rankings = new RankingsView();
+                this.view_rankings = new RankingsView(options);
                 this.$rankings.html(this.view_rankings.$el);
 
             }

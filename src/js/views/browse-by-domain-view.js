@@ -8,17 +8,21 @@ define([
     'text!templates/browse/browse_by_domain.hbs',
     'i18n!nls/browse',
     'handlebars',
-    'fx-common/WDSClient',
+    'globals/Common',
     'FAOSTAT_UI_TREE',
     'amplify'
-], function (View, F, C, Q, E, template, i18nLabels, Handlebars, WDSClient, Tree) {
+], function (View, F, C, Q, E, template, i18nLabels, Handlebars, Common, Tree) {
 
     'use strict';
 
     var s = {
 
-        TREE: "tree"
-    };
+            TREE: "#fs-browse-by-domain-tree"
+
+        },
+        o = {
+
+        };
 
     var BrowseByDomainView = View.extend({
 
@@ -27,6 +31,11 @@ define([
         className: 'browse',
 
         template: template,
+
+        initialize: function (options) {
+            console.log(options);
+            this.o = $.extend(true, {}, o, options);
+        },
 
         getTemplateData: function () {
             return i18nLabels;
@@ -52,9 +61,29 @@ define([
 
             console.log("BrowseByDomainView");
 
+            this.o.lang = Common.getLocale();
+
+            //this.$table = this.$el.find(s.TABLE);
+            this.$tree = this.$el.find(s.TREE);
+
         },
 
         initComponents: function () {
+
+            this.tree = new Tree();
+            this.tree.init({
+                placeholder_id: this.$tree,
+                code: this.o.code,
+                callback: {
+
+                    onClick: _.bind(function (callback) {
+
+                       // TODO: here
+                        console.log(callback);
+
+                    }, this)
+                }
+            });
 
         },
 
