@@ -155,31 +155,37 @@ define([
                 action: F.GOOGLE_ANALYTICS.COMPARE.action.compare_data
             });
 
-            this._retrieveData().then(function(models) {
+            // loading
+            amplify.publish(E.LOADING_SHOW, {container: this.$CHART});
 
-                // create Chart
-                var c = new ChartCreator();
-                $.when(c.init($.extend(true, {}, CC.chart, {model: models[0]}))).then(
-                    function (creator) {
-                        for (var i=1; i < models.length; i++) {
-                            if (models[i].data.length > 0) {
-                                creator.addTimeserieData($.extend(true, {}, CC.chart, {model: models[i]}));
+                try {
+                    this._retrieveData().then(function (models) {
 
-                            }
-                        }
+                        amplify.publish(E.LOADING_HIDE, {container: self.$CHART});
 
-                        // render chart
+                        // create Chart
+                        var c = new ChartCreator();
+                        $.when(c.init($.extend(true, {}, CC.chart, {model: models[0]}))).then(
+                            function (creator) {
+                                for (var i = 1; i < models.length; i++) {
+                                    if (models[i].data.length > 0) {
+                                        creator.addTimeserieData($.extend(true, {}, CC.chart, {model: models[i]}));
+                                    }
+                                }
 
-                        creator.createChart({
-                            // TODO: add template
-                            container: self.$CHART
-                        });
-                });
+                                // render chart
+                                creator.createChart({
+                                    // TODO: add chart template
+                                    container: self.$CHART
+                                });
+                            });
 
-                // TODO: create table
+                        // TODO: create table
 
-
-            });
+                    });
+                }catch(e) {
+                    console.error(e);
+                }
         },
 
         _retrieveData: function() {
@@ -194,7 +200,6 @@ define([
                 years.push(i);
             }
 
-
             // get for each filterBox the relative filters (domain, items etc...)
             var filters = this._getFiltersSelections();
 
@@ -205,7 +210,6 @@ define([
             _.each(filters, _.bind(function(filter) {
                 var r = {};
                 _.each(filter, function(filterParameter) {
-                    console.log(filterParameter);
                     r[filterParameter.parameter] = filterParameter.codes
                 });
 
@@ -232,7 +236,6 @@ define([
             return filters;
 
         },
-
 
         bindEventListeners: function () {
 
