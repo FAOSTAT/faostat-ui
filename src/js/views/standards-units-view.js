@@ -51,7 +51,7 @@ define([
         template: template,
 
         initialize: function (options) {
-            this.o = $.extend({}, o, options);
+            this.o = $.extend(true, {}, o, options);
         },
 
         getTemplateData: function () {
