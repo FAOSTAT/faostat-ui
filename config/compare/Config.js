@@ -13,12 +13,13 @@ define(function () {
                 },
                 defaultValues:{
                     min: 1990,
-                    max: 2014
+                    max: 2013
                 },
                 step: 1
             }
         },
 
+        // TODO: DO THE BLACKLIST!!!!!
         groups: {
             blacklist: ['P']
         },
@@ -29,10 +30,6 @@ define(function () {
 
         // this will blacklist all the IDs that should not be created as filters
         filters: {
-            blacklistCodesID: ['yeargroup']
-        },
-
-        series: {
             blacklistCodesID: ['yeargroup']
         },
 
