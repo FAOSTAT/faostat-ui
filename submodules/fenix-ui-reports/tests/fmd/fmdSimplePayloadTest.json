@@ -1,0 +1,12 @@
+{
+  "input":{
+    "config":{
+      "uid":"556f1649e4b02b1c83181015"
+    }
+  },
+  "output":{
+    "config":{
+      "fileName":"fmdExport.pdf"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.jstree-default-responsive {
+  .jstree-anchor {
+    white-space: normal;
+    line-height: normal;
+    height: auto;
+  }
+}
+
+li[role="treeitem"]:nth-child(odd) {
+  //background-color: #fff !important;
+  
+}
+
+.jstree-default>.jstree-container-ul>.jstree-node {
+  border-left: 1px #666 !important;
+}

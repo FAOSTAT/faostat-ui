@@ -1,0 +1,32 @@
+/* Fenix - Navigation Component */
+
+.navbar{
+  border: 0;
+  border-width: 0;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  border-color: $fx-cool-blue;
+}
+
+.nav > li > a {
+  //padding: 15px 10px 14px 10px; /* Necessary for the border-bottom */
+}
+
+.navbar-default .navbar-nav > li > a{
+  //color:$fenix-text;
+  //border-bottom: 1px solid transparent;
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+  background-color: transparent;
+  color: $fenix-text;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+  color: $fx-cool-blue;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+  border-bottom: 1px solid $fx-cool-blue;
+}
