@@ -51,7 +51,24 @@ define(function () {
                     seriesDimensions: ['areagroup', 'elementgroup', 'itemgroup']
                 },
                 template: {},
-                creator: {}
+                creator: {},
+                prepareChart: true
+            },
+
+            getData: {
+                limit:-1,
+                null_values:false,
+                thousand_separator:",",
+                decimal_separator:".",
+                decimal_places:2,
+                List1Codes: null,
+                List2Codes: null,
+                List3Codes: null,
+                List4Codes: null,
+                List5Codes: null,
+                List6Codes: null,
+                List7Codes: null,
+                output_type: 'arrays'
             }
 
         };
