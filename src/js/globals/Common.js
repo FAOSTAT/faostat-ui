@@ -29,9 +29,7 @@ define(['chaplin', 'config/Events', 'amplify'], function (Chaplin, E) {
             var uri = Chaplin.utils.reverse(
                 name, options
             );
-
-            console.log(uri);
-
+            
             // add language (@Deprecated)
             //uri = this.updateQueryStringParameter(uri, 'locale', this.getLocale());
 
