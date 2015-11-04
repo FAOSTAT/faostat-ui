@@ -42,10 +42,10 @@ define(function () {
             adapter: {
                 adapterType: 'faostat',
                 type: "timeserie",
-                xDimensions: 'yeargroup',
+                xDimensions: 'year',
                 yDimensions: 'unit',
                 valueDimensions: 'value',
-                seriesDimensions: ['areagroup', 'elementgroup', 'itemgroup']
+                seriesDimensions: ['area', 'element', 'item']
             },
             template: {},
             creator: {},
