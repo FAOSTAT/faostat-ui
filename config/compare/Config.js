@@ -12,7 +12,7 @@ define(function () {
                     max: 2050
                 },
                 defaultValues:{
-                    min: 1990,
+                    min: 1961,
                     max: 2013
                 },
                 step: 1
@@ -30,7 +30,7 @@ define(function () {
 
         // this will blacklist all the IDs that should not be created as filters
         filters: {
-            blacklistCodesID: ['yeargroup']
+            blacklistCodesID: ['year']
         },
 
         // numeber of maximum series shown in the chart

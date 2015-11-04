@@ -9,6 +9,7 @@ define([
     'config/Events',
     'config/EventsCompare',
     'config/compare/Config',
+    'config/submodules/fx-chart/highcharts_template',
     'text!templates/compare/compare.hbs',
     'i18n!nls/compare',
     'handlebars',
@@ -16,9 +17,10 @@ define([
     'views/compare-filter-box-view',
     'q',
     'fx-c-c/start',
+    'highcharts-export',
     'jquery.rangeSlider',
     'amplify'
-], function ($, View, Common, F, C, Queries, E, EC, CC, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator) {
+], function ($, View, Common, F, C, Queries, E, EC, CC, HT, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator) {
 
     'use strict';
 
@@ -175,10 +177,21 @@ define([
                                     }
                                 }
 
+                                console.log( {
+                                    // TODO: add chart template
+                                    container: self.$CHART,
+                                    creator: {
+                                        chartObj: HT
+                                    }
+                                });
+
                                 // render chart
                                 creator.createChart({
                                     // TODO: add chart template
-                                    container: self.$CHART
+                                    container: self.$CHART,
+                                    creator: {
+                                        chartObj: HT
+                                    }
                                 });
                             });
 
