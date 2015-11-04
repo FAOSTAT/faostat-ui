@@ -196,15 +196,15 @@ define(function () {
          },*/
 
 
-        title: {
-            //enabled: false,
-            text: '',
-            x: -20 //center
-        },
-        subtitle: {
-            text: 'FRA Data',
-            x: -20
-        },
+        //title: {
+        //    //enabled: false,
+        //    text: '',
+        //    x: -20 //center
+        //},
+        //subtitle: {
+        //    text: 'FRA Data',
+        //    x: -20
+        //},
         xAxis: {
             gridLineWidth: 1, // IMPORTANTE - Attiva le linee verticali
             lineColor: '#e0e0e0',
