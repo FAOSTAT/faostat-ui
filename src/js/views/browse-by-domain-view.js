@@ -89,8 +89,6 @@ define([
 
                     onClick: _.bind(function (callback) {
 
-                       // TODO: here
-                        console.log(callback);
                         this.o.code = callback.id;
                         this.o.label = callback.label;
 
