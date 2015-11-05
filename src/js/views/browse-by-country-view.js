@@ -35,6 +35,8 @@ define([
 
             this.o = $.extend(true, {}, o, options);
 
+            this.o.lang = Common.getLocale();
+
         },
 
         getTemplateData: function () {

@@ -37,13 +37,16 @@ define([
         template: template,
 
         initialize: function (options) {
-            console.log(options);
+
             this.o = $.extend(true, {}, o, options);
+
+            this.o.lang = Common.getLocale();
 
             // setting the defualt code if missing
             if (this.o.code === null || this.o.code === undefined) {
                 this.o.code = CM.defaultCode;
             }
+
         },
 
         getTemplateData: function () {
@@ -67,8 +70,6 @@ define([
         },
 
         initVariables: function () {
-
-            this.o.lang = Common.getLocale();
 
             //this.$table = this.$el.find(s.TABLE);
             this.$TREE = this.$el.find(s.TREE);
