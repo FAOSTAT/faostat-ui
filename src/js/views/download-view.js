@@ -409,7 +409,9 @@ define([
                 List5Codes: user_selection.list5Codes || null,
                 List6Codes: user_selection.list6Codes || null,
                 List7Codes: user_selection.list7Codes || null,
-                lang: this.options.lang_faostat
+                lang: this.options.lang_faostat,
+                page_size: 25,
+                page_number: 1
             }).then(function (json) {
                 that.show_preview(json, options_manager);
             });
@@ -516,7 +518,9 @@ define([
             case 'TABLE':
                 table = new Table();
                 table.init({
-                    placeholder_id: 'downloadOutputArea'
+                    placeholder_id: 'downloadOutputArea',
+                    data: response.data,
+                    metadata: response.metadata
                 });
                 break;
 
