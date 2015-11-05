@@ -76,7 +76,7 @@ define(function () {
             List5Codes: null,
             List6Codes: null,
             List7Codes: null,
-            output_type: 'arrays'
+            //output_type: 'arrays'
         }
 
     };
