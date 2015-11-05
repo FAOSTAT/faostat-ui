@@ -409,7 +409,6 @@ define([
                 List5Codes: user_selection.list5Codes || null,
                 List6Codes: user_selection.list6Codes || null,
                 List7Codes: user_selection.list7Codes || null,
-                limit: -1,
                 lang: this.options.lang_faostat
             }).then(function (json) {
                 that.show_preview(json, options_manager);
