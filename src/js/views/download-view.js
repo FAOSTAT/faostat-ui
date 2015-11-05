@@ -18,6 +18,7 @@ define([
     'globals/Common',
     'faostatapiclient',
     'pivot_exporter',
+    'FAOSTAT_UI_TABLE',
     'amplify',
     'jbPivot'
 ], function (View,
@@ -35,7 +36,8 @@ define([
              _,
              Common,
              FAOSTATAPIClient,
-             PivotExporter) {
+             PivotExporter,
+             Table) {
 
     'use strict';
 
@@ -387,7 +389,6 @@ define([
 
             user_selection = selector_mgr.get_user_selection();
             dwld_options = options_manager.get_options_window('preview_options').collect_user_selection();
-            console.debug(dwld_options);
 
             data = $.extend(true, {}, data, user_selection);
             data = $.extend(true, {}, data, dwld_options);
@@ -411,7 +412,7 @@ define([
                 limit: -1,
                 lang: this.options.lang_faostat
             }).then(function (json) {
-                that.show_preview(json);
+                that.show_preview(json, options_manager);
             });
 
         },
@@ -500,67 +501,88 @@ define([
             return l;
         },
 
-        show_preview: function (response) {
+        show_preview: function (response, options_manager) {
 
             /* Variables. */
             var downloadOutputArea = $('#downloadOutputArea'),
                 timer,
                 test,
                 that = this,
-                metadata;
+                metadata,
+                table;
 
-            try {
-                downloadOutputArea.data('jbPivot').reset();
-                downloadOutputArea.data('jbPivot').insertRecords(response.data);
-            } catch (e) {
-                downloadOutputArea.jbPivot({
-                    fields: {
-                        Country : {field: 'Country', sort: 'asc', showAll: true, agregateType: 'distinct'},
-                        Item : {field: 'Item', sort: 'asc', showAll: true, agregateType: 'distinct'},
-                        Element : {field: 'Element', sort: 'asc', showAll: true, agregateType: 'distinct'},
-                        Unit : {field: 'Unit', sort: 'asc', showAll: true, agregateType: 'distinct'},
-                        Flag : {field: 'Flag', sort: 'asc', showAll: true, agregateType: 'distinct'},
-                        Year : {field: 'Year', sort: 'desc', showAll: true, agregateType: 'distinct'},
-                        average: {field: 'Value', agregateType: 'average', groupType: 'none', label: 'Value', formatter: function (V, f) {
-                            var res = null;
-                            if (typeof V === "number") {
-                                res = V.toFixed(2);
-                            }
-                            return res;
-                        }}
-                    },
-                    yfields: ['Year'],
-                    xfields: ['Country', 'Element', 'Item'],
-                    zfields: ['average', 'Unit', 'Flag'],
-                    data: response.data,
-                    copyright: false,
-                    summary: false
+            /* Render either the table or the pivot. */
+            switch (options_manager.get_options_window('preview_options').get_output_type()) {
+
+            case 'TABLE':
+                table = new Table();
+                table.init({
+                    placeholder_id: 'downloadOutputArea'
                 });
+                break;
+
+            case 'PIVOT':
+                try {
+                    downloadOutputArea.data('jbPivot').reset();
+                    downloadOutputArea.data('jbPivot').insertRecords(response.data);
+                } catch (e) {
+                    downloadOutputArea.jbPivot({
+                        fields: {
+                            Country : {field: 'Country', sort: 'asc', showAll: true, agregateType: 'distinct'},
+                            Item : {field: 'Item', sort: 'asc', showAll: true, agregateType: 'distinct'},
+                            Element : {field: 'Element', sort: 'asc', showAll: true, agregateType: 'distinct'},
+                            Unit : {field: 'Unit', sort: 'asc', showAll: true, agregateType: 'distinct'},
+                            Flag : {field: 'Flag', sort: 'asc', showAll: true, agregateType: 'distinct'},
+                            Year : {field: 'Year', sort: 'desc', showAll: true, agregateType: 'distinct'},
+                            average: {field: 'Value', agregateType: 'average', groupType: 'none', label: 'Value', formatter: function (V, f) {
+                                var res = null;
+                                if (typeof V === "number") {
+                                    res = V.toFixed(2);
+                                }
+                                return res;
+                            }}
+                        },
+                        yfields: ['Year'],
+                        xfields: ['Country', 'Element', 'Item'],
+                        zfields: ['average', 'Unit', 'Flag'],
+                        data: response.data,
+                        copyright: false,
+                        summary: false
+                    });
+                }
+                break;
+
             }
 
             /* Close waiting window. */
             amplify.publish(E.WAITING_HIDE, {});
 
             /* Export CSV or Excel, if required. */
-            if (this.pivot_caller === 'CSV') {
-                timer = setInterval(function () {
-                    test = downloadOutputArea.html();
-                    if (test !== '') {
-                        clearInterval(timer);
-                        that.pivot_exporter.csv();
-                    }
-                }, 100);
-            } else if (this.pivot_caller === 'XLS') {
-                timer = setInterval(function () {
-                    test = downloadOutputArea.html();
-                    if (test !== '') {
-                        clearInterval(timer);
-                        metadata = '"Datasource", "FAOSTAT"\n"Domain Name", "';
-                        metadata += $("#" + that.options.code + " a").text();
-                        metadata += '"\n"Retrieved", ' + new Date();
-                        that.pivot_exporter.excel(metadata);
-                    }
-                }, 100);
+            switch (options_manager.get_options_window('preview_options').get_output_type()) {
+
+            case 'PIVOT':
+                if (this.pivot_caller === 'CSV') {
+                    timer = setInterval(function () {
+                        test = downloadOutputArea.html();
+                        if (test !== '') {
+                            clearInterval(timer);
+                            that.pivot_exporter.csv();
+                        }
+                    }, 100);
+                } else if (this.pivot_caller === 'XLS') {
+                    timer = setInterval(function () {
+                        test = downloadOutputArea.html();
+                        if (test !== '') {
+                            clearInterval(timer);
+                            metadata = '"Datasource", "FAOSTAT"\n"Domain Name", "';
+                            metadata += $("#" + that.options.code + " a").text();
+                            metadata += '"\n"Retrieved", ' + new Date();
+                            that.pivot_exporter.excel(metadata);
+                        }
+                    }, 100);
+                }
+                break;
+
             }
 
         },
