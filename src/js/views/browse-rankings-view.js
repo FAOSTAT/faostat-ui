@@ -73,13 +73,15 @@ define([
             // TODO: handle change state
             this.changeState();
 
+            this.$TREE = this.$el.find(s.TREE);
+
         },
 
         initComponents: function () {
 
-
             this.tree = new Tree();
             this.tree.init({
+                options: CM.tree.options || null,
                 placeholder_id: this.$TREE,
                 lang: this.o.lang,
                 code: this.o.code,
@@ -90,6 +92,8 @@ define([
 
                         this.o.code = callback.id;
                         this.o.label = callback.label;
+
+                        console.log(callback.id);
 
                         // update view
                         this.updateView();
@@ -104,6 +108,7 @@ define([
                         this.o.code = callback.id;
                         this.o.label = callback.label;
 
+                        console.log(callback.id);
                         // update view
                         this.updateView();
 
@@ -119,30 +124,25 @@ define([
                 }
             });
 
-
-
         },
 
         configurePage: function () {
 
         },
 
+        updateView: function () {
+
+        },
+
+
         parseTreeData: function(json) {
 
             var lang = this.o.lang;
-
-            console.log(lang);
-
-            console.log(this);
-            console.log(json);
 
             var data = [];
 
             _.each(json, function(d) {
                 var parentID = d.id;
-                console.log(d);
-                console.log(d.title);
-                console.log(this);
                 data.push({
                     id: parentID,
                     text: d.title[lang.toLowerCase()] || d.title[lang],
@@ -160,7 +160,6 @@ define([
                 });
 
             });
-
             return data;
 
         },
@@ -174,7 +173,6 @@ define([
         },
 
         changeState: function() {
-            console.log(":here");
             console.warn("TODO: read internal state anche change URL state");
             // TODO: handle the country selection
             Common.changeURL(this.o.section, [], false);
