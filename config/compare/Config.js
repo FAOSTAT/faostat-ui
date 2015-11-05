@@ -22,13 +22,13 @@ define(function () {
         // TODO: DO THE BLACKLIST!!!!!
         groups: {
             blacklist: [
-                'D', // (FS, HS) it doesn't have yearly data
+                //'D', // (FS, HS) it doesn't have yearly data
             ]
         },
 
         domains: {
             blacklist: [
-                'FS', // it doesn't have yearly data
+                //'FS', // it doesn't have yearly data
                 'HS' // it doesn't have yearly data
             ]
         },
