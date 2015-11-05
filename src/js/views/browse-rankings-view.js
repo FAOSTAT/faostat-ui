@@ -46,6 +46,8 @@ define([
                 this.o.code = CM.defaultCode;
             }
 
+            this.changeState();
+
         },
 
         getTemplateData: function () {
@@ -70,10 +72,9 @@ define([
 
         initVariables: function () {
 
-            // TODO: handle change state
-            this.changeState();
-
             this.$TREE = this.$el.find(s.TREE);
+            this.$VIEW_TITLE = this.$el.find(s.VIEW_TITLE);
+            this.$VIEW = this.$el.find(s.VIEW);
 
         },
 
@@ -93,8 +94,6 @@ define([
                         this.o.code = callback.id;
                         this.o.label = callback.label;
 
-                        console.log(callback.id);
-
                         // update view
                         this.updateView();
 
@@ -108,7 +107,6 @@ define([
                         this.o.code = callback.id;
                         this.o.label = callback.label;
 
-                        console.log(callback.id);
                         // update view
                         this.updateView();
 
@@ -131,6 +129,12 @@ define([
         },
 
         updateView: function () {
+
+            var code = this.o.code,
+                label = this.o.label;
+
+            this.$VIEW_TITLE.html(label);
+
 
         },
 

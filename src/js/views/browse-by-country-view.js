@@ -37,6 +37,9 @@ define([
 
             this.o.lang = Common.getLocale();
 
+            // TODO: handle change state
+            this.changeState();
+
         },
 
         getTemplateData: function () {
@@ -60,9 +63,6 @@ define([
         },
 
         initVariables: function () {
-
-            // TODO: handle change state
-            this.changeState();
 
         },
 

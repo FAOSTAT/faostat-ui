@@ -13,7 +13,7 @@ define([
                 region: 'main',
                 section: section,
                 lang: params.lang,
-                code: params.code !== undefined ? params.code.toUpperCase() : undefined
+                code: params.code !== undefined ? params.code: undefined
             });
         },
 

@@ -47,6 +47,8 @@ define([
                 this.o.code = CM.defaultCode;
             }
 
+            this.changeState();
+
         },
 
         getTemplateData: function () {
