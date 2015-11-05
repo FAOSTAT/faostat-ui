@@ -153,6 +153,7 @@ define([
 
             this.tree = new Tree();
             this.tree.init({
+                lang: this.options.lang,
                 placeholder_id: s.TREE,
                 code: code,
                 callback: {
@@ -247,6 +248,7 @@ define([
                 // TODO: destroy the old this.download_selectors_manager for memory management
 
                 this.download_selectors_manager.init({
+                    lang: this.options.lang,
                     placeholder_id: selector_manager_id,
                     domain: code,
                     callback: {
@@ -394,7 +396,7 @@ define([
             data = $.extend(true, {}, data, dwld_options);
             data.datasource = 'faostat';
             data.domainCode = this.options.domain;
-            data.lang = this.options.lang_faostat;
+            data.lang = this.options.lang;
             data.limit = -1;
 
             /* Add loading. */
@@ -409,9 +411,10 @@ define([
                 List5Codes: user_selection.list5Codes || null,
                 List6Codes: user_selection.list6Codes || null,
                 List7Codes: user_selection.list7Codes || null,
-                lang: this.options.lang_faostat,
+                lang: this.options.lang,
                 page_size: 25,
-                page_number: 1
+                page_number: 1,
+                group_by: null
             }).then(function (json) {
                 that.show_preview(json, options_manager);
             });
@@ -510,7 +513,8 @@ define([
                 test,
                 that = this,
                 metadata,
-                table;
+                table,
+                dwld_options = options_manager.get_options_window('preview_options').collect_user_selection();
 
             /* Render either the table or the pivot. */
             switch (options_manager.get_options_window('preview_options').get_output_type()) {
@@ -520,7 +524,13 @@ define([
                 table.init({
                     placeholder_id: 'downloadOutputArea',
                     data: response.data,
-                    metadata: response.metadata
+                    metadata: response.metadata,
+                    show_units: dwld_options.units_value,
+                    show_flags: dwld_options.flags_value,
+                    show_codes: dwld_options.codes_value,
+                    decimal_places: dwld_options.decimal_numbers_value,
+                    decimal_separator: dwld_options.decimal_separator_value,
+                    thousand_separator: dwld_options.thousand_separator_value
                 });
                 break;
 
