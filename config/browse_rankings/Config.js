@@ -5,10 +5,14 @@ define(function () {
 
     return {
 
+        "defaultCode": "commodities_by_regions",
+
         // configuration of the rankings' tree
         tree: {
 
-            "defaultCode": "commodities_by_regions",
+            "options" : {
+                "open_all": true
+            },
 
             "config": [
                 {
