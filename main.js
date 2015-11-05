@@ -17,10 +17,11 @@ require([
     './submodules/faostat-ui-download-selector/src/js/paths',
     './submodules/faostat-ui-standards-methodology/src/js/paths',
     './submodules/faostat-ui-standards-units/src/js/paths',
-    './submodules/faostat-ui-standards-abbreviations/src/js/paths'
+    './submodules/faostat-ui-standards-abbreviations/src/js/paths',
+    './submodules/faostat-ui-table/src/js/paths'
 ], function (Compiler, Common, Tree, MapCreator, ChartCreator, Dashboard, MetadataViewer, Reports,
              BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager, FAOSTATTheme,
-             DownloadOptions, DownloadSelector, Methodology, Units, Abbreviations) {
+             DownloadOptions, DownloadSelector, Methodology, Units, Abbreviations, Table) {
 
     'use strict';
 
@@ -41,7 +42,8 @@ require([
         downloadSelectorConfig = DownloadSelector,
         methodologyConfig = Methodology,
         unitsConfig = Units,
-        abbreviationsConfig = Abbreviations;
+        abbreviationsConfig = Abbreviations,
+        tableConfig = Table;
 
     treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/src/js';
     commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
@@ -60,12 +62,14 @@ require([
     methodologyConfig.baseUrl = submodules_path + '/faostat-ui-standards-methodology/src/js';
     unitsConfig.baseUrl = submodules_path + '/faostat-ui-standards-units/src/js';
     abbreviationsConfig.baseUrl = submodules_path + '/faostat-ui-standards-abbreviations/src/js';
+    tableConfig.baseUrl = submodules_path + '/faostat-ui-table/src/js';
 
     Compiler.resolve([commonConfig, mapConfig, chartConfig,
             dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig,
             downloadSelectorsManagerConfig, faostatMenuConfig,
             optionsManagerConfig, treeConfig, faostatThemeConfig, downloadOptionsConfig,
-            downloadSelectorConfig, methodologyConfig, unitsConfig, abbreviationsConfig],
+            downloadSelectorConfig, methodologyConfig, unitsConfig, abbreviationsConfig,
+            tableConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 
