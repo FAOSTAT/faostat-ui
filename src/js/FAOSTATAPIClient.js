@@ -68,9 +68,9 @@ define(['jquery', 'q'], function ($, Q) {
                 "client_key": "n.a.",
                 "lang": "en",
                 "null_values": "false",
-                "group_by": "''",
-                "order_by": ".",
-                "operator": "''",
+                "group_by": "",
+                "order_by": "",
+                "operator": "",
                 "page_size": "100",
                 "page_number": "1"
             },
