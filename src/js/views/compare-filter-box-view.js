@@ -37,7 +37,6 @@ define([
     };
 
     // TODO: cache of the dimensions paramenter (a the moment the i.e. /codes/areagroup don't return the paramenter)
-    var DIMENSION_PARAMETER_MAPPING = {};
 
     var CompareFiltersBoxView = View.extend({
 
@@ -58,6 +57,8 @@ define([
             this.o.filters=  {
 
             };
+
+            this.DIMENSION_PARAMETER_MAPPING = {};
         },
 
         getTemplateData: function () {
@@ -244,26 +245,10 @@ define([
                 domain_code: this.domainCode
             }).then(_.bind(this._preloadDomainDimensions, this))
                 .then(_.bind(function(json) {
-                    console.log(json);
+
                     _.each(json, _.bind(function(v) {
 
                         try {
-
-/*                            var obj = {};
-
-                            var id = v.metadata.parameters.id;
-                            obj.title = i18nLabels[id];
-                            obj.parameter = DIMENSION_PARAMETER_MAPPING[id];
-                            obj.ddOptions = {
-                                multiple: true,
-                                addEmptySelection: true,
-                                //placeholder: "SELECT a",
-                                allowClear: true
-                            };
-
-                            filters[id] = {};
-                            filters[id].filter = new Filter(v);*/
-
 
                             var id = v.metadata.parameters.id;
 
@@ -271,8 +256,8 @@ define([
                             v.container = this.createFilterContainer(id);
 
                             // TODO: get label from metadata
-                            v.title = i18nLabels[id];
-                            v.parameter = DIMENSION_PARAMETER_MAPPING[id];
+                            v.title = i18nLabels[id] || id;
+                            v.parameter = this.DIMENSION_PARAMETER_MAPPING[id];
 
                             v.ddOptions = {
                                 multiple: true,
@@ -284,8 +269,6 @@ define([
 
                             this.o.filters[id] = {};
                             this.o.filters[id].filter = new Filter(v);
-
-                            console.log(v);
 
                         }catch(e) {
                             console.error(e);
@@ -304,7 +287,7 @@ define([
                 self = this;
 
             // TODO: cache of the dimensions paramenter (a the moment the i.e. /codes/areagroup don't return the paramenter)
-            DIMENSION_PARAMETER_MAPPING = {};
+            this.DIMENSION_PARAMETER_MAPPING = {};
 
             // Q.all to return all the request at the same time
             _.each(json.data, _.bind(function (c) {
@@ -312,7 +295,7 @@ define([
                 var id = c.id;
 
                 // caching the parameter to use with the getData
-                DIMENSION_PARAMETER_MAPPING[id] = c.parameter;
+                this.DIMENSION_PARAMETER_MAPPING[id] = c.parameter;
 
                 // add check on the blacklist
                 if (CC.filters.blacklistCodesID.indexOf(id) <= -1) {
