@@ -173,9 +173,8 @@ define([
         },
 
         changeState: function() {
-            console.warn("TODO: read internal state anche change URL state");
-            // TODO: handle the country selection
-            Common.changeURL(this.o.section, [], false);
+            console.log(this.o.code);
+            Common.changeURL(this.o.section + '_code', [this.o.code], false);
         },
 
         dispose: function () {

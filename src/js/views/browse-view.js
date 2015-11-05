@@ -73,13 +73,17 @@ define([
         },
 
         initComponents: function () {
+            // switch to the right navigation tab
+            this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
+            this.switchStandardsTab(this.o.section, this.options)
+
 
         },
 
         configurePage: function () {
 
-            // switch to the right navigation tab
-            this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
+/*            // switch to the right navigation tab
+            this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');*/
 
         },
 
@@ -93,16 +97,17 @@ define([
                 var section = $(e.target).data("section"); // activated tab
 
                 // switch tab
-                self.options = $.extend(true, {}, self.options, {section: section});
-                self.switchStandardsTab(section, self.options);
-
-                //Common.changeURL(section, [], false);
+                //self.options = $.extend(true, {}, self.options, {section: section});
+                //self.switchStandardsTab(section, self.options);
+                self.switchStandardsTab(section);
 
             });
 
         },
 
         switchStandardsTab: function(section, options) {
+
+            var options = $.extend(true, {}, options, {section: section});
 
             if (section == this.$domain.data("section")) {
                 this.initBrowseByDomain(options);

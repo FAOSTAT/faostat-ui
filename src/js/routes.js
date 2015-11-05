@@ -13,15 +13,12 @@ define(function () {
         match(':lang/download/metadata/:code', 'download#show_metadata', {name: 'metadata'});
         match(':lang/download/interactive/:code', 'download#show_interactive_download', {name: 'interactive'});
 
-/*        match(':lang/browse/domain/:code', 'browse-by-domain#show');
-        match(':lang/browse/rankings/:code', 'browse#show');
-        match(':lang/browse/country/:code', 'browse#show');*/
 
-        match(':lang/browse/domain', 'browse#show_browse_by_domain', {name: 'browse_by_domain'});
+        //match(':lang/browse/domain', 'browse#show_browse_by_domain', {name: 'browse_by_domain'});
         match(':lang/browse/domain/:code', 'browse#show_browse_by_domain', {name: 'browse_by_domain_code'});
         match(':lang/browse/country', 'browse#show_browse_by_country', {name: 'browse_by_country'});
         match(':lang/browse/country/:code', 'browse#show_browse_by_country', {name: 'browse_by_country_code'});
-        match(':lang/browse/rankings', 'browse#show_browse_rankings', {name: 'browse_rankings'});
+        //match(':lang/browse/rankings', 'browse#show_browse_rankings', {name: 'browse_rankings'});
         match(':lang/browse/rankings/:code', 'browse#show_browse_rankings', {name: 'browse_rankings_code'});
 
 
