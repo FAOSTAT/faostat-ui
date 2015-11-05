@@ -52,3 +52,6 @@
 [submodule "submodules/faostat-ui-pivot"]
 	path = submodules/faostat-ui-pivot
 	url = https://github.com/FAOSTAT/faostat-ui-pivot.git
+[submodule "submodules/faostat-ui-table"]
+	path = submodules/faostat-ui-table
+	url = https://github.com/FAOSTAT/faostat-ui-table.git
