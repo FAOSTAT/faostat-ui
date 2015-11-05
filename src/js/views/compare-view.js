@@ -231,7 +231,14 @@ define([
                 r = $.extend(true, {}, CC.getData, {
                     datasource: C.DATASOURCE,
                     lang: this.o.lang,
-                    List4Codes: years
+                    List4Codes: years,
+                    "null_values": null,
+/*                    "group_by": 'year, element',
+                    "order_by": 'area',
+                    "operator": 'avg',
+                    "page_size": 0,
+                    "page_number": 0*/
+
                 }, r);
 
                 requests.push(this.FAOSTATAPIClient.data(r));
