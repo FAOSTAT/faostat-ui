@@ -103,23 +103,12 @@ define([
         configurePage: function () {
             var self = this;
 
-/*           this.FAOSTATAPIClient.groupsanddomains({
-                datasource: C.DATASOURCE,
-                lang: this.o.lang
-            }).then(function(json) {
-
-               console.log(json);
-
-                // caching goups and domains
-                self.GROUPS_AND_DOMAINS = json;
-
-                // create goups filter
-                self.createGroupFilter(self.GROUPS_AND_DOMAINS);
-            });*/
+            console.log(CC.groups.blacklist);
 
             this.FAOSTATAPIClient.groups({
                 datasource: C.DATASOURCE,
                 lang: this.o.lang,
+                whitelist: CC.groups.whitelist || [],
                 blacklist: CC.groups.blacklist || []
             }).then(function(json) {
                 self.createGroupFilter(json);
