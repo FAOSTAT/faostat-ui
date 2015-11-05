@@ -387,6 +387,7 @@ define([
 
             user_selection = selector_mgr.get_user_selection();
             dwld_options = options_manager.get_options_window('preview_options').collect_user_selection();
+            console.debug(dwld_options);
 
             data = $.extend(true, {}, data, user_selection);
             data = $.extend(true, {}, data, dwld_options);
