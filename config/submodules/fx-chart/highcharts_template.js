@@ -196,17 +196,18 @@ define(function () {
          },*/
 
 
-        //title: {
-        //    //enabled: false,
-        //    text: '',
-        //    x: -20 //center
-        //},
-        //subtitle: {
-        //    text: 'FRA Data',
-        //    x: -20
-        //},
+        title: {
+            enabled: false,
+            text: '',
+            x: -20 //center
+        },
+        subtitle: {
+            enabled: false,
+            text: '',
+            x: -20
+        },
         xAxis: {
-            gridLineWidth: 1, // IMPORTANTE - Attiva le linee verticali
+            //gridLineWidth: 1, // IMPORTANTE - Attiva le linee verticali
             lineColor: '#e0e0e0',
             tickColor: '#e0e0e0',
             gridLineColor: '#eeeeee',
@@ -231,7 +232,7 @@ define(function () {
             }
         },
         yAxis: {
-            gridLineWidth: 1, // IMPORTANTE - Attiva le linee verticali
+            //gridLineWidth: 1, // IMPORTANTE - Attiva le linee verticali
             lineWidth: 1,
             //tickWidth: 1,
             lineColor: '#e0e0e0',
@@ -247,12 +248,12 @@ define(function () {
                 enabled: false,
                 text: 'null'
             },
-            plotLines: [
+/*            plotLines: [
                 {
                     value: 0,
                     width: 1
                 }
-            ]
+            ]*/
         },
         tooltip: {
             //valueSuffix: '',
@@ -260,7 +261,7 @@ define(function () {
             borderWidth: 1,
             shadow: true,
             crosshairs: "mixed",
-            // shared: true
+            shared: true
         }
 
     };
