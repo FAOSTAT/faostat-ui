@@ -21,11 +21,16 @@ define(function () {
 
         // TODO: DO THE BLACKLIST!!!!!
         groups: {
-            blacklist: ['P']
+            blacklist: [
+                'D', // (FS, HS) it doesn't have yearly data
+            ]
         },
 
         domains: {
-            blacklist: ['QD']
+            blacklist: [
+                'FS', // it doesn't have yearly data
+                'HS' // it doesn't have yearly data
+            ]
         },
 
         // this will blacklist all the IDs that should not be created as filters
@@ -45,7 +50,13 @@ define(function () {
                 xDimensions: 'year',
                 yDimensions: 'unit',
                 valueDimensions: 'value',
-                seriesDimensions: ['area', 'element', 'item']
+                seriesDimensions: ['area', 'partnerarea', 'recipientarea', 'donor',
+                    'survey', // HS
+                    'element', 'item',
+                    'breakdownvar', 'breakdownsex', 'indicator', 'measure', // HS
+                    'purpose', // ODA
+
+                ]
             },
             template: {},
             creator: {},
