@@ -1,4 +1,4 @@
-/*global define, _:false, $, console, amplify, FM*/
+/*global define, _:false, $, console, amplify, require*/
 define([
     'views/base/view',
     'config/FAOSTAT',
@@ -11,6 +11,7 @@ define([
     'handlebars',
     'globals/Common',
     'FAOSTAT_UI_TREE',
+    'fx-ds/start',
     'amplify'
 ], function (View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree) {
 
@@ -131,6 +132,15 @@ define([
 
             this.$VIEW_TITLE.html(label);
 
+            var obj = {
+                container: this.$VIEW,
+                basePath:CM.viewsBasePath,
+                viewID: code
+            }
+
+            //this.createView(obj);
+            this.renderDashBoard(obj);
+
         },
 
         configurePage: function () {
@@ -154,7 +164,73 @@ define([
             this.unbindEventListeners();
 
             View.prototype.dispose.call(this, arguments);
+        },
+
+        renderDashBoard: function(config) {
+
+            require([config.basePath + config.viewID + '_fenix'], _.bind(function(view) {
+
+                if (this.dashboard && this.dashboard.destroy) {
+                    this.dashboard.destroy();
+                }
+
+                this.dashboard = new Dashboard({
+
+                    //Ignored if layout = injected
+                    container: s.VIEW,
+
+                    layout: "fluid"
+                });
+
+                console.log(view);
+
+               this.dashboard.render(view.dashboard);
+            }, this));
+
+        },
+
+
+        // TODO: move to a common area for all the modules (create a submodule?)
+        createView: function(config) {
+
+            var container = config.container;
+
+            // get and render the right view
+            require([config.basePath + config.viewID], _.bind(function(view) {
+                this.createView(view);
+            }, this));
+
+            console.log(view);
+
+            var lang = this.o.lang,
+                filters = view.filters || null,
+                dashboard = view.dashboard || null;
+
+            // create filters
+            if (filters) {
+                this.createFilters({
+                    filters: filters,
+                    lang: lang
+                });
+            }
+
+            // create dashboard
+            if (dashboard) {
+                this.createDashboard(view.dashboard);
+            }else{
+                console.error("View is not defined, handle exception");
+            }
+
+        },
+
+        createFilters: function(filters, lang) {
+
+        },
+
+        createDashboard: function(dashboard) {
+
         }
+
     });
 
     return BrowseByDomainView;
