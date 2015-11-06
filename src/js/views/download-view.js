@@ -264,13 +264,31 @@ define([
                 this.options_manager.init({
                     callback: {
                         onCodesChange: function (isChecked) {
-                            self.pivot.showCode(isChecked);
+                            if (isChecked) {
+                                $('th[data-type="code"]').css('display', 'table-cell');
+                                $('td[data-type="code"]').css('display', 'table-cell');
+                            } else {
+                                $('th[data-type="code"]').css('display', 'none');
+                                $('td[data-type="code"]').css('display', 'none');
+                            }
                         },
                         onFlagsChange: function (isChecked) {
-                            self.pivot.showFlags(isChecked);
+                            if (isChecked) {
+                                $('th[data-type="flag"]').css('display', 'table-cell');
+                                $('td[data-type="flag"]').css('display', 'table-cell');
+                            } else {
+                                $('th[data-type="flag"]').css('display', 'none');
+                                $('td[data-type="flag"]').css('display', 'none');
+                            }
                         },
                         onUnitsChange: function (isChecked) {
-                            self.pivot.showUnit(isChecked);
+                            if (isChecked) {
+                                $('th[data-type="unit"]').css('display', 'table-cell');
+                                $('td[data-type="unit"]').css('display', 'table-cell');
+                            } else {
+                                $('th[data-type="unit"]').css('display', 'none');
+                                $('td[data-type="unit"]').css('display', 'none');
+                            }
                         }
                     }
                 });
