@@ -9,11 +9,13 @@ define(function () {
             filter: [
                 {
                     "type": "static",
-                    //"componentType": "timerange",
-                    "componentType": "dropDownList",
+                    "componentType": {
+                        "type": "dropDownList"
+                    },
                     "config": {
-                        "dimension_id": "year",
+                        "id": "year",
                         "filter": {
+
                         },
                         "defaultCodes": ["1990", "2010"],
                         "codes": [
@@ -49,8 +51,9 @@ define(function () {
                     //"title": "Item",
                     "componentType": "dropDownList",
                     "config": {
-                        "dimension_id": "items",
-                        "filter" :  {
+                        "id": "items",
+                        "defaultCodes": ["800"],
+                        "filter": {
                             "domain_code": ["QC"],
                             "whitelist": [],
                             "blacklist": []
