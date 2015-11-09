@@ -10,7 +10,10 @@ define(function () {
                 {
                     "type": "static",
                     "componentType": {
-                        "type": "dropDownList"
+                        <!-- TODO: add a class instead of bootstrap -->
+                        //"class": "col-lg-3",
+                        "type": "dropDownList",
+                        "multiple": true
                     },
                     "config": {
                         "id": "year",
@@ -18,9 +21,9 @@ define(function () {
 
                         },
                         "defaultCodes": ["1990", "2010"],
-                        "codes": [
-                            // TODO: multilingual?
-                            {"code": "2011", "label": "2011", "selected": true},
+                        "data": [
+                            {"code": "2012", "label": "2012", "selected": true},
+                            {"code": "2011", "label": "2011", "selected": false},
                             {"code": "2010", "label": "2010", "selected": false},
                             {"code": "2009", "label": "2009", "selected": false},
                             {"code": "2008", "label": "2008", "selected": false},
@@ -49,17 +52,58 @@ define(function () {
                     "type": "codelist",
                     //"containerType": "baseContainer",
                     //"title": "Item",
-                    "componentType": "dropDownList",
+                    "componentType": {
+                        "class": "col-lg-3",
+                        "type": "dropDownList"
+                    },
                     "config": {
                         "id": "items",
-                        "defaultCodes": ["800"],
+                        "defaultCodes": ["221"],
                         "filter": {
                             "domain_code": ["QC"],
                             "whitelist": [],
                             "blacklist": []
                         }
                     }
-                }
+                },
+                {
+                    "type": "codelist",
+                    //"containerType": "baseContainer",
+                    //"title": "Item",
+                    "componentType": {
+                        "class": "col-lg-3",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "id": "elements",
+                        "defaultCodes": ["2510"],
+                        "filter": {
+                            "domain_code": ["QC"],
+                            "whitelist": ["2510"],
+                            "blacklist": []
+                        }
+                    }
+                },
+                {
+                    "type": "static",
+                    "componentType": {
+                        <!-- TODO: add a class instead of bootstrap -->
+                        "class": "col-lg-2",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "id": "aggregation",
+                        "filter": {
+
+                        },
+                        "defaultCodes": ["AVG"],
+                        "data": [
+                            // TODO: multilingual?
+                            {"code": "AVG", "label": "average", "selected": true},
+                            {"code": "SUM", "label": "sum", "selected": false}
+                        ]
+                    }
+                },
             ],
 
         "dashboard": {}
