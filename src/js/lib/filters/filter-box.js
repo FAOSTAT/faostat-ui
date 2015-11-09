@@ -35,6 +35,7 @@ define([
     };
 
     FilterBox.prototype.init = function(options) {
+
         this.o = $.extend(true, {}, defaultOptions, options);
 
         this.o.lang = Common.getLocale();
@@ -43,7 +44,6 @@ define([
 
         this.configurePage();
 
-        return this;
     };
 
     FilterBox.prototype.initVariables = function () {
@@ -113,7 +113,7 @@ define([
 
     FilterBox.prototype._preloadCodes = function (filter) {
 
-        var id = filter.config.id,
+        var id = filter.config.dimension_id,
             defaultCodes = filter.config.defaultCodes || {};
 
         var request = $.extend({}, true, {
@@ -137,7 +137,7 @@ define([
             });
             filter.config.data = codes;
 
-            console.log(filter.config.data );
+            //console.log(filter.config.data );
 
             return filter;
 
@@ -150,7 +150,12 @@ define([
     };
 
 
-    FilterBox.prototype.dispose = function () {
+    FilterBox.prototype.destroy = function () {
+
+        // destroy all filters
+        this.$CONTAINER.empty();
+
+        console.warn("Handle destroy");
 
     };
 

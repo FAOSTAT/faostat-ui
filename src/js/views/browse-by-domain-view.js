@@ -14,7 +14,7 @@ define([
     'lib/filters/filter-box',
     'fx-ds/start',
     'amplify'
-], function (View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree, Filter, Dashboard) {
+], function (View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard) {
 
     'use strict';
 
@@ -172,7 +172,14 @@ define([
         },
 
 
-        // TODO: move to a common area for all the modules (create a submodule?)
+
+
+
+
+
+
+
+        // TODO: move to a common area for all the modules? (create a submodule?)
         createView: function(config) {
 
             var container = config.container,
@@ -183,7 +190,6 @@ define([
 
                 var filter = view.filter || null,
                     dashboard = view.dashboard || null;
-
 
                 // render structure (structure i.e. change view on click selection)
 
@@ -206,7 +212,6 @@ define([
                     console.error("View is not defined, handle exception");
                 }
 
-
             }, this));
 
         },
@@ -215,13 +220,12 @@ define([
             // dispose old filters
 
             // create filters
-            if (this.filter && this.filter.destroy) {
-                this.filter.destroy();
+            if (this.filterBox && this.filterBox.destroy) {
+                this.filterBox.destroy();
             }
 
-            this.filter = new Filter();
-            this.filter.init(config);
-
+            this.filterBox = new FilterBox();
+            this.filterBox.init(config);
 
             // on change getFilters
 
