@@ -82,7 +82,7 @@ define([
             this.$VIEW_TITLE = this.$el.find(s.VIEW_TITLE);
             this.$VIEW = this.$el.find(s.VIEW);
 
-            this.$FILTER = this.$el.find(s.FILTER);
+            this.$FILTER_BOX = this.$el.find(s.FILTER_BOX);
             this.$DASHBOARD = this.$el.find(s.DASHBOARD);
 
         },
@@ -191,7 +191,7 @@ define([
                 if (filter) {
                     this.renderFilter({
                         filter: filter,
-                        container: this.$FILTER,
+                        container: this.$FILTER_BOX,
                         lang: lang
                     });
                 }
@@ -212,11 +212,6 @@ define([
         },
 
         renderFilter: function(config) {
-
-            console.log(config);
-
-            console.log(this.container.length);
-
             // dispose old filters
 
             // create filters

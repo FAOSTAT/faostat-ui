@@ -1,29 +1,26 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
-    'jquery',
     'globals/Common',
     'config/FAOSTAT',
     'config/Config',
     'config/Events',
     'config/EventsCompare',
-    'text!lib/filters/templates/filter_box.hbs',
-    'text!lib/filters/templates/filter_container.hbs',
     //'text!templates/compare/dropdown.hbs',
-    'i18n!nls/compare',
+    'i18n!nls/browse',
     'handlebars',
     'faostatapiclient',
     'underscore',
     //'views/compare-filter-view-backup',
-    'lib/compare/compare-filter',
+    'lib/filters/filter',
     'q',
     'amplify',
-], function ($, Common, F, C, E, EC, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
+], function (Common, F, C, E, EC, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
 
     'use strict';
 
     var s = {
 
-        FILTERS: '[data-role="filters"]'
+        //FILTERS: '[data-role="filter-box"]'
 
     };
 
@@ -34,13 +31,13 @@ define([
     'use strict';
 
     function FilterBox() {
-        this.o = {};
-        this.o.lang = Common.getLocale();
         return this;
     };
 
     FilterBox.prototype.init = function(options) {
-        this.o = $.extend({}, true, defaultOptions, options);
+        this.o = $.extend(true, {}, defaultOptions, options);
+
+        this.o.lang = Common.getLocale();
 
         this.initVariables();
 
@@ -53,13 +50,35 @@ define([
 
         this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
+        // TODO: have a template?
+        this.$CONTAINER = $(this.o.container);
+
     };
 
     FilterBox.prototype.configurePage = function() {
 
-        var r = this._preloadCodelists().then(function(filters) {
+        var self = this;
+        this.filters = [];
 
-            console.log(filters);
+        this._preloadCodelists().then(function(f) {
+
+            _.each(f, function(c, index) {
+
+                var id = 'filter_box_'+ index;
+
+                // TODO: dirty append for the filters
+                self.$CONTAINER.append('<div id="'+ id + '"></div>');
+
+                // render filter
+                var filter = new Filter();
+
+                c.container = self.$CONTAINER.find('#' + id);
+
+                filter.init(c);
+
+                self.filters.push(filter)
+
+            });
 
         });
 
@@ -80,8 +99,8 @@ define([
                     r.push(self._preloadCodes(filter));
                     break;
                 default:
-                    console.warn("configuration type [" + type + "] not found for: (static is applied)");
-                    console.warn(filter);
+                    //console.warn("configuration type [" + type + "] not found for: (static is applied)");
+                    //console.warn(filter);
                     r.push(self._preloadStaticCodes(filter));
                     //this._processStaticConfiguration(c);
                     break;
@@ -94,8 +113,7 @@ define([
 
     FilterBox.prototype._preloadCodes = function (filter) {
 
-        var self = this,
-            id = filter.config.id,
+        var id = filter.config.id,
             defaultCodes = filter.config.defaultCodes || {};
 
         var request = $.extend({}, true, {
@@ -117,26 +135,20 @@ define([
             _.each(c.data, function(d) {
                 codes.push($.extend({}, d, {selected: defaultCodes.indexOf(d.code) > -1 }));
             });
-            filter.config.codes = codes;
+            filter.config.data = codes;
+
+            console.log(filter.config.data );
 
             return filter;
 
         });
-    };
 
+    };
 
     FilterBox.prototype._preloadStaticCodes = function (config) {
         return config;
     };
 
-    // Process filters responses
-    FilterBox.prototype._processFilters = function () {
-
-    };
-
-    FilterBox.prototype.renderFilter = function() {
-
-    };
 
     FilterBox.prototype.dispose = function () {
 

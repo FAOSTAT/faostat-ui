@@ -3,80 +3,66 @@ define([
     'globals/Common',
     /* TODO: move to another folder? */
     'text!lib/filters/templates/filter.hbs',
-    'text!lib/filters/templates/dropdown.hbs',
     'i18n!nls/common',
     'handlebars',
-    'faostatapiclient',
     'underscore',
     'select2',
     'amplify'
-], function (Common, templateFilter, templateDropDown, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
+], function (Common, templateFilter, i18nLabels, Handlebars, _) {
 
     'use strict';
 
     var s = {
 
-        $DD_CONTAINER: '[data-role="dd-container"]',
-        $DD: '[data-role="dd"]'
+        DD: '[data-role="dd"]'
+
+    },defaultOptions = {
 
     };
 
-    var dropDownOptions = {
+    function Filter() {
 
-    }
+        return this;
+    };
 
-    function Filter(options) {
-        this.o = options || {};
+    Filter.prototype.init = function (options) {
+
+        this.o = $.extend(true, {}, defaultOptions, options);
 
         // init lang
         this.o.lang = Common.getLocale();
 
-        // default dropdownOptions
-        this.o.ddOptions = $.extend({}, dropDownOptions, this.o.ddOptions || {});
-
         // store container variable
-        this.$CONTAINER = this.o.container;
+        this.$CONTAINER = $(this.o.container);
 
         this.initVariables();
 
         this.initComponents();
 
-        return this;
-    }
+        // initialize with select2
+        this.$DD = this.$CONTAINER.find(s.DD);
+        this.$DD.select2();
+    };
 
     Filter.prototype.initVariables = function () {
 
-    },
+    };
 
     Filter.prototype.initComponents = function () {
 
         this.initTemplate();
 
-        // create dropdown
-        this.$DD_CONTAINER = this.$CONTAINER.find(s.$DD_CONTAINER);
-        this.$DD_CONTAINER.html(this.createDropdown(this.o));
-
-        this.$DD = this.$DD_CONTAINER.find(s.$DD);
-
-        if (this.o.ddOptions.multiple) {
-            this.$DD.attr('multiple', 'multiple');
-        }
-
-        if (this.o.ddOptions.addEmptySelection) {
-            this.$DD.prepend("<option></option>");
-        }
-
-        this.$DD.select2();
     };
 
     Filter.prototype.initTemplate = function () {
         var template = Handlebars.compile(templateFilter);
-        this.$CONTAINER.html(template(this.o));
-    };
 
-    Filter.prototype.createDropdown = function (data) {
-        var template = Handlebars.compile(templateDropDown);
-        return template(data);
+        var c = $.extend(true, {},{data: this.o.config.data}, this.o.componentType);
+
+        console.log(c);
+
+
+        this.$CONTAINER.append(template(c));
     };
 
     Filter.prototype.getDropDown = function (data) {

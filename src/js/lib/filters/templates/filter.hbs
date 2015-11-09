@@ -1,4 +1,16 @@
-<div>
+<div class="
+    {{#if class}}
+        {{class}}
+    {{else}}
+         <!-- TODO: add a class instead of bootstrap -->
+        col-lg-3
+    {{/if}}">
     <h2>{{title}}</h2>
-    <div data-role="dd-container"></div>
+    <select data-role="dd" class="js-example-responsive" style="width: 100%" {{#if multiple}}multiple="multiple{{/if}}>
+        {{#each data}}
+            <option value="{{code}}" {{#if selected}}selected{{/if}}>
+                {{label}}
+            </option>
+        {{/each}}
+    </select>
 </div>

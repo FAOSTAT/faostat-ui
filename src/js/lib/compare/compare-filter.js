@@ -28,6 +28,9 @@ define([
     function CompareFilter(options) {
         this.o = options || {};
 
+        // init lang
+        this.o.lang = Common.getLocale();
+
         // default dropdownOptions
         this.o.ddOptions = $.extend({}, dropDownOptions, this.o.ddOptions || {});
 
@@ -43,10 +46,7 @@ define([
 
     CompareFilter.prototype.initVariables = function () {
 
-        // init lang
-        this.o.lang = Common.getLocale();
-
-    },
+    };
 
     CompareFilter.prototype.initComponents = function () {
 
