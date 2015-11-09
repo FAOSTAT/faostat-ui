@@ -30,22 +30,22 @@ define([
 
     'use strict';
 
-    function View(options) {
+    function BrowseView(options) {
         this.o = {};
         this.o.lang = Common.getLocale();
         this.o = $.extend({}, true, defaultOptions, options);
         return this;
     };
 
-    View.prototype.initVariables = function () {
+    BrowseView.prototype.initVariables = function () {
 
     };
 
-    View.prototype.configurePage = function(json) {
+    BrowseView.prototype.configurePage = function(json) {
 
     };
 
-    View.prototype.dispose = function () {
+    BrowseView.prototype.dispose = function () {
 
     };
 

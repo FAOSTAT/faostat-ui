@@ -11,9 +11,10 @@ define([
     'handlebars',
     'globals/Common',
     'FAOSTAT_UI_TREE',
+    'lib/filters/filter-box',
     'fx-ds/start',
     'amplify'
-], function (View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree) {
+], function (View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree, Filter, Dashboard) {
 
     'use strict';
 
@@ -21,7 +22,9 @@ define([
 
             TREE: "#fs-browse-by-domain-tree",
             VIEW_TITLE: "#fs-browse-by-domain-view-title",
-            VIEW: "#fs-browse-by-domain-view"
+            //VIEW: "#fs-browse-by-domain-view",
+            FILTER_BOX: "[data-role='filter-box']",
+            DASHBOARD: "[data-role='dashboard']"
 
         },
 
@@ -79,6 +82,9 @@ define([
             this.$VIEW_TITLE = this.$el.find(s.VIEW_TITLE);
             this.$VIEW = this.$el.find(s.VIEW);
 
+            this.$FILTER = this.$el.find(s.FILTER);
+            this.$DASHBOARD = this.$el.find(s.DASHBOARD);
+
         },
 
         initComponents: function () {
@@ -120,7 +126,6 @@ define([
 
                     }, this)
 
-
                 }
             });
 
@@ -139,7 +144,7 @@ define([
             }
 
             //this.createView(obj);
-            this.renderDashBoard(obj);
+            this.createView(obj);
 
         },
 
@@ -166,68 +171,77 @@ define([
             View.prototype.dispose.call(this, arguments);
         },
 
-        renderDashBoard: function(config) {
-
-            require([config.basePath + config.viewID + '_fenix'], _.bind(function(view) {
-
-                if (this.dashboard && this.dashboard.destroy) {
-                    this.dashboard.destroy();
-                }
-
-                this.dashboard = new Dashboard({
-
-                    //Ignored if layout = injected
-                    container: s.VIEW,
-
-                    layout: "fluid"
-                });
-
-                console.log(view);
-
-               this.dashboard.render(view.dashboard);
-            }, this));
-
-        },
-
 
         // TODO: move to a common area for all the modules (create a submodule?)
         createView: function(config) {
 
-            var container = config.container;
+            var container = config.container,
+                lang = this.o.lang;
 
             // get and render the right view
             require([config.basePath + config.viewID], _.bind(function(view) {
-                this.createView(view);
+
+                var filter = view.filter || null,
+                    dashboard = view.dashboard || null;
+
+
+                // render structure (structure i.e. change view on click selection)
+
+                // render filters
+                if (filter) {
+                    this.renderFilter({
+                        filter: filter,
+                        container: this.$FILTER,
+                        lang: lang
+                    });
+                }
+
+                // render dashboard
+                if (dashboard) {
+                    this.renderDashboard({
+                        dashboard: view.dashboard,
+                        container: this.$DASHBOARD,
+                        lang: lang});
+                }else{
+                    console.error("View is not defined, handle exception");
+                }
+
+
             }, this));
 
-            console.log(view);
+        },
 
-            var lang = this.o.lang,
-                filters = view.filters || null,
-                dashboard = view.dashboard || null;
+        renderFilter: function(config) {
+
+            console.log(config);
+
+            console.log(this.container.length);
+
+            // dispose old filters
 
             // create filters
-            if (filters) {
-                this.createFilters({
-                    filters: filters,
-                    lang: lang
-                });
+            if (this.filter && this.filter.destroy) {
+                this.filter.destroy();
             }
 
+            this.filter = new Filter();
+            this.filter.init(config);
+
+
+            // on change getFilters
+
+            // apply filters
+
+        },
+
+        renderDashboard: function(config) {
+
+            //console.log(config);
+
+            //console.log(this.container.length);
             // create dashboard
-            if (dashboard) {
-                this.createDashboard(view.dashboard);
-            }else{
-                console.error("View is not defined, handle exception");
-            }
 
-        },
-
-        createFilters: function(filters, lang) {
-
-        },
-
-        createDashboard: function(dashboard) {
+            // on change recreate dshboard
 
         }
 
