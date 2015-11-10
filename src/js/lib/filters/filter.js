@@ -1,14 +1,14 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
     'globals/Common',
-    /* TODO: move to another folder? */
+    'config/Events',
     'text!lib/filters/templates/filter.hbs',
     'i18n!nls/filter',
     'handlebars',
     'underscore',
     'select2',
     'amplify'
-], function (Common, templateFilter, i18nLabels, Handlebars, _) {
+], function (Common, E, templateFilter, i18nLabels, Handlebars, _) {
 
     'use strict';
 
@@ -40,6 +40,7 @@ define([
         this.initVariables();
 
         this.initComponents();
+
     };
 
     Filter.prototype.initVariables = function () {
@@ -122,7 +123,7 @@ define([
 
     Filter.prototype.getFilter = function () {
         var f = {
-            id: this.o.metadata.parameters.id,
+            id: this.o.id,
             parameter: this.o.parameter,
             codes: this.$DD.val()
         };
@@ -136,7 +137,6 @@ define([
             });
         }
 
-        // TODO: if nothing is selected set an alert?
         return f;
     };
 

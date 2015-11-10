@@ -1,20 +1,15 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
     'globals/Common',
-    'config/FAOSTAT',
     'config/Config',
-    'config/Events',
-    'config/EventsCompare',
-    //'text!templates/compare/dropdown.hbs',
     'i18n!nls/filter',
     'handlebars',
     'faostatapiclient',
     'underscore',
-    //'views/compare-filter-view-backup',
     'lib/filters/filter',
     'q',
     'amplify',
-], function (Common, F, C, E, EC, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
+], function (Common, C, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
 
     'use strict';
 
@@ -25,7 +20,7 @@ define([
     };
 
     var defaultOptions = {
-        cl: {}
+        requestKey: 0
     };
 
     'use strict';
@@ -62,12 +57,12 @@ define([
 
         this._preloadCodelists().then(function(f) {
 
-            _.each(f, function(c, index) {
+            _.each(f, function (c, index) {
 
-                var id = 'filter_box_'+ index;
+                var id = 'filter_box_' + index;
 
                 // TODO: dirty append for the filters
-                self.$CONTAINER.append('<div id="'+ id + '"></div>');
+                self.$CONTAINER.append('<div id="' + id + '"></div>');
 
                 // render filter
                 var filter = new Filter();
@@ -79,7 +74,6 @@ define([
                 self.filters.push(filter)
 
             });
-
         });
 
     };
@@ -99,10 +93,7 @@ define([
                     r.push(self._preloadCodes(filter));
                     break;
                 default:
-                    //console.warn("configuration type [" + type + "] not found for: (static is applied)");
-                    //console.warn(filter);
                     r.push(self._preloadStaticCodes(filter));
-                    //this._processStaticConfiguration(c);
                     break;
             }
 
@@ -136,9 +127,6 @@ define([
                 codes.push($.extend({}, d, {selected: defaultCodes.indexOf(d.code) > -1 }));
             });
             filter.config.data = codes;
-
-            //console.log(filter.config.data );
-
             return filter;
 
         });
@@ -155,7 +143,6 @@ define([
 
         });
 
-
         return config;
     };
 
@@ -165,7 +152,7 @@ define([
         // destroy all filters
         this.$CONTAINER.empty();
 
-        console.warn("Handle destroy");
+        console.error("Handle destroy");
 
     };
 
