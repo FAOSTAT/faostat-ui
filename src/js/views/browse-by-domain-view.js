@@ -226,7 +226,7 @@ define([
             }
 
             this.filterBox = new FilterBox();
-            this.filterBox.render(config);
+            //this.filterBox.render(config);
 
             // on change getFilters
 
@@ -249,8 +249,6 @@ define([
             }catch (e) {
                 console.error(e);
             }
-
-            //console.log(config);
 
             //console.log(this.container.length);
             // create dashboard

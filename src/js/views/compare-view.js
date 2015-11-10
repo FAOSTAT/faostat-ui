@@ -228,6 +228,7 @@ define([
                     r[filterParameter.parameter] = filterParameter.codes
                 });
 
+
                 r = $.extend(true, {}, CC.getData, {
                     datasource: C.DATASOURCE,
                     lang: this.o.lang,
