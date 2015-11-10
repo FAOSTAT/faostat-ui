@@ -105,6 +105,7 @@ define(function () {
 
             //data base filter
             filter: {
+                // TODO: lang and datasource should be added at runtime
                 lang: 'en',
                 datasource: 'production',
                 decimal_places: 2,
@@ -141,11 +142,11 @@ define(function () {
                             modelType: 'faostat'
                         }
                     },
-                    // for now it takes the id, TODO: add uid as well
-                    allowedFilter: ['aggregation', 'item'],
+                    allowedFilter: ['items'],
                     filter:
                         {
                             domain_code: 'QC',
+                            // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                             List1Codes: ["5000>"],
                             List2Codes: ["2510"],
                             List3Codes: ["515"],
