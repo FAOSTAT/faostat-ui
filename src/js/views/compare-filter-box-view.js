@@ -352,6 +352,8 @@ define([
                 f.push(this.o.filters[filterKey].filter.getFilter());
             }, this));
 
+            console.log(f);
+
             return f;
         },
 

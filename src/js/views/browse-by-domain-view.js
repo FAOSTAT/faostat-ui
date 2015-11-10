@@ -154,9 +154,13 @@ define([
 
         bindEventListeners: function () {
 
+            amplify.subscribe(E.VIEW_FILTER_CHANGE, _.bind(this.updateDashboard, this));
+
         },
 
         unbindEventListeners: function () {
+
+            amplify.unsubscribe(E.VIEW_FILTER_CHANGE, _.bind(this.updateDashboard, this));
 
         },
 
@@ -170,11 +174,6 @@ define([
 
             View.prototype.dispose.call(this, arguments);
         },
-
-
-
-
-
 
 
 
@@ -226,11 +225,9 @@ define([
             }
 
             this.filterBox = new FilterBox();
-            //this.filterBox.render(config);
+            this.filterBox.render(config);
 
-            // on change getFilters
-
-            // apply filters
+            // on change getFilters and apply to dashboard
 
         },
 
@@ -254,6 +251,17 @@ define([
             // create dashboard
 
             // on change recreate dshboard
+
+        },
+
+        updateDashboard: function() {
+
+            console.log(this);
+            // getFilters
+            var filters = this.filterBox.getFilters();
+
+            // apply filters to dashboard
+            //this.dashboard.filter(filters);
 
         }
 

@@ -54,7 +54,7 @@ define([
     FilterBox.prototype.configurePage = function() {
 
         var self = this;
-        this.filters = [];
+        this.o.filters = [];
 
         this._preloadCodelists().then(function(f) {
 
@@ -72,7 +72,7 @@ define([
 
                 filter.init(c);
 
-                self.filters.push(filter)
+                self.o.filters.push(filter)
 
             });
         });
@@ -145,6 +145,17 @@ define([
         });
 
         return config;
+    };
+
+    FilterBox.prototype.getFilters = function (config) {
+
+        var f = [];
+        console.log(this.o.filters);
+        _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
+            f.push(this.o.filters[filterKey].getFilter());
+        }, this));
+
+        return f;
     };
 
 

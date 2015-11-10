@@ -41,6 +41,8 @@ define([
 
         this.initComponents();
 
+        this.bindEventListeners();
+
     };
 
     Filter.prototype.initVariables = function () {
@@ -51,8 +53,6 @@ define([
 
         var type = this.o.componentType.type || null;
 
-        console.log(this.o);
-
         switch(type) {
             case 'dropDownList-timerange':
                 this.renderFilterTimerange();
@@ -61,6 +61,7 @@ define([
                 this.renderFilter();
                 break;
         }
+
     };
 
     Filter.prototype.renderFilter = function () {
@@ -122,6 +123,22 @@ define([
     };
 
     Filter.prototype.getFilter = function () {
+
+        var type = this.o.componentType.type || null;
+
+        switch(type) {
+            case 'dropDownList-timerange':
+                return this.getFilterTimerange();
+                break;
+            default:
+                return this.getFilterStandard();
+                break;
+        }
+
+    };
+
+
+    Filter.prototype.getFilterStandard = function () {
         var f = {
             id: this.o.id,
             parameter: this.o.parameter,
@@ -129,7 +146,6 @@ define([
         };
 
         // TODO: remove the alert?
-        //console.log(f);
         if (f.codes.length <= 0) {
             amplify.publish(E.NOTIFICATION_WARNING, {
                 title: i18nLabels.warning,
@@ -137,10 +153,62 @@ define([
             });
         }
 
+        console.log(f);
+
         return f;
     };
 
+
+    Filter.prototype.getFilterTimerange = function () {
+        var f = {
+            id: this.o.id,
+            parameter: this.o.parameter,
+        };
+
+        var codes = [];
+        for(var i = parseInt(this.$DD_FROM_YEAR.val()); i <= parseInt(this.$DD_TO_YEAR.val()); i++) {
+            codes.push(i);
+        }
+        f.codes = codes;
+
+        // TODO: remove the alert?
+        if (f.codes.length <= 0) {
+            amplify.publish(E.NOTIFICATION_WARNING, {
+                title: i18nLabels.warning,
+                text: 'Select at least one ' + this.o.metadata.parameters.id
+            });
+        }
+
+        console.log(f);
+
+        return f;
+    };
+
+    Filter.prototype.bindEventListeners = function () {
+
+        if (this.$DD) {
+            this.$DD.change(function (e) {
+                amplify.publish(E.VIEW_FILTER_CHANGE, {});
+            });
+        }
+
+        if (this.$DD_FROM_YEAR) {
+            this.$DD_FROM_YEAR.change(function(e) {
+                amplify.publish(E.VIEW_FILTER_CHANGE, {});
+            });
+        }
+
+        if (this.$DD_TO_YEAR) {
+            this.$DD_TO_YEAR.change(function (e) {
+                amplify.publish(E.VIEW_FILTER_CHANGE, {});
+            });
+        }
+
+    };
+
     Filter.prototype.unbindEventListeners = function () {
+
+
 
     };
 
