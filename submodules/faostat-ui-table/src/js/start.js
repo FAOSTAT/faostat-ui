@@ -78,6 +78,14 @@ define(['jquery',
             formatter += '0';
         }
 
+        /* Process headers. */
+        for (j = 0; j < this.CONFIG.metadata.dsd.length; j += 1) {
+            headers.push({
+                label: this.CONFIG.metadata.dsd[j].label,
+                type: this.CONFIG.metadata.dsd[j].type
+            });
+        }
+
         /* Process data. */
         for (i = 0; i < this.CONFIG.data.length; i += 1) {
             row = {};
@@ -88,18 +96,10 @@ define(['jquery',
                         label: numeral(this.CONFIG.data[i][this.CONFIG.metadata.dsd[j].key]).format(formatter),
                         type: this.CONFIG.metadata.dsd[j].type
                     });
-                    headers.push({
-                        label: this.CONFIG.metadata.dsd[j].label,
-                        type: this.CONFIG.metadata.dsd[j].type
-                    });
                 } else if (this.CONFIG.metadata.dsd[j].type === 'code') {
                     if (this.CONFIG.show_codes) {
                         row.cells.push({
                             label: this.CONFIG.data[i][this.CONFIG.metadata.dsd[j].key],
-                            type: this.CONFIG.metadata.dsd[j].type
-                        });
-                        headers.push({
-                            label: this.CONFIG.metadata.dsd[j].label,
                             type: this.CONFIG.metadata.dsd[j].type
                         });
                     }
@@ -109,10 +109,6 @@ define(['jquery',
                             label: this.CONFIG.data[i][this.CONFIG.metadata.dsd[j].key],
                             type: this.CONFIG.metadata.dsd[j].type
                         });
-                        headers.push({
-                            label: this.CONFIG.metadata.dsd[j].label,
-                            type: this.CONFIG.metadata.dsd[j].type
-                        });
                     }
                 } else if (this.CONFIG.metadata.dsd[j].type === 'flag') {
                     if (this.CONFIG.show_flags) {
@@ -120,18 +116,10 @@ define(['jquery',
                             label: this.CONFIG.data[i][this.CONFIG.metadata.dsd[j].key],
                             type: this.CONFIG.metadata.dsd[j].type
                         });
-                        headers.push({
-                            label: this.CONFIG.metadata.dsd[j].label,
-                            type: this.CONFIG.metadata.dsd[j].type
-                        });
                     }
                 } else {
                     row.cells.push({
                         label: this.CONFIG.data[i][this.CONFIG.metadata.dsd[j].key],
-                        type: this.CONFIG.metadata.dsd[j].type
-                    });
-                    headers.push({
-                        label: this.CONFIG.metadata.dsd[j].label,
                         type: this.CONFIG.metadata.dsd[j].type
                     });
                 }
