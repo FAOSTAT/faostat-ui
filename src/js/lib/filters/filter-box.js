@@ -6,7 +6,7 @@ define([
     'config/Events',
     'config/EventsCompare',
     //'text!templates/compare/dropdown.hbs',
-    'i18n!nls/browse',
+    'i18n!nls/filter',
     'handlebars',
     'faostatapiclient',
     'underscore',
@@ -146,6 +146,16 @@ define([
     };
 
     FilterBox.prototype._preloadStaticCodes = function (config) {
+
+        // TODO: add boolean "translatable"? in the json definition?
+        _.each(config.config.data, function(d) {
+
+            // change labels if needed with i18nlabels.
+            d.label = i18nLabels[d.label] || d.label;
+
+        });
+
+
         return config;
     };
 
