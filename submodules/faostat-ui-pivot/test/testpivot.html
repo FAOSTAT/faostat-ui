@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+   <head>
+      <!--
+
+      Copyright 2013, 2013 Jordi Baylina. (jordi@baylina.cat)
+
+      This file is part of jbPivot.
+
+       jbPivot is free software: you can redistribute it and/or modify
+       it under the terms of the GNU General Public License as published by
+       the Free Software Foundation, either version 3 of the License, or
+       (at your option) any later version.
+
+       jbPivot is distributed in the hope that it will be useful,
+       but WITHOUT ANY WARRANTY; without even the implied warranty of
+       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+       GNU General Public License for more details.
+
+       You should have received a copy of the GNU General Public License
+       along with jbPivot.  If not, see <http://www.gnu.org/licenses/>.
+
+      -->
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+      <script src="../src/pivot.js"></script>
+      <script src="../src/group_distinct.js"></script>
+      <script src="../src/formatter_default.js"></script>
+      <script src="../src/agregate_count.js"></script>
+      <script src="../src/agregate_sum.js"></script>
+      <script src="../src/agregate_average.js"></script>
+      <script src="../src/agregate_distinct.js"></script>
+      <link rel="stylesheet" href="../css/jbPivot.css">
+
+      <style>
+         body {
+            padding: 30px;
+         }
+      </style>
+
+      <script type="text/javascript">
+         $(document).ready(function() {
+            var i = 0;
+            $("#pivot1").jbPivot(
+                    {
+                       fields: {
+                          id: {field: 'id', sort: "asc", agregateType: "none"},
+                          gender: {field: 'gender', sort: "asc", showAll: true, agregateType: "distinct", label: "Gender"},
+                          age: {field: 'age', sort: "asc", age: "Age", showAll: true, agregateType: "distinct", label: "Age"},
+                          state: {field: 'state', sort: "asc", showAll: false, agregateType: "distinct", label: "State"},
+                          count: {agregateType: "count", groupType: "none", label: "Count"},
+                          sum: {field: 'val', agregateType: "sum", groupType: "none", label: "Sum"},
+                          average: {field: 'val', agregateType: "average", groupType: "none", label: "Average", formatter: function(V, f) {
+                                var res = null;
+                                if (typeof(V) === "number") {
+                                   res = V.toFixed(2);
+                                }
+                                return res;
+                             }}
+                       },
+                       xfields: ["gender", "age"],
+                       yfields: ["state"],
+                       zfields: ["sum", "average"],
+                       data: [
+                          {id: ++i, gender: "Man", age: "30-40", state: "NY", val: 8},
+                          {id: ++i, gender: "Man", age: "20-30", state: "CO", val: 7},
+                          {id: ++i, gender: "Man", age: "30-40", state: "NY", val: 3},
+                          {id: ++i, gender: "Woman", age: "40-50", state: "LA", val: 5},
+                          {id: ++i, gender: "Man", age: "30-40", state: "NE", val: 7},
+                          {id: ++i, gender: "Man", age: "30-40", state: "NE", val: 9},
+                          {id: ++i, gender: "Woman", age: "40-50", state: "LA", val: 8},
+                          {id: ++i, gender: "Woman", age: "50-60", state: "CL", val: 6},
+                          {id: ++i, gender: "Man", age: "30-40", state: "CO", val: 9},
+                          {id: ++i, gender: "Man", age: "40-50", state: "NY", val: 7},
+                          {id: ++i, gender: "Man", age: "30-40", state: "NJ", val: 4},
+                          {id: ++i, gender: "Man", age: "20-30", state: "NJ", val: 7},
+                          {id: ++i, gender: "Man", age: "30-40", state: "NY", val: 3},
+                          {id: ++i, gender: "Woman", age: "40-50", state: "LA", val: 5},
+                          {id: ++i, gender: "Man", age: "30-40", state: "NE", val: 7},
+                          {id: ++i, gender: "Man", age: "30-40", state: "NE", val: 9},
+                          {id: ++i, gender: "Woman", age: "40-50", state: "LA", val: 8},
+                          {id: ++i, gender: "Woman", age: "50-60", state: "NE", val: 6},
+                          {id: ++i, gender: "Man", age: "30-40", state: "CO", val: 9},
+                          {id: ++i, gender: "Man", age: "40-50", state: "NY", val: 7},
+                          {id: ++i, gender: "Woman", age: "30-40", state: "NY", val: 4},
+                          {id: ++i, gender: "Man", age: "20-30", state: "NJ", val: 2},
+                          {id: ++i, gender: "Man", age: "30-40", state: "CO", val: 9},
+                          {id: ++i, gender: "Man", age: "40-50", state: "NY", val: 7},
+                          {id: ++i, gender: "Woman", age: "30-40", state: "NY", val: 4},
+                          {id: ++i, gender: "Man", age: "20-30", state: "NJ", val: 2},
+                          {id: ++i, gender: "Man", age: "30-40", state: "NE", val: 9},
+                          {id: ++i, gender: "Woman", age: "40-50", state: "LA", val: 8},
+                          {id: ++i, gender: "Woman", age: "50-60", state: "CL", val: 6},
+                          {id: ++i, gender: "Man", age: "30-40", state: "CO", val: 9}
+                       ],
+                       copyright: true,
+                       summary: true,
+                       l_all: "All",
+                       l_unused_fields: "Available fields"
+                    }
+            );
+            $("#reload").click(function() {
+               var i = 0;
+               $("#pivot1").data('jbPivot').options.fields.Sum2 = {field: 'v', agregateType: "sum", groupType: "none", label: "New Sum"};
+               $("#pivot1").data('jbPivot').reset();
+               $("#pivot1").data('jbPivot').insertRecords([
+                  {id: ++i, gender: "Man", age: "30-40", state: "NJ", val: 8},
+                  {id: ++i, gender: "Man", age: "20-30", state: "CO", val: 7},
+                  {id: ++i, gender: "Man", age: "30-40", state: "CL", val: 3},
+                  {id: ++i, gender: "Woman", age: "40-50", state: "LA", val: 5},
+                  {id: ++i, gender: "Man", age: "30-40", state: "NY", val: 7},
+                  {id: ++i, gender: "Man", age: "30-40", state: "NY", val: 9},
+                  {id: ++i, gender: "Woman", age: "40-50", state: "CO", val: 8},
+               ]);
+            });
+         });
+      </script>
+
+   </head>
+   <body>
+      <div id="pivot1">
+      </div>
+      <a id="reload" href="#">reload</a>
+   </body>
+
+
+
+</html>
+

@@ -1,0 +1,42 @@
+/*Form */
+
+.form-control{
+  -webkit-transition:none;
+  -moz-transition:none;
+  -ms-transition:none;
+  -o-transition:none;
+  transition:none;
+
+  outline: none;
+
+  background-color: $box-bg;
+
+  @include fx-noshadow;
+
+  border-color: transparent;
+  @include fx-border-radius(5);
+  font-weight: 500;
+  padding: 3px 12px;
+  font-size: 12px;
+  height: 28px;
+
+  &:focus{
+    @include fx-noshadow;
+    outline: none;
+    border-color: $buttons;  }
+
+}
+
+.input-group-btn{
+
+  .btn{
+    border-left: 0;
+
+    &:hover{
+      border-color: transparent;
+    }
+
+
+  }
+
+}

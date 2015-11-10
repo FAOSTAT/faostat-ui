@@ -1,0 +1,64 @@
+{
+  "name": "fenix-ui-skeleton",
+  "version": "0.0.2",
+  "description": "Basic structure for Fenix Platform UI projects",
+  "homepage": "https://github.com/FENIX-Platform/fenix-ui-skeleton",
+  "author": "FENIX Development Team",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:FENIX-Platform/fenix-ui-skeleton.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FENIX-Platform/fenix-ui-skeleton/issues"
+  },
+  "license": "GPL3",
+  "keywords": [
+    "fenix",
+    "platform"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "backbone": "~1.1.2",
+    "backbone.layoutmanager": "~0.9.5",
+    "bootstrap": "~3.2.0",
+    "underscore": "~1.7.0",
+    "nprogress": "~0.1.6",
+    "requirejs": "~2.1.14",
+    "handlebars": "~2.0.0",
+    "domReady": "https://github.com/requirejs/domReady/tarball/master",
+    "text": "https://github.com/requirejs/text/tarball/master",
+    "i18n": "https://github.com/requirejs/i18n/tarball/master",
+    "jqwidgets": "http://fenixapps.fao.org/repository/js/jqwidgets/3.1.tgz",
+    "jstree": "~3.0.8"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.11",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-jsonlint": "~1.0.4",
+    "grunt-jsdoc": "~0.5.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "main.js",
+  "config": {
+    "sections": [
+      "home",
+      "view",
+      "analysis",
+      "data management",
+      "about"
+    ],
+    "langs": [
+      "en",
+      "fr",
+      "es"
+    ]
+  }
+}

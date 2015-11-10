@@ -1,0 +1,305 @@
+/* Fenix - JQwidgets */
+
+.jqx-widget {
+  font: $standard-text;
+}
+
+.jqx-widget-content {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: $fenix-hr;
+  background: white;
+  
+}
+
+.jqx-widget-header, .jqx-grid .jqx-widget-header {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: transparent;
+  @include fx-gradient($fx-main-color-lighter, $fx-main-color-lighter);
+}
+
+.jqx-grid-column-menubutton, .jqx-widget.jqx-grid-column-menubutton {
+  border-color: transparent
+}
+
+.jqx-grid-cell, .jqx-widget .jqx-grid-cell {
+  background-color: white;
+  text-shadow: none;
+  font-weight: inherit;
+  font-size: $small-text;
+}
+
+.jqx-fill-state-normal {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color:transparent;
+  @include fx-gradient(transparent, transparent);
+}
+
+.jqx-button {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: transparent;
+  @include fx-gradient(transparent, transparent);
+}
+
+.jqx-grid-selectionarea {
+  border-color: $fenix-hr;
+  background-color: $fenix-light-gray;
+}
+
+.jqx-widget .jqx-grid-cell-sort, .jqx-widget .jqx-grid-cell-filter, .jqx-widget .jqx-grid-cell-pinned, .jqx-grid-cell-sort, .jqx-grid-cell-filter, .jqx-grid-cell-pinned {
+  background-color: $fenix-secondary-text;
+  color: $fenix-text;
+  text-shadow: none;
+}
+
+.jqx-widget .jqx-grid-cell-alt, .jqx-widget .jqx-grid-cell-sort-alt, .jqx-widget .jqx-grid-cell-pinned-alt, .jqx-widget .jqx-grid-cell-filter-alt, .jqx-grid-cell-alt, .jqx-grid-cell-sort-alt, .jqx-grid-cell-filter-alt {
+  background-color: white;
+  color: $fenix-text;
+  text-shadow: none;
+}
+
+.jqx-fill-state-hover, .jqx-widget .jqx-grid-cell-hover {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: transparent;
+  @include fx-gradient($fx-main-color-lighter, $fx-main-color-lighter);
+  
+}
+
+.jqx-fill-state-pressed, .jqx-widget .jqx-grid-cell-selected {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: $fx-main-color-light;
+  @include fx-gradient($fx-main-color-light, $fx-main-color-light);
+}
+
+.jqx-switchbutton-label-on {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: $fenix-text;
+  @include fx-gradient($fenix-light-gray, $fenix-light-gray);
+}
+
+.jqx-tabs-title-selected-top, .jqx-tabs-selection-tracker-top {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: $fenix-hr;
+  border-bottom: 1px solid white;
+  background-image: none;
+  background-color: white;
+}
+
+.jqx-tabs-title-selected-bottom, .jqx-tabs-selection-tracker-bottom {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: $fenix-hr;
+  border-top: 1px solid white;
+  background-image: none;
+  background-color: white;
+}
+
+.jqx-splitter-splitbar-hover {
+  background: $fenix-hr;
+}
+
+.jqx-splitter-splitbar-vertical, .jqx-splitter-splitbar-horizontal, .jqx-slider-track-horizontal, .jqx-slider-track-vertical {
+  background: $fenix-hr;
+}
+
+.jqx-splitter-collapse-button-horizontal, .jqx-splitter-collapse-button-vertical, .jqx-slider-rangebar {
+  background: $fenix-light-gray;
+}
+
+.jqx-scrollbar-state-normal {
+  background-color: white;
+  border-color: transparent;
+}
+
+.jqx-grid-bottomright, .jqx-panel-bottomright, .jqx-listbox-bottomright {
+  background-color: white;
+}
+
+.jqx-scrollbar-thumb-state-normal {
+  @include fx-gradient($fenix-light-gray, $fenix-light-gray);
+}
+
+.jqx-scrollbar-thumb-state-normal-horizontal {
+  @include fx-gradient($fenix-light-gray, $fenix-light-gray);
+}
+
+.jqx-scrollbar-thumb-state-hover {
+  @include fx-gradient($fenix-secondary-text, $fenix-secondary-text);
+}
+
+.jqx-scrollbar-thumb-state-hover-horizontal {
+  @include fx-gradient($fenix-light-gray, $fenix-light-gray);
+}
+
+.jqx-scrollbar-thumb-state-pressed {
+  border-color: $fenix-light-gray;
+  @include fx-gradient($fenix-light-gray, $fenix-light-gray);
+}
+
+.jqx-scrollbar-thumb-state-pressed-horizontal {
+  @include fx-gradient($fenix-light-gray, $fenix-light-gray);
+}
+
+.jqx-scrollbar-button-state-normal {
+  @include fx-gradient(transparent, transparent);
+}
+
+.jqx-scrollbar-button-state-hover {
+  @include fx-gradient(transparent, transparent);
+}
+
+.jqx-scrollbar-button-state-pressed {
+  @include fx-gradient(transparent, transparent);
+}
+
+.jqx-radiobutton-check-checked {
+  background: $fenix-text;
+  width: 7px;
+  height: 7px;
+  margin-left: 2px;
+  margin-top: 2px;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.jqx-rc-tl {
+  -moz-border-radius-topleft: 0;
+  -webkit-border-radius-topleft: 0;
+  border-radius-topleft: 0;
+}
+
+.jqx-rc-tr {
+  -moz-border-radius-topright: 0;
+  -webkit-border-radius-topright: 0;
+  border-radius-topright: 0
+}
+
+.jqx-rc-bl {
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-radius-bottomleft: 0;
+  border-radius-bottomleft: 0;
+}
+
+.jqx-rc-br {
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-radius-bottomright: 0;
+  border-radius-bottomright: 0;
+}
+
+.jqx-rc-t {
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.jqx-rc-b {
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.jqx-rc-r {
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.jqx-rc-l {
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.jqx-radiobutton-default, .jqx-radiobutton, .jqx-radiobutton-check-checked, .jqx-radiobutton-hover, .jqx-radiobutton-check-indeterminate, .jqx-radiobutton-check-indeterminate-disabled, .jqx-slider-button {
+  -moz-border-radius: 100% !important;
+  -webkit-border-radius: 100% !important;
+  border-radius: 100% !important;
+}
+
+.jqx-rc-all, .jqx-tooltip, .jqx-tooltip-text, .jqx-tooltip-main {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+
+
+.jqx-menu-vertical {
+  background: white;
+}
+
+
+.jqx-widget .jqx-grid-column-header, .jqx-widget .jqx-grid-cell, .jqx-widget .jqx-grid-group-cell, .jqx-grid-cell {
+  border-color: #e5e5e5;
+}
+
+
+
+.jqx-tooltip, .jqx-tooltip-main {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: #aaa;
+  background-color: $fenix-light-gray;
+}
+
+.jqx-combobox-content, .jqx-input {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: $fenix-hr;
+  background-color: white;
+}
+
+.jqx-combobox-input {
+  color: $fenix-text;
+  text-shadow: none;
+}
+
+.jqx-input-content {
+  color: $fenix-text;
+  text-shadow: none;
+  background-color:white;
+}
+
+.jqx-fill-state-focus, .jqx-popup .jqx-fill-state-focus {
+  border-color: $fenix-text;
+}
+
+.jqx-popup.jqx-listbox, .jqx-popup.jqx-calendar, .jqx-menu-dropdown, .jqx-popup.jqx-dropdownbutton-popup {
+  color: $fenix-text;
+  text-shadow: none;
+  border-color: $fenix-text;
+  background-color: white;
+}
+
+
+
+.jqx-widget .jqx-grid-cell, .jqx-listitem-state-normal, .jqx-menu-item-normal, .jqx-tree-item-normal, .jqx-calendar-cell, .jqx-grid-cell, .jqx-menu-vertical .jqx-menu-item-top-normal, .jqx-input-popup .jqx-fill-state-normal {
+
+}
+
+.jqx-widget .jqx-grid-cell-hover, .jqx-listitem-state-hover, .jqx-menu-item-hover, .jqx-tree-item-hover, .jqx-calendar-cell-hover, .jqx-grid-cell-hover, .jqx-menu-vertical .jqx-menu-item-top-hover, .jqx-input-popup .jqx-fill-state-hover, .jqx-input-button-header, .jqx-input-popup .jqx-fill-state-pressed, .jqx-input-button-header {
+
+}
+
+.jqx-widget .jqx-grid-cell-selected, .jqx-listitem-state-selected, .jqx-menu-item-selected, .jqx-tree-item-selected, .jqx-calendar-cell-selected, .jqx-grid-cell-selected, .jqx-menu-vertical .jqx-menu-item-top-selected, .jqx-grid-selectionarea {
+
+}
+

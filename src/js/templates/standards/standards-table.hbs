@@ -1,0 +1,24 @@
+<table class='table table-striped table-bordered table-responsive table-hover table-condensed'>
+    <thead>
+    <tr>
+        <th>
+            {{code_title}}
+        </th>
+        <th>
+            {{label_title}}
+        </th>
+    </tr>
+    </thead>
+    <tbody class="list">
+    {{#each rows}}
+        <tr>
+            <td class="fs-mes-code">
+                {{{this.code}}}
+            </td>
+            <td class="fs-mes-label">
+                {{{this.label}}}
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

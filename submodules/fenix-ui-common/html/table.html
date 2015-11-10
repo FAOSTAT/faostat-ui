@@ -1,0 +1,19 @@
+
+<table class="table table-hover">
+	<thead>
+		<tr class="afo-table-header" role="row">
+		{{#each headers}}
+			<th>{{this}}</th>
+		{{/each}}
+		</tr>
+	</thead>
+	<tbody>
+	{{#each rows}}
+		<tr>
+			{{#each this}}
+			<td class="cellAfoTable">{{this}}</td>
+			{{/each}}
+		</tr>
+	{{/each}}
+	</tbody>
+</table>

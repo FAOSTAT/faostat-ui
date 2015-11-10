@@ -1,0 +1,753 @@
+<html>
+    <head>
+        <link href='../css/jbPivot.css' rel='stylesheet'>
+        <!--<script data-main='main' src='//fenixapps.fao.org/repository/js/requirejs/2.1.15/require.min.js'></script>-->
+        <script data-main='js/main' src='js/libs/require.js'></script>
+        <script type='application/javascript'>
+
+            function csv (placeholder_id) {
+                var model = create_model(placeholder_id),
+                    csv_string = create_csv_string(model),
+                    csvContent = 'data:text/csv;charset=utf-8,' + csv_string,
+                    encodedUri = encodeURI(csvContent),
+                    link = document.createElement('a');
+                link.setAttribute('href', encodedUri);
+                link.setAttribute('download', 'my_data.csv');
+                link.click();
+            }
+
+            function create_csv_string (model) {
+
+                var s = '',
+                        i,
+                        j,
+                        z;
+
+                /* Create header. */
+                for (i = 0; i < model.xs.length; i += 1) {
+                    s += '"",';
+                }
+                for (i = 0; i < model.ys.length; i += 1) {
+                    y = model.ys[i];
+                    for (j = 0; j < y.length; j += 1) {
+                        for (z = 0; z < model.zs.length; z += 1) {
+                            s += '"' + y[j] + '",';
+                        }
+                    }
+                    s = s.substring(0, s.length - 1);
+                }
+                s += '\n';
+                for (i = 0; i < model.xs.length; i += 1) {
+                    s += '"",';
+                }
+                for (i = 0; i < model.ys.length; i += 1) {
+                    y = model.ys[i];
+                    for (z = 0; z < y.length; z += 1) {
+                        for (j = 0; j < model.zs.length; j += 1) {
+                            s += '"' + model.zs[j] + '"';
+                            if (j < model.zs.length - 1) {
+                                s += ',';
+                            }
+                        }
+                        if (z < y.length - 1) {
+                            s += ',';
+                        }
+                    }
+                }
+                s += '\n';
+
+                /* Create body. */
+                for (j = 0; j < model.values.length - 2; j += 1) {
+                    for (z = 0; z < model.xs.length; z += 1) {
+                        var newrow = 1;
+                        for (var p = (1 + z); p < model.xs.length; p += 1) {
+                            newrow *= model.xs[p].length;
+                        }
+                        s += '"' + model.xs[z][parseInt(j / newrow) % model.xs[z].length] + '",';
+                    }
+                    for (i = 0; i < model.values[j].length; i += 1) {
+                        var value = parseFloat(model.values[j][i]);
+                        if (!isNaN(value)) {
+                            s += '"' + value + '"';
+                        } else {
+                            s += '"' + model.values[j][i] + '"';
+                        }
+                        if (i < model.values[j].length - 1) {
+                            s += ',';
+                        }
+                    }
+                    s += '\n';
+                }
+
+                return s;
+
+            }
+
+            function get_index (row_idx, max) {
+                var tmp = parseInt(row_idx / max);
+                return tmp >= max ? 0 : tmp;
+            }
+
+            function create_model (placeholder_id) {
+
+                var z_titles = [];
+                var summary = [];
+                var values = [];
+                var ys = [];
+                var xs = [];
+                var i;
+                var tmp;
+
+                for (var y = 1; y <= count_ys(placeholder_id); y += 1) {
+                    var top_titles = [];
+                    var top_titles_objs = $('#' + placeholder_id + ' table.pivot tbody tr th.draggable.toptitle.targetY' + y);
+                    for (i = 0; i < top_titles_objs.length; i += 1) {
+                        if ($.inArray($(top_titles_objs[i]).html().trim(), top_titles) < 0)
+                            top_titles.push($(top_titles_objs[i]).html().trim());
+                    }
+                    ys.push(top_titles);
+                }
+
+                var z_titles_objs = $('#' + placeholder_id + ' table.pivot tbody tr th.draggable.ztitle');
+                for (i = 0; i < z_titles_objs.length; i += 1) {
+                    if ($.inArray($(z_titles_objs[i]).html().trim(), z_titles) < 0)
+                        z_titles.push($(z_titles_objs[i]).html().trim());
+                }
+
+                for (var x = 1; x <= count_xs(placeholder_id); x += 1) {
+                    var left_titles = [];
+                    var left_titles_objs = $('#' + placeholder_id + ' table.pivot tbody tr th.draggable.lefttitle.targetx' + x);
+                    for (i = 0; i < left_titles_objs.length; i += 1) {
+                        tmp = $(left_titles_objs[i]).html().trim();
+                        tmp = tmp.substring(tmp.indexOf('</a>'));
+                        if (tmp.startsWith('</a>'))
+                            tmp = tmp.substring(tmp.indexOf('</a>') + '</a>'.length);
+                        tmp = tmp.replace(/\n/g, ' ');
+                        if ($.inArray(tmp, left_titles) < 0)
+                            left_titles.push(tmp);
+                    }
+                    xs.push(left_titles);
+                }
+
+                var tds = $('#' + placeholder_id + ' table.pivot tbody tr td');
+                var count = 1;
+                tmp = [];
+                var newrow = top_titles.length * z_titles.length;
+                for (i = 0; i < tds.length; i += 1) {
+                    tmp.push($(tds[i]).html().trim());
+                    if (count % newrow === 0) {
+                        values.push(tmp);
+                        tmp = [];
+                    }
+                    count++;
+                }
+
+                var summary_objs = $('#' + placeholder_id + ' table.pivot tbody tr td.summary');
+                for (i = 0; i < summary_objs.length; i += 1) {
+                    summary.push($(summary_objs[i]).html().trim());
+                }
+
+                return {
+                    ys: ys,
+                    xs: xs,
+                    values: values,
+                    summary: summary,
+                    zs: z_titles
+                };
+
+            }
+
+            function count_xs (placeholder_id) {
+                var tmp, i;
+                for (i = 1; i < 100; i += 1) {
+                    tmp = $('#' + placeholder_id + ' table.pivot tbody tr th.draggable.lefttitle.targetx' + i);
+                    if (tmp.length === 0) {
+                        return (i - 1);
+                    }
+                }
+            }
+
+            function count_ys (placeholder_id) {
+                var tmp, i;
+                for (i = 1; i < 100; i += 1) {
+                    tmp = $('#' + placeholder_id + ' table.pivot tbody tr th.draggable.toptitle.targety' + i);
+                    if (tmp.length === 0) {
+                        return (i - 1);
+                    }
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <center>
+            <button id='csv_button'>EXPORT CSV</button>
+            <button id='excel_button'>EXPORT Excel</button>
+        </center>
+        <br>
+        <div id="downloadOutputArea" class="fx-olap-holder">
+        <table border="0px" cellspacing="0" cellpadding="0" class="unused_fields">
+            <tbody>
+            <tr>
+                <th class="unused_field dropable targetU0" rel="U,0">Unused fields</th>
+            </tr>
+            </tbody>
+        </table>
+        <table border="0px" cellspacing="0" cellpadding="0" class="pivot">
+            <tbody>
+            <tr>
+                <th colspan="4" rowspan="3" class=" line_bottom_4 line_right_4"></th>
+                <th colspan="9&quot;" class="dropable toptitle targetY0 line_top_4 line_left_4 line_right_4" rel="Y,0"><a
+                        href="#" class="collapse_button" rel="y">-</a>All
+                </th>
+            </tr>
+            <tr>
+                <th draggable="true" class="draggable dropable toptitle  line_left_4  line_right_1 targetY1" rel="Y,1"
+                    colspan="3" rowspan="1">1971
+                </th>
+                <th draggable="true" class="draggable dropable toptitle  line_left_1  line_right_1 targetY1" rel="Y,1"
+                    colspan="3" rowspan="1">1970
+                </th>
+                <th draggable="true" class="draggable dropable toptitle  line_left_1  line_right_4 targetY1" rel="Y,1"
+                    colspan="3" rowspan="1">1969
+                </th>
+            </tr>
+            <tr>
+                <th draggable="true"
+                    class="draggable dropable ztitle line_top_0 targetZ1 line_top_4  line_left_4 line_right_0" rel="Z,1">
+                    Value
+                </th>
+                <th draggable="true"
+                    class="draggable dropable ztitle line_top_0 targetZ2 line_top_4 line_left_0 line_right_0" rel="Z,2">Unit
+                </th>
+                <th draggable="true"
+                    class="draggable dropable ztitle line_top_0 targetZ3 line_top_4 line_left_0  line_right_1" rel="Z,3">
+                    Flag
+                </th>
+                <th draggable="true"
+                    class="draggable dropable ztitle line_top_0 targetZ1 line_top_4  line_left_1 line_right_0" rel="Z,1">
+                    Value
+                </th>
+                <th draggable="true"
+                    class="draggable dropable ztitle line_top_0 targetZ2 line_top_4 line_left_0 line_right_0" rel="Z,2">Unit
+                </th>
+                <th draggable="true"
+                    class="draggable dropable ztitle line_top_0 targetZ3 line_top_4 line_left_0  line_right_1" rel="Z,3">
+                    Flag
+                </th>
+                <th draggable="true"
+                    class="draggable dropable ztitle line_top_0 targetZ1 line_top_4  line_left_1 line_right_0" rel="Z,1">
+                    Value
+                </th>
+                <th draggable="true"
+                    class="draggable dropable ztitle line_top_0 targetZ2 line_top_4 line_left_0 line_right_0" rel="Z,2">Unit
+                </th>
+                <th draggable="true"
+                    class="draggable dropable ztitle line_top_0 targetZ3 line_top_4 line_left_0  line_right_4" rel="Z,3">
+                    Flag
+                </th>
+            </tr>
+            <tr>
+                <th rowspan="32" class="lefttitle dropable line_left_4  line_top_4  line_bottom_4 targetX0"
+                "="" rel="X,0"><a href="#" class="collapse_button" rel="x">-</a>All</th>
+                <th rowspan="8" class="lefttitle dropable draggable  line_top_4  line_bottom_3 targetX1"
+                "="" rel="X,1" draggable="true"><a href="#" class="collapse_button"
+                                                   rel="0,-1,-1,-1,-1,-1,-1">-</a>Angola</th>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_4  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="0,-1,0,-1,-1,-1,-1">-</a>Area
+                harvested</th>
+                <th class="lefttitle dropable draggable  line_top_4  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_4  line_bottom_1  line_left_4 line_right_0">22.00</td>
+                <td class="  line_top_4  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_4  line_bottom_1 line_left_0  line_right_1">F</td>
+                <td class="  line_top_4  line_bottom_1  line_left_1 line_right_0">25.00</td>
+                <td class="  line_top_4  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_4  line_bottom_1 line_left_0  line_right_1">F</td>
+                <td class="  line_top_4  line_bottom_1  line_left_1 line_right_0">15.00</td>
+                <td class="  line_top_4  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_4  line_bottom_1 line_left_0  line_right_4">F</td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">14.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1">F</td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">14.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1">F</td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">15.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4">F</td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button"
+                                                   rel="0,-1,2,-1,-1,-1,-1">-</a>Production</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">27.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">29.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">15.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">12.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">11.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">14.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="0,-1,3,-1,-1,-1,-1">-</a>Seed</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">1.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">1.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">1.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">910.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">980.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">980.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_3 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="0,-1,1,-1,-1,-1,-1">-</a>Yield</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">12.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">11.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">10.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_3 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_3  line_left_4 line_right_0">9.00</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_3  line_left_1 line_right_0">8.00</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_3  line_left_1 line_right_0">9.00</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th rowspan="8" class="lefttitle dropable draggable  line_top_3  line_bottom_3 targetX1"
+                "="" rel="X,1" draggable="true"><a href="#" class="collapse_button"
+                                                   rel="1,-1,-1,-1,-1,-1,-1">-</a>Brazil</th>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_3  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="1,-1,0,-1,-1,-1,-1">-</a>Area
+                harvested</th>
+                <th class="lefttitle dropable draggable  line_top_3  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_3  line_bottom_1  line_left_4 line_right_0">4.00</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_3  line_bottom_1  line_left_1 line_right_0">4.00</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_3  line_bottom_1  line_left_1 line_right_0">4.00</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">2.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">1.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">1.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button"
+                                                   rel="1,-1,2,-1,-1,-1,-1">-</a>Production</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">6.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">7.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">6.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">2.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">1.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">1.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="1,-1,3,-1,-1,-1,-1">-</a>Seed</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">344.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">362.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">378.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">197.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">192.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">161.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_3 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="1,-1,1,-1,-1,-1,-1">-</a>Yield</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">13.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">15.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">13.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_3 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_3  line_left_4 line_right_0">8.00</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_3  line_left_1 line_right_0">9.00</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_3  line_left_1 line_right_0">9.00</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th rowspan="8" class="lefttitle dropable draggable  line_top_3  line_bottom_3 targetX1"
+                "="" rel="X,1" draggable="true"><a href="#" class="collapse_button" rel="2,-1,-1,-1,-1,-1,-1">-</a>Mozambique</th>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_3  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="2,-1,0,-1,-1,-1,-1">-</a>Area
+                harvested</th>
+                <th class="lefttitle dropable draggable  line_top_3  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_3  line_bottom_1  line_left_4 line_right_0">78.00</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0  line_right_1">F</td>
+                <td class="  line_top_3  line_bottom_1  line_left_1 line_right_0">76.00</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_3  line_bottom_1  line_left_1 line_right_0">73.00</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">13.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1">F</td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">10.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1">F</td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">6.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4">F</td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button"
+                                                   rel="2,-1,2,-1,-1,-1,-1">-</a>Production</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">110.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">98.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">88.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">13.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">9.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">5.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="2,-1,3,-1,-1,-1,-1">-</a>Seed</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">6.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">6.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">6.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">540.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">780.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">600.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_3 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="2,-1,1,-1,-1,-1,-1">-</a>Yield</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">14.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">12.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">12.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_3 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_3  line_left_4 line_right_0">10.00</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_3  line_left_1 line_right_0">9.00</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_3  line_left_1 line_right_0">8.00</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_3 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th rowspan="8" class="lefttitle dropable draggable  line_top_3  line_bottom_4 targetX1"
+                "="" rel="X,1" draggable="true"><a href="#" class="collapse_button"
+                                                   rel="3,-1,-1,-1,-1,-1,-1">-</a>Portugal</th>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_3  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="3,-1,0,-1,-1,-1,-1">-</a>Area
+                harvested</th>
+                <th class="lefttitle dropable draggable  line_top_3  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_3  line_bottom_1  line_left_4 line_right_0">42.00</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_3  line_bottom_1  line_left_1 line_right_0">41.00</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_3  line_bottom_1  line_left_1 line_right_0">37.00</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_3  line_bottom_1 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">514.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">601.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">567.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">Ha</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button"
+                                                   rel="3,-1,2,-1,-1,-1,-1">-</a>Production</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">161.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">194.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">175.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">808.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">564.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">470.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_2 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="3,-1,3,-1,-1,-1,-1">-</a>Seed</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">7.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">8.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1"></td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">8.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_2 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_2  line_left_4 line_right_0">69.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">76.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_1"></td>
+                <td class="  line_top_1  line_bottom_2  line_left_1 line_right_0">56.00</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0 line_right_0">tonnes</td>
+                <td class="  line_top_1  line_bottom_2 line_left_0  line_right_4"></td>
+            </tr>
+            <tr>
+                <th rowspan="2" class="lefttitle dropable draggable  line_top_2  line_bottom_4 targetX2"
+                "="" rel="X,2" draggable="true"><a href="#" class="collapse_button" rel="3,-1,1,-1,-1,-1,-1">-</a>Yield</th>
+                <th class="lefttitle dropable draggable  line_top_2  line_bottom_1 targetX3"
+                "="" rel="X,3" draggable="true">Rice, paddy</th>
+                <td class="  line_top_2  line_bottom_1  line_left_4 line_right_0">38.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">46.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_2  line_bottom_1  line_left_1 line_right_0">46.00</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_2  line_bottom_1 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <th class="lefttitle dropable draggable  line_top_1  line_bottom_4 targetX3"
+                "="" rel="X,3" draggable="true">Wheat</th>
+                <td class="  line_top_1  line_bottom_4  line_left_4 line_right_0">15.00</td>
+                <td class="  line_top_1  line_bottom_4 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_4 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_4  line_left_1 line_right_0">9.00</td>
+                <td class="  line_top_1  line_bottom_4 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_4 line_left_0  line_right_1">Fc</td>
+                <td class="  line_top_1  line_bottom_4  line_left_1 line_right_0">8.00</td>
+                <td class="  line_top_1  line_bottom_4 line_left_0 line_right_0">Hg/Ha</td>
+                <td class="  line_top_1  line_bottom_4 line_left_0  line_right_4">Fc</td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+                <td class="summary line_top_4 line_bottom_4  line_left_4 line_right_0">125.66</td>
+                <td class="summary line_top_4 line_bottom_4 line_left_0 line_right_0">*</td>
+                <td class="summary line_top_4 line_bottom_4 line_left_0  line_right_1">*</td>
+                <td class="summary line_top_4 line_bottom_4  line_left_1 line_right_0">131.53</td>
+                <td class="summary line_top_4 line_bottom_4 line_left_0 line_right_0">*</td>
+                <td class="summary line_top_4 line_bottom_4 line_left_0  line_right_1">*</td>
+                <td class="summary line_top_4 line_bottom_4  line_left_1 line_right_0">118.66</td>
+                <td class="summary line_top_4 line_bottom_4 line_left_0 line_right_0">*</td>
+                <td class="summary line_top_4 line_bottom_4 line_left_0  line_right_4">*</td>
+            </tr>
+            <tr>
+                <td colspan="13 class=" line_right_4="" line_left_4="" line_top_4
+                '=""></td></tr>
+            <tr>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+                <td class="bordermark"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </body>
+</html>
