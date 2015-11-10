@@ -430,7 +430,7 @@ define([
                 List6Codes: user_selection.list6Codes || null,
                 List7Codes: user_selection.list7Codes || null,
                 lang: this.options.lang,
-                page_size: 25,
+                page_size: 2500,
                 page_number: 1,
                 group_by: null
             }).then(function (json) {
