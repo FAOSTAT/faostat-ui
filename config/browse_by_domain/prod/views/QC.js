@@ -8,6 +8,24 @@ define(function () {
 
             filter: [
                 {
+                    "id": "items",
+                    "type": "codelist",
+                    //"title": "title",
+                    "componentType": {
+                        "class": "col-lg-3",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "dimension_id": "items",
+                        "defaultCodes": ["221"],
+                        "filter": {
+                            "domain_code": ["QC"],
+                            "whitelist": [],
+                            "blacklist": []
+                        }
+                    }
+                },
+                {
                     // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
@@ -25,45 +43,11 @@ define(function () {
                     }
                 },
                 {
-                    "id": "items",
-                    "type": "codelist",
-                    "componentType": {
-                        "class": "col-lg-3",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "dimension_id": "items",
-                        "defaultCodes": ["221"],
-                        "filter": {
-                            "domain_code": ["QC"],
-                            "whitelist": [],
-                            "blacklist": []
-                        }
-                    }
-                },
-                {
-                    "id": "elements",
-                    "type": "codelist",
-                    "componentType": {
-                        "class": "col-lg-3",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "dimension_id": "elements",
-                        "defaultCodes": ["2510"],
-                        "filter": {
-                            "domain_code": ["QC"],
-                            "whitelist": ["2510"],
-                            "blacklist": []
-                        }
-                    }
-                },
-                {
                     "id": "year",
                     "type": "static",
                     "componentType": {
                         "class": "col-lg-2",
-                        "type": "dropDownList"
+                        "type": "dropDownList-timerange"
                     },
                     "config": {
                         "data": [
@@ -89,18 +73,16 @@ define(function () {
                             {"code": "1993", "label": "1993", "selected": false},
                             {"code": "1992", "label": "1992", "selected": false},
                             {"code": "1991", "label": "1991", "selected": false},
-                            {"code": "1990", "label": "1990", "selected": false}
+                            {"code": "1990", "label": "1990", "selected": true}
                         ]
                     }
                 },
-                {
+               /* {
                     "id": "year",
                     "type": "static",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-2",
                         "type": "dropDownList"
-                        //"multiple": true
                     },
                     "config": {
                         "data": [
@@ -130,6 +112,43 @@ define(function () {
                         ]
                     }
                 },
+                {
+                    "id": "year",
+                    "type": "static",
+                    "componentType": {
+                        <!-- TODO: add a class instead of bootstrap -->
+                        "class": "col-lg-2",
+                        "type": "dropDownList"
+                        //"multiple": true
+                    },
+                    "config": {
+                        "data": [
+                            {"code": "2012", "label": "2012", "selected": true},
+                            {"code": "2011", "label": "2011", "selected": false},
+                            {"code": "2010", "label": "2010", "selected": false},
+                            {"code": "2009", "label": "2009", "selected": false},
+                            {"code": "2008", "label": "2008", "selected": false},
+                            {"code": "2007", "label": "2007", "selected": false},
+                            {"code": "2006", "label": "2006", "selected": false},
+                            {"code": "2005", "label": "2005", "selected": false},
+                            {"code": "2004", "label": "2004", "selected": false},
+                            {"code": "2003", "label": "2003", "selected": false},
+                            {"code": "2002", "label": "2002", "selected": false},
+                            {"code": "2001", "label": "2001", "selected": false},
+                            {"code": "2000", "label": "2000", "selected": false},
+                            {"code": "1999", "label": "1999", "selected": false},
+                            {"code": "1998", "label": "1998", "selected": false},
+                            {"code": "1997", "label": "1997", "selected": false},
+                            {"code": "1996", "label": "1996", "selected": false},
+                            {"code": "1995", "label": "1995", "selected": false},
+                            {"code": "1994", "label": "1994", "selected": false},
+                            {"code": "1993", "label": "1993", "selected": false},
+                            {"code": "1992", "label": "1992", "selected": false},
+                            {"code": "1991", "label": "1991", "selected": false},
+                            {"code": "1990", "label": "1990", "selected": false}
+                        ]
+                    }
+                },*/
                 {
                     "id": "aggregation",
                     "type": "static",
