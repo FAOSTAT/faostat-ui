@@ -3,7 +3,7 @@ define([
     'globals/Common',
     /* TODO: move to another folder? */
     'text!lib/filters/templates/filter.hbs',
-    'i18n!nls/common',
+    'i18n!nls/filter',
     'handlebars',
     'underscore',
     'select2',
@@ -14,7 +14,9 @@ define([
 
     var s = {
 
-        DD: '[data-role="dd"]'
+        DD: '[data-role="dd"]',
+        FROM_YEAR: 'fromyear',
+        TO_YEAR: 'toyear'
 
     },defaultOptions = {
 
@@ -38,10 +40,6 @@ define([
         this.initVariables();
 
         this.initComponents();
-
-        // initialize with select2
-        this.$DD = this.$CONTAINER.find(s.DD);
-        this.$DD.select2();
     };
 
     Filter.prototype.initVariables = function () {
@@ -50,23 +48,76 @@ define([
 
     Filter.prototype.initComponents = function () {
 
-        this.initTemplate();
+        var type = this.o.componentType.type || null;
 
+        console.log(this.o);
+
+        switch(type) {
+            case 'dropDownList-timerange':
+                this.renderFilterTimerange();
+                break;
+            default:
+                this.renderFilter();
+                break;
+        }
     };
 
-    Filter.prototype.initTemplate = function () {
+    Filter.prototype.renderFilter = function () {
         var template = Handlebars.compile(templateFilter);
-
-        var c = $.extend(true, {},{data: this.o.config.data}, this.o.componentType);
-
-        console.log(c);
-
+        var c = $.extend(true, {},{data: this.o.config.data}, this.o.componentType),
+            // TODO: how to handle correctly the title?
+            title = this.o.title ||  this.o.config.dimension_id || this.o.id;
+        c.title = i18nLabels[title] || title;
 
         this.$CONTAINER.append(template(c));
+
+        // initialize with select2
+        this.$DD = this.$CONTAINER.find(s.DD);
+        this.$DD.select2();
     };
 
-    Filter.prototype.getDropDown = function (data) {
-        return this.$DD;
+    /* TODO: make it nicer the timerange. Use plugins "method" for the future.*/
+    Filter.prototype.renderFilterTimerange = function () {
+
+        // create two filters
+        var template = Handlebars.compile(templateFilter);
+        var c = $.extend(true, {},{data: this.getTimerangeData(this.o.config.data, 1)}, this.o.componentType);
+        c.role = s.FROM_YEAR;
+        c.title = i18nLabels.fromyear;
+        this.$CONTAINER.append(template(c));
+
+        this.$DD_FROM_YEAR = this.$CONTAINER.find("[data-role='" + s.FROM_YEAR +"']").find(s.DD);
+        this.$DD_FROM_YEAR.select2();
+
+        var template = Handlebars.compile(templateFilter);
+        var c = $.extend(true, {},{data: this.getTimerangeData(this.o.config.data, 0)}, this.o.componentType);
+        c.role = s.TO_YEAR;
+        c.title = i18nLabels.toyear;
+        this.$CONTAINER.append(template(c));
+
+        // initialize with select2
+        this.$DD_TO_YEAR = this.$CONTAINER.find("[data-role='" + s.TO_YEAR +"']").find(s.DD);
+        this.$DD_TO_YEAR.select2();
+
+    };
+
+    Filter.prototype.getTimerangeData = function (data, index) {
+
+        var values = [];
+        var i = 0;
+        _.each(data, function(d) {
+
+            var selected = false;
+            if (d.selected) {
+                if (i === index) {
+                    selected = true;
+                }
+               i++;
+            }
+            values.push($.extend({}, d, {selected: selected}));
+        });
+        return values;
+
     };
 
     Filter.prototype.getFilter = function () {
