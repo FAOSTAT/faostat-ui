@@ -29,7 +29,7 @@ define([
         return this;
     };
 
-    FilterBox.prototype.init = function(options) {
+    FilterBox.prototype.render = function (options) {
 
         this.o = $.extend(true, {}, defaultOptions, options);
 
@@ -40,6 +40,7 @@ define([
         this.configurePage();
 
     };
+
 
     FilterBox.prototype.initVariables = function () {
 
@@ -150,7 +151,9 @@ define([
     FilterBox.prototype.destroy = function () {
 
         // destroy all filters
-        this.$CONTAINER.empty();
+        if (this.$CONTAINER) {
+            this.$CONTAINER.empty();
+        }
 
         console.error("Handle destroy");
 

@@ -204,10 +204,11 @@ define([
 
                 // render dashboard
                 if (dashboard) {
-                    this.renderDashboard({
-                        dashboard: view.dashboard,
+                    this.renderDashboard($.extend(true, {}, view.dashboard, {
                         container: this.$DASHBOARD,
-                        lang: lang});
+                        layout: 'fluid',
+                        //layout: 'injected',
+                        lang: lang}));
                 }else{
                     console.error("View is not defined, handle exception");
                 }
@@ -225,7 +226,7 @@ define([
             }
 
             this.filterBox = new FilterBox();
-            this.filterBox.init(config);
+            this.filterBox.render(config);
 
             // on change getFilters
 
@@ -234,6 +235,20 @@ define([
         },
 
         renderDashboard: function(config) {
+
+            if (this.dashboard && this.dashboard.destroy) {
+                this.dashboard.destroy();
+            }
+
+            try {
+
+                this.dashboard = new Dashboard();
+                this.dashboard.render(config);
+
+
+            }catch (e) {
+                console.error(e);
+            }
 
             //console.log(config);
 
