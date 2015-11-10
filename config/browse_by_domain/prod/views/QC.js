@@ -6,7 +6,7 @@ define(function () {
 
     return {
 
-            filter: [
+        "filter": [
                 {
                     "id": "items",
                     "type": "codelist",
