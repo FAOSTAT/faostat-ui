@@ -21,7 +21,9 @@ define(function ( ) {
         LOADING_HIDE : 'fs.loading.hide',
 
         GOOGLE_ANALYTICS_PAGE_VIEW : 'fs.google_analytics.page_view',
-        GOOGLE_ANALYTICS_EVENT : 'fs.google_analytics.event'
+        GOOGLE_ANALYTICS_EVENT : 'fs.google_analytics.event',
+
+        VIEW_FILTER_CHANGE : 'fs.filter_change.event'
 
     };
 });

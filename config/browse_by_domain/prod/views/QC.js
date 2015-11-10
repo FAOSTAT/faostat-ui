@@ -10,6 +10,8 @@ define(function () {
             {
                 "id": "items",
                 "type": "codelist",
+                // TODO: in theory that should come from the dimensions schema!!
+                "parameter": "List3Codes",
                 //"title": "title",
                 "componentType": {
                     "class": "col-lg-3",
@@ -17,7 +19,7 @@ define(function () {
                 },
                 "config": {
                     "dimension_id": "items",
-                    "defaultCodes": ["221"],
+                    "defaultCodes": ["515"],
                     "filter": {
                         "domain_code": ["QC"],
                         "whitelist": [],
@@ -29,6 +31,7 @@ define(function () {
                 // id to be applied on the getData request
                 "id": "area",
                 "type": "codelist",
+                "parameter": "List1Codes",
                 "componentType": {
                     <!-- TODO: add a class instead of bootstrap -->
                     "class": "col-lg-3",
@@ -45,6 +48,7 @@ define(function () {
             {
                 "id": "year",
                 "type": "static",
+                "parameter": "List4Codes",
                 "componentType": {
                     "class": "col-lg-2",
                     "type": "dropDownList-timerange"
@@ -80,6 +84,8 @@ define(function () {
             {
                 "id": "aggregation",
                 "type": "static",
+                // TODO: check data parameter
+                "parameter": "aggregation",
                 "componentType": {
                     "class": "col-lg-2",
                     "type": "dropDownList"
@@ -136,7 +142,7 @@ define(function () {
                         }
                     },
                     // for now it takes the id, TODO: add uid as well
-                    allowedFilter: ['year', 'aggregation', 'item'],
+                    allowedFilter: ['aggregation', 'item'],
                     filter:
                         {
                             domain_code: 'QC',
