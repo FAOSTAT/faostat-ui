@@ -50,43 +50,6 @@ define(function () {
                 },
                 "config": {
                     "data": [
-                        {"code": "2012", "label": "2012", "selected": false},
-                        {"code": "2011", "label": "2011", "selected": false},
-                        {"code": "2010", "label": "2010", "selected": false},
-                        {"code": "2009", "label": "2009", "selected": false},
-                        {"code": "2008", "label": "2008", "selected": false},
-                        {"code": "2007", "label": "2007", "selected": false},
-                        {"code": "2006", "label": "2006", "selected": false},
-                        {"code": "2005", "label": "2005", "selected": false},
-                        {"code": "2004", "label": "2004", "selected": false},
-                        {"code": "2003", "label": "2003", "selected": false},
-                        {"code": "2002", "label": "2002", "selected": false},
-                        {"code": "2001", "label": "2001", "selected": false},
-                        {"code": "2000", "label": "2000", "selected": false},
-                        {"code": "1999", "label": "1999", "selected": false},
-                        {"code": "1998", "label": "1998", "selected": false},
-                        {"code": "1997", "label": "1997", "selected": false},
-                        {"code": "1996", "label": "1996", "selected": false},
-                        {"code": "1995", "label": "1995", "selected": false},
-                        {"code": "1994", "label": "1994", "selected": false},
-                        {"code": "1993", "label": "1993", "selected": false},
-                        {"code": "1992", "label": "1992", "selected": false},
-                        {"code": "1991", "label": "1991", "selected": false},
-                        {"code": "1990", "label": "1990", "selected": true}
-                    ]
-                }
-            },
-            {
-                "id": "year",
-                "type": "static",
-                "componentType": {
-                    <!-- TODO: add a class instead of bootstrap -->
-                    "class": "col-lg-2",
-                    "type": "dropDownList"
-                    //"multiple": true
-                },
-                "config": {
-                    "data": [
                         {"code": "2012", "label": "2012", "selected": true},
                         {"code": "2011", "label": "2011", "selected": false},
                         {"code": "2010", "label": "2010", "selected": false},
