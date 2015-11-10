@@ -261,7 +261,7 @@ define([
             var filters = this.filterBox.getFilters();
 
             // apply filters to dashboard
-            //this.dashboard.filter(filters);
+            this.dashboard.filter(filters);
 
         }
 
