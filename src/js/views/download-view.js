@@ -144,6 +144,9 @@ define([
                 url_output: 'http://fenixapps2.fao.org/api/v1.0/excels/'
             });
 
+            /* Table settings. */
+            this.page_size = 60;
+
         },
 
         initComponents: function () {
@@ -323,31 +326,22 @@ define([
 
                 /* Download as CSV. */
                 this.$el.find(s.DOWNLOAD_OPTIONS_CSV_BUTTON).off();
-                this.$el.find(s.DOWNLOAD_OPTIONS_CSV_BUTTON).click({
-                    selector_mgr: this.download_selectors_manager,
-                    options_manager: this.options_manager
-                }, function (e) {
+                this.$el.find(s.DOWNLOAD_OPTIONS_CSV_BUTTON).click(function (e) {
                     self.pivot_caller = 'CSV';
-                    self.preview(e.data.selector_mgr, e.data.options_manager);
+                    self.preview();
                 });
 
                 /* Download as Excel. */
                 this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON).off();
-                this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON).click({
-                    selector_mgr: this.download_selectors_manager,
-                    options_manager: this.options_manager
-                }, function (e) {
+                this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON).click(function (e) {
                     self.pivot_caller = 'XLS';
-                    self.preview(e.data.selector_mgr, e.data.options_manager);
+                    self.preview();
                 });
 
                 /* Preview button. */
                 this.$el.find(s.PREVIEW_BUTTON).off();
-                this.$el.find(s.PREVIEW_BUTTON).click({
-                    selector_mgr: this.download_selectors_manager,
-                    options_manager: this.options_manager
-                }, function (e) {
-                    self.preview(e.data.selector_mgr, e.data.options_manager);
+                this.$el.find(s.PREVIEW_BUTTON).click(function (e) {
+                    self.preview();
                 });
             }
 
@@ -400,28 +394,28 @@ define([
             this.pivot_exporter.csv();
         },
 
-        preview: function (selector_mgr, options_manager) {
+        preview: function (config) {
 
             var user_selection,
                 dwld_options,
                 data = {},
-                that = this;
+                that = config !== undefined ? config.context || this : this;
 
-            user_selection = selector_mgr.get_user_selection();
-            dwld_options = options_manager.get_options_window('preview_options').collect_user_selection();
+            user_selection = that.download_selectors_manager.get_user_selection();
+            dwld_options = that.options_manager.get_options_window('preview_options').collect_user_selection();
 
             data = $.extend(true, {}, data, user_selection);
             data = $.extend(true, {}, data, dwld_options);
             data.datasource = 'faostat';
-            data.domainCode = this.options.domain;
-            data.lang = this.options.lang;
+            data.domainCode = that.options.domain;
+            data.lang = that.options.lang;
             data.limit = -1;
 
             /* Add loading. */
             amplify.publish(E.WAITING_SHOW, {});
 
             this.api.data({
-                domain_code: this.options.code,
+                domain_code: that.options.code,
                 List1Codes: user_selection.list1Codes || null,
                 List2Codes: user_selection.list2Codes || null,
                 List3Codes: user_selection.list3Codes || null,
@@ -429,12 +423,12 @@ define([
                 List5Codes: user_selection.list5Codes || null,
                 List6Codes: user_selection.list6Codes || null,
                 List7Codes: user_selection.list7Codes || null,
-                lang: this.options.lang,
-                page_size: 2500,
-                page_number: 1,
+                lang: that.options.lang,
+                page_size: that.page_size,
+                page_number: config !== undefined ? config.page_number || 1 : 1,
                 group_by: null
             }).then(function (json) {
-                that.show_preview(json, options_manager);
+                that.show_preview(json);
             });
 
         },
@@ -523,7 +517,7 @@ define([
             return l;
         },
 
-        show_preview: function (response, options_manager) {
+        show_preview: function (response) {
 
             /* Variables. */
             var downloadOutputArea = $('#downloadOutputArea'),
@@ -532,24 +526,31 @@ define([
                 that = this,
                 metadata,
                 table,
-                dwld_options = options_manager.get_options_window('preview_options').collect_user_selection();
+                dwld_options = this.options_manager.get_options_window('preview_options').collect_user_selection(null);
 
             /* Render either the table or the pivot. */
-            switch (options_manager.get_options_window('preview_options').get_output_type()) {
+            switch (this.options_manager.get_options_window('preview_options').get_output_type()) {
 
             case 'TABLE':
                 table = new Table();
-                table.init({
-                    placeholder_id: 'downloadOutputArea',
-                    data: response.data,
-                    metadata: response.metadata,
-                    show_units: dwld_options.units_value,
-                    show_flags: dwld_options.flags_value,
-                    show_codes: dwld_options.codes_value,
-                    decimal_places: dwld_options.decimal_numbers_value,
-                    decimal_separator: dwld_options.decimal_separator_value,
-                    thousand_separator: dwld_options.thousand_separator_value
-                });
+                try {
+                    table.init({
+                        placeholder_id: 'downloadOutputArea',
+                        data: response.data,
+                        metadata: response.metadata,
+                        show_units: dwld_options.units_value,
+                        show_flags: dwld_options.flags_value,
+                        show_codes: dwld_options.codes_value,
+                        decimal_places: dwld_options.decimal_numbers_value,
+                        decimal_separator: dwld_options.decimal_separator_value,
+                        thousand_separator: dwld_options.thousand_separator_value,
+                        page_size: this.page_size
+                        ,onPageClick: this.preview
+                        ,context: this
+                    });
+                } catch (e) {
+                    console.debug(e);
+                }
                 break;
 
             case 'PIVOT':
