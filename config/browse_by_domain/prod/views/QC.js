@@ -141,7 +141,7 @@ define(function () {
                 {
                     //id: 'faostat-QC-1',
                     type: 'chart',
-                    class: "col-lg-12",
+                    class: "col-lg-8",
                     height:'250px',
                     config: {
                         adapter: {
@@ -173,7 +173,7 @@ define(function () {
                 },
                 {
                     type: 'chart',
-                    class: "col-lg-12",
+                    class: "col-lg-4",
                     height:'250px',
                     config: {
                         adapter: {
