@@ -92,6 +92,7 @@ define([
             this.tree = new Tree();
             this.tree.init({
                 placeholder_id: this.$TREE,
+                datasource: C.DATASOURCE,
                 lang: this.o.lang,
                 code: this.o.code,
                 blacklist: CM.blacklist || [],
@@ -217,7 +218,6 @@ define([
         },
 
         renderFilter: function(config) {
-            // dispose old filters
 
             // create filters
             if (this.filterBox && this.filterBox.destroy) {
@@ -225,9 +225,18 @@ define([
             }
 
             this.filterBox = new FilterBox();
-            this.filterBox.render(config);
 
-            // on change getFilters and apply to dashboard
+
+            _.each(config.filter, _.bind(function(f) {
+                if (f.config.hasOwnProperty('filter')) {
+                    f.config.filter = this.defaultFilterOptions(f.config.filter);
+                    console.log(f.config.filter);
+                }
+           }, this));
+
+            // for each filter add default options
+
+            this.filterBox.render(config);
 
         },
 
@@ -237,15 +246,11 @@ define([
                 this.dashboard.destroy();
             }
 
-            try {
+            this.dashboard = new Dashboard();
 
-                this.dashboard = new Dashboard();
-                this.dashboard.render(config);
-
-
-            }catch (e) {
-                console.error(e);
-            }
+            // setting default filter options (i.e. language and datasouce)
+            config.filter = this.defaultFilterOptions(config.filter);
+            this.dashboard.render(config);
 
             //console.log(this.container.length);
             // create dashboard
@@ -254,9 +259,22 @@ define([
 
         },
 
+        defaultFilterOptions: function(config) {
+
+            return $.extend(
+                true,
+                {},
+                config,
+                {
+                    lang: this.o.lang,
+                    datasource: C.DATASOURCE
+                }
+            );
+
+        },
+
         updateDashboard: function() {
 
-            console.log(this);
             // getFilters
             var filters = this.filterBox.getFilters();
 

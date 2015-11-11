@@ -155,7 +155,7 @@ define([
         if (f.codes.length <= 0) {
             amplify.publish(E.NOTIFICATION_WARNING, {
                 title: i18nLabels.warning,
-                text: 'Select at least one ' + this.o.metadata.parameters.id
+                text: 'Select at least one ' + this.o.id
             });
         }
 

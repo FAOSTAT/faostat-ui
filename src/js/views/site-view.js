@@ -157,9 +157,9 @@ define([
             var menu = new FAOSTATMenu();
             // TODO: fix menu language and check how is it taken
             menu.init({
-                lang: 'en',
+                lang: Common.getLocale(),
                 prefix: 'faostat_download_',
-                datasource: 'faostatdb'
+                datasource: C.DATASOURCE
             });
 
         },
