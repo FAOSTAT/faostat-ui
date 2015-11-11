@@ -45,7 +45,7 @@ define(function () {
                     <!-- TODO: add a class instead of bootstrap -->
                     "class": "col-lg-3",
                     "type": "dropDownList",
-                    "multiple": true
+                    //"multiple": true
                 },
                 "config": {
                     "dimension_id": "countries",
