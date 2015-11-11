@@ -22,6 +22,7 @@ define({
     "year": "Year",
     no_data_available: 'No data available for the current selection.',
     faostat_domains: 'FAOSTAT Domains',
-    loading: 'Loading'
+    loading: 'Loading',
+    warning: 'Warning'
 
 });
