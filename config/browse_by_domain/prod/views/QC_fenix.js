@@ -145,7 +145,7 @@ define(function () {
             metadata: {},
 
             items: [
-              /*  {
+                {
                     id: 'item-1',
                     type: 'map',
                     class: "fx-map-chart",
@@ -193,7 +193,7 @@ define(function () {
                             }
                         }
                     ]
-                },*/
+                },
                 {
                     id: 'item-2',
                     type: 'chart',

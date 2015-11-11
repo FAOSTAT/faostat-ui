@@ -8,7 +8,7 @@ define(function () {
 
         "filter": [
             {
-                "id": "items",
+                "id": "item",
                 "type": "codelist",
                 // TODO: in theory that should come from the dimensions schema!!
                 "parameter": "List3Codes",
@@ -19,7 +19,7 @@ define(function () {
                 },
                 "config": {
                     "dimension_id": "items",
-                    "defaultCodes": ["515"],
+                    "defaultCodes": ["27"],
                     "filter": {
                         "domain_code": ["QC"],
                         "whitelist": [],
@@ -35,7 +35,8 @@ define(function () {
                 "componentType": {
                     <!-- TODO: add a class instead of bootstrap -->
                     "class": "col-lg-3",
-                    "type": "dropDownList"
+                    "type": "dropDownList",
+                    "multiple": true
                 },
                 "config": {
                     "dimension_id": "countries",
@@ -47,45 +48,25 @@ define(function () {
             },
             {
                 "id": "year",
-                "type": "static",
+                "type": "codelist",
                 "parameter": "List4Codes",
                 "componentType": {
                     "class": "col-lg-2",
                     "type": "dropDownList-timerange"
                 },
                 "config": {
-                    "data": [
-                        {"code": "2012", "label": "2012", "selected": true},
-                        {"code": "2011", "label": "2011", "selected": false},
-                        {"code": "2010", "label": "2010", "selected": false},
-                        {"code": "2009", "label": "2009", "selected": false},
-                        {"code": "2008", "label": "2008", "selected": false},
-                        {"code": "2007", "label": "2007", "selected": false},
-                        {"code": "2006", "label": "2006", "selected": false},
-                        {"code": "2005", "label": "2005", "selected": false},
-                        {"code": "2004", "label": "2004", "selected": false},
-                        {"code": "2003", "label": "2003", "selected": false},
-                        {"code": "2002", "label": "2002", "selected": false},
-                        {"code": "2001", "label": "2001", "selected": false},
-                        {"code": "2000", "label": "2000", "selected": false},
-                        {"code": "1999", "label": "1999", "selected": false},
-                        {"code": "1998", "label": "1998", "selected": false},
-                        {"code": "1997", "label": "1997", "selected": false},
-                        {"code": "1996", "label": "1996", "selected": false},
-                        {"code": "1995", "label": "1995", "selected": false},
-                        {"code": "1994", "label": "1994", "selected": false},
-                        {"code": "1993", "label": "1993", "selected": false},
-                        {"code": "1992", "label": "1992", "selected": false},
-                        {"code": "1991", "label": "1991", "selected": false},
-                        {"code": "1990", "label": "1990", "selected": true}
-                    ]
+                    "dimension_id": "year",
+                    "defaultCodes": ["1993", "2013"],
+                    "filter": {
+                        "domain_code": ["QC"]
+                    }
                 }
             },
             {
                 "id": "aggregation",
                 "type": "static",
                 // TODO: check data parameter
-                "parameter": "aggregation",
+                "parameter": "operator",
                 "componentType": {
                     "class": "col-lg-2",
                     "type": "dropDownList"
@@ -129,7 +110,7 @@ define(function () {
                     //id: 'faostat-QC-1',
                     type: 'map',
                     class: "col-lg-12",
-                    height:'250px',
+                    //height:'250px',
                     config: {
                         leaflet: {
                             zoomControl: false,
@@ -142,21 +123,90 @@ define(function () {
                             modelType: 'faostat'
                         }
                     },
-                    allowedFilter: ['items'],
+                    allowedFilter: ['item'],
                     filter:
                         {
                             domain_code: 'QC',
                             // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                            List1Codes: ["5000>"],
+                            List1Codes: ["5000>", "351"],
                             List2Codes: ["2510"],
-                            List3Codes: ["515"],
-                            List4Codes: ["2011"],
+                            List3Codes: ["27"],
+                            List4Codes: [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
                             List5Codes: null,
                             List6Codes: null,
-                            List7Codes: null
+                            List7Codes: null,
+                            "page_size": 0,
+                            "page_number": 0
                         }
+                },
+                {
+                    //id: 'faostat-QC-1',
+                    type: 'chart',
+                    class: "col-lg-12",
+                    height:'250px',
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "timeserie",
+                            xDimensions: 'year',
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area', 'item', 'element']
+                        },
+                        template: {},
+                        creator: {}
+                    },
+                    allowedFilter: ['area', 'year', 'item'],
+                    filter:
+                    {
+                        domain_code: 'QC',
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        List1Codes: ["2"],
+                        List2Codes: ["2510"],
+                        List3Codes: ["27"],
+                        List4Codes: [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
+                        List5Codes: null,
+                        List6Codes: null,
+                        List7Codes: null,
+                        "page_size": 0,
+                        "page_number": 0
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-lg-12",
+                    height:'250px',
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {},
+                        creator: {}
+                    },
+                    allowedFilter: ['year', 'item'],
+                    filter:
+                    {
+                        domain_code: 'QC',
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        List2Codes: ["2510"],
+                        List3Codes: ["27"],
+                        List4Codes: [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
+                        List5Codes: null,
+                        List6Codes: null,
+                        List7Codes: null,
+                        "group_by": 'year',
+                        "order_by": 'area',
+                        "operator": 'AVG',
+                        "page_size": 0,
+                        "page_number": 0
+                    }
                 }
-
             ]
 
         }
