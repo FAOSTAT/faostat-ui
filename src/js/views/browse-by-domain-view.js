@@ -166,7 +166,9 @@ define([
         },
 
         changeState: function() {
+
             Common.changeURL(this.o.section + '_code', [this.o.code], false);
+
         },
 
         dispose: function () {
@@ -230,7 +232,6 @@ define([
             _.each(config.filter, _.bind(function(f) {
                 if (f.config.hasOwnProperty('filter')) {
                     f.config.filter = this.defaultFilterOptions(f.config.filter);
-                    console.log(f.config.filter);
                 }
            }, this));
 
@@ -250,12 +251,23 @@ define([
 
             // setting default filter options (i.e. language and datasouce)
             config.filter = this.defaultFilterOptions(config.filter);
+            _.each(config.items, _.bind(function(item) {
+                item.config = this.defaultItemOptions(item);
+            }, this));
+
             this.dashboard.render(config);
 
-            //console.log(this.container.length);
-            // create dashboard
+            // for each item set default configs
 
-            // on change recreate dshboard
+        },
+
+        updateDashboard: function() {
+
+            // getFilters
+            var filters = this.filterBox.getFilters();
+
+            // apply filters to dashboard
+            this.dashboard.filter(filters);
 
         },
 
@@ -273,13 +285,15 @@ define([
 
         },
 
-        updateDashboard: function() {
+        defaultItemOptions: function(item) {
 
-            // getFilters
-            var filters = this.filterBox.getFilters();
+            if (item.type) {
+                if (CM.view && CM.view.hasOwnProperty(item.type) && item.hasOwnProperty('config')) {
+                    return $.extend(true, {}, CM.view[item.type], item.config);
+                }
+            }
 
-            // apply filters to dashboard
-            this.dashboard.filter(filters);
+            return {};
 
         }
 
