@@ -107,7 +107,7 @@ require([
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
                     'jquery.rangeSlider': '{FENIX_CDN}/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
                     //'jquery-ui': 'jquery-ui',
-                    'jqueryui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
+                    //'jqueryui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
                     // TODO: REMOVE IT, dirty fix for the dashboard
                     'jquery-ui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
 
@@ -149,10 +149,10 @@ require([
                         deps: ['jquery']
                     },
                     jbPivot: {
-                        deps: ['jquery', 'jqueryui']
+                        deps: ['jquery', 'jquery-ui']
                     },
                     'jquery.rangeSlider': {
-                        deps: ['jquery', 'jqueryui']
+                        deps: ['jquery', 'jquery-ui']
                     },
                     "ga": {
                         exports: "__ga__"
