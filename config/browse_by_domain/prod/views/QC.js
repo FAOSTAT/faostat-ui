@@ -121,16 +121,6 @@ define(function () {
                     class: "col-lg-12",
                     //height:'250px',
                     config: {
-                        leaflet: {
-                            zoomControl: false,
-                            attributionControl: true,
-                            scrollWheelZoom: false,
-                            minZoom: 1
-                        },
-                        adapter: {
-                            adapterType: 'faostat',
-                            modelType: 'faostat'
-                        }
                     },
                     allowedFilter: ['item'],
                     filter:

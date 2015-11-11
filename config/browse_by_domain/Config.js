@@ -1,5 +1,5 @@
 /*global define*/
-define(function () {
+define(['jquery', 'config/submodules/fx-chart/highcharts_template'], function ($, HighchartsTemplate) {
 
     'use strict';
 
@@ -17,31 +17,24 @@ define(function () {
         view: {
 
             map: {
-                config: {
-                    leaflet: {
-                        zoomControl: false,
-                        attributionControl: true,
-                        scrollWheelZoom: false,
-                        minZoom: 1
-                    },
-                    adapter: {
-                        adapterType: 'faostat',
-                        modelType: 'faostat'
-                    }
+                leaflet: {
+                    zoomControl: false,
+                    attributionControl: false,
+                    scrollWheelZoom: false,
+                    minZoom: 1
+                },
+                adapter: {
+                    adapterType: 'faostat',
+                    modelType: 'faostat'
                 }
             },
             chart: {
-                config: {
-                    leaflet: {
-                        zoomControl: false,
-                        attributionControl: true,
-                        scrollWheelZoom: false,
-                        minZoom: 1
-                    },
-                    adapter: {
-                        adapterType: 'faostat',
-                        modelType: 'faostat'
-                    }
+                adapter: {
+                    adapterType: 'faostat',
+                    modelType: 'faostat'
+                },
+                creator: {
+                    chartObj: HighchartsTemplate
                 }
             }
 
