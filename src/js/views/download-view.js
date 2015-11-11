@@ -401,35 +401,47 @@ define([
                 data = {},
                 that = config !== undefined ? config.context || this : this;
 
-            user_selection = that.download_selectors_manager.get_user_selection();
-            dwld_options = that.options_manager.get_options_window('preview_options').collect_user_selection();
+            try {
 
-            data = $.extend(true, {}, data, user_selection);
-            data = $.extend(true, {}, data, dwld_options);
-            data.datasource = 'faostat';
-            data.domainCode = that.options.domain;
-            data.lang = that.options.lang;
-            data.limit = -1;
+                user_selection = that.download_selectors_manager.get_user_selection();
+                dwld_options = that.options_manager.get_options_window('preview_options').collect_user_selection(null);
 
-            /* Add loading. */
-            amplify.publish(E.WAITING_SHOW, {});
+                /* Validate user selection. */
+                this.validate_user_selection(user_selection);
 
-            this.api.data({
-                domain_code: that.options.code,
-                List1Codes: user_selection.list1Codes || null,
-                List2Codes: user_selection.list2Codes || null,
-                List3Codes: user_selection.list3Codes || null,
-                List4Codes: user_selection.list4Codes || null,
-                List5Codes: user_selection.list5Codes || null,
-                List6Codes: user_selection.list6Codes || null,
-                List7Codes: user_selection.list7Codes || null,
-                lang: that.options.lang,
-                page_size: that.page_size,
-                page_number: config !== undefined ? config.page_number || 1 : 1,
-                group_by: null
-            }).then(function (json) {
-                that.show_preview(json);
-            });
+                data = $.extend(true, {}, data, user_selection);
+                data = $.extend(true, {}, data, dwld_options);
+                data.datasource = 'faostat';
+                data.domainCode = that.options.domain;
+                data.lang = that.options.lang;
+                data.limit = -1;
+
+                /* Add loading. */
+                amplify.publish(E.WAITING_SHOW, {});
+
+                this.api.data({
+                    domain_code: that.options.code,
+                    List1Codes: user_selection.list1Codes || null,
+                    List2Codes: user_selection.list2Codes || null,
+                    List3Codes: user_selection.list3Codes || null,
+                    List4Codes: user_selection.list4Codes || null,
+                    List5Codes: user_selection.list5Codes || null,
+                    List6Codes: user_selection.list6Codes || null,
+                    List7Codes: user_selection.list7Codes || null,
+                    lang: that.options.lang,
+                    page_size: that.page_size,
+                    page_number: config !== undefined ? config.page_number || 1 : 1,
+                    group_by: null
+                }).then(function (json) {
+                    that.show_preview(json);
+                });
+
+            } catch (e) {
+                amplify.publish(E.NOTIFICATION_WARNING, {
+                    title: i18nLabels.warning,
+                    text: e
+                });
+            }
 
         },
 
@@ -467,8 +479,8 @@ define([
                 selectAll;
 
             /* Check there's at least one selection for each box. */
-            for (i = 1; i <= this.download_selectors_manager.CONFIG.rendered_boxes.length; i += 1) {
-                if (user_selection['list' + i + 'Codes'].length < 1) {
+            for (i = 0; i < this.download_selectors_manager.CONFIG.rendered_boxes.length; i += 1) {
+                if (user_selection['list' + (i + 1) + 'Codes'].length < 1) {
                     throw 'Please make at least one selection for "' + $('#tab_headers__' + i + ' li:first-child').text().trim() + '".';
                 }
             }
@@ -490,12 +502,12 @@ define([
         // TODO: move to a common util place
         iso2faostat: function (iso) {
             switch (iso.toLowerCase()) {
-                case 'fr':
-                    return 'F';
-                case 'es':
-                    return 'S';
-                default:
-                    return 'E';
+            case 'fr':
+                return 'F';
+            case 'es':
+                return 'S';
+            default:
+                return 'E';
             }
         },
 
@@ -544,9 +556,9 @@ define([
                         decimal_places: dwld_options.decimal_numbers_value,
                         decimal_separator: dwld_options.decimal_separator_value,
                         thousand_separator: dwld_options.thousand_separator_value,
-                        page_size: this.page_size
-                        ,onPageClick: this.preview
-                        ,context: this
+                        page_size: this.page_size,
+                        onPageClick: this.preview,
+                        context: this
                     });
                 } catch (e) {
                     console.debug(e);
@@ -590,7 +602,7 @@ define([
             amplify.publish(E.WAITING_HIDE, {});
 
             /* Export CSV or Excel, if required. */
-            switch (options_manager.get_options_window('preview_options').get_output_type()) {
+            switch (this.options_manager.get_options_window('preview_options').get_output_type()) {
 
             case 'PIVOT':
                 if (this.pivot_caller === 'CSV') {
@@ -612,6 +624,13 @@ define([
                             that.pivot_exporter.excel(metadata);
                         }
                     }, 100);
+                }
+                break;
+            case 'TABLE':
+                if (this.pivot_caller === 'CSV') {
+                    console.debug('exprt table CSV');
+                } else if (this.pivot_caller === 'XLS') {
+                    console.debug('exprt table XLS');
                 }
                 break;
 
