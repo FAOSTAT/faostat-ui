@@ -150,7 +150,6 @@ define([
     FilterBox.prototype.getFilters = function (config) {
 
         var f = [];
-        console.log(this.o.filters);
         _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
             f.push(this.o.filters[filterKey].getFilter());
         }, this));

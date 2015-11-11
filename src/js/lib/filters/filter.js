@@ -83,7 +83,14 @@ define([
 
         // create two filters
         var template = Handlebars.compile(templateFilter);
-        var c = $.extend(true, {},{data: this.getTimerangeData(this.o.config.data, 1)}, this.o.componentType);
+
+        if (this.o.config.defaultCodes === undefined) {
+            // TODO: trhrow an error
+            console.error('timerange filter is not properly configured.');
+        }
+
+        var fromYearDefaultCode = this.o.config.defaultCodes[0];
+        var c = $.extend(true, {},{data: this.getTimerangeData(this.o.config.data, fromYearDefaultCode)}, this.o.componentType);
         c.role = s.FROM_YEAR;
         c.title = i18nLabels.fromyear;
         this.$CONTAINER.append(template(c));
@@ -92,7 +99,9 @@ define([
         this.$DD_FROM_YEAR.select2();
 
         var template = Handlebars.compile(templateFilter);
-        var c = $.extend(true, {},{data: this.getTimerangeData(this.o.config.data, 0)}, this.o.componentType);
+
+        var toYearDefaultCode = this.o.config.defaultCodes[1];
+        var c = $.extend(true, {},{data: this.getTimerangeData(this.o.config.data, toYearDefaultCode)}, this.o.componentType);
         c.role = s.TO_YEAR;
         c.title = i18nLabels.toyear;
         this.$CONTAINER.append(template(c));
@@ -103,21 +112,18 @@ define([
 
     };
 
-    Filter.prototype.getTimerangeData = function (data, index) {
+    Filter.prototype.getTimerangeData = function (data, code) {
 
         var values = [];
-        var i = 0;
         _.each(data, function(d) {
 
             var selected = false;
-            if (d.selected) {
-                if (i === index) {
-                    selected = true;
-                }
-               i++;
+            if (d.code === code) {
+                selected = true;
             }
             values.push($.extend({}, d, {selected: selected}));
         });
+
         return values;
 
     };
@@ -153,8 +159,6 @@ define([
             });
         }
 
-        console.log(f);
-
         return f;
     };
 
@@ -162,7 +166,7 @@ define([
     Filter.prototype.getFilterTimerange = function () {
         var f = {
             id: this.o.id,
-            parameter: this.o.parameter,
+            parameter: this.o.parameter
         };
 
         var codes = [];
@@ -178,8 +182,6 @@ define([
                 text: 'Select at least one ' + this.o.metadata.parameters.id
             });
         }
-
-        console.log(f);
 
         return f;
     };
