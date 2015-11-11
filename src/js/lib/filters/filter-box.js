@@ -2,6 +2,7 @@
 define([
     'globals/Common',
     'config/Config',
+    'config/Events',
     'i18n!nls/filter',
     'handlebars',
     'faostatapiclient',
@@ -9,7 +10,7 @@ define([
     'lib/filters/filter',
     'q',
     'amplify',
-], function (Common, C, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
+], function (Common, C, E, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
 
     'use strict';
 
@@ -56,9 +57,13 @@ define([
         var self = this;
         this.o.filters = [];
 
+        amplify.publish(E.LOADING_SHOW, {container: this.$CONTAINER});
+
         this._preloadCodelists().then(function(f) {
 
             _.each(f, function (c, index) {
+
+                amplify.publish(E.LOADING_HIDE, {container: self.$CONTAINER});
 
                 var id = 'filter_box_' + index;
 

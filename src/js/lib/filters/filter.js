@@ -20,6 +20,7 @@ define([
 
     },defaultOptions = {
 
+        labelSeparator: "; "
     };
 
     function Filter() {
@@ -148,8 +149,22 @@ define([
         var f = {
             id: this.o.id,
             parameter: this.o.parameter,
-            codes: this.$DD.val()
+            codes: this.$DD.val(),
+            labels: []
         };
+
+        var textData = this.$DD.select2('data');
+        if (Array.isArray(textData)){
+            _.each(textData, function(t) {
+                f.labels.push(t.text.trim());
+            });
+        }
+        else{
+            f.labels.push(textData.text.trim());
+        }
+
+        f.labels = f.labels.join(this.o.labelSeparator);
+
 
         // TODO: remove the alert?
         if (f.codes.length <= 0) {
@@ -157,6 +172,7 @@ define([
                 title: i18nLabels.warning,
                 text: 'Select at least one ' + this.o.id
             });
+            throw new Error('Error');
         }
 
         return f;
@@ -177,10 +193,12 @@ define([
 
         // TODO: remove the alert?
         if (f.codes.length <= 0) {
+            console.log(i18nLabels);
             amplify.publish(E.NOTIFICATION_WARNING, {
                 title: i18nLabels.warning,
-                text: 'Select at least one ' + this.o.metadata.parameters.id
+                text: 'Range Date selection is not valid: From year: ' + this.$DD_FROM_YEAR.val() + " To year:" + this.$DD_TO_YEAR.val()
             });
+            throw new Error('Error');
         }
 
         return f;
