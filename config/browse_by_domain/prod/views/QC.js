@@ -6,6 +6,15 @@ define(function () {
 
     return {
 
+        "pdf" : [{
+
+        }],
+
+
+        "structure" :{
+
+        },
+
         "filter": [
             {
                 "id": "item",
@@ -87,8 +96,8 @@ define(function () {
             //data base filter
             filter: {
                 // TODO: lang and datasource should be added at runtime
-                lang: 'en',
-                datasource: 'production',
+                //lang: 'en',
+                //datasource: 'production',
                 decimal_places: 2,
                 decimal_separator: ".",
                 limit: -1,
