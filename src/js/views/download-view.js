@@ -266,6 +266,10 @@ define([
                 /* Initiate options manager. */
                 this.options_manager.init({
                     callback: {
+                        onOutputTypeChange: function () {
+                            $('#downloadOutputArea').empty();
+                            self.preview();
+                        },
                         onCodesChange: function (isChecked) {
                             if (isChecked) {
                                 $('th[data-type="code"]').css('display', 'table-cell');
