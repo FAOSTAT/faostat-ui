@@ -1,4 +1,4 @@
-/*global define, _:false, $, console, amplify, FM, setInterval, clearInterval*/
+/*global define, _:false, $, console, amplify, FM, setInterval, clearInterval, document, window*/
 /*jslint todo: true */
 /*jslint nomen: true */
 define([
@@ -308,7 +308,8 @@ define([
                     placeholder_id: s.PREVIEW_OPTIONS_PLACEHOLDER,
                     decimal_separators: true,
                     thousand_separators: true,
-                    units_checked: true
+                    units_checked: true,
+                    codes_value: false
                 });
 
                 /* Add download options. */
@@ -318,9 +319,11 @@ define([
                     button_label: i18nLabels.download_as_label,
                     header_label: i18nLabels.download_as_label,
                     placeholder_id: s.DOWNLOAD_OPTIONS_PLACEHOLDER,
-                    decimal_separators: true,
-                    thousand_separators: true,
-                    units_checked: true
+                    decimal_separators: false,
+                    thousand_separators: false,
+                    units_checked: true,
+                    excel_button: false,
+                    codes_value: false
                 });
 
 
@@ -433,8 +436,7 @@ define([
                     page_number: config !== undefined ? config.page_number || 1 : 1,
                     group_by: null
                 }).then(function (json) {
-                    that.show_preview(json);
-                });
+                    that.show_preview(json);                });
 
             } catch (e) {
                 amplify.publish(E.NOTIFICATION_WARNING, {
@@ -538,7 +540,8 @@ define([
                 that = this,
                 metadata,
                 table,
-                dwld_options = this.options_manager.get_options_window('preview_options').collect_user_selection(null);
+                dwld_options = this.options_manager.get_options_window('preview_options').collect_user_selection(null),
+                user_selection;
 
             /* Render either the table or the pivot. */
             switch (this.options_manager.get_options_window('preview_options').get_output_type()) {
@@ -628,9 +631,35 @@ define([
                 break;
             case 'TABLE':
                 if (this.pivot_caller === 'CSV') {
-                    console.debug('exprt table CSV');
-                } else if (this.pivot_caller === 'XLS') {
-                    console.debug('exprt table XLS');
+                    user_selection = that.download_selectors_manager.get_user_selection();
+                    try {
+                        this.api.data({
+                            domain_code: that.options.code,
+                            List1Codes: user_selection.list1Codes || null,
+                            List2Codes: user_selection.list2Codes || null,
+                            List3Codes: user_selection.list3Codes || null,
+                            List4Codes: user_selection.list4Codes || null,
+                            List5Codes: user_selection.list5Codes || null,
+                            List6Codes: user_selection.list6Codes || null,
+                            List7Codes: user_selection.list7Codes || null,
+                            lang: that.options.lang,
+                            group_by: null,
+                            output_type: 'csv'
+                        }).then(function (csv) {
+                            console.debug(csv);
+                        }).fail(function (error) {
+                            var csvString = error.responseText,
+                                a = document.createElement('a'),
+                                filename = $('#tree').find('.jstree-anchor.jstree-clicked').text().replace(/\s/g, '_') + '_' + (new Date()).getTime() + '.csv';
+                            a.href        = 'data:text/csv;charset=utf-8;base64,' + window.btoa(csvString);
+                            a.target      = '_blank';
+                            a.download    = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                        });
+                    } catch (e) {
+                        console.debug(e);
+                    }
                 }
                 break;
 
