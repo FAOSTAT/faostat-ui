@@ -19,6 +19,7 @@ define([
     'faostatapiclient',
     'pivot_exporter',
     'FAOSTAT_UI_TABLE',
+    'fx-report',
     'amplify',
     'jbPivot'
 ], function (View,
@@ -37,7 +38,8 @@ define([
              Common,
              FAOSTATAPIClient,
              PivotExporter,
-             Table) {
+             Table,
+             FENIX_UI_REPORTS) {
 
     'use strict';
 
@@ -58,7 +60,9 @@ define([
         DOWNLOAD_OUTPUT_AREA: "#downloadOutputArea",
 
         DOWNLOAD_OPTIONS_CSV_BUTTON: '#download_options_csv_button',
+        DOWNLOAD_OPTIONS_CSV_INFO_BUTTON: '#download_options_csv_info_button',
         DOWNLOAD_OPTIONS_EXCEL_BUTTON: '#download_options_excel_button',
+        DOWNLOAD_OPTIONS_METADATA_BUTTON: '#download_options_metadata_button',
         PREVIEW_BUTTON: '#preview_button',
 
         PREVIEW_OPTIONS_PLACEHOLDER: 'preview_options_placeholder',
@@ -327,6 +331,7 @@ define([
                     thousand_separators: false,
                     units_checked: true,
                     excel_button: false,
+                    metadata_button: true,
                     codes_value: false
                 });
 
@@ -338,11 +343,51 @@ define([
                     self.preview();
                 });
 
+                /* CSV info. */
+                this.$el.find(s.DOWNLOAD_OPTIONS_CSV_INFO_BUTTON).off();
+                this.$el.find(s.DOWNLOAD_OPTIONS_CSV_INFO_BUTTON).click(function (e) {
+                    var url;
+                    switch (self.options.lang) {
+                    case 'fr':
+                        url = 'https://fr.wikipedia.org/wiki/Comma-separated_values';
+                        break;
+                    case 'es':
+                        url = 'https://es.wikipedia.org/wiki/CSV';
+                        break;
+                    default:
+                        url = 'https://en.wikipedia.org/wiki/Comma-separated_values';
+                        break;
+                    }
+                    window.open(url, '_blank');
+                });
+
                 /* Download as Excel. */
                 this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON).off();
                 this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON).click(function (e) {
                     self.pivot_caller = 'XLS';
                     self.preview();
+                });
+
+                /* Metadata. */
+                this.$el.find(s.DOWNLOAD_OPTIONS_METADATA_BUTTON).off();
+                this.$el.find(s.DOWNLOAD_OPTIONS_METADATA_BUTTON).click(function (e) {
+                    var url = 'http://fenixapps2.fao.org/fenixExport',
+                        payload = {
+                            input: {
+                                config: {
+                                    uid: self.options.code
+                                }
+                            },
+                            output: {
+                                config: {
+                                    lang: self.options.lang.toString().toUpperCase(),
+                                    fileName: $('#tree').find('.jstree-anchor.jstree-clicked').text().replace(/\s/g, '_') + '_Metadata.pdf'
+                                }
+                            }
+                        },
+                        fenix_export = new FENIX_UI_REPORTS();
+                    fenix_export.init('metadataExport');
+                    fenix_export.exportData(payload, url);
                 });
 
                 /* Preview button. */
@@ -390,14 +435,10 @@ define([
 
 
         excel: function () {
-            //this.pivot.exportExcel();
-            //this.pivot_caller = null;
             this.pivot_exporter.excel();
         },
 
         csv: function () {
-            //this.pivot.exportCSV();
-            //this.pivot_caller = null;
             this.pivot_exporter.csv();
         },
 
