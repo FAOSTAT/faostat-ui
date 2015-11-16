@@ -118,7 +118,7 @@ define(function () {
                 {
                     //id: 'faostat-QC-1',
                     type: 'map',
-                    class: "col-lg-12",
+                    class: "col-xs-12",
                     //height:'250px',
                     config: {
                     },
@@ -141,8 +141,8 @@ define(function () {
                 {
                     //id: 'faostat-QC-1',
                     type: 'chart',
-                    class: "col-lg-8",
-                    height:'250px',
+                    class: "col-xs-12",
+                    //height:'250px !important;',
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -152,7 +152,9 @@ define(function () {
                             valueDimensions: 'value',
                             seriesDimensions: ['area', 'item', 'element']
                         },
-                        template: {},
+                        template: {
+                           // height:'350px'
+                        },
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item'],
@@ -173,8 +175,9 @@ define(function () {
                 },
                 {
                     type: 'chart',
-                    class: "col-lg-4",
-                    height:'250px',
+                    class: "col-xs-12",
+                    //height:'250px',
+                    // style: 'height:250px',
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -184,7 +187,9 @@ define(function () {
                             valueDimensions: 'value',
                             seriesDimensions: ['area']
                         },
-                        template: {},
+                        template: {
+                            height:'250px'
+                        },
                         creator: {}
                     },
                     allowedFilter: ['year', 'item'],
@@ -207,7 +212,6 @@ define(function () {
                     }
                 }
             ]
-
         }
 
     }

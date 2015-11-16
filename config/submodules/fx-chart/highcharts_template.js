@@ -24,7 +24,7 @@ define(function () {
             //showAxes: false, //Mostra gli assi quando le serie sono aggiunte dinamicamente
             style: {
                 fontFamily: 'FrutigerLTW02-45Light', // Font di tutto
-                fontSize: '12px', // La dimensione qui vale solo per i titoli
+                fontSize: '11px', // La dimensione qui vale solo per i titoli
                 fontWeight: 300 // Con Roboto è molto bello giocare con i pesi
             },
             zoomType: 'xy', //Attiva lo zoom e stabilisce in quale dimensione
@@ -218,7 +218,7 @@ define(function () {
                 style: {
                     color: '#666666',
                     fontWeight: '300',
-                    fontSize: 12
+                    fontSize: 11
                 }
             },
             //type: 'datetime',
