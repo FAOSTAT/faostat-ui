@@ -47,7 +47,7 @@ define(['jquery',
                     chartObj: HighchartsTemplate
                 },
                 template: {
-                    height: '250px',
+                    height: '300px',
                     title: "Production quantities by country",
                     subtitle: "Average 1993-2013"
                 }
