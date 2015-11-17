@@ -109,7 +109,7 @@ define(function () {
             labels: {
                 // labels to dinamically substitute the title and subtitle
                 default: {
-                    aggregation: {
+                    /*aggregation: {
                         en: "Average",
                         fr: "Moyenne",
                         es: "Promedio"
@@ -124,7 +124,7 @@ define(function () {
                         "en": "Rice, milled",
                         "fr": "Rice, milled",
                         "es": "Rice, milled"
-                    }
+                    }*/
                 }
             },
 
@@ -156,8 +156,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Production quantities of {{item}} by country",
-                                fr: "FR Production quantities of {{item}} by country",
-                                es: "ES Production quantities of {{item}} by country"
+                                fr: "Production quantities of {{item}} by country",
+                                es: "Production quantities of {{item}} by country"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -178,8 +178,8 @@ define(function () {
                             // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                             List1Codes: ["5000>", "351"],
                             List2Codes: ["2510"],
-                            List3Codes: ["27"],
-                            List4Codes: [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
+                            //List3Codes: ["27"],
+                            //List4Codes: [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
                             List5Codes: null,
                             List6Codes: null,
                             List7Codes: null,
@@ -206,9 +206,9 @@ define(function () {
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production quantities of {{item}} by country",
-                                fr: "FR Production quantities of {{item}} by country",
-                                es: "ES Production quantities of {{item}} by country"
+                                en: "Production quantities of {{item}} in {{area}}",
+                                fr: "Production de {{item}} dans le {{area}}",
+                                es: "Producción de {{item}} en {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -260,12 +260,13 @@ define(function () {
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production quantities of {{item}} by country",
-                                fr: "FR Production quantities of {{item}} by country",
-                                es: "ES Production quantities of {{item}} by country"
+                                en: "Production share of {{item}} by region",
+                                fr: "Part de la production de {{item}} par région",
+                                es: "Proporción de producción de {{item}} por región"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
+
                     },
 
                     //height:'250px',
