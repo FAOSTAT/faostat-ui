@@ -195,6 +195,26 @@ define(function () {
                     type: 'chart',
                     class: "col-xs-12",
                     //height:'250px !important;',
+
+                    // labels?
+                    labels: {
+                        // labels to dinamically substitute the title and subtitle
+                        default: {
+
+                        },
+
+                        // temp[late to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Production quantities of {{item}} by country",
+                                fr: "FR Production quantities of {{item}} by country",
+                                es: "ES Production quantities of {{item}} by country"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+
+
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -229,6 +249,25 @@ define(function () {
                 {
                     type: 'chart',
                     class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // labels to dinamically substitute the title and subtitle
+                        default: {
+
+                        },
+
+                        // temp[late to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Production quantities of {{item}} by country",
+                                fr: "FR Production quantities of {{item}} by country",
+                                es: "ES Production quantities of {{item}} by country"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
                     //height:'250px',
                     // style: 'height:250px',
                     config: {
