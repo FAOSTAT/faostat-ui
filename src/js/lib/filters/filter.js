@@ -165,7 +165,6 @@ define([
 
         f.labels = f.labels.join(this.o.labelSeparator);
 
-
         // TODO: remove the alert?
         if (f.codes.length <= 0) {
             amplify.publish(E.NOTIFICATION_WARNING, {
@@ -181,15 +180,26 @@ define([
 
     Filter.prototype.getFilterTimerange = function () {
         var f = {
-            id: this.o.id,
-            parameter: this.o.parameter
-        };
+                id: this.o.id,
+                parameter: this.o.parameter,
+                labels: []
+            },
+            fromYear = this.$DD_FROM_YEAR.val(),
+            toYear = this.$DD_TO_YEAR.val();
 
         var codes = [];
-        for(var i = parseInt(this.$DD_FROM_YEAR.val()); i <= parseInt(this.$DD_TO_YEAR.val()); i++) {
+        for(var i = parseInt(fromYear); i <= parseInt(toYear); i++) {
             codes.push(i);
         }
         f.codes = codes;
+
+        // TODO: make it nicer
+        f.labels.push(fromYear);
+        if ( fromYear !== toYear) {
+            f.labels.push(toYear);
+        }
+
+        f.labels = f.labels.join(" - ");
 
         // TODO: remove the alert?
         if (f.codes.length <= 0) {
