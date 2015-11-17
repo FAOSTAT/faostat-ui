@@ -105,6 +105,31 @@ define(function () {
                 "null_values": null
             },
 
+            // labels?
+            labels: {
+                // labels to dinamically substitute the title and subtitle
+                default: {
+                    aggregation: {
+                        en: "Average",
+                        fr: "Moyenne",
+                        es: "Promedio"
+                    },
+                    year: "1993 - 2013",
+                    area: {
+                        "en": "Afghanistan",
+                        "fr": "Afghanistan",
+                        "es": "Afghanistan"
+                    },
+                    item: {
+                        "en": "Rice, milled",
+                        "fr": "Rice, milled",
+                        "es": "Rice, milled"
+                    }
+                }
+            },
+
+
+
             //bridge configuration
             bridge: {
 
@@ -119,10 +144,34 @@ define(function () {
                     //id: 'faostat-QC-1',
                     type: 'map',
                     class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // labels to dinamically substitute the title and subtitle
+                        default: {
+
+                        },
+
+                        // temp[late to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Production quantities of {{item}} by country",
+                                fr: "FR Production quantities of {{item}} by country",
+                                es: "ES Production quantities of {{item}} by country"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+
                     //height:'250px',
                     config: {
+                        template: {
+
+                        }
                     },
-                    allowedFilter: ['item'],
+                    allowedFilter: ['item', 'year', 'element' , 'aggregation'],
+                    deniedTemplateFilter: [],
                     filter:
                         {
                             domain_code: 'QC',
@@ -134,6 +183,9 @@ define(function () {
                             List5Codes: null,
                             List6Codes: null,
                             List7Codes: null,
+                            "group_by": 'year',
+                            "order_by": 'area',
+                            "operator": 'AVG',
                             "page_size": 0,
                             "page_number": 0
                         }
@@ -154,6 +206,7 @@ define(function () {
                         },
                         template: {
                            // height:'350px'
+                            // default labels to be applied
                         },
                         creator: {}
                     },
@@ -192,7 +245,7 @@ define(function () {
                         },
                         creator: {}
                     },
-                    allowedFilter: ['year', 'item'],
+                    allowedFilter: ['year', 'item', 'aggregation'],
                     filter:
                     {
                         domain_code: 'QC',

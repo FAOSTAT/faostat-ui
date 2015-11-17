@@ -1,7 +1,7 @@
 /*global define*/
 define(['jquery',
     'config/submodules/fx-chart/highcharts_template',
-    'i18n!nls/browse_by_domain',
+    'i18n!nls/browse_by_domain'
 ], function ($, HighchartsTemplate, i18n) {
 
     'use strict';
@@ -33,8 +33,6 @@ define(['jquery',
                 template: {
                     class: 'test',
                     height: '350px',
-                    title: "Production quantities by country",
-                    subtitle: "Average 1993-2013",
                     footer: i18n.map_footer
                 }
             },

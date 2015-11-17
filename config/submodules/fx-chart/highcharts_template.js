@@ -159,6 +159,14 @@ define(function () {
             }
         },
         plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true
+                },
+                showInLegend: true
+            },
             series: {
                 /*allowPointSelect: true, //Permette di selezionare i punti della chart
                 //pointPlacement: "on", Per partire dall'origine
