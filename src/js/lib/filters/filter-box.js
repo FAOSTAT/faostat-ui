@@ -80,6 +80,11 @@ define([
                 self.o.filters.push(filter)
 
             });
+
+        }).done(function() {
+
+            amplify.publish(E.VIEW_FILTER_BOX_LOADED, {});
+
         });
 
     };

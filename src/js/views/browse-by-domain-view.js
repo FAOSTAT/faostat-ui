@@ -155,6 +155,7 @@ define([
 
         bindEventListeners: function () {
 
+            amplify.subscribe(E.VIEW_FILTER_BOX_LOADED, _.bind(this.updateDashboard, this));
             amplify.subscribe(E.VIEW_FILTER_CHANGE, _.bind(this.updateDashboard, this));
 
         },
@@ -228,16 +229,14 @@ define([
 
             this.filterBox = new FilterBox();
 
-
             _.each(config.filter, _.bind(function(f) {
                 if (f.config.hasOwnProperty('filter')) {
                     f.config.filter = this.defaultFilterOptions(f.config.filter);
                 }
            }, this));
 
-            // for each filter add default options
-
-            this.filterBox.render(config);
+            // render filters
+            this.filterBox.render(config, false);
 
         },
 
