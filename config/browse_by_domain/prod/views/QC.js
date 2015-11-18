@@ -10,94 +10,103 @@ define(function () {
 
         }],
 
-
         "structure" :{
 
         },
 
-        "filter": [
-            {
-                "id": "item",
-                "type": "codelist",
-                // TODO: in theory that should come from the dimensions schema!!
-                "parameter": "List3Codes",
-                //"title": "title",
-                "componentType": {
-                    "class": "col-lg-3",
-                    "type": "dropDownList"
+        "filter": {
+
+            defaultFilter: {
+                "domain_code": ["QC"],
+                "whitelist": [],
+                "blacklist": []
+            },
+
+            items: [
+                {
+                    "id": "item",
+                    "type": "codelist",
+                    // TODO: in theory that should come from the dimensions schema!!
+                    "parameter": "List3Codes",
+                    //"title": "title",
+                    "componentType": {
+                        "class": "col-lg-3",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "dimension_id": "items",
+                        "defaultCodes": ["27"],
+                        "filter": {
+                            "domain_code": ["QC"],
+                            "whitelist": [],
+                            "blacklist": []
+                        }
+                    }
                 },
-                "config": {
-                    "dimension_id": "items",
-                    "defaultCodes": ["27"],
-                    "filter": {
-                        "domain_code": ["QC"],
-                        "whitelist": [],
-                        "blacklist": []
+                {
+                    // id to be applied on the getData request
+                    "id": "area",
+                    "type": "codelist",
+                    "parameter": "List1Codes",
+                    "componentType": {
+                        <!-- TODO: add a class instead of bootstrap -->
+                        "class": "col-lg-3",
+                        "type": "dropDownList",
+                        //"multiple": true
+                    },
+                    "config": {
+                        "dimension_id": "countries",
+                        "defaultCodes": ["2"],
+                        "filter": {
+                            "domain_code": ["QC"]
+                        }
+                    }
+                },
+                {
+                    "id": "year",
+                    "type": "codelist",
+                    "parameter": "List4Codes",
+                    "componentType": {
+                        "class": "col-lg-2",
+                        "type": "dropDownList-timerange"
+                    },
+                    "config": {
+                        "dimension_id": "year",
+                        "defaultCodes": [],
+                        "filter": {
+                            "domain_code": ["QC"]
+                        }
+                    }
+                },
+                {
+                    "id": "aggregation",
+                    "type": "static",
+                    // TODO: check data parameter
+                    "parameter": "operator",
+                    "componentType": {
+                        "class": "col-lg-2",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "defaultCodes": ["AVG"],
+                        "data": [
+                            // TODO: multilingual?
+                            {"code": "AVG", "label": "average", "selected": true},
+                            {"code": "SUM", "label": "sum", "selected": false}
+                        ]
                     }
                 }
-            },
-            {
-                // id to be applied on the getData request
-                "id": "area",
-                "type": "codelist",
-                "parameter": "List1Codes",
-                "componentType": {
-                    <!-- TODO: add a class instead of bootstrap -->
-                    "class": "col-lg-3",
-                    "type": "dropDownList",
-                    //"multiple": true
-                },
-                "config": {
-                    "dimension_id": "countries",
-                    "defaultCodes": ["2"],
-                    "filter": {
-                        "domain_code": ["QC"]
-                    }
-                }
-            },
-            {
-                "id": "year",
-                "type": "codelist",
-                "parameter": "List4Codes",
-                "componentType": {
-                    "class": "col-lg-2",
-                    "type": "dropDownList-timerange"
-                },
-                "config": {
-                    "dimension_id": "year",
-                    "defaultCodes": ["1993", "2013"],
-                    "filter": {
-                        "domain_code": ["QC"]
-                    }
-                }
-            },
-            {
-                "id": "aggregation",
-                "type": "static",
-                // TODO: check data parameter
-                "parameter": "operator",
-                "componentType": {
-                    "class": "col-lg-2",
-                    "type": "dropDownList"
-                },
-                "config": {
-                    "defaultCodes": ["AVG"],
-                    "data": [
-                        // TODO: multilingual?
-                        {"code": "AVG", "label": "average", "selected": true},
-                        {"code": "SUM", "label": "sum", "selected": false}
-                    ]
-                }
-            }
-        ],
+        ]
+    },
 
         dashboard: {
 
             //data base filter
-            filter: {
-                // TODO: lang and datasource should be added at runtime
-                //lang: 'en',
-                //datasource: 'production',
+            defaultFilter: {
+                domain_code: 'QC',
+                List5Codes: null,
+                List6Codes: null,
+                List7Codes: null,
                 decimal_places: 2,
                 decimal_separator: ".",
                 limit: -1,
@@ -174,15 +183,11 @@ define(function () {
                     deniedTemplateFilter: [],
                     filter:
                         {
-                            domain_code: 'QC',
                             // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                             List1Codes: ["5000>", "351"],
                             List2Codes: ["2510"],
                             //List3Codes: ["27"],
                             //List4Codes: [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
-                            List5Codes: null,
-                            List6Codes: null,
-                            List7Codes: null,
                             "group_by": 'year',
                             "order_by": 'area',
                             "operator": 'AVG',
