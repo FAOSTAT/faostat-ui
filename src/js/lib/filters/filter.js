@@ -90,7 +90,8 @@ define([
             console.error('timerange filter is not properly configured.');
         }
 
-        var fromYearDefaultCode = this.o.config.defaultCodes[0];
+        // tODO check if this.o.config.defaultCodes exists
+        var fromYearDefaultCode = (this.o.config.defaultCodes[0])? {code: this.o.config.defaultCodes[0]}: {index: (this.o.config.data.length - 1)};
         var c = $.extend(true, {},{data: this.getTimerangeData(this.o.config.data, fromYearDefaultCode)}, this.o.componentType);
         c.role = s.FROM_YEAR;
         c.title = i18nLabels.fromyear;
@@ -101,7 +102,7 @@ define([
 
         var template = Handlebars.compile(templateFilter);
 
-        var toYearDefaultCode = this.o.config.defaultCodes[1];
+        var toYearDefaultCode = (this.o.config.defaultCodes[1])? {code: this.o.config.defaultCodes[1]}: {index: 0};
         var c = $.extend(true, {},{data: this.getTimerangeData(this.o.config.data, toYearDefaultCode)}, this.o.componentType);
         c.role = s.TO_YEAR;
         c.title = i18nLabels.toyear;
@@ -113,14 +114,19 @@ define([
 
     };
 
-    Filter.prototype.getTimerangeData = function (data, code) {
+    Filter.prototype.getTimerangeData = function (data, select) {
+
+        console.log(select);
 
         var values = [];
-        _.each(data, function(d) {
+        _.each(data, function(d, index) {
 
             var selected = false;
-            if (d.code === code) {
-                selected = true;
+            if (select.code) {
+                selected = (d.code === select.code);
+            }
+            else if (select.index) {
+                selected = (index == select.index)
             }
             values.push($.extend({}, d, {selected: selected}));
         });

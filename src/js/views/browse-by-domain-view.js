@@ -229,12 +229,6 @@ define([
 
             this.filterBox = new FilterBox();
 
-            _.each(config.filter, _.bind(function(f) {
-                if (f.config.hasOwnProperty('filter')) {
-                    f.config.filter = this.defaultFilterOptions(f.config.filter);
-                }
-           }, this));
-
             // render filters
             this.filterBox.render(config, false);
 

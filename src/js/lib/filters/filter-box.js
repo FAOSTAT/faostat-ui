@@ -38,17 +38,33 @@ define([
 
         this.initVariables();
 
+        this.applyDefaultFilter();
+
         this.configurePage();
 
     };
 
 
     FilterBox.prototype.initVariables = function () {
-
         this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
         // TODO: have a template?
         this.$CONTAINER = $(this.o.container);
+
+    };
+
+
+    FilterBox.prototype.applyDefaultFilter = function () {
+
+        var filterItems = this.o.filter.items|| [],
+            defaultFilter =  this.o.filter.defaultFilter || {};
+
+        _.each(filterItems, _.bind(function(f) {
+            // TODO: in theory all filters should have it
+            if (f.hasOwnProperty('config') && f.config.hasOwnProperty('filter')) {
+                f.config.filter = $.extend(true, {}, defaultFilter, f.config.filter);
+            }
+        }, this));
 
     };
 
@@ -92,10 +108,10 @@ define([
     FilterBox.prototype._preloadCodelists = function () {
 
         var r = [],
-            filters = this.o.filter,
+            filterItems = this.o.filter.items,
             self = this;
 
-        _.each(filters, function(filter) {
+        _.each(filterItems, function(filter) {
 
             var type = filter.type;
 
