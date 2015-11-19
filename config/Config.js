@@ -9,7 +9,7 @@ define(function () {
             "DATASOURCE": "production",
             "GOOGLE_ANALYTICS_ID": "UA-68486942-1",
             "FEEDBACK_SYSTEM_URL": "http://fenixapps.fao.org/feedbacksystem/",
-            "LOGLEVEL": "trace", // trace/debug/info/warn/error
+            "LOGLEVEL": "error", // trace/debug/info/warn/error
 
             //Chaplin JS configuration
             CHAPLINJS_CONTROLLER_SUFFIX: '-controller',

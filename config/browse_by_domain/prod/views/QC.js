@@ -6,20 +6,14 @@ define(function () {
 
     return {
 
-        "pdf" : [{
+        "pdf": [{}],
 
-        }],
-
-        "structure" :{
-
-        },
+        "structure": {},
 
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["QC"],
-                "whitelist": [],
-                "blacklist": []
+                "domain_code": ["QC"]
             },
 
             items: [
@@ -37,9 +31,6 @@ define(function () {
                         "dimension_id": "items",
                         "defaultCodes": ["27"],
                         "filter": {
-                            "domain_code": ["QC"],
-                            "whitelist": [],
-                            "blacklist": []
                         }
                     }
                 },
@@ -51,14 +42,13 @@ define(function () {
                     "componentType": {
                         <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-3",
-                        "type": "dropDownList",
+                        "type": "dropDownList"
                         //"multiple": true
                     },
                     "config": {
                         "dimension_id": "countries",
                         "defaultCodes": ["2"],
                         "filter": {
-                            "domain_code": ["QC"]
                         }
                     }
                 },
@@ -72,9 +62,8 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": [],
+                        "defaultCodes": ['1993'],
                         "filter": {
-                            "domain_code": ["QC"]
                         }
                     }
                 },
@@ -96,14 +85,15 @@ define(function () {
                         ]
                     }
                 }
-        ]
-    },
+            ]
+        },
 
         dashboard: {
 
             //data base filter
             defaultFilter: {
                 domain_code: 'QC',
+                List2Codes: ["2510"],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -119,47 +109,44 @@ define(function () {
                 // labels to dinamically substitute the title and subtitle
                 default: {
                     /*aggregation: {
-                        en: "Average",
-                        fr: "Moyenne",
-                        es: "Promedio"
-                    },
-                    year: "1993 - 2013",
-                    area: {
-                        "en": "Afghanistan",
-                        "fr": "Afghanistan",
-                        "es": "Afghanistan"
-                    },
-                    item: {
-                        "en": "Rice, milled",
-                        "fr": "Rice, milled",
-                        "es": "Rice, milled"
-                    }*/
+                     en: "Average",
+                     fr: "Moyenne",
+                     es: "Promedio"
+                     },
+                     year: "1993 - 2013",
+                     area: {
+                     "en": "Afghanistan",
+                     "fr": "Afghanistan",
+                     "es": "Afghanistan"
+                     },
+                     item: {
+                     "en": "Rice, milled",
+                     "fr": "Rice, milled",
+                     "es": "Rice, milled"
+                     }*/
                 }
             },
-
 
 
             //bridge configuration
             bridge: {
 
-                type: "faostat"
+                type: "faostat",
+                requestType: 'data' // data, rankings
 
             },
 
             metadata: {},
 
-            items:  [
+            items: [
                 {
-                    //id: 'faostat-QC-1',
                     type: 'map',
                     class: "col-xs-12",
 
                     // labels?
                     labels: {
                         // labels to dinamically substitute the title and subtitle
-                        default: {
-
-                        },
+                        default: {},
 
                         // temp[late to be applied to the config.template for the custom object
                         template: {
@@ -175,40 +162,27 @@ define(function () {
 
                     //height:'250px',
                     config: {
-                        template: {
-
-                        }
+                        template: {}
                     },
-                    allowedFilter: ['item', 'year', 'element' , 'aggregation'],
+                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
-                    filter:
-                        {
-                            // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                            List1Codes: ["5000>", "351"],
-                            List2Codes: ["2510"],
-                            //List3Codes: ["27"],
-                            //List4Codes: [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
-                            "group_by": 'year',
-                            "order_by": 'area',
-                            "operator": 'AVG',
-                            "page_size": 0,
-                            "page_number": 0
-                        }
+                    filter: {
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        List1Codes: ["5000>", "351"],
+                        "group_by": 'year',
+                        "order_by": 'area'
+                    },
+                    bridge: {
+                        requestType: 'rankings' // data, rankings
+                    }
                 },
                 {
-                    //id: 'faostat-QC-1',
                     type: 'chart',
                     class: "col-xs-12",
-                    //height:'250px !important;',
 
                     // labels?
                     labels: {
-                        // labels to dinamically substitute the title and subtitle
-                        default: {
-
-                        },
-
-                        // temp[late to be applied to the config.template for the custom object
+                        // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Production quantities of {{item}} in {{area}}",
@@ -230,26 +204,13 @@ define(function () {
                             seriesDimensions: ['area', 'item', 'element']
                         },
                         template: {
-                           // height:'350px'
+                            // height:'350px'
                             // default labels to be applied
                         },
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item'],
-                    filter:
-                    {
-                        domain_code: 'QC',
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["2"],
-                        List2Codes: ["2510"],
-                        List3Codes: ["27"],
-                        List4Codes: [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
-                        List5Codes: null,
-                        List6Codes: null,
-                        List7Codes: null,
-                        "page_size": 0,
-                        "page_number": 0
-                    }
+                    filter: {}
                 },
                 {
                     type: 'chart',
@@ -257,11 +218,6 @@ define(function () {
 
                     // labels?
                     labels: {
-                        // labels to dinamically substitute the title and subtitle
-                        default: {
-
-                        },
-
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
@@ -274,8 +230,6 @@ define(function () {
 
                     },
 
-                    //height:'250px',
-                    // style: 'height:250px',
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -286,29 +240,66 @@ define(function () {
                             seriesDimensions: ['area']
                         },
                         template: {
-                            height:'250px'
+                            height: '250px'
                         },
                         creator: {}
                     },
                     allowedFilter: ['year', 'item', 'aggregation'],
-                    filter:
-                    {
-                        domain_code: 'QC',
+                    filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                         List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        List2Codes: ["2510"],
-                        List3Codes: ["27"],
-                        List4Codes: [1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
-                        List5Codes: null,
-                        List6Codes: null,
-                        List7Codes: null,
                         "group_by": 'year',
-                        "order_by": 'area',
-                        "operator": 'AVG',
-                        "page_size": 0,
+                        "order_by": 'area'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // temp[template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Production of {{item}} top 5 producers",
+                                fr: "Production of {{item}} top 5 producers",
+                                es: "Production of {{item}} top 5 producers"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['element'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {
+                            // height:'350px'
+                            // default labels to be applied
+                        },
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    filter: {
+                        List1Codes: ["5000>"],
+                        "group_by": 'year',
+                        "order_by": 'value DESC',
+                        "page_size": 10,
                         "page_number": 0
                     }
-                }
+                },
             ]
         }
 
