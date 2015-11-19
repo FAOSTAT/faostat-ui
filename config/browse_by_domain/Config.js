@@ -1,5 +1,6 @@
 /*global define*/
-define(['jquery',
+define([
+    'jquery',
     'config/submodules/fx-chart/highcharts_template',
     'i18n!nls/browse_by_domain'
 ], function ($, HighchartsTemplate, i18n) {

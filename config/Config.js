@@ -10,6 +10,7 @@ define(function () {
             "GOOGLE_ANALYTICS_ID": "UA-68486942-1",
             "FEEDBACK_SYSTEM_URL": "http://fenixapps.fao.org/feedbacksystem/",
             "LOGLEVEL": "trace", // trace/debug/info/warn/error
+            "PDF_BASEPATH": "http://faostat3.fao.org/modules/faostat-download-js/PDF/",
 
             //Chaplin JS configuration
             CHAPLINJS_CONTROLLER_SUFFIX: '-controller',

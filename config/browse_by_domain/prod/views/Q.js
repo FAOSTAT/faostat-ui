@@ -6,307 +6,305 @@ define(function () {
 
     return {
 
-        "filter": [
-            {
-                "id": "items",
-                "type": "codelist",
-                //"title": "title",
-                "componentType": {
-                    "class": "col-lg-3",
-                    "type": "dropDownList"
+        "relatedViews" : [],
+
+        "comment": {
+            "text": {
+                "en": "Q Emissions of methane produced in digestive systems of livestock",
+                "es": "ES Emissions of methane produced in digestive systems of livestock",
+                "fr": "FR Emissions of methane produced in digestive systems of livestock"
+            },
+            pdf: "GA.pdf"
+        },
+
+        "filter": {
+
+            defaultFilter: {
+                "domain_code": ["QC"]
+            },
+
+            items: [
+                {
+                    "id": "item",
+                    "type": "codelist",
+                    // TODO: in theory that should come from the dimensions schema!!
+                    "parameter": "List3Codes",
+                    //"title": "title",
+                    "componentType": {
+                        "class": "col-lg-3",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "dimension_id": "items",
+                        "defaultCodes": ["27"],
+                        "filter": {
+                        }
+                    }
                 },
-                "config": {
-                    "dimension_id": "items",
-                    "defaultCodes": ["221"],
-                    "filter": {
-                        "domain_code": ["QC"],
-                        "whitelist": [],
-                        "blacklist": []
+                {
+                    // id to be applied on the getData request
+                    "id": "area",
+                    "type": "codelist",
+                    "parameter": "List1Codes",
+                    "componentType": {
+                        <!-- TODO: add a class instead of bootstrap -->
+                        "class": "col-lg-3",
+                        "type": "dropDownList"
+                        //"multiple": true
+                    },
+                    "config": {
+                        "dimension_id": "countries",
+                        "defaultCodes": ["2"],
+                        "filter": {
+                        }
+                    }
+                },
+                {
+                    "id": "year",
+                    "type": "codelist",
+                    "parameter": "List4Codes",
+                    "componentType": {
+                        "class": "col-lg-2",
+                        "type": "dropDownList-timerange"
+                    },
+                    "config": {
+                        "dimension_id": "year",
+                        "defaultCodes": ['1993'],
+                        "filter": {
+                        }
+                    }
+                },
+                {
+                    "id": "aggregation",
+                    "type": "static",
+                    // TODO: check data parameter
+                    "parameter": "operator",
+                    "componentType": {
+                        "class": "col-lg-2",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "defaultCodes": ["AVG"],
+                        "data": [
+                            // TODO: multilingual?
+                            {"code": "AVG", "label": "average", "selected": true},
+                            {"code": "SUM", "label": "sum", "selected": false}
+                        ]
                     }
                 }
-            },
-            {
-                // id to be applied on the getData request
-                "id": "area",
-                "type": "codelist",
-                "componentType": {
-                    <!-- TODO: add a class instead of bootstrap -->
-                    "class": "col-lg-3",
-                    "type": "dropDownList"
-                },
-                "config": {
-                    "dimension_id": "countries",
-                    "defaultCodes": ["2"],
-                    "filter": {
-                        "domain_code": ["QC"]
-                    }
-                }
-            },
-            {
-                "id": "year",
-                "type": "static",
-                "parameter": "List4Codes",
-                "componentType": {
-                    "class": "col-lg-2",
-                    "type": "dropDownList-timerange"
-                },
-                "config": {
-                    "defaultCodes": ["1993", "2013"],
-                    "data": [
-                        {"code": "2013", "label": "2013"},
-                        {"code": "2012", "label": "2012"},
-                        {"code": "2011", "label": "2011"},
-                        {"code": "2010", "label": "2010"},
-                        {"code": "2009", "label": "2009"},
-                        {"code": "2008", "label": "2008"},
-                        {"code": "2007", "label": "2007"},
-                        {"code": "2006", "label": "2006"},
-                        {"code": "2005", "label": "2005"},
-                        {"code": "2004", "label": "2004"},
-                        {"code": "2003", "label": "2003"},
-                        {"code": "2002", "label": "2002"},
-                        {"code": "2001", "label": "2001"},
-                        {"code": "2000", "label": "2000"},
-                        {"code": "1999", "label": "1999"},
-                        {"code": "1998", "label": "1998"},
-                        {"code": "1997", "label": "1997"},
-                        {"code": "1996", "label": "1996"},
-                        {"code": "1995", "label": "1995"},
-                        {"code": "1994", "label": "1994"},
-                        {"code": "1993", "label": "1993"}
-                    ]
-                }
-            },
-            {
-                "id": "aggregation",
-                "type": "static",
-                "componentType": {
-                    "class": "col-lg-2",
-                    "type": "dropDownList"
-                },
-                "config": {
-                    "defaultCodes": ["AVG"],
-                    "data": [
-                        // TODO: multilingual?
-                        {"code": "AVG", "label": "average", "selected": true},
-                        {"code": "SUM", "label": "sum", "selected": false}
-                    ]
-                }
-            }
-        ],
-
-        //"dashboard": {}
-
-
+            ]
+        },
 
         dashboard: {
-            //data cube's uid
-            uid: "FAOSTAT_QC",
 
             //data base filter
-            filter: [],
+            defaultFilter: {
+                domain_code: 'QC',
+                List2Codes: ["2510"],
+                List5Codes: null,
+                List6Codes: null,
+                List7Codes: null,
+                decimal_places: 2,
+                decimal_separator: ".",
+                limit: -1,
+                thousand_separator: ",",
+                "null_values": null
+            },
+
+            // labels?
+            labels: {
+                // labels to dinamically substitute the title and subtitle
+                default: {
+                    /*aggregation: {
+                     en: "Average",
+                     fr: "Moyenne",
+                     es: "Promedio"
+                     },
+                     year: "1993 - 2013",
+                     area: {
+                     "en": "Afghanistan",
+                     "fr": "Afghanistan",
+                     "es": "Afghanistan"
+                     },
+                     item: {
+                     "en": "Rice, milled",
+                     "fr": "Rice, milled",
+                     "es": "Rice, milled"
+                     }*/
+                }
+            },
+
 
             //bridge configuration
             bridge: {
 
-                type: "d3p"
+                type: "faostat",
+                requestType: 'data' // data, rankings
 
             },
 
             metadata: {},
 
-            items:  [
+            items: [
                 {
-                    //id: 'faostat-QC-1',
                     type: 'map',
-                    class: "col-lg-12",
-                    //height: "450px",
-                    //needed if layout = injected
-                    //container: "#faostat-QC-1",
-                    config: {
-                        //container: "#faostat-QC-1",
-                        leaflet: {
-                            zoomControl: false,
-                            attributionControl: true,
-                            scrollWheelZoom: false,
-                            minZoom: 2
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // labels to dinamically substitute the title and subtitle
+                        default: {},
+
+                        // temp[late to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Production quantities of {{item}} by country",
+                                fr: "Production quantities of {{item}} by country",
+                                es: "Production quantities of {{item}} by country"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
                         }
                     },
-                    // for now it takes the id, TODO: add uid as well
-                    allowedFilter: ['year', 'element', 'item'],
-                    filter: [
-                        {
-                            "name": "filter",
-                            "parameters": {
-                                "rows": {
-                                    "year": {
-                                        "time": [
-                                            {
-                                                "from": 2013,
-                                                "to": 2013
-                                            }
-                                        ]
-                                    },
-                                    "element": {
-                                        "codes": [
-                                            {
-                                                "uid": "FAOSTAT_Elements",
-                                                "codes": [
-                                                    "5312"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "item": {
-                                        "codes": [
-                                            {
-                                                "uid": "FAOSTAT_Items",
-                                                "codes": [
-                                                    "1717"
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    ]
+
+
+                    //height:'250px',
+                    config: {
+                        template: {}
+                    },
+                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        List1Codes: ["5000>", "351"],
+                        "group_by": 'year',
+                        "order_by": 'area'
+                    },
+                    /*                    bridge: {
+                     requestType: 'rankings' // data, rankings
+                     }*/
                 },
                 {
-                    //id: 'faostat-QC-2',
                     type: 'chart',
-                    class: "col-lg-6",
-                    height: "300px",
-                    //needed if layout = injected
-                    //container: "#faostat-QC-2",
-                    config: {
-                        //container: "#faostat-QC-2",
-                        adapter: {
-                            type: "timeserie",
-                            xDimensions: 'time',
-                            yDimensions: 'element',
-                            valueDimensions: 'value',
-                            seriesDimensions: ["element"]
-                        },
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // temp[template to be applied to the config.template for the custom object
                         template: {
-                            //"title": "Top 25..."
-                        },
-                        creator: {
+                            title: {
+                                en: "Production quantities of {{item}} in {{area}}",
+                                fr: "Production de {{item}} dans le {{area}}",
+                                es: "Producción de {{item}} en {{area}}"
+                            },
+                            subtitle: "{{year}}"
                         }
                     },
-                    // for now it takes the id, TODO: add uid as well
-                    allowedFilter: ['country', 'item', 'element'],
-                    filter: [
-                        {
-                            "name": "filter",
-                            "parameters": {
-                                "rows": {
 
-                                    "country": {
-                                        "codes": [
-                                            {
-                                                "uid": "FAOSTAT_Countries",
-                                                "codes": [
-                                                    "33"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "element": {
-                                        "codes": [
-                                            {
-                                                "uid": "FAOSTAT_Elements",
-                                                "codes": [
-                                                    "5312"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "item": {
-                                        "codes": [
-                                            {
-                                                "uid": "FAOSTAT_Items",
-                                                "codes": [
-                                                    "1717"
-                                                ]
-                                            }
-                                        ]
-
-                                    }
-                                }
-                            }
-                        }
-                    ]
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "timeserie",
+                            xDimensions: 'year',
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area', 'item', 'element']
+                        },
+                        template: {
+                            // height:'350px'
+                            // default labels to be applied
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['area', 'year', 'item'],
+                    filter: {}
                 },
                 {
-                    //id: 'faostat-QC-2',
                     type: 'chart',
-                    class: "col-lg-6",
-                    height: "450px",
-                    //needed if layout = injected
-                    //container: "#faostat-QC-2",
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // temp[late to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Production share of {{item}} by region",
+                                fr: "Part de la production de {{item}} par région",
+                                es: "Proporción de producción de {{item}} por región"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+
+                    },
+
                     config: {
-                        //container: "#faostat-QC-2",
                         adapter: {
-                            type: "timeserie",
-                            xDimensions: 'time',
-                            yDimensions: 'element',
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
                             valueDimensions: 'value',
-                            seriesDimensions: ["element"]
+                            seriesDimensions: ['area']
                         },
                         template: {
-                            //"title": "Top 25..."
+                            height: '250px'
                         },
-                        creator: {
+                        creator: {}
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    filter: {
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        "group_by": 'year',
+                        "order_by": 'area'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // temp[template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Production of {{item}} top 5 producers",
+                                fr: "Production of {{item}} top 5 producers",
+                                es: "Production of {{item}} top 5 producers"
+                            },
+                            subtitle: "{{year}}"
                         }
                     },
-                    // for now it takes the id, TODO: add uid as well
-                    allowedFilter: ['country', 'item', 'element'],
-                    filter: [
-                        {
-                            "name": "filter",
-                            "parameters": {
-                                "rows": {
 
-                                    "country": {
-                                        "codes": [
-                                            {
-                                                "uid": "FAOSTAT_Countries",
-                                                "codes": [
-                                                    "33"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "element": {
-                                        "codes": [
-                                            {
-                                                "uid": "FAOSTAT_Elements",
-                                                "codes": [
-                                                    "5312"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "item": {
-                                        "codes": [
-                                            {
-                                                "uid": "FAOSTAT_Items",
-                                                "codes": [
-                                                    "1717"
-                                                ]
-                                            }
-                                        ]
-
-                                    }
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['element'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {
+                            // height:'350px'
+                            // default labels to be applied
+                        },
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
                                 }
                             }
                         }
-                    ]
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    filter: {
+                        List1Codes: ["5000>"],
+                        "group_by": 'year',
+                        "order_by": 'value DESC',
+                        "limit": '10'
+                    }
                 }
-
             ]
-
         }
 
     }
