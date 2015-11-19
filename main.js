@@ -99,6 +99,8 @@ require([
                     rsvp: '{FENIX_CDN}/js/rsvp/3.0.17/rsvp',
                     amplify: '{FENIX_CDN}/js/amplify/1.1.2/amplify.min',
                     select2: '{FENIX_CDN}/js/select2/3.5.4/select2.min',
+                    loglevel: '{FENIX_CDN}/js/loglevel/1.4.0/loglevel',
+
                     nls: "../../i18n",
                     config: "../../config",
                     json: "../../json",
@@ -199,15 +201,19 @@ require([
         'globals/Common',
         'config/Events',
         'globals/GoogleAnalyticsManager',
+        'loglevel',
         'amplify',
         'domReady!'
-    ], function (Application, routes, C, Common, E, GoogleAnalyticsManager) {
+    ], function (Application, routes, C, Common, E, GoogleAnalyticsManager, log) {
 
         Common.setLocale(requirejs.s.contexts._.config.locale);
 
         // Mapping GoogleAnalyticsManager
         amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
         amplify.publish(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
+
+        // setting global LOGLEVEL level
+        log.setLevel(C.LOGLEVEL);
 
         // TODO: use locale or lang?
         //amplify.store( 'locale', requirejs.s.contexts._.config.locale);
