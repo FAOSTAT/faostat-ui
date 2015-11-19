@@ -287,9 +287,13 @@ define([
                             if (isChecked) {
                                 $('th[data-type="flag"]').css('display', 'table-cell');
                                 $('td[data-type="flag"]').css('display', 'table-cell');
+                                $('th[data-type="flag_label"]').css('display', 'table-cell');
+                                $('td[data-type="flag_label"]').css('display', 'table-cell');
                             } else {
                                 $('th[data-type="flag"]').css('display', 'none');
                                 $('td[data-type="flag"]').css('display', 'none');
+                                $('th[data-type="flag_label"]').css('display', 'none');
+                                $('td[data-type="flag_label"]').css('display', 'none');
                             }
                         },
                         onUnitsChange: function (isChecked) {
