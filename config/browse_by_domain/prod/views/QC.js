@@ -172,9 +172,9 @@ define(function () {
                         "group_by": 'year',
                         "order_by": 'area'
                     },
-                    bridge: {
+/*                    bridge: {
                         requestType: 'rankings' // data, rankings
-                    }
+                    }*/
                 },
                 {
                     type: 'chart',
@@ -192,8 +192,7 @@ define(function () {
                             subtitle: "{{year}}"
                         }
                     },
-
-
+                    
                     config: {
                         adapter: {
                             adapterType: 'faostat',
