@@ -1,6 +1,7 @@
 /*global define, _:false, $, console, amplify, require*/
 define([
     'jquery',
+    'loglevel',
     'views/base/view',
     'config/FAOSTAT',
     'config/Config',
@@ -8,6 +9,8 @@ define([
     'config/Events',
     'config/browse_by_domain/Config',
     'text!templates/browse/browse_by_domain.hbs',
+    'text!templates/browse/view.hbs',
+    'text!templates/browse/related_views.hbs',
     'i18n!nls/browse_by_domain',
     'handlebars',
     'globals/Common',
@@ -15,7 +18,7 @@ define([
     'lib/filters/filter-box',
     'fx-ds/start',
     'amplify'
-], function ($, View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard) {
+], function ($, log, View, F, C, Q, E, CM, template, templateView, templateRelatedViews, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard) {
 
     'use strict';
 
@@ -23,7 +26,9 @@ define([
 
             TREE: "#fs-browse-by-domain-tree",
             VIEW_TITLE: "#fs-browse-by-domain-view-title",
-            //VIEW: "#fs-browse-by-domain-view",
+            VIEW: "#fs-browse-by-domain-view",
+            RELATED_VIEWS: "#fs-browse-by-domain-view-related-views",
+
             FILTER_BOX: "[data-role='filter-box']",
             DASHBOARD: "[data-role='dashboard']"
 
@@ -82,9 +87,7 @@ define([
             this.$TREE = this.$el.find(s.TREE);
             this.$VIEW_TITLE = this.$el.find(s.VIEW_TITLE);
             this.$VIEW = this.$el.find(s.VIEW);
-
-            this.$FILTER_BOX = this.$el.find(s.FILTER_BOX);
-            this.$DASHBOARD = this.$el.find(s.DASHBOARD);
+            this.$RELATED_VIEWS = this.$el.find(s.RELATED_VIEWS);
 
         },
 
@@ -120,12 +123,6 @@ define([
                         // update view
                         this.updateView();
 
-                        // change url state
-
-                        // initialize the view
-
-                        //this.changeState();
-
                     }, this)
 
                 }
@@ -135,17 +132,18 @@ define([
 
         updateView: function() {
             var code = this.o.code,
-                label = this.o.label;
+                title = this.o.label;
 
-            this.$VIEW_TITLE.html(label);
+            this.$VIEW_TITLE.html(title);
+            this.$RELATED_VIEWS.empty();
 
             var obj = {
                 container: this.$VIEW,
+                containerRelatedViews: this.$RELATED_VIEWS,
                 basePath:CM.viewsBasePath,
                 viewID: code
-            }
+            };
 
-            //this.createView(obj);
             this.createView(obj);
 
         },
@@ -156,13 +154,14 @@ define([
 
         bindEventListeners: function () {
 
-            amplify.subscribe(E.VIEW_FILTER_BOX_LOADED, _.bind(this.updateDashboard, this));
+            amplify.subscribe(E.VIEW_FILTER_BOX_LOADED, _.bind(this.loadDashBoard, this));
             amplify.subscribe(E.VIEW_FILTER_CHANGE, _.bind(this.updateDashboard, this));
 
         },
 
         unbindEventListeners: function () {
 
+            amplify.unsubscribe(E.VIEW_FILTER_BOX_LOADED, _.bind(this.loadDashBoard, this));
             amplify.unsubscribe(E.VIEW_FILTER_CHANGE, _.bind(this.updateDashboard, this));
 
         },
@@ -180,17 +179,63 @@ define([
             View.prototype.dispose.call(this, arguments);
         },
 
-
-
-
         // TODO: move to a common area for all the modules? (create a submodule?)
-        createView: function(config) {
+        createView: function(c) {
 
-            var container = config.container,
-                lang = this.o.lang;
+             var lang = this.o.lang,
+                basePath = c.basePath || CM.viewsBasePath,
+                updatedRelatedViews = (c.updatedRelatedViews !== undefined)? c.updatedRelatedViews: true;
+
+
+            this.$VIEW.empty();
 
             // get and render the right view
-            require([config.basePath + config.viewID], _.bind(function(view) {
+            require([basePath+ c.viewID], _.bind(function(view) {
+
+                // extending view
+                view = $.extend(true, {}, c.config, view);
+
+                // prepare data
+                //comment
+                if (view.hasOwnProperty('comment')) {
+                    // TODO: switch to handlebars helpers with language
+                    if (view.comment.hasOwnProperty('text')) {
+                        view.comment.text = view.comment.text[lang] || view.comment.text;
+                    }
+                    if (view.comment.hasOwnProperty('pdf')) {
+                        view.comment.url = C.PDF_BASEPATH + lang.toUpperCase() + "/" + view.comment.pdf;
+                    }
+                }
+
+                var template, dynamic_data, html;
+
+                /* Load main structure. */
+                //source = $(templates).filter('#faostat_ui_standards_units_table').html();
+                var t = Handlebars.compile(templateView);
+                this.$VIEW.append(t(view));
+
+
+                // TODO: review the relatedViews template part
+                if ( updatedRelatedViews) {
+
+                    var t = Handlebars.compile(templateRelatedViews);
+                    this.$RELATED_VIEWS.html(t({relatedViews: view.relatedViews}));
+
+                    this.$RELATED_VIEWS.find('.nav-tabs').on('click', _.bind(function (e) {
+                        var viewID = $(e.target).data("view");
+
+                        this.createView({
+                            viewID: viewID,
+                            updatedRelatedViews: false
+                        })
+
+                    }, this));
+
+                }
+
+
+                this.$FILTER_BOX = this.$VIEW.find(s.FILTER_BOX);
+                this.$DASHBOARD = this.$VIEW.find(s.DASHBOARD);
 
                 var filter = view.filter || null,
                     dashboard = view.dashboard || null;
@@ -198,7 +243,7 @@ define([
                 // render structure (structure i.e. change view on click selection)
 
                 // render filters
-                if (filter) {
+                if (filter !== null) {
                     this.renderFilter({
                         filter: filter,
                         container: this.$FILTER_BOX,
@@ -207,7 +252,7 @@ define([
                 }
 
                 // render dashboard
-                if (dashboard) {
+                if (dashboard !== null) {
                     this.renderDashboard($.extend(true, {}, view.dashboard, {
                         container: this.$DASHBOARD,
                         layout: 'fluid',
@@ -251,17 +296,26 @@ define([
 
             this.dashboard.render(config);
 
-            // for each item set default configs
+        },
+
+
+        loadDashBoard: function() {
+
+          this.updateDashboard({isOnLoad : true} );
 
         },
 
-        updateDashboard: function() {
+
+        updateDashboard: function(c) {
+
+            var isOnLoad = c.isOnLoad || false;
 
             // getFilters
             var filters = this.filterBox.getFilters();
 
+            log.info(isOnLoad)
             // apply filters to dashboard
-            this.dashboard.filter(filters);
+            this.dashboard.filter(filters, isOnLoad);
 
         },
 

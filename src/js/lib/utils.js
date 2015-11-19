@@ -45,7 +45,7 @@ define([
     });
 
     utils.getLabel = function (obj) {
-        return obj[requirejs.s.contexts._.config.i18n.locale.toUpperCase()];
+        return obj[requirejs.s.contexts._.config.i18n.locale.toUpperCase()] || obj[requirejs.s.contexts._.config.i18n.locale.toLowerCase];
     };
 
     return utils;
