@@ -2,6 +2,7 @@
 /*jslint todo: true */
 /*jslint nomen: true */
 define([
+    'jquery',
     'views/base/view',
     'config/Config',
     'config/Events',
@@ -15,7 +16,8 @@ define([
     'views/standards-glossary-view',
     'globals/Common',
     'amplify'
-], function (View,
+], function ($,
+             View,
              C,
              E,
              template,

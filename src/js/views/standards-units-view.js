@@ -1,7 +1,8 @@
-/*global define, _:false, $, console, amplify, FM*/
+/*global define, _:false, amplify, FM*/
 /*jslint todo: true */
 /*jslint nomen: true */
 define([
+    'jquery',
     'views/base/view',
     'config/Config',
     'config/Events',
@@ -12,8 +13,9 @@ define([
     'faostatapiclient',
     'list',
     'handlebars',
-    'amplify',
-], function (View,
+    'amplify'
+], function ($,
+             View,
              C,
              E,
              Common,

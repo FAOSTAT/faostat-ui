@@ -1,5 +1,6 @@
 /*global define, _:false, $, console, amplify, require*/
 define([
+    'jquery',
     'views/base/view',
     'config/FAOSTAT',
     'config/Config',
@@ -14,7 +15,7 @@ define([
     'lib/filters/filter-box',
     'fx-ds/start',
     'amplify'
-], function (View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard) {
+], function ($, View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard) {
 
     'use strict';
 

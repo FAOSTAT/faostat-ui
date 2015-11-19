@@ -1,5 +1,6 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
+    'jquery',
     'views/base/view',
     'config/FAOSTAT',
     'config/Config',
@@ -12,7 +13,7 @@ define([
     'globals/Common',
     'FAOSTAT_UI_TREE',
     'amplify'
-], function (View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree) {
+], function ($, View, F, C, Q, E, CM, template, i18nLabels, Handlebars, Common, Tree) {
 
     'use strict';
 

@@ -2,6 +2,7 @@
 /*jslint todo: true */
 /*jslint nomen: true */
 define([
+    'jquery',
     'views/base/view',
     'config/Config',
     'config/Events',
@@ -12,8 +13,9 @@ define([
     'faostatapiclient',
     'handlebars',
     'jstree',
-    'amplify',
-], function (View,
+    'amplify'
+], function ($,
+             View,
              C,
              E,
              Common,

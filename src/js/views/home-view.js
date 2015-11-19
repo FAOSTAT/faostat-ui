@@ -1,5 +1,6 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
+    'jquery',
     'views/base/view',
     'config/Config',
     'config/Queries',
@@ -9,7 +10,7 @@ define([
     'handlebars',
     'fx-common/WDSClient',
     'amplify'
-], function (View, C, Q, E, template, i18nLabels, Handlebars, WDSClient) {
+], function ($, View, C, Q, E, template, i18nLabels, Handlebars, WDSClient) {
 
     'use strict';
 
@@ -47,11 +48,6 @@ define([
 
         initComponents: function () {
 
-            this.WDSClient = new WDSClient({
-                serviceUrl: C.WDS_URL,
-                datasource: C.DB_NAME,
-                outputType : C.WDS_OUTPUT_TYPE
-            });
         },
 
         configurePage: function () {

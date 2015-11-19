@@ -18,7 +18,7 @@ define([
     //'views/compare-filter-view-backup',
     'lib/compare/compare-filter',
     'q',
-    'amplify',
+    'amplify'
 ], function ($, View, Common, F, C, E, EC, CC, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
 
     'use strict';

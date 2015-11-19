@@ -1,5 +1,6 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
+    'jquery',
     'globals/Common',
     /* TODO: move to another folder? */
     'text!lib/compare/templates/compare_filter.hbs',
@@ -10,7 +11,7 @@ define([
     'underscore',
     'select2',
     'amplify'
-], function (Common, templateFilter, templateDropDown, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
+], function ($, Common, templateFilter, templateDropDown, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
 
     'use strict';
 

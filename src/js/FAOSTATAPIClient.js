@@ -1,5 +1,8 @@
 /*global define,Q*/
-define(['jquery', 'q'], function ($, Q) {
+define([
+    'jquery',
+    'q'
+], function ($, Q) {
 
     'use strict';
 

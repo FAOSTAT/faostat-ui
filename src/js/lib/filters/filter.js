@@ -1,14 +1,16 @@
-/*global define, _:false, $, console, amplify, FM*/
+/*global define, _:false, amplify, FM*/
 define([
+    'jquery',
     'globals/Common',
     'config/Events',
     'text!lib/filters/templates/filter.hbs',
     'i18n!nls/filter',
     'handlebars',
     'underscore',
+    'loglevel',
     'select2',
     'amplify'
-], function (Common, E, templateFilter, i18nLabels, Handlebars, _) {
+], function ($, Common, E, templateFilter, i18nLabels, Handlebars, _, log) {
 
     'use strict';
 
@@ -26,7 +28,7 @@ define([
     function Filter() {
 
         return this;
-    };
+    }
 
     Filter.prototype.init = function (options) {
 
@@ -87,7 +89,7 @@ define([
 
         if (this.o.config.defaultCodes === undefined) {
             // TODO: trhrow an error
-            console.error('timerange filter is not properly configured.');
+            log.error('timerange filter is not properly configured.');
         }
 
         // tODO check if this.o.config.defaultCodes exists
@@ -115,8 +117,6 @@ define([
     };
 
     Filter.prototype.getTimerangeData = function (data, select) {
-
-        console.log(select);
 
         var values = [];
         _.each(data, function(d, index) {
@@ -209,7 +209,7 @@ define([
 
         // TODO: remove the alert?
         if (f.codes.length <= 0) {
-            console.log(i18nLabels);
+            log.info(i18nLabels);
             amplify.publish(E.NOTIFICATION_WARNING, {
                 title: i18nLabels.warning,
                 text: 'Range Date selection is not valid: From year: ' + this.$DD_FROM_YEAR.val() + " To year:" + this.$DD_TO_YEAR.val()
@@ -243,8 +243,6 @@ define([
     };
 
     Filter.prototype.unbindEventListeners = function () {
-
-
 
     };
 

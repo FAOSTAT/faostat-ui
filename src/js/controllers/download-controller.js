@@ -1,5 +1,8 @@
 /*global define*/
-define(['controllers/base/controller', 'views/download-view'], function (Controller, View) {
+define([
+    'controllers/base/controller',
+    'views/download-view'
+], function (Controller, View) {
 
     'use strict';
 

@@ -1,5 +1,6 @@
-/*global define, _:false, $, console, amplify, FM*/
+/*global define, _:false, $, amplify, FM */
 define([
+    'jquery',
     'globals/Common',
     'config/Config',
     'config/Events',
@@ -9,8 +10,9 @@ define([
     'underscore',
     'lib/filters/filter',
     'q',
-    'amplify',
-], function (Common, C, E, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
+    'loglevel',
+    'amplify'
+], function ($, Common, C, E, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q, log) {
 
     'use strict';
 
@@ -173,7 +175,7 @@ define([
         return config;
     };
 
-    FilterBox.prototype.getFilters = function (config) {
+    FilterBox.prototype.getFilters = function () {
 
         var f = [];
         _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
@@ -191,7 +193,7 @@ define([
             this.$CONTAINER.empty();
         }
 
-        console.error("Handle destroy");
+        log.error("Handle destroy");
 
     };
 

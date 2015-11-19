@@ -1,5 +1,6 @@
-/*global define, _:false, $, console, amplify, FM*/
+/*global define, _:false, console, amplify, FM*/
 define([
+    'jquery',
     'views/base/view',
     'config/FAOSTAT',
     'config/Config',
@@ -10,7 +11,7 @@ define([
     'handlebars',
     'globals/Common',
     'amplify'
-], function (View, F, C, Q, E, template, i18nLabels, Handlebars, Common) {
+], function ($, View, F, C, Q, E, template, i18nLabels, Handlebars, Common) {
 
     'use strict';
 
