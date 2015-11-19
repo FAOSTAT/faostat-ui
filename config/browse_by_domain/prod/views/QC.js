@@ -8,8 +8,6 @@ define(function () {
 
         "pdf": [{}],
 
-        "structure": {},
-
         "filter": {
 
             defaultFilter: {
@@ -268,7 +266,6 @@ define(function () {
                         }
                     },
 
-
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -295,10 +292,9 @@ define(function () {
                         List1Codes: ["5000>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
-                        "page_size": 10,
-                        "page_number": 0
+                        "limit": 10
                     }
-                },
+                }
             ]
         }
 
