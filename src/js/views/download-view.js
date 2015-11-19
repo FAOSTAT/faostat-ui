@@ -479,7 +479,8 @@ define([
                     lang: that.options.lang,
                     page_size: that.page_size,
                     page_number: config !== undefined ? config.page_number || 1 : 1,
-                    group_by: null
+                    group_by: null,
+                    decimal_places: 2
                 }).then(function (json) {
                     that.show_preview(json);                });
 
@@ -586,7 +587,12 @@ define([
                 metadata,
                 table,
                 dwld_options = this.options_manager.get_options_window('preview_options').collect_user_selection(null),
-                user_selection;
+                user_selection,
+                i,
+                fields = {},
+                yfields = [],
+                xfields = [],
+                zfields = [];
 
             /* Render either the table or the pivot. */
             switch (this.options_manager.get_options_window('preview_options').get_output_type()) {
@@ -618,25 +624,56 @@ define([
                     downloadOutputArea.data('jbPivot').reset();
                     downloadOutputArea.data('jbPivot').insertRecords(response.data);
                 } catch (e) {
+
+                    /* Configure the pivot according to the DB settings. */
+                    for (i = 0; i < response.metadata.dsd.length; i += 1) {
+                        switch (response.metadata.dsd[i].type) {
+                        case 'code':
+                            break;
+                        case 'value':
+                            fields[response.metadata.dsd[i].label] = {
+                                field: response.metadata.dsd[i].label,
+                                sort: 'asc',
+                                showAll: true,
+                                aggregateType: 'average',
+                                groupType: 'none',
+                                formatter: this.pivot_value_formatter
+                            };
+                            break;
+                        default:
+                            fields[response.metadata.dsd[i].label] = {
+                                field: response.metadata.dsd[i].label,
+                                sort: 'asc',
+                                showAll: true,
+                                aggregateType: 'distinct'
+                            };
+                            break;
+                        }
+                        if (response.metadata.dsd[i].type !== 'code') {
+                            switch (response.metadata.dsd[i].pivot) {
+                            case 'C':
+                                yfields.push(response.metadata.dsd[i].label);
+                                break;
+                            case 'R':
+                                xfields.push(response.metadata.dsd[i].label);
+                                break;
+                            case 'V':
+                                zfields.push(response.metadata.dsd[i].label);
+                                break;
+                            }
+                        }
+                    }
+
+                    console.debug(fields);
+                    console.debug(yfields);
+                    console.debug(xfields);
+                    console.debug(zfields);
+
                     downloadOutputArea.jbPivot({
-                        fields: {
-                            Country : {field: 'Country', sort: 'asc', showAll: true, agregateType: 'distinct'},
-                            Item : {field: 'Item', sort: 'asc', showAll: true, agregateType: 'distinct'},
-                            Element : {field: 'Element', sort: 'asc', showAll: true, agregateType: 'distinct'},
-                            Unit : {field: 'Unit', sort: 'asc', showAll: true, agregateType: 'distinct'},
-                            Flag : {field: 'Flag', sort: 'asc', showAll: true, agregateType: 'distinct'},
-                            Year : {field: 'Year', sort: 'desc', showAll: true, agregateType: 'distinct'},
-                            average: {field: 'Value', agregateType: 'average', groupType: 'none', label: 'Value', formatter: function (V, f) {
-                                var res = null;
-                                if (typeof V === "number") {
-                                    res = V.toFixed(2);
-                                }
-                                return res;
-                            }}
-                        },
-                        yfields: ['Year'],
-                        xfields: ['Country', 'Element', 'Item'],
-                        zfields: ['average', 'Unit', 'Flag'],
+                        fields: fields,
+                        yfields: yfields,
+                        xfields: xfields,
+                        zfields: zfields,
                         data: response.data,
                         copyright: false,
                         summary: false
@@ -710,6 +747,14 @@ define([
 
             }
 
+        },
+
+        pivot_value_formatter: function (V) {
+            var res = null;
+            if (typeof V === 'number') {
+                res = V.toFixed(2);
+            }
+            return res;
         },
 
         create_table_headers: function (dsd) {

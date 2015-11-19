@@ -3,7 +3,7 @@ define(['jquery', 'q'], function ($, Q) {
 
     'use strict';
 
-    function RESTClient(config) {
+    function FAOSTATAPIClient(config) {
 
         /* Store configuration. */
         this.CONFIG = {
@@ -15,7 +15,76 @@ define(['jquery', 'q'], function ($, Q) {
 
     }
 
-    RESTClient.prototype.data = function (config) {
+    FAOSTATAPIClient.prototype.rankings = function (config) {
+        config = $.extend(true, {}, this.CONFIG, config || {});
+        config = this.apply_rankings_defaults(config);
+        if (this.is_valid_rankings(config)) {
+            return Q($.ajax({
+                url: this.CONFIG.base_url + config.lang + '/rankings/',
+                traditional: true,
+                data: {
+                    "datasource": config.datasource,
+                    "output_type": config.output_type,
+                    "api_key": config.api_key,
+                    "client_key": config.client_key,
+                    "domain_codes": config.domain_codes,
+                    "List1Codes": config.List1Codes,
+                    "List2Codes": config.List2Codes,
+                    "List3Codes": config.List3Codes,
+                    "List4Codes": config.List4Codes,
+                    "List5Codes": config.List5Codes,
+                    "List6Codes": config.List6Codes,
+                    "List7Codes": config.List7Codes,
+                    "filter_list": config.filter_list,
+                    "rank_type": config.rank_type,
+                    "results": config.results
+                },
+                type: 'POST'
+            }));
+        }
+        throw 400;
+    };
+
+    FAOSTATAPIClient.prototype.is_valid_rankings = function (config) {
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "filter_list", "rank_type", "results"], i;
+        for (i = 0; i < parameters.length; i += 1) {
+            if (config[parameters[i]] === undefined) {
+                throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
+            }
+        }
+        return true;
+    };
+
+    FAOSTATAPIClient.prototype.apply_rankings_defaults = function (config) {
+        var i,
+            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "filter_list", "rank_type", "results"],
+            defaults = {
+                "datasource": "production",
+                "output_type": "objects",
+                "api_key": "n.a.",
+                "client_key": "n.a.",
+                "lang": "en",
+                "rank_type": "ASC",
+                "results": "5"
+            },
+            key;
+        for (i = 0; i < Object.keys(defaults).length; i += 1) {
+            if (defaults[Object.keys(defaults)[i]] === '[]') {
+                defaults[Object.keys(defaults)[i]] = [];
+            }
+        }
+        for (i = 0; i < parameters.length; i += 1) {
+            key = parameters[i];
+            try {
+                config[key] = config[key] !== undefined ? config[key] : defaults[key];
+            } catch (ignore) {
+                /* No default value available for this parameter. */
+            }
+        }
+        return config;
+    };
+
+    FAOSTATAPIClient.prototype.data = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_data_defaults(config);
         if (this.is_valid_data(config)) {
@@ -28,6 +97,7 @@ define(['jquery', 'q'], function ($, Q) {
                     "api_key": config.api_key,
                     "client_key": config.client_key,
                     "domain_code": config.domain_code,
+                    "decimal_places": config.decimal_places,
                     "List1Codes": config.List1Codes,
                     "List2Codes": config.List2Codes,
                     "List3Codes": config.List3Codes,
@@ -48,8 +118,8 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_data = function (config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "page_number"], i;
+    FAOSTATAPIClient.prototype.is_valid_data = function (config) {
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "page_number"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -58,15 +128,16 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_data_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_data_defaults = function (config) {
         var i,
-            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "page_number"],
+            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "page_number"],
             defaults = {
                 "datasource": "production",
                 "output_type": "objects",
                 "api_key": "n.a.",
                 "client_key": "n.a.",
                 "lang": "en",
+                "decimal_places": "2",
                 "null_values": "false",
                 "group_by": "",
                 "order_by": "",
@@ -91,7 +162,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.authentication = function (config) {
+    FAOSTATAPIClient.prototype.authentication = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_authentication_defaults(config);
         if (this.is_valid_authentication(config)) {
@@ -112,7 +183,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_authentication = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_authentication = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "username", "password"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -122,7 +193,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_authentication_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_authentication_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "username", "password"],
             defaults = {
@@ -149,7 +220,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.abbreviations = function (config) {
+    FAOSTATAPIClient.prototype.abbreviations = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_abbreviations_defaults(config);
         if (this.is_valid_abbreviations(config)) {
@@ -168,7 +239,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_abbreviations = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_abbreviations = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -178,7 +249,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_abbreviations_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_abbreviations_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang"],
             defaults = {
@@ -205,7 +276,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.glossary = function (config) {
+    FAOSTATAPIClient.prototype.glossary = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_glossary_defaults(config);
         if (this.is_valid_glossary(config)) {
@@ -224,7 +295,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_glossary = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_glossary = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -234,7 +305,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_glossary_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_glossary_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang"],
             defaults = {
@@ -261,7 +332,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.units = function (config) {
+    FAOSTATAPIClient.prototype.units = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_units_defaults(config);
         if (this.is_valid_units(config)) {
@@ -280,7 +351,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_units = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_units = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -290,7 +361,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_units_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_units_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang"],
             defaults = {
@@ -317,7 +388,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.classifications = function (config) {
+    FAOSTATAPIClient.prototype.classifications = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_classifications_defaults(config);
         if (this.is_valid_classifications(config)) {
@@ -336,7 +407,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_classifications = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_classifications = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -346,7 +417,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_classifications_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_classifications_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"],
             defaults = {
@@ -373,7 +444,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.methodology = function (config) {
+    FAOSTATAPIClient.prototype.methodology = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_methodology_defaults(config);
         if (this.is_valid_methodology(config)) {
@@ -392,7 +463,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_methodology = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_methodology = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "id"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -402,7 +473,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_methodology_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_methodology_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "id"],
             defaults = {
@@ -429,7 +500,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.methodologies = function (config) {
+    FAOSTATAPIClient.prototype.methodologies = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_methodologies_defaults(config);
         if (this.is_valid_methodologies(config)) {
@@ -448,7 +519,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_methodologies = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_methodologies = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -458,7 +529,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_methodologies_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_methodologies_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang"],
             defaults = {
@@ -485,7 +556,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.dimensions = function (config) {
+    FAOSTATAPIClient.prototype.dimensions = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_dimensions_defaults(config);
         if (this.is_valid_dimensions(config)) {
@@ -504,7 +575,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_dimensions = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_dimensions = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -514,7 +585,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_dimensions_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_dimensions_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"],
             defaults = {
@@ -541,7 +612,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.codes = function (config) {
+    FAOSTATAPIClient.prototype.codes = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_codes_defaults(config);
         if (this.is_valid_codes(config)) {
@@ -568,7 +639,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_codes = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_codes = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "domain_code", "lang", "id", "domains", "whitelist", "blacklist", "group_subdimensions", "subcodelists", "show_lists", "show_full_metadata", "ord"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -578,7 +649,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_codes_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_codes_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "domain_code", "lang", "id", "domains", "whitelist", "blacklist", "group_subdimensions", "subcodelists", "show_lists", "show_full_metadata", "ord"],
             defaults = {
@@ -611,7 +682,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.groups = function (config) {
+    FAOSTATAPIClient.prototype.groups = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_groups_defaults(config);
         if (this.is_valid_groups(config)) {
@@ -620,6 +691,8 @@ define(['jquery', 'q'], function ($, Q) {
                 traditional: true,
                 data: {
                     "datasource": config.datasource,
+                    "whitelist": config.whitelist,
+                    "blacklist": config.blacklist,
                     "output_type": config.output_type,
                     "api_key": config.api_key,
                     "client_key": config.client_key
@@ -630,8 +703,8 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_groups = function (config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang"], i;
+    FAOSTATAPIClient.prototype.is_valid_groups = function (config) {
+        var parameters = ["datasource", "whitelist", "blacklist", "output_type", "api_key", "client_key", "lang"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -640,11 +713,13 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_groups_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_groups_defaults = function (config) {
         var i,
-            parameters = ["datasource", "output_type", "api_key", "client_key", "lang"],
+            parameters = ["datasource", "whitelist", "blacklist", "output_type", "api_key", "client_key", "lang"],
             defaults = {
                 "datasource": "production",
+                "whitelist": "[]",
+                "blacklist": "[]",
                 "output_type": "objects",
                 "api_key": "n.a.",
                 "client_key": "n.a.",
@@ -667,7 +742,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.domains = function (config) {
+    FAOSTATAPIClient.prototype.domains = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_domains_defaults(config);
         if (this.is_valid_domains(config)) {
@@ -688,7 +763,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_domains = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_domains = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "group_code", "whitelist", "blacklist"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -698,7 +773,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_domains_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_domains_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "group_code", "whitelist", "blacklist"],
             defaults = {
@@ -727,7 +802,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.bulkdownloads = function (config) {
+    FAOSTATAPIClient.prototype.bulkdownloads = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_bulkdownloads_defaults(config);
         if (this.is_valid_bulkdownloads(config)) {
@@ -746,7 +821,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_bulkdownloads = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_bulkdownloads = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -756,7 +831,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_bulkdownloads_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_bulkdownloads_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"],
             defaults = {
@@ -783,7 +858,7 @@ define(['jquery', 'q'], function ($, Q) {
         return config;
     };
 
-    RESTClient.prototype.groupsanddomains = function (config) {
+    FAOSTATAPIClient.prototype.groupsanddomains = function (config) {
         config = $.extend(true, {}, this.CONFIG, config || {});
         config = this.apply_groupsanddomains_defaults(config);
         if (this.is_valid_groupsanddomains(config)) {
@@ -802,7 +877,7 @@ define(['jquery', 'q'], function ($, Q) {
         throw 400;
     };
 
-    RESTClient.prototype.is_valid_groupsanddomains = function (config) {
+    FAOSTATAPIClient.prototype.is_valid_groupsanddomains = function (config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -812,7 +887,7 @@ define(['jquery', 'q'], function ($, Q) {
         return true;
     };
 
-    RESTClient.prototype.apply_groupsanddomains_defaults = function (config) {
+    FAOSTATAPIClient.prototype.apply_groupsanddomains_defaults = function (config) {
         var i,
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang"],
             defaults = {
@@ -840,6 +915,6 @@ define(['jquery', 'q'], function ($, Q) {
     };
 
 
-    return RESTClient;
+    return FAOSTATAPIClient;
 
 });
