@@ -23,8 +23,9 @@ define(function ( ) {
         GOOGLE_ANALYTICS_PAGE_VIEW : 'fs.google_analytics.page_view',
         GOOGLE_ANALYTICS_EVENT : 'fs.google_analytics.event',
 
-        VIEW_FILTER_BOX_LOADED : 'fs.filter_box_loaded.event',
-        VIEW_FILTER_CHANGE : 'fs.filter_change.event'
+/*        VIEW_FILTER_BOX_LOADED : 'fs.filter_box_loaded.event',
+        VIEW_FILTER_CHANGE : 'fs.filter_change.event',*/
+        ON_FILTER_CHANGE : 'fs.filter_change.event'
 
     };
 });
