@@ -15,7 +15,9 @@ define([
 
     var defaultOptions = {
 
-        output_type: 'csv'
+        requestType: 'data',
+        output_type: 'csv',
+        name: "FAOSTAT_Export_data"
 
     };
 
@@ -28,9 +30,11 @@ define([
         return this;
     }
 
-    Export.prototype.exportData = function (request, requestType) {
+    Export.prototype.exportData = function (request, options) {
 
-        var requestType = requestType || 'data',
+        // TODO: check better the requestType!
+        var requestType = (options)? options.requestType: this.o.requestType,
+            name = (options)? options.name: this.o.name,
             self = this;
 
         if (!request.hasOwnProperty('output_type')) {
@@ -40,25 +44,34 @@ define([
         // TODO: add google analytics event
        // amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
 
-
+        // wainting
         amplify.publish(E.WAITING_SHOW);
 
-        // TODO: switch between the requestType
-        this.api.data(request).then(function (csv) {
-            log.debug(csv);
-        }).fail(function (error) {
-            amplify.publish(E.WAITING_HIDE);
 
-            self._exportResult(error);
-        });
+        // switch between the requestType to faostatAPI
+        if (typeof this.api[requestType] == 'function') {
+
+            this.api[requestType](request).then(function (csv) {
+                log.debug(csv);
+            }).fail(function (error) {
+
+                amplify.publish(E.WAITING_HIDE);
+
+                self._exportResult(error, name);
+            });
+
+        }else{
+            log.error(requestType + " not present in faostatAPI");
+            throw new Error(requestType + " not present in faostatAPI");
+        }
 
     };
 
-    Export.prototype._exportResult = function (result) {
+    Export.prototype._exportResult = function (result, name) {
 
         var csvString = result.responseText,
             a = document.createElement('a'),
-            filename = 'TEST_' + (new Date()).getTime() + '.csv';
+            filename = name + "_" + (new Date()).getTime() + '.csv';
 
         a.href        = 'data:text/csv;charset=utf-8;base64,' + window.btoa(csvString);
         a.target      = '_blank';
