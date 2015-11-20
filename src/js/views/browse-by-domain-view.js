@@ -8,6 +8,7 @@ define([
     'config/Queries',
     'config/Events',
     'config/browse_by_domain/Config',
+    'config/browse_by_domain/Events',
     'text!templates/browse/browse_by_domain.hbs',
     'text!templates/browse/view.hbs',
     'text!templates/browse/related_views.hbs',
@@ -18,7 +19,7 @@ define([
     'lib/filters/filter-box',
     'fx-ds/start',
     'amplify'
-], function ($, log, View, F, C, Q, E, CM, template, templateView, templateRelatedViews, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard) {
+], function ($, log, View, F, C, Q, E, CM, EM, template, templateView, templateRelatedViews, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard) {
 
     'use strict';
 
@@ -154,15 +155,13 @@ define([
 
         bindEventListeners: function () {
 
-            amplify.subscribe(E.VIEW_FILTER_BOX_LOADED, _.bind(this.loadDashBoard, this));
-            amplify.subscribe(E.VIEW_FILTER_CHANGE, _.bind(this.updateDashboard, this));
+            amplify.subscribe(EM.ON_FILTER_CHANGE, _.bind(this.updateDashboard, this));
 
         },
 
         unbindEventListeners: function () {
 
-            amplify.unsubscribe(E.VIEW_FILTER_BOX_LOADED, _.bind(this.loadDashBoard, this));
-            amplify.unsubscribe(E.VIEW_FILTER_CHANGE, _.bind(this.updateDashboard, this));
+            amplify.unsubscribe(EM.ON_FILTER_CHANGE, _.bind(this.updateDashboard, this));
 
         },
 
@@ -246,6 +245,10 @@ define([
                 if (filter !== null) {
                     this.renderFilter({
                         filter: filter,
+                        // overrride event listener for the filter change (custom for browse by domain)
+                        E: {
+                            ON_FILTER_CHANGE: EM.ON_FILTER_CHANGE
+                        },
                         container: this.$FILTER_BOX,
                         lang: lang
                     });
@@ -308,7 +311,7 @@ define([
 
         updateDashboard: function(c) {
 
-            var isOnLoad = c.isOnLoad || false;
+            var isOnLoad = (c)? c.isOnLoad || false: false;
 
             // getFilters
             var filters = this.filterBox.getFilters();

@@ -22,7 +22,12 @@ define([
 
     },defaultOptions = {
 
-        labelSeparator: "; "
+        labelSeparator: "; ",
+
+        E: {
+            ON_FILTER_CHANGE: E.ON_FILTER_CHANGE
+        }
+
     };
 
     function Filter() {
@@ -209,7 +214,6 @@ define([
 
         // TODO: remove the alert?
         if (f.codes.length <= 0) {
-            log.info(i18nLabels);
             amplify.publish(E.NOTIFICATION_WARNING, {
                 title: i18nLabels.warning,
                 text: 'Range Date selection is not valid: From year: ' + this.$DD_FROM_YEAR.val() + " To year:" + this.$DD_TO_YEAR.val()
@@ -222,21 +226,23 @@ define([
 
     Filter.prototype.bindEventListeners = function () {
 
+        var self = this;
+
         if (this.$DD) {
             this.$DD.change(function (e) {
-                amplify.publish(E.VIEW_FILTER_CHANGE, {});
+                amplify.publish(self.o.E.ON_FILTER_CHANGE);
             });
         }
 
         if (this.$DD_FROM_YEAR) {
             this.$DD_FROM_YEAR.change(function(e) {
-                amplify.publish(E.VIEW_FILTER_CHANGE, {});
+                amplify.publish(self.o.E.ON_FILTER_CHANGE);
             });
         }
 
         if (this.$DD_TO_YEAR) {
             this.$DD_TO_YEAR.change(function (e) {
-                amplify.publish(E.VIEW_FILTER_CHANGE, {});
+                amplify.publish(self.o.E.ON_FILTER_CHANGE);
             });
         }
 

@@ -22,7 +22,16 @@ define([
 
     };
 
+    var events = {
+
+    };
+
     var defaultOptions = {
+        // EVENTS
+        E: {
+            ON_FILTER_CHANGE: E.ON_FILTER_CHANGE
+        },
+
         requestKey: 0
     };
 
@@ -91,6 +100,9 @@ define([
                 // render filter
                 var filter = new Filter();
 
+                // binding the right event publish/subscriber
+                c.E = self.o.E;
+
                 c.container = self.$CONTAINER.find('#' + id);
 
                 filter.init(c);
@@ -101,7 +113,7 @@ define([
 
         }).done(function() {
 
-            amplify.publish(E.VIEW_FILTER_BOX_LOADED, {});
+            amplify.publish(self.o.E.ON_FILTER_CHANGE, {isOnLoad: true});
 
         });
 
