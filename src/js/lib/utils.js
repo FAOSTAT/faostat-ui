@@ -2,8 +2,9 @@
 define([
     'handlebars',
     'underscore',
-    'chaplin'
-], function (Handlebars, _, Chaplin) {
+    'chaplin',
+    'globals/Common',
+], function (Handlebars, _, Chaplin, Common) {
 
     'use strict';
 
@@ -20,14 +21,14 @@ define([
     //   someMethod: function() {}
     // });
 
+    // TODO: isI18N and i18n are the same!
     Handlebars.registerHelper('isI18n', function (keyword) {
 
         if (typeof keyword === 'object') {
 
             // TODO: in theory should be requirejs.s.contexts._.config.locale?
-            console.warn('TODO: in theory should be requirejs.s.contexts._.config.locale?');
-            var lang = requirejs.s.contexts._.config.i18n.locale;
-            return keyword[lang.toUpperCase()];
+            var lang = Common.getLocale();
+            return keyword[lang.toUpperCase()] || keyword[lang.toLowerCase()];
 
         }
         else {
@@ -37,15 +38,22 @@ define([
 
     Handlebars.registerHelper('i18n', function (keyword) {
 
-        // TODO: in theory should be requirejs.s.contexts._.config.locale?
-        console.warn('TODO: in theory should be requirejs.s.contexts._.config.locale?');
-        var lang = requirejs.s.contexts._.config.i18n.locale;
-        return keyword[lang.toUpperCase()];
+        if (typeof keyword === 'object') {
+
+            // TODO: in theory should be requirejs.s.contexts._.config.locale?
+            var lang = Common.getLocale();
+            return keyword[lang.toUpperCase()] || keyword[lang.toLowerCase()];
+
+        }
+        else {
+            return keyword;
+        }
 
     });
 
     utils.getLabel = function (obj) {
-        return obj[requirejs.s.contexts._.config.i18n.locale.toUpperCase()] || obj[requirejs.s.contexts._.config.i18n.locale.toLowerCase];
+        var lang = Common.getLocale();
+        return obj[lang.toUpperCase()] || obj[lang.toLowerCase];
     };
 
     return utils;

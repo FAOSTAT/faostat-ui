@@ -9,7 +9,7 @@ define([
     'config/Events',
     'config/browse_by_domain/Config',
     'config/browse_by_domain/Events',
-    'text!templates/browse/browse_by_domain.hbs',
+    'text!templates/browse_by_domain/browse_by_domain.hbs',
     'text!templates/browse/view.hbs',
     'text!templates/browse/related_views.hbs',
     'i18n!nls/browse_by_domain',

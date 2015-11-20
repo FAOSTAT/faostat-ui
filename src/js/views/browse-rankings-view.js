@@ -6,7 +6,7 @@ define([
     'config/Queries',
     'config/Events',
     'config/browse_rankings/Config',
-    'text!templates/browse/browse_rankings.hbs',
+    'text!templates/browse_rankings/browse_rankings.hbs',
     'i18n!nls/browse_rankings',
     'handlebars',
     'globals/Common',

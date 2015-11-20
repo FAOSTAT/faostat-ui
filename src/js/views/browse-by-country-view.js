@@ -6,7 +6,7 @@ define([
     'config/Config',
     'config/Queries',
     'config/Events',
-    'text!templates/browse/browse_by_country.hbs',
+    'text!templates/browse_by_country/browse_by_country.hbs',
     'i18n!nls/browse_by_country',
     'handlebars',
     'globals/Common',
