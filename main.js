@@ -116,8 +116,8 @@ require([
 
                     jbPivot: '{FENIX_CDN}/js/jbpivot/0.1.0/jbPivot',
                     pivot_exporter: '../../submodules/faostat-ui-pivot/src/js/PivotExporter',
-                    swal: 'lib/sweet-alert',
-                    numeral: 'lib/numeral',
+                    swal: '{FENIX_CDN}/js/sweet-alert/0.5.0/sweet-alert.min',
+                    numeral: '{FENIX_CDN}/js/numeral/1.5.3/min/numeral.min',
                     // TODO: move to CDN
 
                     /* FAOSTAT API's client. */
