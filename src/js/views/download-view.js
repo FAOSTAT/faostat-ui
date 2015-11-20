@@ -308,7 +308,10 @@ define([
                                 $('td[data-type="unit"]').css('display', 'none');
                             }
                         },
-                        onDecimalNumbersChange: function (value) {
+                        onDecimalNumbersChange: function () {
+                            self.preview_size();
+                        },
+                        onDecimalSeparatorChange: function () {
                             self.preview_size();
                         }
                     }
@@ -784,6 +787,8 @@ define([
                         switch (response.metadata.dsd[i].type) {
                         case 'code':
                             break;
+                        case 'flag':
+                            break;
                         case 'value':
                             fields[response.metadata.dsd[i].label] = {
                                 field: response.metadata.dsd[i].label,
@@ -832,6 +837,7 @@ define([
                         copyright: false,
                         summary: false
                     });
+
                 }
                 break;
 
@@ -882,7 +888,7 @@ define([
                             group_by: null,
                             output_type: 'csv'
                         }).then(function (csv) {
-                            console.debug(csv);
+                            //console.debug(csv);
                         }).fail(function (error) {
                             var csvString = error.responseText,
                                 a = document.createElement('a'),
