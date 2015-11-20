@@ -307,6 +307,9 @@ define([
                                 $('th[data-type="unit"]').css('display', 'none');
                                 $('td[data-type="unit"]').css('display', 'none');
                             }
+                        },
+                        onDecimalNumbersChange: function (value) {
+                            self.preview_size();
                         }
                     }
                 });
@@ -324,7 +327,7 @@ define([
                     decimal_separators: true,
                     thousand_separators: true,
                     units_checked: true,
-                    codes_value: false
+                    codes_value: true
                 });
 
                 /* Add download options. */
@@ -339,7 +342,7 @@ define([
                     units_checked: true,
                     excel_button: false,
                     metadata_button: true,
-                    codes_value: false
+                    codes_value: true
                 });
 
 
