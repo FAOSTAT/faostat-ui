@@ -1,10 +1,11 @@
 /*global define, requirejs*/
 define([
+    'loglevel',
     'handlebars',
     'underscore',
     'chaplin',
     'globals/Common',
-], function (Handlebars, _, Chaplin, Common) {
+], function (log, Handlebars, _, Chaplin, Common) {
 
     'use strict';
 
@@ -48,6 +49,57 @@ define([
         else {
             return keyword;
         }
+
+    });
+
+    Handlebars.registerHelper("list_countries_creator", function(array) {
+
+        var countries = array,
+            result = '',
+            firstDone = false,
+            secondDone = false;
+
+        if (typeof keyword === 'array') {
+
+            _.each(array, function(v, index) {
+
+            });
+
+        }
+
+        var countries = array,
+            result = '',
+            firstDone = false,
+            secondDone = false;
+
+
+
+        for(var i = 0, length = countries.length; i<length; i++) {
+            // first
+            if(i===0 || i %3 ===0){
+                //result+= '<div>';
+                result += '<div class="col-md-4 country-item">' +
+                    '<a href="profile/'+countries[i].code+'">'
+                    + countries[i].label + '</a></div>';
+                firstDone = true;
+            }else if(i===1 || firstDone) {
+                result += '<div class="col-md-4 country-item">' +
+                     '<a href="profile/'+countries[i].code+'">'
+                     + countries[i].label +'</a></div>';
+                firstDone = false;
+                secondDone  =true;
+            }else if (i===2 || secondDone) {
+                result += '<div class="col-md-4 country-item">' +
+                     '<a href="profile/'+countries[i].code+'">'
+                    + countries[i].label + '</a></div>';
+                secondDone  =false;
+            }
+        }
+        /* if(length%3 !== 0) {
+         result+= '</div>';
+         }*/
+        log.info(result)
+        return new Handlebars.SafeString(result);
 
     });
 

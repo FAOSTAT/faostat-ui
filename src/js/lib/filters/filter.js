@@ -167,11 +167,15 @@ define([
         var textData = this.$DD.select2('data');
         if (Array.isArray(textData)){
             _.each(textData, function(t) {
-                f.labels.push(t.text.trim());
+                if (t.text) {
+                    f.labels.push(t.text.trim());
+                }
             });
         }
         else{
-            f.labels.push(textData.text.trim());
+            if (textData.text) {
+                f.labels.push(textData.text.trim());
+            }
         }
 
         f.labels = f.labels.join(this.o.labelSeparator);

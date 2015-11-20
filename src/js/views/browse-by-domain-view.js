@@ -232,7 +232,6 @@ define([
 
                 }
 
-
                 this.$FILTER_BOX = this.$VIEW.find(s.FILTER_BOX);
                 this.$DASHBOARD = this.$VIEW.find(s.DASHBOARD);
 

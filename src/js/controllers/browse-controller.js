@@ -1,8 +1,12 @@
 /*global define*/
 define([
+    'loglevel',
     'controllers/base/controller',
     'views/browse-view',
-], function (Controller, View) {
+    'faostatapiclient',
+    'config/Config',
+    'config/browse_by_country/Config'
+], function (log, Controller, View, FAOSTATClientAPI, C, CC) {
 
     'use strict';
 
@@ -27,7 +31,22 @@ define([
         },
 
         show_browse_rankings: function (params) {
-            this.show(params, 'browse_rankings');
+
+            this.api.codes({
+                lang: Common.getLocale(),
+                datasource: C.DATASOURCE,
+                domain_code: CC.countriesDomainCode,
+                id: CC.countriesDimensionID,
+
+                // TODO: Add default on CLIENT API!
+                subcodelists: null,
+                ord: null
+
+            }).then(_.bind(function(codes){
+
+                this.show(params, 'browse_rankings');
+            }, this));
+
         }
 
     });

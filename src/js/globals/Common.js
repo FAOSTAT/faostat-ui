@@ -30,11 +30,6 @@ define(['chaplin', 'config/Events', 'amplify'], function (Chaplin, E) {
                 name, options
             );
 
-            // add language (@Deprecated)
-            //uri = this.updateQueryStringParameter(uri, 'locale', this.getLocale());
-
-            console.log(uri);
-
             // TODO: Use Chaplin 'route' function
             console.warn('TODO Common.changeURL: change Backbone binding');
             console.warn('TODO Common.changeURL: check if the Backbone trigger should be set on true or false');

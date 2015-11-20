@@ -1,9 +1,19 @@
-<div class="row">
-    <div class="col-xs-3">
-       <div id="tree"></div>
+<h1>{{country_list}}</h1>
+<div class="row" id="fs-browse-by-country-list" style="display:none">
+
+    <div class="col-lg-3">
+        <input type="text" class="form-control search" placeholder="{{filter_results}}" aria-describedby="basic-addon1">
     </div>
-    <div class="col-xs-9">
-        <h1>{{view}}view</h1>
-        <div id="view"></div>
+    <div class="col-lg-3">
+        <button class="btn btn-default sort" data-sort="fs-browse-by-country-search" type="button">{{sort_by_country}}</button>
     </div>
+
+    <br><br><br>
+
+</div>
+
+<div id="fs-browse-by-country-profile" style="display:none">
+    <button class="btn btn-default" id="fs-browse-by-country-profile-back"><i class="fa fa-arrow-left"></i>  {{back_to_country_list}}</button>
+    <h1 id="fs-browse-by-country-profile-title"></h1>
+    <div id="fs-browse-by-country-profile-dashboard"></div>
 </div>

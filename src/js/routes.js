@@ -3,11 +3,18 @@ define(function () {
 
     'use strict';
 
-    return function (match) {
+    var ROUTE = {
+
+        BROWSE_BY_COUNTRY: "browse_by_country",
+        BROWSE_BY_COUNTRY_CODE: "browse_by_country_code"
+
+    };
+
+    return function(match) {
 
         //match('', 'home#show');
-        match('home/test', 'home#show', {name: 'home'});
-        match(':lang/home', 'home#show', {name: 'home2'});
+        //match('home/test', 'home#show', {name: 'home'});
+        match(':lang/home', 'home#show', {name: 'home'});
 
         match(':lang/download/bulk/:code', 'download#show_bulk_downloads', {name: 'bulk'});
         match(':lang/download/metadata/:code', 'download#show_metadata', {name: 'metadata'});
@@ -16,8 +23,10 @@ define(function () {
 
         //match(':lang/browse/domain', 'browse#show_browse_by_domain', {name: 'browse_by_domain'});
         match(':lang/browse/domain/:code', 'browse#show_browse_by_domain', {name: 'browse_by_domain_code'});
-        match(':lang/browse/country', 'browse#show_browse_by_country', {name: 'browse_by_country'});
-        match(':lang/browse/country/:code', 'browse#show_browse_by_country', {name: 'browse_by_country_code'});
+
+        match(':lang/browse/country', 'browse#show_browse_by_country', {name: ROUTE.BROWSE_BY_COUNTRY});
+        match(':lang/browse/country/:code', 'browse#show_browse_by_country', {name: ROUTE.BROWSE_BY_COUNTRY_CODE});
+
         //match(':lang/browse/rankings', 'browse#show_browse_rankings', {name: 'browse_rankings'});
         match(':lang/browse/rankings/:code', 'browse#show_browse_rankings', {name: 'browse_rankings_code'});
 
