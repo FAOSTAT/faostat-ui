@@ -6,33 +6,6 @@ define(function () {
 
     return {
 
-        "relatedViews" : [
-            {
-                title: 'title Q',
-                id: 'QC',
-                selected: true
-                /*title: {
-                    'en': 'test'
-                }*/
-            },
-            {
-                title: 'title QC',
-                id: 'Q'
-                /*title: {
-                 'en': 'test'
-                 }*/
-            }
-        ],
-
-        "comment": {
-            "text": {
-              "en": "Emissions of methane produced in digestive systems of livestock",
-              "es": "ES Emissions of methane produced in digestive systems of livestock",
-              "fr": "FR Emissions of methane produced in digestive systems of livestock"
-            },
-            pdf: "GE.pdf"
-        },
-
         "filter": {
 
             defaultFilter: {
