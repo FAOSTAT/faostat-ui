@@ -595,61 +595,6 @@ define([
 
         },
 
-        map_codes: function (data_response) {
-            var map = {},
-                i,
-                j,
-                d = data_response.data,
-                m = data_response.metadata,
-                code_label_map = {},
-                header_codelabel_map = {};
-            try {
-                for (i = 0; i < m.dsd.length; i += 1) {
-                    if (m.dsd[i].dimension_id !== undefined) {
-                        if (m.dsd[i].type === 'code' || m.dsd[i].type === 'flag') {
-                            if (code_label_map[m.dsd[i].dimension_id] === undefined) {
-                                code_label_map[m.dsd[i].dimension_id] = {};
-                            }
-                            if (code_label_map[m.dsd[i].dimension_id].code === undefined) {
-                                code_label_map[m.dsd[i].dimension_id].code = m.dsd[i].key;
-                            }
-                        }
-                        if (m.dsd[i].type === 'label' || m.dsd[i].type === 'flag_label') {
-                            if (code_label_map[m.dsd[i].dimension_id] === undefined) {
-                                code_label_map[m.dsd[i].dimension_id] = {};
-                            }
-                            if (code_label_map[m.dsd[i].dimension_id].label === undefined) {
-                                code_label_map[m.dsd[i].dimension_id].label = m.dsd[i].key;
-                            }
-                        }
-                    }
-                }
-            } catch (e) {
-                console.debug(e);
-            }
-            console.debug(code_label_map);
-            for (i = 0; i < m.dsd.length; i += 1) {
-                if (m.dsd[i].dimension_id !== undefined) {
-                    if (m.dsd[i].type === 'label' || m.dsd[i].type === 'flag_label') {
-                        header_codelabel_map[m.dsd[i].label] = {
-                            code: code_label_map[m.dsd[i].dimension_id].code,
-                            label: code_label_map[m.dsd[i].dimension_id].label
-                        };
-                    }
-                }
-            }
-            console.debug(header_codelabel_map);
-            for (i = 0; i < d.length; i += 1) {
-                for (j = 0; j < Object.keys(header_codelabel_map).length; j += 1) {
-                    var code_idx = header_codelabel_map[Object.keys(header_codelabel_map)[j]].code;
-                    var label_idx = header_codelabel_map[Object.keys(header_codelabel_map)[j]].label;
-                    map[d[i][label_idx]] = d[i][code_idx];
-                }
-            }
-            console.debug(map);
-            this.label2code_map = map;
-        },
-
         create_query_string: function (user_selection) {
             try {
                 this.validate_user_selection(user_selection);
@@ -778,7 +723,9 @@ define([
                 pivot_table.init({
                     placeholder_id: 'downloadOutputArea',
                     data: response.data,
-                    dsd: response.metadata.dsd
+                    dsd: response.metadata.dsd,
+                    show_flags: dwld_options.flags_value,
+                    show_codes: dwld_options.codes_value
                 });
 
                 break;
