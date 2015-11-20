@@ -40,7 +40,7 @@ define([
                     "List7Codes": config.List7Codes,
                     "filter_list": config.filter_list,
                     "rank_type": config.rank_type,
-                    "results": config.results
+                    "limit": config.limit
                 },
                 type: 'POST'
             }));
@@ -49,7 +49,7 @@ define([
     };
 
     FAOSTATAPIClient.prototype.is_valid_rankings = function (config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "filter_list", "rank_type", "results"], i;
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "filter_list", "rank_type", "limit"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -60,7 +60,7 @@ define([
 
     FAOSTATAPIClient.prototype.apply_rankings_defaults = function (config) {
         var i,
-            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "filter_list", "rank_type", "results"],
+            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "filter_list", "rank_type", "limit"],
             defaults = {
                 "datasource": "production",
                 "output_type": "objects",
@@ -68,7 +68,7 @@ define([
                 "client_key": "n.a.",
                 "lang": "en",
                 "rank_type": "ASC",
-                "results": "5"
+                "limit": "5"
             },
             key;
         for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -147,6 +147,72 @@ define([
                 "operator": "",
                 "page_size": "100",
                 "page_number": "1"
+            },
+            key;
+        for (i = 0; i < Object.keys(defaults).length; i += 1) {
+            if (defaults[Object.keys(defaults)[i]] === '[]') {
+                defaults[Object.keys(defaults)[i]] = [];
+            }
+        }
+        for (i = 0; i < parameters.length; i += 1) {
+            key = parameters[i];
+            try {
+                config[key] = config[key] !== undefined ? config[key] : defaults[key];
+            } catch (ignore) {
+                /* No default value available for this parameter. */
+            }
+        }
+        return config;
+    };
+
+    FAOSTATAPIClient.prototype.datasize = function (config) {
+        config = $.extend(true, {}, this.CONFIG, config || {});
+        config = this.apply_datasize_defaults(config);
+        if (this.is_valid_datasize(config)) {
+            return Q($.ajax({
+                url: this.CONFIG.base_url + config.lang + '/datasize/',
+                traditional: true,
+                data: {
+                    "datasource": config.datasource,
+                    "output_type": config.output_type,
+                    "api_key": config.api_key,
+                    "client_key": config.client_key,
+                    "domain_code": config.domain_code,
+                    "List1Codes": config.List1Codes,
+                    "List2Codes": config.List2Codes,
+                    "List3Codes": config.List3Codes,
+                    "List4Codes": config.List4Codes,
+                    "List5Codes": config.List5Codes,
+                    "List6Codes": config.List6Codes,
+                    "List7Codes": config.List7Codes,
+                    "no_records": config.no_records
+                },
+                type: 'POST'
+            }));
+        }
+        throw 400;
+    };
+
+    FAOSTATAPIClient.prototype.is_valid_datasize = function (config) {
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "no_records"], i;
+        for (i = 0; i < parameters.length; i += 1) {
+            if (config[parameters[i]] === undefined) {
+                throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
+            }
+        }
+        return true;
+    };
+
+    FAOSTATAPIClient.prototype.apply_datasize_defaults = function (config) {
+        var i,
+            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "no_records"],
+            defaults = {
+                "datasource": "production",
+                "output_type": "objects",
+                "api_key": "n.a.",
+                "client_key": "n.a.",
+                "lang": "en",
+                "no_records": "1"
             },
             key;
         for (i = 0; i < Object.keys(defaults).length; i += 1) {

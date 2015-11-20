@@ -151,6 +151,9 @@ define([
             /* Table settings. */
             this.page_size = 60;
 
+            /* Preview settings. */
+            this.size_limit = 1000;
+
         },
 
         initComponents: function () {
@@ -272,7 +275,7 @@ define([
                     callback: {
                         onOutputTypeChange: function () {
                             $('#downloadOutputArea').empty();
-                            self.preview();
+                            self.preview_size();
                         },
                         onCodesChange: function (isChecked) {
                             if (isChecked) {
@@ -344,7 +347,7 @@ define([
                 this.$el.find(s.DOWNLOAD_OPTIONS_CSV_BUTTON).off();
                 this.$el.find(s.DOWNLOAD_OPTIONS_CSV_BUTTON).click(function (e) {
                     self.pivot_caller = 'CSV';
-                    self.preview();
+                    self.preview_size();
                 });
 
                 /* CSV info. */
@@ -369,7 +372,7 @@ define([
                 this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON).off();
                 this.$el.find(s.DOWNLOAD_OPTIONS_EXCEL_BUTTON).click(function (e) {
                     self.pivot_caller = 'XLS';
-                    self.preview();
+                    self.preview_size();
                 });
 
                 /* Metadata. */
@@ -397,7 +400,7 @@ define([
                 /* Preview button. */
                 this.$el.find(s.PREVIEW_BUTTON).off();
                 this.$el.find(s.PREVIEW_BUTTON).click(function (e) {
-                    self.preview();
+                    self.preview_size();
                 });
             }
 
@@ -446,6 +449,93 @@ define([
             this.pivot_exporter.csv();
         },
 
+        preview_size: function (config) {
+
+            var user_selection,
+                dwld_options,
+                data = {},
+                that = config !== undefined ? config.context || this : this,
+                data_size;
+
+            try {
+
+                user_selection = that.download_selectors_manager.get_user_selection();
+                dwld_options = that.options_manager.get_options_window('preview_options').collect_user_selection(null);
+
+                /* Validate user selection. */
+                this.validate_user_selection(user_selection);
+
+                /* Calculate the output size if the user selected PIVOT as output type. */
+                if (dwld_options.output_type === 'PIVOT') {
+
+                    data = $.extend(true, {}, data, user_selection);
+                    data = $.extend(true, {}, data, dwld_options);
+                    data.datasource = 'faostat';
+                    data.domainCode = that.options.domain;
+                    data.lang = that.options.lang;
+                    data.limit = -1;
+
+                    /* Add loading. */
+                    amplify.publish(E.WAITING_SHOW, {});
+
+                    this.api.datasize({
+                        domain_code: that.options.code,
+                        List1Codes: user_selection.list1Codes || null,
+                        List2Codes: user_selection.list2Codes || null,
+                        List3Codes: user_selection.list3Codes || null,
+                        List4Codes: user_selection.list4Codes || null,
+                        List5Codes: user_selection.list5Codes || null,
+                        List6Codes: user_selection.list6Codes || null,
+                        List7Codes: user_selection.list7Codes || null,
+                        lang: that.options.lang
+                    }).then(function (json) {
+
+                        /* Parse query size. */
+                        data_size = parseFloat(json.data[0].NoRecords);
+
+                        /* Close waiting window. */
+                        amplify.publish(E.WAITING_HIDE, {});
+
+                        /* Query size exceeds the limit. */
+                        if (data_size > that.size_limit) {
+                            amplify.publish(E.NOTIFICATION_WARNING, {
+                                title: i18nLabels.warning,
+                                text: 'The size of your query exceeds the limit. Please consider to download data through the Bulk Downloads section, or switch to the Table output type.'
+                            });
+                        } else {
+                            that.preview(config);
+                        }
+
+                    }).fail(function () {
+
+                        /* Close waiting window. */
+                        amplify.publish(E.WAITING_HIDE, {});
+
+                        amplify.publish(E.NOTIFICATION_WARNING, {
+                            title: i18nLabels.warning,
+                            text: 'The size of your query exceeds the limit. Please consider to download data through the Bulk Downloads section, or switch to the Table output type.'
+                        });
+
+                    });
+
+                } else {
+                    that.preview(config);
+                }
+
+            } catch (e) {
+
+                /* Close waiting window. */
+                amplify.publish(E.WAITING_HIDE, {});
+
+                amplify.publish(E.NOTIFICATION_WARNING, {
+                    title: i18nLabels.warning,
+                    text: e.responseText
+                });
+
+            }
+
+        },
+
         preview: function (config) {
 
             var user_selection,
@@ -486,7 +576,8 @@ define([
                     group_by: null,
                     decimal_places: 2
                 }).then(function (json) {
-                    that.show_preview(json);                });
+                    that.show_preview(json);
+                });
 
             } catch (e) {
                 amplify.publish(E.NOTIFICATION_WARNING, {
@@ -495,6 +586,61 @@ define([
                 });
             }
 
+        },
+
+        map_codes: function (data_response) {
+            var map = {},
+                i,
+                j,
+                d = data_response.data,
+                m = data_response.metadata,
+                code_label_map = {},
+                header_codelabel_map = {};
+            try {
+                for (i = 0; i < m.dsd.length; i += 1) {
+                    if (m.dsd[i].dimension_id !== undefined) {
+                        if (m.dsd[i].type === 'code' || m.dsd[i].type === 'flag') {
+                            if (code_label_map[m.dsd[i].dimension_id] === undefined) {
+                                code_label_map[m.dsd[i].dimension_id] = {};
+                            }
+                            if (code_label_map[m.dsd[i].dimension_id].code === undefined) {
+                                code_label_map[m.dsd[i].dimension_id].code = m.dsd[i].key;
+                            }
+                        }
+                        if (m.dsd[i].type === 'label' || m.dsd[i].type === 'flag_label') {
+                            if (code_label_map[m.dsd[i].dimension_id] === undefined) {
+                                code_label_map[m.dsd[i].dimension_id] = {};
+                            }
+                            if (code_label_map[m.dsd[i].dimension_id].label === undefined) {
+                                code_label_map[m.dsd[i].dimension_id].label = m.dsd[i].key;
+                            }
+                        }
+                    }
+                }
+            } catch (e) {
+                console.debug(e);
+            }
+            console.debug(code_label_map);
+            for (i = 0; i < m.dsd.length; i += 1) {
+                if (m.dsd[i].dimension_id !== undefined) {
+                    if (m.dsd[i].type === 'label' || m.dsd[i].type === 'flag_label') {
+                        header_codelabel_map[m.dsd[i].label] = {
+                            code: code_label_map[m.dsd[i].dimension_id].code,
+                            label: code_label_map[m.dsd[i].dimension_id].label
+                        };
+                    }
+                }
+            }
+            console.debug(header_codelabel_map);
+            for (i = 0; i < d.length; i += 1) {
+                for (j = 0; j < Object.keys(header_codelabel_map).length; j += 1) {
+                    var code_idx = header_codelabel_map[Object.keys(header_codelabel_map)[j]].code;
+                    var label_idx = header_codelabel_map[Object.keys(header_codelabel_map)[j]].label;
+                    map[d[i][label_idx]] = d[i][code_idx];
+                }
+            }
+            console.debug(map);
+            this.label2code_map = map;
         },
 
         create_query_string: function (user_selection) {
@@ -624,6 +770,7 @@ define([
                 break;
 
             case 'PIVOT':
+
                 try {
                     downloadOutputArea.data('jbPivot').reset();
                     downloadOutputArea.data('jbPivot').insertRecords(response.data);
@@ -653,7 +800,7 @@ define([
                             };
                             break;
                         }
-                        if (response.metadata.dsd[i].type !== 'code') {
+                        if (response.metadata.dsd[i].type !== 'code' && response.metadata.dsd[i].type !== 'flag') {
                             switch (response.metadata.dsd[i].pivot) {
                             case 'C':
                                 yfields.push(response.metadata.dsd[i].label);
