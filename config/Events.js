@@ -5,27 +5,28 @@ define(function ( ) {
 
     return {
 
-        NOT_AUTHORIZED : "fx.fenix.security.not_authorized",
+        NOT_AUTHORIZED: "fx.fenix.security.not_authorized",
 
-        STATE_CHANGE : 'fx.fenix.state.change',
-        MENU_UPDATE : 'fx.fenix.menu.change',
+        STATE_CHANGE: 'fx.fenix.state.change',
+        MENU_UPDATE: 'fx.fenix.menu.change',
 
-        NOTIFICATION_INFO : 'fs.notification.info',
-        NOTIFICATION_WARNING : 'fs.notification.warning',
-        NOTIFICATION_ACCEPT : 'fs.notification.accept',
+        NOTIFICATION_INFO: 'fs.notification.info',
+        NOTIFICATION_WARNING: 'fs.notification.warning',
+        NOTIFICATION_ACCEPT: 'fs.notification.accept',
 
         WAITING_SHOW : 'fs.waiting.show',
-        WAITING_HIDE : 'fs.waiting.hide',
+        WAITING_HIDE: 'fs.waiting.hide',
 
-        LOADING_SHOW : 'fs.loading.show',
-        LOADING_HIDE : 'fs.loading.hide',
+        LOADING_SHOW: 'fs.loading.show',
+        LOADING_HIDE: 'fs.loading.hide',
 
-        GOOGLE_ANALYTICS_PAGE_VIEW : 'fs.google_analytics.page_view',
-        GOOGLE_ANALYTICS_EVENT : 'fs.google_analytics.event',
+        GOOGLE_ANALYTICS_PAGE_VIEW: 'fs.google_analytics.page_view',
+        GOOGLE_ANALYTICS_EVENT: 'fs.google_analytics.event',
 
-/*        VIEW_FILTER_BOX_LOADED : 'fs.filter_box_loaded.event',
-        VIEW_FILTER_CHANGE : 'fs.filter_change.event',*/
-        ON_FILTER_CHANGE : 'fs.filter_change.event'
+        // Don't know if should be here..
+        ON_FILTER_CHANGE: 'fs.filter_change.event',
+
+        EXPORT_DATA: 'fs.export_data.event'
 
     };
 });
