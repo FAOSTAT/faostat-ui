@@ -18,10 +18,11 @@ require([
     './submodules/faostat-ui-standards-methodology/src/js/paths',
     './submodules/faostat-ui-standards-units/src/js/paths',
     './submodules/faostat-ui-standards-abbreviations/src/js/paths',
-    './submodules/faostat-ui-table/src/js/paths'
+    './submodules/faostat-ui-table/src/js/paths',
+    './submodules/faostat-ui-pivot/src/js/paths'
 ], function (Compiler, Common, Tree, MapCreator, ChartCreator, Dashboard, MetadataViewer, Reports,
              BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager, FAOSTATTheme,
-             DownloadOptions, DownloadSelector, Methodology, Units, Abbreviations, Table) {
+             DownloadOptions, DownloadSelector, Methodology, Units, Abbreviations, Table, Pivot) {
 
     'use strict';
 
@@ -43,7 +44,8 @@ require([
         methodologyConfig = Methodology,
         unitsConfig = Units,
         abbreviationsConfig = Abbreviations,
-        tableConfig = Table;
+        tableConfig = Table,
+        pivotConfig = Pivot;
 
     treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/src/js';
     commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
@@ -63,13 +65,14 @@ require([
     unitsConfig.baseUrl = submodules_path + '/faostat-ui-standards-units/src/js';
     abbreviationsConfig.baseUrl = submodules_path + '/faostat-ui-standards-abbreviations/src/js';
     tableConfig.baseUrl = submodules_path + '/faostat-ui-table/src/js';
+    pivotConfig.baseUrl = submodules_path + '/faostat-ui-pivot/src/js';
 
     Compiler.resolve([commonConfig, mapConfig, chartConfig,
             dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig,
             downloadSelectorsManagerConfig, faostatMenuConfig,
             optionsManagerConfig, treeConfig, faostatThemeConfig, downloadOptionsConfig,
             downloadSelectorConfig, methodologyConfig, unitsConfig, abbreviationsConfig,
-            tableConfig],
+            tableConfig, pivotConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 

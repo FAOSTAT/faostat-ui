@@ -20,8 +20,8 @@ define([
     'pivot_exporter',
     'FAOSTAT_UI_TABLE',
     'fx-report',
-    'amplify',
-    'jbPivot'
+    'FAOSTAT_UI_PIVOT',
+    'amplify'
 ], function (View,
              C,
              E,
@@ -39,7 +39,8 @@ define([
              FAOSTATAPIClient,
              PivotExporter,
              Table,
-             FENIX_UI_REPORTS) {
+             FENIX_UI_REPORTS,
+             FAOSTATPivot) {
 
     'use strict';
 
@@ -263,7 +264,7 @@ define([
                     domain: code,
                     callback: {
                         onSelectionChange: function () {
-                            // TODO: For memory management improvment should be the destroy of the pivot?
+                            // TODO: For memory management improvement should be the destroy of the pivot?
                             // for the listeners etc
                             self.$download_ouput_area.empty();
                         }
@@ -744,11 +745,7 @@ define([
                 table,
                 dwld_options = this.options_manager.get_options_window('preview_options').collect_user_selection(null),
                 user_selection,
-                i,
-                fields = {},
-                yfields = [],
-                xfields = [],
-                zfields = [];
+                pivot_table;
 
             /* Render either the table or the pivot. */
             switch (this.options_manager.get_options_window('preview_options').get_output_type()) {
@@ -777,68 +774,13 @@ define([
 
             case 'PIVOT':
 
-                try {
-                    downloadOutputArea.data('jbPivot').reset();
-                    downloadOutputArea.data('jbPivot').insertRecords(response.data);
-                } catch (e) {
+                pivot_table = new FAOSTATPivot();
+                pivot_table.init({
+                    placeholder_id: 'downloadOutputArea',
+                    data: response.data,
+                    dsd: response.metadata.dsd
+                });
 
-                    /* Configure the pivot according to the DB settings. */
-                    for (i = 0; i < response.metadata.dsd.length; i += 1) {
-                        switch (response.metadata.dsd[i].type) {
-                        case 'code':
-                            break;
-                        case 'flag':
-                            break;
-                        case 'value':
-                            fields[response.metadata.dsd[i].label] = {
-                                field: response.metadata.dsd[i].label,
-                                sort: 'asc',
-                                showAll: true,
-                                aggregateType: 'average',
-                                groupType: 'none',
-                                formatter: this.pivot_value_formatter
-                            };
-                            break;
-                        default:
-                            fields[response.metadata.dsd[i].label] = {
-                                field: response.metadata.dsd[i].label,
-                                sort: 'asc',
-                                showAll: true,
-                                aggregateType: 'distinct'
-                            };
-                            break;
-                        }
-                        if (response.metadata.dsd[i].type !== 'code' && response.metadata.dsd[i].type !== 'flag') {
-                            switch (response.metadata.dsd[i].pivot) {
-                            case 'C':
-                                yfields.push(response.metadata.dsd[i].label);
-                                break;
-                            case 'R':
-                                xfields.push(response.metadata.dsd[i].label);
-                                break;
-                            case 'V':
-                                zfields.push(response.metadata.dsd[i].label);
-                                break;
-                            }
-                        }
-                    }
-
-                    console.debug(fields);
-                    console.debug(yfields);
-                    console.debug(xfields);
-                    console.debug(zfields);
-
-                    downloadOutputArea.jbPivot({
-                        fields: fields,
-                        yfields: yfields,
-                        xfields: xfields,
-                        zfields: zfields,
-                        data: response.data,
-                        copyright: false,
-                        summary: false
-                    });
-
-                }
                 break;
 
             }
