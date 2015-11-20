@@ -30,8 +30,6 @@ define([
 
     Export.prototype.exportData = function (request, requestType) {
 
-        log.info(this)
-
         var requestType = requestType || 'data',
             self = this;
 
@@ -42,10 +40,15 @@ define([
         // TODO: add google analytics event
        // amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
 
+
+        amplify.publish(E.WAITING_SHOW);
+
         // TODO: switch between the requestType
         this.api.data(request).then(function (csv) {
             log.debug(csv);
         }).fail(function (error) {
+            amplify.publish(E.WAITING_HIDE);
+
             self._exportResult(error);
         });
 
