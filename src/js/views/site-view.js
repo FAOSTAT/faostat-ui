@@ -16,8 +16,9 @@ define([
     'sweetAlert',
     'globals/Common',
     // TODO: move analytics in another section?
-    'globals/GoogleAnalyticsManager'
-], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager) {
+    'globals/GoogleAnalyticsManager',
+    'globals/Export'
+], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export) {
 
     'use strict';
 
@@ -75,6 +76,8 @@ define([
 
             amplify.subscribe(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
             amplify.subscribe(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
+
+            amplify.subscribe(E.EXPORT_DATA, Export, Export.exportData);
 
 
             /* Switch Language */
