@@ -23,6 +23,7 @@ define({
     no_data_available: 'No data available for the current selection.',
     faostat_domains: 'FAOSTAT Domains',
     loading: 'Loading',
-    warning: 'Warning'
+    warning: 'Warning',
+    export_data: 'Export Data'
 
 });
