@@ -5,7 +5,7 @@ define(['jquery', 'i18n!nls/browse'], function ($, I18N) {
 
     return $.extend(true, {}, I18N, {
 
-        "tree_title": "FAOSTAT Domains",
+        "tree_title": "FAOSTAT Domains"
 
     });
 
