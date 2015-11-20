@@ -34,7 +34,9 @@ define([
                 template: {
                     class: 'test',
                     height: '350px',
-                    footer: i18n.map_footer
+                    footer: i18n.map_footer,
+                    addExport: true,
+                    export: i18n.export_data
                 }
             },
             chart: {
