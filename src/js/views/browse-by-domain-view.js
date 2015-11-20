@@ -1,5 +1,6 @@
 /*global define, _:false, $, console, amplify, require*/
 define([
+    'require',
     'jquery',
     'loglevel',
     'views/base/view',
@@ -19,7 +20,7 @@ define([
     'lib/filters/filter-box',
     'fx-ds/start',
     'amplify'
-], function ($, log, View, F, C, Q, E, CM, EM, template, templateView, templateRelatedViews, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard) {
+], function (Require, $, log, View, F, C, Q, E, CM, EM, template, templateView, templateRelatedViews, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard) {
 
     'use strict';
 
@@ -189,7 +190,7 @@ define([
             this.$VIEW.empty();
 
             // get and render the right view
-            require([basePath+ c.viewID], _.bind(function(view) {
+            Require([basePath+ c.viewID], _.bind(function(view) {
 
                 // extending view
                 view = $.extend(true, {}, c.config, view);

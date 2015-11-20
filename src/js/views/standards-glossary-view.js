@@ -88,12 +88,13 @@ define([
 
         initComponents: function () {
 
-            amplify.publish(E.LOADING_SHOW, {container: this.$table});
-
+            // TODO: check this...
             setTimeout(function(){  amplify.publish(E.LOADING_HIDE, {container: '#breadcrumb-container'}) }, 1000);
 
 
             // TODO: lang
+            amplify.publish(E.LOADING_SHOW, {container: this.$table});
+
             this.FAOSTATAPIClient.glossary({
                 datasource: C.DATASOURCE,
                 lang: this.o.lang

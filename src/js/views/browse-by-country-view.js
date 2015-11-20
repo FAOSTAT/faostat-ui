@@ -1,5 +1,6 @@
 /*global define, _:false, console, amplify, FM*/
 define([
+    'require',
     'jquery',
     'loglevel',
     'views/base/view',
@@ -16,7 +17,7 @@ define([
     'faostatapiclient',
     'list',
     'amplify'
-], function ($, log, View, F, C, Q, E, CM, template, templateCountryList,  i18nLabels, Handlebars, Common, FAOSTATClientAPI, List) {
+], function (Require, $, log, View, F, C, Q, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List) {
 
     'use strict';
 
@@ -36,7 +37,7 @@ define([
 
         },
 
-        // GET dinamically from the route or congifiguration file
+    // GET dinamically from the route or congifiguration file
         ROUTE = {
             BROWSE_BY_COUNTRY: "browse_by_country",
             BROWSE_BY_COUNTRY_CODE: "browse_by_country_code"
@@ -98,6 +99,8 @@ define([
 
         configurePage: function () {
 
+            amplify.publish(E.LOADING_SHOW, {container: this.$el});
+
             this.api.codes({
                 lang: Common.getLocale(),
                 datasource: C.DATASOURCE,
@@ -108,12 +111,14 @@ define([
                 subcodelists: null,
                 ord: null
 
-            }).then(_.bind(function(result){
+            }).then(_.bind(function (result) {
+
+                amplify.publish(E.LOADING_HIDE, {container: this.$el});
 
                 this.cache.countries = result;
 
                 // render country list or directly country page
-                if ( this.o.code === null || this.o.code === undefined) {
+                if (this.o.code === null || this.o.code === undefined) {
                     this.renderCountryList();
                 }
                 else {
@@ -124,12 +129,12 @@ define([
 
         },
 
-        renderCountryList: function() {
+        renderCountryList: function () {
 
             this.$COUNTRY_PROFILE.hide();
             this.$COUNTRY_LIST.show();
 
-            if ( this.$COUNTRY_LIST.find('.' + this.o.countrySearchFilters).length <= 0) {
+            if (this.$COUNTRY_LIST.find('.' + this.o.countrySearchFilters).length <= 0) {
 
                 var countries = this.cache.countries.data,
                     t = Handlebars.compile(templateCountryList),
@@ -159,7 +164,7 @@ define([
             }
         },
 
-        renderCountryProfile: function() {
+        renderCountryProfile: function () {
 
             this.$COUNTRY_LIST.hide();
             this.$COUNTRY_PROFILE.show();
@@ -170,21 +175,19 @@ define([
 
         },
 
-        getCountryName: function() {
+        getCountryName: function () {
 
             var code = this.o.code.toString(),
                 codes = this.cache.countries.data;
 
             var c = _.where(codes, {code: code});
 
-            return (c.length > 0)? c[0].label: "";
+            return (c.length > 0) ? c[0].label : "";
         },
 
         bindEventListeners: function () {
 
-            this.$COUNTRY_PROFILE_BACK.on('click', _.bind(function(){
-
-                console.log("here");
+            this.$COUNTRY_PROFILE_BACK.on('click', _.bind(function () {
 
                 this.o.code = null;
                 this.o.section = ROUTE.BROWSE_BY_COUNTRY;
@@ -200,12 +203,14 @@ define([
 
         unbindEventListeners: function () {
 
+            this.$COUNTRY_PROFILE_BACK.off('click');
+
         },
 
-        changeState: function() {
+        changeState: function () {
             console.warn("TODO: read internal state anche change URL state");
             // TODO: handle the country selection
-            Common.changeURL(this.o.section, (this.o.code)? [this.o.code]: [], false);
+            Common.changeURL(this.o.section, (this.o.code) ? [this.o.code] : [], false);
         },
 
         dispose: function () {
