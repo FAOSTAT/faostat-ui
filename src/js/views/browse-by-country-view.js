@@ -227,8 +227,8 @@ define([
 
             this.dashboard = new Dashboard();
 
-            // setting default filter options (i.e. language and datasouce)
-            config.filter = this.defaultFilterOptions(config.filter);
+            // setting default filter options (i.e. language and datasource)
+            config.defaultFilter = this.defaultFilterOptions(config.defaultFilter);
             _.each(config.items, _.bind(function(item) {
                 item.config = this.defaultItemOptions(item);
             }, this));
@@ -256,6 +256,7 @@ define([
 
         defaultItemOptions: function(item) {
 
+            // default options based on the item's type (i.e. chart/map/table etc)
             if (item.type) {
                 if (CM.view && CM.view.hasOwnProperty(item.type) && item.hasOwnProperty('config')) {
                     return $.extend(true, {}, CM.view[item.type], item.config);

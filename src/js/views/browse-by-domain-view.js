@@ -292,7 +292,7 @@ define([
             this.dashboard = new Dashboard();
 
             // setting default filter options (i.e. language and datasouce)
-            config.filter = this.defaultFilterOptions(config.filter);
+            config.defaultFilter = this.defaultFilterOptions(config.defaultFilter);
             _.each(config.items, _.bind(function(item) {
                 item.config = this.defaultItemOptions(item);
             }, this));
@@ -307,7 +307,6 @@ define([
           this.updateDashboard({isOnLoad : true} );
 
         },
-
 
         updateDashboard: function(c) {
 
