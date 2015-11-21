@@ -76,6 +76,7 @@ define(function () {
             List5Codes: null,
             List6Codes: null,
             List7Codes: null,
+            page_size: 100000
             //output_type: 'arrays'
         }
 
