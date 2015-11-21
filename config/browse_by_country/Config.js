@@ -9,7 +9,7 @@ define([
 
     return {
 
-        viewsBasePath: 'config/browse_by_country/prod/views/',
+        viewsBasePath: 'config/browse_by_country/prod/',
 
         // default Domain Code used to retrieve the country lists
         countriesDomainCode: 'QC',
