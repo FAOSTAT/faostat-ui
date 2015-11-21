@@ -16,8 +16,9 @@ define([
     'globals/Common',
     'faostatapiclient',
     'list',
+    'fx-ds/start',
     'amplify'
-], function (Require, $, log, View, F, C, Q, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List) {
+], function (Require, $, log, View, F, C, Q, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List, Dashboard) {
 
     'use strict';
 
@@ -52,7 +53,6 @@ define([
         template: template,
 
         initialize: function (options) {
-
 
             this.o = $.extend(true, {}, o, options);
             this.cache = {};
@@ -140,7 +140,11 @@ define([
                     t = Handlebars.compile(templateCountryList),
                     d = $.extend(true, {}, i18nLabels, {data: countries});
 
-                this.$COUNTRY_LIST.append(t(d));
+                var html = t(d);
+
+                log.info(html)
+
+                this.$COUNTRY_LIST.append(html);
 
                 // add list.js
                 var options = {
@@ -168,10 +172,40 @@ define([
 
             this.$COUNTRY_LIST.hide();
             this.$COUNTRY_PROFILE.show();
+            this.$COUNTRY_PROFILE_DASHBOARD.empty();
 
-            var countryName = this.getCountryName();
+            var countryName = this.getCountryName(),
+                lang = this.o.lang,
+                basePath = CM.viewsBasePath,
+                code = this.o.code;
+
 
             this.$COUNTRY_PROFILE_TITLE.html(countryName);
+
+            // get and render the right view
+            Require([basePath+ "country_profile"], _.bind(function(view) {
+
+                var dashboard = view.dashboard || null;
+
+                // adding default country
+                dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
+
+                // render structure (structure i.e. change view on click selection)
+
+                // render dashboard
+                if (dashboard !== null) {
+
+                    this.renderDashboard($.extend(true, {}, view.dashboard, {
+                        container: this.$COUNTRY_PROFILE_DASHBOARD,
+                        layout: 'fluid',
+                        lang: lang}));
+
+                }else{
+                    console.error("View is not defined, handle exception");
+                }
+
+
+            }, this));
 
         },
 
@@ -184,6 +218,54 @@ define([
 
             return (c.length > 0) ? c[0].label : "";
         },
+
+        renderDashboard: function(config) {
+
+            if (this.dashboard && this.dashboard.destroy) {
+                this.dashboard.destroy();
+            }
+
+            this.dashboard = new Dashboard();
+
+            // setting default filter options (i.e. language and datasouce)
+            config.filter = this.defaultFilterOptions(config.filter);
+            _.each(config.items, _.bind(function(item) {
+                item.config = this.defaultItemOptions(item);
+            }, this));
+
+            config.render =  true;
+
+            this.dashboard.render(config);
+
+        },
+
+        // TODO: this should be in a generic dashboard configuration (it's the same as by domain)
+        defaultFilterOptions: function(config) {
+
+            return $.extend(
+                true,
+                {},
+                config,
+                {
+                    lang: this.o.lang,
+                    datasource: C.DATASOURCE
+                }
+            );
+
+        },
+
+        defaultItemOptions: function(item) {
+
+            if (item.type) {
+                if (CM.view && CM.view.hasOwnProperty(item.type) && item.hasOwnProperty('config')) {
+                    return $.extend(true, {}, CM.view[item.type], item.config);
+                }
+            }
+
+            return {};
+
+        },
+
 
         bindEventListeners: function () {
 
@@ -208,9 +290,9 @@ define([
         },
 
         changeState: function () {
-            console.warn("TODO: read internal state anche change URL state");
-            // TODO: handle the country selection
+
             Common.changeURL(this.o.section, (this.o.code) ? [this.o.code] : [], false);
+
         },
 
         dispose: function () {

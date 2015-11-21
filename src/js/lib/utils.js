@@ -43,15 +43,21 @@ define([
 
             // TODO: in theory should be requirejs.s.contexts._.config.locale?
             var lang = Common.getLocale();
+
+
+
             return keyword[lang.toUpperCase()] || keyword[lang.toLowerCase()];
 
         }
         else {
+            //log.info(keyword)
             return keyword;
         }
 
     });
 
+
+/*
     Handlebars.registerHelper("list_countries_creator", function(array) {
 
         var countries = array,
@@ -95,13 +101,13 @@ define([
                 secondDone  =false;
             }
         }
-        /* if(length%3 !== 0) {
+        /!* if(length%3 !== 0) {
          result+= '</div>';
-         }*/
+         }*!/
         log.info(result)
         return new Handlebars.SafeString(result);
 
-    });
+    });*/
 
     utils.getLabel = function (obj) {
         var lang = Common.getLocale();

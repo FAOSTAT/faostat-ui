@@ -167,13 +167,14 @@ define([
         var textData = this.$DD.select2('data');
         if (Array.isArray(textData)){
             _.each(textData, function(t) {
-                if (t.text) {
+                if (f.text) {
                     f.labels.push(t.text.trim());
                 }
             });
         }
         else{
             if (textData.text) {
+                log.info(textData)
                 f.labels.push(textData.text.trim());
             }
         }
