@@ -54,7 +54,7 @@ define(function () {
                     'survey', // HS
                     'element', 'item',
                     'breakdownvar', 'breakdownsex', 'indicator', 'measure', // HS
-                    'purpose', // ODA
+                    'purpose'
 
                 ]
             },
