@@ -32,6 +32,8 @@ define([
 
     Export.prototype.exportData = function (request, options) {
 
+        log.info(request, options);
+
         // TODO: check better the requestType!
         var requestType = (options)? options.requestType: this.o.requestType,
             name = (options)? options.name: this.o.name,
@@ -57,7 +59,10 @@ define([
 
                 amplify.publish(E.WAITING_HIDE);
 
+                log.info(error);
+                window.btoa(unescape(encodeURIComponent(error)))
                 self._exportResult(error, name);
+
             });
 
         }else{
@@ -71,11 +76,13 @@ define([
 
         var csvString = result.responseText,
             a = document.createElement('a'),
-            filename = name + "_" + (new Date()).getTime() + '.csv';
+            filename = (name) || "Export_Data" + "_" + (new Date()).getTime() + '.csv';
 
-        a.href        = 'data:text/csv;charset=utf-8;base64,' + window.btoa(csvString);
-        a.target      = '_blank';
-        a.download    = filename;
+        //a.href        = 'data:text/csv;charset=utf-8;base64,' + window.btoa(csvString);
+        // TODO: find a better way unescape is deprecated!
+        a.href = 'data:text/csv;charset=utf-8;base64,' + window.btoa(unescape(encodeURIComponent(csvString)));
+        a.target = '_blank';
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
 

@@ -34,11 +34,14 @@ define([
 
     s = {
 
-        TABLE: "#fs-units-table"
+        TABLE: "#fs-units-table",
+        EXPORT_DATA: "[data-role='export']"
 
     },
 
     o = {
+
+        requestType: 'units',
 
         tableSearchFilters: ['fs-mes-code', 'fs-mes-label' ]
 
@@ -83,6 +86,7 @@ define([
             this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
             this.$table = this.$el.find(s.TABLE);
+            this.$export_data = this.$el.find(s.EXPORT_DATA);
 
         },
 
@@ -90,10 +94,9 @@ define([
 
             amplify.publish(E.LOADING_SHOW, {container: this.$table});
 
-            // TODO: lang
-            this.FAOSTATAPIClient.units({
+            this.FAOSTATAPIClient[this.o.requestType]({
                 datasource: C.DATASOURCE,
-                lang: this.o.lang,
+                lang: this.o.lang
             }).then(_.bind(this.showTable, this));
 
         },
@@ -129,9 +132,22 @@ define([
 
         bindEventListeners: function () {
 
+            var self = this;
+
+            this.$export_data.on('click', function() {
+                amplify.publish(E.EXPORT_DATA,
+                    {},
+                    {
+                        "requestType": self.o.requestType
+                    }
+                );
+            });
+
         },
 
         unbindEventListeners: function () {
+
+            this.$export_data.off('click');
 
         },
 

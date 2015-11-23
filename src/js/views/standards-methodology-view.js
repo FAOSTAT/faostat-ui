@@ -156,20 +156,13 @@ define([
                 lang: this.o.lang
             }).then(function(json) {
 
-                var template, dynamic_data, html;
-
                 /* Load main structure. */
-                template = Handlebars.compile(templateOutput);
+                var t = Handlebars.compile(templateOutput),
+                    data = $.extend({}, i18nLabels, json.data[0]);
 
-                dynamic_data = $.extend({}, i18nLabels, json.data[0]);
-                dynamic_data.methodology_title = label;
+                data.methodology_title = label;
 
-                html = template(dynamic_data);
-                self.$output.html(html);
-
-                //$('font').attr("color", '#');
-                //$('strong').contents().unwrap();
-                //$('font').contents().unwrap();
+                self.$output.html(t(data));
 
             });
 

@@ -34,11 +34,14 @@ define([
 
     s = {
 
-        TABLE: "#fs-glossary-table"
+        TABLE: "#fs-glossary-table",
+        EXPORT_DATA: "[data-role='export']"
 
     },
 
     o = {
+
+        requestType: 'glossary',
 
         tableSearchFilters: ['fs-mes-code', 'fs-mes-label', 'fs-mes-source' ]
 
@@ -83,19 +86,15 @@ define([
             this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
             this.$table = this.$el.find(s.TABLE);
+            this.$export_data = this.$el.find(s.EXPORT_DATA);
 
         },
 
         initComponents: function () {
 
-            // TODO: check this...
-            setTimeout(function(){  amplify.publish(E.LOADING_HIDE, {container: '#breadcrumb-container'}) }, 1000);
-
-
-            // TODO: lang
             amplify.publish(E.LOADING_SHOW, {container: this.$table});
 
-            this.FAOSTATAPIClient.glossary({
+            this.FAOSTATAPIClient[this.o.requestType]({
                 datasource: C.DATASOURCE,
                 lang: this.o.lang
             }).then(_.bind(this.showTable, this));
@@ -132,9 +131,22 @@ define([
 
         bindEventListeners: function () {
 
+            var self = this;
+
+            this.$export_data.on('click', function() {
+                amplify.publish(E.EXPORT_DATA,
+                    {},
+                    {
+                        "requestType": self.o.requestType
+                    }
+                );
+            });
+
         },
 
         unbindEventListeners: function () {
+
+            this.$export_data.off('click');
 
         },
 
