@@ -158,6 +158,10 @@ define(function () {
 
                     //height:'250px',
                     config: {
+                        adapter: {
+                            columns: ['area', 'year', 'value'],
+                            showCodes: false
+                        },
                         template: {}
                     },
                     allowedFilter: ['item', 'year', 'element', 'aggregation'],

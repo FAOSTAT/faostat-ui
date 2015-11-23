@@ -95,7 +95,7 @@ define(function () {
                 List7Codes: null,
                 decimal_places: 2,
                 decimal_separator: ".",
-                limit: -1,
+                limit: "-1",
                 thousand_separator: ",",
                 "null_values": null
             },
@@ -166,7 +166,7 @@ define(function () {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                         List1Codes: ["5000>", "351"],
                         "group_by": 'year',
-                        "order_by": 'area'
+                        "order_by": 'area',
                     },
 /*                    bridge: {
                         requestType: 'rankings' // data, rankings
@@ -209,7 +209,7 @@ define(function () {
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-xs-6",
 
                     // labels?
                     labels: {
@@ -249,7 +249,7 @@ define(function () {
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-xs-6",
 
                     // labels?
                     labels: {
@@ -274,7 +274,7 @@ define(function () {
                             seriesDimensions: ['area']
                         },
                         template: {
-                            // height:'350px'
+                             height:'250px'
                             // default labels to be applied
                         },
                         creator: {
