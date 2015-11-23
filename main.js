@@ -130,6 +130,7 @@ require([
 
                     /* table */
                     'fs-t-c': 'lib/table',
+                    'bootstrap-table': 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.min',
 
 
                     /* Google Analytics */
