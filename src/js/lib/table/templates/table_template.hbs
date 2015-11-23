@@ -1,10 +1,14 @@
 <table data-role="table"
-       data-search="false"
-       data-show-columns="false"
-       data-show-header="true"
-       data-pagination="false">
-       <!--data-height="250"-->
-
+       {{#if tableOptions}}
+           data-search="{{#if tableOptions.data-search}}{{tableOptions.data-search}}{{else}}false{{/if}}"
+           data-show-columns="false"
+           data-show-header="{{#if tableOptions.data-show-header}}{{tableOptions.data-show-header}}{{else}}true{{/if}}"
+           data-pagination="false"
+       {{/if}}
+        {{#if height}}
+            data-height="{{height}}"
+        {{/if}}
+    >
     <thead>
     <tr>
     {{#each dsd}}

@@ -39,5 +39,11 @@ define([
             return this.o.container;
         };
 
+        Table.prototype.destroy = function () {
+
+            log.warn("TODO: implement destroy")
+
+        };
+
         return Table;
     });

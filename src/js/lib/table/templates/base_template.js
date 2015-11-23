@@ -44,9 +44,14 @@ define([
             var $table_content = this.o.$container.find(s.TABLE_CONTENT);
 
             var t = Handlebars.compile(templateTable);
-            log.info(this.o.filteredModel)
-            log.info(this.o.model.data)
-            $table_content.html(t(this.o.filteredModel));
+            var d  = $.extend(true,  {}, this.o.template, this.o.filteredModel);
+            $table_content.html(t(d));
+
+            //log.info(this.o.filteredModel)
+            //log.info(this.o.model.data)
+/*
+            log.info(d)
+            log.info(t(d))*/
 
             $table_content.find(s.TABLE).bootstrapTable({
                 data: this.o.model.data
