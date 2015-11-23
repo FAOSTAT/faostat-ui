@@ -1,0 +1,180 @@
+{
+  "metadata": {
+    "processing_time": 1488,
+    "dsd": [
+      {
+        "index": "2",
+        "label": "Domain Code",
+        "type": "code",
+        "key": "Domain Code"
+      },
+      {
+        "index": "3",
+        "label": "Domain",
+        "type": "label",
+        "key": "Domain"
+      },
+      {
+        "index": "14",
+        "label": "Flag",
+        "type": "code",
+        "key": "Flag"
+      },
+      {
+        "index": "15",
+        "label": "Flag Description",
+        "type": "label",
+        "key": "Flag Description"
+      },
+      {
+        "index": "12",
+        "dimension_id": "unit",
+        "label": "Unit Description",
+        "type": "unit",
+        "key": "Unit Description"
+      },
+      {
+        "index": "13",
+        "dimension_id": "value",
+        "label": "Value",
+        "type": "value",
+        "key": "Value"
+      },
+      {
+        "index": "4",
+        "dimension_id": "area",
+        "label": "Country Code",
+        "type": "code",
+        "key": "Country Code"
+      },
+      {
+        "index": "5",
+        "dimension_id": "area",
+        "label": "Country",
+        "type": "label",
+        "key": "Country"
+      },
+      {
+        "index": "6",
+        "dimension_id": "element",
+        "label": "Element Code",
+        "type": "code",
+        "key": "Element Code"
+      },
+      {
+        "index": "7",
+        "dimension_id": "element",
+        "label": "Element",
+        "type": "label",
+        "key": "Element"
+      },
+      {
+        "index": "8",
+        "dimension_id": "item",
+        "label": "Item Code",
+        "type": "code",
+        "key": "Item Code"
+      },
+      {
+        "index": "9",
+        "dimension_id": "item",
+        "label": "Item",
+        "type": "label",
+        "key": "Item"
+      },
+      {
+        "index": "10",
+        "dimension_id": "year",
+        "label": "Year Code",
+        "type": "code",
+        "key": "Year Code"
+      },
+      {
+        "index": "11",
+        "dimension_id": "year",
+        "label": "Year",
+        "type": "label",
+        "key": "Year"
+      }
+    ],
+    "datasource": "PRODUCTION",
+    "output_type": "OBJECTS",
+    "api_key": "n.a.",
+    "client_key": "n.a.",
+    "parameters": {
+      "List1Codes": "[9, 68, 106, 203]",
+      "List4Codes": "[1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013]",
+      "page_size": "0",
+      "List3Codes": "[515]",
+      "List7Codes": "[]",
+      "page_number": "0",
+      "domain_code": "QC",
+      "group_by": "year, element",
+      "lang": "E",
+      "operator": "avg",
+      "null_values": "false",
+      "List2Codes": "[2510]",
+      "List6Codes": "[]",
+      "order_by": "area",
+      "List5Codes": "[]"
+    }
+  },
+  "data": [
+    {
+      "Value": 851491.6981132076,
+      "Flag": "",
+      "Domain Code": "QC",
+      "Item": "Apples",
+      "Domain": "Crops",
+      "RecordOrder": 0,
+      "Flag Description": "",
+      "NoRecords": 0,
+      "Item Code": 515,
+      "Country": "Argentina",
+      "Country Code": 9,
+      "Unit": "tonnes"
+    },
+    {
+      "Value": 2533597.6226415094,
+      "Flag": "",
+      "Domain Code": "QC",
+      "Item": "Apples",
+      "Domain": "Crops",
+      "RecordOrder": 0,
+      "Flag Description": "",
+      "NoRecords": 0,
+      "Item Code": 515,
+      "Country": "France",
+      "Country Code": 68,
+      "Unit": "tonnes"
+    },
+    {
+      "Value": 2109261.9056603773,
+      "Flag": "",
+      "Domain Code": "QC",
+      "Item": "Apples",
+      "Domain": "Crops",
+      "RecordOrder": 0,
+      "Flag Description": "",
+      "NoRecords": 0,
+      "Item Code": 515,
+      "Country": "Italy",
+      "Country Code": 106,
+      "Unit": "tonnes"
+    },
+    {
+      "Value": 761122.3773584906,
+      "Flag": "",
+      "Domain Code": "QC",
+      "Item": "Apples",
+      "Domain": "Crops",
+      "RecordOrder": 0,
+      "Flag Description": "",
+      "NoRecords": 0,
+      "Item Code": 515,
+      "Country": "Spain",
+      "Country Code": 203,
+      "Unit": "tonnes"
+    }
+  ]
+}

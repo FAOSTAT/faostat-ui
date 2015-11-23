@@ -1,0 +1,12 @@
+{
+   "faostat": {
+      "blacklist": [
+         "dsd", "rid"
+      ]
+   },
+   "example": {
+      "whitelist": [
+         "uid", "title"
+      ]
+   }
+}

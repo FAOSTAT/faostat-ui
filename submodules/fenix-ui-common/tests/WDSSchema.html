@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <script type='application/javascript' src='//fenixrepo.fao.org/cdn/js/requirejs/2.1.8/require.min.js'></script>
+        <script type='application/javascript'>
+            function test() {
+                require.config({
+                    paths: {
+                        text:      "//fenixrepo.fao.org/cdn/js/requirejs/plugins/text/2.0.12/text",
+                        i18n:      "//fenixrepo.fao.org/cdn/js/requirejs/plugins/i18n/2.0.4/i18n",
+                        domready:  "//fenixrepo.fao.org/cdn/js/requirejs/plugins/domready/2.0.1/domReady",
+                        jquery:    "//fenixrepo.fao.org/cdn/js/jquery/2.1.1/jquery.min",
+                        WDS_CLIENT: '../js/WDSClient'
+                    }
+                });
+                require(['jquery', 'WDS_CLIENT'], function($, WDSClient) {
+                    var c = new WDSClient({
+                        datasource: 'faostat'
+                    });
+                    c.get_services_client({
+                        service_name: 'groupsanddomains',
+                        wds_url: 'http://faostat3.fao.org/wds/rest',
+                        parameters: {
+                            datasource: 'faostat',
+                            lang_faostat: 'E'
+                        },
+                        success: function(response) {
+                            $('#one').html(JSON.stringify(response));
+                        },
+                        error: function(response) {
+                            alert(response);
+                        }
+                    });
+                    c.get_services_client({
+                        service_name: 'bulkdownloads',
+                        parameters: {
+                            datasource: 'faostat',
+                            domain: 'GE',
+                            lang_faostat: 'E'
+                        },
+                        success: function(response) {
+                            $('#two').html(JSON.stringify(response));
+                        },
+                        error: function(response) {
+                            alert(response);
+                        }
+                    });
+                });
+            }
+        </script>
+    </head>
+    <body onload='test();'>
+        <div id='one'></div>
+        <hr>
+        <div id='two'></div>
+    </body>
+</html>
