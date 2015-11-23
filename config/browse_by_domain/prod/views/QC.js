@@ -253,14 +253,14 @@ define(function () {
 
                     // labels?
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Production of {{item}} top 5 producers",
                                 fr: "Production of {{item}} top 5 producers",
                                 es: "Production of {{item}} top 5 producers"
                             },
-                            subtitle: "{{year}}"
+                            subtitle: "{{aggregation}} {{year}}"
                         }
                     },
 
@@ -286,6 +286,7 @@ define(function () {
                         }
                     },
                     allowedFilter: ['year', 'item', 'aggregation'],
+                    deniedTemplateFilter: [],
                     filter: {
                         List1Codes: ["5000>"],
                         "group_by": 'year',
