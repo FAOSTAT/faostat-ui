@@ -117,7 +117,8 @@ require([
                     'jquery-ui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
 
 
-                    jbPivot: '{FENIX_CDN}/js/jbpivot/0.1.0/jbPivot',
+                    //jbPivot: '{FENIX_CDN}/js/jbpivot/0.1.0/jbPivot',
+                    jbPivot: '../../submodules/faostat-ui-pivot/dist/js/jbPivot',
                     pivot_exporter: '../../submodules/faostat-ui-pivot/src/js/PivotExporter',
                     swal: '{FENIX_CDN}/js/sweet-alert/0.5.0/sweet-alert.min',
                     numeral: '{FENIX_CDN}/js/numeral/1.5.3/min/numeral.min',
