@@ -169,13 +169,15 @@ define([
         if (Array.isArray(textData)){
             _.each(textData, function(t) {
                 if (f.text) {
-                    f.labels.push(t.text.trim());
+                    f.labels.push(t.text);
+                    //f.labels.push(t.text.trim());
                 }
             });
         }
         else{
             if (textData.text) {
-                f.labels.push(textData.text.trim());
+                f.labels.push(textData.text);
+                //f.labels.push(textData.text.trim());
             }
         }
 

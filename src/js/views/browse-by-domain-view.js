@@ -12,15 +12,15 @@ define([
     'config/browse_by_domain/Events',
     'text!templates/browse_by_domain/browse_by_domain.hbs',
     'text!templates/browse/view.hbs',
-    'text!templates/browse/related_views.hbs',
     'i18n!nls/browse_by_domain',
     'handlebars',
     'globals/Common',
     'FAOSTAT_UI_TREE',
     'lib/filters/filter-box',
     'fx-ds/start',
+    'lib/view/view-utils',
     'amplify'
-], function (Require, $, log, View, F, C, Q, E, CM, EM, template, templateView, templateRelatedViews, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard) {
+], function (Require, $, log, View, F, C, Q, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils) {
 
     'use strict';
 
@@ -183,54 +183,28 @@ define([
         createView: function(c) {
 
              var lang = this.o.lang,
-                basePath = c.basePath || CM.viewsBasePath,
-                updatedRelatedViews = (c.updatedRelatedViews !== undefined)? c.updatedRelatedViews: true;
-
+                 basePath = c.basePath || CM.viewsBasePath,
+                 updatedRelatedViews = (c.updatedRelatedViews !== undefined)? c.updatedRelatedViews: true;
 
             this.$VIEW.empty();
 
             // get and render the right view
-            Require([basePath+ c.viewID], _.bind(function(view) {
+            Require([basePath + c.viewID], _.bind(function(view) {
 
                 // extending view
                 view = $.extend(true, {}, c.config, view);
 
-                // prepare data
-                //comment
-                if (view.hasOwnProperty('comment')) {
-                    // TODO: switch to handlebars helpers with language
-                    if (view.comment.hasOwnProperty('text')) {
-                        view.comment.text = view.comment.text[lang] || view.comment.text;
-                    }
-                    if (view.comment.hasOwnProperty('pdf')) {
-                        view.comment.url = C.PDF_BASEPATH + lang.toUpperCase() + "/" + view.comment.pdf;
-                    }
-                }
-
-                var template, dynamic_data, html;
+                // set comments
+                ViewUtils.setDashboardComment(view);
 
                 /* Load main structure. */
-                //source = $(templates).filter('#faostat_ui_standards_units_table').html();
                 var t = Handlebars.compile(templateView);
                 this.$VIEW.append(t(view));
 
-
+                // update related views
                 // TODO: review the relatedViews template part
                 if ( updatedRelatedViews) {
-
-                    var t = Handlebars.compile(templateRelatedViews);
-                    this.$RELATED_VIEWS.html(t({relatedViews: view.relatedViews}));
-
-                    this.$RELATED_VIEWS.find('.nav-tabs').on('click', _.bind(function (e) {
-                        var viewID = $(e.target).data("view");
-
-                        this.createView({
-                            viewID: viewID,
-                            updatedRelatedViews: false
-                        })
-
-                    }, this));
-
+                    ViewUtils.addRelatedViews(this.$RELATED_VIEWS, view, _.bind(this.createView, this));
                 }
 
                 this.$FILTER_BOX = this.$VIEW.find(s.FILTER_BOX);
@@ -239,13 +213,12 @@ define([
                 var filter = view.filter || null,
                     dashboard = view.dashboard || null;
 
-                // render structure (structure i.e. change view on click selection)
 
                 // render filters
                 if (filter !== null) {
                     this.renderFilter({
                         filter: filter,
-                        // overrride event listener for the filter change (custom for browse by domain)
+                        // override event listener for the filter change (custom for browse by domain)
                         E: {
                             ON_FILTER_CHANGE: EM.ON_FILTER_CHANGE
                         },
@@ -262,7 +235,7 @@ define([
                         //layout: 'injected',
                         lang: lang}));
                 }else{
-                    console.error("View is not defined, handle exception");
+                    log.error("View is not defined, handle exception");
                 }
 
             }, this));
@@ -292,19 +265,12 @@ define([
             this.dashboard = new Dashboard();
 
             // setting default filter options (i.e. language and datasouce)
-            config.defaultFilter = this.defaultFilterOptions(config.defaultFilter);
+            config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
             _.each(config.items, _.bind(function(item) {
-                item.config = this.defaultItemOptions(item);
+                item.config = ViewUtils.defaultItemOptions(item, CM.view);
             }, this));
 
             this.dashboard.render(config);
-
-        },
-
-
-        loadDashBoard: function() {
-
-          this.updateDashboard({isOnLoad : true} );
 
         },
 
@@ -315,35 +281,8 @@ define([
             // getFilters
             var filters = this.filterBox.getFilters();
 
-            log.info(isOnLoad)
             // apply filters to dashboard
             this.dashboard.filter(filters, isOnLoad);
-
-        },
-
-        defaultFilterOptions: function(config) {
-
-            return $.extend(
-                true,
-                {},
-                config,
-                {
-                    lang: this.o.lang,
-                    datasource: C.DATASOURCE
-                }
-            );
-
-        },
-
-        defaultItemOptions: function(item) {
-
-            if (item.type) {
-                if (CM.view && CM.view.hasOwnProperty(item.type) && item.hasOwnProperty('config')) {
-                    return $.extend(true, {}, CM.view[item.type], item.config);
-                }
-            }
-
-            return {};
 
         }
 

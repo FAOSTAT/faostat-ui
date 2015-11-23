@@ -24,6 +24,7 @@ define([
 
     var s = {
 
+            COUNTRY_LIST_CONTAINER: "#fs-browse-by-country-list-container",
             COUNTRY_LIST: "#fs-browse-by-country-list",
             COUNTRY_PROFILE: "#fs-browse-by-country-profile",
             COUNTRY_PROFILE_TITLE: "#fs-browse-by-country-profile-title",
@@ -85,6 +86,7 @@ define([
 
         initVariables: function () {
 
+            this.$COUNTRY_LIST_CONTAINER = this.$el.find(s.COUNTRY_LIST_CONTAINER);
             this.$COUNTRY_LIST = this.$el.find(s.COUNTRY_LIST);
             this.$COUNTRY_PROFILE = this.$el.find(s.COUNTRY_PROFILE);
             this.$COUNTRY_PROFILE_TITLE = this.$el.find(s.COUNTRY_PROFILE_TITLE);
@@ -132,7 +134,7 @@ define([
         renderCountryList: function () {
 
             this.$COUNTRY_PROFILE.hide();
-            this.$COUNTRY_LIST.show();
+            this.$COUNTRY_LIST_CONTAINER.show();
 
             if (this.$COUNTRY_LIST.find('.' + this.o.countrySearchFilters).length <= 0) {
 
@@ -142,9 +144,7 @@ define([
 
                 var html = t(d);
 
-                log.info(html)
-
-                this.$COUNTRY_LIST.append(html);
+                this.$COUNTRY_LIST.html(html);
 
                 // add list.js
                 var options = {
@@ -152,7 +152,6 @@ define([
                 };
 
                 new List(this.$COUNTRY_LIST.selector.replace('#', ''), options);
-
 
                 this.$COUNTRY_LIST.find('.' + this.o.countrySearchFilters).on('click', _.bind(function (e) {
 
@@ -165,12 +164,13 @@ define([
                     this.changeState();
 
                 }, this));
+
             }
         },
 
         renderCountryProfile: function () {
 
-            this.$COUNTRY_LIST.hide();
+            this.$COUNTRY_LIST_CONTAINER.hide();
             this.$COUNTRY_PROFILE.show();
             this.$COUNTRY_PROFILE_DASHBOARD.empty();
 
@@ -201,7 +201,7 @@ define([
                         lang: lang}));
 
                 }else{
-                    console.error("View is not defined, handle exception");
+                    log.error("View is not defined, handle exception");
                 }
 
 
@@ -217,6 +217,7 @@ define([
             var c = _.where(codes, {code: code});
 
             return (c.length > 0) ? c[0].label : "";
+
         },
 
         renderDashboard: function(config) {

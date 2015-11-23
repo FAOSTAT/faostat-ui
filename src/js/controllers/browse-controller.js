@@ -32,6 +32,9 @@ define([
 
         show_browse_rankings: function (params) {
 
+            this.show(params, 'browse_rankings');
+
+/*
             this.api.codes({
                 lang: Common.getLocale(),
                 datasource: C.DATASOURCE,
@@ -45,7 +48,7 @@ define([
             }).then(_.bind(function(codes){
 
                 this.show(params, 'browse_rankings');
-            }, this));
+            }, this));*/
 
         }
 
