@@ -162,7 +162,12 @@ define(function () {
                             columns: ['area', 'value', 'unit'],
                             showCodes: false
                         },
-                        template: {}
+                        template: {
+                            height: '350', // important is without px!!
+                            tableOptions: {
+                                'data-search': true
+                            }
+                        }
                     },
                     allowedFilter: ['item', 'year', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
@@ -173,9 +178,50 @@ define(function () {
                         "order_by": 'value DESC',
                         limit: 10
                     }
-                    /*                    bridge: {
-                     requestType: 'rankings' // data, rankings
-                     }*/
+                },
+                {
+                    type: 'table',
+                    class: "col-xs-6",
+
+                    // labels?
+                    labels: {
+                        // labels to dinamically substitute the title and subtitle
+                        default: {},
+
+                        // temp[late to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Production quantities of {{item}} by country",
+                                fr: "Production quantities of {{item}} by country",
+                                es: "Production quantities of {{item}} by country"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+
+                    //height:'250px',
+                    config: {
+                        adapter: {
+                            columns: ['area', 'value', 'unit'],
+                            showCodes: false
+                        },
+                        template: {
+                            height: '350', // important is without px!!
+                            tableOptions: {
+                                'data-search': false
+                            }
+                        }
+                    },
+                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        List1Codes: ["5000>", "351"],
+                        "group_by": 'year',
+                        "order_by": 'value ASC',
+                        limit: 10
+                    }
                 }
             ]
         }
