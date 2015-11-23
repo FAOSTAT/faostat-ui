@@ -19,10 +19,12 @@ require([
     './submodules/faostat-ui-standards-units/src/js/paths',
     './submodules/faostat-ui-standards-abbreviations/src/js/paths',
     './submodules/faostat-ui-table/src/js/paths',
-    './submodules/faostat-ui-pivot/src/js/paths'
+    './submodules/faostat-ui-pivot/src/js/paths',
+    './submodules/faostat-ui-download/src/js/paths'
 ], function (Compiler, Common, Tree, MapCreator, ChartCreator, Dashboard, MetadataViewer, Reports,
              BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager, FAOSTATTheme,
-             DownloadOptions, DownloadSelector, Methodology, Units, Abbreviations, Table, Pivot) {
+             DownloadOptions, DownloadSelector, Methodology, Units, Abbreviations, Table, Pivot,
+             Download) {
 
     'use strict';
 
@@ -45,7 +47,8 @@ require([
         unitsConfig = Units,
         abbreviationsConfig = Abbreviations,
         tableConfig = Table,
-        pivotConfig = Pivot;
+        pivotConfig = Pivot,
+        downloadConfig = Download;
 
     treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/src/js';
     commonConfig.baseUrl = submodules_path + 'fenix-ui-common/js';
@@ -66,13 +69,14 @@ require([
     abbreviationsConfig.baseUrl = submodules_path + '/faostat-ui-standards-abbreviations/src/js';
     tableConfig.baseUrl = submodules_path + '/faostat-ui-table/src/js';
     pivotConfig.baseUrl = submodules_path + '/faostat-ui-pivot/src/js';
+    downloadConfig.baseUrl = submodules_path + '/faostat-ui-download/src/js';
 
     Compiler.resolve([commonConfig, mapConfig, chartConfig,
             dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig,
             downloadSelectorsManagerConfig, faostatMenuConfig,
             optionsManagerConfig, treeConfig, faostatThemeConfig, downloadOptionsConfig,
             downloadSelectorConfig, methodologyConfig, unitsConfig, abbreviationsConfig,
-            tableConfig, pivotConfig],
+            tableConfig, pivotConfig, downloadConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 
