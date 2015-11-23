@@ -279,34 +279,46 @@ define([
                             self.preview_size();
                         },
                         onCodesChange: function (isChecked) {
-                            if (isChecked) {
-                                $('th[data-type="code"]').css('display', 'table-cell');
-                                $('td[data-type="code"]').css('display', 'table-cell');
+                            if ($('#preview_options_output_type').is(':checked')) {
+                                if (isChecked) {
+                                    $('th[data-type="code"]').css('display', 'table-cell');
+                                    $('td[data-type="code"]').css('display', 'table-cell');
+                                } else {
+                                    $('th[data-type="code"]').css('display', 'none');
+                                    $('td[data-type="code"]').css('display', 'none');
+                                }
                             } else {
-                                $('th[data-type="code"]').css('display', 'none');
-                                $('td[data-type="code"]').css('display', 'none');
+                                self.preview_size();
                             }
                         },
                         onFlagsChange: function (isChecked) {
-                            if (isChecked) {
-                                $('th[data-type="flag"]').css('display', 'table-cell');
-                                $('td[data-type="flag"]').css('display', 'table-cell');
-                                $('th[data-type="flag_label"]').css('display', 'table-cell');
-                                $('td[data-type="flag_label"]').css('display', 'table-cell');
+                            if ($('#preview_options_output_type').is(':checked')) {
+                                if (isChecked) {
+                                    $('th[data-type="flag"]').css('display', 'table-cell');
+                                    $('td[data-type="flag"]').css('display', 'table-cell');
+                                    $('th[data-type="flag_label"]').css('display', 'table-cell');
+                                    $('td[data-type="flag_label"]').css('display', 'table-cell');
+                                } else {
+                                    $('th[data-type="flag"]').css('display', 'none');
+                                    $('td[data-type="flag"]').css('display', 'none');
+                                    $('th[data-type="flag_label"]').css('display', 'none');
+                                    $('td[data-type="flag_label"]').css('display', 'none');
+                                }
                             } else {
-                                $('th[data-type="flag"]').css('display', 'none');
-                                $('td[data-type="flag"]').css('display', 'none');
-                                $('th[data-type="flag_label"]').css('display', 'none');
-                                $('td[data-type="flag_label"]').css('display', 'none');
+                                self.preview_size();
                             }
                         },
                         onUnitsChange: function (isChecked) {
-                            if (isChecked) {
-                                $('th[data-type="unit"]').css('display', 'table-cell');
-                                $('td[data-type="unit"]').css('display', 'table-cell');
+                            if ($('#preview_options_output_type').is(':checked')) {
+                                if (isChecked) {
+                                    $('th[data-type="unit"]').css('display', 'table-cell');
+                                    $('td[data-type="unit"]').css('display', 'table-cell');
+                                } else {
+                                    $('th[data-type="unit"]').css('display', 'none');
+                                    $('td[data-type="unit"]').css('display', 'none');
+                                }
                             } else {
-                                $('th[data-type="unit"]').css('display', 'none');
-                                $('td[data-type="unit"]').css('display', 'none');
+                                self.preview_size();
                             }
                         },
                         onDecimalNumbersChange: function () {
@@ -725,7 +737,8 @@ define([
                     data: response.data,
                     dsd: response.metadata.dsd,
                     show_flags: dwld_options.flags_value,
-                    show_codes: dwld_options.codes_value
+                    show_codes: dwld_options.codes_value,
+                    show_units: dwld_options.units_value
                 });
 
                 break;
