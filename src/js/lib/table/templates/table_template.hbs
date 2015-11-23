@@ -1,20 +1,15 @@
 <table data-role="table"
-       data-search="true"
-       data-show-columns="true"
-       data-show-header="false",
-       data-pagination="true"
-       data-height="250">
-    <!-- headers -->
+       data-search="false"
+       data-show-columns="false"
+       data-show-header="true"
+       data-pagination="false">
+       <!--data-height="250"-->
 
     <thead>
     <tr>
-        <th data-field="stargazers_count" data-sortable="true">Stars</th>
-        <th data-field="name" data-sortable="true" width="200">Name</th>
-        <th data-field="forks_count" data-sortable="true">Forks</th>
-        <th data-field="description" data-sortable="true">Description</th>
+    {{#each dsd}}
+        <th data-field="{{{this.key}}}" data-sortable="true">{{{this.label}}}</th>
+    {{/each}}
     </tr>
     </thead>
-
-    <!-- content -->
-    <!-- body -->
 </table>

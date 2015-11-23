@@ -27,8 +27,35 @@ define([
 
         FAOSTAT_Adapter.prototype.prepareData = function (config) {
 
-
             this.o = $.extend(true, {}, defaultOptions, config);
+
+            return { dsd: this.getFilteredMetadata()} ;
+
+        };
+
+        FAOSTAT_Adapter.prototype.getFilteredMetadata = function () {
+
+            var columns = this.o.adapter.columns,
+                dsd = this.o.model.metadata.dsd,
+                filteredColumns = [];
+
+            log.info(this.o.adapter.columns);
+
+            _.each(columns, function(dimension_id) {
+                log.info(dimension_id)
+                _.each(dsd, function(c) {
+                    if (c.dimension_id === dimension_id ) {
+                        if (c.type !== "code") {
+                            filteredColumns.push(c);
+                        }
+                    }
+                });
+
+            });
+
+            log.info(filteredColumns)
+
+            return filteredColumns;
 
         };
 
