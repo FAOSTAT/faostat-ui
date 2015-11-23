@@ -137,7 +137,7 @@ define(function () {
             items: [
                 {
                     type: 'table',
-                    class: "col-xs-12",
+                    class: "col-xs-6",
 
                     // labels?
                     labels: {
@@ -159,7 +159,7 @@ define(function () {
                     //height:'250px',
                     config: {
                         adapter: {
-                            columns: ['area', 'year', 'value'],
+                            columns: ['area', 'value', 'unit'],
                             showCodes: false
                         },
                         template: {}
@@ -170,7 +170,8 @@ define(function () {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                         List1Codes: ["5000>", "351"],
                         "group_by": 'year',
-                        "order_by": 'area'
+                        "order_by": 'value DESC',
+                        limit: 10
                     }
                     /*                    bridge: {
                      requestType: 'rankings' // data, rankings

@@ -166,7 +166,7 @@ define(function () {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                         List1Codes: ["5000>", "351"],
                         "group_by": 'year',
-                        "order_by": 'area',
+                        "order_by": 'area'
                     },
 /*                    bridge: {
                         requestType: 'rankings' // data, rankings
