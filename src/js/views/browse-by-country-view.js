@@ -17,8 +17,9 @@ define([
     'faostatapiclient',
     'list',
     'fx-ds/start',
+    'lib/view/view-utils',
     'amplify'
-], function (Require, $, log, View, F, C, Q, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List, Dashboard) {
+], function (Require, $, log, View, F, C, Q, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List, Dashboard, ViewUtils) {
 
     'use strict';
 
@@ -228,43 +229,15 @@ define([
 
             this.dashboard = new Dashboard();
 
-            // setting default filter options (i.e. language and datasource)
-            config.defaultFilter = this.defaultFilterOptions(config.defaultFilter);
+            // setting default filter options (i.e. language and datasouce)
+            config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
             _.each(config.items, _.bind(function(item) {
-                item.config = this.defaultItemOptions(item);
+                item.config = ViewUtils.defaultItemOptions(item, CM.view);
             }, this));
 
             config.render =  true;
 
             this.dashboard.render(config);
-
-        },
-
-        // TODO: this should be in a generic dashboard configuration (it's the same as by domain)
-        defaultFilterOptions: function(config) {
-
-            return $.extend(
-                true,
-                {},
-                config,
-                {
-                    lang: this.o.lang,
-                    datasource: C.DATASOURCE
-                }
-            );
-
-        },
-
-        defaultItemOptions: function(item) {
-
-            // default options based on the item's type (i.e. chart/map/table etc)
-            if (item.type) {
-                if (CM.view && CM.view.hasOwnProperty(item.type) && item.hasOwnProperty('config')) {
-                    return $.extend(true, {}, CM.view[item.type], item.config);
-                }
-            }
-
-            return {};
 
         },
 

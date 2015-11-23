@@ -26,9 +26,9 @@ define([
             this.template = new Template();
             this.adapter = new Adapter();
 
+            // prepare data
             config.filteredModel = this.adapter.prepareData(config);
 
-            // prepare data
 
             // render table
             this.template.render(config);

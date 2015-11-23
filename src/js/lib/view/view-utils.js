@@ -37,11 +37,11 @@ define([
 
         if (item.type) {
             if (CustomView && CustomView.hasOwnProperty(item.type) && item.hasOwnProperty('config')) {
-                return $.extend(true, {}, CustomView[item.type], item.config);
+                return $.extend(true, {}, CustomView[item.type] || {}, item.config);
             }
         }
 
-        return {};
+        return item.config || {};
 
     };
 

@@ -49,9 +49,8 @@ define([
 
             //log.info(this.o.filteredModel)
             //log.info(this.o.model.data)
-/*
-            log.info(d)
-            log.info(t(d))*/
+            //log.info(d)
+            //log.info(t(d))
 
             $table_content.find(s.TABLE).bootstrapTable({
                 data: this.o.model.data

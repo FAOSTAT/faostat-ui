@@ -35,25 +35,34 @@ define([
 
         FAOSTAT_Adapter.prototype.getFilteredMetadata = function () {
 
-            var columns = this.o.adapter.columns,
+            var columns = (this.o.adapter)? this.o.adapter.columns|| []: [],
                 dsd = this.o.model.metadata.dsd,
                 filteredColumns = [];
 
-            //log.info(this.o.adapter.columns);
+            log.info(this.o)
 
-            _.each(columns, function(dimension_id) {
-                log.info(dimension_id)
-                _.each(dsd, function(c) {
-                    if (c.dimension_id === dimension_id ) {
-                        if (c.type !== "code") {
-                            filteredColumns.push(c);
+            log.info("Table Columns: ", columns)
+
+            if ( columns.length > 0) {
+
+                _.each(columns, function (dimension_id) {
+                    log.info(dimension_id)
+                    _.each(dsd, function (c) {
+                        if (c.dimension_id === dimension_id) {
+                            if (c.type !== "code") {
+                                filteredColumns.push(c);
+                            }
                         }
-                    }
+                    });
+
                 });
+            }
+            else {
+                log.warn("No table column filter applied 'adapter.columns'. Retrieve all table. ")
+                filteredColumns = $.extend(true, {}, dsd);
+            }
 
-            });
-
-            //log.info(filteredColumns)
+            log.info(filteredColumns)
 
             return filteredColumns;
 
