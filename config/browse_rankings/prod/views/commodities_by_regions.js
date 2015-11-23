@@ -137,7 +137,7 @@ define(function () {
             items: [
                 {
                     type: 'table',
-                    class: "col-xs-6",
+                    class: "col-xs-12 col-md-6",
 
                     // labels?
                     labels: {
@@ -173,7 +173,7 @@ define(function () {
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
+                        List1Codes: ["5000>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         limit: 10
@@ -181,7 +181,7 @@ define(function () {
                 },
                 {
                     type: 'table',
-                    class: "col-xs-6",
+                    class: "col-xs-12 col-md-6",
 
                     // labels?
                     labels: {
@@ -217,7 +217,7 @@ define(function () {
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
+                        List1Codes: ["5000>"],
                         "group_by": 'year',
                         "order_by": 'value ASC',
                         limit: 10
