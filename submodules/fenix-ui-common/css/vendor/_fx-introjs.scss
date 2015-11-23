@@ -1,0 +1,18 @@
+/* Fenix - Intro Js */
+
+.introjs-helperNumberLayer{
+  background: none;
+  @include fx-circle-number;
+  @include fx-noshadow;
+  text-shadow: none;
+  border: 0;
+  padding: 0;
+  left: -25px;
+  top:0;
+}
+
+.introjs-button:hover, .introjs-button:active, .introjs-button:focus{
+  text-shadow: none;
+  color: $fx-cool-blue;
+  text-decoration: none;
+}

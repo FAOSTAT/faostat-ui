@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "processing_time": 5409,
+    "dsd": [
+      {
+        "index": "2",
+        "label": "Domain Code",
+        "type": "code",
+        "key": "Domain Code"
+      },
+      {
+        "index": "3",
+        "label": "Domain",
+        "type": "label",
+        "key": "Domain"
+      },
+      {
+        "index": "14",
+        "label": "Flag",
+        "type": "code",
+        "key": "Flag"
+      },
+      {
+        "index": "15",
+        "label": "Flag Description",
+        "type": "label",
+        "key": "Flag Description"
+      },
+      {
+        "index": "12",
+        "dimension_id": "unit",
+        "label": "Unit Description",
+        "type": "unit",
+        "key": "Unit Description"
+      },
+      {
+        "index": "13",
+        "dimension_id": "value",
+        "label": "Value",
+        "type": "value",
+        "key": "Value"
+      },
+      {
+        "index": "4",
+        "dimension_id": "areagroup",
+        "label": "Country Code",
+        "type": "code",
+        "key": "Country Code"
+      },
+      {
+        "index": "5",
+        "dimension_id": "areagroup",
+        "label": "Country",
+        "type": "label",
+        "key": "Country"
+      },
+      {
+        "index": "6",
+        "dimension_id": "elementgroup",
+        "label": "Element Code",
+        "type": "code",
+        "key": "Element Code"
+      },
+      {
+        "index": "7",
+        "dimension_id": "elementgroup",
+        "label": "Element",
+        "type": "label",
+        "key": "Element"
+      },
+      {
+        "index": "8",
+        "dimension_id": "itemgroup",
+        "label": "Item Code",
+        "type": "code",
+        "key": "Item Code"
+      },
+      {
+        "index": "9",
+        "dimension_id": "itemgroup",
+        "label": "Item",
+        "type": "label",
+        "key": "Item"
+      },
+      {
+        "index": "10",
+        "dimension_id": "yeargroup",
+        "label": "Year Code",
+        "type": "code",
+        "key": "Year Code"
+      },
+      {
+        "index": "11",
+        "dimension_id": "yeargroup",
+        "label": "Year",
+        "type": "label",
+        "key": "Year"
+      }
+    ],
+    "datasource": "PRODUCTION",
+    "output_type": "ARRAYS",
+    "api_key": "n.a.",
+    "client_key": "n.a.",
+    "parameters": {
+      "limit": "-1",
+      "List1Codes": "[5100, 5200, 5300, 5400, 5500]",
+      "List4Codes": "[2010]",
+      "List3Codes": "[5060]",
+      "List7Codes": "[]",
+      "thousand_separator": ",",
+      "domain_code": "GT",
+      "decimal_separator": ".",
+      "lang": "E",
+      "null_values": "false",
+      "decimal_places": "2",
+      "List2Codes": "[7231]",
+      "List6Codes": "[]",
+      "List5Codes": "[]"
+    }
+  },
+  "data": [
+    [
+      "5",
+      "1",
+      "GT",
+      "Agriculture Total",
+      "5100",
+      "Africa",
+      "7231",
+      "Emissions (CO2eq)",
+      "5060",
+      "Rice Cultivation",
+      "2010",
+      "2010",
+      "Gigagrams",
+      "25,377.61",
+      "A",
+      "Aggregate, may include official, semi-official, estimated or calculated data",
+      "260",
+      "1",
+      "03",
+      "50"
+    ],
+    [
+      "5",
+      "2",
+      "GT",
+      "Agriculture Total",
+      "5200",
+      "Americas",
+      "7231",
+      "Emissions (CO2eq)",
+      "5060",
+      "Rice Cultivation",
+      "2010",
+      "2010",
+      "Gigagrams",
+      "27,540.11",
+      "A",
+      "Aggregate, may include official, semi-official, estimated or calculated data",
+      "266",
+      "1",
+      "03",
+      "50"
+    ],
+    [
+      "5",
+      "3",
+      "GT",
+      "Agriculture Total",
+      "5300",
+      "Asia",
+      "7231",
+      "Emissions (CO2eq)",
+      "5060",
+      "Rice Cultivation",
+      "2010",
+      "2010",
+      "Gigagrams",
+      "458,230.67",
+      "A",
+      "Aggregate, may include official, semi-official, estimated or calculated data",
+      "271",
+      "1",
+      "03",
+      "50"
+    ],
+    [
+      "5",
+      "4",
+      "GT",
+      "Agriculture Total",
+      "5400",
+      "Europe",
+      "7231",
+      "Emissions (CO2eq)",
+      "5060",
+      "Rice Cultivation",
+      "2010",
+      "2010",
+      "Gigagrams",
+      "6,338.40",
+      "A",
+      "Aggregate, may include official, semi-official, estimated or calculated data",
+      "277",
+      "1",
+      "03",
+      "50"
+    ],
+    [
+      "5",
+      "5",
+      "GT",
+      "Agriculture Total",
+      "5500",
+      "Oceania",
+      "7231",
+      "Emissions (CO2eq)",
+      "5060",
+      "Rice Cultivation",
+      "2010",
+      "2010",
+      "Gigagrams",
+      "141.05",
+      "A",
+      "Aggregate, may include official, semi-official, estimated or calculated data",
+      "282",
+      "1",
+      "03",
+      "50"
+    ]
+  ]
+}

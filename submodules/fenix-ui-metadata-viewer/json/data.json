@@ -1,0 +1,121 @@
+{
+  "creationDate": 1416351600000,
+  "language": "English",
+  "title": "Crops, National Production ",
+  "uid": "QC",
+  "languageDetails": "",
+  "characterSet": "106",
+  "metadataStandardName": "FENIX",
+  "metadataStandardVersion": "1.0",
+  "metadataLanguage": "English",
+  "contacts": [
+    {
+      "organization": "Food and Agriculture Organization of the United Nations (FAO)",
+      "role": "distributor",
+      "contactInfo": {
+        "address": "Economic and Social Development Department Viale delle Terme di Caracalla  00153 Rome, Italy ",
+        "emailAddress": "FAO-statistics@fao.org"
+      },
+      "organizationUnit": "Statistics Division (ESS)",
+      "roleLabel": "Distributor"
+    }
+  ],
+  "meContent": {
+    "description": "Crop statistics are recorded for 173 products, covering the  following categories:  Crops Primary, Fibre Crops Primary, Cereals, Coarse Grain, Citrus Fruit, Fruit, Jute & Jute-like Fibres, Oilcakes Equivalent, Oil crops Primary, Pulses,  Roots and Tubers, Treenuts and Vegetables and Melons.  Data are expressed in terms of area harvested, production quantity, yield and seed quantity.  The objective is to cover all countries and regions in the world.\r\n",
+    "resourceRepresentationTypeLabel": "Dataset",
+    "resourceRepresentationType": "dataset",
+    "keywords": [
+      "Crops",
+      "Production"
+    ],
+    "statisticalConceptsDefinitions": "Areas refer to the area under cultivation. Area under cultivation means the area that corresponds to the total sown area, but after the harvest it excludes ruined areas (e.g. due to natural disasters).  If the same land parcel is used twice in the same year, the area of this parcel can be counted twice. Production means the harvested production. Harvested production means production including on-holding losses and wastage, quantities consumed directly on the farm and marketed quantities, indicated in units of basic product weight. Harvest year means the calendar year in which the harvest begins. Yield means the harvested production per ha for the area under cultivation.\r\n",
+    "seReferencePopulation": {
+      "statisticalPopulation": "All areas cultivated with crops in a country.\r\n",
+      "statisticalUnit": "Agriculture holdings cultivated for the production of crops.",
+      "referencePeriod": "Year",
+      "referenceArea": "First level administrative boundaries"
+    },
+    "seCoverage": {
+      "coverageSectors": "AGRICULTURE",
+      "coverageSectorsDetails": "Most crop products under agricultural activity.\r\n",
+      "coverageTime": {
+        "from": 473382000000,
+        "to": 1262214000000
+      },
+      "coverageGeographic": "Juan de Nova Island"
+    }
+  },
+  "meInstitutionalMandate": {
+    "legalActsAgreements": "Article I of the constitution indeed requires the Organization to collect, analyse, interpret and disseminate information relating to nutrition, food and agriculture (the term “agriculture” and its derivatives includes forestry, fisheries and aquaculture). The first session of the FAO Conference in 1945 provided the rationale: “If FAO is to carry out its work successfully it will need to know where and why hunger and malnutrition exist, what forms they take, and how widespread they are. Such data will serve as a basis for making plans, determining the efficacy of measures used, and measuring progress from time to time.” Member countries reaffirmed this mandate in 2000 when formulating the Organization’s strategic thrusts for the 2000-2015 period: Corporate Strategy E1 commits the Organization to building “an integrated information resource base, with current, relevant and reliable statistics, information and knowledge made accessible to all FAO clients. For legal acts concerning statistics at national levels see links to country websites.\r\n\r\n",
+    "institutionalMandateDataSharing": "Crops and livestock statistics from Eurostat and CIS-Stat are used.\r\n"
+  },
+  "meAccessibility": {
+    "seDataDissemination": {
+      "seReleasePolicy": {
+        "releaseCalendar": "Dates for new data releases are pre-announced on the FAOSTAT3 website.  ",
+        "releaseCalendarAccess": "http://faostat3.fao.org/home/faostatReleaseCalendar.html\r\n",
+        "disseminationPeriodicity": "Year",
+        "embargoTime": {}
+      },
+      "seDistribution": {
+        "onlineResource": "http://faostat.fao.org/site/636/default.aspx",
+        "disseminationFormat": [
+          "Excel",
+          "CSV"
+        ]
+      }
+    },
+    "seClarity": {
+      "clarity": "National reference metadata are submitted by some countries but these are not yet disseminated by FAO.  No methodological papers, except the classification scheme, has been produced.\r\n"
+    },
+    "seConfidentiality": {
+      "confidentialityStatus": "Free",
+      "confidentialityPolicy": "FAO Statistical Quality Assurance Framework, Principle 10: \"All data subject to national confidentiality policies (e.g. concerning people and legal entities, or small aggregates) are kept strictly confidential, and are used exclusively for statistical purposes, or for purposes mandated by legislation.\"\r\n",
+      "confidentialityDataTreatment": "Only non-confidential data are collected and recorded.\r\n"
+    }
+  },
+  "meDataQuality": {
+    "qualityManagement": "",
+    "qualityAssessment": "The quality of data varies considerably between countries.  There are no routines for accessing the quality, except for some input validation. Ideally, sample surveys should be representative of at least 95% of the total area and land under that crop. Surveys on production or yields should be conducted using statistically recognized methods as regards quality, objectivity and reliability.  Up till now FAO has not been in the position to ensure such quality requirements of the data submitted by countries. More information on metadata and certain validation procedures at country level is certainly needed;\r\n",
+    "qualityAssurance": "Statistics are subject to the general quality assurance framework of FAO, where domain-specific quality assurance activities (the use of best practices, quality reviews, self-assessments, compliance monitoring) are carried out systematically. See also the FAO Statistics Quality Assurance Framework is available http://www.fao.org/docrep/019/i3664e/i3664e.pdf\r\n",
+    "seAccuracy": {
+      "accuracyNonSampling": "It is not possible to asses the accuracy but as there is a substantial amount of estimated or imputed data points, the accuracy for certain products, countries and regions is not that good.\r\nNo information available of the magnitude on non-sampling errors.  One such category of errors is measurement errors which are due mainly to lack of harmonisation in statistical methods. For instance, when FAO concepts do not fit with national concepts, there may be significant measurement errors.  \r\n",
+      "accuracySampling": "No information available.  In the EU the coefficient of variation shall according to regulations not exceed 3% for the area of cultivation for main crops.  For non EU countries the coefficient of variation might be significantly larger.  For further information see country metadata when available.\r\n"
+    },
+    "seDataRevision": {
+      "revisionPolicy": "Prefilled questionnaires are sent out with reported data for n-1, n-2 and n-3 which countries are asked to revise.\r\n",
+      "revisionPractice": "The revised data for n-1 to n-3 are disseminated at the same time as the data for year n are released.\r\n"
+    },
+    "seRelevance": {
+      "userNeeds": "The main users are FAO analysts, other international organizations, ministries and government agencies, agro-industry, trade and professional associations, research institutes and universities, journalists and general public. The objectives of these users vary, but agriculture production statistics are especially useful for market management/monitoring, production forecasts and policy-making in agriculture and food. FAO is not aware of unmet needs.\r\n",
+      "userSatisfaction": "No user satisfaction studies have been conducted which may explain why FAO is not aware of unmet user needs.\r\n",
+      "completeness": "The data received by countries are fairly incomplete for certain product categories and  regions of the world.  For this reason a substantial amount of data points are estimated  or imputed.  Example 1: In 2010 data for green chillies and peppers are recorded for 123 countries of which data for 50 countries (41%) were imputed or estimated.  In terms of values the imputations accounted for as much as 71% of total production quantity. Example 2: In 2010, data points for wheat productions were recorded for 126 countries of which data points from 18 countries were estimated or imputed.  For 4 countries unofficial data were used.  The value of estimated and imputed data only represented 0.05% of the total production quantity over all countries - the corresponding figure for unofficial data was 0.2%.  The figures above can be contrasted to wheat imports for which data points exist for 191 countries of which 61 have data which are imputed or estimated, representing almost 27% of total import quantity over all countries.\r\n"
+    },
+    "seComparability": {
+      "comparabilityGeographical": "There is limited geographical comparability due to differences between countries in methods and coverage, except for regions with homogenous countries, e.g. EU countries, which are bound by EU regulations on methods, and OECD countries.\r\n",
+      "comparabilityTime": "For shorter time periods reasonably good comparability over time can be expected as there is stability in the product definition and classification.  However, as the time series are very long (from 1961) full comparability over time can not be expected.\r\n",
+      "coherenceIntern": "Cross domain coherence is fairly good with respect to trade, producer prices and land use.  However, the domain coherence varies depending on which products and countries are for consideration.\r\nIt is expected that the internal coherence is checked by countries before sending data to FAO. FAO is not aware of any incoherence for the present dataset vis-à-vis other corresponding datasets  \r\n"
+    },
+    "seTimelinessPunctuality": {
+      "timeliness": "Data are uploaded for dissemination twice a year, irrespectively when they arrive at FAO.\r\n",
+      "punctuality": "Most countries respect the deadlines. \r\n"
+    }
+  },
+  "meMaintenance": {
+    "maintenanceAgency": "Food and Agriculture Organization of the United Nations (FAO)\r\n",
+    "seMetadataMaintenance": {
+      "metadataLastCertified": 1409954400000,
+      "metadataLastPosted": 1409954400000,
+      "metadataLastUpdate": 1409954400000
+    }
+  },
+  "meStatisticalProcessing": {
+    "seDataSource": {
+      "seSecondaryDataCollection": {
+        "originOfCollectedData": "Mixture of data source",
+        "rawDataDescription": "Sample surveys are generally used but there are also cases where administrative records are used, see further country specific metadata.\r\n",
+        "dataCollection": "The main source is official statistics from FAO member countries.  Exceptionally, unofficial data are also used as well as estimated/imputed data.  In both cases this is \"flagged\".  Data are recorded as countries report them, except for eliminating obvious errors.  The source data can originate from surveys, administrative data and estimates based on expert observations.  Which type of source is used by countries affect significantly reliability and comparability of data.\r\nData are uploaded for dissemination twice a year, irrespectively when they arrive at FAO.\r\n"
+      }
+    }
+  }
+}

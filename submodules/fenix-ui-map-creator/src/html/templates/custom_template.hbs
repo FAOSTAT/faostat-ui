@@ -1,0 +1,29 @@
+<!--<div {{#if class}}class="{{class}}"{{/if}} {{#if style}}style="{{style}}"{{/if}}>
+    <div data-role="header">
+        <h1>{{title}}
+            <span> {{subtitle}}</span>
+            <span><p class="pull-right">Export{{export}}</p></span>
+        </h1>
+    </div>
+    &lt;!&ndash; Every template has to have a HTML element with data-role="content". It is the place where the chart will be rendered &ndash;&gt;
+    <div data-role="content" {{#if height}}style="height:{{height}}"{{/if}}></div>
+    <p>{{{footer}}}</p>
+</div>-->
+
+<div class="panel panel-default {{#if class}}{{class}}{{/if}}" {{#if style}}style="{{style}}"{{/if}}>
+    <div class="panel-heading">
+        {{#if addExport}}
+            <div class="pull-right">
+                <a class="btn btn-primary" data-role="export">{{export}}</a>
+            </div>
+        {{/if}}
+        <h5>{{title}}</h5>
+        <h4>{{subtitle}}</h4>
+    </div>
+    <div class="panel-body">
+        <div data-role="content" {{#if height}}style="height:{{height}}"{{/if}}></div>
+    </div>
+    {{#if footer}}
+        <div class="panel-footer clearfix">{{{footer}}}</div>
+    {{/if}}
+</div>
