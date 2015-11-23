@@ -128,6 +128,10 @@ require([
                     list: '//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min',
                     list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min',
 
+                    /* table */
+                    'fs-t-c': 'lib/table',
+
+
                     /* Google Analytics */
                     "ga": "//www.google-analytics.com/analytics"
                 },

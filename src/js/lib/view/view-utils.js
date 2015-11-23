@@ -79,7 +79,7 @@ define([
 
             }, this));
         }else {
-            log.warn("$container not valid: ", $container)
+            log.warn("addRelatedViews not applied. $container not valid:  ", $container)
         }
 
 

@@ -226,8 +226,6 @@ define([
         // TODO: move to a common area for all the modules? (create a submodule?)
         createView: function(c) {
 
-            log.info("here");
-
             var lang = this.o.lang,
                 basePath = c.basePath || CM.viewsBasePath,
                 updatedRelatedViews = (c.updatedRelatedViews !== undefined)? c.updatedRelatedViews: true;

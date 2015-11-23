@@ -105,17 +105,10 @@ define([
 
             amplify.publish(E.LOADING_HIDE, {container: this.$table});
 
-            var template, dynamic_data, html;
+            var t = Handlebars.compile(templateTable),
+                data= $.extend(true, {}, i18nLabels, {rows: json.data });
 
-            /* Load main structure. */
-            //source = $(templates).filter('#faostat_ui_standards_units_table').html();
-            template = Handlebars.compile(templateTable);
-            dynamic_data = {
-                rows: json.data
-            };
-            $.extend(dynamic_data, i18nLabels);
-            html = template(dynamic_data);
-            this.$table.append(html);
+            this.$table.append(t(data));
 
             // add list.js
             var options = {

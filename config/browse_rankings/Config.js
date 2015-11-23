@@ -45,6 +45,14 @@ define([
                 },
                 template: {
                     height: '300px',
+                    addExport: true,
+                    export: i18n.export_data
+                }
+            },
+
+            table: {
+                adapter: {},
+                template: {
                     title: "Production quantities by country",
                     subtitle: "Average 1993-2013",
                     addExport: true,
