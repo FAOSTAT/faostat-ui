@@ -57,7 +57,7 @@ define(function () {
             items: [
                 {
                     type: 'chart',
-                    class: "col-xs-12 col-md-6",
+                    class: "col-xs-12 col-md-8",
 
                     // labels?
                     labels: {
@@ -106,6 +106,54 @@ define(function () {
                         "order_by": 'value DESC',
                         "limit": '10',
                         "operator": "AVG"*/
+                    }
+                },
+                {
+                    type: 'table',
+                    class: "col-xs-12 col-md-4",
+
+                    // labels?
+                    labels: {
+                        // labels to dinamically substitute the title and subtitle
+                        default: {},
+
+                        // temp[late to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Land Resources (1000 Ha)",
+                                fr: "Land Resources (1000 Ha)",
+                                es: "Land Resources (1000 Ha)"
+                            },
+                            subtitle: "2011"
+                        }
+                    },
+
+
+                    //height:'250px',
+                    config: {
+                        adapter: {
+                            columns: ['item', 'value'],
+                            showCodes: false
+                        },
+                        template: {
+                            //height: '150', // important is without px!!
+                            //tableOptions: {
+                            //    'data-search': true
+                            //}
+                            tableOptions: {
+                                'data-search': false,
+                                'data-show-header': false
+                            }
+                        }
+                    },
+                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        domain_code: "RL",
+                        List2Codes: ["5110"],
+                        List3Codes: [6600, 6610, 6661],
+                        List4Codes: [2011]
                     }
                 }
             ]

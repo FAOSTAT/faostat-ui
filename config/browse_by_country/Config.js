@@ -53,7 +53,17 @@ define([
                     addExport: true,
                     export: i18n.export_data
                 }
+            },
+
+            table: {
+                adapter: {},
+                template: {
+                    addExport: true,
+                    export: i18n.export_data
+                }
             }
+
+
 
         }
 
