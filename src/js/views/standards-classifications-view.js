@@ -3,6 +3,7 @@
 /*jslint nomen: true */
 define([
     'jquery',
+    'loglevel',
     'views/base/view',
     'config/Config',
     'config/Events',
@@ -17,6 +18,7 @@ define([
     'jstree',
     'amplify'
 ], function ($,
+             log,
              View,
              C,
              E,
@@ -42,10 +44,14 @@ define([
         TREE: "#fs-classifications-tree",
         INTRO: "#fs-classifications-intro",
         OUTPUT: "#fs-classifications-output",
-        TABLE: '#fs-classifications-table'
+        TABLE: '#fs-classifications-table',
+
+        EXPORT_DATA: "[data-role='export']"
 
     },
     o = {
+
+        requestType: 'classifications',
 
         tableSearchFilters: ['fs-mes-code', 'fs-mes-label', 'fs-mes-description' ]
 
@@ -127,6 +133,8 @@ define([
 
         showClassification: function(code, label) {
 
+            var self = this;
+
             // hide intro
             this.$intro.hide();
 
@@ -135,23 +143,19 @@ define([
 
 
             // get classification
-            this.FAOSTATAPIClient.classifications({
+            this.FAOSTATAPIClient[this.o.requestType]({
                 domain_code: code,
                 datasource: C.DATASOURCE,
                 lang: this.o.lang
             }).then(_.bind(function(json){
 
-                var template, dynamic_data, html;
+                var t = Handlebars.compile(templateOutput),
+                    data = $.extend({}, i18nLabels);
 
-                /* Load main structure. */
-                template = Handlebars.compile(templateOutput);
+                data.rows = json.data;
+                data.classsification_title = i18nLabels.classification + ' - ' + label;
 
-                dynamic_data = $.extend({}, i18nLabels);
-                dynamic_data.rows = json.data;
-                dynamic_data.classsification_title = i18nLabels.classification + ' - ' + label;
-
-                html = template(dynamic_data);
-                this.$output.html(html);
+                this.$output.html(t(data));
 
                 // add list.js
                 var options = {
@@ -159,6 +163,19 @@ define([
                 };
 
                 var list = new List(s.TABLE.replace('#',''), options);
+
+                // add export listener
+                this.$output.find(s.EXPORT_DATA).on('click', function() {
+                    amplify.publish(E.EXPORT_DATA,
+                        {
+                            domain_code: code
+                        },
+                        {
+                            "requestType": self.o.requestType
+                        }
+                    );
+                });
+
 
                 // render output
                 this.$output.show();
