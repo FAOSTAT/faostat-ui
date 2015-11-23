@@ -1,8 +1,5 @@
 /*global define,Q*/
-define([
-    'jquery',
-    'q'
-], function ($, Q) {
+define(['jquery', 'q'], function ($, Q) {
 
     'use strict';
 
@@ -113,6 +110,7 @@ define([
                     "order_by": config.order_by,
                     "operator": config.operator,
                     "page_size": config.page_size,
+                    "limit": config.limit,
                     "page_number": config.page_number
                 },
                 type: 'POST'
@@ -122,7 +120,7 @@ define([
     };
 
     FAOSTATAPIClient.prototype.is_valid_data = function (config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "page_number"], i;
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -133,7 +131,7 @@ define([
 
     FAOSTATAPIClient.prototype.apply_data_defaults = function (config) {
         var i,
-            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "page_number"],
+            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number"],
             defaults = {
                 "datasource": "production",
                 "output_type": "objects",
@@ -146,7 +144,8 @@ define([
                 "order_by": "",
                 "operator": "",
                 "page_size": "100",
-                "page_number": "1"
+                "page_number": "1",
+                "limit": 1000000000
             },
             key;
         for (i = 0; i < Object.keys(defaults).length; i += 1) {

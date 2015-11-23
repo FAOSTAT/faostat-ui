@@ -55,3 +55,6 @@
 [submodule "submodules/faostat-ui-table"]
 	path = submodules/faostat-ui-table
 	url = https://github.com/FAOSTAT/faostat-ui-table.git
+[submodule "submodules/faostat-ui-download"]
+	path = submodules/faostat-ui-download
+	url = https://github.com/FAOSTAT/faostat-ui-download.git

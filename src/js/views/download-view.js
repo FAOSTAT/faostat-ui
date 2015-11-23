@@ -462,12 +462,17 @@ define([
                 dwld_options,
                 data = {},
                 that = config !== undefined ? config.context || this : this,
-                data_size;
+                data_size,
+                isPreview = $('#download_options_modal_window').css('display') === 'none',
+                options_manager_window;
+
+            /* Determine whether the user is using the preview or the download. */
+            options_manager_window = isPreview ? 'preview_options' : 'download_options';
 
             try {
 
                 user_selection = that.download_selectors_manager.get_user_selection();
-                dwld_options = that.options_manager.get_options_window('preview_options').collect_user_selection(null);
+                dwld_options = that.options_manager.get_options_window(options_manager_window).collect_user_selection(null);
 
                 /* Validate user selection. */
                 this.validate_user_selection(user_selection);
@@ -548,12 +553,17 @@ define([
             var user_selection,
                 dwld_options,
                 data = {},
-                that = config !== undefined ? config.context || this : this;
+                that = config !== undefined ? config.context || this : this,
+                isPreview = $('#download_options_modal_window').css('display') === 'none',
+                options_manager_window;
+
+            /* Determine whether the user is using the preview or the download. */
+            options_manager_window = isPreview ? 'preview_options' : 'download_options';
 
             try {
 
                 user_selection = that.download_selectors_manager.get_user_selection();
-                dwld_options = that.options_manager.get_options_window('preview_options').collect_user_selection(null);
+                dwld_options = that.options_manager.get_options_window(options_manager_window).collect_user_selection(null);
 
                 /* Validate user selection. */
                 this.validate_user_selection(user_selection);
@@ -595,33 +605,6 @@ define([
 
         },
 
-        create_query_string: function (user_selection) {
-            try {
-                this.validate_user_selection(user_selection);
-                var count,
-                    qs = "EXECUTE Warehouse.dbo.usp_GetDataTEST ";
-                qs += "@DomainCode = '" + this.options.code + "', ";
-                qs += "@lang = '" + this.iso2faostat(this.options.lang) + "', ";
-                for (count = 1; count < 8; count += 1) {
-                    qs += this.encode_codelist(count, user_selection["list" + count + "Codes"]);
-                    if (count < 8) {
-                        qs += ", ";
-                    }
-                }
-                qs += "@NullValues = false, ";
-                qs += "@Thousand = ',', ";
-                qs += "@Decimal = '.', ";
-                qs += "@DecPlaces = 2, ";
-                qs += "@Limit = 50";
-                return qs;
-            } catch (e) {
-                amplify.publish(E.NOTIFICATION_WARNING, {
-                    title: i18nLabels.warning,
-                    text: e
-                });
-            }
-        },
-
         validate_user_selection: function (user_selection) {
 
             /* Variables. */
@@ -661,23 +644,23 @@ define([
             }
         },
 
-        encode_codelist: function (idx, codes) {
-            var h, l = "";
-            l += "@List" + idx + "Codes = ";
-            if (codes.length > 0) {
-                l += "'(";
-                for (h = 0; h < codes.length; h += 1) {
-                    l += "'" + codes[h] + "'";
-                    if (h < codes.length - 1) {
-                        l += ",";
-                    }
-                }
-                l += ")'";
-            } else {
-                l += "''";
-            }
-            return l;
-        },
+        //encode_codelist: function (idx, codes) {
+        //    var h, l = "";
+        //    l += "@List" + idx + "Codes = ";
+        //    if (codes.length > 0) {
+        //        l += "'(";
+        //        for (h = 0; h < codes.length; h += 1) {
+        //            l += "'" + codes[h] + "'";
+        //            if (h < codes.length - 1) {
+        //                l += ",";
+        //            }
+        //        }
+        //        l += ")'";
+        //    } else {
+        //        l += "''";
+        //    }
+        //    return l;
+        //},
 
         show_preview: function (response) {
 
@@ -688,12 +671,22 @@ define([
                 that = this,
                 metadata,
                 table,
-                dwld_options = this.options_manager.get_options_window('preview_options').collect_user_selection(null),
+                dwld_options,
                 user_selection,
-                pivot_table;
+                pivot_table,
+                isPreview = $('#download_options_modal_window').css('display') === 'none',
+                options_manager_window;
+
+            /* Determine whether the user is using the preview or the download. */
+            options_manager_window = isPreview ? 'preview_options' : 'download_options';
+
+            /* Collect options. */
+            dwld_options = this.options_manager.get_options_window(options_manager_window).collect_user_selection(null);
+
+            console.debug(this.options_manager.get_options_window(options_manager_window).get_output_type());
 
             /* Render either the table or the pivot. */
-            switch (this.options_manager.get_options_window('preview_options').get_output_type()) {
+            switch (this.options_manager.get_options_window(options_manager_window).get_output_type()) {
 
             case 'TABLE':
                 table = new Table();
@@ -734,9 +727,10 @@ define([
 
             /* Close waiting window. */
             amplify.publish(E.WAITING_HIDE, {});
+            console.debug(this.pivot_caller);
 
             /* Export CSV or Excel, if required. */
-            switch (this.options_manager.get_options_window('preview_options').get_output_type()) {
+            switch (this.options_manager.get_options_window(options_manager_window).get_output_type()) {
 
             case 'PIVOT':
                 if (this.pivot_caller === 'CSV') {
@@ -744,6 +738,7 @@ define([
                         test = downloadOutputArea.html();
                         if (test !== '') {
                             clearInterval(timer);
+                            that.pivot_caller = undefined;
                             that.pivot_exporter.csv();
                         }
                     }, 100);
@@ -752,6 +747,7 @@ define([
                         test = downloadOutputArea.html();
                         if (test !== '') {
                             clearInterval(timer);
+                            that.pivot_caller = undefined;
                             metadata = '"Datasource", "FAOSTAT"\n"Domain Name", "';
                             metadata += $("#" + that.options.code + " a").text();
                             metadata += '"\n"Retrieved", ' + new Date();
@@ -775,9 +771,12 @@ define([
                             List7Codes: user_selection.list7Codes || null,
                             lang: that.options.lang,
                             group_by: null,
-                            output_type: 'csv'
-                        }).then(function (csv) {
-                            //console.debug(csv);
+                            output_type: 'csv',
+                            limit: -1
+                            //,page_size: 1000000000
+                            ,page_size: null
+                        }).then(function () {
+                            that.pivot_caller = undefined;
                         }).fail(function (error) {
                             var csvString = error.responseText,
                                 a = document.createElement('a'),
@@ -787,9 +786,11 @@ define([
                             a.download    = filename;
                             document.body.appendChild(a);
                             a.click();
+                            that.pivot_caller = undefined;
                         });
                     } catch (e) {
                         console.debug(e);
+                        that.pivot_caller = undefined;
                     }
                 }
                 break;
@@ -798,33 +799,33 @@ define([
 
         },
 
-        pivot_value_formatter: function (V) {
-            var res = null;
-            if (typeof V === 'number') {
-                res = V.toFixed(2);
-            }
-            return res;
-        },
+        //pivot_value_formatter: function (V) {
+        //    var res = null;
+        //    if (typeof V === 'number') {
+        //        res = V.toFixed(2);
+        //    }
+        //    return res;
+        //},
 
-        create_table_headers: function (dsd) {
-            var headers = [], i, lbl;
-            for (i = 0; i < dsd.length; i += 1) {
-                headers.push('tmp');
-            }
-            for (i = 0; i < dsd.length; i += 1) {
-                lbl = dsd[i].label;
-                if (lbl === 'Unit Description') {
-                    lbl = 'Unit';
-                }
-                headers[Number(dsd[i].index)] = lbl;
-            }
-            for (i = dsd.length; i >= 0; i -= 1) {
-                if (headers[i] === 'tmp') {
-                    headers.shift();
-                }
-            }
-            return headers;
-        },
+        //create_table_headers: function (dsd) {
+        //    var headers = [], i, lbl;
+        //    for (i = 0; i < dsd.length; i += 1) {
+        //        headers.push('tmp');
+        //    }
+        //    for (i = 0; i < dsd.length; i += 1) {
+        //        lbl = dsd[i].label;
+        //        if (lbl === 'Unit Description') {
+        //            lbl = 'Unit';
+        //        }
+        //        headers[Number(dsd[i].index)] = lbl;
+        //    }
+        //    for (i = dsd.length; i >= 0; i -= 1) {
+        //        if (headers[i] === 'tmp') {
+        //            headers.shift();
+        //        }
+        //    }
+        //    return headers;
+        //},
 
         configurePage: function () {
 
