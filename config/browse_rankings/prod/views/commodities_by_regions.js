@@ -14,71 +14,17 @@ define(function () {
 
             items: [
                 {
-                    "id": "item",
-                    "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List3Codes",
-                    //"title": "title",
-                    "componentType": {
-                        "class": "col-lg-3",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "dimension_id": "items",
-                        "defaultCodes": ["27"],
-                        "filter": {
-                        }
-                    }
-                },
-                {
-                    // id to be applied on the getData request
-                    "id": "area",
-                    "type": "codelist",
-                    "parameter": "List1Codes",
-                    "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-lg-3",
-                        "type": "dropDownList"
-                        //"multiple": true
-                    },
-                    "config": {
-                        "dimension_id": "countries",
-                        "defaultCodes": ["2"],
-                        "filter": {
-                        }
-                    }
-                },
-                {
                     "id": "year",
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
                         "class": "col-lg-2",
-                        "type": "dropDownList-timerange"
-                    },
-                    "config": {
-                        "dimension_id": "year",
-                        "defaultCodes": ['1993'],
-                        "filter": {
-                        }
-                    }
-                },
-                {
-                    "id": "aggregation",
-                    "type": "static",
-                    // TODO: check data parameter
-                    "parameter": "operator",
-                    "componentType": {
-                        "class": "col-lg-2",
                         "type": "dropDownList"
                     },
                     "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-                            // TODO: multilingual?
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-                        ]
+                        "dimension_id": "year",
+                        //"defaultCodes": [],
+                        "filter": {}
                     }
                 }
             ]
@@ -88,16 +34,15 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_code: 'QC',
-                List2Codes: ["2510"],
+                domain_codes: ['QA', 'QC', 'QD', 'QL', 'QP'],
+                List2Codes: ["5510"],
+                List3Codes: ["_1"],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null
+                "null_values": null,
+                filter_list: "1",
+                rank_type: 'DESC'
             },
 
             // labels?
@@ -128,13 +73,62 @@ define(function () {
             bridge: {
 
                 type: "faostat",
-                requestType: 'data' // data, rankings
+                requestType: 'rankings' // data, rankings
 
             },
 
             metadata: {},
 
             items: [
+                //EXEC Warehouse.dbo.usp_Rank @DomainCode = '(QA,QC,QD,QL,QP)', @List1Codes = '(''2'')', @List2Codes = '(''5510'')', @List3Codes = '(''_1'')', @List4Codes = '(''2013'')', @FilterList = 1, @RankType = 'DESC', @NoResults = 10, @Lang = 'E'
+                {
+                    type: 'chart',
+                    class: "col-xs-6",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Production of {{item}} top 5 producers",
+                                fr: "Production of {{item}} top 5 producers",
+                                es: "Production of {{item}} top 5 producers"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['element'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {
+                            height:'250px'
+                            // default labels to be applied
+                        },
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List1Codes: ["5000"],
+                        //"order_by": 'value DESC',
+                        limit: "10"
+                    }
+                }
+
+/*
                 {
                     type: 'table',
                     class: "col-xs-12 col-md-6",
@@ -174,6 +168,7 @@ define(function () {
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                         List1Codes: ["5000>"],
+                        List2Codes: ["_"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         limit: 10
@@ -203,7 +198,7 @@ define(function () {
                     //height:'250px',
                     config: {
                         adapter: {
-                            columns: ['area', 'value', 'unit'],
+                            columns: ['area', 'value', 'unit', 'flag'],
                             showCodes: false
                         },
                         template: {
@@ -222,7 +217,7 @@ define(function () {
                         "order_by": 'value ASC',
                         limit: 10
                     }
-                }
+                }*/
             ]
         }
 
