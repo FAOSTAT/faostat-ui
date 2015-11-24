@@ -1,6 +1,7 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
     'jquery',
+    'loglevel',
     'views/base/view',
     'globals/Common',
     'config/FAOSTAT',
@@ -20,7 +21,7 @@ define([
     //'lib/filter/filter',
     'q',
     'amplify'
-], function ($, View, Common, F, C, E, EC, CC, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
+], function ($, log, View, Common, F, C, E, EC, CC, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
 
     'use strict';
 
@@ -55,9 +56,7 @@ define([
             this.o.domains = {};
 
             // list of the dimensions
-            this.o.filters=  {
-
-            };
+            this.o.filters = {};
 
             this.DIMENSION_PARAMETER_MAPPING = {};
         },
@@ -346,6 +345,9 @@ define([
             domain.parameter = 'domain_code';
             // TODO: change domains variable name
             domain.codes = this.o.domains.$DD.val();
+            domain.groupName = this.o.groups.$DD.select2('data').text;
+            domain.domainName = this.o.domains.$DD.select2('data').text;
+
             f.push(domain);
 
             // Get all the selected values from the filters multiselections dropdown

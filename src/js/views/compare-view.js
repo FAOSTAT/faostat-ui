@@ -18,10 +18,11 @@ define([
     'views/compare-filter-box-view',
     'q',
     'fx-c-c/start',
+    'fx-ds/itemRenders/tableItem',
     'highcharts-export',
     'jquery.rangeSlider',
     'amplify'
-], function ($, log, View, Common, F, C, Queries, E, EC, CM, HT, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator) {
+], function ($, log, View, Common, F, C, Queries, E, EC, CM, HT, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
 
     'use strict';
 
@@ -31,8 +32,13 @@ define([
         ADD_FILTER: '[data-role="add_filter"]',
         TIMERANGE: '[data-role="timerange"]',
         COMPARE_DATA: '[data-role="compare_data"]',
-        CHART: '[data-role="chart"]'
+        CHART: '[data-role="chart"]',
+        TABLES_CONTAINER: '[data-role="tables_container"]'
 
+    };
+
+    var defaultOptions = {
+       tableIndex: 0
     };
 
     var filterBoxIDs = 0;
@@ -54,7 +60,7 @@ define([
         },
 
         initialize: function (options) {
-            this.o = options;
+            this.o = $.extend(true, {}, defaultOptions, options);
         },
 
         getTemplateData: function () {
@@ -92,8 +98,7 @@ define([
             this.$TIMERANGE = this.$el.find(s.TIMERANGE);
             this.$COMPARE_DATA = this.$el.find(s.COMPARE_DATA);
             this.$CHART = this.$el.find(s.CHART);
-
-            //console.log(this.$filters);
+            this.$TABLES_CONTAINER = this.$el.find(s.TABLES_CONTAINER);
 
         },
 
@@ -126,7 +131,7 @@ define([
 
         onFilterBoxRemove: function (box) {
 
-            console.warn('TODO: internal filter remove');
+            log.warn('TODO: internal filter remove');
             //this.removeFilter(filterBox);
             this.removeFilterBox(box);
 
@@ -137,7 +142,6 @@ define([
             if (Object.keys(filterBox).length > 1) {
                 delete filterBox[box.filter.o.filterBoxID];
                 box.filter.$el.empty();
-                console.log(filterBox);
             }
 
         },
@@ -152,7 +156,9 @@ define([
 
             var self = this;
 
+            // TODO: destroy cached chart/tables
             this.$CHART.empty();
+            this.$TABLES_CONTAINER.empty();
 
             // Google Analytics Add CompareData Event
             amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
@@ -168,40 +174,15 @@ define([
 
                     amplify.publish(E.LOADING_HIDE, {container: self.$CHART});
 
-                    // create Chart
-                    var c = new ChartCreator();
-                    $.when(c.init($.extend(true, {}, CM.chart, {model: models[0]}))).then(
-                        function (creator) {
-
-                            // add timeserie data
-                            for (var i = 1; i < models.length; i++) {
-                                if (models[i].data.length > 0) {
-                                    creator.addTimeserieData($.extend(true, {}, CM.chart, {model: models[i]}));
-                                }
-                            }
-
-                            // render chart
-                            creator.createChart(
-                                $.extend(true, {},
-                                    {
-                                        creator: {
-                                            chartObj: HT
-                                        }
-                                    },
-                                    CM.chart,
-                                    {
-                                        container: self.$CHART
-                                    }
-                                )
-                            );
-
-                        });
+                    // create chart
+                    self._createTimeserieChart(models);
 
                     // TODO: create table
+                    self._createTables(models);
 
                 });
             } catch (e) {
-                console.error(e);
+                log.error(e);
             }
         },
 
@@ -220,35 +201,124 @@ define([
             // get for each filterBox the relative filters (domain, items etc...)
             var filters = this._getFiltersSelections();
 
+            log.info(filters)
+
             // TODO: check the estimated series dimensions
 
             // retrieve with getData the data for the single box
+
             var requests = [];
+            // TODO: fix the requests array (DIRTY fix to pass it to the tables)
+            this.cachedRequest = [];
             _.each(filters, _.bind(function (filter) {
                 var r = {};
+
                 _.each(filter, function (filterParameter) {
                     r[filterParameter.parameter] = filterParameter.codes
-                });
 
+                    // DIRTY domainName, groupName
+                    if ( filterParameter.hasOwnProperty("domainName")) {
+                        r.domainName = filterParameter.domainName;
+                    }
+                    if ( filterParameter.hasOwnProperty("groupName")) {
+                        r.groupName = filterParameter.groupName;
+                    }
+                });
 
                 r = $.extend(true, {}, CM.getData, {
                     datasource: C.DATASOURCE,
                     lang: this.o.lang,
-                    List4Codes: years,
-                    "null_values": null,
-                    /*                    "group_by": 'year, element',
-                     "order_by": 'area',
-                     "operator": 'avg',
-                     "page_size": 0,
-                     "page_number": 0*/
 
+                    // TODO: get the years properly (from the domainSchema)
+                    List4Codes: years,
+                    "null_values": null
                 }, r);
 
+                this.cachedRequest.push(r);
                 requests.push(this.FAOSTATAPIClient.data(r));
 
             }, this));
 
-            return Q.all(requests)
+            return Q.all(requests);
+
+        },
+
+        _createTimeserieChart: function (models) {
+
+            var self = this;
+
+            // create Chart
+            var c = new ChartCreator();
+            $.when(c.init($.extend(true, {}, CM.chart, {model: models[0]}))).then(
+                function (creator) {
+
+                    // add timeserie data
+                    for (var i = 1; i < models.length; i++) {
+
+                        if (models[i].data.length > 0) {
+                            creator.addTimeserieData($.extend(true, {}, CM.chart, {model: models[i]}));
+                        }
+
+                    }
+
+                    // render chart
+                    creator.createChart(
+                        $.extend(true, {},
+                            {
+                                creator: {
+                                    chartObj: HT
+                                }
+                            },
+                            CM.chart,
+                            {
+                                container: self.$CHART
+                            }
+                        )
+                    );
+
+                });
+        },
+
+        _createTables: function(models) {
+
+            _.each(models, _.bind(this._createTable, this));
+
+        },
+
+        _createTable: function(model, index) {
+
+            // TODO: switch to something better when view will be defined
+            var tableID = 'data-role="table_' + index + '"';
+            this.$TABLES_CONTAINER.append("<div "+ tableID +"></div>");
+
+            var $table_container = this.$TABLES_CONTAINER.find("[" + tableID +"]");
+
+
+            // DIRTY request
+            var request = this.cachedRequest[index],
+                domainName = request.domainName || "",
+                groupName = request.groupName || "";
+
+            log.info(request);
+
+            // create table
+
+            var config = $.extend(true, {},
+                CM.table,
+                {
+                container: $table_container,
+                model: model,
+                    template: {
+                        title: groupName + " - " + domainName,
+                        addExport: true,
+                        export: i18nLabels.export_data
+                },
+                    // TODO: leave exportRequest?
+                exportRequest: request
+            });
+            var t = new TableItem({config: config});
+
+            t.render();
 
         },
 
