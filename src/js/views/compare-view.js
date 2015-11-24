@@ -167,12 +167,12 @@ define([
             });
 
             // loading
-            amplify.publish(E.LOADING_SHOW, {container: this.$CHART});
+            amplify.publish(E.WAITING_SHOW, {container: this.$CHART});
 
             try {
                 this._retrieveData().then(function (models) {
 
-                    amplify.publish(E.LOADING_HIDE, {container: self.$CHART});
+                    amplify.publish(E.WAITING_HIDE, {container: self.$CHART});
 
                     // create chart
                     self._createTimeserieChart(models);
@@ -182,6 +182,7 @@ define([
 
                 });
             } catch (e) {
+                amplify.publish(E.WAITING_HIDE, {container: self.$CHART});
                 log.error(e);
             }
         },
