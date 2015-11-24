@@ -50,9 +50,15 @@ define(function () {
                 xDimensions: 'year',
                 yDimensions: 'unit',
                 valueDimensions: 'value',
-                seriesDimensions: ['area', 'partnerarea', 'recipientarea', 'donor',
+                seriesDimensions: [
+                    'area',
+                    'partnerarea', 'reporterarea', //trade matrix
+                    'recipientarea',
+                    'donor',
+                    'reporter',
                     'survey', // HS
-                    'element', 'item',
+                    'item',
+                    'element',
                     'breakdownvar', 'breakdownsex', 'indicator', 'measure', // HS
                     'purpose'
 
