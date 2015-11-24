@@ -102,6 +102,7 @@ define([
                 lang: this.o.lang,
                 code: this.o.code,
                 blacklist: CM.blacklist || [],
+                whitelist: CM.whitelist || [],
                 callback: {
 
                     onClick: _.bind(function (callback) {
