@@ -26,7 +26,7 @@ define([
     var s = {
 
             COUNTRY_LIST_CONTAINER: "#fs-browse-by-country-list-container",
-            COUNTRY_LIST: "#fs-browse-by-country-list",
+            //COUNTRY_LIST: "#fs-browse-by-country-list",
             COUNTRY_PROFILE: "#fs-browse-by-country-profile",
             COUNTRY_PROFILE_TITLE: "#fs-browse-by-country-profile-title",
             COUNTRY_PROFILE_DASHBOARD: "#fs-browse-by-country-profile-dashboard",
@@ -88,7 +88,7 @@ define([
         initVariables: function () {
 
             this.$COUNTRY_LIST_CONTAINER = this.$el.find(s.COUNTRY_LIST_CONTAINER);
-            this.$COUNTRY_LIST = this.$el.find(s.COUNTRY_LIST);
+            //this.$COUNTRY_LIST = this.$el.find(s.COUNTRY_LIST);
             this.$COUNTRY_PROFILE = this.$el.find(s.COUNTRY_PROFILE);
             this.$COUNTRY_PROFILE_TITLE = this.$el.find(s.COUNTRY_PROFILE_TITLE);
             this.$COUNTRY_PROFILE_DASHBOARD = this.$el.find(s.COUNTRY_PROFILE_DASHBOARD);
@@ -137,7 +137,7 @@ define([
             this.$COUNTRY_PROFILE.hide();
             this.$COUNTRY_LIST_CONTAINER.show();
 
-            if (this.$COUNTRY_LIST.find('.' + this.o.countrySearchFilters).length <= 0) {
+            if (this.$COUNTRY_LIST_CONTAINER.find('.' + this.o.countrySearchFilters).length <= 0) {
 
                 var countries = this.cache.countries.data,
                     t = Handlebars.compile(templateCountryList),
@@ -145,16 +145,16 @@ define([
 
                 var html = t(d);
 
-                this.$COUNTRY_LIST.html(html);
+                this.$COUNTRY_LIST_CONTAINER.append(html);
 
                 // add list.js
                 var options = {
                     valueNames: [this.o.countrySearchFilters]
                 };
 
-                new List(this.$COUNTRY_LIST.selector.replace('#', ''), options);
+                new List(this.$COUNTRY_LIST_CONTAINER.selector.replace('#', ''), options);
 
-                this.$COUNTRY_LIST.find('.' + this.o.countrySearchFilters).on('click', _.bind(function (e) {
+                this.$COUNTRY_LIST_CONTAINER.find('.' + this.o.countrySearchFilters).on('click', _.bind(function (e) {
 
                     this.o.code = $(e.target).data("id");
                     this.o.section = ROUTE.BROWSE_BY_COUNTRY_CODE;
