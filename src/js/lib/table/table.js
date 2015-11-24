@@ -13,6 +13,15 @@ define([
 
         var defaultOptions = {
 
+            template: {
+                tableOptions: {
+                    next_text: i18n.next,
+                    previous_text: i18n.previous,
+                    last_text: i18n.last,
+                    first_text: i18n.first
+                }
+            }
+
         };
 
         function Table() {
@@ -22,18 +31,16 @@ define([
 
         Table.prototype.render = function (config) {
 
-            this.o = $.extend(true, {}, defaultOptions, config);
+            var c = $.extend(true, {}, defaultOptions, config);
 
             this.template = new Template();
             this.adapter = new Adapter();
 
             // prepare data
-            config.filteredModel = this.adapter.prepareData(config);
-
-            log.warn("Add i18n to table");
+            c.filteredModel = this.adapter.prepareData(c);
 
             // render table
-            this.template.render(config);
+            this.template.render(c);
 
         };
 
