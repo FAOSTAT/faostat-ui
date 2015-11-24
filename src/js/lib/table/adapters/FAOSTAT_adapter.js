@@ -39,14 +39,15 @@ define([
                 dsd = this.o.model.metadata.dsd,
                 filteredColumns = [];
 
-            log.info(this.o)
-
-            log.info("Table Columns: ", columns)
+            //log.info(this.o)
+            //log.info("Table Columns: ", columns)
 
             if ( columns.length > 0) {
 
                 _.each(columns, function (dimension_id) {
-                    log.info(dimension_id)
+
+                    //log.info(dimension_id)
+
                     _.each(dsd, function (c) {
                         if (c.dimension_id === dimension_id) {
                             if (c.type !== "code") {
@@ -62,7 +63,7 @@ define([
                 filteredColumns = $.extend(true, {}, dsd);
             }
 
-            log.info(filteredColumns)
+            //log.info(filteredColumns)
 
             return filteredColumns;
 
