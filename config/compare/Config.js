@@ -1,5 +1,7 @@
     /*global define*/
-define(function () {
+define([
+    'i18n!nls/compare'
+],function (i18n) {
 
     'use strict';
 
@@ -60,11 +62,14 @@ define(function () {
                     'item',
                     'element',
                     'breakdownvar', 'breakdownsex', 'indicator', 'measure', // HS
-                    'purpose'
+                    'purpose' // ODA
 
                 ]
             },
-            template: {},
+            template: {
+                height: '300px',
+                title: i18n.chart_title
+            },
             creator: {},
             prepareChart: true
         },
