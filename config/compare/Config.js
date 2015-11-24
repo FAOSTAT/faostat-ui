@@ -23,6 +23,7 @@ define([
 
         // TODO: DO THE BLACKLIST!!!!!
         groups: {
+            whitelist: ['Q', 'G1'],
             blacklist: [
                 //'D', // (FS, HS) it doesn't have yearly data
             ]
@@ -95,15 +96,16 @@ define([
                 showCodes: false
             },
             template: {
-                height: '300',
-                title: i18n.chart_title,
+                height: '450',
                 tableOptions: {
-                    'data-search': true
+                    'data-search': true,
+                    'data-pagination': true
                 }
             }
         },
 
         getData: {
+
             limit:-1,
             null_values:false,
             thousand_separator:",",
@@ -117,6 +119,7 @@ define([
             List6Codes: null,
             List7Codes: null,
             page_size: 100000
+
         }
 
     };
