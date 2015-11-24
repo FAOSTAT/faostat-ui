@@ -67,11 +67,40 @@ define([
                 ]
             },
             template: {
-                height: '300px',
+                height: '450px',
                 title: i18n.chart_title
             },
             creator: {},
             prepareChart: true
+        },
+
+        table: {
+            model: null,
+            adapter: {
+                columns: [
+                    'area',
+                    'partnerarea', 'reporterarea', //trade matrix
+                    'recipientarea',
+                    'donor',
+                    'reporter',
+                    'survey', // HS
+                    'item',
+                    'element',
+                    'breakdownvar', 'breakdownsex', 'indicator', 'measure', // HS
+                    'purpose',
+                    'year',
+                    'value',
+                    'flag'
+                ],
+                showCodes: false
+            },
+            template: {
+                height: '300',
+                title: i18n.chart_title,
+                tableOptions: {
+                    'data-search': true
+                }
+            }
         },
 
         getData: {
@@ -88,7 +117,6 @@ define([
             List6Codes: null,
             List7Codes: null,
             page_size: 100000
-            //output_type: 'arrays'
         }
 
     };
