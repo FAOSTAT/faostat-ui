@@ -97,7 +97,9 @@ define(function () {
                 decimal_separator: ".",
                 limit: "-1",
                 thousand_separator: ",",
-                "null_values": null
+                "null_values": null,
+                // TODO: remove it the page_size!!!
+                page_size: 1000000,
             },
 
             // labels?
@@ -256,9 +258,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production of {{item}} top 5 producers",
-                                fr: "Production of {{item}} top 5 producers",
-                                es: "Production of {{item}} top 5 producers"
+                                en: "Production of {{item}} top 10 producers",
+                                fr: "Production of {{item}} top 10 producers",
+                                es: "Production of {{item}} top 10 producers"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }

@@ -8,14 +8,14 @@ define(function () {
 
         "relatedViews" : [],
 
-        "comment": {
+        /*"comment": {
             "text": {
                 "en": "Q Emissions of methane produced in digestive systems of livestock",
                 "es": "ES Emissions of methane produced in digestive systems of livestock",
                 "fr": "FR Emissions of methane produced in digestive systems of livestock"
             },
             pdf: "GA.pdf"
-        },
+        },*/
 
         "filter": {
 
@@ -35,27 +35,22 @@ define(function () {
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "items",
-                        "defaultCodes": ["27"],
+                        "dimension_id": "item",
+                        "defaultCodes": ["1717"],
                         "filter": {
-                        }
-                    }
-                },
-                {
-                    // id to be applied on the getData request
-                    "id": "area",
-                    "type": "codelist",
-                    "parameter": "List1Codes",
-                    "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-lg-3",
-                        "type": "dropDownList"
-                        //"multiple": true
-                    },
-                    "config": {
-                        "dimension_id": "countries",
-                        "defaultCodes": ["2"],
-                        "filter": {
+                            whitelist: [
+                                1814,
+                                1717,
+                                249,
+                                656,
+                                1765,
+                                27,
+                                1720,
+                                1732,
+                                156,
+                                667,
+                                15
+                            ]
                         }
                     }
                 },
@@ -104,34 +99,15 @@ define(function () {
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
                 limit: -1,
-                thousand_separator: ",",
-                "null_values": null
+                "null_values": null,
+                page_size: 1000000,
             },
 
             // labels?
             labels: {
                 // labels to dinamically substitute the title and subtitle
-                default: {
-                    /*aggregation: {
-                     en: "Average",
-                     fr: "Moyenne",
-                     es: "Promedio"
-                     },
-                     year: "1993 - 2013",
-                     area: {
-                     "en": "Afghanistan",
-                     "fr": "Afghanistan",
-                     "es": "Afghanistan"
-                     },
-                     item: {
-                     "en": "Rice, milled",
-                     "fr": "Rice, milled",
-                     "es": "Rice, milled"
-                     }*/
-                }
+                default: {}
             },
 
 
@@ -159,8 +135,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Production quantities of {{item}} by country",
-                                fr: "Production quantities of {{item}} by country",
-                                es: "Production quantities of {{item}} by country"
+                                fr: "Quantités de production de {{item}} par pays",
+                                es: "Cantidades de producción de {{item}} por país"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -178,10 +154,7 @@ define(function () {
                         List1Codes: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
-                    },
-                    /*                    bridge: {
-                     requestType: 'rankings' // data, rankings
-                     }*/
+                    }
                 },
                 {
                     type: 'chart',
@@ -192,9 +165,9 @@ define(function () {
                         // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production quantities of {{item}} in {{area}}",
-                                fr: "Production de {{item}} dans le {{area}}",
-                                es: "Producción de {{item}} en {{area}}"
+                                en: "Food per capita net production index by region (base 2004-2006)",
+                                fr: "Indice de production net de nourriture par habitant par région (base 2004-2006)",
+                                es: "Índice de producción neta de alimentos por persona, por región (base 2004-2006)"
                             },
                             subtitle: "{{year}}"
                         }
@@ -207,7 +180,7 @@ define(function () {
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
+                            seriesDimensions: ['area']
                         },
                         template: {
                             // height:'350px'
@@ -215,93 +188,12 @@ define(function () {
                         },
                         creator: {}
                     },
-                    allowedFilter: ['area', 'year', 'item'],
-                    filter: {}
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    // labels?
-                    labels: {
-                        // temp[late to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Production share of {{item}} by region",
-                                fr: "Part de la production de {{item}} par région",
-                                es: "Proporción de producción de {{item}} por región"
-                            },
-                            subtitle: "{{aggregation}} {{year}}"
-                        }
-
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
-                            valueDimensions: 'value',
-                            seriesDimensions: ['area']
-                        },
-                        template: {
-                            height: '250px'
-                        },
-                        creator: {}
-                    },
-                    allowedFilter: ['year', 'item', 'aggregation'],
+                    allowedFilter: ['year'],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        "group_by": 'year',
-                        "order_by": 'area'
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    // labels?
-                    labels: {
-                        // temp[template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Production of {{item}} top 5 producers",
-                                fr: "Production of {{item}} top 5 producers",
-                                es: "Production of {{item}} top 5 producers"
-                            },
-                            subtitle: "{{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "standard",
-                            xDimensions: ['element'],
-                            yDimensions: 'unit',
-                            valueDimensions: 'value',
-                            seriesDimensions: ['area']
-                        },
-                        template: {
-                            // height:'350px'
-                            // default labels to be applied
-                        },
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['year', 'item', 'aggregation'],
-                    filter: {
-                        List1Codes: ["5000>"],
-                        "group_by": 'year',
-                        "order_by": 'value DESC',
-                        "limit": '10'
+                        domain_code: 'QI',
+                        List1Codes: [5000, 5100, 5200, 5300, 5400, 5500],
+                        List2Codes: ['438'],
+                        List3Codes: ['2054']
                     }
                 }
             ]

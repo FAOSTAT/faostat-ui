@@ -14,6 +14,24 @@ define(function () {
 
             items: [
                 {
+                    // id to be applied on the getData request
+                    "id": "area",
+                    "type": "codelist",
+                    "parameter": "List1Codes",
+                    "componentType": {
+                        <!-- TODO: add a class instead of bootstrap -->
+                        "class": "col-lg-3",
+                        "type": "dropDownList"
+                        //"multiple": true
+                    },
+                    "config": {
+                        "dimension_id": "regions",
+                        "defaultCodes": ["5000"],
+                        "filter": {
+                        }
+                    }
+                },
+                {
                     "id": "year",
                     "type": "codelist",
                     "parameter": "List4Codes",

@@ -17,6 +17,9 @@ define([
         // blacklist groups/domains with no views implemented
         blacklist: ['TM'],
 
+        // temporary whitelist
+        whitelist: ['Q', 'QC'],
+
         // default cofing to be applied to each view
         view: {
 
