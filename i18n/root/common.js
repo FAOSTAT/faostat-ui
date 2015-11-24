@@ -24,6 +24,11 @@ define({
     faostat_domains: 'FAOSTAT Domains',
     loading: 'Loading',
     warning: 'Warning',
-    export_data: 'Export Data'
+    export_data: 'Export Data',
+
+    next: "Next",
+    previous: "previous",
+    first: "First",
+    last: "Last"
 
 });

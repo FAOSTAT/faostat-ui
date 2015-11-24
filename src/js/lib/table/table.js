@@ -4,9 +4,10 @@ define([
         'loglevel',
         'handlebars',
         'fs-t-c/templates/base_template',
-        'fs-t-c/adapters/FAOSTAT_adapter'
+        'fs-t-c/adapters/FAOSTAT_adapter',
+        'i18n!nls/common'
     ],
-    function ($, log, Handlebars, Template, Adapter) {
+    function ($, log, Handlebars, Template, Adapter, i18n) {
 
         'use strict';
 
@@ -29,6 +30,7 @@ define([
             // prepare data
             config.filteredModel = this.adapter.prepareData(config);
 
+            log.warn("Add i18n to table");
 
             // render table
             this.template.render(config);
