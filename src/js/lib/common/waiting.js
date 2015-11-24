@@ -4,16 +4,19 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
     'jquery',
-    /* TODO: move to another folder? */
+    'loglevel',
     'text!lib/common/templates/waiting.hbs',
     'i18n!nls/common',
     'bootstrap'
-], function ($, template, i18nLabels) {
+], function ($, log, template, i18nLabels) {
 
     'use strict';
 
-    // TODO: move in templates and check why is not working
-     var waiting = $('<div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false"><div class="modal-header"><h1>Processing...</h1></div><div class="modal-body"><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div></div></div>');
+    var waiting = $('<div class="modal">' +
+        '<span style="color: #eeeeee;opacity: 0.9; position: absolute;top: 50%;left: 50%;">' +
+        '<i class="fa fa-cog fa-spin fa-4x"></i>' +
+        '</span>' +
+        '</div>');
 
 
     function Waiting() {
@@ -23,12 +26,9 @@ define([
 
     Waiting.prototype.showPleaseWait = function (data) {
 
-        console.log(data);
-
-        waiting.modal();
+        waiting.modal('show');
 
     },
-
 
     Waiting.prototype.hidePleaseWait = function () {
 

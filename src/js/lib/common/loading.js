@@ -1,7 +1,8 @@
 define([
     'jquery',
+    'loglevel',
     'i18n!nls/common'
-], function ($, i18nLabels) {
+], function ($, log, i18nLabels) {
 
     'use strict';
 
@@ -11,7 +12,6 @@ define([
         label = i18nLabels.loading,
         renderType = 'append', //or 'prepend'
         showLabel = false;
-
 
     function Loading() {
 
@@ -36,13 +36,13 @@ define([
             $c.prepend('<div id="' + id +'"></div>').find('#' + id);
         }
 
-        $c.find('#' + id).append('<i class="fa fa-refresh fa-spin fa-' + s + '"></i>  ');
+        $c.find('#' + id).append('<i class="fa fa-refresh fa-spin fa-' + s + '"></i> ');
 
         if (sl) {
             $c.find('#' + id).append('<span>' + l + '</span>');
         }
 
-    },
+    };
 
     Loading.prototype.hide = function (data) {
 
