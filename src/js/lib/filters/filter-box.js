@@ -146,7 +146,7 @@ define([
     FilterBox.prototype._preloadCodes = function (filter) {
 
         var id = filter.config.dimension_id,
-            defaultCodes = filter.config.defaultCodes || {};
+            defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [];
 
         var request = $.extend({}, true, {
             datasource: C.DATASOURCE,
