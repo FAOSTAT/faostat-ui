@@ -1,6 +1,7 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
     'jquery',
+    'loglevel',
     'views/base/view',
     'globals/Common',
     'config/FAOSTAT',
@@ -20,7 +21,7 @@ define([
     'highcharts-export',
     'jquery.rangeSlider',
     'amplify'
-], function ($, View, Common, F, C, Queries, E, EC, CC, HT, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator) {
+], function ($, log, View, Common, F, C, Queries, E, EC, CM, HT, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator) {
 
     'use strict';
 
@@ -48,7 +49,7 @@ define([
 
         // TODO: remove
         events: {
-            'click': function(a) {
+            'click': function (a) {
             }
         },
 
@@ -102,7 +103,7 @@ define([
             var filter = this.addFilter();
 
             // init timerange
-            this.$TIMERANGE.rangeSlider(CC.timerange.options);
+            this.$TIMERANGE.rangeSlider(CM.timerange.options);
 
         },
 
@@ -111,7 +112,7 @@ define([
         },
 
         // filters
-        addFilter: function() {
+        addFilter: function () {
             // TODO: keep track of the filters
             var f = new FilterBoxView({
                 filterBoxID: ++filterBoxIDs
@@ -123,7 +124,7 @@ define([
             return f;
         },
 
-        onFilterBoxRemove: function(box) {
+        onFilterBoxRemove: function (box) {
 
             console.warn('TODO: internal filter remove');
             //this.removeFilter(filterBox);
@@ -131,9 +132,9 @@ define([
 
         },
 
-        removeFilterBox: function(box) {
+        removeFilterBox: function (box) {
 
-            if ( Object.keys(filterBox).length > 1 ) {
+            if (Object.keys(filterBox).length > 1) {
                 delete filterBox[box.filter.o.filterBoxID];
                 box.filter.$el.empty();
                 console.log(filterBox);
@@ -141,13 +142,13 @@ define([
 
         },
 
-        getFiltersFromBoxes: function() {
+        getFiltersFromBoxes: function () {
 
-          // get the filters from each box to create the chart and the table
+            // get the filters from each box to create the chart and the table
 
         },
 
-        compareData: function() {
+        compareData: function () {
 
             var self = this;
 
@@ -162,48 +163,49 @@ define([
             // loading
             amplify.publish(E.LOADING_SHOW, {container: this.$CHART});
 
-                try {
-                    this._retrieveData().then(function (models) {
+            try {
+                this._retrieveData().then(function (models) {
 
-                        amplify.publish(E.LOADING_HIDE, {container: self.$CHART});
+                    amplify.publish(E.LOADING_HIDE, {container: self.$CHART});
 
-                        // create Chart
-                        var c = new ChartCreator();
-                        $.when(c.init($.extend(true, {}, CC.chart, {model: models[0]}))).then(
-                            function (creator) {
-                                for (var i = 1; i < models.length; i++) {
-                                    if (models[i].data.length > 0) {
-                                        creator.addTimeserieData($.extend(true, {}, CC.chart, {model: models[i]}));
-                                    }
+                    // create Chart
+                    var c = new ChartCreator();
+                    $.when(c.init($.extend(true, {}, CM.chart, {model: models[0]}))).then(
+                        function (creator) {
+
+                            // add timeserie data
+                            for (var i = 1; i < models.length; i++) {
+                                if (models[i].data.length > 0) {
+                                    creator.addTimeserieData($.extend(true, {}, CM.chart, {model: models[i]}));
                                 }
+                            }
 
-                                console.log( {
-                                    // TODO: add chart template
-                                    container: self.$CHART,
-                                    creator: {
-                                        chartObj: HT
+                            // render chart
+                            creator.createChart(
+                                $.extend(true, {},
+                                    {
+                                        creator: {
+                                            chartObj: HT
+                                        }
+                                    },
+                                    CM.chart,
+                                    {
+                                        container: self.$CHART
                                     }
-                                });
+                                )
+                            );
 
-                                // render chart
-                                creator.createChart({
-                                    // TODO: add chart template
-                                    container: self.$CHART,
-                                    creator: {
-                                        chartObj: HT
-                                    }
-                                });
-                            });
+                        });
 
-                        // TODO: create table
+                    // TODO: create table
 
-                    });
-                }catch(e) {
-                    console.error(e);
-                }
+                });
+            } catch (e) {
+                console.error(e);
+            }
         },
 
-        _retrieveData: function() {
+        _retrieveData: function () {
 
             // get years TODO: get all the years in the timerange?
             var timerange = this.$TIMERANGE.rangeSlider("values"),
@@ -211,7 +213,7 @@ define([
                 maxYear = timerange.max;
 
             var years = [];
-            for (var i=minYear; i <= maxYear; i++) {
+            for (var i = minYear; i <= maxYear; i++) {
                 years.push(i);
             }
 
@@ -222,23 +224,23 @@ define([
 
             // retrieve with getData the data for the single box
             var requests = [];
-            _.each(filters, _.bind(function(filter) {
+            _.each(filters, _.bind(function (filter) {
                 var r = {};
-                _.each(filter, function(filterParameter) {
+                _.each(filter, function (filterParameter) {
                     r[filterParameter.parameter] = filterParameter.codes
                 });
 
 
-                r = $.extend(true, {}, CC.getData, {
+                r = $.extend(true, {}, CM.getData, {
                     datasource: C.DATASOURCE,
                     lang: this.o.lang,
                     List4Codes: years,
                     "null_values": null,
-/*                    "group_by": 'year, element',
-                    "order_by": 'area',
-                    "operator": 'avg',
-                    "page_size": 0,
-                    "page_number": 0*/
+                    /*                    "group_by": 'year, element',
+                     "order_by": 'area',
+                     "operator": 'avg',
+                     "page_size": 0,
+                     "page_number": 0*/
 
                 }, r);
 
@@ -250,10 +252,10 @@ define([
 
         },
 
-        _getFiltersSelections: function() {
+        _getFiltersSelections: function () {
 
             var filters = [];
-            _.each(Object.keys(filterBox), function(filterID) {
+            _.each(Object.keys(filterBox), function (filterID) {
                 filters.push(filterBox[filterID].getFilters());
             });
             return filters;
