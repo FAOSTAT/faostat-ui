@@ -38,9 +38,9 @@ define([
     };
 
     var defaultOptions = {
-       tableIndex: 0
     };
 
+    // TODO: check all global objects
     var filterBoxIDs = 0;
 
     var filterBox = {};
@@ -61,6 +61,9 @@ define([
 
         initialize: function (options) {
             this.o = $.extend(true, {}, defaultOptions, options);
+
+            filterBox = {};
+            filterBoxIDs = 0;
         },
 
         getTemplateData: function () {
@@ -201,8 +204,6 @@ define([
 
             // get for each filterBox the relative filters (domain, items etc...)
             var filters = this._getFiltersSelections();
-
-            log.info(filters)
 
             // TODO: check the estimated series dimensions
 
