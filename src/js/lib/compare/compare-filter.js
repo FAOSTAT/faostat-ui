@@ -1,6 +1,7 @@
 /*global define, _:false, $, console, amplify, FM*/
 define([
     'jquery',
+    'loglevel',
     'globals/Common',
     /* TODO: move to another folder? */
     'text!lib/compare/templates/compare_filter.hbs',
@@ -11,7 +12,7 @@ define([
     'underscore',
     'select2',
     'amplify'
-], function ($, Common, templateFilter, templateDropDown, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
+], function ($, log, Common, templateFilter, templateDropDown, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
 
     'use strict';
 
@@ -71,6 +72,7 @@ define([
     };
 
     CompareFilter.prototype.initTemplate = function () {
+        log.info(this.o)
         var template = Handlebars.compile(templateFilter);
         this.$CONTAINER.html(template(this.o));
     };

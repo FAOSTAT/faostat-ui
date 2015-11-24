@@ -103,8 +103,6 @@ define([
         configurePage: function () {
             var self = this;
 
-            console.log(CC.groups.blacklist);
-
             this.FAOSTATAPIClient.groups({
                 datasource: C.DATASOURCE,
                 lang: this.o.lang,
@@ -119,7 +117,7 @@ define([
         createGroupFilter: function(json) {
             var self = this;
 
-            var groupsData = this.filterGroups(json.data);
+            var groupsData = json.data;
             var filter = new Filter({
                 container: this.$GROUPS,
                 title: i18nLabels.groups,
@@ -198,24 +196,6 @@ define([
             // get dimensions and create new filters
             this.createFiltersByDomain();
 
-        },
-
-        filterGroups: function(data) {
-            var filter = {};
-            var groups = [];
-            for (var i = 0; i < data.length -1; i++) {
-                filter[data[i].code] = data[i].label;
-            }
-
-            _.forEach(filter, function(label, code) {
-                groups.push({
-                        code: code,
-                        label: label
-                    }
-                );
-            });
-
-            return groups;
         },
 
         // Filters by domains

@@ -3,7 +3,13 @@
            data-search="{{#if tableOptions.data-search}}{{tableOptions.data-search}}{{else}}false{{/if}}"
            data-show-columns="false"
            data-show-header="{{#if tableOptions.data-show-header}}{{tableOptions.data-show-header}}{{else}}true{{/if}}"
-           data-pagination="false"
+           data-pagination="{{#if tableOptions.data-pagination}}{{tableOptions.data-pagination}}{{else}}false{{/if}}"
+           data-page-size="{{#if tableOptions.data-page-size}}{{tableOptions.data-page-size}}{{else}}50{{/if}}"
+           data-page-list="[100,200,300]"
+           data-pagination-first-text="{{#if tableOptions.first_text}}{{tableOptions.first_text}}{{else}}First{{/if}}"
+           data-pagination-pre-text="{{#if tableOptions.previous_text}}{{tableOptions.previous_text}}{{else}}Previous{{/if}}"
+           data-pagination-next-text="{{#if tableOptions.next_text}}{{tableOptions.next_text}}{{else}}Next{{/if}}"
+           data-pagination-last-text="{{#if tableOptions.last_text}}{{tableOptions.last_text}}{{else}}Last{{/if}}"
        {{/if}}
         {{#if height}}
             data-height="{{height}}"
