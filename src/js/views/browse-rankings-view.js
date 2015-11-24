@@ -171,6 +171,42 @@ define([
 
         parseTreeData: function(json) {
 
+            var lang = this.o.lang,
+                code = this.o.code;
+
+            var data = [];
+
+            _.each(json, function(d) {
+
+                var v = {
+                    id: d.id,
+                    text: d.title[lang.toLowerCase()] || d.title[lang],
+                    state: {
+                        expanded: true,
+                    },
+                    nodes: []
+                };
+
+                _.each(d.views, function(view) {
+                    v.nodes.push({
+                        id: view.id,
+                        text: view.title[lang.toLowerCase()] || d.title[lang],
+                        state: {
+                            selected: (view.id === code)
+                        }
+                    });
+                });
+
+                data.push(v);
+
+            });
+
+            return data;
+
+        },
+
+        parseTreeDataJsTree: function(json) {
+
             var lang = this.o.lang;
 
             var data = [];

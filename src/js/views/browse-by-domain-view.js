@@ -279,6 +279,7 @@ define([
             var isOnLoad = (c)? c.isOnLoad || false: false;
 
             // getFilters
+            log.info(this.filterBox)
             var filters = this.filterBox.getFilters();
 
             // apply filters to dashboard
