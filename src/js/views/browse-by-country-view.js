@@ -83,6 +83,7 @@ define([
             this.bindEventListeners();
 
             this.configurePage();
+
         },
 
         initVariables: function () {
