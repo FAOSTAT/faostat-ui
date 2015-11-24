@@ -25,9 +25,8 @@ define({
     loading: 'Loading',
     warning: 'Warning',
     export_data: 'Export Data',
-
     next: "Next",
-    previous: "previous",
+    previous: "Previous",
     first: "First",
     last: "Last"
 
