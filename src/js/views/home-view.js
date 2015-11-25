@@ -116,16 +116,25 @@ define([
         initWhatsNew: function () {
 
             amplify.publish(E.LOADING_SHOW, {container: this.$WHATS_NEW});
-   /*         this.api.whatsnew({}).then(function() {
+
+            amplify.publish(E.LOADING_HIDE, {container: this.$WHATS_NEW});
+            /* this.api.whatsnew({}).then(function() {
 
             }); */
-            
+
+            var t = Handlebars.compile(templateNews);
+            this.$WHATS_NEW.append(t(WhatsNew));
 
         },
 
         initComingUp: function () {
 
             amplify.publish(E.LOADING_SHOW, {container: this.$COMING_UP});
+
+            amplify.publish(E.LOADING_HIDE, {container: this.$COMING_UP});
+
+            var t = Handlebars.compile(templateNews);
+            this.$COMING_UP.append(t(WhatsNew));
 
         },
 
