@@ -9,6 +9,7 @@ define([
     'config/home/Config',
     'text!templates/home/home.hbs',
     'text!templates/home/news.hbs',
+    'text!templates/home/domains.hbs',
     'i18n!nls/home',
     'handlebars',
     'faostatapiclient',
@@ -17,7 +18,7 @@ define([
     'config/home/sample/whatsNew',
     'config/home/sample/comingUp',
     'amplify'
-], function ($, log, View, Common, C, E, CM, template, templateNews, i18nLabels, Handlebars, API, ChartCreator,
+], function ($, log, View, Common, C, E, CM, template, templateNews, templateDomains, i18nLabels, Handlebars, API, ChartCreator,
              ChartModel,
              WhatsNew,
              ComingUp
@@ -25,9 +26,19 @@ define([
 
     'use strict';
 
+    // TODO: move it from here to a centralized place (also the country shows it)
+    var ROUTE = {
+        BROWSE_BY_DOMAIN_CODE: "browse_by_domain_code",
+        DOWNLOAD_METADATA: "metadata"
+    };
+
     var s = {
 
         DOMAINS: "#fs_home_domains",
+        GO_TO_BROWSE: '[data-role="go_to_browse"]',
+        GO_TO_DOWNLOAD: '[data-role="go_to_download"]',
+
+
         CHART: "#fs_home_chart",
         WHATS_NEW: "#fs_home_whats_new",
         COMING_UP: "#fs_home_coming_up",
@@ -89,6 +100,8 @@ define([
 
         configurePage: function () {
 
+            this.initDomains();
+
             this.initChart();
 
             this.initWhatsNew();
@@ -96,6 +109,52 @@ define([
             this.initComingUp();
 
             this.initDatabaseUpdates();
+
+        },
+
+        initDomains: function () {
+
+            var self = this;
+
+            this.api.groups({
+                dataosource: C.DATASOURCE,
+                lang: Common.getLocale()
+            }).then(function(json) {
+
+                // how to handle the browse blacklist?
+
+                var t = Handlebars.compile(templateDomains);
+                self.$DOMAINS.append(t(json));
+
+                // add listeners on domains
+                self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
+
+                    var section = ROUTE.BROWSE_BY_DOMAIN_CODE,
+                        code = $(e.target).data("code");
+
+                    self.changeState(
+                        {
+                            section:section,
+                            code: code
+                        }
+                    );
+
+                });
+
+                self.$DOMAINS.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
+
+                    var section = ROUTE.DOWNLOAD_METADATA,
+                        code = $(e.target).data("code");
+
+                    self.changeState(
+                        {
+                            section:section,
+                            code: code
+                        }
+                    );
+                });
+
+            });
 
         },
 
@@ -149,6 +208,17 @@ define([
         },
 
         unbindEventListeners: function () {
+
+        },
+
+        changeState: function (data) {
+
+            var section = data.section,
+                code = data.code;
+
+            log.info(section, code);
+
+            Common.changeURL(section, (code) ? [code] : [], false);
 
         },
 
