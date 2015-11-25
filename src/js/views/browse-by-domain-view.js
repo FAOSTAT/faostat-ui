@@ -6,7 +6,6 @@ define([
     'views/base/view',
     'config/FAOSTAT',
     'config/Config',
-    'config/Queries',
     'config/Events',
     'config/browse_by_domain/Config',
     'config/browse_by_domain/Events',
@@ -20,7 +19,7 @@ define([
     'fx-ds/start',
     'lib/view/view-utils',
     'amplify'
-], function (Require, $, log, View, F, C, Q, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils) {
+], function (Require, $, log, View, F, C, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils) {
 
     'use strict';
 
