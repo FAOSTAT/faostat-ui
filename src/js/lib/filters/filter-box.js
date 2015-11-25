@@ -60,6 +60,7 @@ define([
         this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
         // TODO: have a template?
+        log.info(this.o.container)
         this.$CONTAINER = $(this.o.container);
 
     };
@@ -190,9 +191,16 @@ define([
     FilterBox.prototype.getFilters = function () {
 
         var f = [];
-        _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
-            f.push(this.o.filters[filterKey].getFilter());
-        }, this));
+        log.info(this.o);
+        try {
+            _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
+                f.push(this.o.filters[filterKey].getFilter());
+            }, this));
+        }catch (e) {
+            log.error(e);
+        }
+
+        log.info("end getFilters");
 
         return f;
     };

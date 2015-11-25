@@ -156,13 +156,17 @@ define([
 
         bindEventListeners: function () {
 
+            log.info("BINDING!")
+
             amplify.subscribe(EM.ON_FILTER_CHANGE, _.bind(this.updateDashboard, this));
 
         },
 
         unbindEventListeners: function () {
 
-            amplify.unsubscribe(EM.ON_FILTER_CHANGE, _.bind(this.updateDashboard, this));
+            log.info("UNSUBSCRIBE!")
+
+            amplify.unsubscribe(EM.ON_FILTER_CHANGE);
 
         },
 
@@ -173,6 +177,8 @@ define([
         },
 
         dispose: function () {
+
+            log.info("DISPOSE!")
 
             this.unbindEventListeners();
 
@@ -281,11 +287,15 @@ define([
 
         updateDashboard: function(c) {
 
+            log.info("updateDashboard")
+
             var isOnLoad = (c)? c.isOnLoad || false: false;
 
             // getFilters
             log.info(this.filterBox)
             var filters = this.filterBox.getFilters();
+
+            log.info("apply filters")
 
             // apply filters to dashboard
             this.dashboard.filter(filters, isOnLoad);
