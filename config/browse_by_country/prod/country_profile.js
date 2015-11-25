@@ -162,7 +162,7 @@ define(function () {
                             seriesDimensions: ['item']
                         },
                         template: {
-                            height: '250px'
+                            //height: '250px'
                         },
                         creator: {}
                     },
