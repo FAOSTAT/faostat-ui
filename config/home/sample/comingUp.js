@@ -1,20 +1,22 @@
 /*global define*/
-define([],function () {
+define([], function () {
 
     'use strict';
 
-    return [
-        {
-            title: "OCTOBER 2015",
-            text: "Fertilizers detailed and Trade value."
-        },
-        {
-            title: "OCTOBER 2015",
-            text: "Fertilizers detailed and Trade value."
-        },
-        {
-            title: "OCTOBER 2015",
-            text: 'Population – Employment Indicators.'
-        }
-    ]
+    return {
+        data: [
+            {
+                title: "NOVEMBER 2015",
+                text: "Research and Development indicators, ASTI."
+            },
+            {
+                title: "NOVEMBER 2015",
+                text: "Food Aid Shipments (WFP)."
+            },
+            {
+                title: "OCTOBER 2015",
+                text: '<a href="http://www.fao.org/economic/ess/ess-events/wsd/en/" target="_blank">World Statistics Day</a>'
+            }
+        ]
+    }
 });

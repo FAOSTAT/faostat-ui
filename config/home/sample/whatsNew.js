@@ -1,9 +1,10 @@
 /*global define*/
-define([],function () {
+define([], function () {
 
     'use strict';
 
-    return [
+    return {
+        data: [
             {
                 title: "NOVEMBER 2015",
                 text: "Research and Development indicators, ASTI."
@@ -17,4 +18,5 @@ define([],function () {
                 text: '<a href="http://www.fao.org/economic/ess/ess-events/wsd/en/" target="_blank">World Statistics Day</a>'
             }
         ]
+    }
 });
