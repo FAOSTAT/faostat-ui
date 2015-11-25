@@ -218,7 +218,7 @@ define([
 
             log.info(section, code);
 
-            Common.changeURL(section, (code) ? [code] : [], false);
+            Common.changeURL(section, (code) ? [code] : [], true);
 
         },
 
@@ -227,6 +227,7 @@ define([
             this.unbindEventListeners();
 
             View.prototype.dispose.call(this, arguments);
+
         }
     });
 

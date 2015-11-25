@@ -1,5 +1,10 @@
 /*global define*/
-define(['chaplin', 'config/Events', 'amplify'], function (Chaplin, E) {
+define(['chaplin',
+        'config/Events',
+        'loglevel',
+        'amplify'
+    ],
+    function (Chaplin, E, log) {
 
     'use strict';
 
@@ -17,7 +22,8 @@ define(['chaplin', 'config/Events', 'amplify'], function (Chaplin, E) {
 
         var reload = reload || false;
 
-        if (reload) {
+        //if (reload) {
+        if (false) {
 
             // TODO: how to handle?
 
@@ -33,8 +39,9 @@ define(['chaplin', 'config/Events', 'amplify'], function (Chaplin, E) {
             // TODO: Use Chaplin 'route' function
             console.warn('TODO Common.changeURL: change Backbone binding');
             console.warn('TODO Common.changeURL: check if the Backbone trigger should be set on true or false');
+
             //# TODO: if trigger should be set on false or true and the difference
-            Backbone.history.navigate(uri, {trigger:false});
+            Backbone.history.navigate(uri, {trigger: reload});
 
             // Google Analytics change page
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
