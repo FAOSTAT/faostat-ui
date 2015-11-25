@@ -130,7 +130,10 @@ define([
                 self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
 
                     var section = ROUTE.BROWSE_BY_DOMAIN_CODE,
-                        code = $(e.target).data("code");
+                        //code = $(e.target).data("code");
+                        code = this.getAttribute('data-code');
+
+                    log.info(section, code, e)
 
                     self.changeState(
                         {
@@ -144,7 +147,8 @@ define([
                 self.$DOMAINS.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
 
                     var section = ROUTE.DOWNLOAD_METADATA,
-                        code = $(e.target).data("code");
+                    //code = $(e.target).data("code");
+                        code = this.getAttribute('data-code');
 
                     self.changeState(
                         {

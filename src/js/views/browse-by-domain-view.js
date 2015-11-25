@@ -245,11 +245,16 @@ define([
         renderFilter: function(config) {
 
             // create filters
-            if (this.filterBox && this.filterBox.destroy) {
-                this.filterBox.destroy();
+            try {
+                if (this.filterBox && this.filterBox.destroy) {
+                    this.filterBox.destroy();
+                }
+            }catch (e) {
+                log.error(e);
             }
 
             this.filterBox = new FilterBox();
+            log.info(this.filterBox);
 
             // render filters
             this.filterBox.render(config, false);
