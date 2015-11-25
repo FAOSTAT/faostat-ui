@@ -8,13 +8,20 @@ define([
     'config/Events',
     'config/home/Config',
     'text!templates/home/home.hbs',
+    'text!templates/home/news.hbs',
     'i18n!nls/home',
     'handlebars',
     'faostatapiclient',
     'fx-c-c/start',
-    'config/home/chartModel',
+    'config/home/sample/chartModel',
+    'config/home/sample/whatsNew',
+    'config/home/sample/comingUp',
     'amplify'
-], function ($, log, View, Common, C, E, CM, template, i18nLabels, Handlebars, API, ChartCreator, ChartModel) {
+], function ($, log, View, Common, C, E, CM, template, templateNews, i18nLabels, Handlebars, API, ChartCreator,
+             ChartModel,
+             WhatsNew,
+             ComingUp
+) {
 
     'use strict';
 
@@ -109,6 +116,10 @@ define([
         initWhatsNew: function () {
 
             amplify.publish(E.LOADING_SHOW, {container: this.$WHATS_NEW});
+   /*         this.api.whatsnew({}).then(function() {
+
+            }); */
+            
 
         },
 
