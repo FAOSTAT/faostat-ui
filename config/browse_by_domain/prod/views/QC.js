@@ -99,7 +99,7 @@ define(function () {
                 thousand_separator: ",",
                 "null_values": null,
                 // TODO: remove it the page_size!!!
-                page_size: 1000000,
+                page_size: 1000000
             },
 
             // labels?
