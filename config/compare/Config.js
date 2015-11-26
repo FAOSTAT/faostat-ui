@@ -23,7 +23,7 @@ define([
 
         // TODO: DO THE BLACKLIST!!!!!
         groups: {
-            whitelist: ['Q', 'G1'],
+            whitelist: ['Q', 'G1', 'G2', 'AS', 'M',  'FB' ,'R', 'O', 'I' ,'F', 'P', 'T', 'D'],
             blacklist: [
                 //'D', // (FS, HS) it doesn't have yearly data
             ]
@@ -32,7 +32,11 @@ define([
         domains: {
             blacklist: [
                 //'FS', // it doesn't have yearly data
-                'HS' // it doesn't have yearly data
+                'HS', // it doesn't have yearly data,
+                'EA', // ODA
+                'FT', // trade matrix
+                'TM', // trade matrix
+                'HS'
             ]
         },
 
