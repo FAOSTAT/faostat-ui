@@ -101,7 +101,8 @@ define(function () {
                 List7Codes: null,
                 limit: -1,
                 "null_values": null,
-                page_size: 1000000,
+                page_size: 0,
+                per_page: 0
             },
 
             // labels?
