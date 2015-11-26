@@ -1,6 +1,7 @@
 /*global define, amplify*/
 define([
     'jquery',
+    'loglevel',
     'chaplin',
     'underscore',
     'config/Config',
@@ -18,7 +19,7 @@ define([
     // TODO: move analytics in another section?
     'globals/GoogleAnalyticsManager',
     'globals/Export'
-], function ($, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export) {
+], function ($, log, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export) {
 
     'use strict';
 
@@ -82,7 +83,6 @@ define([
 
             /* Switch Language */
             this.$el.find(s.LANGUAGES).find('a').on('click', function(e) {
-                console.log(this.getAttribute("data-locale"))
                 self.changeLanguage(this.getAttribute("data-locale"));
             });
 
