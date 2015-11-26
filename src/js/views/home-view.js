@@ -4,6 +4,7 @@ define([
     'loglevel',
     'views/base/view',
     'globals/Common',
+    'config/Routes',
     'config/Config',
     'config/Events',
     'config/home/Config',
@@ -19,7 +20,7 @@ define([
     'config/home/sample/whatsNew',
     'config/home/sample/comingUp',
     'amplify'
-], function ($, log, View, Common, C, E, CM, template, templateNews, templateDomains, i18nLabels, Handlebars, API, ChartCreator,
+], function ($, log, View, Common, ROUTE, C, E, CM, template, templateNews, templateDomains, i18nLabels, Handlebars, API, ChartCreator,
              BrowseByDomainConfig,
              ChartModel,
              WhatsNew,
@@ -27,12 +28,6 @@ define([
 ) {
 
     'use strict';
-
-    // TODO: move it from here to a centralized place (also the country shows it)
-    var ROUTE = {
-        BROWSE_BY_DOMAIN_CODE: "browse_by_domain_code",
-        DOWNLOAD_METADATA: "metadata"
-    };
 
     var s = {
 
@@ -48,7 +43,8 @@ define([
         FAO_LINKS: "#fs_home_fao_links",
         DATABASE_UPDATES: "#fs_home_database_updates",
         RELEASE_CALENDAR: "#fs_home_release_calendar",
-        PARTNERS: "#fs_home_partners"
+        PARTNERS: "#fs_home_partners",
+        COUNTRY_PROFILES: "#fs_home_country_profiles"
 
     };
 
@@ -61,7 +57,17 @@ define([
         template: template,
 
         getTemplateData: function () {
-            return i18nLabels;
+
+            // ADD links
+            // TODO: helper?
+            var d = $.extend(true, {}, i18nLabels, {
+                URL_FAOSTAT_DATABASE_ZIP: C.URL_FAOSTAT_DATABASE_ZIP,
+                URL_COUNTRY_PROFILES: C.URL_COUNTRY_PROFILES,
+                EMAIL_FAO_STATISTICS: C.EMAIL_FAO_STATISTICS,
+                TELEPHONE_FAO_STATISTICS: C.TELEPHONE_FAO_STATISTICS
+            });
+
+            return d;
         },
 
         attach: function () {
@@ -91,6 +97,7 @@ define([
             this.$PARTNERS = this.$el.find(s.PARTNERS);
             this.$DATABASE_UPDATES = this.$el.find(s.DATABASE_UPDATES);
             this.$RELEASE_CALENDAR = this.$el.find(s.RELEASE_CALENDAR);
+            this.$COUNTRY_PROFILES = this.$el.find(s.COUNTRY_PROFILES);
 
             this.api = new API();
 
@@ -219,8 +226,6 @@ define([
         },
 
         initDatabaseUpdates: function () {
-
-            //amplify.publish(E.LOADING_SHOW, {container: this.$DATABASE_UPDATES});
 
         },
 

@@ -200,7 +200,6 @@ define([
                 years.push(i);
             }
 
-
             // get for each filterBox the relative filters (domain, items etc...)
             var filters = this._getFiltersSelections();
 
@@ -224,13 +223,15 @@ define([
                     }
                 });
 
-                r = $.extend(true, {}, CM.getData, {
+                r = $.extend(true, r, CM.getData, {
                     datasource: C.DATASOURCE,
                     lang: this.o.lang,
 
                     // TODO: get the years properly (from the domainSchema)
                     List4Codes: years,
-                    "null_values": null
+                    "null_values": null,
+                    order_by: "year"
+
                 }, r);
 
                 this.cachedRequest.push(r);
@@ -351,6 +352,7 @@ define([
             this.unbindEventListeners();
 
             View.prototype.dispose.call(this, arguments);
+
         }
     });
 
