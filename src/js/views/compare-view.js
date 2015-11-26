@@ -11,9 +11,8 @@ define([
     'config/EventsCompare',
     'config/compare/Config',
     'config/submodules/fx-chart/highcharts_template',
-    'text!templates/compare/compare.hbs',
+    'text!templates/compare/compare_2.hbs',
     'i18n!nls/compare',
-    'handlebars',
     'faostatapiclient',
     'views/compare-filter-box-view',
     'q',
@@ -22,7 +21,7 @@ define([
     'highcharts-export',
     'jquery.rangeSlider',
     'amplify'
-], function ($, log, View, Common, F, C, Queries, E, EC, CM, HT, template, i18nLabels, Handlebars, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
+], function ($, log, View, Common, F, C, Queries, E, EC, CM, HT, template, i18nLabels, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
 
     'use strict';
 
@@ -31,6 +30,7 @@ define([
         FILTERS_CONTAINER: '[data-role="filters_container"]',
         ADD_FILTER: '[data-role="add_filter"]',
         TIMERANGE: '[data-role="timerange"]',
+        OUTPUT: '[data-role="output"]',
         COMPARE_DATA: '[data-role="compare_data"]',
         CHART: '[data-role="chart"]',
         TABLES_CONTAINER: '[data-role="tables_container"]'
@@ -64,6 +64,7 @@ define([
 
             filterBox = {};
             filterBoxIDs = 0;
+
         },
 
         getTemplateData: function () {
@@ -79,7 +80,7 @@ define([
 
             //update State
             amplify.publish(E.STATE_CHANGE, {compare: 'compare'});
-            amplify.subscribe(EC.FILTER_BOX_REMOVE, _.bind(this.onFilterBoxRemove, this));
+            amplify.subscribe(EC.FILTER_BOX_REMOVE, this, this.onFilterBoxRemove);
 
             this.initVariables();
 
@@ -102,6 +103,7 @@ define([
             this.$COMPARE_DATA = this.$el.find(s.COMPARE_DATA);
             this.$CHART = this.$el.find(s.CHART);
             this.$TABLES_CONTAINER = this.$el.find(s.TABLES_CONTAINER);
+            this.$OUTPUT = this.$el.find(s.OUTPUT);
 
         },
 
@@ -175,6 +177,8 @@ define([
             try {
                 this._retrieveData().then(function (models) {
 
+                    self.$OUTPUT.show();
+
                     amplify.publish(E.WAITING_HIDE, {container: self.$CHART});
 
                     // create chart
@@ -202,10 +206,9 @@ define([
                 years.push(i);
             }
 
+
             // get for each filterBox the relative filters (domain, items etc...)
             var filters = this._getFiltersSelections();
-
-            // TODO: check the estimated series dimensions
 
             // retrieve with getData the data for the single box
 
@@ -315,8 +318,10 @@ define([
                         addExport: true,
                         export: i18nLabels.export_data
                 },
-                    // TODO: leave exportRequest?
+
+                // TODO: leave exportRequest?
                 exportRequest: request
+
             });
             var t = new TableItem({config: config});
 
@@ -343,6 +348,7 @@ define([
 
         unbindEventListeners: function () {
 
+            amplify.unsubscribe(EC.FILTER_BOX_REMOVE, this.onFilterBoxRemove);
 
         },
 
