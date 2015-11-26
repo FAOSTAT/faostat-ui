@@ -1,47 +1,33 @@
 /*global define*/
-define(function () {
+define(['config/Routes'],function (ROUTE) {
 
     'use strict';
 
-    var ROUTE = {
-
-        BROWSE_BY_COUNTRY: "browse_by_country",
-        BROWSE_BY_COUNTRY_CODE: "browse_by_country_code"
-
-    };
-
     return function(match) {
 
-        //match('', 'home#show');
-        //match('home/test', 'home#show', {name: 'home'});
-        match(':lang/home', 'home#show', {name: 'home'});
+        match(':lang/home', 'home#show', {name: ROUTE.HOME});
 
-        match(':lang/download/bulk/:code', 'download#show_bulk_downloads', {name: 'bulk'});
-        match(':lang/download/metadata/:code', 'download#show_metadata', {name: 'metadata'});
-        match(':lang/download/interactive/:code', 'download#show_interactive_download', {name: 'interactive'});
-
+        match(':lang/download/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DONWLOAD_BULK});
+        match(':lang/download/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
+        match(':lang/download/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
 
         //match(':lang/browse/domain', 'browse#show_browse_by_domain', {name: 'browse_by_domain'});
-        match(':lang/browse/domain/:code', 'browse#show_browse_by_domain', {name: 'browse_by_domain_code'});
+        match(':lang/browse/domain/:code', 'browse#show_browse_by_domain', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
 
         match(':lang/browse/country', 'browse#show_browse_by_country', {name: ROUTE.BROWSE_BY_COUNTRY});
         match(':lang/browse/country/:code', 'browse#show_browse_by_country', {name: ROUTE.BROWSE_BY_COUNTRY_CODE});
 
         //match(':lang/browse/rankings', 'browse#show_browse_rankings', {name: 'browse_rankings'});
-        match(':lang/browse/rankings/:code', 'browse#show_browse_rankings', {name: 'browse_rankings_code'});
+        match(':lang/browse/rankings/:code', 'browse#show_browse_rankings', {name: ROUTE.BROWSE_RANKINGS_CODE});
 
-
-        match(':lang/compare', 'compare#show');
-
+        match(':lang/compare', 'compare#show', {name: ROUTE.COMPARE});
 
         match(':lang/standards', 'standards#show');
-        match(':lang/standards/methodologies', 'standards#show_methodologies', {name: 'methodologies'});
-        //match(':lang/standards/methodologies/:id', 'standards#show_methodology', {name: 'bulk'});
-        match(':lang/standards/units', 'standards#show_units', {name: 'units'});
-        match(':lang/standards/abbreviations', 'standards#show_abbreviations', {name: 'abbreviations'});
-        match(':lang/standards/glossary', 'standards#show_glossary', {name: 'glossary'});
-        match(':lang/standards/classifications', 'standards#show_classifications', {name: 'classifications'});
-
+        match(':lang/standards/methodologies', 'standards#show_methodologies', {name: ROUTE.METHODOLOGIES});
+        match(':lang/standards/units', 'standards#show_units', {name: ROUTE.UNITS});
+        match(':lang/standards/abbreviations', 'standards#show_abbreviations', {name: ROUTE.ABBREVIATIONS});
+        match(':lang/standards/glossary', 'standards#show_glossary', {name: ROUTE.GLOSSARY});
+        match(':lang/standards/classifications', 'standards#show_classifications', {name: ROUTE.CLASSIFICATIONS});
 
         match('protected', 'protected#show');
         match('about', 'about#show');
