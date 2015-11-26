@@ -2,19 +2,18 @@
 /*jslint todo: true */
 /*jslint nomen: true */
 define([
+    'jquery',
     'views/base/view',
+    'text!templates/download/download.hbs',
     'config/Config',
     'config/Events',
-    'chaplin',
-    'underscore',
     'globals/Common',
-    'FAOSTAT_UI_DOWNLOAD',
-    'amplify'
-], function (View,
+    'FAOSTAT_UI_DOWNLOAD'
+], function ($,
+             View,
+             template,
              C,
              E,
-             Chaplin,
-             _,
              Common,
              FAOSTATDownload) {
 
@@ -47,49 +46,40 @@ define([
 
     };
 
-    // TODO: Could be useful to pass to a FSM (i.e. for the FBS etc)
-    var state = {
-        section: null,
-        code: null
-    };
-
     var DownloadView = View.extend({
 
         autoRender: true,
 
         className: 'download',
 
-        template: null,
+        template: '<div id="fs-download"></div>',
 
         initialize: function (options) {
             this.options = options;
         },
 
         getTemplateData: function () {
-            return i18nLabels;
+            return {};
         },
 
         attach: function () {
 
+            View.prototype.attach.call(this, arguments);
+
             var that = this;
             this.download = new FAOSTATDownload({
-                placeholder_id: 'main-container',
+                placeholder_id: 'fs-download',
                 code: that.options.code,
                 section: that.options.section
             });
             this.download.init();
 
-            // Google Analytics change page
-            amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
 
             //update State
             amplify.publish(E.STATE_CHANGE, {download: 'download'});
 
             this.initVariables();
 
-            this.initComponents();
-
-            this.configurePage();
         },
 
         initVariables: function () {
@@ -105,34 +95,12 @@ define([
 
         },
 
-        initComponents: function () {
-
-        },
-
-        initiateSection: function () {
-
-            this.bindEventListeners();
-        },
-
-        configurePage: function () {
-
-        },
-
-        bindEventListeners: function () {
-
-        },
-
-        unbindEventListeners: function () {
-
-            this.$el.find('a[data-toggle="tab"]').off();
-
-        },
-
         dispose: function () {
-            this.unbindEventListeners();
-            console.debug('genral dispose');
+
             this.download.dispose();
+
             View.prototype.dispose.call(this, arguments);
+
         }
 
     });
