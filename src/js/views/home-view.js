@@ -14,11 +14,13 @@ define([
     'handlebars',
     'faostatapiclient',
     'fx-c-c/start',
+    'config/browse_by_domain/Config',
     'config/home/sample/chartModel',
     'config/home/sample/whatsNew',
     'config/home/sample/comingUp',
     'amplify'
 ], function ($, log, View, Common, C, E, CM, template, templateNews, templateDomains, i18nLabels, Handlebars, API, ChartCreator,
+             BrowseByDomainConfig,
              ChartModel,
              WhatsNew,
              ComingUp
@@ -114,17 +116,27 @@ define([
 
         initDomains: function () {
 
-            var self = this;
+            var self = this,
+                browseWhiteList = BrowseByDomainConfig.whitelist || [],
+                browseBlackList = BrowseByDomainConfig.blacklist || [];
 
             this.api.groups({
                 dataosource: C.DATASOURCE,
                 lang: Common.getLocale()
             }).then(function(json) {
 
-                // how to handle the browse blacklist?
+                // TODO: how to handle the browse blacklist/whitelist?
+                // TODO: should come from the DB?
+                _.each(json.data, function(d) {
+                    // for now implemented just the whitelist from config file
+                    if ( browseWhiteList.indexOf(d.code) > -1) {
+                        d.addBrowse = true;
+                    }
+                });
 
                 var t = Handlebars.compile(templateDomains);
-                self.$DOMAINS.append(t(json));
+                self.$DOMAINS.hide().html(t(json)).slideDown(1000);
+                //self.$DOMAINS.append(t(json));
 
                 // add listeners on domains
                 self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
@@ -181,7 +193,8 @@ define([
             amplify.publish(E.LOADING_SHOW, {container: this.$WHATS_NEW});
 
             amplify.publish(E.LOADING_HIDE, {container: this.$WHATS_NEW});
-            /* this.api.whatsnew({}).then(function() {
+
+            /* this.api.whatsNew({}).then(function() {
 
             }); */
 
@@ -196,8 +209,12 @@ define([
 
             amplify.publish(E.LOADING_HIDE, {container: this.$COMING_UP});
 
+            /* this.api.comingUp({}).then(function() {
+
+             }); */
+
             var t = Handlebars.compile(templateNews);
-            this.$COMING_UP.append(t(WhatsNew));
+            this.$COMING_UP.append(t(ComingUp));
 
         },
 
