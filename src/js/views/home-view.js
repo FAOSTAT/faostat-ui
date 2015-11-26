@@ -220,7 +220,7 @@ define([
 
         initDatabaseUpdates: function () {
 
-            amplify.publish(E.LOADING_SHOW, {container: this.$DATABASE_UPDATES});
+            //amplify.publish(E.LOADING_SHOW, {container: this.$DATABASE_UPDATES});
 
         },
 
