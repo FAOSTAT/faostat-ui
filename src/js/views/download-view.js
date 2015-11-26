@@ -71,13 +71,13 @@ define([
 
         attach: function () {
 
-            var that = this,
-                download = new FAOSTATDownload({
-                    placeholder_id: 'main-container',
-                    code: that.options.code,
-                    section: that.options.section
-                });
-            download.init();
+            var that = this;
+            this.download = new FAOSTATDownload({
+                placeholder_id: 'main-container',
+                code: that.options.code,
+                section: that.options.section
+            });
+            this.download.init();
 
             // Google Analytics change page
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
@@ -129,11 +129,12 @@ define([
         },
 
         dispose: function () {
-
             this.unbindEventListeners();
-
+            console.debug('genral dispose');
+            this.download.dispose();
             View.prototype.dispose.call(this, arguments);
         }
+
     });
 
     return DownloadView;
