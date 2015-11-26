@@ -3,6 +3,7 @@
 /*jslint nomen: true */
 define([
     'jquery',
+    'loglevel',
     'views/base/view',
     'config/Config',
     'config/Events',
@@ -17,6 +18,7 @@ define([
     'globals/Common',
     'amplify'
 ], function ($,
+             log,
              View,
              C,
              E,
@@ -73,9 +75,10 @@ define([
 
             this.initComponents();
 
+            this.configurePage();
+
             this.bindEventListeners();
 
-            this.configurePage();
         },
 
         initVariables: function () {
@@ -97,6 +100,8 @@ define([
             // switch to the right navigation tab
             this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
 
+            this.switchStandardsTab(this.o.section);
+
         },
 
         bindEventListeners: function () {
@@ -111,7 +116,10 @@ define([
                 // switch tab
                 self.switchStandardsTab(section);
 
-                Common.changeURL(section, [], false);
+                log.info("here")
+
+                //log.info('here');
+                Common.changeURL(section, [], true);
 
             });
 
