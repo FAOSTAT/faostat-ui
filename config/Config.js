@@ -8,9 +8,19 @@ define(function () {
             // Configuration
             "DATASOURCE": "production",
             "GOOGLE_ANALYTICS_ID": "UA-68486942-1",
-            "FEEDBACK_SYSTEM_URL": "http://fenixapps.fao.org/feedbacksystem/",
+
             "LOGLEVEL": "trace", // trace/debug/info/warn/error
-            "PDF_BASEPATH": "http://faostat3.fao.org/modules/faostat-download-js/PDF/",
+
+            // URLs
+            "URL_PDF_BASEPATH": "http://faostat3.fao.org/modules/faostat-download-js/PDF/",
+            "URL_FEEDBACK_SYSTEM": "http://fenixapps.fao.org/feedbacksystem/",
+            "URL_COUNTRY_PROFILES": "http://faostat.fao.org/CountryProfiles/Country_Profile/default.aspx",
+            "URL_FAOSTAT_DATABASE_ZIP": "http://faostat3.fao.org/ftp-faostat/Bulk/FAOSTAT.zip",
+
+            // EMAIL and TELEPHONE
+            "EMAIL_FAO_STATISTICS": "FAO-statistics@fao.org",
+            "TELEPHONE_FAO_STATISTICS": "+39 06 570 55303",
+
 
             //Chaplin JS configuration
             CHAPLINJS_CONTROLLER_SUFFIX: '-controller',
@@ -18,12 +28,6 @@ define(function () {
             CHAPLINJS_PUSH_STATE: false,
             CHAPLINJS_SCROLL_TO: false,
             CHAPLINJS_APPLICATION_TITLE: "FENIX Web App",
-
-            //WDS configuration
-            DB_NAME: 'db_name',
-            WDS_URL: 'http://hqlprfenixapp2.hq.un.fao.org:10100/wds-5.2.1/rest/crud',
-            WDS_OUTPUT_TYPE: 'object',
-            WDS_OLAP_OUTPUT_TYPE : 'array',
 
             //Top Menu configuration
             TOP_MENU_CONFIG: 'config/submodules/fx-menu/top_menu.json',

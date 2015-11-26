@@ -28,7 +28,8 @@ define([
                     zoomControl: false,
                     attributionControl: false,
                     scrollWheelZoom: false,
-                    minZoom: 1
+                    minZoom: 1,
+
                 },
                 adapter: {
                     adapterType: 'faostat',

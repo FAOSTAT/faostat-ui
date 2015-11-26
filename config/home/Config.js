@@ -9,7 +9,6 @@ define([
 
     return {
 
-
         chart: {
 
             adapter: {
