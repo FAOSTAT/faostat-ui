@@ -61,18 +61,20 @@ define([
         this.$DD = this.$DD_CONTAINER.find(s.$DD);
 
         if (this.o.ddOptions.multiple) {
-            this.$DD.attr('multiple', 'multiple');
+           // this.$DD.attr('multiple', 'multiple');
         }
 
         if (this.o.ddOptions.addEmptySelection) {
-            this.$DD.prepend("<option></option>");
+            //this.$DD.prepend("<option></option>");
         }
 
-        this.$DD.select2();
+        this.$DD.select2({
+            placeholder: this.o.placeholder || "Select a..."
+        });
+
     };
 
     CompareFilter.prototype.initTemplate = function () {
-        log.info(this.o)
         var template = Handlebars.compile(templateFilter);
         this.$CONTAINER.html(template(this.o));
     };

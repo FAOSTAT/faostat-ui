@@ -5,9 +5,10 @@
         <div class="panel-heading">
             <!--<h2 class="panel-title">-->
             <h5>
-                <span data-role="group-heading-title">{{groupname}}</span>
-                <span>-</span>
-                <span data-role="domain-heading-title">{{domainname}}</span>
+
+                <span data-role="group-heading-title"></span>
+                <i><span data-role="domain-heading-title"></span></i>
+                <span>(Filter Box)</span>
 
                 <a><i data-role="remove_filter_box" class="fa fa-times pull-right"></i></a>
                 <a><i data-role="collapse_filter_box" class="fa fa-chevron-down pull-right"></i></a>
@@ -16,11 +17,13 @@
 
         </div>
         <div class="panel-body" data-role="panel_body_filter_box">
+
+
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-sx-12 col-md-6 col-lg-3">
                     <div data-role="groups"></div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-sx-12 col-md-6 col-lg-3">
                     <div data-role="domains"></div>
                 </div>
             </div>
@@ -28,6 +31,12 @@
                 <div data-role="filters"></div>
                 <!-- LIST of the filters depending on the domain -->
             </div>
+            <br>
+
+            <div data-role="alert" class="alert alert-info">
+                <strong data-role="alert_type">Info!</strong> <span data-role="alert_message">Please select a group.</span>
+            </div>
+
             <!--<div data-role="summary">summary to be implemented</div>-->
         </div>
         <!--<div class="panel-footer">Panel footer</div>-->

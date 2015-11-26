@@ -1,4 +1,5 @@
-<select data-role="dd" class="js-example-responsive" style="width: 100%">
+<select data-role="dd" {{#if ddOptions.multiple}}multiple{{/if}} class="js-example-responsive" style="width: 100%">
+    <option></option>
     {{#each data}}
         <option value="{{code}}">{{label}}</option>
     {{/each}}

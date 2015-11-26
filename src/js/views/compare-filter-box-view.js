@@ -121,6 +121,7 @@ define([
             var filter = new Filter({
                 container: this.$GROUPS,
                 title: i18nLabels.groups,
+                addEmptySelection: true,
                 data: groupsData
             });
 
@@ -134,7 +135,7 @@ define([
             this.o.groups.$DD = filter.getDropDown();
 
             // TODO: make it nicer the default code selection
-            self.onGroupChange(this.o.groups.$DD.find(":selected").val(), this.o.groups.$DD.find(":selected").text());
+            //self.onGroupChange(this.o.groups.$DD.find(":selected").val(), this.o.groups.$DD.find(":selected").text());
 
             this.o.groups.$DD.change(function(e) {
                 self.onGroupChange(e.val, e.added.text);
@@ -144,9 +145,13 @@ define([
         createDomainFilter: function(json) {
             var self = this;
 
+            // TODO: remove filters (dispose)
+            this.$FILTERS.empty();
+
             var filter = new Filter({
                 container: this.$DOMAINS,
                 title: i18nLabels.domains,
+                placeholder: i18nLabels.select_a_domain || "Select a domain",
                 data: json.data
             });
 
@@ -160,7 +165,7 @@ define([
             this.o.domains.$DD = filter.getDropDown();
 
             // TODO: make it nicer the default code selection
-            self.onDomainChange(this.o.domains.$DD.find(":selected").val(), this.o.domains.$DD.find(":selected").text());
+            // self.onDomainChange(this.o.domains.$DD.find(":selected").val(), this.o.domains.$DD.find(":selected").text());
 
             this.o.domains.$DD.change(function(e) {
                 self.onDomainChange(e.val, e.added.text);
@@ -201,7 +206,7 @@ define([
         // Filters by domains
         createFiltersByDomain: function() {
 
-            // remove filters (dispose)
+            // TODO: remove filters (dispose)
             this.$FILTERS.empty();
 
             // clean old filters
@@ -232,15 +237,14 @@ define([
                                 multiple: true,
                                 addEmptySelection: true,
                                 //placeholder: "SELECT a",
-                                allowClear: true
+                                allowClear: false
                             };
-
 
                             this.o.filters[id] = {};
                             this.o.filters[id].filter = new Filter(v);
 
                         }catch(e) {
-                            console.error(e);
+                            log.error(e);
                         }
 
                     }, this));
@@ -287,7 +291,7 @@ define([
                 }
                 else {
                     // TODO: check how to handle i.e. the year that is crop selectors
-                    console.warn("TODO: check how to handle i.e. the year that is crop selectors");
+                    log.warn("TODO: check how to handle i.e. the year that is crop selectors");
                 }
 
             }, this));
