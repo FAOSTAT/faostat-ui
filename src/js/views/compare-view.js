@@ -53,12 +53,6 @@ define([
 
         template: template,
 
-        // TODO: remove
-        events: {
-            'click': function (a) {
-            }
-        },
-
         initialize: function (options) {
             this.o = $.extend(true, {}, defaultOptions, options);
 
