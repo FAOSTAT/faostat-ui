@@ -7,8 +7,8 @@ define(['config/Routes'],function (ROUTE) {
 
         match(':lang/home', 'home#show', {name: ROUTE.HOME});
 
-        match(':lang/download/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DONWLOAD_BULK});
-        match(':lang/download/metadata/:code', 'download#show_metadata', {name: ROUTE.DONWLOAD_METADATA});
+        match(':lang/download/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DOWNLOAD_BULK});
+        match(':lang/download/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
         match(':lang/download/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
 
         //match(':lang/browse/domain', 'browse#show_browse_by_domain', {name: 'browse_by_domain'});

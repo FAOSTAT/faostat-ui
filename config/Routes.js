@@ -20,9 +20,9 @@ define(function ( ) {
         GLOSSARY: 'glossary',
         CLASSIFICATIONS: 'classifications',
 
-        DONWLOAD_BULK: "bulk",
+        DOWNLOAD_BULK: "bulk",
         DOWNLOAD_INTERACTIVE: "interactive",
-        DONWLOAD_METADATA: "metadata"
+        DOWNLOAD_METADATA: "metadata"
 
     };
 });
