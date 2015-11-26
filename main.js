@@ -112,14 +112,14 @@ require([
                     config: "../../config",
                     json: "../../json",
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
+
+                    // TODO: remove it (download dependency)
                     wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
+
+
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
                     'jquery.rangeSlider': '{FENIX_CDN}/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
-                    //'jquery-ui': 'jquery-ui',
-                    //'jqueryui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
-                    // TODO: REMOVE IT, dirty fix for the dashboard
                     'jquery-ui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
-
 
                     //jbPivot: '{FENIX_CDN}/js/jbpivot/0.1.0/jbPivot',
                     jbPivot: '../../submodules/faostat-ui-pivot/dist/js/jbPivot',
@@ -130,18 +130,20 @@ require([
 
                     /* FAOSTAT API's client. */
                     faostatapiclient:           'FAOSTATAPIClient',
-                    list: '//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min',
-                    list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min',
+                    list: '//fenixrepo.fao.org/cdn/js/list/1.1.1/list.min',
+                    //list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min',
 
-                    /* table */
+                    // TODO: switch to submodule? */
                     'fs-t-c': 'lib/table',
-                    'bootstrap-table': 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.min',
-                    'bootstrap-treeview': 'http://jonmiles.github.io/bootstrap-treeview/js/bootstrap-treeview',
 
+                    // boostrap bplugins
+                    'bootstrap-table': '{FENIX_CDN}/js/bootstrap-table/1.9.1/bootstrap-table.min',
+                    'bootstrap-treeview': '{FENIX_CDN}/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
 
                     /* Google Analytics */
                     "ga": "//www.google-analytics.com/analytics"
                 },
+
                 shim: {
                     bootstrap: {
                         deps: ["jquery"]
@@ -177,6 +179,8 @@ require([
             }
         });
 
+    // TODO: handle the multilanguage in a proper way
+
     // Google Analytics
     window.GoogleAnalyticsObject = "__ga__";
     window.__ga__ = {
@@ -184,13 +188,10 @@ require([
         l: Date.now()
     };
 
-
     var getQueryString = function ( field, url ) {
         var href = url ? url : window.location.href;
         var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-        console.log(href);
         var string = reg.exec(href);
-        console.log(string);
         return string ? string[1] : null;
     };
 
@@ -201,7 +202,6 @@ require([
         langString = langString.substring(0, langString.indexOf('/')).replace('/', '');
         return (langString.length == 2)? langString.toLocaleLowerCase(): null;
     };
-
 
     //var locale = getQueryString('locale') || 'en';
     var locale = getLocale() || 'en';
