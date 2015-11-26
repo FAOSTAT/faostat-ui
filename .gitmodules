@@ -13,9 +13,6 @@
 [submodule "submodules/fenix-ui-dashboard"]
 	path = submodules/fenix-ui-dashboard
 	url = https://github.com/FENIX-Platform/fenix-ui-dashboard.git
-[submodule "submodules/fenix-ui-metadata-viewer"]
-	path = submodules/fenix-ui-metadata-viewer
-	url = https://github.com/FENIX-Platform/fenix-ui-metadata-viewer.git
 [submodule "submodules/fenix-ui-reports"]
 	path = submodules/fenix-ui-reports
 	url = https://github.com/FENIX-Platform/fenix-ui-reports.git
