@@ -18,7 +18,8 @@ define(function () {
                 limit: -1,
                 thousand_separator: ",",
                 "null_values": null,
-                page_size: 1000000
+                page_size: 0,
+                per_page: 0
             },
 
             // labels?
