@@ -236,13 +236,13 @@ define([
 
         bindEventListeners: function () {
 
-            amplify.subscribe(EM.ON_FILTER_CHANGE, _.bind(this.updateDashboard, this));
+            amplify.subscribe(EM.ON_FILTER_CHANGE, this, this.updateDashboard);
 
         },
 
         unbindEventListeners: function () {
 
-            amplify.unsubscribe(EM.ON_FILTER_CHANGE, _.bind(this.updateDashboard, this));
+            amplify.subscribe(EM.ON_FILTER_CHANGE, this.updateDashboard);
 
         },
 

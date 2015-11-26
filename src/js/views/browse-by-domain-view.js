@@ -35,7 +35,7 @@ define([
 
         },
 
-        o = {
+        defaultOptions = {
 
         };
 
@@ -49,7 +49,7 @@ define([
 
         initialize: function (options) {
 
-            this.o = $.extend(true, {}, o, options);
+            this.o = $.extend(true, {}, defaultOptions, options);
 
             this.o.lang = Common.getLocale();
 
@@ -156,17 +156,14 @@ define([
 
         bindEventListeners: function () {
 
-            log.info("BINDING!")
 
-            amplify.subscribe(EM.ON_FILTER_CHANGE, _.bind(this.updateDashboard, this));
+            amplify.subscribe(EM.ON_FILTER_CHANGE, this, this.updateDashboard);
 
         },
 
         unbindEventListeners: function () {
 
-            log.info("UNSUBSCRIBE!")
-
-            amplify.unsubscribe(EM.ON_FILTER_CHANGE);
+            amplify.unsubscribe(EM.ON_FILTER_CHANGE, this.updateDashboard);
 
         },
 
