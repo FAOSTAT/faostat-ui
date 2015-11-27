@@ -2,6 +2,7 @@
 define([
     'jquery',
     'loglevel',
+    'config/Events',
     'globals/Common',
     /* TODO: move to another folder? */
     'text!lib/compare/templates/compare_filter.hbs',
@@ -12,7 +13,7 @@ define([
     'underscore',
     'select2',
     'amplify'
-], function ($, log, Common, templateFilter, templateDropDown, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
+], function ($, log, E, Common, templateFilter, templateDropDown, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
 
     'use strict';
 
@@ -92,16 +93,19 @@ define([
         var f = {
             id: this.o.metadata.parameters.id,
             parameter: this.o.parameter,
-            codes: this.$DD.val()
+            codes: this.$DD.val() || []
         };
 
         // TODO: remove the alert?
-        //console.log(f);
+        log.info(f.codes)
+
         if (f.codes.length <= 0) {
             amplify.publish(E.NOTIFICATION_WARNING, {
                 title: i18nLabels.warning,
                 text: 'Select at least one ' + this.o.metadata.parameters.id
             });
+            log.error('Select at least one ' + this.o.metadata.parameters.id);
+            throw new Exception('Select at least one ' + this.o.metadata.parameters.id);
         }
 
         // TODO: if nothing is selected set an alert?
