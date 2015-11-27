@@ -203,6 +203,8 @@ define([
             // get for each filterBox the relative filters (domain, items etc...)
             var filters = this._getFiltersSelections();
 
+            log.info(filters)
+
             // retrieve with getData the data for the single box
 
             var requests = [];
@@ -212,7 +214,9 @@ define([
                 var r = {};
 
                 _.each(filter, function (filterParameter) {
-                    r[filterParameter.parameter] = filterParameter.codes
+                    r[filterParameter.parameter] = filterParameter.codes;
+                    log.info(filterParameter)
+                    log.info(r[filterParameter.parameter])
 
                     // DIRTY domainName, groupName
                     if ( filterParameter.hasOwnProperty("domainName")) {
@@ -223,7 +227,9 @@ define([
                     }
                 });
 
-                r = $.extend(true, r, CM.getData, {
+                log.info(r)
+
+                r = $.extend(true, {}, CM.getData, {
                     datasource: C.DATASOURCE,
                     lang: this.o.lang,
 
