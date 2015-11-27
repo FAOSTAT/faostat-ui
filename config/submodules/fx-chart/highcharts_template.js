@@ -168,7 +168,47 @@ define(function () {
                 showInLegend: true
             },
             series: {
-                /*allowPointSelect: true, //Permette di selezionare i punti della chart
+                allowPointSelect: true, //Permette di selezionare i punti della chart
+                animation: { // Configura l'animazione di entrata
+                    duration: 1000,
+                    easing: 'swing'
+                },
+                connectNulls: true,
+                cropThreshold: 3,
+                lineWidth: 1, // IMPORTANTE - Cambia lo spessore delle linee della chart
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                fillColor: {
+                    linearGradient: [0, 0, 0, 350],
+                    stops: [
+                        [0, 'rgba(55, 155, 205,0.5)'],
+                        [1, 'rgba(255,255,255,0)']
+                    ]
+                },
+                marker: {
+                    enabled: true, //Attiva o disattiva i marker
+                    symbol: 'circle', // Tipologia di marker
+                    radius: 4,
+                    lineWidth: 1,
+                    lineColor: '#379bcd',
+                    fillColor: '#FFFFFF',
+                    states: {
+                        hover: {
+                            enabled: true, // Attiva o disattiva il marker quando si passa sopra la chart
+                            symbol: 'circle',
+                            fillColor: '#FFFFFF',
+                            lineColor: '#3ca7da',
+                            radius: 5,
+                            lineWidth: 2
+                        }
+                    }
+                }
+            },
+            line: {
+                allowPointSelect: true, //Permette di selezionare i punti della chart
                 //pointPlacement: "on", Per partire dall'origine
                 animation: { // Configura l'animazione di entrata
                     duration: 1000,
@@ -197,7 +237,7 @@ define(function () {
                             lineWidth: 2
                         }
                     }
-                }*/
+                }
             }
         },
 
