@@ -32,6 +32,7 @@ define([
         BREADCRUMB_CONTAINER: "#breadcrumb-container",
         FOOTER_MENU_CONTAINER: "#footer-menu-container",
         LANG: "#footer-menu-container"
+
     };
 
     var SiteView = View.extend({
@@ -161,18 +162,22 @@ define([
             // TODO: fix menu language and check how is it taken
             menu.init({
                 lang: Common.getLocale(),
-                prefix: 'faostat_download_',
+                //prefix: 'faostat_download_',
                 datasource: C.DATASOURCE
             });
+
+            this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
 
         },
 
         scrollToTop: function() {
+
             var verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
             var element = $('body');
             var offset = element.offset();
             var offsetTop = offset.top;
             $('html, body').animate({scrollTop: offsetTop}, 400, 'linear');
+
         },
 
         onMenuRendered: function () {
@@ -180,6 +185,7 @@ define([
             this.onMenuUpdate();
 
             amplify.subscribe(E.MENU_UPDATE, this, this.onMenuUpdate);
+
         },
 
         onStateUpdate: function (s) {
@@ -194,9 +200,9 @@ define([
 
         onMenuUpdate: function () {
 
-            this.topMenu.select(State.menu);
-        },
+           // this.topMenu.select(State.menu);
 
+        },
 
         // Notifications
         onNotificationInfo: function (data) {
@@ -219,9 +225,11 @@ define([
 
         },
 
+
         onNotificationAccept: function (data, callback) {
 
-            swal({
+            // TODO: implement it
+/*            swal({
                     title: "An input!",
                     text: "Write something interesting:",
                     type: "input",
@@ -238,24 +246,14 @@ define([
                         return false;
                     }
                     swal("Nice!", "You wrote: " + inputValue, "success");
-                });
+                });*/
         },
 
         changeLanguage: function(lang) {
-            // TODO: Check if english is used
 
             Common.changeURLLanguage(lang);
 
-           /*
-            Common.setLocale(lang);
-           var uri = Common.updateQueryStringParameter(window.location.href, 'locale', Common.getLocale());
-
-            // TODO: rewrite. dirty change url
-            window.location.replace(uri);
-            window.location.reload();*/
-            //window.open(uri, '_self')
         }
-
 
     });
 
