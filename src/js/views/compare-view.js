@@ -21,7 +21,7 @@ define([
     'highcharts-export',
     'jquery.rangeSlider',
     'amplify'
-], function ($, log, View, Common, F, C, Queries, E, EC, CM, HT, template, i18nLabels, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
+], function ($, log, View, Common, F, C, Queries, E, EC, CM, HighchartsTemplate, template, i18nLabels, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
 
     'use strict';
 
@@ -165,15 +165,12 @@ define([
                 action: F.GOOGLE_ANALYTICS.COMPARE.action.compare_data
             });
 
-            // loading
-            amplify.publish(E.WAITING_SHOW, {container: this.$CHART});
-
             try {
                 this._retrieveData().then(function (models) {
 
                     self.$OUTPUT.show();
 
-                    amplify.publish(E.WAITING_HIDE, {container: self.$CHART});
+                    amplify.publish(E.WAITING_HIDE);
 
                     // create chart
                     self._createTimeserieChart(models);
@@ -183,7 +180,7 @@ define([
 
                 });
             } catch (e) {
-                amplify.publish(E.WAITING_HIDE, {container: self.$CHART});
+                amplify.publish(E.WAITING_HIDE);
                 log.error(e);
             }
         },
@@ -210,13 +207,14 @@ define([
             var requests = [];
             // TODO: fix the requests array (DIRTY fix to pass it to the tables)
             this.cachedRequest = [];
-            _.each(filters, _.bind(function (filter) {
+            _.each(filters, _.bind(function (f, index) {
                 var r = {};
 
-                _.each(filter, function (filterParameter) {
+                log.info(f, index)
+
+                _.each(f.filter, function (filterParameter) {
+
                     r[filterParameter.parameter] = filterParameter.codes;
-                    log.info(filterParameter)
-                    log.info(r[filterParameter.parameter])
 
                     // DIRTY domainName, groupName
                     if ( filterParameter.hasOwnProperty("domainName")) {
@@ -226,8 +224,6 @@ define([
                         r.groupName = filterParameter.groupName;
                     }
                 });
-
-                log.info(r)
 
                 r = $.extend(true, {}, CM.getData, {
                     datasource: C.DATASOURCE,
@@ -244,6 +240,9 @@ define([
                 requests.push(this.FAOSTATAPIClient.data(r));
 
             }, this));
+
+            // WAITING_SHOW
+            amplify.publish(E.WAITING_SHOW);
 
             return Q.all(requests);
 
@@ -272,7 +271,7 @@ define([
                         $.extend(true, {},
                             {
                                 creator: {
-                                    chartObj: HT
+                                    chartObj: HighchartsTemplate
                                 }
                             },
                             CM.chart,
@@ -332,9 +331,14 @@ define([
 
         _getFiltersSelections: function () {
 
+            log.info("getFiltersSelection");
+
             var filters = [];
             _.each(Object.keys(filterBox), function (filterID) {
-                filters.push(filterBox[filterID].getFilters());
+                filters.push({
+                    filter: filterBox[filterID].getFilters(),
+                    filterBox: filterBox
+                });
             });
             return filters;
 

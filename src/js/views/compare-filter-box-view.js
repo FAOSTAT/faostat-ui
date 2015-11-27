@@ -311,6 +311,30 @@ define([
 
         getFilters: function () {
 
+            // check if domain or group code is selected
+            if (this.o.groups.$DD.val() === '') {
+
+                amplify.publish(E.NOTIFICATION_WARNING, {
+                    title: i18nLabels.warning,
+                    text: 'Missing Group selection'
+                });
+
+                log.error("Missing goup selection")
+
+                throw new Exception("Missing groups")
+            }
+
+            if (this.o.domains.$DD.val() === '') {
+
+                amplify.publish(E.NOTIFICATION_WARNING, {
+                    title: i18nLabels.warning,
+                    text: 'Missing Domain selection'
+                });
+
+                throw new Exception("Missing domains")
+            }
+
+
             // filters to be returned to the compare-view
 
             var f = [];
@@ -329,8 +353,6 @@ define([
             domain.parameter = 'domain_code';
             // TODO: change domains variable name
             domain.codes = this.o.domains.$DD.val();
-            domain.groupName = this.o.groups.$DD.select2('data').text;
-            domain.domainName = this.o.domains.$DD.select2('data').text;
 
             f.push(domain);
 
@@ -338,8 +360,6 @@ define([
             _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
                 f.push(this.o.filters[filterKey].filter.getFilter());
             }, this));
-
-            console.log(f);
 
             return f;
         },
@@ -367,13 +387,24 @@ define([
 
         },
 
+        getDomainName: function() {
+
+            return this.o.domains.$DD.select2('data').text;
+
+        },
+
+        getGroupName: function() {
+
+            return this.o.groups.$DD.select2('data').text;
+
+        },
+
         bindEventListeners: function () {
             this.$REMOVE_FILTER_BOX.on('click', _.bind(this.removeFilterBox, this));
             this.$COLLAPSE_FILTER_BOX.on('click', _.bind(this.collapseFilterBox, this));
         },
 
         unbindEventListeners: function () {
-
 
         },
 
