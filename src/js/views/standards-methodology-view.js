@@ -14,7 +14,6 @@ define([
     'faostatapiclient',
     'handlebars',
     'FAOSTAT_UI_TREE',
-    'jstree',
     'amplify'
 ], function ($,
              log,
