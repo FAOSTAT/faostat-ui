@@ -3,6 +3,7 @@
 /*jslint nomen: true */
 define([
     'jquery',
+    'loglevel',
     'views/base/view',
     'config/Config',
     'config/Events',
@@ -12,9 +13,11 @@ define([
     'i18n!nls/standards-methodology',
     'faostatapiclient',
     'handlebars',
+    'FAOSTAT_UI_TREE',
     'jstree',
     'amplify'
 ], function ($,
+             log,
              View,
              C,
              E,
@@ -23,7 +26,9 @@ define([
              templateOutput,
              i18nLabels,
              FAOSTATAPIClient,
-             Handlebars) {
+             Handlebars,
+             Tree
+) {
 
     'use strict';
 
@@ -96,7 +101,7 @@ define([
             // TODO: lang
             this.FAOSTATAPIClient.methodologies({
                 datasource: C.DATASOURCE,
-                lang: this.o.lang,
+                lang: this.o.lang
             }).then(_.bind(this.showMethodologies, this));
 
         },
@@ -104,42 +109,34 @@ define([
         showMethodologies: function(json) {
 
             var self = this;
-
-            var data = json.data;
-            var payload = [];
-            /* Iterate over domains. */
-            for (var i = 0; i < data.length; i++) {
-                payload.push({
-                    id: data[i].code,
-                    text: data[i].label,
-                    parent: '#'
+            var data = [];
+            _.each(json.data, function(d) {
+                data.push({
+                    id: d.code,
+                    text: d.label
                 });
-            }
-
-            /* Init JSTree. */
-            this.$tree.jstree({
-
-                plugins: ['unique', 'search', 'types', 'wholerow'],
-
-                core: {
-                    data: payload,
-                    themes: {
-                        icons: false,
-                        responsive: true
-                    }
-                },
-
-                search: {
-                    show_only_matches: true,
-                    close_opened_onclear: false
-                }
-
             });
 
-            /* Implement node selection. */
-            this.$tree.on('activate_node.jstree', function (e, data) {
+            this.tree = new Tree();
+            this.tree.init({
+               // options: CM.tree.options || null,
+                placeholder_id: this.$tree,
+                lang: this.o.lang,
+                code: this.o.code,
+                custom: data,
+                callback: {
 
-                self.showMethodology(data.node.id, data.node.text)
+                    onClick: _.bind(function (e) {
+
+                        self.showMethodology(e.id, e.label)
+
+                    }, this),
+
+                    onTreeRendered:  _.bind(function (callback) {
+
+                    }, this)
+
+                }
             });
 
         },
@@ -165,6 +162,42 @@ define([
                 self.$output.html(t(data));
 
             });
+
+        },
+
+        parseTreeData: function(json) {
+
+            var lang = this.o.lang,
+                code = this.o.code;
+
+            var data = [];
+
+            _.each(json, function(d) {
+
+                var v = {
+                    id: d.id,
+                    text: d.title[lang.toLowerCase()] || d.title[lang],
+                    state: {
+                        expanded: true
+                    },
+                    nodes: []
+                };
+
+                _.each(d.views, function(view) {
+                    v.nodes.push({
+                        id: view.id,
+                        text: view.title[lang.toLowerCase()] || d.title[lang],
+                        state: {
+                            selected: (view.id === code)
+                        }
+                    });
+                });
+
+                data.push(v);
+
+            });
+
+            return data;
 
         },
 
