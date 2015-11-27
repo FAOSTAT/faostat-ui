@@ -28,8 +28,16 @@ define([
                     zoomControl: false,
                     attributionControl: false,
                     scrollWheelZoom: false,
-                    minZoom: 1,
+                    minZoom: 1
+                },
+                layer: {
+                    //colors: ['#004529', '#238B45', '#74C476', '#E1E1E1', '#74C476', '#FFD34A', '#FF9400', '#DE0000'],
+                    //ranges: [-20000,-10000,-1,0, 1,10000,100000],
+                    //classification: "custom"
 
+                    //colors: "004529,238B45,74C476,E1E1E1,FFD34A,FF9400,DE0000",
+                    //ranges: "-20000,-10000,-1,1,10000,100000"
+                    // intervals: 3,
                 },
                 adapter: {
                     adapterType: 'faostat',

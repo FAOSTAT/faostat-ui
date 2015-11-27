@@ -20,7 +20,7 @@ define([
                 seriesDimensions: ['item']
             },
             template: {
-                html: '<div data-role="content" style="height:300px"></div>'
+                html: '<div data-role="content"  style="height:300px"></div>'
             },
             creator: {
                 chartObj: $.extend(true, {}, HighchartsTemplate,{
