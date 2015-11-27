@@ -32,11 +32,9 @@ define([
 
     Export.prototype.exportData = function (request, options) {
 
-        log.info(request, options);
-
         // TODO: check better the requestType!
         var requestType = (options)? options.requestType: this.o.requestType,
-            name = (options)? options.name: this.o.name,
+            name = (options)? options.name || this.o.name: this.o.name,
             self = this;
 
         if (!request.hasOwnProperty('output_type')) {
@@ -46,9 +44,8 @@ define([
         // TODO: add google analytics event
        // amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
 
-        // wainting
+        // waiting
         amplify.publish(E.WAITING_SHOW);
-
 
         // switch between the requestType to faostatAPI
         if (typeof this.api[requestType] == 'function') {
@@ -74,9 +71,12 @@ define([
 
     Export.prototype._exportResult = function (result, name) {
 
+        log.info(name)
+
         var csvString = result.responseText,
             a = document.createElement('a'),
-            filename = (name) || "Export_Data" + "_" + (new Date()).getTime() + '.csv';
+            filename = name + "_" + (new Date()).getTime() + '.csv';
+
 
         //a.href        = 'data:text/csv;charset=utf-8;base64,' + window.btoa(csvString);
         // TODO: find a better way unescape is deprecated!
