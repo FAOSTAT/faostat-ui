@@ -118,11 +118,11 @@ define(function () {
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
                 limit: -1,
                 thousand_separator: ",",
-                "null_values": null
+                "null_values": null,
+                page_size: 0,
+                page_number: 0
             },
 
             // labels?

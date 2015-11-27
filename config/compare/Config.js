@@ -112,9 +112,6 @@ define([
 
             limit:-1,
             null_values:false,
-            thousand_separator:",",
-            decimal_separator:".",
-            decimal_places:2,
             List1Codes: null,
             List2Codes: null,
             List3Codes: null,
@@ -122,7 +119,8 @@ define([
             List5Codes: null,
             List6Codes: null,
             List7Codes: null,
-            page_size: 100000
+            page_size: 0,
+            page_number: 0
 
         }
 
