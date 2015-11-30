@@ -173,7 +173,7 @@ define(function () {
                     duration: 1000,
                     easing: 'swing'
                 },
-                connectNulls: true,
+                connectNulls: false,
                 cropThreshold: 3,
                 lineWidth: 1, // IMPORTANTE - Cambia lo spessore delle linee della chart
                 states: {
