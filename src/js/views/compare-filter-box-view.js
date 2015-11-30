@@ -179,6 +179,7 @@ define([
             // TODO: dispose domains and filters container
 
             this.$GROUP_HEADING_TITLE.html(label);
+            this.$DOMAIN_HEADING_TITLE.empty();
 
             this.FAOSTATAPIClient.domains({
                 group_code: code,
@@ -196,7 +197,7 @@ define([
 
             this.domainCode = code;
 
-            this.$DOMAIN_HEADING_TITLE.html(label);
+            this.$DOMAIN_HEADING_TITLE.html(" - " + label);
 
             // get dimensions and create new filters
             this.createFiltersByDomain();

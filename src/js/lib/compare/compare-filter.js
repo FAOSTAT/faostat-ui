@@ -106,10 +106,15 @@ define([
         // TODO: remove the alert?
 
         if (f.codes.length <= 0) {
+
+            // focus could be enough with a different style?
+            this.$VALIDATION.focus();
+
             amplify.publish(E.NOTIFICATION_WARNING, {
                 title: i18nLabels.warning,
-                text: 'Select at least one ' + this.o.metadata.parameters.id
+                text: 'Select at least one ' + i18nLabels[this.o.metadata.parameters.id] || this.o.metadata.parameters.id
             });
+
             log.error('Select at least one ' + this.o.metadata.parameters.id);
             throw new Exception('Select at least one ' + this.o.metadata.parameters.id);
         }
