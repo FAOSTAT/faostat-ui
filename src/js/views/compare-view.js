@@ -210,19 +210,14 @@ define([
             _.each(filters, _.bind(function (f, index) {
                 var r = {};
 
-                log.info(f, index)
-
                 _.each(f.filter, function (filterParameter) {
 
                     r[filterParameter.parameter] = filterParameter.codes;
 
-                    // DIRTY domainName, groupName
-                    if ( filterParameter.hasOwnProperty("domainName")) {
-                        r.domainName = filterParameter.domainName;
-                    }
-                    if ( filterParameter.hasOwnProperty("groupName")) {
-                        r.groupName = filterParameter.groupName;
-                    }
+                    // TODO: remove it from here
+                    r.domainName = f.filterBox.getDomainName();
+                    r.groupName = f.filterBox.getGroupName();
+
                 });
 
                 r = $.extend(true, {}, CM.getData, {
@@ -337,7 +332,7 @@ define([
             _.each(Object.keys(filterBox), function (filterID) {
                 filters.push({
                     filter: filterBox[filterID].getFilters(),
-                    filterBox: filterBox
+                    filterBox: filterBox[filterID]
                 });
             });
             return filters;
