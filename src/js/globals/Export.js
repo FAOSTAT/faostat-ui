@@ -71,12 +71,12 @@ define([
 
     Export.prototype._exportResult = function (result, name) {
 
-        log.info(name)
-
         var csvString = result.responseText,
             a = document.createElement('a'),
-            filename = name + "_" + (new Date()).getTime() + '.csv';
-
+            d = new Date(),
+            filename = name + "_" +
+                (d.getMonth()+1) +'-' + d.getDate() +'-'+d.getFullYear()
+                + '.csv';
 
         //a.href        = 'data:text/csv;charset=utf-8;base64,' + window.btoa(csvString);
         // TODO: find a better way unescape is deprecated!
