@@ -7,7 +7,7 @@ define([
     /* TODO: move to another folder? */
     'text!lib/compare/templates/compare_filter.hbs',
     'text!lib/compare/templates/dropdown.hbs',
-    'i18n!nls/common',
+    'i18n!nls/compare',
     'handlebars',
     'faostatapiclient',
     'underscore',
@@ -19,8 +19,9 @@ define([
 
     var s = {
 
-        $DD_CONTAINER: '[data-role="dd-container"]',
-        $DD: '[data-role="dd"]'
+        DD_CONTAINER: '[data-role="dd-container"]',
+        DD: '[data-role="dd"]',
+        VALIDATION: '[data-role="validation"]'
 
     };
 
@@ -35,7 +36,7 @@ define([
         this.o.lang = Common.getLocale();
 
         // default dropdownOptions
-        this.o.ddOptions = $.extend({}, dropDownOptions, this.o.ddOptions || {});
+        this.o.ddOptions = $.extend(true, {}, dropDownOptions, this.o.ddOptions || {});
 
         // store container variable
         this.$CONTAINER = this.o.container;
@@ -56,10 +57,11 @@ define([
         this.initTemplate();
 
         // create dropdown
-        this.$DD_CONTAINER = this.$CONTAINER.find(s.$DD_CONTAINER);
-        this.$DD_CONTAINER.html(this.createDropdown(this.o));
+        this.$DD_CONTAINER = this.$CONTAINER.find(s.DD_CONTAINER);
 
-        this.$DD = this.$DD_CONTAINER.find(s.$DD);
+        this.$DD_CONTAINER.html(this.createDropdown($.extend(true, {}, i18nLabels, this.o)));
+
+        this.$DD = this.$DD_CONTAINER.find(s.DD);
 
         if (this.o.ddOptions.multiple) {
            // this.$DD.attr('multiple', 'multiple');
@@ -72,6 +74,11 @@ define([
         this.$DD.select2({
             placeholder: this.o.placeholder || "Select a..."
         });
+
+        this.$VALIDATION = this.$DD_CONTAINER.find(s.VALIDATION);
+
+
+        this.$DD.change(_.bind(this.onChange, this));
 
     };
 
@@ -97,7 +104,6 @@ define([
         };
 
         // TODO: remove the alert?
-        log.info(f.codes)
 
         if (f.codes.length <= 0) {
             amplify.publish(E.NOTIFICATION_WARNING, {
@@ -110,6 +116,20 @@ define([
 
         // TODO: if nothing is selected set an alert?
         return f;
+    };
+
+    CompareFilter.prototype.onChange = function() {
+
+        var v = this.$DD.val();
+
+        if ( v === null || v === undefined) {
+            this.$VALIDATION.show();
+        }
+        else {
+            // in theory if passes should be selected something
+            this.$VALIDATION.hide();
+        }
+
     };
 
     CompareFilter.prototype.unbindEventListeners = function () {
