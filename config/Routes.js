@@ -5,7 +5,7 @@ define(function ( ) {
 
     return {
 
-        HOME: "browse_by_country",
+        HOME: "home",
 
         BROWSE_BY_DOMAIN_CODE: "browse_by_domain_code",
         BROWSE_BY_COUNTRY: "browse_by_country",
