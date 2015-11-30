@@ -20,7 +20,7 @@ define(function () {
                     "parameter": "List4Codes",
                     "componentType": {
                         <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-lg-5",
+                        "class": "col-lg-2",
                         "type": "dropDownList"
                         //"multiple": true
                     },
@@ -40,8 +40,6 @@ define(function () {
             //data base filter
             defaultFilter: {
                 domain_code: 'TP',
-                List2Codes: [2920],
-                List3Codes: [526],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -86,11 +84,11 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production of {{item}} top 10 producers",
-                                fr: "Production of {{item}} top 10 producers",
-                                es: "Production of {{item}} top 10 producers"
+                                en: "Top 10 exporters of agricultural products",
+                                fr: "Top 10 des exportateurs de produits agricoles",
+                                es: "10 principales exportadores de productos agrícolas"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{year}}"
                         }
                     },
 
@@ -98,7 +96,7 @@ define(function () {
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['element'],
+                            xDimensions: ['item'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
                             seriesDimensions: ['area']
@@ -119,10 +117,58 @@ define(function () {
                     deniedTemplateFilter: [],
                     filter: {
                         List1Codes: ["5000>"],
-                        "group_by": 'year',
+                        List2Codes: [2920],
+                        List3Codes: [1882],
                         "order_by": 'value DESC',
-                        "limit": '100',
-                        'operator': 'SUM'
+                        "limit": '10'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-6",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Top 10 importers of agricultural products",
+                                fr: "Top 10 des importateurs de produits agricoles",
+                                es: "10 principales importadores de productos agrícolas"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['item'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {
+                            height:'250px'
+                            // default labels to be applied
+                        },
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List1Codes: ["5000>"],
+                        List2Codes: [2620],
+                        List3Codes: [1882],
+                        "order_by": 'value DESC',
+                        "limit": '10'
                     }
                 }
             ]
