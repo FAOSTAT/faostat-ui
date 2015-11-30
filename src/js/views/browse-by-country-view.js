@@ -6,7 +6,7 @@ define([
     'views/base/view',
     'config/FAOSTAT',
     'config/Config',
-    'config/Queries',
+    'config/Routes',
     'config/Events',
     'config/browse_by_country/Config',
     'text!templates/browse_by_country/browse_by_country.hbs',
@@ -19,7 +19,7 @@ define([
     'fx-ds/start',
     'lib/view/view-utils',
     'amplify'
-], function (Require, $, log, View, F, C, Q, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List, Dashboard, ViewUtils) {
+], function (Require, $, log, View, F, C, ROUTE, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List, Dashboard, ViewUtils) {
 
     'use strict';
 
@@ -38,13 +38,13 @@ define([
 
             countrySearchFilters: 'fs-browse-by-country-search'
 
-        },
+        };
 
     // GET dinamically from the route or congifiguration file
-        ROUTE = {
+/*        ROUTE = {
             BROWSE_BY_COUNTRY: "browse_by_country",
             BROWSE_BY_COUNTRY_CODE: "browse_by_country_code"
-        };
+        };*/
 
     var BrowseByCountryView = View.extend({
 
@@ -62,6 +62,8 @@ define([
             this.o.lang = Common.getLocale();
 
             this.api = new FAOSTATClientAPI();
+
+            this.changeState(ROUTE.BROWSE_BY_COUNTRY);
 
         },
 
@@ -265,6 +267,7 @@ define([
 
         },
 
+        // TODO: pass the right section instead of being implicit?
         changeState: function () {
 
             Common.changeURL(this.o.section, (this.o.code) ? [this.o.code] : [], false);

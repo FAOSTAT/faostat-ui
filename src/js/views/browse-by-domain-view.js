@@ -169,6 +169,8 @@ define([
 
         changeState: function() {
 
+            // TODO: fix it: this.o.section + '_code'
+
             Common.changeURL(this.o.section + '_code', [this.o.code], false);
 
         },

@@ -60,6 +60,7 @@ define([
                 this.o.code = CM.defaultCode;
             }
 
+            console.log(this.o.section);
             this.changeState();
 
         },
