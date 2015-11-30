@@ -23,7 +23,7 @@ define([
 
         // TODO: DO THE BLACKLIST!!!!!
         groups: {
-            whitelist: ['Q', 'G1', 'G2', 'AS', 'M',  'FB' ,'R', 'O', 'I' ,'F', 'P', 'T', 'D'],
+            whitelist: ['Q', 'G1', 'G2', 'AS', 'M',  'FB' ,'R', 'O', 'I' ,'F', 'P', 'T'],
             blacklist: [
                 //'D', // (FS, HS) it doesn't have yearly data
             ]
@@ -36,7 +36,8 @@ define([
                 'EA', // ODA
                 'FT', // trade matrix
                 'TM', // trade matrix
-                'HS'
+                'HS',
+                'PM'
             ]
         },
 
