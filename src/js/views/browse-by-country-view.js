@@ -152,7 +152,8 @@ define([
 
                 // add list.js
                 var options = {
-                    valueNames: [this.o.countrySearchFilters]
+                    valueNames: [this.o.countrySearchFilters],
+                    page: 200000
                 };
 
                 new List(this.$COUNTRY_LIST_CONTAINER.selector.replace('#', ''), options);

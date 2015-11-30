@@ -118,7 +118,8 @@ define([
 
             // add list.js
             var options = {
-                valueNames: this.o.tableSearchFilters
+                valueNames: this.o.tableSearchFilters,
+                page: 200000
             };
 
             new List(this.$table.selector.replace('#',''), options);
