@@ -29,6 +29,7 @@ define({
     next: "Next",
     previous: "Previous",
     first: "First",
-    last: "Last"
+    last: "Last",
+    please_select_an_option: "Please select an option"
 
 });
