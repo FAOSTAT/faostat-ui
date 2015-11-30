@@ -15,15 +15,12 @@ require([
     './submodules/json-editor-faostat-theme/src/js/paths',
     './submodules/faostat-ui-download-options/src/js/paths',
     './submodules/faostat-ui-download-selector/src/js/paths',
-    './submodules/faostat-ui-standards-methodology/src/js/paths',
-    './submodules/faostat-ui-standards-units/src/js/paths',
-    './submodules/faostat-ui-standards-abbreviations/src/js/paths',
     './submodules/faostat-ui-table/src/js/paths',
     './submodules/faostat-ui-pivot/src/js/paths',
     './submodules/faostat-ui-download/src/js/paths'
 ], function (Compiler, Common, Tree, MapCreator, ChartCreator, Dashboard, MetadataViewer, Reports,
              BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager, FAOSTATTheme,
-             DownloadOptions, DownloadSelector, Methodology, Units, Abbreviations, Table, Pivot,
+             DownloadOptions, DownloadSelector, Table, Pivot,
              Download) {
 
     'use strict';
@@ -43,9 +40,6 @@ require([
         faostatThemeConfig = FAOSTATTheme,
         downloadOptionsConfig = DownloadOptions,
         downloadSelectorConfig = DownloadSelector,
-        methodologyConfig = Methodology,
-        unitsConfig = Units,
-        abbreviationsConfig = Abbreviations,
         tableConfig = Table,
         pivotConfig = Pivot,
         downloadConfig = Download;
@@ -64,9 +58,6 @@ require([
     faostatThemeConfig.baseUrl = submodules_path + '/json-editor-faostat-theme/src/js';
     downloadOptionsConfig.baseUrl = submodules_path + '/faostat-ui-download-options/src/js';
     downloadSelectorConfig.baseUrl = submodules_path + '/faostat-ui-download-selector/src/js';
-    methodologyConfig.baseUrl = submodules_path + '/faostat-ui-standards-methodology/src/js';
-    unitsConfig.baseUrl = submodules_path + '/faostat-ui-standards-units/src/js';
-    abbreviationsConfig.baseUrl = submodules_path + '/faostat-ui-standards-abbreviations/src/js';
     tableConfig.baseUrl = submodules_path + '/faostat-ui-table/src/js';
     pivotConfig.baseUrl = submodules_path + '/faostat-ui-pivot/src/js';
     downloadConfig.baseUrl = submodules_path + '/faostat-ui-download/src/js';
@@ -75,7 +66,7 @@ require([
             dashboardConfig, metadataConfig, reportsConfig, bulkDownloadsConfig,
             downloadSelectorsManagerConfig, faostatMenuConfig,
             optionsManagerConfig, treeConfig, faostatThemeConfig, downloadOptionsConfig,
-            downloadSelectorConfig, methodologyConfig, unitsConfig, abbreviationsConfig,
+            downloadSelectorConfig,
             tableConfig, pivotConfig, downloadConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
