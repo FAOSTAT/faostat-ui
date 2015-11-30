@@ -271,7 +271,8 @@ define([
         // TODO: pass the right section instead of being implicit?
         changeState: function () {
 
-            Common.changeURL(this.o.section, (this.o.code) ? [this.o.code] : [], false);
+            // dirty fix or should be like that?
+            Common.changeURL((this.o.code)? ROUTE.BROWSE_BY_COUNTRY_CODE: ROUTE.BROWSE_BY_COUNTRY, (this.o.code) ? [this.o.code] : [], false);
 
         },
 
