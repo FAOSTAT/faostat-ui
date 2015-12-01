@@ -6,14 +6,14 @@ define(function () {
 
     return {
 
-        "relatedViews" : [
+/*        "relatedViews" : [
             {
                 title: {
                     en: '1961-present',
                     es: 'Desde 1961 a la actualidad',
                     fr: 'De 1961 à nos jours'
                 },
-                id: 'G1',
+                id: 'GE',
                 selected: true
             },
             {
@@ -22,15 +22,15 @@ define(function () {
                     es: 'Proyecciones',
                     fr: 'Projections'
                 },
-                id: 'G1-PROJ'
+                id: 'GE-PROJ'
             }
-        ],
+        ],*/
 
         "comment": {
             "text": {
-              "en": "Emissions of methane and nitrous oxide produced from agricultural activities",
-              "es": "Emisiones de metano y óxido nitroso producido por las actividades agrícolas",
-              "fr": "Émissions de méthane et d'oxyde nitreux provenant des activités agricoles"
+              "en": "Emissions of methane produced in digestive systems of livestock",
+              "es": "Emisiones de metano producidas en los sistemas digestivos de los animales",
+              "fr": "Émissions de méthane produites dans les systèmes digestifs des animaux d'élevage"
             },
             //pdf: "GT.pdf"
         },
@@ -38,7 +38,7 @@ define(function () {
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GT"]
+                "domain_code": ["GE"]
             },
 
             items: [
@@ -47,14 +47,13 @@ define(function () {
                     "type": "codelist",
                     // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
-                    //"title": "title",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList"
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1711"],
+                        "defaultCodes": ["1755"],
                         "filter": {
                         }
                     }
@@ -87,7 +86,7 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1990'],
+                        "defaultCodes": ['1992'],
                         "filter": {
                         }
                     }
@@ -117,7 +116,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_code: 'GT',
+                domain_code: 'GE',
                 List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,
@@ -275,9 +274,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by sector",
-                                fr: "Émissions par secteur",
-                                es: "Emissions por sector"
+                                en: "Emissions by animal type",
+                                fr: "Émissions par type d'animal",
+                                es: "Emisiones por tipo de animal"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -299,18 +298,7 @@ define(function () {
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],
                     filter: {
-                        List3Codes: [5067,
-                            5058,
-                            5059,
-                            5060,
-                            5061,
-                            5062,
-                            5063,
-                            5064,
-                            5066,
-                            //1709,
-                            6759
-                        ],
+                        List3Codes: ["1755>"],
                         "group_by": 'year',
                         "order_by": 'item'
                     }

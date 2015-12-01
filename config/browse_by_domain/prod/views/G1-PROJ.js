@@ -9,14 +9,18 @@ define(function () {
         "relatedViews" : [
             {
                 title: {
-                    'en': '1961-present'
+                    en: '1961-present',
+                    es: 'Desde 1961 a la actualidad',
+                    fr: 'De 1961 à nos jours'
                 },
                 id: 'G1',
                 selected: true
             },
             {
                 title: {
-                    'en': 'Projections'
+                    en: 'Projections',
+                    es: 'Proyecciones',
+                    fr: 'Projections'
                 },
                 id: 'G1-PROJ'
             }
@@ -24,11 +28,11 @@ define(function () {
 
         "comment": {
             "text": {
-              "en": "Emissions of methane and nitrous oxide produced from agricultural activities",
-              "es": "",
-              "fr": ""
+                "en": "Emissions of methane and nitrous oxide produced from agricultural activities",
+                "es": "Emisiones de metano y óxido nitroso producido por las actividades agrícolas",
+                "fr": "Émissions de méthane et d'oxyde nitreux provenant des activités agricoles"
             },
-            pdf: "GT.pdf"
+            //pdf: "GT.pdf"
         },
 
         "filter": {
@@ -43,7 +47,6 @@ define(function () {
                     "type": "codelist",
                     // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
-                    //"title": "title",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList"
@@ -181,7 +184,7 @@ define(function () {
                                 fr: "Émissions (CO2 équivalent)",
                                 es: "Emisiones (CO2 equivalente)"
                             },
-                            subtitle: "{{year}}"
+                            subtitle: ""
                         }
                     },
 
@@ -209,6 +212,93 @@ define(function () {
                         List1Codes: ["5100", "5200", "5300", "5400", "5500"],
                         List4Codes: ["2030", "2050"]
                         // TODO: baseline 2005-2006-2007
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Emissions (CO2 equivalent)",
+                                fr: "Émissions (CO2 équivalent)",
+                                es: "Emisiones (CO2 equivalente)"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {},
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['year', 'item'],
+                    deniedOnLoadFilter: [],
+                    filter: {
+                        List1Codes: ["5100", "5200", "5300", "5400", "5500"]
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Emissions by sector",
+                                fr: "Émissions par secteur",
+                                es: "Emissions por sector"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['item']
+                        },
+                        template: {
+                            height: '250px'
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['area', 'year', 'aggregation'],
+                    filter: {
+                        List3Codes: [5067,
+                            5058,
+                            5059,
+                            5060,
+                            5061,
+                            5062,
+                            5063,
+                            5064,
+                            5066,
+                            //1709,
+                            6759
+                        ],
+                        "order_by": 'item'
                     }
                 }
             ]
