@@ -1,7 +1,7 @@
 <div class="{{#if class}}{{class}}{{else}}col-lg-3{{/if}}"
      data-role="{{#if role}}{{role}}{{/if}}">
     <h5>{{title}}</h5>
-    <select data-role="dd" class="js-example-responsive" style="width: 100%" {{#if multiple}}multiple="multiple{{/if}}>
+    <select data-role="dd" class="js-example-responsive" style="width: 100%" {{#if multiple}}multiple{{/if}}>
         {{#each data}}
             <option value={{code}} {{#if selected}}selected{{/if}}>{{label}}</option>
         {{/each}}

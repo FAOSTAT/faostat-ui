@@ -168,7 +168,7 @@ define([
         var textData = this.$DD.select2('data');
         if (Array.isArray(textData)){
             _.each(textData, function(t) {
-                if (f.text) {
+                if (t.text) {
                     f.labels.push(t.text);
                     //f.labels.push(t.text.trim());
                 }
