@@ -163,7 +163,10 @@ define(function () {
                 allowPointSelect: true,
                 cursor: 'pointer',
                 dataLabels: {
-                    enabled: true
+                    enabled: true,
+                    formatter: function () {
+                        return '<b>' + this.point.name + '</b><br>' + Math.round(parseFloat(this.percentage).toFixed(1) * 100) / 100 + ' %';
+                    }
                 },
                 showInLegend: true
             },
