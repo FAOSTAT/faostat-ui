@@ -81,6 +81,10 @@ define([
 
             amplify.subscribe(E.EXPORT_DATA, Export, Export.exportData);
 
+            // publishing GA Events
+            amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
+            //amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {});
+
 
             /* Switch Language */
             this.$el.find(s.LANGUAGES).find('a').on('click', function(e) {

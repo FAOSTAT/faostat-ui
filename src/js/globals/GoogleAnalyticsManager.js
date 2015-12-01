@@ -1,14 +1,13 @@
 /*global define, Backbone */
-define(['config/Config', 'ga'], function (C, ga) {
-
+define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
 
     function GoogleAnalyticsManager() {
 
-        console.log("INIT GoogleAnalyticsManager");
+        log.info("INIT GoogleAnalyticsManager");
 
         // traking page
         ga('create', C.GOOGLE_ANALYTICS_ID, "auto");
-        ga('send', 'pageview');
+        //ga('send', 'pageview');
 
         return this;
     }
@@ -20,7 +19,7 @@ define(['config/Config', 'ga'], function (C, ga) {
      */
     GoogleAnalyticsManager.prototype.event = function (data) {
 
-        console.log("GA event", data);
+        log.info("GA Event", data);
 
         // TODO: get category dinamically (CONFIGURATION FILE?)
         //var category = ''
@@ -40,7 +39,7 @@ define(['config/Config', 'ga'], function (C, ga) {
         // LABEL
         // non e' usata
 
-        if ( data.category && data.action ) {
+        if (data.category && data.action) {
             ga('send', {
                 hitType: 'event',
                 eventCategory: data.category,
@@ -48,12 +47,13 @@ define(['config/Config', 'ga'], function (C, ga) {
             });
         }
         else {
-            console.error('Event not saved: ', data);
+            log.error('Event not saved: ', data);
         }
     };
 
     GoogleAnalyticsManager.prototype.pageView = function () {
-        console.log("GA Page view: " + Backbone.history.getFragment());
+
+        log.info("GA Page view: " + Backbone.history.getFragment());
 
         ga('set', {
             page: Backbone.history.getFragment(),
