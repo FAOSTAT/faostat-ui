@@ -18,7 +18,7 @@ define([
         blacklist: ['TM'],
 
         // temporary whitelist
-        whitelist: ['Q', 'QC', 'T', 'TP', 'TA', 'D', 'FS', 'G1', 'GE'],
+        whitelist: ['Q', 'QC', 'T', 'TP', 'TA', 'D', 'FS', 'G1', 'GE', 'QD'],
 
         // default cofing to be applied to each view
         view: {
