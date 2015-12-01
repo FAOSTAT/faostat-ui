@@ -213,9 +213,10 @@ require([
 
         Common.setLocale(requirejs.s.contexts._.config.locale);
 
-        // Mapping GoogleAnalyticsManager
+/*        // Mapping GoogleAnalyticsManager
         amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
         amplify.publish(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
+        */
 
         // setting global LOGLEVEL level
         log.setLevel(C.LOGLEVEL);
