@@ -202,8 +202,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Emissions (CO2 equivalent)",
-                                fr: "",
-                                es: ""
+                                fr: "Émissions (CO2 équivalent)",
+                                es: "Emisiones (CO2 equivalente)"
                             },
                             subtitle: "{{year}}"
                         }
@@ -218,10 +218,7 @@ define(function () {
                             valueDimensions: 'value',
                             seriesDimensions: ['area', 'item', 'element']
                         },
-                        template: {
-                            // height:'350px'
-                            // default labels to be applied
-                        },
+                        template: {},
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item'],
