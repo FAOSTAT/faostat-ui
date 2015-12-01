@@ -54,7 +54,7 @@ define([
             model: null,
             adapter: {
                 adapterType: 'faostat',
-                type: "timeserie",
+                type: "timeserie_compare",
                 xDimensions: 'year',
                 yDimensions: 'unit',
                 valueDimensions: 'value',

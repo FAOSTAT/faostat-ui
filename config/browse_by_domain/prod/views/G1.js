@@ -49,7 +49,7 @@ define(function () {
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "items",
+                        "dimension_id": "item",
                         "defaultCodes": ["1711"],
                         "filter": {
                         }
@@ -157,8 +157,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Emissions by country (CO2 equivalent)",
-                                fr: "",
-                                es: ""
+                                fr: "Émissions par pays (CO2 équivalent)",
+                                es: "Emisiones por país (CO2 equivalente)"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -167,6 +167,18 @@ define(function () {
 
                     //height:'250px',
                     config: {
+                        layer: {
+                            colorramp: "YlOrRd",
+                            intervals: 7
+                            //classificationtype: "percentiles"
+                            //colors: ['#004529', '#238B45', '#74C476', '#E1E1E1', '#74C476', '#FFD34A', '#FF9400', '#DE0000'],
+                            //ranges: [-20000,-10000,-1,0, 1,10000,100000],
+                            //classification: "custom"
+
+                            //colors: "004529,238B45,74C476,E1E1E1,FFD34A,FF9400,DE0000",
+                            //ranges: "-20000,-10000,-1,1,10000,100000"
+                            // intervals: 3,
+                        },
                         template: {
 
                         }
@@ -216,6 +228,137 @@ define(function () {
                     deniedOnLoadFilter: ['area'],
                     filter: {
                         List1Codes: ["5000", "5848", "5849"]
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Emissions by continent",
+                                fr: "Émissions par continent",
+                                es: "Emisiones por continente"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {
+                            height: '250px'
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    filter: {
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        "group_by": 'year',
+                        "order_by": 'area'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Emissions by sector",
+                                fr: "Émissions par secteur",
+                                es: "Emissions por sector"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['item']
+                        },
+                        template: {
+                            height: '250px'
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['area', 'year', 'aggregation'],
+                    filter: {
+                        List3Codes: [5067,
+                            5058,
+                            5059,
+                            5060,
+                            5061,
+                            5062,
+                            5063,
+                            5064,
+                            5066,
+                            //1709,
+                            6759
+                        ],
+                        "group_by": 'year',
+                        "order_by": 'item'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Top 10 emitters (CO2 equivalent)",
+                                fr: "Principaux 10 émetteurs (CO2 équivalent)",
+                                es: "Principales 10 emisores (CO2 equivalente)"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['element'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {
+                            height:'250px'
+                            // default labels to be applied
+                        },
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List1Codes: ["5000>"],
+                        "group_by": 'year',
+                        "order_by": 'value DESC',
+                        "limit": '10'
                     }
                 }
             ]
