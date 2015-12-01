@@ -198,7 +198,7 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "ERROR!!!!! Most produced commodities in {{area}}",
+                                en: "Most produced commodities in {{area}}",
                                 fr: "Most produced commodities in {{area}}",
                                 es: "Most produced commodities in {{area}}"
                             },
