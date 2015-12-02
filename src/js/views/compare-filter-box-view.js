@@ -350,9 +350,9 @@ define([
 
             domain.id = 'domain';
             // TODO: the parameter in theory should be dynamic
-            domain.parameter = 'domain_code';
+            domain.parameter = 'domain_codes';
             // TODO: change domains variable name
-            domain.codes = this.o.domains.$DD.val();
+            domain.codes = [this.o.domains.$DD.val()];
 
             f.push(domain);
 
