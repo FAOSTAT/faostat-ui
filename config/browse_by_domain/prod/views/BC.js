@@ -87,7 +87,7 @@ define(function () {
                 List7Codes: null,
                 decimal_places: 2,
                 decimal_separator: ".",
-                limit: 1000000000,
+                limit: -1,
                 thousand_separator: ",",
                 null_values: null,
                 // TODO: remove it the page_size!!!

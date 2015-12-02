@@ -9,24 +9,37 @@ define(function () {
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["FBS"]
+                "domain_code": ["CL"]
             },
 
             items: [
+                {
+                    // id to be applied on the getData request
+                    "id": "item",
+                    "type": "codelist",
+                    "parameter": "List3Codes",
+                    "componentType": {
+                        "class": "col-lg-3",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "dimension_id": "item",
+                        "defaultCodes": ["2943"],
+                        "filter": {}
+                    }
+                },
                 {
                     "id": "area",
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-lg-5",
-                        "type": "dropDownList",
-                        "multiple": true
+                        "class": "col-lg-3",
+                        "type": "dropDownList"
                     },
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
                 {
@@ -39,7 +52,7 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1993'],
+                        "defaultCodes": ["1993"],
                         "filter": {
                         }
                     }
@@ -67,8 +80,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_code: 'FBS',
-                List3Codes: [2901],
+                domain_code: 'CL',
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -76,8 +88,7 @@ define(function () {
                 decimal_separator: ".",
                 limit: -1,
                 thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
+                null_values: null,
                 page_size: 0,
                 per_page: 0,
                 page_number: 0
@@ -87,73 +98,34 @@ define(function () {
             labels: {
                 // labels to dinamically substitute the title and subtitle
                 default: {
+
                 }
             },
 
-
             //bridge configuration
             bridge: {
-
                 type: "faostat",
                 requestType: 'data' // data, rankings
-
             },
 
             metadata: {},
 
             items: [
                 {
-                    type: 'map',
-                    class: "col-xs-12",
-
-                    // labels?
-                    labels: {
-                        // labels to dinamically substitute the title and subtitle
-                        default: {},
-
-                        // template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Food Supply by country",
-                                fr: "Disponibilité alimentaire",
-                                es: "Suministro alimentario de energía"
-                            },
-                            subtitle: "{{aggregation}} {{year}}"
-                        }
-                    },
-
-
-                    //height:'250px',
-                    config: {
-                        template: {}
-                    },
-                    allowedFilter: ['year', 'aggregation'],
-                    deniedTemplateFilter: [],
-                    filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
-                        List2Codes: [664],
-                        "group_by": 'year',
-                        "order_by": 'area'
-                    }
-                },
-                {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-xs-12 col-md-6",
 
-                    // labels?
                     labels: {
-                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Food supply in {{area}}",
-                                fr: "Disponibilité alimentaire {{area}}",
-                                es: "Suministro alimentario de energía en {{area}}"
+                                en: "Fat supply quantity {{area}}",
+                                fr: "La quantité de disponibilité de matière grasse {{area}}",
+                                es: "Cantidad de suministro de grasas {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
                     },
-                    
+
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -168,22 +140,20 @@ define(function () {
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: [664],
+                        List2Codes: [684],
                         "order_by": 'year'
                     }
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-xs-12 col-md-6",
 
-                    // labels?
                     labels: {
-                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Fat supply quantity and protein supply quantity in {{area}}",
-                                fr: "Disponibilité de matière grasse et disponibilité de protéines {{area}}",
-                                es: "Suministro alimentario de energía en {{area}}"
+                                en: "Protein supply quantity {{area}}",
+                                fr: "La quantité de disponibilité de protéines {{area}}",
+                                es: "Cantidad de suministro de proteína {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -203,7 +173,73 @@ define(function () {
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: [684, 674],
+                        List2Codes: [674],
+                        "order_by": 'year'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12 col-md-6",
+
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Food supply quantity (kg/capita/yr) {{area}}",
+                                fr: "Quantité de la disponibilité alimentaire (kg /habitant/an) {{area}}",
+                                es: "Cantidad de suministro de alimentos (kg/persona/año) {{area}}"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "timeserie",
+                            xDimensions: 'year',
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area', 'item', 'element']
+                        },
+                        template: {},
+                        creator: {}
+                    },
+                    allowedFilter: ['area', 'year', 'item'],
+                    filter: {
+                        List2Codes: [645],
+                        "order_by": 'year'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12 col-md-6",
+
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Food supply quantity (tonnes) {{area}}",
+                                fr: "Quantité de la disponibilité alimentaire (tonnes) {{area}}",
+                                es: "Cantidad de suministro de alimentos (toneladas) {{area}}"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "timeserie",
+                            xDimensions: 'year',
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area', 'item', 'element']
+                        },
+                        template: {},
+                        creator: {}
+                    },
+                    allowedFilter: ['area', 'year', 'item'],
+                    filter: {
+                        List2Codes: [641],
                         "order_by": 'year'
                     }
                 }
