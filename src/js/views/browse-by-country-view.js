@@ -40,12 +40,6 @@ define([
 
         };
 
-    // GET dinamically from the route or congifiguration file
-/*        ROUTE = {
-            BROWSE_BY_COUNTRY: "browse_by_country",
-            BROWSE_BY_COUNTRY_CODE: "browse_by_country_code"
-        };*/
-
     var BrowseByCountryView = View.extend({
 
         autoRender: true,

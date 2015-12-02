@@ -14,7 +14,7 @@ define([
     'views/browse-by-country-view',
     'views/browse-rankings-view',
     'amplify'
-], function ($, View, F, C, Q, E, template, i18nLabels, Handlebars, DomainView, CountryView, RankingsView) {
+], function ($, View, F, C, E, template, i18nLabels, Handlebars, DomainView, CountryView, RankingsView) {
 
     'use strict';
 

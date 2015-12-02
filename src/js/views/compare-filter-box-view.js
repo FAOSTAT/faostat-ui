@@ -4,10 +4,9 @@ define([
     'loglevel',
     'views/base/view',
     'globals/Common',
-    'config/FAOSTAT',
     'config/Config',
     'config/Events',
-    'config/EventsCompare',
+    'config/compare/Events',
     'config/compare/Config',
     'text!templates/compare/compare_filter_box.hbs',
     'text!templates/compare/filter_container.hbs',
@@ -21,7 +20,7 @@ define([
     //'lib/filter/filter',
     'q',
     'amplify'
-], function ($, log, View, Common, F, C, E, EC, CC, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
+], function ($, log, View, Common, C, E, EC, CC, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
 
     'use strict';
 

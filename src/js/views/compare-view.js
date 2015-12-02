@@ -6,9 +6,8 @@ define([
     'globals/Common',
     'config/FAOSTAT',
     'config/Config',
-    'config/Queries',
     'config/Events',
-    'config/EventsCompare',
+    'config/compare/Events',
     'config/compare/Config',
     'config/submodules/fx-chart/highcharts_template',
     'text!templates/compare/compare_2.hbs',
@@ -21,7 +20,7 @@ define([
     'highcharts-export',
     'jquery.rangeSlider',
     'amplify'
-], function ($, log, View, Common, F, C, Queries, E, EC, CM, HighchartsTemplate, template, i18nLabels, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
+], function ($, log, View, Common, F, C, E, EC, CM, HighchartsTemplate, template, i18nLabels, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
 
     'use strict';
 
