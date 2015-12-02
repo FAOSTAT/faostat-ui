@@ -6,4 +6,6 @@
             <option value={{code}} {{#if selected}}selected{{/if}}>{{label}}</option>
         {{/each}}
     </select>
+   <!-- TODO: remove hardcoded style! -->
+    <p data-role="validation" style="display:none; color:#E00000; font-weight:bold; margin-top:5px;">* {{please_select_an_option}}</p>
 </div>

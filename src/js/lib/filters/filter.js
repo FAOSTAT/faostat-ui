@@ -18,7 +18,8 @@ define([
 
         DD: '[data-role="dd"]',
         FROM_YEAR: 'fromyear',
-        TO_YEAR: 'toyear'
+        TO_YEAR: 'toyear',
+        VALIDATION: '[data-role="validation"]',
 
     },defaultOptions = {
 
@@ -74,13 +75,14 @@ define([
 
     Filter.prototype.renderFilter = function () {
         var template = Handlebars.compile(templateFilter);
-        var c = $.extend(true, {},{data: this.o.config.data}, this.o.componentType),
+        var c = $.extend(true, {}, i18nLabels, {data: this.o.config.data}, this.o.componentType),
             // TODO: how to handle correctly the title?
             title = this.o.title ||  this.o.config.dimension_id || this.o.id;
 
         c.title = i18nLabels[title] || title;
 
         this.$CONTAINER.append(template(c));
+        this.$VALIDATION = this.$CONTAINER.find(s.VALIDATION);
 
         // initialize with select2
         this.$DD = this.$CONTAINER.find(s.DD);
@@ -237,22 +239,43 @@ define([
 
         if (this.$DD) {
             this.$DD.change(function (e) {
-                amplify.publish(self.o.E.ON_FILTER_CHANGE);
+
+               if ( self.validateSelection(self.$DD)) {
+                   amplify.publish(self.o.E.ON_FILTER_CHANGE);
+               }
+
             });
         }
 
         if (this.$DD_FROM_YEAR) {
             this.$DD_FROM_YEAR.change(function(e) {
-                amplify.publish(self.o.E.ON_FILTER_CHANGE);
+                if ( self.validateSelection(self.$DD_FROM_YEAR)) {
+                    amplify.publish(self.o.E.ON_FILTER_CHANGE);
+                }
             });
         }
 
         if (this.$DD_TO_YEAR) {
             this.$DD_TO_YEAR.change(function (e) {
-                amplify.publish(self.o.E.ON_FILTER_CHANGE);
+                if ( self.validateSelection(self.$DD_TO_YEAR)) {
+                    amplify.publish(self.o.E.ON_FILTER_CHANGE);
+                }
             });
         }
 
+    };
+
+    Filter.prototype.validateSelection = function ($DD) {
+
+        // check if at least a value is selected
+        if ($DD.val() === null ) {
+            this.$VALIDATION.show();
+            this.$VALIDATION.focus();
+        }else{
+            this.$VALIDATION.hide();
+        }
+
+        return ($DD.val() !== null);
     };
 
     Filter.prototype.unbindEventListeners = function () {
