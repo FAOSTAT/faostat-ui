@@ -5,63 +5,25 @@ define(function () {
 
     return {
 
-        "DATASOURCE": "faostat",
-
         // GOOGLE ANALYTICS BINDINGS
         GOOGLE_ANALYTICS: {
-                BROWSE_BY_DOMAIN: {
-                  'category': 'BROWSE_BY_DOMAIN',
-                  'action': {
-                      'show_table': 'Show Tables - TABLE'
-                  }
-                },
-                DOWNLOAD_STANDARD: {
-                    'category': 'DOWNLOAD_STANDARD',
-                    'action': {
-                        'show_table': 'Show Tables - TABLE'
-                    }
-                },
-                COMPARE: {
-                    'category': 'COMPARE',
-                    'action': {
-                        'compare_data': 'Compare the data'
-                    }
+            BROWSE_BY_DOMAIN: {
+                category: 'BROWSE_BY_DOMAIN',
+                action: {
+                    show_table: 'Show Tables - TABLE'
                 }
-        },
-
-        "analysis": {
-            "FAOSTAT_UI_ANALYSIS_GHG_QA_QC": {
-                "datasource": "faostatdata",
-                "url_wds": "http://hqlprfenixapp2.hq.un.fao.org:12900/wds_qa_qc/rest"
-            }
-        },
-        "browse": {
-            "browse_by_domain": {
-                "datasource": "faostatdata",
-                "url_wds_crud": "http://fenixapps2.fao.org/wds_5.1/rest/crud"
-            }
-        },
-        "compare": {
-            "selectors": {
-                "datasource": "faostatdata",
-                "url_wds_crud": "http://fenixapps2.fao.org/wds_5.1/rest/crud"
-            }
-        },
-        "download": {
-            "metadata": {
-                "url_wds_table": "http://faostat3.fao.org/wds/rest/table/json",
-                "url_mdsd": "http://faostat3.fao.org/d3s2/v2/mdsd",
-                "url_d3s": "http://faostat3.fao.org/d3s2/v2/msd/resources/metadata/uid"
             },
-            "preview_options": {
-                "excel_button": false,
-                "pdf_button": false,
-                "ok_button": true,
-                "csv_button": false
+            DOWNLOAD_STANDARD: {
+                category: 'DOWNLOAD_STANDARD',
+                action: {
+                    show_table: 'Show Tables - TABLE'
+                }
             },
-            "selector_manager": {
-                "url_codelists": "http://fenixapps2.fao.org/wds_5.1/",
-                "url_listboxes": "http://fenixapps2.fao.org/wds_5.1/rest/procedures/listboxes"
+            COMPARE: {
+                category: 'COMPARE',
+                action: {
+                    compare_data: 'Compare the data'
+                }
             }
         }
     };

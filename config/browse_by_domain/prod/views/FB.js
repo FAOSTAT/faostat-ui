@@ -122,7 +122,6 @@ define(function () {
                         }
                     },
 
-
                     //height:'250px',
                     config: {
                         template: {}

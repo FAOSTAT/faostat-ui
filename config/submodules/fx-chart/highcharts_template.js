@@ -17,7 +17,7 @@ define(function () {
             //borderWidth: 1, //Spessore bordo intorno
             //borderRadius: 0, //Smusso bordo intorno
             //margin: [5,5,5,5], //Margine intorno (vince sullo spacing)
-            spacing: [20, 1, 1, 1],//Spacing intorno (molto simile al margin - Di default il bottom è 15, qui l'ho messo a 10 per essere uguale agli altri)
+            //spacing: [20, 1, 1, 1],//Spacing intorno (molto simile al margin - Di default il bottom è 15, qui l'ho messo a 10 per essere uguale agli altri)
             //plotBackgroundColor: 'red', //Colore di background solo area chart
             plotBorderColor: '#ffffff', //Colore bordo intorno solo area chart
             plotBorderWidth: 0, //Spessore bordo intorno solo area chart
@@ -73,7 +73,7 @@ define(function () {
             enabled: false //Attiva o disattiva il link di HighCharts dalla chart
         },
         exporting: {
-            buttons: {
+           /* buttons: {
                 contextButton: {
                     menuItems: [{
                         textKey: 'downloadPNG',
@@ -89,10 +89,13 @@ define(function () {
                         }
                     }]
                 }
-            }
+            }*/
         },
         navigation: { //Modifica lo stile dei bottoni e spesso del solo bottone dell'esportazione (lo sfondo)
             buttonOptions: {
+              // y: -22
+            }
+/*            buttonOptions: {
                 theme: {
                     'stroke-width': 1, // Peso stroke del bottone
                     stroke: '#666666', // Colore stroke del bottone
@@ -108,7 +111,7 @@ define(function () {
                         }
                     }
                 }
-            }
+            }*/
         },
         legend: { //Modifica style della legenda
             enabled: true, //Attiva la legenda
