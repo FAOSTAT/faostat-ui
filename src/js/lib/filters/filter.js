@@ -71,6 +71,8 @@ define([
                 break;
         }
 
+        this.$VALIDATION = this.$CONTAINER.find(s.VALIDATION);
+
     };
 
     Filter.prototype.renderFilter = function () {
@@ -82,7 +84,6 @@ define([
         c.title = i18nLabels[title] || title;
 
         this.$CONTAINER.append(template(c));
-        this.$VALIDATION = this.$CONTAINER.find(s.VALIDATION);
 
         // initialize with select2
         this.$DD = this.$CONTAINER.find(s.DD);
@@ -277,15 +278,17 @@ define([
 
     Filter.prototype.validateSelection = function ($DD) {
 
+        var isValidated = ($DD.val() !== null);
+
         // check if at least a value is selected
-        if ($DD.val() === null ) {
+        if (!isValidated) {
             this.$VALIDATION.show();
             this.$VALIDATION.focus();
         }else{
             this.$VALIDATION.hide();
         }
 
-        return ($DD.val() !== null);
+        return isValidated;
     };
 
     Filter.prototype.unbindEventListeners = function () {
