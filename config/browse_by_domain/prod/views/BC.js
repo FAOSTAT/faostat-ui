@@ -81,7 +81,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_code: 'BC',
+                domain_codes: ['BC'],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,

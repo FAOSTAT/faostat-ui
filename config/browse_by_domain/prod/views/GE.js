@@ -116,7 +116,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_code: 'GE',
+                domain_codes: ['GE'],
                 List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,

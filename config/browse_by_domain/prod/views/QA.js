@@ -85,7 +85,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_code: 'QA',
+                domain_codes: ['QA'],
                 List2Codes: ["2111"],
                 List5Codes: null,
                 List6Codes: null,

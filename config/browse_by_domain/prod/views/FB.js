@@ -67,7 +67,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_code: 'FBS',
+                domain_codes: ['FBS'],
                 List3Codes: [2901],
                 List5Codes: null,
                 List6Codes: null,

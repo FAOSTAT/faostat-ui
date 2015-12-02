@@ -80,7 +80,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_code: 'CL',
+                domain_codes: ['CL'],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,

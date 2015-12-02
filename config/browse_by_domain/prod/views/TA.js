@@ -90,7 +90,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_code: 'TA',
+                domain_codes: ['TA'],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
