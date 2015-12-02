@@ -73,6 +73,8 @@ require([
 
             config: {
 
+                waitSeconds: 20,
+
                 /* Set the config for the i18n. */
                 //i18n: {
                 //    locale: 'es'
