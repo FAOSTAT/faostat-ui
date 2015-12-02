@@ -4,7 +4,6 @@ define([
     'views/base/view',
     'config/FAOSTAT',
     'config/Config',
-    'config/Queries',
     'config/Events',
     'text!templates/browse/browse.hbs',
     'i18n!nls/browse',
