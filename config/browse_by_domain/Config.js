@@ -21,6 +21,7 @@ define([
         whitelist: [
             'Q', 'QC', 'QD', 'QA',
             'T', 'TP', 'TA',
+            'FB', 'FBS', 'BC',
             'D',
             'FS',
             'G1', 'GE'
