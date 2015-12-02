@@ -1,9 +1,9 @@
 /*global define*/
-define(['config/Routes'],function (ROUTE) {
+define(['config/Routes'], function (ROUTE) {
 
     'use strict';
 
-    return function(match) {
+    return function (match) {
 
         match(':lang/home', 'home#show', {name: ROUTE.HOME});
 
