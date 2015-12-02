@@ -243,6 +243,9 @@ define([
                if ( self.validateSelection(self.$DD)) {
                    amplify.publish(self.o.E.ON_FILTER_CHANGE);
                }
+               else{
+                   amplify.publish(self.o.E.ON_FILTER_INVALID_SELECTION);
+               }
 
             });
         }
@@ -252,6 +255,10 @@ define([
                 if ( self.validateSelection(self.$DD_FROM_YEAR)) {
                     amplify.publish(self.o.E.ON_FILTER_CHANGE);
                 }
+                // this should never happen
+                else{
+                    amplify.publish(self.o.E.ON_FILTER_INVALID_SELECTION);
+                }
             });
         }
 
@@ -259,6 +266,9 @@ define([
             this.$DD_TO_YEAR.change(function (e) {
                 if ( self.validateSelection(self.$DD_TO_YEAR)) {
                     amplify.publish(self.o.E.ON_FILTER_CHANGE);
+                }
+                else{
+                    amplify.publish(self.o.E.ON_FILTER_INVALID_SELECTION);
                 }
             });
         }

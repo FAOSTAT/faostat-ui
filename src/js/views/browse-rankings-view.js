@@ -294,15 +294,12 @@ define([
                 var filter = view.filter || null,
                     dashboard = view.dashboard || null;
 
-
                 // render filters
                 if (filter !== null) {
                     this.renderFilter({
                         filter: filter,
                         // override event listener for the filter change (custom for browse by domain)
-                        E: {
-                            ON_FILTER_CHANGE: EM.ON_FILTER_CHANGE
-                        },
+                        E: $.extend(true, {}, EM),
                         container: this.$FILTER_BOX,
                         lang: lang
                     });

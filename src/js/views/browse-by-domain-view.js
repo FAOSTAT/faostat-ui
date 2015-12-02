@@ -158,6 +158,7 @@ define([
 
 
             amplify.subscribe(EM.ON_FILTER_CHANGE, this, this.updateDashboard);
+            amplify.subscribe(EM.ON_FILTER_INVALID_SELECTION, this, this.onFilterInvalidSelection);
 
         },
 
@@ -224,9 +225,7 @@ define([
                     this.renderFilter({
                         filter: filter,
                         // override event listener for the filter change (custom for browse by domain)
-                        E: {
-                            ON_FILTER_CHANGE: EM.ON_FILTER_CHANGE
-                        },
+                        E: $.extend(true, {}, EM),
                         container: this.$FILTER_BOX,
                         lang: lang
                     });
@@ -286,18 +285,19 @@ define([
 
         updateDashboard: function(c) {
 
-            log.info("updateDashboard")
-
             var isOnLoad = (c)? c.isOnLoad || false: false;
 
             // getFilters
-            log.info(this.filterBox)
             var filters = this.filterBox.getFilters();
-
-            log.info("apply filters")
 
             // apply filters to dashboard
             this.dashboard.filter(filters, isOnLoad);
+
+        },
+
+        onFilterInvalidSelection: function() {
+
+            this.dashboard.clear();
 
         }
 
