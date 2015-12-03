@@ -58,3 +58,6 @@
 [submodule "submodules/faostat-ui-download-options"]
 	path = submodules/faostat-ui-download-options
 	url = https://github.com/FAOSTAT/faostat-ui-download-options.git
+[submodule "submodules/faostat-ui-welcome-page"]
+	path = submodules/faostat-ui-welcome-page
+	url = https://github.com/FAOSTAT/faostat-ui-welcome-page.git
