@@ -93,6 +93,22 @@ define(function () {
         },
         navigation: { //Modifica lo stile dei bottoni e spesso del solo bottone dell'esportazione (lo sfondo)
             buttonOptions: {
+                theme: {
+                    'zIndex': '3',
+                    'stroke-width': 1, // Peso stroke del bottone
+                    stroke: '#666666', // Colore stroke del bottone
+                    r: 2, // Smusso stroke del bottone,
+                    states: {
+                        hover: {
+                            stroke: '#666666', // Press stroke del bottone
+                            fill: '#e6e6e6' // Rollover del bottone
+                        },
+                        select: {
+                            stroke: '#666666', // Press stroke del bottone
+                            fill: '#e6e6e6' // Press Fill del bottone
+                        }
+                    }
+                }
               // y: -22
             }
 /*            buttonOptions: {
