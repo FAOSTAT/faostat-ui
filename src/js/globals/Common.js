@@ -37,8 +37,8 @@ define(['chaplin',
             );
 
             // TODO: Use Chaplin 'route' function
-            console.warn('TODO Common.changeURL: change Backbone binding');
-            console.warn('TODO Common.changeURL: check if the Backbone trigger should be set on true or false');
+            //console.warn('TODO Common.changeURL: change Backbone binding');
+            //console.warn('TODO Common.changeURL: check if the Backbone trigger should be set on true or false');
 
             //# TODO: if trigger should be set on false or true and the difference
             Backbone.history.navigate(uri, {trigger: reload});

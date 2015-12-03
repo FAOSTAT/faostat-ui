@@ -33,6 +33,8 @@ define([
         BULK_DOWNLOADS: "bulk_downloads",
         BULK_DOWNLOADS_TAB: "a[href='#bulk_downloads']",
 
+        WELCOME_PAGE_TAB: "a[href='#welcome_page']",
+
         DOWNLOAD_OUTPUT_AREA: "#downloadOutputArea",
 
         DOWNLOAD_OPTIONS_CSV_BUTTON: '#download_options_csv_button',

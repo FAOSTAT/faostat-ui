@@ -3,7 +3,7 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
 
     function GoogleAnalyticsManager() {
 
-        log.info("INIT GoogleAnalyticsManager");
+        //log.info("INIT GoogleAnalyticsManager");
 
         // traking page
         ga('create', C.GOOGLE_ANALYTICS_ID, "auto");
@@ -19,7 +19,7 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
      */
     GoogleAnalyticsManager.prototype.event = function (data) {
 
-        log.info("GA Event", data);
+        //log.info("GA Event", data);
 
         // TODO: get category dinamically (CONFIGURATION FILE?)
         //var category = ''
@@ -47,13 +47,13 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
             });
         }
         else {
-            log.error('Event not saved: ', data);
+            //log.error('Event not saved: ', data);
         }
     };
 
     GoogleAnalyticsManager.prototype.pageView = function () {
 
-        log.info("GA Page view: " + Backbone.history.getFragment());
+        //log.info("GA Page view: " + Backbone.history.getFragment());
 
         ga('set', {
             page: Backbone.history.getFragment(),

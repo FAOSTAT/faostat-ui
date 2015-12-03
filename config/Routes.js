@@ -22,7 +22,8 @@ define(function ( ) {
 
         DOWNLOAD_BULK: "bulk",
         DOWNLOAD_INTERACTIVE: "interactive",
-        DOWNLOAD_METADATA: "metadata"
+        DOWNLOAD_METADATA: "metadata",
+        DOWNLOAD_WELCOME: "welcome"
 
     };
 });

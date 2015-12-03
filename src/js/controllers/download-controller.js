@@ -6,7 +6,7 @@ define([
 
     'use strict';
 
-    var DownloadController = Controller.extend({
+    return Controller.extend({
 
         show: function (params, section) {
             this.view = new View({
@@ -27,10 +27,12 @@ define([
 
         show_metadata: function (params) {
             this.show(params, 'metadata');
+        },
+
+        show_welcome_page: function (params) {
+            this.show(params, 'welcome');
         }
 
     });
-
-    return DownloadController;
 
 });
