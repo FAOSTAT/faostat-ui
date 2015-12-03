@@ -53,7 +53,7 @@ define(function () {
                         "dimension_id": "item",
                         "defaultCodes": ["22040"],
                         "filter": {
-                            "whitelist": ["22040"]
+                            "whitelist": ["22040", "22050"]
                         }
                     }
                 },
@@ -147,24 +147,17 @@ define(function () {
                 {
                     type: 'map',
                     class: "col-xs-12",
-
-                    // labels?
                     labels: {
-                        // labels to dinamically substitute the title and subtitle
                         default: {},
-
-                        // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Development flows of selected aid aggregates in US$, 2013 prices",
-                                fr: "Development flows of selected aid aggregates in US$, 2013 prices",
-                                es: "Development flows of selected aid aggregates in US$, 2013 prices"
+                                en: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices",
+                                fr: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices",
+                                es: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
                     },
-
-                    //height:'250px',
                     config: {
                         template: {},
                         adapter: {
@@ -183,6 +176,124 @@ define(function () {
                         List2Codes: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'recipientarea'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Development flow types of {{donor}} to {{purpose}} in US$, 2013 prices",
+                                fr: "Development flow types of {{donor}} to {{purpose}} in US$, 2013 prices",
+                                es: "Development flow types of {{donor}} to {{purpose}} in US$, 2013 prices"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "timeserie",
+                            xDimensions: 'year',
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['recipientarea', 'item', 'element']
+                        },
+                        template: {
+                            // height:'350px'
+                            // default labels to be applied
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['donor', 'year', 'element', 'purpose', 'recipientarea'],
+                    filter: {
+                        List4Codes: ["22040", "22050"],
+                        "order_by": 'year'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Top 10 recipients of {{donor}} in US$, 2013 prices",
+                                fr: "Top 10 recipients of {{donor}} in US$, 2013 prices",
+                                es: "Top 10 recipients of {{donor}} in US$, 2013 prices"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['recipientarea'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['donor']
+                        },
+                        template: {},
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['donor', 'item', 'element', 'year', 'purpose', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List2Codes: ["5000>"],
+                        "group_by": 'year',
+                        "order_by": 'value DESC',
+                        "limit": '10'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Top 10 donors of {{recipientarea}} in US$, 2013 prices",
+                                fr: "Top 10 donors of {{recipientarea}} in US$, 2013 prices",
+                                es: "Top 10 donors of {{recipientarea}} in US$, 2013 prices"
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['donor'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['recipientarea']
+                        },
+                        template: {},
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['recipientarea', 'item', 'element', 'year', 'purpose', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        // TODO: fix it with level 5
+                        List1Codes: ["_1"],
+                        "group_by": 'year',
+                        "order_by": 'value DESC',
+                        "limit": '10'
                     }
                 }
             ]
