@@ -136,6 +136,10 @@ require([
                     'bootstrap-table': '{FENIX_CDN}/js/bootstrap-table/1.9.1/bootstrap-table.min',
                     'bootstrap-treeview': '{FENIX_CDN}/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
 
+                    // leaflet-image
+                    //'leaflet-image': '//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image',
+                    'leaflet-image': 'lib/leaflet-image',
+
                     /* Google Analytics */
                     "ga": "//www.google-analytics.com/analytics"
                 },
@@ -167,6 +171,9 @@ require([
                     },
                     'jquery.rangeSlider': {
                         deps: ['jquery', 'jquery-ui']
+                    },
+                    'leaflet-image': {
+                        deps: ['leaflet']
                     },
                     "ga": {
                         exports: "__ga__"
