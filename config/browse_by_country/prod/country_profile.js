@@ -80,7 +80,7 @@ define(function () {
                     },
                     allowedFilter: ['area', 'year', 'item', 'aggregation'],
                     filter: {
-                        domain_code: "OA",
+                        domain_codes: ["OA"],
                         List2Codes: [
                             551,
                             571,
@@ -129,7 +129,7 @@ define(function () {
                     allowedFilter: ['area', 'item', 'year', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        domain_code: "RL",
+                        domain_codes: ["RL"],
                         List2Codes: [5110],
                         List3Codes: [6600, 6610, 6661],
                         List4Codes: [2012]
@@ -169,7 +169,7 @@ define(function () {
                     },
                     allowedFilter: ['area', 'year', 'item', 'aggregation'],
                     filter: {
-                        domain_code: "RL",
+                        domain_codes: ["RL"],
                         List2Codes: [5110],
                         List3Codes: [6621, 6650, 6655, 6661, 6670],
                         List4Codes: [2012]
@@ -208,7 +208,7 @@ define(function () {
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        domain_code: "QI",
+                        domain_codes: ["QI"],
                         List2Codes: [438],
                         List3Codes: [1717,
                             2051,

@@ -94,7 +94,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_codes:['QC'],
+                domain_codes: ['QC'],
                 List2Codes: ["2510"],
                 List5Codes: null,
                 List6Codes: null,
@@ -191,7 +191,7 @@ define(function () {
                     },
                     allowedFilter: ['year'],
                     filter: {
-                        domain_code: 'QI',
+                        domain_codes: ['QI'],
                         List1Codes: [5000, 5100, 5200, 5300, 5400, 5500],
                         List2Codes: ['438'],
                         List3Codes: ['2054']

@@ -33,9 +33,12 @@ define([
             map: {
                 leaflet: {
                     zoomControl: false,
-                    attributionControl: false,
+                    attributionControl: true,
                     scrollWheelZoom: false,
                     minZoom: 1
+                },
+                fenix_ui_map: {
+                    usedefaultbaselayers: false
                 },
                 layer: {
                     //colors: ['#004529', '#238B45', '#74C476', '#E1E1E1', '#74C476', '#FFD34A', '#FF9400', '#DE0000'],
