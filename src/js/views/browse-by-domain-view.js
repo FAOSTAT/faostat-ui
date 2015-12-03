@@ -234,8 +234,10 @@ define([
                             container: this.$DASHBOARD,
                             layout: 'fluid',
                             //layout: 'injected',
-                            lang: lang}));
-                    }else{
+                            lang: lang
+                        }));
+                    }
+                    else{
                         log.error("View is not defined, handle exception");
                     }
 
