@@ -22,8 +22,8 @@ define([
             'Q', 'QC', 'QD', 'QA',
             'T', 'TP', 'TA',
             'FB', 'FBS', 'BC', 'BL', 'CC', 'CL',
-            'D',
-            'FS',
+            'I', 'EA',
+            'D', 'FS',
             'G1', 'GE'
         ],
 
