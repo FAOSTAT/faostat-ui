@@ -1,5 +1,5 @@
 /*global define*/
-define(function ( ) {
+define(function () {
 
     'use strict';
 
@@ -26,7 +26,10 @@ define(function ( ) {
         // Don't know if should be here..
         ON_FILTER_CHANGE: 'fs.filter_change.event',
 
-        EXPORT_DATA: 'fs.export_data.event'
+        EXPORT_DATA: 'fs.export_data.event',
+
+        // MAP:
+        MAP_REFRESH: 'fs.map.invalidate_size.event'
 
     };
 });
