@@ -12,7 +12,7 @@ define([
 
     'use strict';
 
-    var waiting = $('<div class="modal">' +
+    var waiting = $('<div class="modal" data-backdrop="static" data-keyboard="false" >' +
         '<span style="color: #eeeeee;opacity: 0.9; position: absolute;top: 50%;left: 50%;">' +
         '<i class="fa fa-cog fa-spin fa-4x"></i>' +
         '</span>' +
@@ -28,7 +28,7 @@ define([
 
         waiting.modal('show');
 
-    },
+    };
 
     Waiting.prototype.hidePleaseWait = function () {
 
