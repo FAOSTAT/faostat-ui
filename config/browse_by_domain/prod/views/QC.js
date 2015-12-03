@@ -42,8 +42,8 @@ define(function () {
                         //"multiple": true
                     },
                     "config": {
-                        "dimension_id": "countries",
-                        "defaultCodes": ["2"],
+                        "dimension_id": "area",
+                        "defaultCodes": ["5000"],
                         "filter": {
                         }
                     }
