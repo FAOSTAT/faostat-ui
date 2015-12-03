@@ -290,7 +290,7 @@ define(function () {
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: fix it with level 5
-                        List1Codes: ["_1"],
+                        List1Codes: ["690>", "691>", "692>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'
