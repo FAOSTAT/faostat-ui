@@ -165,7 +165,7 @@ define([
 
                 self.$DOMAINS.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
 
-                    var section = ROUTE.DOWNLOAD_METADATA,
+                    var section = ROUTE.DOWNLOAD_WELCOME,
                     //code = $(e.target).data("code");
                         code = this.getAttribute('data-code');
 
