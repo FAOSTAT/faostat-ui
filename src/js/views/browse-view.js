@@ -107,6 +107,9 @@ define([
 
         switchStandardsTab: function(section, options) {
 
+            // refresh map on tab switch
+            amplify.publish(E.MAP_REFRESH);
+
             var options = $.extend(true, {}, options, {section: section});
 
             if (section == this.$domain.data("section")) {
