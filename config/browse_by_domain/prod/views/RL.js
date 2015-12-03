@@ -18,7 +18,7 @@ define(function () {
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-md-4",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -33,7 +33,7 @@ define(function () {
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
@@ -48,7 +48,7 @@ define(function () {
                     "type": "static",
                     "parameter": "operator",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-md-2",
                         "type": "dropDownList"
                     },
                     "config": {
