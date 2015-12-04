@@ -18,6 +18,7 @@ define([
     'list',
     'fx-ds/start',
     'lib/view/view-utils',
+    'fenix-ui-map',
     'amplify'
 ], function (Require, $, log, View, F, C, ROUTE, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List, Dashboard, ViewUtils) {
 
@@ -30,7 +31,8 @@ define([
             COUNTRY_PROFILE: "#fs-browse-by-country-profile",
             COUNTRY_PROFILE_TITLE: "#fs-browse-by-country-profile-title",
             COUNTRY_PROFILE_DASHBOARD: "#fs-browse-by-country-profile-dashboard",
-            COUNTRY_PROFILE_BACK: "#fs-browse-by-country-profile-back"
+            COUNTRY_PROFILE_BACK: "#fs-browse-by-country-profile-back",
+            COUNTRY_PROFILE_MAP: "#fs-browse-by-country-profile-map"
 
         },
 
@@ -90,6 +92,7 @@ define([
             this.$COUNTRY_PROFILE_TITLE = this.$el.find(s.COUNTRY_PROFILE_TITLE);
             this.$COUNTRY_PROFILE_DASHBOARD = this.$el.find(s.COUNTRY_PROFILE_DASHBOARD);
             this.$COUNTRY_PROFILE_BACK = this.$el.find(s.COUNTRY_PROFILE_BACK);
+            this.$COUNTRY_PROFILE_MAP = this.$el.find(s.COUNTRY_PROFILE_MAP);
 
         },
 
@@ -138,7 +141,42 @@ define([
 
                 var countries = this.cache.countries.data,
                     t = Handlebars.compile(templateCountryList),
-                    d = $.extend(true, {}, i18nLabels, {data: countries});
+                    d = {};
+                    //d = $.extend(true, {}, i18nLabels, {data: countries});
+
+                // format data
+                _.each(countries, function(c) {
+                    var letter = c.label[0];
+                    d[letter] = d[letter] || { data: []};
+                    d[letter].data.push(c);
+                });
+
+                var v = [];
+                var maxSize = (countries.length / 4) + 5;
+                var col = {
+                    letter: []
+                };
+                var size = 0;
+                _.each(d, function(c, key) {
+                    if ( size + c.data.length > maxSize) {
+                        v.push(col);
+
+                        col = {
+                            letter: []
+                        }
+                        size = 0;
+                    }
+                    var e= {};
+                        e[key] = c;
+
+                    col.letter.push(e);
+                    size += c.data.length;
+                });
+                v.push(col);
+
+                d = $.extend(true, {}, i18nLabels, {list: v});
+
+                //d = $.extend(true, {}, i18nLabels, {data: countries});
 
                 var html = t(d);
 
@@ -178,8 +216,10 @@ define([
                 basePath = CM.viewsBasePath,
                 code = this.o.code;
 
-
             this.$COUNTRY_PROFILE_TITLE.html(countryName);
+
+            // initialize map
+            this.initializeMap(this.o.code);
 
             // get and render the right view
             Require([basePath+ "country_profile"], _.bind(function(view) {
@@ -205,6 +245,51 @@ define([
 
 
             }, this));
+
+        },
+
+        initializeMap: function(code) {
+
+            this.$COUNTRY_PROFILE_MAP.empty();
+
+            log.info(CM)
+            //if ( this.fenixMap === undefined) {
+               this.m = new FM.Map(this.$COUNTRY_PROFILE_MAP, CM.map.fenix_ui_map, CM.map.leaflet);
+               this.m.createMap();
+            //}
+
+            var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+                subdomains: 'abcd',
+                maxZoom: 19,
+                zIndex: 0
+            });
+
+            this.m.map.addLayer(CartoDB_Positron);
+
+            // highlight country
+            // TODO: how to check for old countries (i.e. USSR) or new (i.e. south sudan)?
+            this.m.zoomTo('gaul0_faostat_3857', "faost_code", [code]);
+
+            var boundary = {
+                layers: 'fenix:gaul0_line_3857',
+              layertitle: 'Country Boundaries',
+                    urlWMS: 'http://fenix.fao.org/geoserver',
+                    opacity: '0.7'
+            };
+
+            this.m.addLayer(new FM.layer(boundary));
+
+            var highlight = new FM.layer({
+                layers: 'gaul0_faostat_3857',
+                layertitle: '',
+                urlWMS: 'http://fenix.fao.org/geoserver',
+                style: 'highlight_polygon',
+                cql_filter: "faost_code IN ('" + code +"')",
+                hideLayerInControllerList: true,
+                lang: 'en'
+            });
+            this.m.addLayer(highlight);
 
         },
 

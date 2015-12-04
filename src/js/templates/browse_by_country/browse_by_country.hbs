@@ -1,7 +1,12 @@
-<h1>{{country_list}}</h1>
+
+
 <div class="row" id="fs-browse-by-country-list-container" style="display:none">
 
-    <div class="col-lg-3">
+    <div class="col-xs-12">
+        <h1>{{country_list}}</h1>
+    </div>
+
+<!--    <div class="col-lg-3">
         <input type="text" class="form-control search" placeholder="{{filter_results}}" aria-describedby="basic-addon1">
     </div>
     <div class="col-lg-3">
@@ -10,6 +15,8 @@
 
     <br><br><br>
 
+    -->
+
 </div>
 
 <div id="fs-browse-by-country-profile" style="display:none">
@@ -17,5 +24,11 @@
     <button class="btn btn-default" id="fs-browse-by-country-profile-back"><i class="fa fa-arrow-left"></i>  {{back_to_country_list}}</button>
 
     <h1 id="fs-browse-by-country-profile-title"></h1>
+
+    <div id="fs-browse-by-country-profile-map" style="height: 250px;"></div>
+
+    <br>
+    <br>
+
     <div id="fs-browse-by-country-profile-dashboard"></div>
 </div>
