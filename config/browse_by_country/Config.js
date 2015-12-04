@@ -18,7 +18,7 @@ define([
         map: {
             leaflet: {
                 zoomControl: false,
-                attributionControl: false,
+                attributionControl: true,
                 scrollWheelZoom: false,
                 minZoom: 1
             },
