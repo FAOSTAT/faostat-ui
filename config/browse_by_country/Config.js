@@ -15,6 +15,37 @@ define([
         countriesDomainCode: 'QC',
         countriesDimensionID: 'countries',
 
+        map: {
+            leaflet: {
+                zoomControl: false,
+                attributionControl: false,
+                scrollWheelZoom: false,
+                minZoom: 1
+            },
+            fenix_ui_map: {
+                usedefaultbaselayers: false,
+                plugins: {
+                    disclaimerfao: false,
+                    geosearch: false,
+                    mouseposition: false,
+                    controlloading : true,
+                    zoomcontrol: 'bottomright'
+                },
+                guiController: {
+                    overlay: false,
+                    baselayer: false,
+                    wmsLoader: false
+                },
+                gui: {
+                    disclaimerfao: false
+                }
+            },
+            zoomn: {
+                layer: 'gaul0_faostat_3857',
+                column: 'faost_code'
+            }
+
+        },
 
         // default cofing to be applied to each view
         view: {
