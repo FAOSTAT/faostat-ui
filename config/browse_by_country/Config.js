@@ -62,7 +62,6 @@ define([
                     modelType: 'faostat'
                 },
                 template: {
-                    class: 'test',
                     height: '350px',
                     footer: i18n.map_footer,
                     addExport: true,
@@ -78,9 +77,7 @@ define([
                     chartObj: HighchartsTemplate
                 },
                 template: {
-                    height: '300px',
-                    title: "Production quantities by country",
-                    subtitle: "Average 1993-2013",
+                    height: '250px',
                     addExport: true,
                     export: i18n.export_data
                 }

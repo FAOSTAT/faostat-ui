@@ -48,7 +48,7 @@ define(function () {
                         class: 'col-xs-12',
                         config: {
                             template: {
-                                html: '<h1>Population</h1>'
+                                html: '<h2>Population</h2>'
                             },
                             model: {
                                 "test": "test"
@@ -157,15 +157,13 @@ define(function () {
                         }
                     },
 
-
                     // LAND
-
                     {
                         type: 'custom',
                         class: 'col-xs-12',
                         config: {
                             template: {
-                                html: '<h1>Land</h1>'
+                                html: '<h2>Land</h2>'
                             },
                             model: {
                                 "test": "test"
@@ -229,6 +227,61 @@ define(function () {
                     },
 
                     {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Land Use",
+                                    fr: "Utilizo de la Tierra",
+                                    es: "Utilisation des terres"
+                                },
+                                subtitle: "2012"
+                            }
+
+                        },
+
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "pie",
+                                xDimensions: null,
+                                yDimensions: null,
+                                valueDimensions: 'value',
+                                seriesDimensions: ['item']
+                            },
+                            template: {
+                                //height: '250px'
+                            },
+                            creator: {}
+                        },
+                        allowedFilter: ['area', 'year', 'item', 'aggregation'],
+                        filter: {
+                            domain_codes: ["RL"],
+                            List2Codes: [5110],
+                            List3Codes: [6621, 6650, 6655, 6661, 6670],
+                            List4Codes: [2012],
+                            //List4Codes: ['_1'],
+                            order_by: 'year DESC, item ASC'
+                            // limit: 5
+                        }
+                    },
+
+                    // FORCE SPACING
+                    {
+                        type: 'custom',
+                        class: 'clearfix',
+                        config: {
+                            template: {},
+                            model: {}
+                        }
+                    },
+
+
+                    {
                         type: 'table',
                         class: "col-xs-12 col-md-6",
 
@@ -257,7 +310,7 @@ define(function () {
                                 tableOptions: {
                                     'data-search': false,
                                     'data-show-header': false
-                                },
+                                }
                                 // height: '300'
                             }
                         },
@@ -267,19 +320,8 @@ define(function () {
                             domain_codes: ["RL"],
                             List2Codes: [5110],
                             List3Codes: [6600, 6610, 6661],
-                            List4Codes: ['_1'],
-                            order_by: 'year DESC, item ASC',
-                            limit: 3
-                        }
-                    },
-
-                    // FORCE SPACING
-                    {
-                        type: 'custom',
-                        class: 'clearfix',
-                        config: {
-                            template: {},
-                            model: {}
+                            List4Codes: [2012],
+                            order_by: 'value DESC'
                         }
                     },
 
@@ -294,39 +336,127 @@ define(function () {
                             template: {
                                 title: {
                                     en: "Land Use",
-                                    fr: "Utilizo de la Tierra",
-                                    es: "Utilisation des terres"
+                                    fr: "Land Use",
+                                    es: "Land Use"
                                 },
-                                subtitle: ""
+                                subtitle: "2012"
                             }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "timeserie",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['item']
+                            },
+                            template: {
+                                // height: '100px'
+                            },
+                            creator: {
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            domain_codes: ['RL'],
+                            List2Codes: [5110],
+                            List3Codes: [6621, 6650, 6655, 6661, 6670],
+                            List4Codes: ['_1'],
+                            "order_by": 'year'
+                        }
+                    },
 
+
+                    // Production
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>{{production}}</h2>'
+                            },
+                            model: {
+                                "production": "Production"
+                            }
+                        }
+                    },
+
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Most produced commodities",
+                                    fr: "Most produced commodities",
+                                    es: "Most produced commodities"
+                                },
+                                subtitle: "Average 1993-2013"
+                            }
                         },
 
                         config: {
                             adapter: {
                                 adapterType: 'faostat',
-                                type: "pie",
-                                xDimensions: null,
-                                yDimensions: null,
+                                type: "standard",
+                                xDimensions: ['element'],
+                                yDimensions: 'unit',
                                 valueDimensions: 'value',
-                                seriesDimensions: ['item', 'year']
+                                seriesDimensions: ['item']
                             },
                             template: {
                                 //height: '250px'
                             },
-                            creator: {}
+                            creator: {
+                                chartObj: {
+                                    chart: {
+                                        type: "column"
+                                    }
+                                }
+                            }
                         },
-                        allowedFilter: ['area', 'year', 'item', 'aggregation'],
+                        allowedFilter: ['area'],
+                        deniedTemplateFilter: [],
                         filter: {
-                            domain_codes: ["RL"],
-                            List2Codes: [5110],
-                            List3Codes: [6621, 6650, 6655, 6661, 6670],
-                            //List4Codes: [2012]
-                            List4Codes: ['_1'],
-                            order_by: 'year DESC, item ASC',
-                            limit: 5
+                            domain_codes: ["QC"],
+                            List2Codes: ["2510"],
+                            // TODO: how to solve this problemi with the list?
+                            List3Codes: ["1717>", "1804>", "1814>", "1714>", "1753>", "1801>", "1738>", "1737>", "1751>", "1841>", "1732>", "1726>", "1720>", "1734>", "1729>", "1735>", "1800>"],
+                            List4Codes: [
+                                1993,
+                                1994,
+                                1995,
+                                1996,
+                                1997,
+                                1998,
+                                1999,
+                                2000,
+                                2001,
+                                2002,
+                                2003,
+                                2004,
+                                2005,
+                                2006,
+                                2007,
+                                2008,
+                                2009,
+                                2010,
+                                2011,
+                                2012,
+                                2013
+                            ],
+                            "group_by": 'year',
+                            "order_by": 'value DESC',
+                            "limit": '10',
+                            "operator": "avg"
                         }
                     },
+
                     {
                         type: 'chart',
                         class: "col-xs-12 col-md-6",

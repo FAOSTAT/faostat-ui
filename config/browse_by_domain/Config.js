@@ -72,8 +72,8 @@ define([
                 },
                 template: {
                     height: '300px',
-                    title: "Production quantities by country",
-                    subtitle: "Average 1993-2013",
+                    //title: "Production quantities by country",
+                    //subtitle: "Average 1993-2013",
                     addExport: true,
                     export: i18n.export_data
                 }
