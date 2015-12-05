@@ -126,7 +126,7 @@ define(function () {
                                 adapterType: 'faostat',
                                 type: "pie",
                                 xDimensions: null,
-                                yDimensions: null,
+                                yDimensions: ['unit'],
                                 valueDimensions: 'value',
                                 seriesDimensions: ['element', 'year']
                             },
