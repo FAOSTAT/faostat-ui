@@ -385,7 +385,7 @@ define(function () {
 
                     {
                         type: 'chart',
-                        class: "col-xs-6",
+                        class: "col-xs-12 col-md-6",
 
                         // labels?
                         labels: {
