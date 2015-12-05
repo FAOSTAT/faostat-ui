@@ -47,14 +47,13 @@ define(function () {
 
                     // labels?
                     labels: {
-                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Population composition in selected country (by year)",
                                 fr: "Composition de la population dans le pays sélectionné (par anne)",
                                 es: "Composicin de la poblacin en el pas seleccionado (por año)"
                             },
-                            subtitle: "2015"
+                            subtitle: ""
                         }
                     },
 
@@ -107,8 +106,8 @@ define(function () {
                                 en: "Land Resources (1000 Ha)",
                                 fr: "Land Resources (1000 Ha)",
                                 es: "Land Resources (1000 Ha)"
-                            },
-                            subtitle: "2012"
+                            }
+                            //subtitle: "2012"
                         }
                     },
 
@@ -116,7 +115,7 @@ define(function () {
                     //height:'250px',
                     config: {
                         adapter: {
-                            columns: ['item', 'value'],
+                            columns: ['item', 'year', 'value', 'unit'],
                             showCodes: false
                         },
                         template: {
@@ -132,7 +131,9 @@ define(function () {
                         domain_codes: ["RL"],
                         List2Codes: [5110],
                         List3Codes: [6600, 6610, 6661],
-                        List4Codes: [2012]
+                        List4Codes: ['_1'],
+                        order_by: 'year DESC, item ASC',
+                        limit: 3
                     }
                 },
                 {
@@ -148,7 +149,7 @@ define(function () {
                                 fr: "Utilizo de la Tierra",
                                 es: "Utilisation des terres"
                             },
-                            subtitle: "2012"
+                            subtitle: ""
                         }
 
                     },
@@ -160,7 +161,7 @@ define(function () {
                             xDimensions: null,
                             yDimensions: null,
                             valueDimensions: 'value',
-                            seriesDimensions: ['item']
+                            seriesDimensions: ['item', 'year']
                         },
                         template: {
                             //height: '250px'
@@ -172,7 +173,10 @@ define(function () {
                         domain_codes: ["RL"],
                         List2Codes: [5110],
                         List3Codes: [6621, 6650, 6655, 6661, 6670],
-                        List4Codes: [2012]
+                        //List4Codes: [2012]
+                        List4Codes: ['_1'],
+                        order_by: 'year DESC, item ASC',
+                        limit: 5
                     }
                 },
                 {
@@ -188,7 +192,8 @@ define(function () {
                                 fr: "Indices de Production - Index de production Net (2004-2006=100)",
                                 es: "Indices de Producción - Número índice de Producción Neta (2004-2006 = 100)"
                             },
-                            subtitle: "2003 - 2013"
+                            //subtitle: "2003 - 2013"
+                            subtitle: ""
                         }
                     },
                     config: {
@@ -210,11 +215,12 @@ define(function () {
                     filter: {
                         domain_codes: ["QI"],
                         List2Codes: [438],
-                        List3Codes: [1717,
+                        List3Codes: [
+                            1717,
                             2051,
                             2054,
                             2057],
-                        List4Codes: [
+                       /* List4Codes: [
                             2003,
                             2004,
                             2005,
@@ -226,9 +232,12 @@ define(function () {
                             2011,
                             2012,
                             2013
-                        ]
+                        ]*/
+                        List4Codes: ['_1'],
+                        order_by: 'year, item',
+                        limit: -1
                     }
-                },
+                }
                 /*{
                     type: 'chart',
                     class: "col-xs-12 col-md-6",
