@@ -216,6 +216,7 @@ define([
                 basePath = CM.viewsBasePath,
                 code = this.o.code;
 
+            this.$COUNTRY_PROFILE_BACK.focus();
             this.$COUNTRY_PROFILE_TITLE.html(countryName);
 
             // initialize map
