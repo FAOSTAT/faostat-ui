@@ -95,7 +95,7 @@ require([
                     underscore: "{FENIX_CDN}/js/underscore/1.7.0/underscore.min",
                     backbone: "{FENIX_CDN}/js/backbone/1.1.2/backbone.min",
                     handlebars: "{FENIX_CDN}/js/handlebars/4.0.5/handlebars.min",
-                    chaplin: "{FENIX_CDN}/js/chaplin/1.0.1/chaplin.min",
+                    chaplin: "{FENIX_CDN}/js/chaplin/1.1.1/chaplin.min",
                     domReady: "{FENIX_CDN}/js/requirejs/plugins/domready/2.0.1/domReady",
                     i18n: "{FENIX_CDN}/js/requirejs/plugins/i18n/2.0.4/i18n",
                     text: '{FENIX_CDN}/js/requirejs/plugins/text/2.0.12/text',
