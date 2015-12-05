@@ -41,9 +41,25 @@ define(function () {
             metadata: {},
 
             items: [
+
+                // FORCE SPACING
+                {
+                    type: 'custom',
+                    class: 'col-xs-12',
+                    config: {
+                        template: {
+                            html: '<h1>Overview {{test}}</h1>'
+                        },
+                        model: {
+                            "test": "test"
+                        }
+                    }
+                },
+
+
                 {
                     type: 'chart',
-                    class: "col-xs-12 col-md-8",
+                    class: "col-xs-12 col-md-6",
 
                     // labels?
                     labels: {
@@ -60,14 +76,14 @@ define(function () {
                     config: {
                         adapter: {
                             adapterType: 'faostat',
-                            type: "timeserie",
+                            type: "standard",
                             xDimensions: ['year'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['element']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
-                            height: '200px'
+                           // height: '200px'
                         },
                         creator: {
                             chartObj: {
@@ -81,19 +97,127 @@ define(function () {
                     filter: {
                         domain_codes: ["OA"],
                         List2Codes: [
-                            551,
-                            571,
                             511,
-                            602,
-                            603
+                            551
+                        ],
+                        List3Codes: [3010],
+                        List4Codes: [2000, 2005, 2010, 2015],
+                        order_by: 'year'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12 col-md-6",
+
+                    // labels?
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Rural and Urban Population",
+                                fr: "Rural and Urban Population",
+                                es: "Rural and Urban Population"
+                            },
+                            "subtitle": ""
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['element', 'year']
+                        },
+                        template: {
+                            //height: '200px'
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['area', 'year', 'item', 'aggregation'],
+                    filter: {
+                        domain_codes: ["OA"],
+                        List2Codes: [
+                            551,
+                            561
                         ],
                         List3Codes: [3010],
                         List4Codes: [2015]
                     }
                 },
+
+                // FORCE SPACING
+                {
+                    type: 'custom',
+                    class: 'clearfix',
+                    config: {
+                        template: {},
+                        model: {}
+                    }
+                },
+
+
+                // LAND
+
+                {
+                    type: 'chart',
+                    class: "col-xs-12 col-md-6",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Composition of agricultural area {{area}}",
+                                fr: "Composition de la surface agricole {{area}}",
+                                es: "Composición del área agrícola {{area}}"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "timeserie",
+                            xDimensions: 'year',
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area', 'item']
+                        },
+                        template: {
+                           // height: '100px'
+                        },
+                        creator: {
+                            /* chartObj: {
+                               chart: {
+                                    type: 'column'
+                                },
+                                plotOptions: {
+                                    column: {
+                                        stacking: 'normal'
+                                    }
+                                }
+                            }*/
+                        }
+                    },
+                    allowedFilter: ['area', 'year'],
+                    filter: {
+                        domain_codes: ['RL'],
+                        List2Codes: [5110],
+                        List3Codes: [
+                            6621,
+                            6650,
+                            6655
+                        ],
+                        List4Codes: ['_1'],
+                        "order_by": 'year'
+                    }
+                },
+
                 {
                     type: 'table',
-                    class: "col-xs-12 col-md-4",
+                    class: "col-xs-12 col-md-6",
 
                     // labels?
                     labels: {
@@ -111,8 +235,6 @@ define(function () {
                         }
                     },
 
-
-                    //height:'250px',
                     config: {
                         adapter: {
                             columns: ['item', 'year', 'value', 'unit'],
@@ -122,7 +244,8 @@ define(function () {
                             tableOptions: {
                                 'data-search': false,
                                 'data-show-header': false
-                            }
+                            },
+                           // height: '300'
                         }
                     },
                     allowedFilter: ['area', 'item', 'year', 'element', 'aggregation'],
@@ -136,6 +259,20 @@ define(function () {
                         limit: 3
                     }
                 },
+
+                // FORCE SPACING
+                {
+                    type: 'custom',
+                    class: 'clearfix',
+                    config: {
+                        template: {},
+                        model: {}
+                    }
+                },
+
+
+
+
                 {
                     type: 'chart',
                     class: "col-xs-12 col-md-6",
@@ -214,7 +351,8 @@ define(function () {
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
                         domain_codes: ["QI"],
-                        List2Codes: [438],
+                        List2Codes: [
+                            438],
                         List3Codes: [
                             1717,
                             2051,

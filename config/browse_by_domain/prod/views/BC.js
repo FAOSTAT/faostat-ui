@@ -158,7 +158,7 @@ define(function () {
                             title: {
                                 en: "Exports by region {{item}}",
                                 fr: "Exportations par régions {{item}}",
-                                es: "Exportaciones por región {{item}}",
+                                es: "Exportaciones por región {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -224,6 +224,16 @@ define(function () {
                     }
                 },
 
+                // FORCE SPACING
+                {
+                    type: 'custom',
+                    class: 'clearfix',
+                    config: {
+                        template: {},
+                        model: {}
+                    }
+                },
+
                 {
                     type: 'chart',
                     class: "col-xs-6",
@@ -251,7 +261,7 @@ define(function () {
                             seriesDimensions: ['area']
                         },
                         template: {
-                            height:'250px'
+                            height: '250px'
                             // default labels to be applied
                         },
                         creator: {
@@ -300,7 +310,7 @@ define(function () {
                             seriesDimensions: ['area']
                         },
                         template: {
-                            height:'250px'
+                            height: '250px'
                             // default labels to be applied
                         },
                         creator: {
@@ -319,6 +329,16 @@ define(function () {
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": 5
+                    }
+                },
+
+                // FORCE SPACING
+                {
+                    type: 'custom',
+                    class: 'clearfix',
+                    config: {
+                        template: {},
+                        model: {}
                     }
                 },
 
@@ -350,7 +370,7 @@ define(function () {
                             seriesDimensions: ['area', 'element']
                         },
                         template: {
-                            height:'250px'
+                            height: '250px'
                             // default labels to be applied
                         },
                         creator: {
@@ -401,7 +421,7 @@ define(function () {
                             seriesDimensions: ['element']
                         },
                         template: {
-                            height:'250px'
+                            height: '250px'
                         },
                         creator: {
                             chartObj: {
@@ -427,6 +447,5 @@ define(function () {
                 }
             ]
         }
-
     }
 });
