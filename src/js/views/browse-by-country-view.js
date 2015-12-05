@@ -222,7 +222,10 @@ define([
             this.initializeMap(this.o.code);
 
             // get and render the right view
-            Require([basePath+ "country_profile"], _.bind(function(view) {
+            Require([basePath + "country_profile"], _.bind(function(view) {
+
+                // quick fix for view that should be splitted by topic
+                view = view.population;
 
                 var dashboard = view.dashboard || null;
 
@@ -252,7 +255,6 @@ define([
 
             this.$COUNTRY_PROFILE_MAP.empty();
 
-            log.info(CM)
             //if ( this.fenixMap === undefined) {
                this.m = new FM.Map(this.$COUNTRY_PROFILE_MAP, CM.map.fenix_ui_map, CM.map.leaflet);
                this.m.createMap();
