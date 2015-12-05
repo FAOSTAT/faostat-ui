@@ -516,74 +516,157 @@ define(function () {
                             order_by: 'year, item',
                             limit: -1
                         }
-                    }
-                    /*{
-                     type: 'chart',
-                     class: "col-xs-12 col-md-6",
+                    },
 
-                     // labels?
-                     labels: {
-                     // template to be applied to the config.template for the custom object
-                     template: {
-                     title: {
-                     en: "Emissions by sector",
-                     fr: "Émissions par secteur",
-                     es: "Emissions por sector"
-                     },
-                     subtitle: "1990 - 2012"
-                     }
-                     },
-                     config: {
-                     adapter: {
-                     adapterType: 'faostat',
-                     type: "pie",
-                     xDimensions: null,
-                     yDimensions: null,
-                     valueDimensions: 'value',
-                     seriesDimensions: ['item']
-                     },
-                     template: {
-                     // height:'350px'
-                     // default labels to be applied
-                     },
-                     creator: {}
-                     },
-                     allowedFilter: ['area', 'year', 'item'],
-                     filter: {
-                     domain_code: "GT",
-                     List2Codes: [7231],
-                     List3Codes: [5058,  5059, 5060, 5061, 5062, 5063, 5064, 5066, 5067, 6759],
-                     List4Codes: [
-                     1990,
-                     1991,
-                     1992,
-                     1993,
-                     1994,
-                     1995,
-                     1996,
-                     1997,
-                     1998,
-                     1999,
-                     2000,
-                     2001,
-                     2002,
-                     2003,
-                     2004,
-                     2005,
-                     2006,
-                     2007,
-                     2008,
-                     2009,
-                     2010,
-                     2011,
-                     2012
-                     ],
-                     "group_by": 'year',
-                     "order_by": 'area',
-                     "operator": 'AVG',
-                     "limit": '-1'
-                     }
-                     }*/
+
+                    // Emissions
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>{{emissions}}</h2>'
+                            },
+                            model: {
+                                "emissions": "Emissions"
+                            }
+                        }
+                    },
+
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Emissions",
+                                    fr: "Emissions",
+                                    es: "Emissions"
+                                },
+                                subtitle: "1990 - 2012"
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "timeserie",
+                                xDimensions: 'year',
+                                yDimensions: null,
+                                valueDimensions: 'value',
+                                seriesDimensions: ['item', 'element']
+                            },
+                            template: {
+                                // height:'350px'
+                                // default labels to be applied
+                            },
+                            creator: {}
+                        },
+                        allowedFilter: ['area'],
+                        filter: {
+                            domain_codes: ["GL", "GT"],
+                            List2Codes: [7231, 7217],
+                            List3Codes: [1711, 1707],
+                            List4Codes: [
+                                1990,
+                                1991,
+                                1992,
+                                1993,
+                                1994,
+                                1995,
+                                1996,
+                                1997,
+                                1998,
+                                1999,
+                                2000,
+                                2001,
+                                2002,
+                                2003,
+                                2004,
+                                2005,
+                                2006,
+                                2007,
+                                2008,
+                                2009,
+                                2010,
+                                2011,
+                                2012
+                            ],
+                            "order_by": 'year',
+                            "limit": '-1'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Emissions by sector",
+                                    fr: "Émissions par secteur",
+                                    es: "Emissions por sector"
+                                },
+                                subtitle: "1990 - 2012"
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "pie",
+                                xDimensions: null,
+                                yDimensions: null,
+                                valueDimensions: 'value',
+                                seriesDimensions: ['item']
+                            },
+                            template: {
+                                // height:'350px'
+                                // default labels to be applied
+                            },
+                            creator: {}
+                        },
+                        allowedFilter: ['area', 'year', 'item'],
+                        filter: {
+                            domain_codes: ["GT"],
+                            List2Codes: [7231],
+                            List3Codes: [5058,  5059, 5060, 5061, 5062, 5063, 5064, 5066, 5067, 6759],
+                            List4Codes: [
+                                1990,
+                                1991,
+                                1992,
+                                1993,
+                                1994,
+                                1995,
+                                1996,
+                                1997,
+                                1998,
+                                1999,
+                                2000,
+                                2001,
+                                2002,
+                                2003,
+                                2004,
+                                2005,
+                                2006,
+                                2007,
+                                2008,
+                                2009,
+                                2010,
+                                2011,
+                                2012
+                            ],
+                            "group_by": 'year',
+                            "order_by": 'area',
+                            "operator": 'AVG',
+                            "limit": '-1'
+                        }
+                    }
                 ]
             }
 

@@ -273,7 +273,7 @@ define(function () {
                     fontSize: 12
                 }
             },
-            min: 0,
+            //min: 0,
 
             title: {
                 enabled: false,
