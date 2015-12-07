@@ -6,7 +6,6 @@ body{
 
 }
 
-
 .container{
   background-color: white;
 }
@@ -41,37 +40,6 @@ body{
     color: $buttons;
   }
 
-}
-
-.container {
-  background-color: white;
-}
-
-
-
-.btn-table-go, .btn-scores-go{
-  background-color: $buttons;
-  color: white;
-
-
-  &:hover, &:active, &:visited, &:focus{
-    background-color: $buttons;
-    border-color: transparent;
-    color: white;
-  }
-
-}
-
-.btn-reset{
-  background-color: white;
-  color: $fenix-text;
-  border-color: transparent;
-
-  &:hover, &:active, &:visited, &:focus{
-    background-color: white;
-    border-color: transparent;
-    color: $fenix-text;
-  }
 }
 
 
