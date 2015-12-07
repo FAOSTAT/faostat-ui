@@ -4,17 +4,17 @@
 @import '../../src/css/theme/variables';
 
 /* Fenix Utils*/
-@import '../../submodules/fenix-ui-common/css/fenix-style-no-variables';
+@import '../../submodules/fenix-ui-common/css/utils/fx-utils';
 
 /* Base */
 @import '../../src/css/theme/default';
-@import '../../src/css/theme/faostat-tabs';
-@import '../../src/css/theme/scroll-up';
+
 
 /* Components */
-@import '../../src/css/components/breadcrumbs';
+@import '../../src/css/components/faostat-tabs';
+@import '../../src/css/components/scroll-up';
 @import '../../src/css/components/fao-footer';
-@import '../../src/css/components/fao-topmenu';
+//@import '../../src/css/components/fao-topmenu';
 @import '../../src/css/components/form';
 @import '../../src/css/components/jstree';
 @import '../../src/css/components/submenu';
