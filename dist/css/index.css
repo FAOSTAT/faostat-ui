@@ -20,10 +20,10 @@ body {
   text-transform: uppercase; }
 
 .btn {
-  -webkit-border-radius: 5;
-  -moz-border-radius: 5;
-  -ms-border-radius: 5;
-  border-radius: 5;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
   height: 25px;
   min-width: 100px;
   padding: 3px 12px;
@@ -32,11 +32,21 @@ body {
   background-color: transparent;
   border: 1px solid #2ab896;
   color: #2ab896;
-  margin: 3px; }
-  .btn:hover {
-    background-color: #f2f2f2;
-    border: 1px solid #2ab896;
-    color: #2ab896; }
+  margin: 3px;
+  outline: none; }
+
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
+.open > .dropdown-toggle.btn-primary, .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus,
+.btn:active:focus, .btn:focus, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus,
+.btn-info:hover, .open > .dropdown-toggle.btn-info, .btn-default.active, .btn-default.focus, .btn-default:active,
+.btn-default:focus, .btn-default:hover, .open > .dropdown-toggle.btn-default {
+  background-color: #f2f2f2;
+  border: 1px solid #2ab896;
+  color: #2ab896;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none; }
 
 /* Components */
 .nav-tabs {
@@ -269,6 +279,28 @@ ul[role="group"] {
     [role='treeitem'][aria-expanded='true'] [role='group'] .jstree-anchor .jstree-checkbox {
       position: absolute;
       left: 10px; }
+
+/* Fenix - Js tree */
+.jstree-default .jstree-search {
+  color: #666666;
+  font-weight: 300;
+  font-style: normal; }
+
+.jstree-default .jstree-themeicon {
+  display: none;
+  /* It hides folder icon */ }
+
+.jstree-default .jstree-node,
+.jstree-default .jstree-icon {
+  background-image: url("../../submodules/fenix-ui-common//css/img/treejs-32px.png"); }
+
+.jstree-default .jstree-wholerow-clicked {
+  background: none;
+  background-color: #b4e6f0; }
+
+.jstree-default .jstree-wholerow-hovered {
+  background: none;
+  background-color: #b4e6f0; }
 
 /* Third parties */
 /* Pages */

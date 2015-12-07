@@ -1,12 +1,12 @@
 /* Base style File */
 
-body{
+body {
 
   background-color: $fenix-light-bg;
 
 }
 
-.container{
+.container {
   background-color: white;
 }
 
@@ -17,12 +17,12 @@ body{
   text-overflow: ellipsis;
 }
 
-.upper{
+.upper {
   text-transform: uppercase;
 }
 
-.btn{
-  @include fx-border-radius(5);
+.btn {
+  @include fx-border-radius(0);
   height: 25px;
   min-width: 100px;
   padding: 3px 12px;
@@ -32,15 +32,20 @@ body{
   border: 1px solid $buttons;
   color: $buttons;
   margin: 3px;
-
-  &:hover{
-    background-color: $superlight-gray;
-    //border-color: transparent;
-    border: 1px solid $buttons;
-    color: $buttons;
-  }
+  outline: none;
 
 }
 
-
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
+.open > .dropdown-toggle.btn-primary, .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus,
+.btn:active:focus, .btn:focus, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus,
+.btn-info:hover, .open > .dropdown-toggle.btn-info, .btn-default.active, .btn-default.focus, .btn-default:active,
+.btn-default:focus, .btn-default:hover, .open > .dropdown-toggle.btn-default {
+  background-color: $superlight-gray;
+  //border-color: transparent;
+  border: 1px solid $buttons;
+  color: $buttons;
+  outline: none;
+  @include fx-noshadow;
+}
 
