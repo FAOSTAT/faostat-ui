@@ -1,4 +1,10 @@
+node_modules
+npm.log
+npm-debug.log
 *.iml
-*.DS_Store
+.idea
+Web.config
+**/.DS_Store
+.DS_Store
 /node_modules/
 /resources/
