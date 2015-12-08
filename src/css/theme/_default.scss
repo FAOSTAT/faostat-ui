@@ -6,12 +6,11 @@ body {
 
 }
 
-.container {
+.container, .container-fluid {
   background-color: white;
 }
 
 .truncate {
-  min-width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -23,15 +22,9 @@ body {
 
 .btn {
   @include fx-border-radius(0);
-  height: 25px;
-  min-width: 100px;
-  padding: 3px 12px;
-  font-size: 12px;
-  text-transform: uppercase;
   background-color: transparent;
   border: 1px solid $buttons;
   color: $buttons;
-  margin: 3px;
   outline: none;
 
 }

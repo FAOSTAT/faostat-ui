@@ -1,0 +1,36 @@
+/* Download */
+
+
+.faostat-downlaod-selector-single{
+
+  .panel-heading{
+   // padding: 5px 0;
+  }
+
+  .panel-body{
+    padding: 0;
+  }
+
+  .panel-footer{
+
+    .btn-group{
+      width: 100%;
+
+      .btn{
+        width: 50%;
+      }
+    }
+
+
+  }
+
+}
+
+
+.fs-tab-holder{
+  overflow: hidden;
+  .nav{
+    width: 1000px;
+    border-color: transparent;
+  }
+}

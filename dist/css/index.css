@@ -7,11 +7,10 @@
 body {
   background-color: #f1f1f1; }
 
-.container {
+.container, .container-fluid {
   background-color: white; }
 
 .truncate {
-  min-width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
@@ -24,15 +23,9 @@ body {
   -moz-border-radius: 0;
   -ms-border-radius: 0;
   border-radius: 0;
-  height: 25px;
-  min-width: 100px;
-  padding: 3px 12px;
-  font-size: 12px;
-  text-transform: uppercase;
   background-color: transparent;
   border: 1px solid #2ab896;
   color: #2ab896;
-  margin: 3px;
   outline: none; }
 
 .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
@@ -193,39 +186,6 @@ footer.fao-footer {
       margin: 3px; }
 
   /* End of the iPhone media query*/ }
-/*Form */
-.form-control {
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
-  outline: none;
-  background-color: #ededed;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  border-color: transparent;
-  -webkit-border-radius: 5;
-  -moz-border-radius: 5;
-  -ms-border-radius: 5;
-  border-radius: 5;
-  font-weight: 500;
-  padding: 3px 12px;
-  font-size: 12px;
-  height: 28px; }
-  .form-control:focus {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    outline: none;
-    border-color: #2ab896; }
-
-.input-group-btn .btn {
-  border-left: 0; }
-  .input-group-btn .btn:hover {
-    border-color: transparent; }
-
 /* Jstree Mood */
 li[role="treeitem"] {
   /*
@@ -305,5 +265,19 @@ ul[role="group"] {
 /* Third parties */
 /* Pages */
 /* Homepage */
+/* Download */
+.faostat-downlaod-selector-single .panel-body {
+  padding: 0; }
+.faostat-downlaod-selector-single .panel-footer .btn-group {
+  width: 100%; }
+  .faostat-downlaod-selector-single .panel-footer .btn-group .btn {
+    width: 50%; }
+
+.fs-tab-holder {
+  overflow: hidden; }
+  .fs-tab-holder .nav {
+    width: 1000px;
+    border-color: transparent; }
+
 /* Menu and some Header stuff TODO: remove the header related css from here */
 /* Modules. */
