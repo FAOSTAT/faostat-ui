@@ -1,7 +1,7 @@
 /* Base style File */
 
 body {
-
+  font-family: "FrutigerLTW02-45Light",Arial,Helvetica,Verdana,sans-serif;
   background-color: $fenix-light-bg;
 
 }
@@ -40,5 +40,24 @@ body {
   color: $buttons;
   outline: none;
   @include fx-noshadow;
+}
+
+.navbar-brand{
+  padding: 0;
+  //background-color: $fx-cool-blue-alt;
+}
+
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover{
+  //background-color: $fx-cool-blue-alt;
+}
+
+#faostat_ui_menu{
+
+  .navbar{
+    border: 0;
+    margin: 0 -15px;
+
+  }
+
 }
 

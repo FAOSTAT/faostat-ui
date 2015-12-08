@@ -5,6 +5,7 @@
 /* Base */
 /* Base style File */
 body {
+  font-family: "FrutigerLTW02-45Light",Arial,Helvetica,Verdana,sans-serif;
   background-color: #f1f1f1; }
 
 .container, .container-fluid {
@@ -24,8 +25,8 @@ body {
   -ms-border-radius: 0;
   border-radius: 0;
   background-color: transparent;
-  border: 1px solid #2ab896;
-  color: #2ab896;
+  border: 1px solid #0d6cac;
+  color: #0d6cac;
   outline: none; }
 
 .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
@@ -34,12 +35,19 @@ body {
 .btn-info:hover, .open > .dropdown-toggle.btn-info, .btn-default.active, .btn-default.focus, .btn-default:active,
 .btn-default:focus, .btn-default:hover, .open > .dropdown-toggle.btn-default {
   background-color: #f2f2f2;
-  border: 1px solid #2ab896;
-  color: #2ab896;
+  border: 1px solid #0d6cac;
+  color: #0d6cac;
   outline: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; }
+
+.navbar-brand {
+  padding: 0; }
+
+#faostat_ui_menu .navbar {
+  border: 0;
+  margin: 0 -15px; }
 
 /* Components */
 .nav-tabs {
@@ -265,6 +273,9 @@ ul[role="group"] {
 /* Third parties */
 /* Pages */
 /* Homepage */
+.fs-domain-holder {
+  height: 80px; }
+
 /* Download */
 .faostat-downlaod-selector-single .panel-body {
   padding: 0; }

@@ -142,8 +142,8 @@ define([
                 });
 
                 var t = Handlebars.compile(templateDomains);
-                self.$DOMAINS.hide().html(t(json)).slideDown(1000);
-                //self.$DOMAINS.append(t(json));
+                //self.$DOMAINS.hide().html(t(json)).slideDown(1000);
+                self.$DOMAINS.html(t(json));
 
                 // add listeners on domains
                 self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
