@@ -55,9 +55,9 @@ define([
 
             View.prototype.attach.call(this, arguments);
 
-            this.bindEventListeners();
-
             this.initComponents();
+
+            this.bindEventListeners();
         },
 
         bindEventListeners: function () {
@@ -65,6 +65,7 @@ define([
             var self = this;
 
             amplify.subscribe(E.STATE_CHANGE, this, this.onStateUpdate);
+            amplify.subscribe(E.MENU_UPDATE, this, this.onMenuUpdate);
 
             amplify.subscribe(E.NOTIFICATION_INFO, this, this.onNotificationInfo);
             amplify.subscribe(E.NOTIFICATION_WARNING, this, this.onNotificationWarning);
@@ -111,64 +112,23 @@ define([
             // feedback system
             this.$el.find(s.FEEDBACK_SYSTEM).on('click', function(e) {
                 console.warn('The feeback system opens in a popup in faostat3.fao.org');
-                window.open(C.FEEDBACK_SYSTEM_URL, "_target=black")
+                window.open(C.FEEDBACK_SYSTEM_URL, "_target=black");
             });
 
         },
 
         initComponents: function () {
 
-            // this is not currently used
-            // TODO: to not delete, use for the old menu and auth
-            var self = this,
-                menuConf = {
-
-                    url: C.TOP_MENU_CONFIG,
-
-                    template: C.TOP_MENU_TEMPLATE,
-
-                    //active: State.menu,
-                    container: s.TOP_MENU_CONTAINER,
-                    callback: _.bind(this.onMenuRendered, this),
-                    breadcrumb: {
-                        active: C.TOP_MENU_SHOW_BREADCRUMB,
-                        container: s.BREADCRUMB_CONTAINER,
-                        showHome: C.TOP_MENU_SHOW_BREADCRUMB_HOME
-                    },
-                    footer: {
-                        active: C.TOP_MENU_SHOW_FOOTER,
-                        container: s.FOOTER_MENU_CONTAINER
-                    }
-                },
-                menuConfAuth = _.extend({}, menuConf, {
-                    hiddens: C.TOP_MENU_AUTH_MODE_HIDDEN_ITEMS
-                }),
-                menuConfPub = _.extend({}, menuConf, {
-                    hiddens: C.TOP_MENU_PUBLIC_MODE_HIDDEN_ITEMS
-                });
-
-            this.authManager = AuthManager.init({
-                onLogin: _.bind(function () {
-                    self.topMenu.refresh(menuConfAuth);
-                }, this),
-                onLogout: _.bind(function () {
-                    Chaplin.mediator.publish(E.NOT_AUTHORIZED);
-                    self.topMenu.refresh(menuConfPub);
-                }, this)
-            });
-
-            //Top Menu
-            //this.topMenu = new Menu(this.authManager.isLogged() ? menuConfAuth : menuConfPub);
-
             /* FAOSTAT menu. */
             /* Initiate the menu. */
-            var menu = new FAOSTATMenu();
+            this.menu = new FAOSTATMenu();
             // TODO: fix menu language and check how is it taken
-            menu.init({
+            this.menu.init({
                 lang: Common.getLocale(),
                 //prefix: 'faostat_download_',
                 datasource: C.DATASOURCE
             });
+
 
             this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
 
@@ -184,27 +144,15 @@ define([
 
         },
 
-        onMenuRendered: function () {
-
-            this.onMenuUpdate();
-
-            amplify.subscribe(E.MENU_UPDATE, this, this.onMenuUpdate);
-
-        },
-
         onStateUpdate: function (s) {
 
-            //console.log(s);
-
-            State = $.extend(true, State, s);
-
-            amplify.publish(E.MENU_UPDATE);
+            amplify.publish(E.MENU_UPDATE, Object.keys(s)[0]);
 
         },
 
-        onMenuUpdate: function () {
+        onMenuUpdate: function (s) {
 
-           // this.topMenu.select(State.menu);
+            this.menu.select(s);
 
         },
 
