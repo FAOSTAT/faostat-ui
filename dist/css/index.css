@@ -194,60 +194,6 @@ footer.fao-footer {
       margin: 3px; }
 
   /* End of the iPhone media query*/ }
-/* Jstree Mood */
-li[role="treeitem"] {
-  /*
-    &:nth-child(odd){
-      background-color: #fff !important;
-    }*/ }
-  li[role="treeitem"]:nth-child(odd) {
-    background-color: #fff !important; }
-  li[role="treeitem"]:nth-child(even) {
-    background-color: #fff !important; }
-
-ul[role="group"] {
-  background-color: white !important; }
-  ul[role="group"] .jstree-node {
-    background-color: red; }
-
-.jstree-container-ul {
-  width: calc(100% - 25px); }
-
-.jstree-icon.External {
-  display: inline-block;
-  background-image: none; }
-  .jstree-icon.External:before {
-    content: 'E';
-    font-style: normal;
-    background-color: #666666;
-    display: inline-block;
-    color: white;
-    line-height: 15px;
-    width: 15px;
-    height: 15px; }
-
-.jstree-disabled {
-  opacity: 0.5; }
-
-/* Override Fenix Tree */
-.jstree-default-responsive .jstree-anchor {
-  white-space: normal;
-  height: auto; }
-
-[role='treeitem'] {
-  position: relative; }
-  [role='treeitem'] .jstree-wholerow {
-    height: 100%; }
-  [role='treeitem'] .jstree-wholerow-clicked {
-    height: 100%; }
-  [role='treeitem'][aria-expanded='true'] [role='group'] .jstree-ocl {
-    display: none; }
-  [role='treeitem'][aria-expanded='true'] [role='group'] .jstree-anchor {
-    padding-left: 35px; }
-    [role='treeitem'][aria-expanded='true'] [role='group'] .jstree-anchor .jstree-checkbox {
-      position: absolute;
-      left: 10px; }
-
 /* Fenix - Js tree */
 .jstree-default .jstree-search {
   color: #666666;
@@ -301,3 +247,5 @@ ul[role="group"] {
 
 /* Menu and some Header stuff TODO: remove the header related css from here */
 /* Modules. */
+
+/*# sourceMappingURL=index.css.map */
