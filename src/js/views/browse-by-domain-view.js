@@ -26,9 +26,11 @@ define([
     var s = {
 
             TREE: "#fs-browse-by-domain-tree",
+            SEARCH_TREE: "#fs-browse-by-domain-search",
             VIEW_TITLE: "#fs-browse-by-domain-view-title",
             VIEW: "#fs-browse-by-domain-view",
             RELATED_VIEWS: "#fs-browse-by-domain-view-related-views",
+
 
             FILTER_BOX: "[data-role='filter-box']",
             DASHBOARD: "[data-role='dashboard']"
@@ -94,6 +96,7 @@ define([
                 this.tree = new Tree();
                 this.tree.init({
                     placeholder_id: this.$TREE,
+                    placeholder_search: s.SEARCH_TREE,
                     datasource: C.DATASOURCE,
                     lang: this.o.lang,
                     code: this.o.code,

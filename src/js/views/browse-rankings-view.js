@@ -104,7 +104,7 @@ define([
                 placeholder_id: this.$TREE,
                 lang: this.o.lang,
                 code: this.o.code,
-                custom: this.parseTreeData(CM.tree.config),
+                custom: this.parseTreeDataJsTree(CM.tree.config),
                 callback: {
 
                     onDomainClick: _.bind(function (callback) {
@@ -172,9 +172,8 @@ define([
         parseTreeData: function(json) {
 
             var lang = this.o.lang,
-                code = this.o.code;
-
-            var data = [];
+                code = this.o.code,
+                data = [];
 
             _.each(json, function(d) {
 
@@ -182,7 +181,7 @@ define([
                     id: d.id,
                     text: d.title[lang.toLowerCase()] || d.title[lang],
                     state: {
-                        expanded: true,
+                        expanded: true
                     },
                     nodes: []
                 };
@@ -207,9 +206,8 @@ define([
 
         parseTreeDataJsTree: function(json) {
 
-            var lang = this.o.lang;
-
-            var data = [];
+            var lang = this.o.lang,
+                data = [];
 
             _.each(json, function(d) {
                 var parentID = d.id;
