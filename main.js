@@ -140,6 +140,10 @@ require([
                     //'leaflet-image': '//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image',
                     'leaflet-image': 'lib/leaflet-image',
 
+                    // fenix-ui-map
+                    'fenix-ui-map': '../../submodules/fenix-ui-map/dist/fenix-ui-map.min',
+                    'fenix-ui-map-config': '../../submodules/fenix-ui-map/dist/fenix-ui-map-config',
+
                     /* Google Analytics */
                     "ga": "//www.google-analytics.com/analytics"
                 },
