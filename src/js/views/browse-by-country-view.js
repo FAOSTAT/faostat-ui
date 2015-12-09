@@ -192,6 +192,8 @@ define([
 
                 this.$COUNTRY_LIST_CONTAINER.find('.' + this.o.countrySearchFilters).on('click', _.bind(function (e) {
 
+                    e.preventDefault();
+
                     this.o.code = $(e.target).data("id");
                     this.o.section = ROUTE.BROWSE_BY_COUNTRY_CODE;
 
