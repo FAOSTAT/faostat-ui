@@ -105,7 +105,10 @@ define(['jquery', 'q'], function ($, Q) {
                     "operator": config.operator,
                     "page_size": config.page_size,
                     "limit": config.limit,
-                    "page_number": config.page_number
+                    "page_number": config.page_number,
+                    "show_codes": config.show_codes,
+                    "show_flags": config.show_flags,
+                    "show_unit": config.show_unit
                 }),
                 contentType: "application/json",
                 dataType: "json",
@@ -169,7 +172,10 @@ define(['jquery', 'q'], function ($, Q) {
                     "operator": config.operator,
                     "page_size": config.page_size,
                     "limit": config.limit,
-                    "page_number": config.page_number
+                    "page_number": config.page_number,
+                    "show_codes": config.show_codes,
+                    "show_flags": config.show_flags,
+                    "show_unit": config.show_unit
                 },
                 type: 'POST'
             }));
@@ -178,7 +184,7 @@ define(['jquery', 'q'], function ($, Q) {
     };
 
     FAOSTATAPIClient.prototype.is_valid_data = function (config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number"], i;
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -189,7 +195,7 @@ define(['jquery', 'q'], function ($, Q) {
 
     FAOSTATAPIClient.prototype.apply_data_defaults = function (config) {
         var i,
-            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number"],
+            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"],
             defaults = {
                 "datasource": "production",
                 "output_type": "objects",
@@ -203,7 +209,10 @@ define(['jquery', 'q'], function ($, Q) {
                 "operator": "",
                 "page_size": "100",
                 "limit": "-1",
-                "page_number": "1"
+                "page_number": "1",
+                "show_codes": "1",
+                "show_flags": "1",
+                "show_unit": "1"
             },
             key;
         for (i = 0; i < Object.keys(defaults).length; i += 1) {
