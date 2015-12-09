@@ -39,6 +39,8 @@ define([
 
         //TABLE: "#fs-methodology-table",
         TREE: "#fs-methodology-tree",
+        SEARCH_TREE: "[data-role='search-tree']",
+
         INTRO: "#fs-methodology-intro",
         OUTPUT: "#fs-methodology-output"
 
@@ -120,6 +122,7 @@ define([
             this.tree.init({
                // options: CM.tree.options || null,
                 placeholder_id: this.$tree,
+                placeholder_search: this.$el.find(s.SEARCH_TREE),
                 lang: this.o.lang,
                 code: this.o.code,
                 custom: data,

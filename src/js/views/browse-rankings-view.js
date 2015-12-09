@@ -26,6 +26,7 @@ define([
     var s = {
 
             TREE: "#fs-browse-rankings-tree",
+            SEARCH_TREE: "#fs-browse-rankings-search",
 
             VIEW_CONTAINER: "#fs-browse-rankings-view-container",
             VIEW_TITLE: "#fs-browse-rankings-view-title",
@@ -102,6 +103,7 @@ define([
             this.tree.init({
                 options: CM.tree.options || null,
                 placeholder_id: this.$TREE,
+                placeholder_search: s.SEARCH_TREE,
                 lang: this.o.lang,
                 code: this.o.code,
                 custom: this.parseTreeDataJsTree(CM.tree.config),
