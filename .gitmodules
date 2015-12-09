@@ -61,3 +61,6 @@
 [submodule "submodules/faostat-ui-welcome-page"]
 	path = submodules/faostat-ui-welcome-page
 	url = https://github.com/FAOSTAT/faostat-ui-welcome-page.git
+[submodule "submodules/fenix-ui-map"]
+	path = submodules/fenix-ui-map
+	url = https://github.com/FENIX-Platform/fenix-ui-map.git
