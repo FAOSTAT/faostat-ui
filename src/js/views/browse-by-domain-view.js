@@ -96,7 +96,7 @@ define([
                 this.tree = new Tree();
                 this.tree.init({
                     placeholder_id: this.$TREE,
-                    placeholder_search: s.SEARCH_TREE,
+                    placeholder_search: this.$el.find(s.SEARCH_TREE),
                     datasource: C.DATASOURCE,
                     lang: this.o.lang,
                     code: this.o.code,

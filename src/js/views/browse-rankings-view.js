@@ -103,7 +103,7 @@ define([
             this.tree.init({
                 options: CM.tree.options || null,
                 placeholder_id: this.$TREE,
-                placeholder_search: s.SEARCH_TREE,
+                placeholder_search: this.$el.find(s.SEARCH_TREE),
                 lang: this.o.lang,
                 code: this.o.code,
                 custom: this.parseTreeDataJsTree(CM.tree.config),
