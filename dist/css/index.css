@@ -270,6 +270,12 @@ ul[role="group"] {
   background: none;
   background-color: #b4e6f0; }
 
+.leaflet-container .leaflet-control-attribution {
+  opacity: 0.7; }
+
+.fm-controller-box-icons-container {
+  display: none; }
+
 /* Third parties */
 /* Pages */
 /* Homepage */
@@ -289,6 +295,9 @@ ul[role="group"] {
   .fs-tab-holder .nav {
     width: 1000px;
     border-color: transparent; }
+
+.fs-map .panel-body {
+  padding: 0; }
 
 /* Menu and some Header stuff TODO: remove the header related css from here */
 /* Modules. */
