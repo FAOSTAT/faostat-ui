@@ -34,3 +34,33 @@
     border-color: transparent;
   }
 }
+
+.fs-table-holder{
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.pagination{
+  float: left;
+
+}
+
+.fs-page-number{
+  float: left;
+  padding: 25px;
+}
+
+
+/* Pivot Style */
+
+.pivot .lefttitle{
+  background-color: transparent;
+  background: none;
+}
+
+.pivot .collapse_button {
+  background-color: $fenix-hr;
+  font-family: $standard-text;
+  font-weight: normal;
+}

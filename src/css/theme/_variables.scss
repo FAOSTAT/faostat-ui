@@ -11,14 +11,8 @@ $host-menu-height : 40px;
 // Typography
 $small-text : 12px;
 $standard-text-size: 12px;
-$standard-text : normal normal 300 $standard-text-size/normal 'Roboto';
-$standard-text-bold : normal normal 500 14px/normal 'Roboto';
-$standard-text-big : normal normal 300 16px/normal 'Roboto';
+$standard-text : "FrutigerLTW02-45Light",Arial,Helvetica,Verdana,sans-serif;;
 
-$fx-text-h1: normal normal 300 18px/normal 'Roboto';
-$fx-text-h2: normal normal 300 14px/normal 'Roboto';
-$fx-text-h3: normal normal 500 12px/normal 'Roboto';
-$fx-text-h4: normal normal 300 11px/normal 'Roboto';
 
 
 $fx-text-smalltitle-normal: normal normal 400 10px/normal 'Roboto';
@@ -26,7 +20,8 @@ $fx-text-smalltitle-bold: normal normal 700 10px/normal 'Roboto';
 
 // Fenix Colors
 $fenix-standard-blue: rgba(53, 166, 220, 1);
-$fx-cool-blue: #2395ab;
+$fx-cool-blue: #337ab7;
+//$fx-cool-blue: red;
 $fx-cool-blue-alt: #174c74;
 
 
@@ -52,7 +47,7 @@ $light-brown: #f3efe0;
 $box-bg: #ededed;
 $superlight-gray: #f2f2f2;
 
-$buttons: #0d6cac;
+$buttons: $fx-cool-blue;
 
 $fenix-hr: #D2D0D0;
 $fenix-light-hr: #cccccc;

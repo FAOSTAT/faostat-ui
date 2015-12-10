@@ -30,6 +30,7 @@ define({
     previous: "Previous",
     first: "First",
     last: "Last",
-    please_select_an_option: "Please select an option"
+    please_select_an_option: "Please select an option",
+    filter_domain_tree: "Filter"
 
 });

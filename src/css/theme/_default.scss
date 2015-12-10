@@ -1,7 +1,7 @@
 /* Base style File */
 
 body {
-  font-family: "FrutigerLTW02-45Light",Arial,Helvetica,Verdana,sans-serif;
+  font-family: $standard-text;
   background-color: $fenix-light-bg;
 
 }
@@ -60,4 +60,77 @@ body {
   }
 
 }
+
+/* Override Fenix Tree */
+
+.fs-tree-holder{
+  padding-top: 25px;
+}
+
+.fs-tree{
+
+}
+
+.jstree-container-ul{
+
+  .jstree-anchor {
+    white-space: normal;
+    height: auto;
+  }
+
+  [role="group"].jstree-children{
+    .jstree-icon{
+      width: 15px;
+    }
+    [role='treeitem'] {
+      position: relative;
+    }
+    [role='treeitem'] .jstree-wholerow {
+      height: 100%; }
+    [role='treeitem'] .jstree-wholerow-clicked {
+      height: 100%; }
+
+  }
+
+
+
+
+}
+
+
+.fs-methodology-tree-holder{
+
+  .jstree-leaf{
+
+    position: relative;
+
+    .jstree-icon{
+      width: 0;
+
+    }
+
+    .jstree-wholerow {
+      height: 100%; }
+    .jstree-wholerow-clicked {
+      height: 100%; }
+  }
+
+  .fs-tree{
+    position: relative;
+    left: 5px;
+  }
+
+}
+
+
+
+
+.label-default{
+  background-color: transparent;
+}
+
+.label{
+  color: $fx-cool-blue;
+}
+
 

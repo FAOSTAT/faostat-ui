@@ -5,7 +5,7 @@
 /* Base */
 /* Base style File */
 body {
-  font-family: "FrutigerLTW02-45Light",Arial,Helvetica,Verdana,sans-serif;
+  font-family: "FrutigerLTW02-45Light", Arial, Helvetica, Verdana, sans-serif;
   background-color: #f1f1f1; }
 
 .container, .container-fluid {
@@ -25,8 +25,8 @@ body {
   -ms-border-radius: 0;
   border-radius: 0;
   background-color: transparent;
-  border: 1px solid #0d6cac;
-  color: #0d6cac;
+  border: 1px solid #337ab7;
+  color: #337ab7;
   outline: none; }
 
 .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
@@ -35,8 +35,8 @@ body {
 .btn-info:hover, .open > .dropdown-toggle.btn-info, .btn-default.active, .btn-default.focus, .btn-default:active,
 .btn-default:focus, .btn-default:hover, .open > .dropdown-toggle.btn-default {
   background-color: #f2f2f2;
-  border: 1px solid #0d6cac;
-  color: #0d6cac;
+  border: 1px solid #337ab7;
+  color: #337ab7;
   outline: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -48,6 +48,40 @@ body {
 #faostat_ui_menu .navbar {
   border: 0;
   margin: 0 -15px; }
+
+/* Override Fenix Tree */
+.fs-tree-holder {
+  padding-top: 25px; }
+
+.jstree-container-ul .jstree-anchor {
+  white-space: normal;
+  height: auto; }
+.jstree-container-ul [role="group"].jstree-children .jstree-icon {
+  width: 15px; }
+.jstree-container-ul [role="group"].jstree-children [role='treeitem'] {
+  position: relative; }
+.jstree-container-ul [role="group"].jstree-children [role='treeitem'] .jstree-wholerow {
+  height: 100%; }
+.jstree-container-ul [role="group"].jstree-children [role='treeitem'] .jstree-wholerow-clicked {
+  height: 100%; }
+
+.fs-methodology-tree-holder .jstree-leaf {
+  position: relative; }
+  .fs-methodology-tree-holder .jstree-leaf .jstree-icon {
+    width: 0; }
+  .fs-methodology-tree-holder .jstree-leaf .jstree-wholerow {
+    height: 100%; }
+  .fs-methodology-tree-holder .jstree-leaf .jstree-wholerow-clicked {
+    height: 100%; }
+.fs-methodology-tree-holder .fs-tree {
+  position: relative;
+  left: 5px; }
+
+.label-default {
+  background-color: transparent; }
+
+.label {
+  color: #337ab7; }
 
 /* Components */
 .nav-tabs {
@@ -77,7 +111,7 @@ body {
         position: absolute;
         width: 100%;
         height: 2px;
-        background-color: #2395ab;
+        background-color: #337ab7;
         left: 0;
         bottom: -2px;
         pointer-events: none;
@@ -85,11 +119,11 @@ body {
         -webkit-transform: scaleX(0);
         transform: scaleX(0); }
     .nav-tabs > li.active > a {
-      color: #2395ab;
+      color: #337ab7;
       background-color: transparent;
       border-color: transparent; }
       .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:active, .nav-tabs > li.active > a:visited, .nav-tabs > li.active > a:focus {
-        color: #2395ab;
+        color: #337ab7;
         background-color: transparent;
         border-color: transparent; }
       .nav-tabs > li.active > a:before {
@@ -194,6 +228,13 @@ footer.fao-footer {
       margin: 3px; }
 
   /* End of the iPhone media query*/ }
+.leaflet-container .leaflet-control-attribution {
+  opacity: 0.7; }
+
+.fm-controller-box-icons-container {
+  display: none; }
+
+/* Third parties */
 /* Fenix - Js tree */
 .jstree-default .jstree-search {
   color: #666666;
@@ -206,23 +247,16 @@ footer.fao-footer {
 
 .jstree-default .jstree-node,
 .jstree-default .jstree-icon {
-  background-image: url("../../submodules/fenix-ui-common//css/img/treejs-32px.png"); }
+  background-image: url("../../submodules/fenix-ui-common/css/img/treejs-32px.png"); }
 
 .jstree-default .jstree-wholerow-clicked {
   background: none;
-  background-color: #b4e6f0; }
+  background-color: #cfe1f2; }
 
 .jstree-default .jstree-wholerow-hovered {
   background: none;
-  background-color: #b4e6f0; }
+  background-color: #cfe1f2; }
 
-.leaflet-container .leaflet-control-attribution {
-  opacity: 0.7; }
-
-.fm-controller-box-icons-container {
-  display: none; }
-
-/* Third parties */
 /* Pages */
 /* Homepage */
 .fs-domain-holder {
@@ -241,6 +275,28 @@ footer.fao-footer {
   .fs-tab-holder .nav {
     width: 1000px;
     border-color: transparent; }
+
+.fs-table-holder {
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: 5px; }
+
+.pagination {
+  float: left; }
+
+.fs-page-number {
+  float: left;
+  padding: 25px; }
+
+/* Pivot Style */
+.pivot .lefttitle {
+  background-color: transparent;
+  background: none; }
+
+.pivot .collapse_button {
+  background-color: #D2D0D0;
+  font-family: "FrutigerLTW02-45Light", Arial, Helvetica, Verdana, sans-serif;
+  font-weight: normal; }
 
 .fs-map .panel-body {
   padding: 0; }

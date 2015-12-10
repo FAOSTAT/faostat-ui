@@ -14,11 +14,13 @@
 @import '../../src/css/components/faostat-tabs';
 @import '../../src/css/components/scroll-up';
 @import '../../src/css/components/fao-footer';
-@import '../../src/css/components/jstree';
+//@import '../../src/css/components/jstree';
 @import '../../src/css/components/map';
 
 
 /* Third parties */
+@import '../../submodules/fenix-ui-common/css/vendor/fx-jstree';
+
 
 /* Pages */
 @import '../../src/css/pages/home';
@@ -34,3 +36,4 @@
 //@import '../../submodules/faostat-ui-download-selector/css/faostat-download-selector';
 //@import '../../submodules/faostat-ui-download-options/css/fenix-ui-download-options';
 //@import '../../submodules/faostat-ui-table/css/faostat-ui-table';
+
