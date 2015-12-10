@@ -31,6 +31,6 @@ define({
     first: "First",
     last: "Last",
     please_select_an_option: "Please select an option",
-    filter_domain_tree: "Filter"
+    filter_domain_tree: "Search for a FAOSTAT Domain"
 
 });
