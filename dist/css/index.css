@@ -29,6 +29,14 @@ body {
   color: #337ab7;
   outline: none; }
 
+footer.container {
+  padding-top: 100px; }
+
+.bootstrap-content-box-reset * {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box; }
+
 .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
 .open > .dropdown-toggle.btn-primary, .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus,
 .btn:active:focus, .btn:focus, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus,
@@ -289,14 +297,22 @@ footer.fao-footer {
   padding: 25px; }
 
 /* Pivot Style */
-.pivot .lefttitle {
+.pivot .lefttitle, .pivot .toptitle {
+  background: none;
   background-color: transparent;
-  background: none; }
+  border-bottom-width: 1px;
+  border-bottom-color: #bbb; }
+
+.pivot .ztitle {
+  background: none;
+  background-color: #337ab7; }
 
 .pivot .collapse_button {
-  background-color: #D2D0D0;
+  background-color: transparent;
+  border: 1px solid #D2D0D0;
   font-family: "FrutigerLTW02-45Light", Arial, Helvetica, Verdana, sans-serif;
-  font-weight: normal; }
+  font-weight: normal;
+  color: #D2D0D0; }
 
 .fs-map .panel-body {
   padding: 0; }

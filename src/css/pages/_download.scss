@@ -54,13 +54,23 @@
 
 /* Pivot Style */
 
-.pivot .lefttitle{
-  background-color: transparent;
+.pivot .lefttitle, .pivot .toptitle{
   background: none;
+  background-color: transparent;
+  border-bottom-width: 1px;
+  border-bottom-color: #bbb;
+}
+
+.pivot .ztitle{
+  background: none;
+  background-color: $fx-cool-blue;
 }
 
 .pivot .collapse_button {
-  background-color: $fenix-hr;
+  background-color: transparent;
+  border: 1px solid $fenix-hr;
   font-family: $standard-text;
   font-weight: normal;
+  color: $fenix-hr;
 }
+

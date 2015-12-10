@@ -29,6 +29,37 @@ body {
 
 }
 
+footer.container{
+  padding-top: 100px;
+}
+
+
+//.checkbox, .radio{
+//  left: 20px; /* Fix For download section */
+//
+//  label{
+//    padding-left: 0;
+//  }
+//
+//}
+
+//input[type=checkbox], input[type=radio]{
+//  margin: 2px 0 0;
+//}
+
+
+.bootstrap-content-box-reset{
+
+  *{
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+
+
+}
+
+
 .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
 .open > .dropdown-toggle.btn-primary, .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus,
 .btn:active:focus, .btn:focus, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus,
