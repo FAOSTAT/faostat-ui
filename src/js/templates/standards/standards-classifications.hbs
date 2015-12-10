@@ -2,19 +2,24 @@
 <!--<br>-->
 
 <div class="row">
-    <div class="col-sm-3">
-        <!--<h2>{classifications_list}}</h2>-->
-        <!--<h2>{{faostat_domains}}</h2>-->
-        <!--<hr>-->
-        <input class='form-control' placeholder='{{search_ranking}}' data-role='search-tree'>
+
+    <div class="col-sm-3 fs-tree-holder">
+        <input class='form-control' placeholder='{{filter_domain_tree}}' data-role='search-tree'>
+        <br>
+        <span class="label label-default">{{faostat_domains}}</span>
         <div id="fs-classifications-tree"></div>
     </div>
+
     <div class="col-sm-9">
 
         <div id="fs-classifications-intro">
+            <!-- TODO FIX IT!!!!! -->
             <h1 style='margin-top:200px;' class="text-center">{{select_classification}}</h1>
         </div>
 
         <div id="fs-classifications-output"></div>
     </div>
+
+    <br><br>
+
 </div>

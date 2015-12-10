@@ -9,7 +9,7 @@ define([
     'globals/Common',
     'text!templates/standards/standards-abbreviations.hbs',
     'text!templates/standards/standards-table.hbs',
-    'i18n!nls/standards-methodology',
+    'i18n!nls/standards-abbreviations',
     'faostatapiclient',
     'list',
     'handlebars',
