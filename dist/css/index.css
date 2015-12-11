@@ -319,7 +319,7 @@ footer.fao-footer {
 
 /* Download */
 .fs-compare-filter-box .panel-body {
-  padding: 0px 0px 15px 10px; }
+  padding: 0px 15px 15px 15px; }
 
 /* Menu and some Header stuff TODO: remove the header related css from here */
 /* Modules. */
