@@ -10,27 +10,23 @@
         <ul class='nav nav-tabs' role='tablist'>
 
             <li class="active" role='presentation'>
-                <a data-section='browse_by_domain' role='tab' data-toggle='tab'>Compare</a>
+                <a data-section='browse_by_domain' role='tab' data-toggle='tab'>{{compare}}</a>
             </li>
 
         </ul>
     </div>
 </div>
 
-<div class="row">
-    <!--<div class="col-lg-2">-->
-        <!--<h1>{{filters}}</h1>-->
-    <!--</div>-->
-    <div class="col-lg-2 pull-right">
-        <button type="button" data-role="add_filter" class="btn btn-info btn-lg pull-right"><span><i class="fa fa-filter"></i></span> {{add_filter}}</button>
-    </div>
-</div>
+<div class="clearfix"></div>
+
+<!--<div class="row fs-content-padding"></div>-->
+<!--<div class="clearfix"></div>-->
 
 <!-- Box Selectors Filters -->
 
-<div class="row">
+<div class="row fs-content-padding">
     <div class="col-lg-12">
-        <div data-role="filters_container">
+        <div data-role="filters_container" class="fs-compare-filter-box">
             <!-- this contains a list of selector-view -->
         </div>
     </div>
@@ -41,7 +37,8 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <button type="button" data-role="compare_data" class="btn btn-primary btn-lg pull-right"><span><i class="fa fa-database"></i></span> {{compare_data}}</button>
+        <button type="button" data-role="compare_data" class="btn btn-default pull-right"><span><i class="fa fa-database"></i></span> {{compare_data}}</button>
+        <button type="button" data-role="add_filter" class="btn btn-default pull-right"><span><i class="fa fa-filter"></i></span> {{add_filter}}</button>
     </div>
 </div>
 <div class="row">
