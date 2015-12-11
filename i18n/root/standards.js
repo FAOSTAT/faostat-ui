@@ -7,7 +7,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
         units: 'Units',
         abbreviations: 'abbreviations',
-        filter_results: 'Filter Results',
+        filter_results: 'Filter Table',
         methodology: 'Methodology',
         methodologies: 'Methodologies',
         classifications: 'Classifications',
