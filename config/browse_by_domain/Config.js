@@ -57,7 +57,7 @@ define([
                 template: {
                     class: 'test',
                     height: '350px',
-                    footer: i18n.map_footer,
+                    footer: '<p>' + i18n.map_footer + '</p>',
                     addExport: true,
                     export: i18n.export_data
                 }
