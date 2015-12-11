@@ -38,7 +38,9 @@ define([
             DASHBOARD: "[data-role='dashboard']"
 
         },
-        defaultOptions = {},
+        defaultOptions = {
+            requestKey: 0
+        },
 
         BrowseByDomainView = View.extend({
 
@@ -192,7 +194,7 @@ define([
 
             dispose: function () {
 
-                log.info("DISPOSE!")
+                //log.info("DISPOSE!")
 
                 this.unbindEventListeners();
 
@@ -211,6 +213,11 @@ define([
                 // get and render the right view
                 Require([basePath + c.viewID], _.bind(function(view) {
 
+                    var filter = view.filter || null,
+                        dashboard = view.dashboard || null,
+                        requestKey = ++this.o.requestKey,
+                        t  = Handlebars.compile(templateView);
+
                     // extending view
                     view = $.extend(true, {}, c.config, view);
 
@@ -218,7 +225,6 @@ define([
                     ViewUtils.setDashboardComment(view);
 
                     /* Load main structure. */
-                    var t = Handlebars.compile(templateView);
                     this.$VIEW.append(t(view));
 
                     // update related views
@@ -230,10 +236,6 @@ define([
                     this.$FILTER_BOX = this.$VIEW.find(s.FILTER_BOX);
                     this.$DASHBOARD = this.$VIEW.find(s.DASHBOARD);
 
-                    var filter = view.filter || null,
-                        dashboard = view.dashboard || null;
-
-
                     // render filters
                     if (filter !== null) {
                         this.renderFilter({
@@ -241,7 +243,8 @@ define([
                             // override event listener for the filter change (custom for browse by domain)
                             E: $.extend(true, {}, EM),
                             container: this.$FILTER_BOX,
-                            lang: lang
+                            lang: lang,
+                            requestKey: requestKey
                         });
                     }
 
@@ -251,7 +254,8 @@ define([
                             container: this.$DASHBOARD,
                             layout: 'fluid',
                             //layout: 'injected',
-                            lang: lang
+                            lang: lang,
+                            requestKey: requestKey
                         }));
                     }
                     else{
@@ -274,7 +278,7 @@ define([
                 }
 
                 this.filterBox = new FilterBox();
-                log.info(this.filterBox);
+                //log.info(this.filterBox);
 
                 // render filters
                 this.filterBox.render(config, false);
@@ -295,25 +299,33 @@ define([
                     item.config = ViewUtils.defaultItemOptions(item, CM.view);
                 }, this));
 
+                config._name = 'by_domain';
                 this.dashboard.render(config);
 
             },
 
             updateDashboard: function(c) {
 
-                var isOnLoad = (c)? c.isOnLoad || false: false;
+                var isOnLoad = (c)? c.isOnLoad || false: false,
+                    isCurrentKey = (c.requestKey === this.o.requestKey);
 
-                // getFilters
-                var filters = this.filterBox.getFilters();
+                if ( isCurrentKey ) {
 
-                // apply filters to dashboard
-                this.dashboard.filter(filters, isOnLoad);
+                    // getFilters
+                    var filters = this.filterBox.getFilters();
+
+                    // apply filters to dashboard
+                    this.dashboard.filter(filters, isOnLoad);
+
+                }
 
             },
 
             onFilterInvalidSelection: function() {
 
-                this.dashboard.clear();
+                if ( this.dashboard) {
+                    this.dashboard.destroy();
+                }
 
             }
 

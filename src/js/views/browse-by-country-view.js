@@ -325,6 +325,7 @@ define([
 
             config.render =  true;
 
+            config._name = 'by_country';
             this.dashboard.render(config);
 
         },
@@ -358,6 +359,10 @@ define([
             // dirty fix or should be like that?
             Common.changeURL((this.o.code)? ROUTE.BROWSE_BY_COUNTRY_CODE: ROUTE.BROWSE_BY_COUNTRY, (this.o.code) ? [this.o.code] : [], false);
 
+            // dirty fix for invalidate size. TODO: remove it from here
+            if (this.m) {
+                this.m.map.invalidateSize();
+            }
         },
 
         dispose: function () {

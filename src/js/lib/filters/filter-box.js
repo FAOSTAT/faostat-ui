@@ -19,31 +19,29 @@ define([
     var s = {
 
         //FILTERS: '[data-role="filter-box"]'
+    },
+        events = {
+    },
 
-    };
+    defaultOptions = {
 
-    var events = {
-
-    };
-
-    var defaultOptions = {
         // EVENTS
         E: {
             ON_FILTER_CHANGE: E.ON_FILTER_CHANGE
-        },
+        }
 
-        requestKey: 0
+        //requestKey: 0
     };
-
-    'use strict';
 
     function FilterBox() {
         return this;
-    };
+    }
 
     FilterBox.prototype.render = function (options) {
 
         this.o = $.extend(true, {}, defaultOptions, options);
+
+       // log.info(this.o);
 
         this.o.lang = Common.getLocale();
 
@@ -57,10 +55,11 @@ define([
 
 
     FilterBox.prototype.initVariables = function () {
+
         this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
         // TODO: have a template?
-        log.info(this.o.container)
+        //log.info(this.o.container);
         this.$CONTAINER = $(this.o.container);
 
     };
@@ -103,18 +102,19 @@ define([
 
                 // binding the right event publish/subscriber
                 c.E = self.o.E;
+                c.requestKey = self.o.requestKey;
 
                 c.container = self.$CONTAINER.find('#' + id);
 
                 filter.init(c);
 
-                self.o.filters.push(filter)
+                self.o.filters.push(filter);
 
             });
 
         }).done(function() {
 
-            amplify.publish(self.o.E.ON_FILTER_CHANGE, {isOnLoad: true});
+            amplify.publish(self.o.E.ON_FILTER_CHANGE, {isOnLoad: true, requestKey: self.o.requestKey});
 
         });
 
@@ -147,9 +147,8 @@ define([
     FilterBox.prototype._preloadCodes = function (filter) {
 
         var id = filter.config.dimension_id,
-            defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [];
-
-        var request = $.extend({}, true, {
+            defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [],
+            request = $.extend({}, true, {
             datasource: C.DATASOURCE,
             lang: this.o.lang,
             subcodelists: null,
@@ -191,7 +190,6 @@ define([
     FilterBox.prototype.getFilters = function () {
 
         var f = [];
-        log.info(this.o);
         try {
             _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
                 f.push(this.o.filters[filterKey].getFilter());
@@ -200,7 +198,7 @@ define([
             log.error(e);
         }
 
-        log.info("end getFilters");
+        //log.info("end getFilters");
 
         return f;
     };
@@ -209,11 +207,11 @@ define([
     FilterBox.prototype.destroy = function () {
 
         // destroy all filters
-        if (this.$CONTAINER) {
+        if (this.$CONTAINER !== undefined) {
             this.$CONTAINER.empty();
         }
 
-        log.error("Handle destroy");
+        log.warn("Handle destroy of all filters");
 
     };
 

@@ -37,333 +37,352 @@ define([
             DASHBOARD: "[data-role='dashboard']"
 
         },
-        
-        o = {
-
-        };
-
-    var BrowseRankingsView = View.extend({
-
-        autoRender: true,
-
-        className: 'browse',
-
-        template: template,
-
-        initialize: function (options) {
-            this.o = $.extend(true, {}, o, options);
-
-            this.o.lang = Common.getLocale();
-
-            // setting the defualt code if missing
-            if (this.o.code === null || this.o.code === undefined) {
-                this.o.code = CM.defaultCode;
-            }
-
-            console.log(this.o.section);
-            this.changeState();
-
+        defaultOptions = {
+            requestKey: 0
         },
 
-        getTemplateData: function () {
-            return i18nLabels;
-        },
+        BrowseRankingsView = View.extend({
 
-        attach: function () {
+            autoRender: true,
 
-            View.prototype.attach.call(this, arguments);
+            className: 'browse',
 
-            //update State. needed?
-            amplify.publish(E.STATE_CHANGE, {browse: 'browse'});
+            template: template,
 
-            this.initVariables();
+            initialize: function (options) {
+                this.o = $.extend(true, {}, defaultOptions, options);
 
-            this.initComponents();
+                this.o.lang = Common.getLocale();
 
-            this.bindEventListeners();
-
-            this.configurePage();
-        },
-
-        initVariables: function () {
-
-            this.$TREE = this.$el.find(s.TREE);
-
-            this.$VIEW_CONTAINER = this.$el.find(s.VIEW_CONTAINER);
-            this.$VIEW_TITLE = this.$el.find(s.VIEW_TITLE);
-            this.$VIEW = this.$el.find(s.VIEW);
-            this.$VIEW_NOT_AVAILABLE = this.$el.find(s.VIEW_NOT_AVAILABLE);
-
-
-        },
-
-        initComponents: function () {
-
-            this.tree = new Tree();
-            this.tree.init({
-                options: CM.tree.options || null,
-                placeholder_id: this.$TREE,
-                placeholder_search: this.$el.find(s.SEARCH_TREE),
-                lang: this.o.lang,
-                code: this.o.code,
-                custom: this.parseTreeDataJsTree(CM.tree.config),
-                callback: {
-
-                    onDomainClick: _.bind(function (callback) {
-
-                        this.o.code = callback.id;
-                        this.o.label = callback.label;
-
-                        log.info(this.o);
-
-                        // update view
-                        this.updateView();
-
-                        // change url state
-                        this.changeState();
-
-                    }, this),
-
-                    onGroupClick: _.bind(function (callback) {
-
-                        this.$VIEW_CONTAINER.hide();
-                        this.$VIEW_NOT_AVAILABLE.show();
-
-                    }, this),
-
-                    onTreeRendered:  _.bind(function (callback) {
-
-                        this.o.code = callback.id;
-                        this.o.label = callback.label;
-
-                        // update view
-                        this.updateView();
-
-                    }, this)
-
-
+                // setting the defualt code if missing
+                if (this.o.code === null || this.o.code === undefined) {
+                    this.o.code = CM.defaultCode;
                 }
-            });
 
-        },
+                this.changeState();
 
-        configurePage: function () {
+            },
 
-        },
+            getTemplateData: function () {
+                return i18nLabels;
+            },
 
-        updateView: function () {
+            attach: function () {
 
-            this.$VIEW_NOT_AVAILABLE.hide();
-            this.$VIEW_CONTAINER.show();
+                View.prototype.attach.call(this, arguments);
 
-            var code = this.o.code,
-                label = this.o.label;
+                //update State. needed?
+                amplify.publish(E.STATE_CHANGE, {browse: 'browse'});
 
-            this.$VIEW_TITLE.html(label);
+                this.initVariables();
 
-            var obj = {
-                container: this.$VIEW,
-                basePath:CM.viewsBasePath,
-                viewID: code
-            };
+                this.initComponents();
 
-            this.createView(obj);
+                this.bindEventListeners();
 
-        },
+                this.configurePage();
+            },
 
-        parseTreeData: function(json) {
+            initVariables: function () {
 
-            var lang = this.o.lang,
-                code = this.o.code,
-                data = [];
+                this.$TREE = this.$el.find(s.TREE);
 
-            _.each(json, function(d) {
+                this.$VIEW_CONTAINER = this.$el.find(s.VIEW_CONTAINER);
+                this.$VIEW_TITLE = this.$el.find(s.VIEW_TITLE);
+                this.$VIEW = this.$el.find(s.VIEW);
+                this.$VIEW_NOT_AVAILABLE = this.$el.find(s.VIEW_NOT_AVAILABLE);
 
-                var v = {
-                    id: d.id,
-                    text: d.title[lang.toLowerCase()] || d.title[lang],
-                    state: {
-                        expanded: true
-                    },
-                    nodes: []
+
+            },
+
+            initComponents: function () {
+
+                this.tree = new Tree();
+                this.tree.init({
+                    options: CM.tree.options || null,
+                    placeholder_id: this.$TREE,
+                    placeholder_search: this.$el.find(s.SEARCH_TREE),
+                    lang: this.o.lang,
+                    code: this.o.code,
+                    custom: this.parseTreeDataJsTree(CM.tree.config),
+                    callback: {
+
+                        onDomainClick: _.bind(function (callback) {
+
+                            this.o.code = callback.id;
+                            this.o.label = callback.label;
+
+                            log.info(this.o);
+
+                            // update view
+                            this.updateView();
+
+                            // change url state
+                            this.changeState();
+
+                        }, this),
+
+                        onGroupClick: _.bind(function (callback) {
+
+                            this.$VIEW_CONTAINER.hide();
+                            this.$VIEW_NOT_AVAILABLE.show();
+
+                        }, this),
+
+                        onTreeRendered:  _.bind(function (callback) {
+
+                            this.o.code = callback.id;
+                            this.o.label = callback.label;
+
+                            // update view
+                            this.updateView();
+
+                        }, this)
+
+
+                    }
+                });
+
+            },
+
+            configurePage: function () {
+
+            },
+
+            updateView: function () {
+
+                this.$VIEW_NOT_AVAILABLE.hide();
+                this.$VIEW_CONTAINER.show();
+
+                var code = this.o.code,
+                    label = this.o.label;
+
+                this.$VIEW_TITLE.html(label);
+
+                var obj = {
+                    container: this.$VIEW,
+                    basePath:CM.viewsBasePath,
+                    viewID: code
                 };
 
-                _.each(d.views, function(view) {
-                    v.nodes.push({
-                        id: view.id,
-                        text: view.title[lang.toLowerCase()] || d.title[lang],
+                this.createView(obj);
+
+            },
+
+            parseTreeData: function(json) {
+
+                var lang = this.o.lang,
+                    code = this.o.code,
+                    data = [];
+
+                _.each(json, function(d) {
+
+                    var v = {
+                        id: d.id,
+                        text: d.title[lang.toLowerCase()] || d.title[lang],
                         state: {
-                            selected: (view.id === code)
-                        }
+                            expanded: true
+                        },
+                        nodes: []
+                    };
+
+                    _.each(d.views, function(view) {
+                        v.nodes.push({
+                            id: view.id,
+                            text: view.title[lang.toLowerCase()] || d.title[lang],
+                            state: {
+                                selected: (view.id === code)
+                            }
+                        });
                     });
-                });
 
-                data.push(v);
-
-            });
-
-            return data;
-
-        },
-
-        parseTreeDataJsTree: function(json) {
-
-            var lang = this.o.lang,
-                data = [];
-
-            _.each(json, function(d) {
-                var parentID = d.id;
-                data.push({
-                    id: parentID,
-                    text: d.title[lang.toLowerCase()] || d.title[lang],
-                    parent: '#'
+                    data.push(v);
 
                 });
 
-                _.each(d.views, function(view) {
+                return data;
+
+            },
+
+            parseTreeDataJsTree: function(json) {
+
+                var lang = this.o.lang,
+                    data = [];
+
+                _.each(json, function(d) {
+                    var parentID = d.id;
                     data.push({
-                        id: view.id,
-                        text: view.title[lang.toLowerCase()] || d.title[lang],
-                        parent: parentID
+                        id: parentID,
+                        text: d.title[lang.toLowerCase()] || d.title[lang],
+                        parent: '#'
 
                     });
+
+                    _.each(d.views, function(view) {
+                        data.push({
+                            id: view.id,
+                            text: view.title[lang.toLowerCase()] || d.title[lang],
+                            parent: parentID
+
+                        });
+                    });
+
                 });
+                return data;
 
-            });
-            return data;
+            },
 
-        },
+            bindEventListeners: function () {
 
-        bindEventListeners: function () {
+                amplify.subscribe(EM.ON_FILTER_CHANGE, this, this.updateDashboard);
 
-            amplify.subscribe(EM.ON_FILTER_CHANGE, this, this.updateDashboard);
+            },
 
-        },
+            unbindEventListeners: function () {
 
-        unbindEventListeners: function () {
+                amplify.subscribe(EM.ON_FILTER_CHANGE, this.updateDashboard);
 
-            amplify.subscribe(EM.ON_FILTER_CHANGE, this.updateDashboard);
+            },
 
-        },
+            changeState: function() {
 
-        changeState: function() {
+                Common.changeURL(this.o.section + '_code', [this.o.code], false);
 
-            Common.changeURL(this.o.section + '_code', [this.o.code], false);
+            },
 
-        },
+            dispose: function () {
 
-        dispose: function () {
+                this.unbindEventListeners();
 
-            this.unbindEventListeners();
+                View.prototype.dispose.call(this, arguments);
+            },
 
-            View.prototype.dispose.call(this, arguments);
-        },
+            // TODO: move to a common area for all the modules? (create a submodule?)
+            createView: function(c) {
 
-        // TODO: move to a common area for all the modules? (create a submodule?)
-        createView: function(c) {
+                var lang = this.o.lang,
+                    basePath = c.basePath || CM.viewsBasePath,
+                    updatedRelatedViews = (c.updatedRelatedViews !== undefined)? c.updatedRelatedViews: true;
 
-            var lang = this.o.lang,
-                basePath = c.basePath || CM.viewsBasePath,
-                updatedRelatedViews = (c.updatedRelatedViews !== undefined)? c.updatedRelatedViews: true;
+                this.$VIEW.empty();
 
-            this.$VIEW.empty();
+                // get and render the right view
+                Require([basePath + c.viewID], _.bind(function(view) {
 
-            // get and render the right view
-            Require([basePath + c.viewID], _.bind(function(view) {
+                    var filter = view.filter || null,
+                        dashboard = view.dashboard || null,
+                        requestKey = ++this.o.requestKey,
+                        t  = Handlebars.compile(templateView);
 
-                // extending view
-                view = $.extend(true, {}, c.config, view);
+                    // extending view
+                    view = $.extend(true, {}, c.config, view);
 
-                // set comments
-                ViewUtils.setDashboardComment(view);
+                    // set comments
+                    ViewUtils.setDashboardComment(view);
 
-                /* Load main structure. */
-                var t = Handlebars.compile(templateView);
-                this.$VIEW.append(t(view));
+                    /* Load main structure. */
+                    this.$VIEW.append(t(view));
 
-                // update related views
-                // TODO: review the relatedViews template part
-                if ( updatedRelatedViews) {
-                    ViewUtils.addRelatedViews(this.$RELATED_VIEWS, view, _.bind(this.createView, this));
+                    // update related views
+                    // TODO: review the relatedViews template part
+                    if ( updatedRelatedViews) {
+                        ViewUtils.addRelatedViews(this.$RELATED_VIEWS, view, _.bind(this.createView, this));
+                    }
+
+                    this.$FILTER_BOX = this.$VIEW.find(s.FILTER_BOX);
+                    this.$DASHBOARD = this.$VIEW.find(s.DASHBOARD);
+
+
+                    // render filters
+                    if (filter !== null) {
+                        this.renderFilter({
+                            filter: filter,
+                            // override event listener for the filter change (custom for browse by domain)
+                            E: $.extend(true, {}, EM),
+                            container: this.$FILTER_BOX,
+                            lang: lang,
+                            requestKey: requestKey
+                        });
+                    }
+
+                    // render dashboard
+                    if (dashboard !== null) {
+                        this.renderDashboard($.extend(true, {}, view.dashboard, {
+                            container: this.$DASHBOARD,
+                            layout: 'fluid',
+                            //layout: 'injected',
+                            lang: lang,
+                            requestKey: requestKey
+                        }));
+                    }else{
+                        log.error("View is not defined, handle exception");
+                    }
+
+                }, this));
+
+            },
+
+            renderFilter: function(config) {
+
+                // create filters
+                if (this.filterBox && this.filterBox.destroy) {
+                    this.filterBox.destroy();
                 }
 
-                this.$FILTER_BOX = this.$VIEW.find(s.FILTER_BOX);
-                this.$DASHBOARD = this.$VIEW.find(s.DASHBOARD);
-
-                var filter = view.filter || null,
-                    dashboard = view.dashboard || null;
+                this.filterBox = new FilterBox();
 
                 // render filters
-                if (filter !== null) {
-                    this.renderFilter({
-                        filter: filter,
-                        // override event listener for the filter change (custom for browse by domain)
-                        E: $.extend(true, {}, EM),
-                        container: this.$FILTER_BOX,
-                        lang: lang
-                    });
+                this.filterBox.render(config, false);
+
+            },
+
+            renderDashboard: function(config) {
+
+                console.log("RENDER DASHBOARD!");
+
+                if (this.dashboard && this.dashboard.destroy) {
+                    this.dashboard.destroy();
                 }
 
-                // render dashboard
-                if (dashboard !== null) {
-                    this.renderDashboard($.extend(true, {}, view.dashboard, {
-                        container: this.$DASHBOARD,
-                        layout: 'fluid',
-                        //layout: 'injected',
-                        lang: lang}));
-                }else{
-                    log.error("View is not defined, handle exception");
+                this.dashboard = new Dashboard();
+
+                // setting default filter options (i.e. language and datasouce)
+                config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
+                _.each(config.items, _.bind(function(item) {
+                    item.config = ViewUtils.defaultItemOptions(item, CM.view);
+                }, this));
+
+                config._name = 'rankigns';
+                this.dashboard.render(config);
+
+            },
+
+            updateDashboard: function(c) {
+
+                var isOnLoad = (c)? c.isOnLoad || false: false,
+                    isCurrentKey = (c.requestKey === this.o.requestKey);
+
+                if ( isCurrentKey ) {
+
+                    // getFilters
+                    var filters = this.filterBox.getFilters();
+
+                    // apply filters to dashboard
+                    this.dashboard.filter(filters, isOnLoad);
+
                 }
 
-            }, this));
+            },
 
-        },
+            onFilterInvalidSelection: function() {
 
-        renderFilter: function(config) {
+                if ( this.dashboard) {
+                    this.dashboard.destroy();
+                }
 
-            // create filters
-            if (this.filterBox && this.filterBox.destroy) {
-                this.filterBox.destroy();
             }
 
-            this.filterBox = new FilterBox();
-
-            // render filters
-            this.filterBox.render(config, false);
-
-        },
-
-        renderDashboard: function(config) {
-
-            if (this.dashboard && this.dashboard.destroy) {
-                this.dashboard.destroy();
-            }
-
-            this.dashboard = new Dashboard();
-
-            // setting default filter options (i.e. language and datasouce)
-            config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
-            _.each(config.items, _.bind(function(item) {
-                item.config = ViewUtils.defaultItemOptions(item, CM.view);
-            }, this));
-
-            this.dashboard.render(config);
-
-        },
-
-        updateDashboard: function(c) {
-
-            var isOnLoad = (c)? c.isOnLoad || false: false;
-
-            // getFilters
-            var filters = this.filterBox.getFilters();
-
-            // apply filters to dashboard
-            this.dashboard.filter(filters, isOnLoad);
-
-        }
-
-    });
+        });
 
     return BrowseRankingsView;
 });
