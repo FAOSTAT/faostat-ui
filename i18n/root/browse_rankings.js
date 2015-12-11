@@ -7,7 +7,7 @@ define(['jquery', 'i18n!nls/browse'], function ($, I18N) {
 
         "tree_title": "Rankings",
         "select_a_node": "Please select one of the domains",
-        "search_ranking": "Search"
+        "search_ranking": "Search for a Ranking"
 
     });
 
