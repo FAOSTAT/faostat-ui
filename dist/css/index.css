@@ -86,10 +86,13 @@ footer.container {
   left: 5px; }
 
 .label-default {
-  background-color: transparent; }
+  color: #337ab7; }
+
+.label-danger {
+  color: #e00000; }
 
 .label {
-  color: #337ab7; }
+  background-color: transparent; }
 
 /* Components */
 .nav-tabs {
