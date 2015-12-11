@@ -28,8 +28,8 @@ define(function () {
 
         EXPORT_DATA: 'fs.export_data.event',
 
-        // MAP:
-        MAP_REFRESH: 'fs.map.invalidate_size.event'
+        // MAP/CHART resize:
+        WINDOW_RESIZE: 'fs.window.resize.event'
 
     };
 });
