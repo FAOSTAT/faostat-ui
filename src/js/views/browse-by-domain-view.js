@@ -6,6 +6,7 @@ define([
     'views/base/view',
     'config/FAOSTAT',
     'config/Config',
+    'config/Routes',
     'config/Events',
     'config/browse_by_domain/Config',
     'config/browse_by_domain/Events',
@@ -19,7 +20,7 @@ define([
     'fx-ds/start',
     'lib/view/view-utils',
     'amplify'
-], function (Require, $, log, View, F, C, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils) {
+], function (Require, $, log, View, F, C, ROUTE, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils) {
 
     'use strict';
 
@@ -30,7 +31,8 @@ define([
             VIEW_TITLE: "#fs-browse-by-domain-view-title",
             VIEW: "#fs-browse-by-domain-view",
             RELATED_VIEWS: "#fs-browse-by-domain-view-related-views",
-
+            DOWNLOAD_INTERACTIVE_LINK: '[data-role="download-interactive-link"]',
+            DOWNLOAD_BULK_LINK: '[data-role="download-bulk-link"]',
 
             FILTER_BOX: "[data-role='filter-box']",
             DASHBOARD: "[data-role='dashboard']"
@@ -139,6 +141,19 @@ define([
                 this.$VIEW_TITLE.html(title);
                 this.$RELATED_VIEWS.empty();
 
+                // Go to the download section
+                this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
+                this.$DOWNLOAD_INTERACTIVE_LINK.on('click', function(e) {
+                    e.preventDefault();
+                    Common.changeURL(ROUTE.DOWNLOAD_INTERACTIVE, [code], true);
+                });
+
+                this.$DOWNLOAD_BULK_LINK = this.$el.find(s.DOWNLOAD_BULK_LINK);
+                this.$DOWNLOAD_BULK_LINK.on('click', function(e) {
+                    e.preventDefault();
+                    Common.changeURL(ROUTE.DOWNLOAD_BULK, [code], true);
+                });
+
                 var obj = {
                     container: this.$VIEW,
                     containerRelatedViews: this.$RELATED_VIEWS,
@@ -155,7 +170,6 @@ define([
             },
 
             bindEventListeners: function () {
-
 
                 amplify.subscribe(EM.ON_FILTER_CHANGE, this, this.updateDashboard);
                 amplify.subscribe(EM.ON_FILTER_INVALID_SELECTION, this, this.onFilterInvalidSelection);
