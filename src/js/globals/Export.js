@@ -76,7 +76,7 @@ define([
             csvUrl = URL.createObjectURL(csvData),
             a = document.createElement('a'),
             d = new Date(),
-            filename = name + "_" + (d.getMonth()+1) +'-' + d.getDate() +'-'+d.getFullYear() + '.csv';
+            filename = name + "_" + (d.getMonth()+1) +'-' + d.getDate() +'-'+ d.getFullYear() + '.csv';
 
         a.href = csvUrl;
         a.target = '_blank';
