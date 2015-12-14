@@ -51,13 +51,13 @@ define([
         if (typeof this.api[requestType] == 'function') {
 
             this.api[requestType](request).then(function (csv) {
-                log.debug(csv);
+                //log.debug(csv);
             }).fail(function (error) {
 
                 amplify.publish(E.WAITING_HIDE);
 
-                log.info(error);
-                window.btoa(unescape(encodeURIComponent(error)))
+                //log.info(error);
+                //window.btoa(unescape(encodeURIComponent(error)))
                 self._exportResult(error, name);
 
             });
@@ -72,15 +72,13 @@ define([
     Export.prototype._exportResult = function (result, name) {
 
         var csvString = result.responseText,
+            csvData = new Blob([csvString], { type: 'text/csv' }),
+            csvUrl = URL.createObjectURL(csvData),
             a = document.createElement('a'),
             d = new Date(),
-            filename = name + "_" +
-                (d.getMonth()+1) +'-' + d.getDate() +'-'+d.getFullYear()
-                + '.csv';
+            filename = name + "_" + (d.getMonth()+1) +'-' + d.getDate() +'-'+d.getFullYear() + '.csv';
 
-        //a.href        = 'data:text/csv;charset=utf-8;base64,' + window.btoa(csvString);
-        // TODO: find a better way unescape is deprecated!
-        a.href = 'data:text/csv;charset=utf-8;base64,' + window.btoa(unescape(encodeURIComponent(csvString)));
+        a.href = csvUrl;
         a.target = '_blank';
         a.download = filename;
         document.body.appendChild(a);
