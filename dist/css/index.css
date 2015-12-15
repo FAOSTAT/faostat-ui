@@ -370,6 +370,12 @@ footer.fao-footer {
   font-weight: normal;
   color: #d2d0d0; }
 
+.fs-browse-content-padding {
+  margin-top: 15px; }
+
+.fs-browse-view-padding {
+  margin-top: 30px; }
+
 .fs-map .panel-body {
   padding: 0; }
 .fs-map .panel-footer p {
