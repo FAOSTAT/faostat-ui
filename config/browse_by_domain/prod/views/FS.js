@@ -48,7 +48,7 @@ define(function () {
                 decimal_separator: ".",
                 limit: -1,
                 thousand_separator: ",",
-                "null_values": false,
+                "null_values": true,
                 // TODO: remove it the page_size!!!
                 page_size: 0,
                 per_page: 0,

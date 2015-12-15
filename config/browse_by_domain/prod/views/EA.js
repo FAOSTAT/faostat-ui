@@ -184,9 +184,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Development flow types of {{donor}} to {{purpose}} in US$, 2013 prices",
-                                fr: "Development flow types of {{donor}} to {{purpose}} in US$, 2013 prices",
-                                es: "Development flow types of {{donor}} to {{purpose}} in US$, 2013 prices"
+                                en: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} US$, 2013 prices",
+                                fr: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} US$, 2013 prices",
+                                es: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} US$, 2013 prices"
                             },
                             subtitle: "{{year}}"
                         }

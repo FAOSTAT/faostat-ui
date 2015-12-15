@@ -23,7 +23,8 @@ define(function () {
                     "componentType": {
                         <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-3",
-                        "type": "dropDownList"
+                        "type": "dropDownList",
+                        "multiple": true
                     },
                     "config": {
                         "dimension_id": "items",
@@ -38,14 +39,13 @@ define(function () {
                     "parameter": "List1Codes",
                     "componentType": {
                         "class": "col-lg-3",
-                        "type": "dropDownList"
-                        //"multiple": true
+                        "type": "dropDownList",
+                        "multiple": true
                     },
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
                 {
@@ -245,7 +245,7 @@ define(function () {
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                         List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        "group_by": 'year',
+                        "group_by": 'year, item',
                         "order_by": 'area'
                     }
                 },
@@ -291,7 +291,7 @@ define(function () {
                     deniedTemplateFilter: [],
                     filter: {
                         List1Codes: ["5000>"],
-                        "group_by": 'year',
+                        "group_by": 'year, item',
                         "order_by": 'value DESC',
                         "limit": '10'
                     }
