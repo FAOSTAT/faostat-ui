@@ -199,7 +199,8 @@ define(function () {
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['recipientarea', 'item', 'element']
+                            seriesDimensions: ['recipientarea', 'item', 'element'],
+                            decimalPlaces: 2
                         },
                         template: {
                             // height:'350px'
@@ -234,7 +235,8 @@ define(function () {
                             xDimensions: ['recipientarea'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['donor']
+                            seriesDimensions: ['donor'],
+                            decimalPlaces: 2
                         },
                         template: {},
                         creator: {
@@ -275,7 +277,8 @@ define(function () {
                             xDimensions: ['donor'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['recipientarea']
+                            seriesDimensions: ['recipientarea'],
+                            decimalPlaces: 2
                         },
                         template: {},
                         creator: {

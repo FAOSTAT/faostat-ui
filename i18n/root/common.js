@@ -12,6 +12,7 @@ define({
     "selector_select_none" : "Select None",
 
     "results": "Results",
+
     "group": "Group",
     "groups": "Groups",
     "domain": "Domain",
@@ -21,6 +22,10 @@ define({
     "regions": "Regions",
     "area": "Area",
     "year": "Year",
+    "donor": "Donor",
+    "recipientarea": "Recipient Area",
+    "analyticalaggregates": "Aid Aggregates",
+
     no_data_available: 'No data available.',
     faostat_domains: 'FAOSTAT Domains',
     loading: 'Loading',
