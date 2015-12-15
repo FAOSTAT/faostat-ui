@@ -550,5 +550,6 @@ define([],function () {
                 "Element": "Value"
             }]
         }
-    }
+    };
+
 });
