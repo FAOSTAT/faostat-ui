@@ -10,3 +10,30 @@
   display:none;
 }
 
+
+.leaflet-popup-content-wrapper {
+
+  box-shadow: none;
+  border-radius: 7px;
+
+  .leaflet-popup-content {
+    line-height: 1.5;
+
+    .fm-popup {
+
+      //font-size: 18px;
+
+      .fm-popup-join-content {
+
+        color: $fx-cool-blue;
+        font-size: 22px;
+
+      }
+
+    }
+
+  }
+
+}
+
+

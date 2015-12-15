@@ -245,9 +245,14 @@ footer.fao-footer {
 .fm-controller-box-icons-container {
   display: none; }
 
-.fm-popup .fm-popup-join-content {
-  color: #337ab7;
-  font-size: 20px; }
+.leaflet-popup-content-wrapper {
+  box-shadow: none;
+  border-radius: 7px; }
+  .leaflet-popup-content-wrapper .leaflet-popup-content {
+    line-height: 1.5; }
+    .leaflet-popup-content-wrapper .leaflet-popup-content .fm-popup .fm-popup-join-content {
+      color: #337ab7;
+      font-size: 22px; }
 
 /* Fenix Range Slider */
 .ui-rangeSlider-innerBar {
