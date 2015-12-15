@@ -270,17 +270,22 @@ define([
                 zIndex: 0
             });
 
-            this.m.map.addLayer(CartoDB_Positron);
+            var Esri_WorldPhysical = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Physical_Map/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri &mdash; Source: US National Park Service',
+                maxZoom: 19,
+                zIndex: 0
+                //opacity: 0.4
+            });
 
-            // highlight country
-            // TODO: how to check for old countries (i.e. USSR) or new (i.e. south sudan)?
-            this.m.zoomTo('gaul0_faostat_3857', "faost_code", [code]);
+
+            // added dirty baselyaer
+            this.m.map.addLayer(Esri_WorldPhysical);
 
             var boundary = {
                 layers: 'fenix:gaul0_line_3857',
-              layertitle: 'Country Boundaries',
-                    urlWMS: 'http://fenix.fao.org/geoserver',
-                    opacity: '0.7'
+                layertitle: 'Country Boundaries',
+                urlWMS: 'http://fenix.fao.org/geoserver',
+                opacity: '0.2'
             };
 
             this.m.addLayer(new FM.layer(boundary));
@@ -295,6 +300,21 @@ define([
                 lang: 'en'
             });
             this.m.addLayer(highlight);
+
+            var CartoDB_PositronOnlyLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+                subdomains: 'abcd',
+                maxZoom: 19,
+                zIndex: 100000,
+                opacity: 0.9
+            });
+
+            this.m.map.addLayer(CartoDB_PositronOnlyLabels);
+
+            // highlight country
+            // TODO: how to check for old countries (i.e. USSR) or new (i.e. south sudan)?
+            this.m.zoomTo('gaul0_faostat_3857', "faost_code", [code]);
+
 
         },
 

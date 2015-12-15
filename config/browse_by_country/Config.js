@@ -29,7 +29,8 @@ define([
                     geosearch: false,
                     mouseposition: false,
                     controlloading : true,
-                    zoomcontrol: 'bottomright'
+                    zoomcontrol: 'bottomright',
+                    scalecontrol: false
                 },
                 guiController: {
                     overlay: false,
