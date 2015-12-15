@@ -9,7 +9,6 @@ define([
     'config/Events',
     'text!templates/standards/standards.hbs',
     'i18n!nls/standards',
-    'underscore',
     'views/standards-units-view',
     'views/standards-abbreviations-view',
     'views/standards-methodology-view',
@@ -24,7 +23,6 @@ define([
              E,
              template,
              i18nLabels,
-             _,
              UnitsView,
              AbbreviationsView,
              MethodologyView,
@@ -116,9 +114,6 @@ define([
                 // switch tab
                 self.switchStandardsTab(section);
 
-                log.info("here")
-
-                //log.info('here');
                 Common.changeURL(section, [], true);
 
             });
@@ -127,23 +122,23 @@ define([
 
         switchStandardsTab: function(section) {
 
-            if (section == this.$units.data("section")) {
+            if (section === this.$units.data("section")) {
                 this.initUnits();
             }
 
-            else if (section == this.$abbreviations.data("section")) {
+            else if (section === this.$abbreviations.data("section")) {
                 this.initAbbreviations();
             }
 
-            else if (section == this.$methodology.data("section")) {
+            else if (section === this.$methodology.data("section")) {
                 this.initMethodology();
             }
 
-            else if (section == this.$classifications.data("section")) {
+            else if (section === this.$classifications.data("section")) {
                 this.initClassifications();
             }
 
-            else if (section == this.$glossary.data("section")) {
+            else if (section === this.$glossary.data("section")) {
                 this.initGlossary();
             }
 
@@ -221,8 +216,13 @@ define([
 
             this.unbindEventListeners();
 
-            if ( this.view_units !== undefined) this.view_units.dispose();
-            if ( this.view_abbreviations !== undefined) this.view_abbreviations.dispose();
+            // TODO: all the dispose
+            if ( this.view_units !== undefined) {
+                this.view_units.dispose();
+            }
+            if ( this.view_abbreviations !== undefined) {
+                this.view_abbreviations.dispose();
+            }
 
             View.prototype.dispose.call(this, arguments);
         }
