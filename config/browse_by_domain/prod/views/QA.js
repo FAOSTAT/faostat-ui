@@ -21,7 +21,7 @@ define(function () {
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList",
-                        "multiple": true
+                        //"multiple": true
                     },
                     "config": {
                         "dimension_id": "item",
@@ -37,7 +37,7 @@ define(function () {
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList",
-                        "multiple": true
+                        //"multiple": true
                     },
                     "config": {
                         "dimension_id": "area",
@@ -189,7 +189,10 @@ define(function () {
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {}
                 },
-                {
+
+
+                // the chart has a problem with the top 10 (head and No unit)
+               /* {
                     type: 'chart',
                     class: "col-xs-12 col-sm-6",
 
@@ -235,7 +238,7 @@ define(function () {
                         "order_by": 'value DESC',
                         "limit": '10'
                     }
-                },
+                },*/
                 {
                     type: 'chart',
                     class: "col-xs-12 col-sm-6",
@@ -285,7 +288,7 @@ define(function () {
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-xs-6",
 
                     // labels?
                     labels: {
