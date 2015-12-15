@@ -19,7 +19,6 @@ define(function () {
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-5",
                         "type": "dropDownList"
                         //"multiple": true
@@ -251,11 +250,9 @@ define(function () {
                                         connectNulls: false // by default
                                     }
                                 }
-                            },
-                            onBefore: function(){},
+                            }
                         },
-                        template: {
-                        }
+                        template: {}
                     },
                     allowedFilter: ['area', 'year'],
                     filter: {
@@ -265,6 +262,6 @@ define(function () {
                 }
             ]
         }
+    };
 
-    }
 });
