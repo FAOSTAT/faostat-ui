@@ -11,6 +11,7 @@ define([
     'text!templates/home/home.hbs',
     'text!templates/home/news.hbs',
     'text!templates/home/domains.hbs',
+    'text!templates/home/database_updates.hbs',
     'i18n!nls/home',
     'handlebars',
     'faostatapiclient',
@@ -19,12 +20,19 @@ define([
     'config/home/sample/chartModel',
     'config/home/sample/whatsNew',
     'config/home/sample/comingUp',
+    'config/home/sample/databaseUpdates',
     'amplify'
-], function ($, log, View, Common, ROUTE, C, E, CM, template, templateNews, templateDomains, i18nLabels, Handlebars, API, ChartCreator,
+], function ($, log, View, Common, ROUTE, C, E, CM,
+             template,
+             templateNews,
+             templateDomains,
+             templateDatabaseUpdates,
+             i18nLabels, Handlebars, API, ChartCreator,
              BrowseByDomainConfig,
              ChartModel,
              WhatsNew,
-             ComingUp
+             ComingUp,
+             DatabaseUpdates
 ) {
 
     'use strict';
@@ -46,9 +54,8 @@ define([
         PARTNERS: "#fs_home_partners",
         COUNTRY_PROFILES: "#fs_home_country_profiles"
 
-    };
-
-    var HomeView = View.extend({
+    },
+        HomeView = View.extend({
 
         autoRender: true,
 
@@ -79,8 +86,6 @@ define([
 
             this.initVariables();
 
-            this.initComponents();
-
             this.bindEventListeners();
 
             this.configurePage();
@@ -103,10 +108,6 @@ define([
 
         },
 
-        initComponents: function () {
-
-        },
-
         configurePage: function () {
 
             this.initDomains();
@@ -124,8 +125,8 @@ define([
         initDomains: function () {
 
             var self = this,
-                browseWhiteList = BrowseByDomainConfig.whitelist || [],
-                browseBlackList = BrowseByDomainConfig.blacklist || [];
+                browseWhiteList = BrowseByDomainConfig.whitelist || [];
+                //browseBlackList = BrowseByDomainConfig.blacklist || [];
 
             this.api.groups({
                 dataosource: C.DATASOURCE,
@@ -146,13 +147,11 @@ define([
                 self.$DOMAINS.html(t(json));
 
                 // add listeners on domains
-                self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
+                self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function() {
 
                     var section = ROUTE.BROWSE_BY_DOMAIN_CODE,
                         //code = $(e.target).data("code");
                         code = this.getAttribute('data-code');
-
-                    log.info(section, code, e)
 
                     self.changeState(
                         {
@@ -163,7 +162,7 @@ define([
 
                 });
 
-                self.$DOMAINS.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
+                self.$DOMAINS.find(s.GO_TO_DOWNLOAD).on('click', function() {
 
                     var section = ROUTE.DOWNLOAD_WELCOME,
                     //code = $(e.target).data("code");
@@ -183,9 +182,8 @@ define([
 
         initChart: function () {
 
-            var self = this;
-
-            var c = new ChartCreator();
+            var self = this,
+                c = new ChartCreator();
 
             c.init($.extend(true, {}, CM.chart, {model: ChartModel.model})).then(function (c) {
 
@@ -226,6 +224,27 @@ define([
         },
 
         initDatabaseUpdates: function () {
+
+            var self = this,
+                t = Handlebars.compile(templateDatabaseUpdates);
+
+            this.$DATABASE_UPDATES.append(t(DatabaseUpdates));
+
+            this.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
+
+                e.preventDefault();
+
+                var section = ROUTE.DOWNLOAD_WELCOME,
+                    code = this.getAttribute('data-code');
+
+
+                log.info(code)
+
+                self.changeState({
+                    section:section,
+                    code: code
+                });
+            });
 
         },
 
