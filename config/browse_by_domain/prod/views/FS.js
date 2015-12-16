@@ -48,7 +48,7 @@ define(function () {
                 decimal_separator: ".",
                 limit: -1,
                 thousand_separator: ",",
-                "null_values": true,
+                "null_values": false,
                 // TODO: remove it the page_size!!!
                 page_size: 0,
                 per_page: 0,
@@ -118,7 +118,7 @@ define(function () {
                         order_by: 'year'
                     }
                 },
-               /* {
+                {
                     type: 'chart',
                     class: "col-xs-12",
 
@@ -258,7 +258,7 @@ define(function () {
                         List3Codes: [21027],
                         order_by: 'year'
                     }
-                }*/
+                }
             ]
         }
     };

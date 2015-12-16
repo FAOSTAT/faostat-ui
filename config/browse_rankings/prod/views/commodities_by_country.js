@@ -23,8 +23,8 @@ define(function () {
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "regions",
-                        "defaultCodes": ["5000"],
+                        "dimension_id": "countries",
+                        "defaultCodes": ["2"],
                         "filter": {
                         }
                     }
