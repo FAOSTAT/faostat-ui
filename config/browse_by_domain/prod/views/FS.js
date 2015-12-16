@@ -59,8 +59,7 @@ define(function () {
             labels: {
 
                 // labels to dinamically substitute the title and subtitle
-                default: {
-                }
+                default: {}
 
             },
 
@@ -119,7 +118,7 @@ define(function () {
                         order_by: 'year'
                     }
                 },
-                {
+               /* {
                     type: 'chart',
                     class: "col-xs-12",
 
@@ -259,7 +258,7 @@ define(function () {
                         List3Codes: [21027],
                         order_by: 'year'
                     }
-                }
+                }*/
             ]
         }
     };

@@ -23,7 +23,10 @@ define(function ( ) {
         DOWNLOAD_BULK: "bulk",
         DOWNLOAD_INTERACTIVE: "interactive",
         DOWNLOAD_METADATA: "metadata",
-        DOWNLOAD_WELCOME: "welcome"
+        DOWNLOAD_WELCOME: "welcome",
+
+        SEARCHY: "search",
+        SEARCH_QUERY: "search_query"
 
     };
 });

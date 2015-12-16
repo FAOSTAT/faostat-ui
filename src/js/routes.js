@@ -30,6 +30,10 @@ define(['config/Routes'], function (ROUTE) {
         match(':lang/standards/glossary', 'standards#show_glossary', {name: ROUTE.GLOSSARY});
         match(':lang/standards/classifications', 'standards#show_classifications', {name: ROUTE.CLASSIFICATIONS});
 
+
+        match(':lang/search/:query', 'search#show', {name: ROUTE.SEARCH_QUERY});
+
+
         match('protected', 'protected#show');
         match('about', 'about#show');
         match('*anything', '404#show');
