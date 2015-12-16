@@ -50,7 +50,7 @@ define([
 
         Table.prototype.destroy = function () {
 
-            log.warn("TODO: implement destroy")
+            log.warn("TODO: implement destroy");
 
         };
 

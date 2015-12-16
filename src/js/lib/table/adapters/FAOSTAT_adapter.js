@@ -10,16 +10,7 @@ define([
 
         'use strict';
 
-        var defaultOptions = {
-
-                lang: 'EN'
-
-            },
-
-            e = {
-                DESTROY: 'fx.component.chart.destroy',
-                READY: 'fx.component.chart.ready'
-            };
+        var defaultOptions = {};
 
         function FAOSTAT_Adapter() {
             return this;
@@ -35,7 +26,7 @@ define([
 
         FAOSTAT_Adapter.prototype.getFilteredMetadata = function () {
 
-            var columns = (this.o.adapter)? this.o.adapter.columns|| []: [],
+            var columns = (this.o.adapter)? this.o.adapter.columns || []: [],
                 dsd = this.o.model.metadata.dsd,
                 filteredColumns = [];
 
@@ -49,6 +40,7 @@ define([
                     //log.info(dimension_id)
 
                     _.each(dsd, function (c) {
+                        //log.info(c)
                         if (c.dimension_id === dimension_id) {
                             if (c.type !== "code") {
                                 filteredColumns.push(c);
@@ -59,7 +51,7 @@ define([
                 });
             }
             else {
-                log.warn("No table column filter applied 'adapter.columns'. Retrieve all table. ")
+                log.warn("No table column filter applied 'adapter.columns'. Retrieve all table. ");
                 filteredColumns = $.extend(true, {}, dsd);
             }
 
