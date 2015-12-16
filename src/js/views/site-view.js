@@ -18,8 +18,9 @@ define([
     'globals/Common',
     // TODO: move analytics in another section?
     'globals/GoogleAnalyticsManager',
-    'globals/Export'
-], function ($, log, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export) {
+    'globals/Export',
+    'lib/search/search-box',
+], function ($, log, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export, SearchBox) {
 
     'use strict';
 
@@ -27,6 +28,7 @@ define([
         TERRITORIAL_NOTES: '#territorial-notes',
         FEEDBACK_SYSTEM: '#feedback-system',
         LANGUAGES: '.fs-languages',
+        SEARCH: '#fs-search',
 
         TOP_MENU_CONTAINER: '#top-menu-container',
         BREADCRUMB_CONTAINER: "#breadcrumb-container",
@@ -127,6 +129,11 @@ define([
                 lang: Common.getLocale(),
                 //prefix: 'faostat_download_',
                 datasource: C.DATASOURCE
+            });
+
+            this.searchBox =  new SearchBox();
+            this.searchBox.init({
+                container: s.SEARCH
             });
 
 

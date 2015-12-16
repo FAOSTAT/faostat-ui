@@ -10,8 +10,6 @@ define([
     'globals/Common',
     'text!templates/search/search.hbs',
     'i18n!nls/search',
-    'typeahead',
-    'bloodhound',
     'amplify'
 ], function ($,
              log,
@@ -20,17 +18,13 @@ define([
              E,
              Common,
              template,
-             i18nLabels,
-             typeahead,
-             Bloodhound
-
+             i18nLabels
 ){
 
     'use strict';
 
     var s = {
 
-        SEARCH: '[data-role=search]'
 
     },
 
@@ -69,89 +63,9 @@ define([
 
         initVariables: function () {
 
-            this.$SEARCH = this.$el.find(s.SEARCH);
-
-
-
-            console.log('typeahead', typeahead, window.Bloodhound);
-
         },
-
-        substringMatcher: function(strs) {
-
-            return function findMatches(q, cb) {
-                var matches, substringRegex;
-
-                // an array that will be populated with substring matches
-                matches = [];
-
-                // regex used to determine if a string contains the substring `q`
-                substrRegex = new RegExp(q, 'i');
-
-                // iterate through the pool of strings and for any string that
-                // contains the substring `q`, add it to the `matches` array
-                $.each(strs, function(i, str) {
-                    if (substrRegex.test(str)) {
-                        matches.push(str);
-                    }
-                });
-
-                cb(matches);
-            };
-
-        },
-
 
         initComponents: function () {
-
-            var self = this;
-
-            var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-                'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-                'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-                'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-                'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-                'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-                'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-                'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-                'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-            ];
-
-
-            var states = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.whitespace,
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                // `states` is an array of state names defined in "The Basics"
-                local: states
-            });
-
-            $('#bloodhound .typeahead').typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 1
-                },
-                {
-                    name: 'states',
-                    source: states
-                });
-
-
-
-            /*var bestPictures = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                prefetch: '../data/films/post_1960.json',
-                remote: {
-                    url: '../data/films/queries/%QUERY.json',
-                    wildcard: '%QUERY'
-                }
-            });
-
-            $('#remote .typeahead').typeahead(null, {
-                name: 'best-pictures',
-                display: 'value',
-                source: bestPictures
-            });*/
 
         },
 

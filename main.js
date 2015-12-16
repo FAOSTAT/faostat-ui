@@ -105,7 +105,7 @@ require([
                     loglevel: '{FENIX_CDN}/js/loglevel/1.4.0/loglevel',
 
 
-                    typeahead: '//fenixrepo.fao.org/cdn/js/bootstrap-typeahead/0.11.1/typeahead.bundle',
+                    typeahead: '//fenixrepo.fao.org/cdn/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
                     bloodhound: '//cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/bloodhound.min',
 
                     nls: "../../i18n",
