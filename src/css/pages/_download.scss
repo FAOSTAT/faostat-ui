@@ -26,6 +26,31 @@
 
 }
 
+.faostat-download-selector-resume-holder{
+  margin-top: 5px;
+
+  .summary-item{
+    display: inline-block;
+    margin: 3px 0;
+
+    cursor: pointer;
+    border: 1px solid $fenix-hr;
+    @include fx-border-radius(3px);
+    padding: 0 3px;
+
+
+    &:after {
+
+      content: '';
+      @include fx-small-icons($locX: 0, $locY: -15px);
+      display: inline-block;
+      position: relative;
+      top: 3px;
+    }
+  }
+
+}
+
 
 .fs-tab-holder{
   overflow: hidden;
@@ -50,6 +75,8 @@
   float: left;
   padding: 25px;
 }
+
+
 
 
 /* Pivot Style */
