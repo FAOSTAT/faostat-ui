@@ -124,7 +124,7 @@ define([],function () {
                 }
             },
             "data": [{
-                "Value": "1010.6",
+                "Value": 1010.6,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -141,7 +141,7 @@ define([],function () {
                 "Year Code": 19901992,
                 "Element": "Value"
             }, {
-                "Value": "1020.7",
+                "Value": 1020.7,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -158,7 +158,7 @@ define([],function () {
                 "Year Code": 19911993,
                 "Element": "Value"
             }, {
-                "Value": "1021.5",
+                "Value": 1021.5,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -175,7 +175,7 @@ define([],function () {
                 "Year Code": 19921994,
                 "Element": "Value"
             }, {
-                "Value": "1010.8",
+                "Value": 1010.8,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -192,7 +192,7 @@ define([],function () {
                 "Year Code": 19931995,
                 "Element": "Value"
             }, {
-                "Value": "988.89999999999998",
+                "Value": 988.89999999999998,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -209,7 +209,7 @@ define([],function () {
                 "Year Code": 19941996,
                 "Element": "Value"
             }, {
-                "Value": "966.20000000000005",
+                "Value": 966.20000000000005,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -226,7 +226,7 @@ define([],function () {
                 "Year Code": 19951997,
                 "Element": "Value"
             }, {
-                "Value": "949.39999999999998",
+                "Value": 949.39999999999998,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -243,7 +243,7 @@ define([],function () {
                 "Year Code": 19961998,
                 "Element": "Value"
             }, {
-                "Value": "938",
+                "Value": 938,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -260,7 +260,7 @@ define([],function () {
                 "Year Code": 19971999,
                 "Element": "Value"
             }, {
-                "Value": "928.89999999999998",
+                "Value": 928.89999999999998,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -277,7 +277,7 @@ define([],function () {
                 "Year Code": 19982000,
                 "Element": "Value"
             }, {
-                "Value": "924.20000000000005",
+                "Value": 924.20000000000005,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -294,7 +294,7 @@ define([],function () {
                 "Year Code": 19992001,
                 "Element": "Value"
             }, {
-                "Value": "929.60000000000002",
+                "Value": 929.60000000000002,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -311,7 +311,7 @@ define([],function () {
                 "Year Code": 20002002,
                 "Element": "Value"
             }, {
-                "Value": "943.79999999999995",
+                "Value": 943.79999999999995,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -328,7 +328,7 @@ define([],function () {
                 "Year Code": 20012003,
                 "Element": "Value"
             }, {
-                "Value": "959.10000000000002",
+                "Value": 959.10000000000002,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -345,7 +345,7 @@ define([],function () {
                 "Year Code": 20022004,
                 "Element": "Value"
             }, {
-                "Value": "966.10000000000002",
+                "Value": 966.10000000000002,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -362,7 +362,7 @@ define([],function () {
                 "Year Code": 20032005,
                 "Element": "Value"
             }, {
-                "Value": "961.60000000000002",
+                "Value": 961.60000000000002,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -379,7 +379,7 @@ define([],function () {
                 "Year Code": 20042006,
                 "Element": "Value"
             }, {
-                "Value": "942.29999999999995",
+                "Value": 942.29999999999995,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -396,7 +396,7 @@ define([],function () {
                 "Year Code": 20052007,
                 "Element": "Value"
             }, {
-                "Value": "913.79999999999995",
+                "Value": 913.79999999999995,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -413,7 +413,7 @@ define([],function () {
                 "Year Code": 20062008,
                 "Element": "Value"
             }, {
-                "Value": "883.70000000000005",
+                "Value": 883.70000000000005,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -430,7 +430,7 @@ define([],function () {
                 "Year Code": 20072009,
                 "Element": "Value"
             }, {
-                "Value": "857.79999999999995",
+                "Value": 857.79999999999995,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -447,7 +447,7 @@ define([],function () {
                 "Year Code": 20082010,
                 "Element": "Value"
             }, {
-                "Value": "838",
+                "Value": 838,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -464,7 +464,7 @@ define([],function () {
                 "Year Code": 20092011,
                 "Element": "Value"
             }, {
-                "Value": "820.70000000000005",
+                "Value": 820.70000000000005,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -481,7 +481,7 @@ define([],function () {
                 "Year Code": 20102012,
                 "Element": "Value"
             }, {
-                "Value": "808.39999999999998",
+                "Value": 808.39999999999998,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -498,7 +498,7 @@ define([],function () {
                 "Year Code": 20112013,
                 "Element": "Value"
             }, {
-                "Value": "801.60000000000002",
+                "Value": 801.60000000000002,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -515,7 +515,7 @@ define([],function () {
                 "Year Code": 20122014,
                 "Element": "Value"
             }, {
-                "Value": "797.29999999999995",
+                "Value": 797.29999999999995,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
@@ -532,7 +532,7 @@ define([],function () {
                 "Year Code": 20132015,
                 "Element": "Value"
             }, {
-                "Value": "794.60000000000002",
+                "Value": 794.60000000000002,
                 "Flag": "",
                 "Domain Code": "FS",
                 "Domain": "Suite of Food Security Indicators",
