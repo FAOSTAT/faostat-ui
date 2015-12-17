@@ -2,23 +2,17 @@
     <div class="col-sm-6 col-md-4 col-lg-3">
         <div class="fs-domain-holder">
 
+            <span class="domain-icon icojam_{{this.code}}"></span>
+
 
             <h5>{{this.label}}</h5>
 
+            <a href="#" data-code="{{this.code}}" data-role="go_to_download">Download</a>
 
             <!-- TODO: add an handlebars check if is valid for browse and download -->
             {{#if addBrowse}}
-                <button type="button" data-code="{{this.code}}" data-role="go_to_browse" class="btn btn-defaut">
-                    <span><i class="fa fa-bar-chart"></i></span>
-                    Browse
-                </button>
+                <a href="#" data-code="{{this.code}}" data-role="go_to_browse">Browse</a>
             {{/if}}
-
-            <button type="button" data-code="{{this.code}}" data-role="go_to_download" class="btn btn-defaut">
-                <span><i class="fa fa-download"></i></span>
-                Download
-            </button>
-
 
         </div>
 

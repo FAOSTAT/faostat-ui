@@ -10,14 +10,14 @@
 @import '../../src/css/theme/default';
 
 /* Icons */
-
 @import '../../submodules/fenix-ui-common/css/base/fonts/eldorado/font-eldorado-main';
+@import '../../src/css/components/icons';
+
 
 /* Components */
 @import '../../src/css/components/faostat-tabs';
 @import '../../src/css/components/scroll-up';
 @import '../../src/css/components/fao-footer';
-//@import '../../src/css/components/jstree';
 @import '../../src/css/components/map';
 @import '../../src/css/components/fx-range-slider';
 @import '../../src/css/components/typeahead';
