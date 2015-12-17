@@ -175,7 +175,14 @@ define(['jquery', 'q'], function ($, Q) {
                     "page_number": config.page_number,
                     "show_codes": config.show_codes,
                     "show_flags": config.show_flags,
-                    "show_unit": config.show_unit
+                    "show_unit": config.show_unit,
+                    "List1AltCodes": config.List1AltCodes,
+                    "List2AltCodes": config.List2AltCodes,
+                    "List3AltCodes": config.List3AltCodes,
+                    "List4AltCodes": config.List4AltCodes,
+                    "List5AltCodes": config.List5AltCodes,
+                    "List6AltCodes": config.List6AltCodes,
+                    "List7AltCodes": config.List7AltCodes
                 },
                 type: 'POST'
             }));
@@ -184,7 +191,7 @@ define(['jquery', 'q'], function ($, Q) {
     };
 
     FAOSTATAPIClient.prototype.is_valid_data = function (config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"], i;
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -195,7 +202,7 @@ define(['jquery', 'q'], function ($, Q) {
 
     FAOSTATAPIClient.prototype.apply_data_defaults = function (config) {
         var i,
-            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"],
+            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes"],
             defaults = {
                 "datasource": "production",
                 "output_type": "objects",
@@ -212,7 +219,14 @@ define(['jquery', 'q'], function ($, Q) {
                 "page_number": "1",
                 "show_codes": "1",
                 "show_flags": "1",
-                "show_unit": "1"
+                "show_unit": "1",
+                "List1AltCodes": "",
+                "List2AltCodes": "",
+                "List3AltCodes": "",
+                "List4AltCodes": "",
+                "List5AltCodes": "",
+                "List6AltCodes": "",
+                "List7AltCodes": ""
             },
             key;
         for (i = 0; i < Object.keys(defaults).length; i += 1) {
