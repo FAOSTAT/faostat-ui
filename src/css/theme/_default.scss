@@ -71,6 +71,103 @@ footer.container{
   @include fx-noshadow;
 }
 
+
+/* Menu */
+.fs-menu-search-container{
+  background-color: white;
+
+}
+
+.fs-search-icon{
+  margin-top: 14px;
+  margin-left: 12px;
+  font-size: 21px;
+}
+
+
+@media (min-width: 768px){
+  .navbar-nav>li>.fs-lang-btn {
+    padding: 7px;
+  }
+
+
+  .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+    color: white;
+    background-color: #003a45;
+  }
+
+
+
+
+
+  .navbar-default {
+    background-color: $fao-menu-blue;
+    @include fx-border-radius(0);
+
+    .navbar-nav>li>a {
+      color: white;
+      border-right: 1px solid white;
+    }
+
+    .navbar-nav>li.pull-right>a {
+      border-right: 0;
+    }
+
+    .navbar-nav>li.pull-right {
+      border-left: 1px solid white;
+    }
+
+
+
+
+  }
+
+
+  /* Minimal Navbar
+
+  .navbar-nav>li>.fs-lang-btn {
+    padding: 7px;
+  }
+
+
+  .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+    color: $fenix-text;
+    background-color: #e7e7e7;
+  }
+
+
+
+
+
+  #faostat_ui_menu .navbar-default {
+    background-color: white;
+    @include fx-border-radius(0);
+    border-bottom: 1px solid $fenix-light-hr !important;
+
+
+    .navbar-nav>li>a {
+      color: $fenix-text;
+      border-right: 0;
+
+    }
+
+    .navbar-nav>li.pull-right>a {
+      border-right: 0;
+    }
+
+    .navbar-nav>li.pull-right {
+      border-left: 0;
+    }
+
+  }*/
+  /* End of Minimal Navbar*/
+
+}
+
+
+
+
+
 .navbar-brand{
   padding: 0;
   //background-color: $fx-cool-blue-alt;
