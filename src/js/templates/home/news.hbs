@@ -1,4 +1,8 @@
 {{#each data}}
-    <h3>{{{i18n this.title}}}</h3>
-    <p>{{{i18n this.text}}}</p>
+    <h5>{{{i18n this.title}}}</h5>
+    <ul>
+        {{#each data}}
+            <li>{{{i18n this.text}}}</li>
+        {{/each}}
+    </ul>
 {{/each}}

@@ -16,90 +16,122 @@
 
     <!-- left side -->
     <div class="col-lg-8">
+        <br><br>
 
         <!-- Chart -->
-        <div  class="col-lg-12">
-            <h1>{{chart_title}}</h1>
-            <h2>{{chart_subtitle}}</h2>
-            <div id="fs_home_chart"></div>
+        <!--<div  class="col-lg-12">-->
+            <!--<h1>{{chart_title}}</h1>-->
+            <!--<h2>{{chart_subtitle}}</h2>-->
+            <!--<div id="fs_home_chart"></div>-->
+        <!--</div>-->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    <div class="pull-right">
+                        <a class="btn btn-primary" data-role="export"><i class="fa fa-download"></i>  {{export_data}}</a>
+                    </div>
+                <h5>{{chart_title}}</h5>
+                <h6>{{chart_subtitle}}</h6>
+            </div>
+            <div class="panel-body">
+                <div id="fs_home_chart"></div>
+            </div>
         </div>
 
-        <div class="clearfix"></div>
         <br>
-        <br>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5>{{database_updates}}</h5>
+                    </div>
+                    <div class="panel-body">
+                        <div id="fs_home_database_updates"></div>
+                        <br>
+                    </div>
+                    <div class="panel-footer">
+                        <div id="fs_home_release_calendar">Release Calendar</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <!-- info box -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5>{{info_box_title}}</h5>
+                        </div>
+                        <div class="panel-body">
+                            {{{info_box_text}}}
+                        </div>
+                        <div class="panel-footer">
+                            {{{info_box_link}}}
+                        </div>
+
+
+                    </div>
+            </div>
+        </div>
 
         <!-- Database Updates -->
-        <div class="col-lg-6">
-            <h1>{{database_updates}}</h1>
-            <div>
-                <div id="fs_home_database_updates"></div>
-                <div id="fs_home_release_calendar"></div>
-            </div>
-        </div>
+        <!--<div class="col-lg-6">-->
+            <!--<h1>{{database_updates}}</h1>-->
+            <!--<div>-->
+                <!--<div id="fs_home_database_updates"></div>-->
+                <!--<div id="fs_home_release_calendar"></div>-->
+            <!--</div>-->
+        <!--</div>-->
 
-        <div class="col-lg-6">
+        <!--<div class="col-lg-6">-->
 
-            <!-- info box -->
-            <div>
-                <h1>{{info_box_title}}</h1>
-                <p>{{{info_box_text}}}</p>
-                <p>{{{info_box_link}}}</p>
-            </div>
+            <!--&lt;!&ndash; info box &ndash;&gt;-->
+            <!--<div>-->
+                <!--<h1>{{info_box_title}}</h1>-->
+                <!--<p>{{{info_box_text}}}</p>-->
+                <!--<p>{{{info_box_link}}}</p>-->
+            <!--</div>-->
 
-            <hr>
+            <!--<hr>-->
 
             <!-- FAO Links -->
             <!-- TODO: this should be moved to the footer -->
-            <div>
-                <h1>{{fao_links}}</h1>
-                <!-- TODO: move in config and use handlebars? -->
-                <div>
-                    <a target="_blank" href="http://www.fao.org/economic/ess/en/">{{division_ess}}</a>
-                </div>
-                <div>
-                    <a target="_blank" href="http://www.fao.org/economic/en/">{{department_es}}</a>
-                </div>
-                <div>
-                    <a target="_blank" href="http://www.fao.org/economic/ess/countrystat/en/">{{countrystat}}</a>
-                </div>
-                <div>
-                    <a target="_blank" href="http://www.fao.org/nr/water/aquastat/main/index.stm">{{acquastat}}</a>
-                </div>
-                <div>
-                    <a target="_blank" href="http://www.fao.org/fishery/statistics/en">{{fisheries_and_aquaculture}}</a>
-                </div>
-                <div>
-                    <a target="_blank" href="http://www.fao.org/forestry/46203/en/">{{forestry}}</a>
-                </div>
-            </div>
+            <!--<div>-->
+                <!--<h1>{{fao_links}}</h1>-->
+                <!--&lt;!&ndash; TODO: move in config and use handlebars? &ndash;&gt;-->
+                <!--<div>-->
+                    <!--<a target="_blank" href="http://www.fao.org/economic/ess/en/">{{division_ess}}</a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a target="_blank" href="http://www.fao.org/economic/en/">{{department_es}}</a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a target="_blank" href="http://www.fao.org/economic/ess/countrystat/en/">{{countrystat}}</a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a target="_blank" href="http://www.fao.org/nr/water/aquastat/main/index.stm">{{acquastat}}</a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a target="_blank" href="http://www.fao.org/fishery/statistics/en">{{fisheries_and_aquaculture}}</a>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<a target="_blank" href="http://www.fao.org/forestry/46203/en/">{{forestry}}</a>-->
+                <!--</div>-->
+            <!--</div>-->
 
-        </div>
+        <!--</div>-->
 
         <!-- Partners List -->
-        <div class="col-lg-12">
-
-            <h1>{{partners}}</h1>
-            <p>TBD</p>
-
-            <!-- Nav tabs -->
-<!--            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active" data-partner='fra'><a href="#partner-fra"  aria-controls="home" role="tab" data-toggle="tab"></a></li>
-                <li role="presentation" data-partner='fe'><a href="#partner-fe"  aria-controls="profile" role="tab" data-toggle="tab"></a></li>
-                <li role="presentation" data-partner='unece'><a href="#partner-unece"  aria-controls="messages" role="tab" data-toggle="tab"></a></li>
-                <li role="presentation" data-partner='mp'><a href="#partner-mp"  aria-controls="settings" role="tab" data-toggle="tab"></a></li>
-                <li role="presentation" data-partner='ofac'><a href="#partner-ofac"  aria-controls="settings" role="tab" data-toggle="tab"></a></li>
-                <li role="presentation" data-partner='itto'><a href="#partner-itto"   aria-controls="settings" role="tab" data-toggle="tab"></a></li>
-            </ul>-->
-
-            <!-- Tab panes -->
-<!--            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="partner-fra">{{ home_partner_fra }}</div>
-                <div role="tabpanel" class="tab-pane fade" id="partner-fe">{{ home_partner_fe }}</div>
-                <div role="tabpanel" class="tab-pane fade" id="partner-unece">{{ home_partner_unece }}</div>
-                <div role="tabpanel" class="tab-pane fade" id="partner-mp">{{ home_partner_mp }}</div>
-                <div role="tabpanel" class="tab-pane fade" id="partner-ofac">{{ home_partner_ofac }}</div>
-                <div role="tabpanel" class="tab-pane fade" id="partner-itto">{{ home_partner_itto }}</div>
-            </div>-->
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5>{{partners}}</h5>
+            </div>
+            <div class="panel-body">
+                <p>TBD</p>
+            </div>
 
         </div>
 
@@ -107,10 +139,12 @@
 
     <!-- right side -->
     <div class="col-lg-4">
+        <br>
         <div class="col-lg-12">
 
+
             <div>
-                <h1>{{featured_links}}</h1>
+                <h3>{{featured_links}}</h3>
                 <!-- TODO: how to get the right size? -->
                 <div id="fs_home_faostat_database_download">
                     <a href="{{URL_FAOSTAT_DATABASE_ZIP}}">{{faostat_database_download}}</a>
@@ -123,24 +157,24 @@
             <hr>
 
             <div>
-                <h1>{{whats_new}}</h1>
+                <h3>{{whats_new}}</h3>
                 <div id="fs_home_whats_new"></div>
             </div>
             <hr>
 
             <div>
-                <h1>{{coming_up}}</h1>
+                <h3>{{coming_up}}</h3>
                 <div id="fs_home_coming_up"></div>
             </div>
             <hr>
 
-            <div>
-                <h1>{{contact_us}}</h1>
-                <p>{{department_ess}}</p>
-                <p>{{address_fao}}</p>
-                <p>{{TELEPHONE_FAO_STATISTICS}}</p>
-                <a href="mailto:{{EMAIL_FAO_STATISTICS}}">{{EMAIL_FAO_STATISTICS}}</a>
-            </div>
+            <!--<div>-->
+                <!--<h1>{{contact_us}}</h1>-->
+                <!--<p>{{department_ess}}</p>-->
+                <!--<p>{{address_fao}}</p>-->
+                <!--<p>{{TELEPHONE_FAO_STATISTICS}}</p>-->
+                <!--<a href="mailto:{{EMAIL_FAO_STATISTICS}}">{{EMAIL_FAO_STATISTICS}}</a>-->
+            <!--</div>-->
         </div>
     </div>
 

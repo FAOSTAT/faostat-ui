@@ -29,9 +29,6 @@ body {
 
 }
 
-footer.container{
-  padding-top: 100px;
-}
 
 
 //.checkbox, .radio{
@@ -186,6 +183,34 @@ footer.container{
   }
 
 }
+
+
+
+/* Footer */
+
+footer.container{
+
+  padding-top: 30px;
+  background-color: #cccccc;
+  //color: white;
+  color: black ;
+
+  a{
+    color: black !important;
+  }
+
+
+  h4{
+    margin-top: 15px;
+    margin-bottom: 20px;
+    color: white;
+  }
+
+}
+
+
+
+
 
 /* Override Fenix Tree */
 .fs-tree-holder, .fs-content-padding {

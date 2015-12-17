@@ -29,9 +29,6 @@ body {
   color: #337ab7;
   outline: none; }
 
-footer.container {
-  padding-top: 100px; }
-
 .bootstrap-content-box-reset * {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
@@ -111,6 +108,18 @@ footer.container {
 #faostat_ui_menu .navbar {
   border: 0;
   margin: 0 -15px; }
+
+/* Footer */
+footer.container {
+  padding-top: 30px;
+  background-color: #cccccc;
+  color: black; }
+  footer.container a {
+    color: black !important; }
+  footer.container h4 {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    color: white; }
 
 /* Override Fenix Tree */
 .fs-tree-holder, .fs-content-padding {
@@ -5361,6 +5370,27 @@ footer.fao-footer {
 
 /* Pages */
 /* Homepage */
+.fs-domain-holder {
+  padding: 10px 0;
+  border-bottom: 1px solid #f2f2f2; }
+  .fs-domain-holder .domain-icon {
+    margin-right: 10px;
+    margin-top: 10px; }
+  .fs-domain-holder a {
+    font-size: 12px;
+    margin-right: 10px; }
+    .fs-domain-holder a:after {
+      content: '';
+      height: 15px;
+      width: 15px;
+      background: url("../../submodules/fenix-ui-common/css/img/fenix-catalog-sprite-small.svg") no-repeat -135px -15px;
+      background-size: 150px 30px;
+      display: inline-block;
+      position: relative;
+      top: 4px; }
+  .fs-domain-holder h5 {
+    margin-bottom: 0; }
+
 .domain-icon {
   font-size: 32px; }
 

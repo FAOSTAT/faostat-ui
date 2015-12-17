@@ -8,36 +8,51 @@ define([], function () {
         data: [
             {
                 title: "NOVEMBER 2015",
-                text: "Research and Development indicators, ASTI."
+                data: [
+                    {
+                        text: "Research and Development indicators, ASTI."
+
+                    },
+                    {
+                        text: "Food Aid Shipments (WFP)."
+
+                    }
+                ]
+
             },
-            {
-                title: "NOVEMBER 2015",
-                text: "Food Aid Shipments (WFP)."
-            },
+
             {
                 title: "OCTOBER 2015",
-                text: '<a href="http://www.fao.org/economic/ess/ess-events/wsd/en/" target="_blank">World Statistics Day</a>'
+                data: [
+                    {
+                        text: '<a href="http://www.fao.org/economic/ess/ess-events/wsd/en/" target="_blank">World Statistics Day</a>'
+                    },
+                    {
+                        text: '<a href="http://www.fao.org/world-food-day/home/en/" target="_blank">World Food Day</a>'
+                    },
+                    {
+                        text: "Population."
+                    }
+                ]
+
             },
-            {
-                title: "OCTOBER 2015",
-                text: '<a href="http://www.fao.org/world-food-day/home/en/" target="_blank">World Food Day</a>'
-            },
-            {
-                title: "OCTOBER 2015",
-                text: "Population."
-            },
-            {
-                title: "SEPTEMBER 2015",
-                text: '2013 updates for Annual and Monthly producer prices, Annual producer price indices and value of Agricultural production.'
-            },
-            {
-                title: "SEPTEMBER 2015",
-                text: '2013 update for Land.'
-            },
+
             {
                 title: "SEPTEMBER 2015",
-                text: 'New dataset on Deflators to 2013.'
+                data: [
+                    {
+                        text: '2013 updates for Annual and Monthly producer prices, Annual producer price indices and value of Agricultural production.'
+                    },
+                    {
+                        text: '2013 update for Land.'
+                    },
+                    {
+                        text: 'New dataset on Deflators to 2013.'
+                    }
+                ]
+
             }
+
         ]
 
     };

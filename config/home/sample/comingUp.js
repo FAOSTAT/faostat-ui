@@ -8,15 +8,20 @@ define([], function () {
         data: [
             {
                 title: "OCTOBER 2015",
-                text: "Investment."
-            },
-            {
-                title: "OCTOBER 2015",
-                text: "Fertilizers detailed and Trade value."
-            },
-            {
-                title: "OCTOBER 2015",
-                text: 'Population – Employment Indicators.'
+                data: [
+                    {
+                        text: "Investment."
+                    },
+                    {
+                        text: "Fertilizers detailed and Trade value."
+                    },
+                    {
+                        text: 'Population – Employment Indicators.'
+
+                    }
+
+                ]
+
             }
         ]
 
