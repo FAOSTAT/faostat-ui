@@ -5314,7 +5314,9 @@ footer.fao-footer {
   border-radius: 0 0 3px 3px;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  max-height: 250px;
+  overflow-y: auto; }
 
 .tt-suggestion {
   padding: 5px 10px; }
