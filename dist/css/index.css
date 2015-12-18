@@ -8,6 +8,9 @@ body {
   font-family: "FrutigerLTW02-45Light", Arial, Helvetica, Verdana, sans-serif;
   background-color: #f1f1f1; }
 
+.fs-main-container {
+  padding-bottom: 60px; }
+
 .container, .container-fluid {
   background-color: white; }
 
@@ -153,7 +156,7 @@ footer.container {
   color: #337ab7; }
 
 .label-danger {
-  color: #E00000; }
+  color: #e00000; }
 
 .label {
   background-color: transparent; }
@@ -5233,7 +5236,7 @@ footer.fao-footer {
 .ui-rangeSlider-innerBar {
   height: 3px !important;
   top: 7px !important;
-  background-color: #D2D0D0 !important; }
+  background-color: #d2d0d0 !important; }
 
 .ui-rangeSlider-arrow.ui-rangeSlider-leftArrow {
   background: url(img/arrow-left-on.svg) no-repeat !important;
@@ -5408,7 +5411,7 @@ footer.fao-footer {
     display: inline-block;
     margin: 3px 0;
     cursor: pointer;
-    border: 1px solid #D2D0D0;
+    border: 1px solid #d2d0d0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -5455,10 +5458,10 @@ footer.fao-footer {
 
 .pivot .collapse_button {
   background-color: transparent;
-  border: 1px solid #D2D0D0;
+  border: 1px solid #d2d0d0;
   font-family: "FrutigerLTW02-45Light", Arial, Helvetica, Verdana, sans-serif;
   font-weight: normal;
-  color: #D2D0D0; }
+  color: #d2d0d0; }
 
 .fs-browse-content-padding {
   margin-top: 15px; }
@@ -5477,5 +5480,3 @@ footer.fao-footer {
 
 /* Menu and some Header stuff TODO: remove the header related css from here */
 /* Modules. */
-
-/*# sourceMappingURL=index.css.map */
