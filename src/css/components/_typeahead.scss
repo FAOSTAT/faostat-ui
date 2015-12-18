@@ -2,8 +2,9 @@
   /*width: 396px;*/
   /*height: 30px;*/
   //padding: 3px 10px;
-  //font-size: 14px;
+  //font-size: 13px;
   //line-height: 24px;
+
   padding: 15px 10px;
   background-color: #f8f8f8;
   border: none;
@@ -85,12 +86,18 @@
   -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
   -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
   box-shadow: 0 5px 10px rgba(0,0,0,.2);
+
+  // scrollbar
+  max-height:250px;
+  overflow-y: auto;
+
 }
 
 .tt-suggestion {
   //padding: 3px 20px;
   //font-size: 14px;
   //line-height: 24px;
+  //font-size: 13px;
   padding: 5px 10px;
 }
 

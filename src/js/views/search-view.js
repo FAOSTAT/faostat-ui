@@ -10,6 +10,7 @@ define([
     'globals/Common',
     'text!templates/search/search.hbs',
     'i18n!nls/search',
+    'underscore',
     'amplify'
 ], function ($,
              log,
@@ -18,7 +19,8 @@ define([
              E,
              Common,
              template,
-             i18nLabels
+             i18nLabels,
+             _
 ){
 
     'use strict';
@@ -62,6 +64,64 @@ define([
         },
 
         initVariables: function () {
+
+            var query = this.o.query,
+                self = this;
+
+            log.info(this.o);
+
+            $.ajax({
+                url: "http://localhost:8081/api/v1.0/en/search/" + query,
+                success: function(result) {
+                    self.parseSearchResults(result);
+                }
+            });
+
+        },
+
+        parseSearchResults: function(results) {
+
+            log.info(results)
+
+            // cluster results
+            var cluster = [],
+                values = results.data,
+                relatedValues = [];
+
+            _.each(values, function(v) {
+
+                if ( $.inArray( v, relatedValues ) === -1 ) {
+
+                    log.info(v.label)
+
+                    var domainCode = v.domainCode,
+                        id = v.id,
+                        relations = [];
+
+
+                    // check if a relation exists
+                    _.each(values, function(d) {
+
+                        if (d.domainCode === domainCode && d.id !== id) {
+
+                            relations.push(d);
+
+                            relatedValues.push(d);
+
+                        }
+
+                    });
+
+                    cluster.push($.extend(true, {}, v, {relations: relations}));
+
+                    log.info(cluster)
+
+                }
+
+            });
+
+
+            log.info(cluster)
 
         },
 

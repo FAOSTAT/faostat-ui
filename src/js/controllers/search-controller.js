@@ -1,8 +1,9 @@
 /*global define*/
 define([
+    'jquery',
     'controllers/base/controller',
     'views/search-view'
-], function (Controller, View) {
+], function ($, Controller, View) {
 
     'use strict';
 
@@ -10,9 +11,9 @@ define([
 
         show: function (params) {
 
-            this.view = new View({
+            this.view = new View($.extend(params, {
                 region: 'main'
-            });
+            }));
         }
     });
 
