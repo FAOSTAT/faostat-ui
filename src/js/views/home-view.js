@@ -147,7 +147,9 @@ define([
                 self.$DOMAINS.html(t(json));
 
                 // add listeners on domains
-                self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function() {
+                self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
+
+                    e.preventDefault();
 
                     var section = ROUTE.BROWSE_BY_DOMAIN_CODE,
                         //code = $(e.target).data("code");
@@ -162,7 +164,9 @@ define([
 
                 });
 
-                self.$DOMAINS.find(s.GO_TO_DOWNLOAD).on('click', function() {
+                self.$DOMAINS.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
+
+                    e.preventDefault();
 
                     var section = ROUTE.DOWNLOAD_WELCOME,
                     //code = $(e.target).data("code");
