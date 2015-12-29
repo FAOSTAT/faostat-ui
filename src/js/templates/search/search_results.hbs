@@ -12,10 +12,15 @@
                  {{/each}}
             </div>
 
-            <button type="button" class="btn btn-default pull-right">Go To Download</button>
-            <button type="button" class="btn btn-default pull-right">Go To Browse</button>
-            <button type="button" class="btn btn-default pull-right">Export Data</button>
+            <div class="pull-right">
+                <a href="#en/download/interactive/{{this.domainCode}}">Go To Download</a>
+                |
+                <a href="#en/browse/domain/{{this.domainCode}}">Go To Browse</a>
+                |
+                <a href="#">Export Data</a>
+            </div>
 
+            <div class="clearfix"></div>
             <hr>
 
         </div>

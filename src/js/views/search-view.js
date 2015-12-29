@@ -161,6 +161,10 @@ define([
 
         dispose: function () {
 
+            this.unbindEventListeners();
+
+            View.prototype.dispose.call(this, arguments);
+
         }
     });
 
