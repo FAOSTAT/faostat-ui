@@ -68,7 +68,7 @@ define([
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             // `states` is an array of state names defined in "The Basics"
             remote: {
-                url: 'http://localhost:8081/api/v1.0/en/suggestions/%QUERY',
+                url: 'http://fenixapps2.fao.org/api/v1.0/en/suggestions/%QUERY',
                 wildcard: '%QUERY',
                 filter: function (result) {
                    return result.data;
@@ -89,7 +89,7 @@ define([
                 limit: 1000,
                 templates: {
                     empty: 'No data',
-                    suggestion: Handlebars.compile('<div>{{label}} ({{type}})</div>')
+                    suggestion: Handlebars.compile('<p>{{label}} <small>({{id}})</small></p>')
                 }
             });
 
