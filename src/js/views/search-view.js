@@ -9,8 +9,10 @@ define([
     'config/Events',
     'globals/Common',
     'text!templates/search/search.hbs',
+    'text!templates/search/search_results.hbs',
     'i18n!nls/search',
     'underscore',
+    'handlebars',
     'amplify'
 ], function ($,
              log,
@@ -19,17 +21,19 @@ define([
              E,
              Common,
              template,
+             templateResults,
              i18nLabels,
-             _
+             _,
+             Handlebars
 ){
 
     'use strict';
 
     var s = {
 
+        SEARCH_RESULTS: '[data-role="search_results"]'
 
     },
-
     SearchView = View.extend({
 
         autoRender: true,
@@ -68,10 +72,13 @@ define([
             var query = this.o.query,
                 self = this;
 
+            this.$SEARCH_RESULTS = this.$el.find(s.SEARCH_RESULTS);
+
             log.info(this.o);
 
             $.ajax({
-                url: "http://fenixapps2.fao.org/api/v1.0/en/search/" + query,
+                //url: "http://fenixapps2.fao.org/api/v1.0/en/search/" + query,
+                url: "http://localhost:8081/api/v1.0/en/search/" + query,
                 success: function(result) {
                     self.parseSearchResults(result);
                 }
@@ -113,17 +120,28 @@ define([
                     });
 
                     cluster.push($.extend(true, {}, v, {relations: relations}));
-
-                    log.info(cluster)
-
                 }
 
             });
 
+            this.renderResults(cluster);
+
+        },
+
+        renderResults: function (cluster) {
 
             log.info(cluster)
 
+            var t = Handlebars.compile(templateResults),
+                d = {
+                    data: cluster
+                },
+                html = t(d);
+
+            this.$SEARCH_RESULTS.html(html);
+
         },
+
 
         initComponents: function () {
 
