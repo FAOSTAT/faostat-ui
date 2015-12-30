@@ -104,9 +104,9 @@ require([
                     select2: '{FENIX_CDN}/js/select2/3.5.4/select2.min',
                     loglevel: '{FENIX_CDN}/js/loglevel/1.4.0/loglevel',
 
-
                     typeahead: '//fenixrepo.fao.org/cdn/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
                     bloodhound: '//cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/bloodhound.min',
+                    bootpag: '//cdnjs.cloudflare.com/ajax/libs/bootpag/1.0.7/jquery.bootpag.min',
 
                     nls: "../../i18n",
                     config: "../../config",
@@ -159,6 +159,9 @@ require([
                     },
                     typeahead: {
                         deps: ["jquery"]
+                    },
+                    bootpag: {
+                        deps: ["jquery", "bootstrap"]
                     },
                     bootstrap: {
                         deps: ["jquery"]

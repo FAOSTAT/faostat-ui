@@ -13,6 +13,7 @@ define([
     'i18n!nls/search',
     'underscore',
     'handlebars',
+    'bootpag',
     'amplify'
 ], function ($,
              log,
@@ -24,14 +25,16 @@ define([
              templateResults,
              i18nLabels,
              _,
-             Handlebars
+             Handlebars,
+             bootpag
 ){
 
     'use strict';
 
     var s = {
 
-        SEARCH_RESULTS: '[data-role="search_results"]'
+        SEARCH_RESULTS: "#search_results",
+        PAGINATION: "#pagination"
 
     },
     SearchView = View.extend({
@@ -73,6 +76,9 @@ define([
                 self = this;
 
             this.$SEARCH_RESULTS = this.$el.find(s.SEARCH_RESULTS);
+            this.$PAGINATION = this.$el.find(s.PAGINATION);
+
+
 
             log.info(this.o);
 
@@ -130,18 +136,55 @@ define([
 
         renderResults: function (cluster) {
 
-            log.info(cluster)
+            var self = this,
+                cluster = cluster,
+                page = 1,
+                pageSize = 10;
 
-            var t = Handlebars.compile(templateResults),
-                d = {
-                    data: cluster
-                },
-                html = t(d);
+            //var t = Handlebars.compile(templateResults),
+            //    d = {
+            //        data: cluster
+            //    },
+            //    html = t(d);
 
-            this.$SEARCH_RESULTS.html(html);
+            log.info(cluster.length)
+            log.info(cluster.length / pageSize)
+
+           this.$PAGINATION.bootpag({
+               total: Math.round(cluster.length / pageSize),
+               page: page,
+               leaps: false,
+               next: 'Next',
+               prev: 'Previous',
+               //wrapClass: 'pagination',
+               activeClass: 'active',
+               disabledClass: 'disabled'
+            }).on("page", function(event, /* page number here */ num){
+                log.info(event, num)
+                self.$SEARCH_RESULTS.html(self.getPage(cluster, num, pageSize));
+                //self.$SEARCH_RESULTS.focus();
+                //self.$SEARCH_RESULTS.animate({ scrollTop: 0 }, "fast");
+                $('body, html').scrollTop(0);
+            });
+
+            self.$SEARCH_RESULTS.html(self.getPage(cluster, page, pageSize));
+
+            //this.$SEARCH_RESULTS.html(html);
 
         },
 
+        getPage: function(cluster, nextPage, pageSize) {
+
+            // TODO: this could be cached
+            var t = Handlebars.compile(templateResults),
+                currentPage = (nextPage - 1),
+                d = {
+                    data: cluster.slice(currentPage * pageSize, nextPage * pageSize)
+                };
+
+            return t(d);
+
+        },
 
         initComponents: function () {
 
