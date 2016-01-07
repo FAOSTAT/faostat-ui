@@ -27,7 +27,7 @@ define([
     var s = {
         TERRITORIAL_NOTES: '#territorial-notes',
         FEEDBACK_SYSTEM: '#feedback-system',
-        LANGUAGES: '.fs-languages',
+        LANGUAGES: '#fs-lang',
         SEARCH: '#fs-search',
 
         TOP_MENU_CONTAINER: '#top-menu-container',
@@ -91,6 +91,11 @@ define([
 
             /* Switch Language */
             this.$el.find(s.LANGUAGES).find('a').on('click', function(e) {
+
+                e.preventDefault();
+
+                //log.info(this.getAttribute("data-locale"))
+
                 self.changeLanguage(this.getAttribute("data-locale"));
             });
 
