@@ -16,25 +16,17 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         info_box_text: "This publication is part of the FAO Statistical Yearbook suite of products. <br><br> The first part of the book includes thematic spreads with data visualizations (graphs, charts, and maps) with basic text. <br><br>  The second part has country-level tables for a selected number of indicators.",
         info_box_link: "<a target='_blank' href='http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/#.VlXSE3arSG-'>Link</a>",
 
-        // fao_links
-        fao_links: 'FAO Links',
-        division_ess: 'Statistics Division (ESS)',
-        department_es: 'Economic and Social Development Department',
-        countrystat: 'CountrySTAT',
-        acquastat: 'AcquaSTAT',
-        fisheries_and_aquaculture: 'Fisheries and Acquaculture',
-        forestry: 'Forestry',
-
         // featured links
         faostat_database_download: 'FAOSTAT Database Download',
         country_profiles: 'Country Profiles',
-
 
         // partners
         partners: 'Partners',
 
         // database updates
         database_updates: "Database Updates",
+
+        release_calendar: "Release Calendar",
 
         // chart
         chart_title: 'Highlights',

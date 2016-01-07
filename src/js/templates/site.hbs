@@ -69,44 +69,36 @@
             <div class="col-sm-3">
                 <img src="src/images/faostat-logo-gray.svg" class="fs-footer-logo" alt="Faostat">
                 <ul class="list-unstyled fs-footer-contacts">
-
-
                     <li>Viale delle Terme di Caracalla</li>
                     <li>00153 Rome, Italy</li>
-                    <li>Tel. +39 06 570 55303</li>
-                    <li>Mail. FAO-statistics@fao.org</li>
-
-
-
-
-
+                    <li>Tel. {{TELEPHONE_FAO_STATISTICS}}</li>
+                    <li>Mail. <a href="mailto:{{EMAIL_FAO_STATISTICS}}">{{EMAIL_FAO_STATISTICS}}</a></li>
                 </ul>
             </div>
             <div class="col-sm-3">
-                <h4>Menu</h4>
+                <h4>{{menu}}</h4>
                 <ul class="list-unstyled">
-                    <li><a href="#">Download Data</a></li>
-                    <li><a href="#">Browse Data</a></li>
-                    <li><a href="#">Compare Data</a></li>
-                    <li><a href="#">Methods & Standard</a></li>
+                    <li><a href="#{{locale}}/download/welcome/Q">{{download}}</a></li>
+                    <li><a href="#{{locale}}/browse/domain/Q">{{browse}}</a></li>
+                    <li><a href="#{{locale}}/compare">{{compare}}</a></li>
+                    <li><a href="#{{locale}}/standards/methodologies">{{mes}}</a></li>
                 </ul>
             </div>
             <div class="col-sm-3">
-                <h4>FAO Links</h4>
+                <h4>{{fao_links}}</h4>
                 <ul class="list-unstyled">
-                    <li><a target="_blank" href="http://www.fao.org/economic/ess/en/">Statistics Division (ESS)</a></li>
-                    <li> <a target="_blank" href="http://www.fao.org/economic/en/">Economic and Social Development Department</a></li>
-                    <li><a target="_blank" href="http://www.fao.org/economic/ess/countrystat/en/">CountrySTAT</a></li>
-                    <li><a target="_blank" href="http://www.fao.org/nr/water/aquastat/main/index.stm">AcquaSTAT</a></li>
-                    <li><a target="_blank" href="http://www.fao.org/fishery/statistics/en">Fisheries and Acquaculture</a></li>
-                    <li> <a target="_blank" href="http://www.fao.org/forestry/46203/en/">Forestry</a></li>
+                    <li><a target="_blank" href="http://www.fao.org/economic/ess/en/">{{division_ess}}</a></li>
+                    <li><a target="_blank" href="http://www.fao.org/economic/en/">{{department_es}}</a></li>
+                    <li><a target="_blank" href="http://www.fao.org/economic/ess/countrystat/en/">{{countrystat}}</a></li>
+                    <li><a target="_blank" href="http://www.fao.org/nr/water/aquastat/main/index.stm">{{acquastat}}</a></li>
+                    <li><a target="_blank" href="http://www.fao.org/fishery/statistics/en">{{fisheries_and_aquaculture}}</a></li>
+                    <li><a target="_blank" href="http://www.fao.org/forestry/46203/en/">{{forestry}}</a></li>
                 </ul>
             </div>
 
-
             <div class="col-sm-3">
 
-                <h4>Help us</h4>
+                <h4>{{help_us}}</h4>
 
                 <ul class="list-unstyled">
                     <li><a id='feedback-system'>{{feedback_system}}</a></li>
@@ -114,7 +106,7 @@
                 </ul>
 
                 <br>
-                <h4>Follow FAOSTAT</h4>
+                <h4>{{follow_faostat}}</h4>
 
 
                 <a href="https://www.facebook.com/EconomicCommissionforAfrica" target="_blank" class="social-holder">
@@ -137,18 +129,11 @@
                     <img src="src/images/rss.png" alt="RSS news feeds" title="RSS news feeds">
                 </a>
 
-
             </div>
 
         </div>
 
-
         <br><br>
-
-
-
-
-
 
         <div class="row">
             <div class="col-xs-12">
@@ -164,12 +149,7 @@
             </div>
         </div>
 
-
-
-
     </footer>
-
-
 
 
 <!-- Scrooling -->
@@ -177,4 +157,4 @@
 	<span class="scroll-top-inner">
 		<i class="fa fa-2x fa-arrow-circle-up"></i>
 	</span>
-    </div>
+</div>

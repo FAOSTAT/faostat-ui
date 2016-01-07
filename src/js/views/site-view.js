@@ -50,7 +50,8 @@ define([
         template: template,
 
         getTemplateData: function () {
-            return $.extend(true, {}, C, i18nLabels);
+            // add lang
+            return $.extend(true, {locale: Common.getLocale()}, C, i18nLabels);
         },
 
         attach: function () {

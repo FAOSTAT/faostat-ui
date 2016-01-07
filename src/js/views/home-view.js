@@ -241,14 +241,15 @@ define([
                 var section = ROUTE.DOWNLOAD_WELCOME,
                     code = this.getAttribute('data-code');
 
-
-                log.info(code)
-
                 self.changeState({
                     section:section,
                     code: code
                 });
             });
+
+        },
+
+        initReleaseCalendar: function() {
 
         },
 
