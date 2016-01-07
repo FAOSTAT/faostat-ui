@@ -1,4 +1,4 @@
-/*global define, amplify*/
+/*global define, amplify, document, window, escape */
 define([
     'jquery',
     'loglevel',
@@ -6,6 +6,7 @@ define([
     'underscore',
     'config/Config',
     'config/Events',
+    'config/Routes',
     'globals/State',
     'views/base/view',
     'globals/AuthManager',
@@ -19,8 +20,8 @@ define([
     // TODO: move analytics in another section?
     'globals/GoogleAnalyticsManager',
     'globals/Export',
-    'lib/search/search-box',
-], function ($, log, Chaplin, _, C, E, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export, SearchBox) {
+    'lib/search/search-box'
+], function ($, log, Chaplin, _, C, E, ROUTES, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export, SearchBox) {
 
     'use strict';
 
@@ -35,9 +36,8 @@ define([
         FOOTER_MENU_CONTAINER: "#footer-menu-container",
         LANG: "#footer-menu-container"
 
-    };
-
-    var SiteView = View.extend({
+    },
+        SiteView = View.extend({
 
         container: 'body',
 
@@ -113,19 +113,21 @@ define([
             $('.scroll-top-wrapper').on('click', this.scrollToTop);
 
             // territorial notes
-            this.$el.find(s.TERRITORIAL_NOTES).on('click', function(e) {
+            this.$el.find(s.TERRITORIAL_NOTES).on('click', function() {
                 amplify.publish(E.NOTIFICATION_INFO, {title: i18nLabels.territorial_notes_info });
             });
 
             // feedback system
-            this.$el.find(s.FEEDBACK_SYSTEM).on('click', function(e) {
-                console.warn('The feeback system opens in a popup in faostat3.fao.org');
+            this.$el.find(s.FEEDBACK_SYSTEM).on('click', function() {
+                log.warn('The feeback system opens in a popup in faostat3.fao.org');
                 window.open(C.FEEDBACK_SYSTEM_URL, "_target=black");
             });
 
         },
 
         initComponents: function () {
+
+            //var self = this;
 
             /* FAOSTAT menu. */
             /* Initiate the menu. */
@@ -139,7 +141,15 @@ define([
 
             this.searchBox =  new SearchBox();
             this.searchBox.init({
-                container: s.SEARCH
+                container: s.SEARCH,
+                callback: {
+                    searchQuery: function(q) {
+
+                        // route to search page
+                        Common.changeURL(ROUTES.SEARCH_QUERY, [escape(q)], true);
+
+                    }
+                }
             });
 
 
@@ -149,10 +159,10 @@ define([
 
         scrollToTop: function() {
 
-            var verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
-            var element = $('body');
-            var offset = element.offset();
-            var offsetTop = offset.top;
+            var element = $('body'),
+                offset = element.offset(),
+                offsetTop = offset.top;
+
             $('html, body').animate({scrollTop: offsetTop}, 400, 'linear');
 
         },

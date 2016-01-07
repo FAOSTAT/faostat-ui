@@ -15,19 +15,20 @@ define([
 
     var s = {
 
-        SEARCH_BOX: '[data-role="search"]'
+            SEARCH_BOX: '[data-role="search"]'
 
-    },
-    defaultOptions = {
+        },
+        defaultOptions = {
+
             requestKey: 0
-    };
+
+        };
 
     function SearchBox() {
 
     };
 
-
-    SearchBox.prototype.init = function(options) {
+    SearchBox.prototype.init = function (options) {
 
         this.o = $.extend(this, {}, defaultOptions, options);
 
@@ -47,7 +48,6 @@ define([
     };
 
     SearchBox.prototype.initComponents = function () {
-
 
         var self = this;
 
@@ -71,7 +71,7 @@ define([
                 url: 'http://fenixapps2.fao.org/api/v1.0/en/suggestions/%QUERY',
                 wildcard: '%QUERY',
                 filter: function (result) {
-                   return result.data;
+                    return result.data;
                 }
             }
         });
@@ -91,8 +91,29 @@ define([
                     empty: 'No data',
                     suggestion: Handlebars.compile('<p>{{label}} <small>({{id}})</small></p>')
                 }
-            });
+            }).on('typeahead:selected', function (e, d) {
+                log.info(e, d);
 
+                self.$SEARCH_BOX.typeahead('close');
+
+                self.callback.searchQuery(d.label);
+
+            }).keyup(function (e) {
+
+                if (e.keyCode === 13) {
+
+                    if (e.target && e.target.value && e.target.value !== '') {
+
+                        log.info(e.target.value);
+
+                        self.$SEARCH_BOX.typeahead('close');
+
+                        self.callback.searchQuery(e.target.value);
+
+                    }
+
+                }
+            });
 
     };
 
