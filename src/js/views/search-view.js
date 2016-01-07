@@ -85,8 +85,8 @@ define([
             log.info(this.o);
 
             $.ajax({
-                //url: "http://fenixapps2.fao.org/api/v1.0/en/search/" + query,
-                url: "http://localhost:8081/api/v1.0/en/search/" + query,
+                url: "http://fenixapps2.fao.org/api/v1.0/en/search/" + query,
+                //url: "http://localhost:8081/api/v1.0/en/search/" + query,
                 success: function(result) {
                     self.parseSearchResults(result);
                 }
