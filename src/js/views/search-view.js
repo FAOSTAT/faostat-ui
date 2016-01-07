@@ -14,6 +14,7 @@ define([
     'underscore',
     'handlebars',
     'bootpag',
+    'config/browse_by_domain/Config',
     'amplify'
 ], function ($,
              log,
@@ -26,7 +27,8 @@ define([
              i18nLabels,
              _,
              Handlebars,
-             bootpag
+             bootpag,
+             BrowseByDomainConfig
 ){
 
     'use strict';
@@ -94,18 +96,19 @@ define([
 
         parseSearchResults: function(results) {
 
-            log.info(results)
+            log.info(results);
 
             // cluster results
             var cluster = [],
                 values = results.data,
-                relatedValues = [];
+                relatedValues = [],
+                browseWhitelist = BrowseByDomainConfig.whitelist;
 
             _.each(values, function(v) {
 
                 if ( $.inArray( v, relatedValues ) === -1 ) {
 
-                    log.info(v.label)
+                    log.info(v.label);
 
                     var domainCode = v.domainCode,
                         id = v.id,
@@ -125,7 +128,8 @@ define([
 
                     });
 
-                    cluster.push($.extend(true, {}, v, {relations: relations}));
+                    cluster.push($.extend(true, {}, v, {relations: relations}, {addBrowse: ($.inArray(domainCode, browseWhitelist) !== -1) }));
+
                 }
 
             });

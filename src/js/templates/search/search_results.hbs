@@ -14,8 +14,10 @@
 
             <div class="pull-right">
                 <a href="#en/download/interactive/{{this.domainCode}}">Go To Download</a>
-                |
-                <a href="#en/browse/domain/{{this.domainCode}}">Go To Browse</a>
+                {{#if this.addBrowse}}
+                    |
+                    <a href="#en/browse/domain/{{this.domainCode}}">Go To Browse</a>
+                {{/if}}
                 |
                 <a href="#">Export Data</a>
             </div>
