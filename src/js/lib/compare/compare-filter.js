@@ -19,13 +19,15 @@ define([
 
     var s = {
 
-        DD_CONTAINER: '[data-role="dd-container"]',
-        DD: '[data-role="dd"]',
-        VALIDATION: '[data-role="validation"]'
+            DD_CONTAINER: '[data-role="dd-container"]',
+            DD: '[data-role="dd"]',
+            VALIDATION: '[data-role="validation"]'
 
-    };
+        },
 
-    var dropDownOptions = {
+        defaultOptions = {
+
+            show: true
 
     }
 
@@ -36,14 +38,16 @@ define([
         this.o.lang = Common.getLocale();
 
         // default dropdownOptions
-        this.o.ddOptions = $.extend(true, {}, dropDownOptions, this.o.ddOptions || {});
+        this.o.ddOptions = $.extend(true, {}, defaultOptions, this.o.ddOptions || {});
 
         // store container variable
         this.$CONTAINER = this.o.container;
 
         this.initVariables();
 
-        this.initComponents();
+        if (this.o.ddOptions.show) {
+            this.initComponents();
+        }
 
         return this;
     }
@@ -97,6 +101,16 @@ define([
     };
 
     CompareFilter.prototype.getFilter = function () {
+
+        if (this.o.ddOptions.show) {
+            return this.getFilterVisible();
+        }else {
+            return this.getFilterInvisible();
+        }
+
+    };
+
+    CompareFilter.prototype.getFilterVisible = function () {
         var f = {
             id: this.o.metadata.parameters.id,
             parameter: this.o.parameter,
@@ -120,6 +134,22 @@ define([
         }
 
         // TODO: if nothing is selected set an alert?
+        return f;
+    };
+
+
+    CompareFilter.prototype.getFilterInvisible = function () {
+
+        var f = {
+            id: this.o.metadata.parameters.id,
+            parameter: this.o.parameter,
+            codes: []
+        };
+
+        _.each(this.o.data, function(d) {
+            f.codes.push(d.code);
+        });
+
         return f;
     };
 

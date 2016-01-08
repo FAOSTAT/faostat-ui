@@ -189,17 +189,17 @@ define([
             // get years TODO: get all the years in the timerange?
             var timerange = this.$TIMERANGE.rangeSlider("values"),
                 minYear = timerange.min,
-                maxYear = timerange.max;
+                maxYear = timerange.max,
+                years = [];
 
-            var years = [];
             for (var i = minYear; i <= maxYear; i++) {
-                years.push(i);
+                years.push(i.toString());
             }
 
             // get for each filterBox the relative filters (domain, items etc...)
             var filters = this._getFiltersSelections();
 
-            log.info(filters)
+            //log.info(filters)
 
             // retrieve with getData the data for the single box
 
@@ -211,21 +211,35 @@ define([
 
                 _.each(f.filter, function (filterParameter) {
 
-                    r[filterParameter.parameter] = filterParameter.codes;
+                    log.info(filterParameter)
 
-                    // TODO: remove it from here
-                    r.domainName = f.filterBox.getDomainName();
-                    r.groupName = f.filterBox.getGroupName();
+                    if ( CM.filters.blacklistCodesID.indexOf(filterParameter.id) <= -1) {
+
+                        r[filterParameter.parameter] = filterParameter.codes;
+
+                    }
+                    else{
+
+                        // TODO: how to do a dynamic search for the years, and in case for other filters?
+                        // years (filter by the right years accordingly to the domain)
+                        r[filterParameter.parameter] = _.intersection(years, filterParameter.codes);
+
+                    }
 
                 });
+
+                // TODO: remove it from here
+                r.domainName = f.filterBox.getDomainName();
+                r.groupName = f.filterBox.getGroupName();
 
                 r = $.extend(true, {}, CM.getData, {
                     datasource: C.DATASOURCE,
                     lang: this.o.lang,
 
                     // TODO: get the years properly (from the domainSchema)
-                    List4Codes: years,
-                    "null_values": null,
+                    // filter the years accordingly to the domain
+                    //List4Codes: years,
+                    null_values: null,
                     order_by: "year"
 
                 }, r);

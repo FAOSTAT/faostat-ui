@@ -20,7 +20,7 @@ define([
     //'lib/filter/filter',
     'q',
     'amplify'
-], function ($, log, View, Common, C, E, EC, CC, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
+], function ($, log, View, Common, C, E, EC, CM, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
 
     'use strict';
 
@@ -105,8 +105,8 @@ define([
             this.FAOSTATAPIClient.groups({
                 datasource: C.DATASOURCE,
                 lang: this.o.lang,
-                whitelist: CC.groups.whitelist || [],
-                blacklist: CC.groups.blacklist || []
+                whitelist: CM.groups.whitelist || [],
+                blacklist: CM.groups.blacklist || []
             }).then(function(json) {
                 self.createGroupFilter(json);
             });
@@ -114,15 +114,14 @@ define([
         },
 
         createGroupFilter: function(json) {
-            var self = this;
-
-            var groupsData = json.data;
-            var filter = new Filter({
-                container: this.$GROUPS,
-                title: i18nLabels.groups,
-                addEmptySelection: true,
-                data: groupsData
-            });
+            var self = this,
+                groupsData = json.data,
+                filter = new Filter({
+                    container: this.$GROUPS,
+                    title: i18nLabels.groups,
+                    addEmptySelection: true,
+                    data: groupsData
+                });
 
             // cache groups dropdown
             this.o.groups = {
@@ -184,8 +183,8 @@ define([
                 group_code: code,
                 datasource: C.DATASOURCE,
                 lang: this.o.lang,
-                whitelist: CC.domains.whitelist || [],
-                blacklist: CC.domains.blacklist || []
+                whitelist: CM.domains.whitelist || [],
+                blacklist: CM.domains.blacklist || []
             }).then(function(json) {
                 self.createDomainFilter(json);
             });
@@ -237,7 +236,8 @@ define([
                                 multiple: true,
                                 addEmptySelection: true,
                                 //placeholder: "SELECT a",
-                                allowClear: false
+                                allowClear: false,
+                                show: (CM.filters.blacklistCodesID.indexOf(id) <= -1)
                             };
 
                             this.o.filters[id] = {};
@@ -270,29 +270,22 @@ define([
                 // caching the parameter to use with the getData
                 this.DIMENSION_PARAMETER_MAPPING[id] = c.parameter;
 
-                // add check on the blacklist
-                if (CC.filters.blacklistCodesID.indexOf(id) <= -1) {
+                r.push(
+                    self.FAOSTATAPIClient.codes({
+                        datasource: C.DATASOURCE,
+                        id: id,
+                        lang: lang,
+                        domain_code: domainCode,
+                        domains: domainCode,
+                        whitelist: [],
+                        blacklist: [],
+                        subcodelists: null,
+                        show_lists: null,
+                        show_full_metadata: null,
+                        ord: null
+                    })
+                );
 
-                   r.push(
-                     self.FAOSTATAPIClient.codes({
-                            datasource: C.DATASOURCE,
-                            id: id,
-                            lang: lang,
-                            domain_code: domainCode,
-                            domains: domainCode,
-                            whitelist: [],
-                            blacklist: [],
-                            subcodelists: null,
-                            show_lists: null,
-                            show_full_metadata: null,
-                            ord: null
-                        })
-                   );
-                }
-                else {
-                    // TODO: check how to handle i.e. the year that is crop selectors
-                    log.warn("TODO: check how to handle i.e. the year that is crop selectors");
-                }
 
             }, this));
 
