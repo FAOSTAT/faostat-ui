@@ -36,8 +36,7 @@ define([
 
     };
 
-    var defaultOptions = {
-    };
+    var defaultOptions = {};
 
     // TODO: check all global objects
     var filterBoxIDs = 0;
@@ -213,12 +212,12 @@ define([
 
                     log.info(filterParameter)
 
-                    if ( CM.filters.blacklistCodesID.indexOf(filterParameter.id) <= -1) {
+                    if (CM.filters.blacklistCodesID.indexOf(filterParameter.id) <= -1) {
 
                         r[filterParameter.parameter] = filterParameter.codes;
 
                     }
-                    else{
+                    else {
 
                         // TODO: how to do a dynamic search for the years, and in case for other filters?
                         // years (filter by the right years accordingly to the domain)
@@ -292,19 +291,19 @@ define([
                 });
         },
 
-        _createTables: function(models) {
+        _createTables: function (models) {
 
             _.each(models, _.bind(this._createTable, this));
 
         },
 
-        _createTable: function(model, index) {
+        _createTable: function (model, index) {
 
             // TODO: switch to something better when view will be defined
             var tableID = 'data-role="table_' + index + '"';
-            this.$TABLES_CONTAINER.append("<div "+ tableID +"></div>");
+            this.$TABLES_CONTAINER.append("<div " + tableID + "></div>");
 
-            var $table_container = this.$TABLES_CONTAINER.find("[" + tableID +"]");
+            var $table_container = this.$TABLES_CONTAINER.find("[" + tableID + "]");
 
 
             // DIRTY request
@@ -319,18 +318,18 @@ define([
             var config = $.extend(true, {},
                 CM.table,
                 {
-                container: $table_container,
-                model: model,
+                    container: $table_container,
+                    model: model,
                     template: {
                         title: groupName + " - " + domainName,
                         addExport: true,
                         export: i18nLabels.export_data
-                },
+                    },
 
-                // TODO: leave exportRequest?
-                exportRequest: request
+                    // TODO: leave exportRequest?
+                    exportRequest: request
 
-            });
+                });
             var t = new TableItem({config: config});
 
             t.render();
