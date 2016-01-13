@@ -80,21 +80,35 @@ define([
             this.$SEARCH_RESULTS = this.$el.find(s.SEARCH_RESULTS);
             this.$PAGINATION = this.$el.find(s.PAGINATION);
 
-
-
-            log.info(this.o);
-
             $.ajax({
                 url: "http://fenixapps2.fao.org/api/v1.0/en/search/" + query,
                 //url: "http://localhost:8081/api/v1.0/en/search/" + query,
                 success: function(result) {
-                    self.parseSearchResults(result);
+                    self.parseSearchResultsClustered(result);
+                    //self.parseSearchResults(result);
                 }
             });
 
         },
 
+
         parseSearchResults: function(results) {
+
+            // cluster results
+            var r = [],
+                browseWhitelist = BrowseByDomainConfig.whitelist;
+
+            _.each(results.data, function(v) {
+
+                r.push($.extend(true, {}, v, {addBrowse: ($.inArray(v.domainCode, browseWhitelist) !== -1) }));
+
+            });
+
+            this.renderResults(r);
+
+        },
+
+        parseSearchResultsClustered: function(results) {
 
             log.info(results);
 
@@ -138,24 +152,17 @@ define([
 
         },
 
-        renderResults: function (cluster) {
+        renderResults: function (results) {
 
             var self = this,
-                cluster = cluster,
                 page = 1,
                 pageSize = 10;
 
-            //var t = Handlebars.compile(templateResults),
-            //    d = {
-            //        data: cluster
-            //    },
-            //    html = t(d);
-
-            log.info(cluster.length)
-            log.info(cluster.length / pageSize)
+            log.info(results.length)
+            log.info(results.length / pageSize)
 
            this.$PAGINATION.bootpag({
-               total: Math.round(cluster.length / pageSize),
+               total: Math.round(results.length / pageSize),
                page: page,
                leaps: false,
                next: 'Next',
@@ -163,27 +170,30 @@ define([
                //wrapClass: 'pagination',
                activeClass: 'active',
                disabledClass: 'disabled'
-            }).on("page", function(event, /* page number here */ num){
-                log.info(event, num)
-                self.$SEARCH_RESULTS.html(self.getPage(cluster, num, pageSize));
+            }).on("page", function(event, /* page number here */ num) {
+
+                log.info(event, num);
+
+                self.$SEARCH_RESULTS.html(self.getPage(results, num, pageSize));
                 //self.$SEARCH_RESULTS.focus();
                 //self.$SEARCH_RESULTS.animate({ scrollTop: 0 }, "fast");
                 $('body, html').scrollTop(0);
+
             });
 
-            self.$SEARCH_RESULTS.html(self.getPage(cluster, page, pageSize));
+            self.$SEARCH_RESULTS.html(self.getPage(results, page, pageSize));
 
             //this.$SEARCH_RESULTS.html(html);
 
         },
 
-        getPage: function(cluster, nextPage, pageSize) {
+        getPage: function(results, nextPage, pageSize) {
 
             // TODO: this could be cached
             var t = Handlebars.compile(templateResults),
                 currentPage = (nextPage - 1),
                 d = {
-                    data: cluster.slice(currentPage * pageSize, nextPage * pageSize)
+                    data: results.slice(currentPage * pageSize, nextPage * pageSize)
                 };
 
             return t(d);
