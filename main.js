@@ -76,7 +76,7 @@ require([
 
             config: {
 
-                waitSeconds: 2,
+                waitSeconds: 20,
 
                 /* Set the config for the i18n. */
                 //i18n: {
