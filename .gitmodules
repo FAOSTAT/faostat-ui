@@ -34,9 +34,6 @@
 [submodule "submodules/faostat-ui-download-selector"]
 	path = submodules/faostat-ui-download-selector
 	url = https://github.com/FAOSTAT/faostat-ui-download-selector.git
-[submodule "submodules/faostat-ui-standards-units"]
-	path = submodules/faostat-ui-standards-units
-	url = https://github.com/FAOSTAT/faostat-ui-standards-units.git
 [submodule "submodules/faostat-ui-pivot"]
 	path = submodules/faostat-ui-pivot
 	url = https://github.com/FAOSTAT/faostat-ui-pivot.git
