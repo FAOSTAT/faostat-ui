@@ -76,7 +76,7 @@ require([
 
             config: {
 
-                waitSeconds: 20,
+                waitSeconds: 2,
 
                 /* Set the config for the i18n. */
                 //i18n: {
@@ -91,6 +91,16 @@ require([
 
                 /* Specify the paths of vendor libraries. */
                 paths: {
+
+                    // alias to the application
+                    nls: "../../i18n",
+                    config: "../../config",
+                    json: "../../json",
+
+                    'faostat-ui/nls': "../../i18n/",
+                    'faostat-ui/config': "../../config/",
+                    'faostat-ui': "./",
+
                     bootstrap: "{FENIX_CDN}/js/bootstrap/3.3.4/js/bootstrap.min",
                     underscore: "{FENIX_CDN}/js/underscore/1.7.0/underscore.min",
                     backbone: "{FENIX_CDN}/js/backbone/1.1.2/backbone.min",
@@ -108,14 +118,10 @@ require([
                     bloodhound: '//cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/bloodhound.min',
                     bootpag: '//cdnjs.cloudflare.com/ajax/libs/bootpag/1.0.7/jquery.bootpag.min',
 
-                    nls: "../../i18n",
-                    config: "../../config",
-                    json: "../../json",
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
 
                     // TODO: remove it (download dependency)
                     wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
-
 
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
                     'jquery.rangeSlider': '{FENIX_CDN}/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
@@ -129,7 +135,7 @@ require([
                     // TODO: move to CDN
 
                     /* FAOSTAT API's client. */
-                    faostatapiclient:           'FAOSTATAPIClient',
+                    faostatapiclient: 'FAOSTATAPIClient',
                     list: '//fenixrepo.fao.org/cdn/js/list/1.1.1/list.min',
                     //list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min',
 
