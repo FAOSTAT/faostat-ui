@@ -55,3 +55,6 @@
 [submodule "submodules/fenix-ui-map"]
 	path = submodules/fenix-ui-map
 	url = https://github.com/FENIX-Platform/fenix-ui-map.git
+[submodule "submodules/faostat-ui-report-table"]
+	path = submodules/faostat-ui-report-table
+	url = https://github.com/FAOSTAT/faostat-ui-report-table.git
