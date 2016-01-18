@@ -30,6 +30,8 @@ define(['config/Routes'], function (ROUTE) {
         match(':lang/standards/glossary', 'standards#show_glossary', {name: ROUTE.GLOSSARY});
         match(':lang/standards/classifications', 'standards#show_classifications', {name: ROUTE.CLASSIFICATIONS});
 
+        match(':lang/indicators', 'indicators#show', {name: ROUTE.INDICATORS});
+        //match(':lang/indicators/:code', 'indicators#show', {name: ROUTE.INDICATORS_CODE});
 
         match(':lang/search/:query', 'search#show', {name: ROUTE.SEARCH_QUERY});
 
