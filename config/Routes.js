@@ -14,6 +14,8 @@ define(function ( ) {
 
         COMPARE: "compare",
 
+        INDICATORS: "indicators",
+
         METHODOLOGIES: 'methodologies',
         UNITS: 'units',
         ABBREVIATIONS: 'abbreviations',
