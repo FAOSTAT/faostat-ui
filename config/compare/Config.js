@@ -37,7 +37,8 @@ define([
                 'FT', // trade matrix
                 'TM', // trade matrix
                 'HS',
-                'PM'
+                'PM',
+                'GY' // Synthetic Fertilizers
             ]
         },
 
