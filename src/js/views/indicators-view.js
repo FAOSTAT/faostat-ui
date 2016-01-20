@@ -10,6 +10,7 @@ define([
     'config/Events',
     'text!templates/indicators/indicators.hbs',
     'i18n!nls/indicators',
+    'fs-r-t/start',
     'amplify'
 ], function ($,
              log,
@@ -18,7 +19,8 @@ define([
              C,
              E,
              template,
-             i18nLabels
+             i18nLabels,
+             ReportTable
              ) {
 
     'use strict';
@@ -64,6 +66,12 @@ define([
         },
 
         initVariables: function () {
+
+            var reportTable = new ReportTable();
+
+            reportTable.init({
+                container: this.$el
+            });
 
         },
 

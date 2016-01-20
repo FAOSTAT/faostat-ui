@@ -156,6 +156,105 @@ FAOSTATAPIClient.prototype.apply_data_defaults = function (config) {
     return config;
 };
 
+        FAOSTATAPIClient.prototype.reportheaders = function(config) {
+    config = $.extend(true, {}, this.CONFIG, config || {});
+    config = this.apply_reportheaders_defaults(config);
+    if (this.is_valid_reportheaders(config)) {
+            return Q($.ajax({
+                url: this.CONFIG.base_url +  config.lang + '/report/headers/',
+                traditional: true,
+                    data: {
+                //    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domain_code": config.domain_code, "report_code": config.report_code, "List1Codes": config.List1Codes, "List2Codes": config.List2Codes, "List3Codes": config.List3Codes, "List4Codes": config.List4Codes, "List5Codes": config.List5Codes, "List6Codes": config.List6Codes, "List7Codes": config.List7Codes, "List1AltCodes": config.List1AltCodes, "List2AltCodes": config.List2AltCodes, "List3AltCodes": config.List3AltCodes, "List4AltCodes": config.List4AltCodes, "List5AltCodes": config.List5AltCodes, "List6AltCodes": config.List6AltCodes, "List7AltCodes": config.List7AltCodes
+                      "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domain_code": config.domain_code, "report_code": config.report_code, "List1Codes": config.List1Codes, "List2Codes": config.List2Codes, "List3Codes": config.List3Codes, "List4Codes": config.List4Codes, "List5Codes": config.List5Codes, "List6Codes": config.List6Codes, "List7Codes": config.List7Codes, "List1AltCodes": config.List1AltCodes, "List2AltCodes": config.List2AltCodes, "List3AltCodes": config.List3AltCodes
+                },
+                type: 'POST'
+            }));
+    }
+    throw 400;
+};
+
+    FAOSTATAPIClient.prototype.is_valid_reportheaders = function(config) {
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "report_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes"], i;
+        for (i = 0; i < parameters.length; i += 1) {
+            if (config[parameters[i]] === undefined) {
+                throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
+            }
+        }
+        return true;
+    };
+
+FAOSTATAPIClient.prototype.apply_reportheaders_defaults = function (config) {
+    var i,
+        parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "report_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes"],
+        defaults = {
+            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
+        },
+        key;
+    for (i = 0; i < Object.keys(defaults).length; i += 1) {
+        if (defaults[Object.keys(defaults)[i]] === '[]') {
+            defaults[Object.keys(defaults)[i]] = [];
+        }
+    }
+    for (i = 0; i < parameters.length; i += 1) {
+        key =  parameters[i];
+        try {
+            config[key] = config[key] !== undefined ? config[key] : defaults[key];
+        } catch (ignore) {
+            /* No default value available for this parameter. */
+        }
+    }
+    return config;
+};
+
+        FAOSTATAPIClient.prototype.reportdata = function(config) {
+    config = $.extend(true, {}, this.CONFIG, config || {});
+    config = this.apply_reportdata_defaults(config);
+    if (this.is_valid_reportdata(config)) {
+            return Q($.ajax({
+                url: this.CONFIG.base_url +  config.lang + '/report/data/',
+                traditional: true,
+                    data: {
+    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domain_code": config.domain_code, "report_code": config.report_code, "List1Codes": config.List1Codes, "List2Codes": config.List2Codes, "List3Codes": config.List3Codes, "List4Codes": config.List4Codes, "List5Codes": config.List5Codes, "List6Codes": config.List6Codes, "List7Codes": config.List7Codes, "List1AltCodes": config.List1AltCodes, "List2AltCodes": config.List2AltCodes, "List3AltCodes": config.List3AltCodes, "List4AltCodes": config.List4AltCodes, "List5AltCodes": config.List5AltCodes, "List6AltCodes": config.List6AltCodes, "List7AltCodes": config.List7AltCodes
+},
+                type: 'POST'
+            }));
+    }
+    throw 400;
+};
+
+    FAOSTATAPIClient.prototype.is_valid_reportdata = function(config) {
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "report_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes"], i;
+        for (i = 0; i < parameters.length; i += 1) {
+            if (config[parameters[i]] === undefined) {
+                throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
+            }
+        }
+        return true;
+    };
+
+FAOSTATAPIClient.prototype.apply_reportdata_defaults = function (config) {
+    var i,
+        parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "report_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes"],
+        defaults = {
+            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
+        },
+        key;
+    for (i = 0; i < Object.keys(defaults).length; i += 1) {
+        if (defaults[Object.keys(defaults)[i]] === '[]') {
+            defaults[Object.keys(defaults)[i]] = [];
+        }
+    }
+    for (i = 0; i < parameters.length; i += 1) {
+        key =  parameters[i];
+        try {
+            config[key] = config[key] !== undefined ? config[key] : defaults[key];
+        } catch (ignore) {
+            /* No default value available for this parameter. */
+        }
+    }
+    return config;
+};
+
         FAOSTATAPIClient.prototype.datasize = function(config) {
     config = $.extend(true, {}, this.CONFIG, config || {});
     config = this.apply_datasize_defaults(config);
@@ -283,6 +382,104 @@ FAOSTATAPIClient.prototype.apply_authentication_defaults = function (config) {
 FAOSTATAPIClient.prototype.apply_abbreviations_defaults = function (config) {
     var i,
         parameters = ["datasource", "output_type", "api_key", "client_key", "lang"],
+        defaults = {
+            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
+        },
+        key;
+    for (i = 0; i < Object.keys(defaults).length; i += 1) {
+        if (defaults[Object.keys(defaults)[i]] === '[]') {
+            defaults[Object.keys(defaults)[i]] = [];
+        }
+    }
+    for (i = 0; i < parameters.length; i += 1) {
+        key =  parameters[i];
+        try {
+            config[key] = config[key] !== undefined ? config[key] : defaults[key];
+        } catch (ignore) {
+            /* No default value available for this parameter. */
+        }
+    }
+    return config;
+};
+
+        FAOSTATAPIClient.prototype.domaintabs = function(config) {
+    config = $.extend(true, {}, this.CONFIG, config || {});
+    config = this.apply_domaintabs_defaults(config);
+    if (this.is_valid_domaintabs(config)) {
+            return Q($.ajax({
+                url: this.CONFIG.base_url +  config.lang + '/domaintabs/' + config.domain_code + '/',
+                traditional: true,
+                    data: {
+    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key
+},
+                type: 'GET'
+            }));
+    }
+    throw 400;
+};
+
+    FAOSTATAPIClient.prototype.is_valid_domaintabs = function(config) {
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"], i;
+        for (i = 0; i < parameters.length; i += 1) {
+            if (config[parameters[i]] === undefined) {
+                throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
+            }
+        }
+        return true;
+    };
+
+FAOSTATAPIClient.prototype.apply_domaintabs_defaults = function (config) {
+    var i,
+        parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"],
+        defaults = {
+            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
+        },
+        key;
+    for (i = 0; i < Object.keys(defaults).length; i += 1) {
+        if (defaults[Object.keys(defaults)[i]] === '[]') {
+            defaults[Object.keys(defaults)[i]] = [];
+        }
+    }
+    for (i = 0; i < parameters.length; i += 1) {
+        key =  parameters[i];
+        try {
+            config[key] = config[key] !== undefined ? config[key] : defaults[key];
+        } catch (ignore) {
+            /* No default value available for this parameter. */
+        }
+    }
+    return config;
+};
+
+        FAOSTATAPIClient.prototype.domainreports = function(config) {
+    config = $.extend(true, {}, this.CONFIG, config || {});
+    config = this.apply_domainreports_defaults(config);
+    if (this.is_valid_domainreports(config)) {
+            return Q($.ajax({
+                url: this.CONFIG.base_url +  config.lang + '/domainreports/' + config.domain_code + '/',
+                traditional: true,
+                    data: {
+    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key
+},
+                type: 'GET'
+            }));
+    }
+    throw 400;
+};
+
+    FAOSTATAPIClient.prototype.is_valid_domainreports = function(config) {
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"], i;
+        for (i = 0; i < parameters.length; i += 1) {
+            if (config[parameters[i]] === undefined) {
+                throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
+            }
+        }
+        return true;
+    };
+
+FAOSTATAPIClient.prototype.apply_domainreports_defaults = function (config) {
+    var i,
+        parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"],
         defaults = {
             "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
         },
