@@ -31,6 +31,10 @@ define([
 
         show_welcome_page: function (params) {
             this.show(params, 'welcome');
+        },
+
+        show_report: function (params) {
+            this.show(params, 'report');
         }
 
     });

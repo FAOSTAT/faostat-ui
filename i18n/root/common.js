@@ -1,7 +1,7 @@
 /*global define*/
 define({
 
-    "project_name" : "FENIX",
+    "project_name" : "FAOSTAT",
 
     // Btn and search
     "btn_go": "View Data",
@@ -10,6 +10,8 @@ define({
     "no_results" : "No Results",
     "selector_select_all" : "Select All",
     "selector_select_none" : "Select None",
+
+    "faostat_domains": "FAOSTAT Domains",
 
     "results": "Results",
 

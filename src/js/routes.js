@@ -11,6 +11,8 @@ define(['config/Routes'], function (ROUTE) {
         match(':lang/download/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
         match(':lang/download/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
         match(':lang/download/welcome/:code', 'download#show_welcome_page', {name: ROUTE.DOWNLOAD_WELCOME});
+        match(':lang/download/report/:code', 'download#show_report', {name: ROUTE.DOWNLOAD_REPORT});
+
 
         //match(':lang/browse/domain', 'browse#show_browse_by_domain', {name: 'browse_by_domain'});
         match(':lang/browse/domain/:code', 'browse#show_browse_by_domain', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});

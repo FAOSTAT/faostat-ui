@@ -19,11 +19,12 @@ require([
     './submodules/faostat-ui-pivot/src/js/paths',
     './submodules/faostat-ui-download/src/js/paths',
     './submodules/faostat-ui-welcome-page/src/js/paths',
+    './submodules/faostat-ui-report/src/js/paths',
     './submodules/faostat-ui-report-table/src/js/paths'
 ], function (Compiler, Common, Tree, MapCreator, ChartCreator, Dashboard, MetadataViewer, Reports,
              BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager, FAOSTATTheme,
              DownloadOptions, DownloadSelector, Table, Pivot,
-             Download, WelcomePage, ReportTable) {
+             Download, WelcomePage, Report, ReportTable) {
 
     'use strict';
 
@@ -46,6 +47,7 @@ require([
         pivotConfig = Pivot,
         downloadConfig = Download,
         welcomePageConfig = WelcomePage,
+        reportConfig = Report,
         reportTableConfig = ReportTable;
 
     treeConfig.baseUrl = submodules_path + '/faostat-ui-tree/src/js';
@@ -66,6 +68,7 @@ require([
     pivotConfig.baseUrl = submodules_path + '/faostat-ui-pivot/src/js';
     downloadConfig.baseUrl = submodules_path + '/faostat-ui-download/src/js';
     welcomePageConfig.baseUrl = submodules_path + '/faostat-ui-welcome-page/src/js';
+    reportConfig.baseUrl = submodules_path + '/faostat-ui-report/src/js';
     reportTableConfig.baseUrl = submodules_path + '/faostat-ui-report-table/src/js';
 
     Compiler.resolve([commonConfig, mapConfig, chartConfig,
@@ -73,7 +76,7 @@ require([
             downloadSelectorsManagerConfig, faostatMenuConfig,
             optionsManagerConfig, treeConfig, faostatThemeConfig, downloadOptionsConfig,
             downloadSelectorConfig, tableConfig, pivotConfig, downloadConfig,
-            welcomePageConfig, reportTableConfig],
+            welcomePageConfig, reportConfig, reportTableConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
 

@@ -26,6 +26,7 @@ define(function ( ) {
         DOWNLOAD_INTERACTIVE: "interactive",
         DOWNLOAD_METADATA: "metadata",
         DOWNLOAD_WELCOME: "welcome",
+        DOWNLOAD_REPORT: "report",
 
         SEARCHY: "search",
         SEARCH_QUERY: "search_query"
