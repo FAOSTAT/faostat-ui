@@ -70,7 +70,12 @@ define([
             var reportTable = new ReportTable();
 
             reportTable.init({
-                container: this.$el
+                container: this.$el,
+                request: {
+                    domain_code: 'fbs',
+                    List1Codes: [33],
+                    List2Codes: [2009]
+                }
             });
 
         },
