@@ -78,6 +78,10 @@ define([
                 }
             });
 
+
+            reportTable.render();
+            //reportTable.export();
+
         },
 
         initComponents: function () {
