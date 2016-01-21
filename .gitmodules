@@ -58,3 +58,6 @@
 [submodule "submodules/faostat-ui-report-table"]
 	path = submodules/faostat-ui-report-table
 	url = https://github.com/FAOSTAT/faostat-ui-report-table.git
+[submodule "submodules/faostat-ui-report"]
+	path = submodules/faostat-ui-report
+	url = https://github.com/FAOSTAT/faostat-ui-report.git
