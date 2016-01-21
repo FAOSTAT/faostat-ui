@@ -106,7 +106,7 @@ define([
         var container = options.container,
             type = options.type || 'excel',
             d = new Date(),
-            filename = (options.name) || this.o.name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear() + '.csv';
+            filename = (options.name) || this.o.name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear();
 
         // TODO: do a better validation and output message. Warning?
         if ( container === null || container === undefined) {
