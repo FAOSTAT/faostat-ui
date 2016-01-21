@@ -100,9 +100,9 @@ require([
                     config: "../../config",
                     json: "../../json",
 
-                    'faostat-ui/nls': "../../i18n/",
-                    'faostat-ui/config': "../../config/",
-                    'faostat-ui': "./",
+                    //'faostat-ui/nls': "../../i18n/",
+                    //'faostat-ui/config': "../../config/",
+                    //'faostat-ui': "./",
 
                     bootstrap: "{FENIX_CDN}/js/bootstrap/3.3.4/js/bootstrap.min",
                     underscore: "{FENIX_CDN}/js/underscore/1.7.0/underscore.min",
