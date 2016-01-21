@@ -135,8 +135,13 @@ require([
                     pivot_exporter: '../../submodules/faostat-ui-pivot/src/js/PivotExporter',
                     swal: '{FENIX_CDN}/js/sweet-alert/0.5.0/sweet-alert.min',
                     numeral: '{FENIX_CDN}/js/numeral/1.5.3/min/numeral.min',
-                    // TODO: move to CDN
 
+                    // Export
+                    FileSaver: '{FENIX_CDN}/js/FileSaver/1.1.2/FileSaver.min',
+                    Blob: '{FENIX_CDN}/js/blob/1.0/Blob',
+                    tableExport: '{FENIX_CDN}/js/tableExport.jquery.plugin/1.0/tableExport.min',
+
+                    // TODO: move to CDN
                     /* FAOSTAT API's client. */
                     faostatapiclient: 'FAOSTATAPIClient',
                     list: '//fenixrepo.fao.org/cdn/js/list/1.1.1/list.min',
@@ -162,6 +167,12 @@ require([
                 },
 
                 shim: {
+                    "tableExport": {
+                        deps: ["jquery", 'FileSaver']
+                    },
+                    "FileSaver": {
+                        deps: ["jquery", 'Blob']
+                    },
                     "bloodhound": {
                         deps: ["jquery"],
                         exports: "Bloodhound"
