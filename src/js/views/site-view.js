@@ -84,6 +84,7 @@ define([
             amplify.subscribe(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
 
             amplify.subscribe(E.EXPORT_DATA, Export, Export.exportData);
+            amplify.subscribe(E.EXPORT_TABLE_HTML, Export, Export.exportTable);
 
             // publishing GA Events
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
