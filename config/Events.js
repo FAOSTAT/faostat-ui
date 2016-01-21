@@ -27,6 +27,7 @@ define(function () {
         ON_FILTER_CHANGE: 'fs.filter_change.event',
 
         EXPORT_DATA: 'fs.export_data.event',
+        EXPORT_TABLE_HTML: 'fs.export_table_html.event',
 
         // MAP/CHART resize:
         WINDOW_RESIZE: 'fs.window.resize.event'
