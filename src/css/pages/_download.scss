@@ -60,6 +60,7 @@
 .fs-tab-holder{
   overflow: hidden;
   .nav{
+    // TODO: fix it. The width is used for tabs in the download-selector component that are longer than the component itself
     width: 1000px;
     border-color: transparent;
   }
@@ -69,6 +70,8 @@
   overflow-x: auto;
   overflow-y: auto;
   padding: 5px;
+  font-size: 12px;
+  text-overflow: ellipsis;
 }
 
 .pagination{
