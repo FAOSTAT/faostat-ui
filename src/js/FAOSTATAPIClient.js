@@ -7,7 +7,7 @@ define(['jquery', 'q'], function ($, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            base_url: 'http://localhost:8081/api/v1.0/'
+            base_url: 'http://fenixapps2.fao.org/api/v1.0/'
         };
 
         /* Extend default configuration. */
