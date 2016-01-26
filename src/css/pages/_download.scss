@@ -29,6 +29,11 @@
 .faostat-download-selector-resume-holder{
   margin-top: 5px;
 
+  .faostat-summary-item {
+    max-height:115px;
+    overflow-y: auto;
+  }
+
   .summary-item{
     display: inline-block;
     margin: 3px 0;
