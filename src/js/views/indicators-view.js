@@ -11,6 +11,7 @@ define([
     'text!templates/indicators/indicators.hbs',
     'i18n!nls/indicators',
     'fs-r-t/start',
+    'faostatapiclient',
     'amplify'
 ], function ($,
              log,
@@ -20,7 +21,8 @@ define([
              E,
              template,
              i18nLabels,
-             ReportTable
+             ReportTable,
+             FAOSTATApi
              ) {
 
     'use strict';
@@ -67,7 +69,24 @@ define([
 
         initVariables: function () {
 
-            var reportTable = new ReportTable();
+            var api = new FAOSTATApi();
+
+            api.databean({
+                domain_codes: ['QC'],
+                filters: {
+                    area: ['5000>'],
+                    elements: ['2510'],
+                    items: ['15'],
+                    //years: ['2012']
+                },
+
+                //output_type: 'csv'
+            }).then(function (response) {
+                log.info(response)
+            });
+
+
+            /*var reportTable = new ReportTable();
 
             reportTable.init({
                 container: this.$el,
@@ -80,7 +99,7 @@ define([
 
 
             reportTable.render();
-            //reportTable.export();
+            //reportTable.export();*/
 
         },
 
