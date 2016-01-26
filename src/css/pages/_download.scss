@@ -70,17 +70,17 @@
   overflow-x: auto;
   overflow-y: auto;
   padding: 5px;
-  font-size: 12px;
-  text-overflow: ellipsis;
+  font-size: 13px;
+  //text-overflow: ellipsis;
 }
 
 .pagination{
-  float: left;
-
+  //float: left;
 }
 
 .fs-page-number{
-  float: left;
+  //float: left;
+  font-weight: bold;
   padding: 25px;
 }
 
