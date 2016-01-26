@@ -34,6 +34,8 @@ define([
 
     Export.prototype.exportData = function (request, options) {
 
+        log.info('EXPORT.exportData; ', request, options);
+
         // TODO: check better the requestType!
         var requestType = options ? options.requestType : this.o.requestType,
             name = options ? options.name || this.o.name : this.o.name,
@@ -73,11 +75,15 @@ define([
 
     Export.prototype._exportResult = function (result, name) {
 
+        log.info('EXPORT._exportResult;');
+
         // TODO: check if it works in all browser. There should be an issue with Sfari 8.0
 
         var blob = new Blob([result.responseText], {type: "data:application/csv;charset=utf-8;"}),
             d = new Date(),
             filename = name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear() + '.csv';
+
+        log.info('EXPORT.saveAs;');
 
         saveAs(blob, filename);
 
@@ -101,7 +107,7 @@ define([
 
     Export.prototype.exportTable = function (options) {
 
-        log.info(options);
+        log.info('EXPORT.exportTable; options: ', options);
 
         var container = options.container,
             type = options.type || 'excel',
