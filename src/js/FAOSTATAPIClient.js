@@ -186,7 +186,7 @@ FAOSTATAPIClient.prototype.apply_reportheaders_defaults = function (config) {
     var i,
         parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "report_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes"],
         defaults = {
-            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
+            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en", "report_code": "download"
         },
         key;
     for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -235,7 +235,7 @@ FAOSTATAPIClient.prototype.apply_reportdata_defaults = function (config) {
     var i,
         parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code", "report_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes"],
         defaults = {
-            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
+            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en", "report_code": "download"
         },
         key;
     for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -801,7 +801,7 @@ FAOSTATAPIClient.prototype.apply_methodologies_defaults = function (config) {
                 url: this.CONFIG.base_url +  config.lang + '/dimensions/' + config.domain_code + '/',
                 traditional: true,
                     data: {
-    "datasource": config.datasource, "report_code": config.report_code, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key
+    "datasource": config.datasource, "output_type": config.output_type, "report_code": config.report_code, "api_key": config.api_key, "client_key": config.client_key
 },
                 type: 'GET'
             }));
@@ -810,7 +810,7 @@ FAOSTATAPIClient.prototype.apply_methodologies_defaults = function (config) {
 };
 
     FAOSTATAPIClient.prototype.is_valid_dimensions = function(config) {
-        var parameters = ["datasource", "report_code", "output_type", "api_key", "client_key", "lang", "domain_code"], i;
+        var parameters = ["datasource", "output_type", "report_code", "api_key", "client_key", "lang", "domain_code"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -821,9 +821,9 @@ FAOSTATAPIClient.prototype.apply_methodologies_defaults = function (config) {
 
 FAOSTATAPIClient.prototype.apply_dimensions_defaults = function (config) {
     var i,
-        parameters = ["datasource", "report_code", "output_type", "api_key", "client_key", "lang", "domain_code"],
+        parameters = ["datasource", "output_type", "report_code", "api_key", "client_key", "lang", "domain_code"],
         defaults = {
-            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
+            "datasource": "production", "output_type": "objects", "report_code": "download", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
         },
         key;
     for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -850,7 +850,7 @@ FAOSTATAPIClient.prototype.apply_dimensions_defaults = function (config) {
                 url: this.CONFIG.base_url +  config.lang + '/codes/' + config.id + '/' + config.domain_code + '/',
                 traditional: true,
                     data: {
-    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domains": config.domains, "whitelist": config.whitelist, "blacklist": config.blacklist, "group_subdimensions": config.group_subdimensions, "subcodelists": config.subcodelists, "show_lists": config.show_lists, "show_full_metadata": config.show_full_metadata, "ord": config.ord
+    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "report_code": config.report_code, "domains": config.domains, "whitelist": config.whitelist, "blacklist": config.blacklist, "group_subdimensions": config.group_subdimensions, "subcodelists": config.subcodelists, "show_lists": config.show_lists, "show_full_metadata": config.show_full_metadata, "ord": config.ord
 },
                 type: 'GET'
             }));
@@ -859,7 +859,7 @@ FAOSTATAPIClient.prototype.apply_dimensions_defaults = function (config) {
 };
 
     FAOSTATAPIClient.prototype.is_valid_codes = function(config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "domain_code", "lang", "id", "domains", "whitelist", "blacklist", "group_subdimensions", "subcodelists", "show_lists", "show_full_metadata", "ord"], i;
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "domain_code", "report_code", "lang", "id", "domains", "whitelist", "blacklist", "group_subdimensions", "subcodelists", "show_lists", "show_full_metadata", "ord"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -870,9 +870,9 @@ FAOSTATAPIClient.prototype.apply_dimensions_defaults = function (config) {
 
 FAOSTATAPIClient.prototype.apply_codes_defaults = function (config) {
     var i,
-        parameters = ["datasource", "output_type", "api_key", "client_key", "domain_code", "lang", "id", "domains", "whitelist", "blacklist", "group_subdimensions", "subcodelists", "show_lists", "show_full_metadata", "ord"],
+        parameters = ["datasource", "output_type", "api_key", "client_key", "domain_code", "report_code", "lang", "id", "domains", "whitelist", "blacklist", "group_subdimensions", "subcodelists", "show_lists", "show_full_metadata", "ord"],
         defaults = {
-            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en", "domains": "[]", "whitelist": "[]", "blacklist": "[]", "group_subdimensions": "false", "show_lists": "false", "show_full_metadata": "true"
+            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "report_code": "download", "lang": "en", "domains": "[]", "whitelist": "[]", "blacklist": "[]", "group_subdimensions": "false", "show_lists": "false", "show_full_metadata": "true"
         },
         key;
     for (i = 0; i < Object.keys(defaults).length; i += 1) {
