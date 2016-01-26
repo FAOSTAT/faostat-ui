@@ -5409,6 +5409,9 @@ footer.fao-footer {
 
 .faostat-download-selector-resume-holder {
   margin-top: 5px; }
+  .faostat-download-selector-resume-holder .faostat-summary-item {
+    max-height: 115px;
+    overflow-y: auto; }
   .faostat-download-selector-resume-holder .summary-item {
     display: inline-block;
     margin: 3px 0;
