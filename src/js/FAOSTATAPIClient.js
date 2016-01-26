@@ -7,7 +7,7 @@ define(['jquery', 'q'], function ($, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            base_url: 'http://fenixapps2.fao.org/api/v1.0/'
+            base_url: 'http://localhost:8081/api/v1.0/'
         };
 
         /* Extend default configuration. */
@@ -164,9 +164,8 @@ FAOSTATAPIClient.prototype.apply_data_defaults = function (config) {
                 url: this.CONFIG.base_url +  config.lang + '/report/headers/',
                 traditional: true,
                     data: {
-                //    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domain_code": config.domain_code, "report_code": config.report_code, "List1Codes": config.List1Codes, "List2Codes": config.List2Codes, "List3Codes": config.List3Codes, "List4Codes": config.List4Codes, "List5Codes": config.List5Codes, "List6Codes": config.List6Codes, "List7Codes": config.List7Codes, "List1AltCodes": config.List1AltCodes, "List2AltCodes": config.List2AltCodes, "List3AltCodes": config.List3AltCodes, "List4AltCodes": config.List4AltCodes, "List5AltCodes": config.List5AltCodes, "List6AltCodes": config.List6AltCodes, "List7AltCodes": config.List7AltCodes
-                      "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domain_code": config.domain_code, "report_code": config.report_code, "List1Codes": config.List1Codes, "List2Codes": config.List2Codes, "List3Codes": config.List3Codes, "List4Codes": config.List4Codes, "List5Codes": config.List5Codes, "List6Codes": config.List6Codes, "List7Codes": config.List7Codes, "List1AltCodes": config.List1AltCodes, "List2AltCodes": config.List2AltCodes, "List3AltCodes": config.List3AltCodes
-                },
+    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domain_code": config.domain_code, "report_code": config.report_code, "List1Codes": config.List1Codes, "List2Codes": config.List2Codes, "List3Codes": config.List3Codes, "List4Codes": config.List4Codes, "List5Codes": config.List5Codes, "List6Codes": config.List6Codes, "List7Codes": config.List7Codes, "List1AltCodes": config.List1AltCodes, "List2AltCodes": config.List2AltCodes, "List3AltCodes": config.List3AltCodes, "List4AltCodes": config.List4AltCodes, "List5AltCodes": config.List5AltCodes, "List6AltCodes": config.List6AltCodes, "List7AltCodes": config.List7AltCodes
+},
                 type: 'POST'
             }));
     }
@@ -802,7 +801,7 @@ FAOSTATAPIClient.prototype.apply_methodologies_defaults = function (config) {
                 url: this.CONFIG.base_url +  config.lang + '/dimensions/' + config.domain_code + '/',
                 traditional: true,
                     data: {
-    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key
+    "datasource": config.datasource, "report_code": config.report_code, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key
 },
                 type: 'GET'
             }));
@@ -811,7 +810,7 @@ FAOSTATAPIClient.prototype.apply_methodologies_defaults = function (config) {
 };
 
     FAOSTATAPIClient.prototype.is_valid_dimensions = function(config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"], i;
+        var parameters = ["datasource", "report_code", "output_type", "api_key", "client_key", "lang", "domain_code"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -822,7 +821,7 @@ FAOSTATAPIClient.prototype.apply_methodologies_defaults = function (config) {
 
 FAOSTATAPIClient.prototype.apply_dimensions_defaults = function (config) {
     var i,
-        parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"],
+        parameters = ["datasource", "report_code", "output_type", "api_key", "client_key", "lang", "domain_code"],
         defaults = {
             "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
         },
