@@ -34,12 +34,14 @@ define([
 
     Export.prototype.exportData = function (request, options) {
 
-        log.info('EXPORT.exportData; ', request, options);
+        var start = new Date();
 
         // TODO: check better the requestType!
         var requestType = options ? options.requestType : this.o.requestType,
             name = options ? options.name || this.o.name : this.o.name,
             self = this;
+
+        log.info("Export.exportData;", request, options);
 
         if (!request.hasOwnProperty('output_type')) {
             request.output_type = this.o.output_type;
@@ -60,6 +62,10 @@ define([
 
                 amplify.publish(E.WAITING_HIDE);
 
+                var time = new Date();
+
+                log.info("Export.exportData; Execution query time: ", (time - start) / 1000 + "s");
+
                 //log.info(error);
                 //window.btoa(unescape(encodeURIComponent(error)))
                 self._exportResult(error, name);
@@ -77,6 +83,8 @@ define([
 
         log.info('EXPORT._exportResult;');
 
+        var start = new Date();
+
         // TODO: check if it works in all browser. There should be an issue with Sfari 8.0
 
         var blob = new Blob([result.responseText], {type: "data:application/csv;charset=utf-8;"}),
@@ -86,6 +94,10 @@ define([
         log.info('EXPORT.saveAs;');
 
         saveAs(blob, filename);
+
+        var time = new Date();
+
+        log.info("Export.saveAs; Execution saveAs time: ", (time - start) / 1000 + "s");
 
         /* var csvString = result.responseText,
          csvData = new Blob([csvString], { type: 'text/csv' }),
@@ -106,6 +118,8 @@ define([
     };
 
     Export.prototype.exportTable = function (options) {
+
+        var start = new Date();
 
         log.info('EXPORT.exportTable; options: ', options);
 
