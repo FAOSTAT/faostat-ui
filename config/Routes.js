@@ -25,7 +25,7 @@ define(function ( ) {
         DOWNLOAD_BULK: "bulk",
         DOWNLOAD_INTERACTIVE: "interactive",
         DOWNLOAD_METADATA: "metadata",
-        DOWNLOAD_WELCOME: "welcome",
+        DOWNLOAD_ABOUT: "about",
         DOWNLOAD_REPORT: "report",
 
         SEARCHY: "search",
