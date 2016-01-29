@@ -30,7 +30,10 @@ define(function () {
         EXPORT_TABLE_HTML: 'fs.export_table_html.event',
 
         // MAP/CHART resize:
-        WINDOW_RESIZE: 'fs.window.resize.event'
+        WINDOW_RESIZE: 'fs.window.resize.event',
+
+        // Selectors
+        DOWNLOAD_SELECTION_CHANGE: 'fs.download.selection.event'
 
     };
 });

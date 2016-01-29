@@ -11,10 +11,8 @@ define([
     'text!templates/download/download.hbs',
     'i18n!nls/download',
     'FAOSTAT_UI_TREE',
-    //'fs-r-p/start',
+    'fs-r-p/start',
     'fs-i-d/start',
-    'fs-i-d/start',
-
     // TODO: change Names
     'FAOSTAT_UI_BULK_DOWNLOADS',
     'FENIX_UI_METADATA_VIEWER',
