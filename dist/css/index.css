@@ -5442,7 +5442,8 @@ footer.fao-footer {
   overflow-x: auto;
   overflow-y: auto;
   padding: 5px;
-  font-size: 13px; }
+  font-size: 13px;
+  max-height: 700px; }
 
 .fs-page-number {
   font-weight: bold;
