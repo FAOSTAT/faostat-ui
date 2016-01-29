@@ -29,12 +29,7 @@ define(['chaplin',
 
         }else {
 
-            // add as first element the language
-            options.unshift(this.getLocale());
-
-            var uri = Chaplin.utils.reverse(
-                name, options
-            );
+            var uri = this.getURI(name, options);
 
             // TODO: Use Chaplin 'route' function
             //console.warn('TODO Common.changeURL: change Backbone binding');
@@ -47,6 +42,19 @@ define(['chaplin',
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
         }
     };
+
+    Common.prototype.getURI = function (name, options) {
+
+        // add as first element the language
+        options.unshift(this.getLocale());
+
+        var uri = Chaplin.utils.reverse(
+            name, options
+        );
+
+        return uri;
+    };
+
 
     Common.prototype.setLocale = function(lang) {
         this.lang = lang;

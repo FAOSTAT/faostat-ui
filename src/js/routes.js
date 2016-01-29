@@ -10,7 +10,7 @@ define(['config/Routes'], function (ROUTE) {
         match(':lang/download/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DOWNLOAD_BULK});
         match(':lang/download/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
         match(':lang/download/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
-        match(':lang/download/welcome/:code', 'download#show_welcome_page', {name: ROUTE.DOWNLOAD_WELCOME});
+        match(':lang/download/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
         match(':lang/download/report/:code', 'download#show_report', {name: ROUTE.DOWNLOAD_REPORT});
 
 

@@ -12,7 +12,6 @@ define([
             this.view = new View({
                 region: 'main',
                 section: section,
-                lang: params.lang,
                 code: params.code.toUpperCase()
             });
         },
@@ -29,8 +28,8 @@ define([
             this.show(params, 'metadata');
         },
 
-        show_welcome_page: function (params) {
-            this.show(params, 'welcome');
+        show_about: function (params) {
+            this.show(params, 'about');
         },
 
         show_report: function (params) {

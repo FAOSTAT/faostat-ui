@@ -26,6 +26,7 @@ define([
     'use strict';
 
     var s = {
+
         TERRITORIAL_NOTES: '#territorial-notes',
         FEEDBACK_SYSTEM: '#feedback-system',
         LANGUAGES: '#fs-lang',
@@ -36,8 +37,8 @@ define([
         FOOTER_MENU_CONTAINER: "#footer-menu-container",
         LANG: "#footer-menu-container"
 
-    },
-        SiteView = View.extend({
+    }, 
+    SiteView = View.extend({
 
         container: 'body',
 

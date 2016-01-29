@@ -71,6 +71,9 @@
   overflow-y: auto;
   padding: 5px;
   font-size: 13px;
+
+  // TODO: check better height
+  max-height:700px;
   //text-overflow: ellipsis;
 }
 

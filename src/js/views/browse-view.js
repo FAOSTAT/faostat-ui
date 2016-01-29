@@ -21,9 +21,8 @@ define([
         DOMAIN: "#browse_by_domain",
         COUNTRY: "#browse_by_country",
         RANKINGS: "#browse_rankings"
-    };
-
-    var BrowseView = View.extend({
+    },
+    BrowseView = View.extend({
 
         autoRender: true,
 
@@ -75,8 +74,7 @@ define([
         initComponents: function () {
             // switch to the right navigation tab
             this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
-            this.switchStandardsTab(this.o.section, this.options)
-
+            this.switchStandardsTab(this.o.section, this.options);
 
         },
 

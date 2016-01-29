@@ -39,12 +39,14 @@ define([
         // TODO: check better the requestType!
         var requestType = options ? options.requestType : this.o.requestType,
             name = options ? options.name || this.o.name : this.o.name,
-            self = this;
+            self = this,
+            r = $.extend(true, {}, request);
 
-        log.info("Export.exportData;", request, options);
 
-        if (!request.hasOwnProperty('output_type')) {
-            request.output_type = this.o.output_type;
+        log.info("Export.exportData;", r, options);
+
+        if (!r.hasOwnProperty('output_type')) {
+            r.output_type = this.o.output_type;
         }
 
         // TODO: add google analytics event
@@ -56,7 +58,7 @@ define([
         // switch between the requestType to faostatAPI
         if (typeof this.api[requestType] === 'function') {
 
-            this.api[requestType](request).then(function (csv) {
+            this.api[requestType](r).then(function(csv) {
                 //log.debug(csv);
             }).fail(function (error) {
 
