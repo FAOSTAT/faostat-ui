@@ -24,7 +24,7 @@ define([
         // TODO: move to a common download section
         sections: [
             {
-                id: ROUTE.DOWNLOAD_WELCOME,
+                id: ROUTE.DOWNLOAD_ABOUT,
                 name: i18nLabels.about
             },
             {
