@@ -71,7 +71,7 @@ define([
 
             var api = new FAOSTATApi();
 
-            api.databean({
+            /*api.databean({
                 domain_codes: ['QC'],
                 filters: {
                     area: ['5000>'],
@@ -83,6 +83,22 @@ define([
                 //output_type: 'csv'
             }).then(function (response) {
                 log.info(response)
+            });*/
+
+            api.data({
+                domain_codes: ['QC'],
+                List1Codes: ['2'],
+                List2Codes: ['2510'],
+                List3Codes: ['15'],
+                List4Codes: ['2010'],
+                List5Codes: null,
+                List6Codes: null,
+                List7Codes: null,
+                List1AltCodes: ['ISO3'],
+                page_size: 10
+                //output_type: 'csv'
+            }).then(function (response) {
+                log.info(response);
             });
 
 

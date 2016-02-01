@@ -179,6 +179,7 @@ define([
             this.$MAIN_CONTAINER_TITLE.html(label);
 
             // TODO: check show/hide tabs and if tab is available (use APIs)
+            this.checkSectionsAvailability(section);
 
             if ( type === 'group') {
                 this.switchTabsGroup(section, options);
@@ -188,6 +189,12 @@ define([
                 this.switchTabsDomain(section, options);
             }
 
+
+        },
+
+        checkSectionsAvailability: function(section) {
+
+            log.info('DONWLOAD.checkSectionsAvailability;', section);
 
         },
 
