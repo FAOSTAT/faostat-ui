@@ -291,7 +291,7 @@ define([
                 this.interactiveDownload.init({
                     container: this.$INTERACTIVE_DOWNLOAD,
                     // to output the table outside the standard output area
-                    //output_area: this.$OUTPUT_AREA,
+                    output_area: this.$OUTPUT_AREA,
                     code: code
                 });
 
