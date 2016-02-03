@@ -178,8 +178,8 @@ define([
             // Set Title
             this.$MAIN_CONTAINER_TITLE.html(label);
 
-            // TODO: check show/hide tabs and if tab is available (use APIs)
-            this.checkSectionsAvailability(section);
+            // check tab availability
+            this.checkSectionsAvailability(section, code);
 
             if ( type === 'group') {
                 this.switchTabsGroup(section, options);
@@ -189,12 +189,19 @@ define([
                 this.switchTabsDomain(section, options);
             }
 
-
         },
 
-        checkSectionsAvailability: function(section) {
+        checkSectionsAvailability: function(section, code) {
 
-            log.info('DONWLOAD.checkSectionsAvailability;', section);
+            // TODO: check show/hide tabs and if tab is available (use APIs)
+            log.info('DONWLOAD.checkSectionsAvailability;', section, code);
+
+            // TODO: change with APIs
+            if (code === 'FBS') {
+                this.$el.find('.nav-tabs [data-section="report"]').show();
+            }else {
+                this.$el.find('.nav-tabs [data-section="report"]').hide();
+            }
 
         },
 
