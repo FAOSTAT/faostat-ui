@@ -5467,6 +5467,9 @@ footer.fao-footer {
   font-weight: normal;
   color: #d2d0d0; }
 
+[data-role="output-area"] {
+  margin-top: 50px; }
+
 .fs-browse-content-padding {
   margin-top: 15px; }
 
