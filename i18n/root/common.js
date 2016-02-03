@@ -29,7 +29,7 @@ define({
     "analyticalaggregates": "Aid Aggregates",
 
     no_data_available: 'No data available.',
-    faostat_domains: 'FAOSTAT Domains',
+    no_data_available_for_current_selection: 'No data available for current selection',
     loading: 'Loading',
     warning: 'Warning',
     export_data: 'Export Data',
@@ -38,6 +38,11 @@ define({
     first: "First",
     last: "Last",
     please_select_an_option: "Please select an option",
-    filter_domain_tree: "Search for a FAOSTAT Domain"
+    filter_domain_tree: "Search for a FAOSTAT Domain",
+
+    download_report: 'Download Report',
+
+    download_csv: 'Download CSV',
+    what_is_a_csv: 'What is a CSV?'
 
 });
