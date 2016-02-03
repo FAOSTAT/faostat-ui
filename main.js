@@ -82,7 +82,7 @@ require([
 
             config: {
 
-                waitSeconds: 20,
+                waitSeconds: 2,
 
                 /* Set the config for the i18n. */
                 //i18n: {
@@ -107,6 +107,10 @@ require([
                     //'faostat-ui/config': "../../config/",
                     //'faostat-ui': "./",
 
+                    // TODO: switch to submodule? */
+                    'fs-t-c': './lib/table',
+
+                    jquery:  '{FENIX_CDN}/js/jquery/2.1.1/jquery.min',
                     bootstrap: "{FENIX_CDN}/js/bootstrap/3.3.4/js/bootstrap.min",
                     underscore: "{FENIX_CDN}/js/underscore/1.7.0/underscore.min",
                     backbone: "{FENIX_CDN}/js/backbone/1.1.2/backbone.min",
@@ -149,9 +153,6 @@ require([
                     faostatapiclient: 'FAOSTATAPIClient',
                     list: '//fenixrepo.fao.org/cdn/js/list/1.1.1/list.min',
                     //list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min',
-
-                    // TODO: switch to submodule? */
-                    'fs-t-c': 'lib/table',
 
                     // boostrap bplugins
                     'bootstrap-table': '{FENIX_CDN}/js/bootstrap-table/1.9.1/bootstrap-table.min',
