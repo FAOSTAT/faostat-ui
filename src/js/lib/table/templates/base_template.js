@@ -5,6 +5,8 @@ define([
         'loglevel',
         'text!fs-t-c/templates/custom_template.hbs',
         'text!fs-t-c/templates/table_template.hbs',
+       /*'text!lib/table/templates/custom_template.hbs',
+        'text!lib/table/templates/table_template.hbs',*/
         'bootstrap-table'
     ],
     function ($, Handlebars, log, template, templateTable) {

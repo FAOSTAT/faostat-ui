@@ -5,6 +5,8 @@ define([
         'handlebars',
         'fs-t-c/templates/base_template',
         'fs-t-c/adapters/FAOSTAT_adapter',
+        /*'lib/table/templates/base_template',
+        'lib/table/adapters/FAOSTAT_adapter',*/
         'i18n!nls/common'
     ],
     function ($, log, Handlebars, Template, Adapter, i18n) {
