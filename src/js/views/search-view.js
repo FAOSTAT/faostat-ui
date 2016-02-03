@@ -85,9 +85,12 @@ define([
             $.ajax({
                 url: "http://fenixapps2.fao.org/api/v1.0/en/search/" + query,
                 //url: "http://localhost:8081/api/v1.0/en/search/" + query,
-                success: function(result) {
+                success: function(results) {
+
+                    self.results = results;
+
                     //self.parseSearchResultsClustered(result);
-                    self.parseSearchResults(result);
+                    self.parseSearchResults(results);
                 }
             });
 
@@ -100,9 +103,9 @@ define([
             var r = [],
                 browseWhitelist = BrowseByDomainConfig.whitelist;
 
-            _.each(results.data, function(v) {
+            _.each(results.data, function(v, index) {
 
-                v.refer = Math.random();
+                v.index = index;
 
                 r.push($.extend(true, {},
                     v,
@@ -185,18 +188,15 @@ define([
                 //self.$SEARCH_RESULTS.animate({ scrollTop: 0 }, "fast");
                 $('body, html').scrollTop(0);
 
+               // bind export data selection
+               self.bindExportDataSelection();
+
             });
 
             self.$SEARCH_RESULTS.html(self.getPage(results, page, pageSize));
 
-            //this.$SEARCH_RESULTS.html(html);
-
-            this.$el.find(s.DOWNLOAD_BUTTON).on('click', function(e) {
-
-                e.preventDefault();
-
-               log.info(e);
-            });
+            // bind export data selection
+            self.bindExportDataSelection();
 
         },
 
@@ -210,6 +210,49 @@ define([
                 };
 
             return t(d);
+
+        },
+
+        bindExportDataSelection: function() {
+
+            var self = this;
+
+            this.$el.find(s.DOWNLOAD_BUTTON).on('click', function(e) {
+
+                e.preventDefault();
+
+                var index = $(this).data('index');
+
+                log.info($(this).data('index'));
+
+                log.info(e);
+
+                self.exportData(index);
+            });
+        },
+
+        exportData: function(index) {
+            log.info(this.results.data[index]);
+
+            var obj = this.results.data[index];
+
+            var exportObj = {
+                datasource: C.DATASOURCE,
+                lang: Common.getLocale(),
+                domain_codes: [obj.domainCode],
+                filters: {}
+
+            };
+
+            exportObj.filters[obj.id] = [obj.code];
+
+
+            log.info(exportObj)
+
+            amplify.publish(E.EXPORT_DATA, exportObj, {
+                requestType: 'databean'
+            });
+
 
         },
 
