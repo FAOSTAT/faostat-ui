@@ -58,7 +58,8 @@ define([
             // prepare data
             this.o.filteredModel = this.adapter.prepareData(this.o);
 
-            log.info("Table.render; config:", this.o);
+            // format value data
+            this.o.model.data = this.adapter.formatData();
 
             // render table
             this.template.render(this.o);
