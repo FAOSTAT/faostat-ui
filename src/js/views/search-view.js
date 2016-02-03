@@ -36,7 +36,8 @@ define([
     var s = {
 
         SEARCH_RESULTS: "#search_results",
-        PAGINATION: "#pagination"
+        PAGINATION: "#pagination",
+        DOWNLOAD_BUTTON: "[data-role='download']"
 
     },
     SearchView = View.extend({
@@ -79,13 +80,14 @@ define([
 
             this.$SEARCH_RESULTS = this.$el.find(s.SEARCH_RESULTS);
             this.$PAGINATION = this.$el.find(s.PAGINATION);
+            this.$DOWNLOAD = this.$el.find(s.PAGINATION);
 
             $.ajax({
                 url: "http://fenixapps2.fao.org/api/v1.0/en/search/" + query,
                 //url: "http://localhost:8081/api/v1.0/en/search/" + query,
                 success: function(result) {
-                    self.parseSearchResultsClustered(result);
-                    //self.parseSearchResults(result);
+                    //self.parseSearchResultsClustered(result);
+                    self.parseSearchResults(result);
                 }
             });
 
@@ -100,7 +102,11 @@ define([
 
             _.each(results.data, function(v) {
 
-                r.push($.extend(true, {}, v, {addBrowse: ($.inArray(v.domainCode, browseWhitelist) !== -1) }));
+                v.refer = Math.random();
+
+                r.push($.extend(true, {},
+                    v,
+                    {addBrowse: ($.inArray(v.domainCode, browseWhitelist) !== -1)}));
 
             });
 
@@ -158,8 +164,8 @@ define([
                 page = 1,
                 pageSize = 10;
 
-            log.info(results.length)
-            log.info(results.length / pageSize)
+            log.info("Search.renderResults; length", results.length);
+            log.info("Search.renderResults; pages", results.length / pageSize);
 
            this.$PAGINATION.bootpag({
                total: Math.round(results.length / pageSize),
@@ -184,6 +190,13 @@ define([
             self.$SEARCH_RESULTS.html(self.getPage(results, page, pageSize));
 
             //this.$SEARCH_RESULTS.html(html);
+
+            this.$el.find(s.DOWNLOAD_BUTTON).on('click', function(e) {
+
+                e.preventDefault();
+
+               log.info(e);
+            });
 
         },
 

@@ -13,13 +13,13 @@
             </div>
 
             <div class="pull-right">
-                <a href="#en/download/interactive/{{this.domainCode}}">Go To Download</a>
+                <a href="#en/download/interactive/{{this.domainCode}}">{{go_to_download}}Go To Download</a>
                 {{#if this.addBrowse}}
                     |
-                    <a href="#en/browse/domain/{{this.domainCode}}">Go To Browse</a>
+                    <a href="#en/browse/domain/{{this.domainCode}}">{{go_to_browse}}Go To Browse</a>
                 {{/if}}
                 |
-                <a href="#">Export Data</a>
+                <a href="#" data-role="download" data-role="{{}}">{{donwload_data}}Export Data</a>
             </div>
 
             <div class="clearfix"></div>
