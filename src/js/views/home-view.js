@@ -168,7 +168,7 @@ define([
 
                     e.preventDefault();
 
-                    var section = ROUTE.DOWNLOAD_WELCOME,
+                    var section = ROUTE.DOWNLOAD_ABOUT,
                     //code = $(e.target).data("code");
                         code = this.getAttribute('data-code');
 
