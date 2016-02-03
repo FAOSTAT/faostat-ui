@@ -79,11 +79,10 @@ define([
 
             }, this));
         }else {
-            log.warn("addRelatedViews not applied. $container not valid:  ", $container)
+            log.warn("addRelatedViews not applied. $container not valid:  ", $container);
         }
-
 
     };
 
-    return new ViewUtils;
+    return new ViewUtils();
 });
