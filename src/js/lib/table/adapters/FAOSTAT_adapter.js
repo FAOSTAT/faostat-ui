@@ -1,9 +1,9 @@
-/*global define, amplify, console*/
+/*global define, amplify, console, parseInt, numeral*/
 define([
         'jquery',
         'underscore',
         'loglevel',
-        'highcharts',
+        'numeral',
         'amplify'
     ],
     function ($, _, log) {
@@ -26,24 +26,24 @@ define([
 
         FAOSTAT_Adapter.prototype.getFilteredMetadata = function () {
 
-            var columns = (this.o.adapter)? this.o.adapter.columns || []: [],
+            var columnsToFilter = (this.o.adapter)? this.o.adapter.columns || []: [],
                 dsd = this.o.model.metadata.dsd,
-                filteredColumns = [];
+                filteredColumns = [],
+                filterDSD = [],
+                show_codes = this.o.adapter.show_codes,
+                show_flags = this.o.adapter.show_flags,
+                show_unit = this.o.adapter.show_unit;
 
-            //log.info(this.o)
-            //log.info("Table Columns: ", columns)
+            if ( columnsToFilter.length > 0) {
 
-            if ( columns.length > 0) {
-
-                _.each(columns, function (dimension_id) {
+                _.each(columnsToFilter, function (dimension_id) {
 
                     //log.info(dimension_id)
 
                     _.each(dsd, function (c) {
-                        //log.info(c)
                         if (c.dimension_id === dimension_id) {
                             if (c.type !== "code") {
-                                filteredColumns.push(c);
+                                filterDSD.push(c);
                             }
                         }
                     });
@@ -51,18 +51,109 @@ define([
                 });
             }
             else {
-                log.warn("No table column filter applied 'adapter.columns'. Retrieve all table. ");
-                filteredColumns = $.extend(true, {}, dsd);
+                log.warn("FAOSTAT_Adapter; No table column filter applied 'adapter.columns'. Retrieve all table. ");
+                filterDSD = $.extend(true, {}, dsd);
             }
 
-            //log.info(filteredColumns)
+            // filter columns by type
+            _.each(filterDSD, function (c) {
+
+                if ( c.type === "code" ) {
+                    if( show_codes) {
+                        filteredColumns.push(c);
+                    }
+                }
+                else if ( c.type === "flag" || c.type === "flag_label") {
+                    if( show_flags) {
+                        filteredColumns.push(c);
+                    }
+                }
+                else if ( c.type === "unit" ) {
+                    if( show_unit) {
+                        filteredColumns.push(c);
+                    }
+                }
+                else {
+                    filteredColumns.push(c);
+                }
+
+            });
+
+
+            log.info("Filtered Columns:", filteredColumns);
+
+            // order by index the filtered columns
+            filteredColumns = this.orderByIndex(filteredColumns);
+
+            log.info("Filtered Columns:", filteredColumns);
 
             return filteredColumns;
 
         };
 
-        FAOSTAT_Adapter.prototype.destroy = function () {
+        FAOSTAT_Adapter.prototype.formatData = function(model) {
 
+            log.info('Table.FAOSTAT_Adapter.formatData;', model);
+
+            this.o.model = model || this.o.model;
+
+            var dsd = this.o.model.metadata.dsd,
+                data = this.o.model.data,
+                valueKey = null,
+                thousand =  this.o.adapter.thousand_separator,
+                decimal =  this.o.adapter.decimal_separator,
+                decimal_places = this.o.adapter.decimal_places;
+
+            // Prepare the value formatter.
+            numeral.language('faostat', {
+                delimiters: {
+                    thousands: thousand,
+                    decimal: decimal
+                }
+            });
+            var formatter = '0' + thousand + '0' + decimal;
+
+            numeral.language('faostat');
+
+            for (var i = 0; i < decimal_places; i += 1) {
+                formatter += '0';
+            }
+
+            _.each(dsd, function (c) {
+                if ( c.type === "value" ) {
+                    valueKey = c.key;
+                }
+            });
+
+            _.each(data, function (d, index) {
+
+                //log.info("Table.FAOSTAT_Adapter.formattedData; index, value", index, d[valueKey]);
+
+                if ( d[valueKey] !== undefined && d[valueKey] !== null && !isNaN(d[valueKey])) {
+                    d[valueKey] = numeral(d[valueKey]).format(formatter);
+                }else{
+                    log.error(d[valueKey]);
+                }
+
+            });
+
+            log.info('Table.FAOSTAT_Adapter.formattedData;', data);
+
+            return data;
+        };
+
+        FAOSTAT_Adapter.prototype.orderByIndex = function (columns) {
+
+            // TODO: alter index to integer for the sort. Fix APIs
+            _.each(columns, function(column) {
+                column.index = parseInt(column.index);
+            });
+            return _.sortBy(columns, 'index');
+
+        };
+
+        FAOSTAT_Adapter.prototype.destroy = function () {
+            log.warn('TODO: FAOSTAT_Adapter destroy');
         };
 
         return FAOSTAT_Adapter;

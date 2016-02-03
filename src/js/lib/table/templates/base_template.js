@@ -42,19 +42,22 @@ define([
 
             // inject table
             var $table_content = this.o.$container.find(s.TABLE_CONTENT);
-
             var t = Handlebars.compile(templateTable);
             var d  = $.extend(true,  {}, this.o.template, this.o.filteredModel);
             $table_content.html(t(d));
 
-            //log.info(this.o.filteredModel)
-            //log.info(this.o.model.data)
-            //log.info(d)
-            //log.info(t(d))
+            this.$TABLE = $table_content.find(s.TABLE);
 
-            $table_content.find(s.TABLE).bootstrapTable({
-                data: this.o.model.data
-            });
+            // switch between server side (ajax) of full table rendering
+            if (this.o.template.ajax !== undefined) {
+                this.$TABLE.bootstrapTable({
+                    ajax: this.o.template.ajax
+                });
+            }else{
+                this.$TABLE.bootstrapTable({
+                    data: this.o.model.data
+                });
+            }
 
         };
 
@@ -71,6 +74,11 @@ define([
             }
 
             return (Object.keys(this.errors).length === 0);
+        };
+
+        Base_template.prototype.getTable = function () {
+            log.info(this.$TABLE);
+            return this.$TABLE;
         };
 
         return Base_template;

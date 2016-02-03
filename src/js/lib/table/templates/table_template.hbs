@@ -1,4 +1,4 @@
-<table data-role="table"
+<table class="fs-table" data-role="table"
        {{#if tableOptions}}
            data-striped="true"
            data-search="{{#if tableOptions.data-search}}{{tableOptions.data-search}}{{else}}false{{/if}}"
@@ -10,6 +10,9 @@
            data-pagination-pre-text="{{#if tableOptions.previous_text}}{{tableOptions.previous_text}}{{else}}Previous{{/if}}"
            data-pagination-next-text="{{#if tableOptions.next_text}}{{tableOptions.next_text}}{{else}}Next{{/if}}"
            data-pagination-last-text="{{#if tableOptions.last_text}}{{tableOptions.last_text}}{{else}}Last{{/if}}"
+
+           data-ajax="{{#if tableOptions.data-ajax}}{{tableOptions.data-ajax}}{{/if}}"
+           data-side-pagination={{#if tableOptions.data-side-pagination}}{{tableOptions.data-side-pagination}}{{/if}}
        {{/if}}
         {{#if height}}
             data-height="{{height}}"
@@ -17,9 +20,15 @@
     >
     <thead>
     <tr>
-    {{#each dsd}}
-        <th data-field="{{{this.key}}}" data-sortable="true">{{{this.label}}}</th>
-    {{/each}}
+        {{#if sortable}}
+            {{#each dsd}}
+                <th data-field="{{{this.key}}}" data-sortable="true">{{{this.label}}}</th>
+            {{/each}}
+        {{else}}
+            {{#each dsd}}
+                <th data-field="{{{this.key}}}">{{{this.label}}}</th>
+            {{/each}}
+        {{/if}}
     </tr>
     </thead>
 </table>
