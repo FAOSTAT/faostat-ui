@@ -37,13 +37,13 @@ define([
         var start = new Date();
 
         // TODO: check better the requestType!
-        var requestType = options ? options.requestType : this.o.requestType,
+        var requestType = options ? (options.requestType) || this.o.requestType : this.o.requestType,
             name = options ? options.name || this.o.name : this.o.name,
             self = this,
             r = $.extend(true, {}, request);
 
 
-        log.info("Export.exportData;", r, options);
+        log.info("Export.exportData;", r, requestType, options, name);
 
         if (!r.hasOwnProperty('output_type')) {
             r.output_type = this.o.output_type;
