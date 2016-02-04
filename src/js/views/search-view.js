@@ -7,6 +7,7 @@ define([
     'views/base/view',
     'config/Config',
     'config/Events',
+    'config/Routes',
     'globals/Common',
     'text!templates/search/search.hbs',
     'text!templates/search/search_results.hbs',
@@ -16,12 +17,14 @@ define([
     'bootpag',
     'config/browse_by_domain/Config',
     'faostatapiclient',
+    'lib/search/search-box',
     'amplify'
 ], function ($,
              log,
              View,
              C,
              E,
+             ROUTE,
              Common,
              template,
              templateResults,
@@ -30,15 +33,19 @@ define([
              Handlebars,
              bootpag,
              BrowseByDomainConfig,
-             FAOSTATClientAPI
+             FAOSTATClientAPI,
+             SearchBox
 ){
 
     'use strict';
 
     var s = {
 
-        SEARCH_RESULTS: "#search_results",
+        SEARCH_BOX: '#fs-search-box',
+        SEARCH_RESULTS: "#fs-search-results",
         PAGINATION: "#pagination",
+
+        // download button for each result container
         DOWNLOAD_BUTTON: "[data-role='download']"
 
     },
@@ -88,9 +95,9 @@ define([
             this.api = new FAOSTATClientAPI();
             this.cache = {};
 
+            this.$SEARCH_BOX = this.$el.find(s.SEARCH_BOX);
             this.$SEARCH_RESULTS = this.$el.find(s.SEARCH_RESULTS);
             this.$PAGINATION = this.$el.find(s.PAGINATION);
-            this.$DOWNLOAD = this.$el.find(s.PAGINATION);
 
         },
 
@@ -109,14 +116,21 @@ define([
                 v.index = index;
 
                 // adding domain name
-                log.info( self.getDomain(v.domainCode))
+                log.info( self.getDomain(v.domainCode));
                 v = $.extend(true, {}, v, self.getDomain(v.domainCode));
+
+                // i18n
+                v.domain_label = i18nLabels.domain;
+                v.group_label = i18nLabels.group;
+                v.go_to_download = i18nLabels.go_to_download;
+                v.go_to_browse = i18nLabels.go_to_browse;
+                v.download_data = i18nLabels.download_data;
 
                 r.push($.extend(true, {},
                     v,
                     {addBrowse: ($.inArray(v.domainCode, browseWhitelist) !== -1)}));
 
-                log.info(v)
+                log.info(v);
             });
 
             this.renderResults(r);
@@ -280,10 +294,21 @@ define([
 
         initComponents: function () {
 
+            // init search box container
+            this.initSearchBox();
+
+            // init query results page
+            this.initQuerySearchResults();
+
+        },
+
+        initQuerySearchResults: function() {
+
             var self = this,
                 query = self.o.query;
 
             // TODO: use this API for caching the groups and domains? or the domainstree with 'search' parameter?
+            // caching domains
             this.api.domainstree({
                 datasource: C.DATASOURCE,
                 lang: this.o.lang
@@ -304,6 +329,27 @@ define([
 
                     }
                 });
+            });
+
+        },
+
+        initSearchBox: function() {
+
+            var self = this,
+                query = self.o.query;
+
+            this.searchBox =  new SearchBox();
+            this.searchBox.init({
+                query: query,
+                container: s.SEARCH_BOX,
+                callback: {
+                    searchQuery: function(q) {
+
+                        // route to search page
+                        Common.changeURL(ROUTE.SEARCH_QUERY, [escape(q)], true);
+
+                    }
+                }
             });
 
         },

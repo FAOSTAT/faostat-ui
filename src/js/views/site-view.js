@@ -87,6 +87,8 @@ define([
             amplify.subscribe(E.EXPORT_DATA, Export, Export.exportData);
             amplify.subscribe(E.EXPORT_TABLE_HTML, Export, Export.exportTable);
 
+            //amplify.subscribe(E.HIDE_SELECTOR, null );
+
             // publishing GA Events
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
             //amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {});
@@ -156,7 +158,6 @@ define([
                     }
                 }
             });
-
 
             this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
 

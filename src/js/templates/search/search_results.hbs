@@ -13,12 +13,12 @@
                         </h4>
                         <div>
                             <h5>
-                                <small>{{group}}Group:</small>
+                                <small>{{group_label}}</small>
                                 <!--({{this.groupCode}}) -->
                                 {{this.groupName}}
                             </h5>
                             <h5>
-                                <small>{{domain}}Domain:</small>
+                                <small>{{domain_label}}</small>
                                 <!--({{this.domainCode}})-->
                                 {{this.domainName}}
                             </h5>
@@ -34,10 +34,10 @@
                 <div class="col-lg-12">
                     <div class="pull-left">
                         <div style="padding-top:15px;">
-                        <a href="#en/download/interactive/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_download}}Go To Download</a>
+                        <a href="#en/download/interactive/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>
                         {{#if this.addBrowse}}
                             <!--|-->
-                            <a style="margin-left:15px;" href="#en/browse/domain/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_browse}}Go To Browse</a>
+                            <a style="margin-left:15px;" href="#en/browse/domain/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_browse}}</a>
                         {{/if}}
                         </div>
                     </div>
@@ -53,8 +53,8 @@
                         {{/if}}
                         |-->
                         <button class="btn btn-default" data-role="download" data-index="{{index}}">
-                            {{donwload_data}}Download Data
-                            <!--<a href="#" data-role="download" data-index="{{index}}">{{donwload_data}}Export Data</a>-->
+                            {{download_data}}
+                            <!--<a href="#" data-role="download" data-index="{{index}}">{{download_data}}Export Data</a>-->
                         </button>
                     </div>
                 </div>

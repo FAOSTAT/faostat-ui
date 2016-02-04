@@ -1,155 +1,111 @@
 
-    <!--<div class="container fao-header">-->
-        <!--<div class="row faostat-menu-boot">-->
+<!-- Top menu container -->
+<div class="container">
+    <div class='' id='faostat_ui_menu'></div>
+    <br>
+</div>
 
-            <!--&lt;!&ndash;TODO move style to css &ndash;&gt;-->
-            <!--<div class="col-lg-12">-->
-                <!--<div id="fs-head" class="fs-head">-->
-                    <!--<div class="fs-logo-holder">-->
-                        <!--<div class="fs-logo img-responsive"></div>-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash;<div class="fs-united hidden-xs hidden-md hidden-sm">&ndash;&gt;-->
+<!-- Breadcrumb container -->
+<!--<div class="container">-->
+<!--&lt;!&ndash;TODO: Probably remove the <br>&ndash;&gt;-->
+<!--<br>-->
+<!--<div class="row">-->
+<!--<div class="col-xs-12">-->
+<!--<div id="breadcrumb-container"></div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
-                    <!--&lt;!&ndash;&ndash;&gt;-->
-                        <!--&lt;!&ndash;<p id="fs-fao" class="truncate">&ndash;&gt;-->
-                            <!--&lt;!&ndash;{{fao}}&ndash;&gt;-->
-                        <!--&lt;!&ndash;</p>&ndash;&gt;-->
+<!-- Main Container -->
+<div class="container fs-main-container" id="main-container"></div>
 
-                        <!--&lt;!&ndash;<p class="fs-bold fs-statistics-division truncate" >&ndash;&gt;-->
-                            <!--&lt;!&ndash;{{statistics_division}}&ndash;&gt;-->
-                        <!--&lt;!&ndash;</p>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--<div class="fs-languages hidden-xs hidden-md hidden-sm">-->
-                        <!--<a data-locale="en">ENGLISH</a>-->
-                        <!--<span> | </span>-->
-                        <!--<a data-locale="fr">FRANÇAIS</a>-->
-                        <!--<span> | </span>-->
-                        <!--<a data-locale="es">ESPAÑOL</a>-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash;<div class="fs-languages hidden-lg">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<a data-locale="en">EN</a>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<span>|</span>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<a data-locale="fr">FR</a>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<span>|</span>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<a data-locale="es">ES</a>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+<!-- Page Footer -->
+<footer class="container">
 
-    <!-- Top menu container -->
-    <div class="container">
-        <div class='' id='faostat_ui_menu'></div>
-        <br>
+    <div class="row">
+        <div class="col-sm-3">
+            <img src="src/images/faostat-logo-gray.svg" class="fs-footer-logo" alt="Faostat">
+            <ul class="list-unstyled fs-footer-contacts">
+                <li>Viale delle Terme di Caracalla</li>
+                <li>00153 Rome, Italy</li>
+                <li>Tel. {{TELEPHONE_FAO_STATISTICS}}</li>
+                <li>Mail. <a href="mailto:{{EMAIL_FAO_STATISTICS}}">{{EMAIL_FAO_STATISTICS}}</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-3">
+            <h4>{{menu}}</h4>
+            <ul class="list-unstyled">
+                <li><a href="#{{locale}}/download/welcome/Q">{{download}}</a></li>
+                <li><a href="#{{locale}}/browse/domain/Q">{{browse}}</a></li>
+                <li><a href="#{{locale}}/compare">{{compare}}</a></li>
+                <li><a href="#{{locale}}/standards/methodologies">{{mes}}</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-3">
+            <h4>{{fao_links}}</h4>
+            <ul class="list-unstyled">
+                <li><a target="_blank" href="http://www.fao.org/economic/ess/en/">{{division_ess}}</a></li>
+                <li><a target="_blank" href="http://www.fao.org/economic/en/">{{department_es}}</a></li>
+                <li><a target="_blank" href="http://www.fao.org/economic/ess/countrystat/en/">{{countrystat}}</a></li>
+                <li><a target="_blank" href="http://www.fao.org/nr/water/aquastat/main/index.stm">{{acquastat}}</a></li>
+                <li><a target="_blank" href="http://www.fao.org/fishery/statistics/en">{{fisheries_and_aquaculture}}</a></li>
+                <li><a target="_blank" href="http://www.fao.org/forestry/46203/en/">{{forestry}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-3">
+
+            <h4>{{help_us}}</h4>
+
+            <ul class="list-unstyled">
+                <li><a id='feedback-system'>{{feedback_system}}</a></li>
+                <li><a id='territorial-notes'>{{territorial_notes}}</a></li>
+            </ul>
+
+            <br>
+            <h4>{{follow_faostat}}</h4>
+
+            <a href="https://www.facebook.com/EconomicCommissionforAfrica" target="_blank" class="social-holder">
+                <img src="src/images/facebook_26.png" alt="facebook" title="facebook">
+            </a>
+
+            <a href="https://twitter.com/faostatistics" target="_blank" class="social-holder">
+                <img src="src/images/twitter.png" alt="Twitter" title="Twitter">
+            </a>
+
+            <a href="https://www.youtube.com/user/unecaVideo" target="_blank" class="social-holder">
+                <img src="src/images/youtube.png" alt="YouTube" title="YouTube">
+            </a>
+
+            <a href="https://www.flickr.com/photos/96044621@N08/" target="_blank" class="social-holder">
+                <img src="src/images/flickr_23.png" alt="flickr" title="flickr">
+            </a>
+
+            <a href="http://www.uneca.org/rss.xml" title="Opens internal link in current window" class="social-holder">
+                <img src="src/images/rss.png" alt="RSS news feeds" title="RSS news feeds">
+            </a>
+
+        </div>
+
     </div>
 
+    <br><br>
 
-    <!-- Breadcrumb container -->
-    <!--<div class="container">-->
-        <!--&lt;!&ndash;TODO: Probably remove the <br>&ndash;&gt;-->
-        <!--<br>-->
-        <!--<div class="row">-->
-            <!--<div class="col-xs-12">-->
-                <!--<div id="breadcrumb-container"></div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-
-
-    <!-- Main Container -->
-    <div class="container fs-main-container" id="main-container"></div>
-
-    <!-- Page Footer -->
-    <footer class="container">
-
-
-        <div class="row">
-            <div class="col-sm-3">
-                <img src="src/images/faostat-logo-gray.svg" class="fs-footer-logo" alt="Faostat">
-                <ul class="list-unstyled fs-footer-contacts">
-                    <li>Viale delle Terme di Caracalla</li>
-                    <li>00153 Rome, Italy</li>
-                    <li>Tel. {{TELEPHONE_FAO_STATISTICS}}</li>
-                    <li>Mail. <a href="mailto:{{EMAIL_FAO_STATISTICS}}">{{EMAIL_FAO_STATISTICS}}</a></li>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+                <ul class="list-unstyled list-inline">
+                    <li><a href="#">Copyright</a></li>
+                    <li><a href="#">Privacy Notice</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Fraud Alert</a></li>
+                    <li><a href="#">Contact us</a></li>
                 </ul>
-            </div>
-            <div class="col-sm-3">
-                <h4>{{menu}}</h4>
-                <ul class="list-unstyled">
-                    <li><a href="#{{locale}}/download/welcome/Q">{{download}}</a></li>
-                    <li><a href="#{{locale}}/browse/domain/Q">{{browse}}</a></li>
-                    <li><a href="#{{locale}}/compare">{{compare}}</a></li>
-                    <li><a href="#{{locale}}/standards/methodologies">{{mes}}</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3">
-                <h4>{{fao_links}}</h4>
-                <ul class="list-unstyled">
-                    <li><a target="_blank" href="http://www.fao.org/economic/ess/en/">{{division_ess}}</a></li>
-                    <li><a target="_blank" href="http://www.fao.org/economic/en/">{{department_es}}</a></li>
-                    <li><a target="_blank" href="http://www.fao.org/economic/ess/countrystat/en/">{{countrystat}}</a></li>
-                    <li><a target="_blank" href="http://www.fao.org/nr/water/aquastat/main/index.stm">{{acquastat}}</a></li>
-                    <li><a target="_blank" href="http://www.fao.org/fishery/statistics/en">{{fisheries_and_aquaculture}}</a></li>
-                    <li><a target="_blank" href="http://www.fao.org/forestry/46203/en/">{{forestry}}</a></li>
-                </ul>
-            </div>
-
-            <div class="col-sm-3">
-
-                <h4>{{help_us}}</h4>
-
-                <ul class="list-unstyled">
-                    <li><a id='feedback-system'>{{feedback_system}}</a></li>
-                    <li><a id='territorial-notes'>{{territorial_notes}}</a></li>
-                </ul>
-
-                <br>
-                <h4>{{follow_faostat}}</h4>
-
-
-                <a href="https://www.facebook.com/EconomicCommissionforAfrica" target="_blank" class="social-holder">
-                    <img src="src/images/facebook_26.png" alt="facebook" title="facebook">
-                </a>
-
-                <a href="https://twitter.com/faostatistics" target="_blank" class="social-holder">
-                    <img src="src/images/twitter.png" alt="Twitter" title="Twitter">
-                </a>
-
-                <a href="https://www.youtube.com/user/unecaVideo" target="_blank" class="social-holder">
-                    <img src="src/images/youtube.png" alt="YouTube" title="YouTube">
-                </a>
-
-                <a href="https://www.flickr.com/photos/96044621@N08/" target="_blank" class="social-holder">
-                    <img src="src/images/flickr_23.png" alt="flickr" title="flickr">
-                </a>
-
-                <a href="http://www.uneca.org/rss.xml" title="Opens internal link in current window" class="social-holder">
-                    <img src="src/images/rss.png" alt="RSS news feeds" title="RSS news feeds">
-                </a>
-
-            </div>
-
-        </div>
-
-        <br><br>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="text-center">
-                    <ul class="list-unstyled list-inline">
-                        <li><a href="#">Copyright</a></li>
-                        <li><a href="#">Privacy Notice</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Fraud Alert</a></li>
-                        <li><a href="#">Contact us</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
+    </div>
 
-    </footer>
+</footer>
 
 
 <!-- Scrooling -->

@@ -5,7 +5,8 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-        search_faostat: 'Search on FAOSTAT Data'
+        search_faostat: 'Search on FAOSTAT Data',
+        search_results: 'Search results'
 
     });
 });
