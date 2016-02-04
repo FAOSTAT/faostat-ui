@@ -15,6 +15,7 @@ define([
     'handlebars',
     'bootpag',
     'config/browse_by_domain/Config',
+    'faostatapiclient',
     'amplify'
 ], function ($,
              log,
@@ -28,7 +29,8 @@ define([
              _,
              Handlebars,
              bootpag,
-             BrowseByDomainConfig
+             BrowseByDomainConfig,
+             FAOSTATClientAPI
 ){
 
     'use strict';
@@ -50,6 +52,12 @@ define([
 
         initialize: function (options) {
             this.o = $.extend(true, {}, options);
+
+            // check if query parameter is set
+            if (!this.o.hasOwnProperty('query')) {
+                log.error('SearchView.initialize; missing query parameter:',  this.o);
+            }
+
         },
 
         getTemplateData: function () {
@@ -75,42 +83,40 @@ define([
 
         initVariables: function () {
 
-            var query = this.o.query,
-                self = this;
+            // init variables
+            this.o.lang = Common.getLocale();
+            this.api = new FAOSTATClientAPI();
+            this.cache = {};
 
             this.$SEARCH_RESULTS = this.$el.find(s.SEARCH_RESULTS);
             this.$PAGINATION = this.$el.find(s.PAGINATION);
             this.$DOWNLOAD = this.$el.find(s.PAGINATION);
 
-            $.ajax({
-                url: "http://fenixapps2.fao.org/api/v1.0/en/search/" + query,
-                //url: "http://localhost:8081/api/v1.0/en/search/" + query,
-                success: function(results) {
-
-                    self.results = results;
-
-                    //self.parseSearchResultsClustered(result);
-                    self.parseSearchResults(results);
-                }
-            });
-
         },
-
 
         parseSearchResults: function(results) {
 
+            log.info(results);
+
             // cluster results
             var r = [],
-                browseWhitelist = BrowseByDomainConfig.whitelist;
+                browseWhitelist = BrowseByDomainConfig.whitelist,
+                self = this;
 
             _.each(results.data, function(v, index) {
 
+                // index used to retrieve the obj in cached results
                 v.index = index;
+
+                // adding domain name
+                log.info( self.getDomain(v.domainCode))
+                v = $.extend(true, {}, v, self.getDomain(v.domainCode));
 
                 r.push($.extend(true, {},
                     v,
                     {addBrowse: ($.inArray(v.domainCode, browseWhitelist) !== -1)}));
 
+                log.info(v)
             });
 
             this.renderResults(r);
@@ -136,7 +142,6 @@ define([
                     var domainCode = v.domainCode,
                         id = v.id,
                         relations = [];
-
 
                     // check if a relation exists
                     _.each(values, function(d) {
@@ -232,31 +237,73 @@ define([
         },
 
         exportData: function(index) {
+
             log.info(this.results.data[index]);
 
-            var obj = this.results.data[index];
-
-            var exportObj = {
-                datasource: C.DATASOURCE,
-                lang: Common.getLocale(),
-                domain_codes: [obj.domainCode],
-                filters: {}
-
+            var obj = this.results.data[index],
+                exportObj = {
+                    datasource: C.DATASOURCE,
+                    lang: Common.getLocale(),
+                    domain_codes: [obj.domainCode],
+                    filters: {}
             };
 
             exportObj.filters[obj.id] = [obj.code];
 
-
-            log.info(exportObj)
+            log.info(exportObj);
 
             amplify.publish(E.EXPORT_DATA, exportObj, {
                 requestType: 'databean'
             });
 
+        },
+
+        getDomain: function(code) {
+
+            var domains = this.cache.domains;
+
+            for(var i=0; i < domains.length; i++) {
+                if (domains[i].DomainCode === code) {
+                    return {
+                        domainCode: domains[i].DomainCode,
+                        domainName: domains[i].DomainName,
+                        groupCode: domains[i].GroupCode,
+                        groupName: domains[i].GroupName
+                    };
+                }
+            }
+
+            return {};
 
         },
 
         initComponents: function () {
+
+            var self = this,
+                query = self.o.query;
+
+            // TODO: use this API for caching the groups and domains? or the domainstree with 'search' parameter?
+            this.api.domainstree({
+                datasource: C.DATASOURCE,
+                lang: this.o.lang
+            }).then(function(d) {
+
+                // cachind the domains
+                self.cache.domains = d.data;
+
+                $.ajax({
+                    url: "http://fenixapps2.fao.org/api/v1.0/en/search/" + query,
+                    //url: "http://localhost:8081/api/v1.0/en/search/" + query,
+                    success: function(results) {
+
+                        self.results = results;
+
+                        //self.parseSearchResultsClustered(result);
+                        self.parseSearchResults(results);
+
+                    }
+                });
+            });
 
         },
 
