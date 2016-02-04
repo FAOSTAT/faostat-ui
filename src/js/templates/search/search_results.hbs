@@ -2,30 +2,55 @@
     <div class="row clearfix">
 
         <div class="col-lg-12">
-            <div>
-             <h3>
-                 {{this.label}}
-                 <small>({{this.domainCode}})</small>
-             </h3>
-                 {{#each relations}}
-                     <span> {{this.label}} </span>
-                 {{/each}}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <h4>
+                            {{this.label}}
+                            <!-- TODO: id should be translated and take from the db as typeLabel -->
+                            <small>({{this.id}})</small>
+                        </h4>
+                        <h5>
+                            {{this.domainName}} - {{this.domainCode}}
+                            <small>(Domain)</small>
+                        </h5>
+                        {{#each relations}}
+                            <span> {{this.label}} </span>
+                        {{/each}}
+                    </div>
+                </div>
             </div>
 
-            <div class="pull-right">
-                <a href="#en/download/interactive/{{this.domainCode}}">{{go_to_download}}Go To Download</a>
-                {{#if this.addBrowse}}
-                    |
-                    <a href="#en/browse/domain/{{this.domainCode}}">{{go_to_browse}}Go To Browse</a>
-                {{/if}}
-                |
-                <a href="#" data-role="download" data-index="{{index}}">{{donwload_data}}Export Data</a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <a href="#en/download/interactive/{{this.domainCode}}">{{go_to_download}}Go To Download</a>
+                        {{#if this.addBrowse}}
+                            |
+                            <a href="#en/browse/domain/{{this.domainCode}}">{{go_to_browse}}Go To Browse</a>
+                        {{/if}}
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn btn-default">
+                            <a href="#en/download/interactive/{{this.domainCode}}">{{go_to_download}}Go To Download</a>
+                        </button>
+                        {{#if this.addBrowse}}
+                            |
+                        <button class="btn btn-default">
+                            <a href="#en/browse/domain/{{this.domainCode}}">{{go_to_browse}}Go To Browse</a>
+                        </button>
+                        {{/if}}
+                        |
+                        <button class="btn btn-default">
+                        <a href="#" data-role="download" data-index="{{index}}">{{donwload_data}}Export Data</a>
+                        </button>
+                    </div>
+                </div>
             </div>
-
-            <div class="clearfix"></div>
-            <hr>
-
         </div>
+        <div class="clearfix"></div>
+        <hr>
 
     </div>
 {{/each}}

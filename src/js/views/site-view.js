@@ -116,7 +116,10 @@ define([
 
             // territorial notes
             this.$el.find(s.TERRITORIAL_NOTES).on('click', function() {
-                amplify.publish(E.NOTIFICATION_INFO, {title: i18nLabels.territorial_notes_info });
+                amplify.publish(E.NOTIFICATION_INFO, {
+                    title: i18nLabels.territorial_notes,
+                    text: i18nLabels.territorial_notes_info
+                });
             });
 
             // feedback system
