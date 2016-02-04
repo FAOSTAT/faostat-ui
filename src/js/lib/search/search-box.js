@@ -62,17 +62,21 @@ define([
             }
         });
 
+        // adding query value if needed
+        if ( this.o.query) {
+            this.$SEARCH_BOX.val(unescape(this.o.query));
+        }
+
         this.$SEARCH_BOX.typeahead({
                 hint: true,
                 highlight: true,
                 minLength: 3
-
             },
             {
                 name: 'suggestions',
                 source: suggestions,
                 display: 'label',
-                limit: 1000,
+                limit: 100,
                 templates: {
                     empty: 'No data',
                     suggestion: Handlebars.compile('<p>{{label}} <small>({{id}})</small></p>')
@@ -101,9 +105,6 @@ define([
                 }
             });
 
-        if ( this.o.query) {
-            this.$SEARCH_BOX.typeahead('val', unescape(this.o.query));
-        }
 
     };
 

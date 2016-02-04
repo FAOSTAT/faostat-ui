@@ -105,7 +105,7 @@ define([
 
         parseSearchResults: function(results) {
 
-            log.info(results);
+            log.info("Search.parseSearchResults; results from query", results);
 
             // cluster results
             var r = [],
@@ -118,7 +118,6 @@ define([
                 v.index = index;
 
                 // adding domain name
-                log.info( self.getDomain(v.domainCode));
                 v = $.extend(true, {}, v, self.getDomain(v.domainCode));
 
                 // i18n
@@ -132,8 +131,10 @@ define([
                     v,
                     {addBrowse: ($.inArray(v.domainCode, browseWhitelist) !== -1)}));
 
-                log.info(v);
+                //log.info("Search.parseSearchResults; v:", v);
             });
+
+            log.info("Search.parseSearchResults; parsed results", r);
 
             this.renderResults(r);
 
@@ -188,21 +189,21 @@ define([
                 page = 1,
                 pageSize = 10;
 
-            log.info("Search.renderResults; length", results.length);
-            log.info("Search.renderResults; pages", results.length / pageSize);
+            log.info("Search.renderResults; results:", results.length, "pages", results.length / pageSize);
 
            this.$PAGINATION.bootpag({
                total: Math.round(results.length / pageSize),
                page: page,
                leaps: false,
-               next: 'Next',
-               prev: 'Previous',
+               next: i18nLabels.next,
+               prev: i18nLabels.previous,
+               maxVisible: 10,
                //wrapClass: 'pagination',
                activeClass: 'active',
                disabledClass: 'disabled'
             }).on("page", function(event, /* page number here */ num) {
 
-                log.info(event, num);
+                //log.info('Search.paging; number', num, 'event', event);
 
                 self.$SEARCH_RESULTS.html(self.getPage(results, num, pageSize));
                 //self.$SEARCH_RESULTS.focus();
