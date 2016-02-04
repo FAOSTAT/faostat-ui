@@ -309,6 +309,10 @@ define([
             var self = this,
                 query = self.o.query;
 
+            amplify.publish(E.LOADING_SHOW, {
+                container: this.$SEARCH_RESULTS
+            });
+
             // TODO: use this API for caching the groups and domains? or the domainstree with 'search' parameter?
             // caching domains
             this.api.domainstree({
