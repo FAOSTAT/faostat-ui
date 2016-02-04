@@ -75,8 +75,10 @@ define([
 
             View.prototype.attach.call(this, arguments);
 
+
             /* Update State. */
             amplify.publish(E.STATE_CHANGE, {search: 'search'});
+            amplify.publish(E.SEARCH_BOX_HIDE);
 
             this.initVariables();
 

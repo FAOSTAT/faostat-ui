@@ -87,7 +87,8 @@ define([
             amplify.subscribe(E.EXPORT_DATA, Export, Export.exportData);
             amplify.subscribe(E.EXPORT_TABLE_HTML, Export, Export.exportTable);
 
-            //amplify.subscribe(E.HIDE_SELECTOR, null );
+            amplify.subscribe(E.SEARCH_BOX_SHOW, this, this.showSearchBox);
+            amplify.subscribe(E.SEARCH_BOX_HIDE, this, this.hideSearchBox);
 
             // publishing GA Events
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
@@ -129,6 +130,8 @@ define([
                 log.warn('The feeback system opens in a popup in faostat3.fao.org');
                 window.open(C.FEEDBACK_SYSTEM_URL, "_target=black");
             });
+
+            this.$SEACH_BOX = this.$el.find(s.SEARCH);
 
         },
 
@@ -179,6 +182,22 @@ define([
 
         },
 
+        showSearchBox: function () {
+
+            // initialize text
+            this.searchBox.emptySearchBox();
+
+            // show search box
+            this.$SEACH_BOX.show();
+
+        },
+
+        hideSearchBox: function () {
+
+            this.$SEACH_BOX.hide();
+
+        },
+
         onMenuUpdate: function (s) {
 
             this.menu.select(s);
@@ -205,7 +224,6 @@ define([
             });
 
         },
-
 
         onNotificationAccept: function (data, callback) {
 

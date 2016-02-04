@@ -14,6 +14,8 @@ define(
 
             this.reuse('site', SiteView);
 
+            amplify.publish(E.SEARCH_BOX_SHOW);
+
         }
 
     });

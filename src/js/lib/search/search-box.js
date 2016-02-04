@@ -107,6 +107,12 @@ define([
 
     };
 
+    SearchBox.prototype.emptySearchBox = function () {
+
+        this.$SEARCH_BOX.typeahead('val', '');
+
+    };
+
     SearchBox.prototype.initComponentsBK = function () {
 
 
@@ -122,7 +128,6 @@ define([
             'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
             'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
         ];
-
 
         var search = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -141,7 +146,6 @@ define([
                 name: 'states',
                 source: states
             });
-
 
     };
 
