@@ -43,6 +43,10 @@ define({
     download_report: 'Download Report',
 
     download_csv: 'Download CSV',
-    what_is_a_csv: 'What is a CSV?'
+    download_data: 'Download Data',
+    what_is_a_csv: 'What is a CSV?',
+    go_to_browse: "Go To Browse",
+    go_to_download: "Go To Bownload",
+    search_data: "Search Data"
 
 });
