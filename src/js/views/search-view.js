@@ -191,34 +191,48 @@ define([
 
             log.info("Search.renderResults; results:", results.length, "pages", results.length / pageSize);
 
-           this.$PAGINATION.bootpag({
-               total: Math.round(results.length / pageSize),
-               page: page,
-               leaps: false,
-               next: i18nLabels.next,
-               prev: i18nLabels.previous,
-               maxVisible: 10,
-               //wrapClass: 'pagination',
-               activeClass: 'active',
-               disabledClass: 'disabled'
-            }).on("page", function(event, /* page number here */ num) {
 
-                //log.info('Search.paging; number', num, 'event', event);
 
-                self.$SEARCH_RESULTS.html(self.getPage(results, num, pageSize));
-                //self.$SEARCH_RESULTS.focus();
-                //self.$SEARCH_RESULTS.animate({ scrollTop: 0 }, "fast");
-                $('body, html').scrollTop(0);
+            if (results.length === 0) {
 
-               // bind export data selection
-               self.bindExportDataSelection();
+                // no data available
+                // TODO: fix it in a more consistant way
+                this.$SEARCH_RESULTS.html('<h1>'+ i18nLabels.no_results_available_for +'<i>'+ unescape(this.o.query) +'</i></h1>');
 
-            });
 
-            self.$SEARCH_RESULTS.html(self.getPage(results, page, pageSize));
+            }else {
 
-            // bind export data selection
-            self.bindExportDataSelection();
+                // show resuls
+
+                this.$PAGINATION.bootpag({
+                    total: Math.round(results.length / pageSize),
+                    page: page,
+                    leaps: false,
+                    next: i18nLabels.next,
+                    prev: i18nLabels.previous,
+                    maxVisible: 10,
+                    //wrapClass: 'pagination',
+                    activeClass: 'active',
+                    disabledClass: 'disabled'
+                }).on("page", function (event, /* page number here */ num) {
+
+                    //log.info('Search.paging; number', num, 'event', event);
+
+                    self.$SEARCH_RESULTS.html(self.getPage(results, num, pageSize));
+                    //self.$SEARCH_RESULTS.focus();
+                    //self.$SEARCH_RESULTS.animate({ scrollTop: 0 }, "fast");
+                    $('body, html').scrollTop(0);
+
+                    // bind export data selection
+                    self.bindExportDataSelection();
+
+                });
+
+                self.$SEARCH_RESULTS.html(self.getPage(results, page, pageSize));
+
+                // bind export data selection
+                self.bindExportDataSelection();
+            }
 
         },
 
