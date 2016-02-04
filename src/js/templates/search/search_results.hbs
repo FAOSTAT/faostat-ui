@@ -36,8 +36,8 @@
                         <div style="padding-top:15px;">
                         <a href="#en/download/interactive/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_download}}Go To Download</a>
                         {{#if this.addBrowse}}
-                            |
-                            <a href="#en/browse/domain/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_browse}}Go To Browse</a>
+                            <!--|-->
+                            <a style="margin-left:15px;" href="#en/browse/domain/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_browse}}Go To Browse</a>
                         {{/if}}
                         </div>
                     </div>
@@ -52,8 +52,9 @@
                         </button>
                         {{/if}}
                         |-->
-                        <button class="btn btn-default">
-                            <a href="#" data-role="download" data-index="{{index}}">{{donwload_data}}Export Data</a>
+                        <button class="btn btn-default" data-role="download" data-index="{{index}}">
+                            {{donwload_data}}Download Data
+                            <!--<a href="#" data-role="download" data-index="{{index}}">{{donwload_data}}Export Data</a>-->
                         </button>
                     </div>
                 </div>

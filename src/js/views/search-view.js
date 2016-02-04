@@ -253,7 +253,8 @@ define([
             log.info(exportObj);
 
             amplify.publish(E.EXPORT_DATA, exportObj, {
-                requestType: 'databean'
+                requestType: 'databean',
+                waitingText: 'Please wait<br> The download could require some time'
             });
 
         },

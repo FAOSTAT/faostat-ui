@@ -39,6 +39,7 @@ define([
         // TODO: check better the requestType!
         var requestType = options ? (options.requestType) || this.o.requestType : this.o.requestType,
             name = options ? options.name || this.o.name : this.o.name,
+            waitingText = options ? (options.waitingText) || null : null,
             self = this,
             r = $.extend(true, {}, request);
 
@@ -53,7 +54,7 @@ define([
         // amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
 
         // waiting
-        amplify.publish(E.WAITING_SHOW);
+        amplify.publish(E.WAITING_SHOW, { text: waitingText});
 
         // switch between the requestType to faostatAPI
         if (typeof this.api[requestType] === 'function') {
