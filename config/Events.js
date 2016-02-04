@@ -20,6 +20,9 @@ define(function () {
         LOADING_SHOW: 'fs.loading.show',
         LOADING_HIDE: 'fs.loading.hide',
 
+        SEARCH_BOX_SHOW: 'fs.site.search_box.show',
+        SEARCH_BOX_HIDE: 'fs.site.search_box.hide',
+
         GOOGLE_ANALYTICS_PAGE_VIEW: 'fs.google_analytics.page_view',
         GOOGLE_ANALYTICS_EVENT: 'fs.google_analytics.event',
 
