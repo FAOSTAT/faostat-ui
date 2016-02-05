@@ -176,7 +176,7 @@ define([
 
             // this sections should be always cleaned
             this.$OUTPUT_AREA.empty();
-            
+
             // Set Title
             this.$MAIN_CONTAINER_TITLE.html(label);
 

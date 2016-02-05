@@ -28,7 +28,10 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
         domains_list_description_bulk: "Click on the list below to go to the Domain Bulk download section",
         domains_list_description_interactive_download: "Click on the list below to go to the Domain Interactive Download section",
-        domains_list_description_metadata: "Click on the list below to go to the Domain Metadata section"
+        domains_list_description_metadata: "Click on the list below to go to the Domain Metadata section",
+
+        suggest_bulk_downloads:  "Selection is too large. Please use the bulk downloads.",
+        suggest_bulk_downloads_or_table: "Selection is too large. Please use the bulk downloads or standard table."
 
     });
 
