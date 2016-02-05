@@ -137,7 +137,6 @@ define([
 
             log.info("Update section");
 
-
             // TODO: check tabs
 
             this.o.selected = $.extend(true, {}, options);
@@ -169,12 +168,15 @@ define([
 
         switchTabs: function(section, options) {
 
-            log.info('switch tab: ', section, options)
+            log.info('switch tab: ', section, options);
 
             var code = options.id,
                 label = options.label,
                 type = options.type;
 
+            // this sections should be always cleaned
+            this.$OUTPUT_AREA.empty();
+            
             // Set Title
             this.$MAIN_CONTAINER_TITLE.html(label);
 
