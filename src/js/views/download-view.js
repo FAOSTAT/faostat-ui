@@ -15,7 +15,8 @@ define([
     'fs-i-d/start',
     // TODO: change Names
     'FAOSTAT_UI_BULK_DOWNLOADS',
-    'FENIX_UI_METADATA_VIEWER',
+    //'FENIX_UI_METADATA_VIEWER',
+    'fs-m-v/start',
     'FAOSTAT_UI_WELCOME_PAGE',
 
     'lib/download/domains_list/domains-list',
@@ -332,11 +333,17 @@ define([
 
             if (section === 'metadata') {
 
+                // adding loading
+                amplify.publish(E.LOADING_SHOW, {
+                    container: this.$METADATA
+                });
+
                 this.metadataViewer = new MetadataViewer();
                 this.$METADATA.empty();
                 this.metadataViewer.init({
                     container: this.$METADATA,
                     domain: code,
+                    lang: Common.getLocale(),
                     url_get_metadata: C.URL_METADATA_MODEL,
                     url_get_domain: C.URL_METADATA_DOMAIN
                 });

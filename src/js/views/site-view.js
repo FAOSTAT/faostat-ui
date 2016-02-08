@@ -20,8 +20,9 @@ define([
     // TODO: move analytics in another section?
     'globals/GoogleAnalyticsManager',
     'globals/Export',
-    'lib/search/search-box'
-], function ($, log, Chaplin, _, C, E, ROUTES, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export, SearchBox) {
+    'lib/search/search-box',
+    'lib/metadata/metadata'
+], function ($, log, Chaplin, _, C, E, ROUTES, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export, SearchBox, Metadata) {
 
     'use strict';
 
@@ -89,6 +90,8 @@ define([
 
             amplify.subscribe(E.SEARCH_BOX_SHOW, this, this.showSearchBox);
             amplify.subscribe(E.SEARCH_BOX_HIDE, this, this.hideSearchBox);
+
+            amplify.subscribe(E.METADATA_SHOW, Metadata, Metadata.show);
 
             // publishing GA Events
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
