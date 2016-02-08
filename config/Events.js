@@ -36,7 +36,10 @@ define(function () {
         WINDOW_RESIZE: 'fs.window.resize.event',
 
         // Selectors
-        DOWNLOAD_SELECTION_CHANGE: 'fs.download.selection.event'
+        DOWNLOAD_SELECTION_CHANGE: 'fs.download.selection.event',
+
+        // Metadata
+        METADATA_SHOW: 'fs.metadata.show.event'
 
     };
 });
