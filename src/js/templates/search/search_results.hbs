@@ -16,6 +16,7 @@
                                 <small>{{group_label}}</small>
                                 <!--({{this.groupCode}}) -->
                                 {{this.groupName}}
+                                <!--<span class="domain-icon icojam_{{this.groupCode}}"></span>-->
                             </h5>
                             <h5>
                                 <small>{{domain_label}}</small>
@@ -34,9 +35,11 @@
                 <div class="col-lg-12">
                     <div class="pull-left">
                         <div style="padding-top:15px;">
+                        <!-- TODO: with routing an multilanguage -->
                         <a href="#en/download/interactive/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>
                         {{#if this.addBrowse}}
                             <!--|-->
+                            <!-- TODO: with routing an multilanguage -->
                             <a style="margin-left:15px;" href="#en/browse/domain/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_browse}}</a>
                         {{/if}}
                         </div>

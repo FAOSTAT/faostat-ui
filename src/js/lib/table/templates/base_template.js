@@ -50,14 +50,18 @@ define([
 
             this.$TABLE = $table_content.find(s.TABLE);
 
+            log.info(this.o);
+
             // switch between server side (ajax) of full table rendering
             if (this.o.template.ajax !== undefined) {
                 this.$TABLE.bootstrapTable({
-                    ajax: this.o.template.ajax
+                    ajax: this.o.template.ajax,
+                    locale: this.o.lang
                 });
             }else{
                 this.$TABLE.bootstrapTable({
-                    data: this.o.model.data
+                    data: this.o.model.data,
+                    locale: this.o.lang
                 });
             }
 
@@ -81,6 +85,10 @@ define([
         Base_template.prototype.getTable = function () {
             log.info(this.$TABLE);
             return this.$TABLE;
+        };
+
+        Base_template.prototype.destroy = function () {
+            this.$TABLE.bootstrapTable('destroy');
         };
 
         return Base_template;

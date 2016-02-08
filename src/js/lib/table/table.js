@@ -2,6 +2,7 @@
 define([
         'jquery',
         'loglevel',
+        'globals/Common',
         'handlebars',
         'fs-t-c/templates/base_template',
         'fs-t-c/adapters/FAOSTAT_adapter',
@@ -9,7 +10,7 @@ define([
         'lib/table/adapters/FAOSTAT_adapter',*/
         'i18n!nls/common'
     ],
-    function ($, log, Handlebars, Template, Adapter, i18n) {
+    function ($, log, Common, Handlebars, Template, Adapter, i18n) {
 
         'use strict';
 
@@ -61,6 +62,9 @@ define([
             // format value data
             this.o.model.data = this.adapter.formatData();
 
+            // add language
+            this.o.lang = this.addLocale();
+
             // render table
             this.template.render(this.o);
 
@@ -84,9 +88,82 @@ define([
 
         };
 
+        Table.prototype.addLocale = function() {
+
+            // adding French
+            $.fn.bootstrapTable.locales['fr-FR'] = {
+                formatLoadingMessage: function () {
+                    return 'Chargement en cours, patientez, s´il vous plaît ...';
+                },
+                formatRecordsPerPage: function (pageNumber) {
+                    return pageNumber + ' lignes par page';
+                },
+                formatShowingRows: function (pageFrom, pageTo, totalRows) {
+                    return 'Affichage des lignes ' + pageFrom + ' à ' + pageTo + ' sur ' + totalRows + ' lignes au total';
+                },
+                formatSearch: function () {
+                    return 'Rechercher';
+                },
+                formatNoMatches: function () {
+                    return 'Aucun résultat trouvé';
+                },
+                formatRefresh: function () {
+                    return 'Rafraîchir';
+                },
+                formatToggle: function () {
+                    return 'Alterner';
+                },
+                formatColumns: function () {
+                    return 'Colonnes';
+                },
+                formatAllRows: function () {
+                    return 'Tous';
+                }
+            };
+
+            // adding French
+            $.fn.bootstrapTable.locales['es-SP'] = {
+                formatLoadingMessage: function () {
+                    return 'Cargando, por favor espera...';
+                },
+                formatRecordsPerPage: function (pageNumber) {
+                    return pageNumber + ' registros por p&#225;gina.';
+                },
+                formatShowingRows: function (pageFrom, pageTo, totalRows) {
+                    return pageFrom + ' - ' + pageTo + ' de ' + totalRows + ' registros.';
+                },
+                formatSearch: function () {
+                    return 'Buscar';
+                },
+                formatNoMatches: function () {
+                    return 'No se han encontrado registros.';
+                },
+                formatRefresh: function () {
+                    return 'Actualizar';
+                },
+                formatToggle: function () {
+                    return 'Alternar';
+                },
+                formatColumns: function () {
+                    return 'Columnas';
+                },
+                formatAllRows: function () {
+                    return 'Todo';
+                }
+            };
+
+            switch(Common.getLocale()) {
+                case 'es': return 'es-SP';
+                case 'fr': return 'fr-FR';
+                default: return null;
+            }
+
+        };
+
         Table.prototype.destroy = function () {
 
-            log.warn("TODO: implement destroy");
+            //log.warn("TODO: implement destroy");
+            this.template.destroy();
 
         };
 
