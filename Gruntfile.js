@@ -2,11 +2,11 @@
 
 module.exports = function(grunt) {
 
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-jsonlint');
-	grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    //grunt.loadNpmTasks('grunt-zip');
+    grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('grunt-contrib-rename');
+
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -24,160 +24,63 @@ module.exports = function(grunt) {
         },
         clean: {
             dist: {
-                src: ['dist/*']
-            },
-            lib: {
-                src: ['src/lib/*']
-            },
-            docs: {
-                src: ['docs/*']
+                src: ['dist/war/*']
             }
         },
-        jshint: {
-            options: {
-                globals: {
-                    console: true,
-                    module: true
+
+        war: {
+            target: {
+                options: {
+                    //war_dist_folder: 'dist/war/',    /* Folder where to generate the WAR. */
+                    war_dist_folder: '/home/vortex/Desktop/',
+                    war_name: 'faostat-ui'                    /* The name fo the WAR file (.war will be the extension) */
                 },
-                "-W099": true, //ignora tabs e space warning
-                "-W033": true
-            },
-            files: ['src/*.js']//, '!src/file-excluded.js']
-        },
-        jsonlint: {
-            i18n: {
-                src: ['i18n/*.json']
+                files: [
+                    {
+                        expand: true,
+                        cwd: './',
+                        src: ['**'],
+                        dest: ''
+                    }
+                ]
             }
         },
-        copy: {
-            jquery: {
-                nonull: true,
-                src: 'node_modules/jquery/dist/jquery.min.js',
-                dest: 'src/lib/jquery.js'
-            },
-            backbone: {
-                nonull: true,
-                src: 'node_modules/backbone/backbone-min.js',
-                dest: 'src/lib/backbone.js'
-            },
-            "backbone.layoutmanager": {
-                nonull: true,
-                src: "node_modules/backbone.layoutmanager/backbone.layoutmanager.js",
-                dest: "src/lib/backbone.layoutmanager.js"
-            },
-            bootstrap_js: {
-                nonull: true,
-                src: "node_modules/bootstrap/dist/js/bootstrap.min.js",
-                dest: 'src/lib/bootstrap.js'
-            },
-            bootstrap_css: {
-                nonull: true,
-                src: "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                dest: "src/lib/bootstrap.css"
-            },
-            nprogress_js: {
-                nonull: true,
-                src: "node_modules/nprogress/nprogress.js",
-                dest: "src/lib/nprogress.js"
-            },
-            nprogress_css: {
-                nonull: true,
-                src: "node_modules/nprogress/nprogress.css",
-                dest: "src/lib/nprogress.css"
-            },
-            requirejs: {
-                nonull: true,
-                src: "node_modules/requirejs/require.js",
-                dest: "src/lib/require.js"
-            },
-			domready: {
-				nonull: true,
-				src: "node_modules/domReady/domReady.js",
-				dest: "src/lib/domready.js"
-			},
-			text: {
-				nonull: true,
-				src: "node_modules/text/text.js",
-				dest: "src/lib/text.js"
-			},
-			i18n: {
-				nonull: true,
-				src: "node_modules/i18n/i18n.js",
-				dest: "src/lib/i18n.js"
-			},			
-			underscore: {
-				nonull: true,
-				src: "node_modules/underscore/underscore-min.js",
-				dest: "src/lib/underscore.js"
-			},
-			jqwidgets_js: {
-				nonull: true,
-				src: "node_modules/jqwidgets/jqx-all.js",
-				dest: "src/lib/jqwidgets.js"
-			},
-			jqwidgets_css: {
-				nonull: true,
-				src: "node_modules/jqwidgets/styles/jqx.base.css",
-				dest: "src/lib/jqwidegts.css"
-			},
-			handlebars: {
-				nonull: true,
-				src: "node_modules/handlebars/dist/handlebars.min.js",
-				dest: "src/lib/handlebars.js"
-			},
-			jstree: {
-				nonull: true,
-				expand: true,
-				//flatten: true,
-				cwd: "node_modules/jstree/dist/",
-				src: '**',
-				dest: "src/lib/jstree/"
-			}
-        },
-        jsdoc: {
-            dist: {
-                src: ["src/*.js"],
+
+        compress: {
+            faostat: {
                 options: {
-                    destination: 'docs'
-                }
+                    archive: 'dist/war/faostat-ui.war.zip',
+                    mode: 'zip'
+                },
+                files: [
+                    {
+                        src: [
+                            './*',
+                            'config/**',
+                            'dist/**',
+                            'i18n/**',
+                            'submodules/**',
+                            'src/**'
+                        ]
+                    }
+                ]
             }
         },
-        jsonschema_amd_restclient_generator: {
-            custom_options: {
-                options: {
-                    base_url: 'http://fenixapps2.fao.org/api/v1.0/',
-                    output_name: 'FAOSTATAPIClient',
-                    output_folder: 'src/js',
-                    useQ: true
-                }
+
+        rename: {
+            war: {
+                files: [
+                    {src: ['dist/war/faostat-ui.war.zip'], dest: 'dist/war/faostat-ui.war'}
+                ]
             }
         }
+
     });
 
-//TODO task for removing README.md from any subdirs
-
-    /* Load API client generator tasks. */
-    grunt.loadNpmTasks('grunt-jsonschema-amd-restclient-generator');
-
-    grunt.registerTask('docs', [
-        'clean:docs',
-        'jsdoc'
-    ]);
-
-    grunt.registerTask('clean', [
-        'clean'
-    ]);
-
-    grunt.registerTask('default_PROD', [
-        'jsonschema_amd_restclient_generator',
-        'clean',
-        'jsonlint',
-        'jshint',
-        'copy'
-    ]);
-
-    grunt.registerTask('default', [
-        'jsonschema_amd_restclient_generator'
+    grunt.registerTask('war', [
+        'clean:dist',
+        'compress:faostat',
+        'rename:war'
     ]);
 
 };
