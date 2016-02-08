@@ -6,7 +6,7 @@ require([
     './submodules/fenix-ui-map-creator/src/js/paths',
     './submodules/fenix-ui-chart-creator/src/js/paths',
     './submodules/fenix-ui-dashboard/src/js/paths',
-    './submodules/faostat-ui-metadata-viewer/js/paths',
+    './submodules/faostat-ui-metadata-viewer/src/js/paths',
     './submodules/fenix-ui-reports/src/js/paths',
     './submodules/faostat-ui-bulk-downloads/src/js/paths',
     './submodules/faostat-ui-download-selectors-manager/src/js/paths',
@@ -56,7 +56,7 @@ require([
     reportsConfig.baseUrl = submodules_path + '/fenix-ui-reports/src/js';
     chartConfig.baseUrl = submodules_path + '/fenix-ui-chart-creator/src/js';
     dashboardConfig.baseUrl = submodules_path + '/fenix-ui-dashboard/src/js';
-    metadataConfig.baseUrl = submodules_path + '/faostat-ui-metadata-viewer/js';
+    metadataConfig.baseUrl = submodules_path + '/faostat-ui-metadata-viewer/src/js';
     bulkDownloadsConfig.baseUrl = submodules_path + '/faostat-ui-bulk-downloads/src/js';
     downloadSelectorsManagerConfig.baseUrl = submodules_path + '/faostat-ui-download-selectors-manager/src/js';
     faostatMenuConfig.baseUrl = submodules_path + '/faostat-ui-menu/src/js';
