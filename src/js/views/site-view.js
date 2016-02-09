@@ -21,8 +21,8 @@ define([
     'globals/GoogleAnalyticsManager',
     'globals/Export',
     'lib/search/search-box',
-    'lib/metadata/metadata'
-], function ($, log, Chaplin, _, C, E, ROUTES, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export, SearchBox, Metadata) {
+    'fs-m-v/start'
+], function ($, log, Chaplin, _, C, E, ROUTES, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export, SearchBox, MetadataViewer) {
 
     'use strict';
 
@@ -91,7 +91,7 @@ define([
             amplify.subscribe(E.SEARCH_BOX_SHOW, this, this.showSearchBox);
             amplify.subscribe(E.SEARCH_BOX_HIDE, this, this.hideSearchBox);
 
-            amplify.subscribe(E.METADATA_SHOW, Metadata, Metadata.show);
+            amplify.subscribe(E.METADATA_SHOW, this, this.showMetadata);
 
             // publishing GA Events
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
@@ -198,6 +198,28 @@ define([
         hideSearchBox: function () {
 
             this.$SEACH_BOX.hide();
+
+        },
+
+        showMetadata: function (options) {
+
+            if ( !options.hasOwnProperty('code')) {
+                log.error('Code is not passed in the options', options);
+            }
+            else {
+
+                var metadataViewer = new MetadataViewer();
+                metadataViewer.init($.extend(true, {},
+                        {
+                            modal: true,
+                            addHeaders: false,
+                            lang: Common.getLocale(),
+                            url_get_metadata: C.URL_METADATA_MODEL,
+                            url_get_domain: C.URL_METADATA_DOMAIN
+                        },
+                        options)
+                );
+            }
 
         },
 

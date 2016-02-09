@@ -339,10 +339,10 @@ define([
                 });
 
                 this.metadataViewer = new MetadataViewer();
-                this.$METADATA.empty();
+                //this.$METADATA.empty();
                 this.metadataViewer.init({
                     container: this.$METADATA,
-                    domain: code,
+                    code: code,
                     lang: Common.getLocale(),
                     url_get_metadata: C.URL_METADATA_MODEL,
                     url_get_domain: C.URL_METADATA_DOMAIN
