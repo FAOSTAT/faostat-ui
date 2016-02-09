@@ -1,15 +1,17 @@
-/*global define, _:false, $, console, amplify, FM*/
+/*global define, _:false, $, console, amplify, FM, unescape, escape */
 define([
     'jquery',
     'loglevel',
+    'config/Config',
     'config/Events',
     'globals/Common',
     'typeahead',
     'bloodhound',
     'handlebars',
     'underscore',
+    'faostatapiclient',
     'amplify'
-], function ($, log, E, Common, typeahead, Bloodhound, Handlebars, _) {
+], function ($, log, C, E, Common, typeahead, Bloodhound, Handlebars, _, FAOSTATAPIClient) {
 
     'use strict';
 
@@ -32,6 +34,10 @@ define([
 
         this.o = $.extend(this, {}, defaultOptions, options);
 
+        this.o.lang = Common.getLocale();
+
+        this.api = new FAOSTATAPIClient();
+
         this.initVariables();
 
         this.initComponents();
@@ -52,14 +58,37 @@ define([
             suggestions = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.whitespace,
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            // `states` is an array of state names defined in "The Basics"
+
+            // hack for Bloodhound remote request
             remote: {
+                url: '%QUERY',
+                wildcard: '%QUERY',
+                transport: function (obj, onSuccess, onError) {
+
+                    log.info('SearchBox.prototype.initComponents; request', obj);
+
+                    self.api.suggestions({
+                        datasource: C.DATASOURCE,
+                        lang: self.o.lang,
+                        query: obj.url
+                    }).then(function(d) {
+                        onSuccess(d.data);
+                        //return d.data;
+                    }).fail(function(e) {
+                        onError(e);
+                    }).done();
+                },
+                filter: function (result) {
+                    return result;
+                }
+            }
+/*            remote: {
                 url: 'http://fenixapps2.fao.org/api/v1.0/en/suggestions/%QUERY',
                 wildcard: '%QUERY',
                 filter: function (result) {
                     return result.data;
                 }
-            }
+            }*/
         });
 
         // adding query value if needed
@@ -105,7 +134,6 @@ define([
                 }
             });
 
-
     };
 
     SearchBox.prototype.emptySearchBox = function () {
@@ -114,7 +142,7 @@ define([
 
     };
 
-    SearchBox.prototype.initComponentsBK = function () {
+    /*SearchBox.prototype.initComponentsBK = function () {
 
 
         var self = this;
@@ -148,7 +176,7 @@ define([
                 source: states
             });
 
-    };
+    };*/
 
     return SearchBox;
 });

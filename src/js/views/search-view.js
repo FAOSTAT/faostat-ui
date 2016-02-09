@@ -58,6 +58,7 @@ define([
         template: template,
 
         initialize: function (options) {
+
             this.o = $.extend(true, {}, options);
 
             // check if query parameter is set
@@ -338,18 +339,20 @@ define([
                 // cachind the domains
                 self.cache.domains = d.data;
 
-                $.ajax({
-                    url: "http://fenixapps2.fao.org/api/v1.0/en/search/" + query,
-                    //url: "http://localhost:8081/api/v1.0/en/search/" + query,
-                    success: function(results) {
+                self.api.search({
+                    datasource: C.DATASOURCE,
+                    lang: self.o.lang,
+                    query: query
 
-                        self.results = results;
+                }).then(function(results) {
 
-                        //self.parseSearchResultsClustered(result);
-                        self.parseSearchResults(results);
+                    self.results = results;
 
-                    }
+                    //self.parseSearchResultsClustered(result);
+                    self.parseSearchResults(results);
+
                 });
+
             });
 
         },
