@@ -27,6 +27,8 @@ define([
 
     Waiting.prototype.showPleaseWait = function (data) {
 
+        waiting.find("[data-role='text']").empty();
+
         if (data && data.hasOwnProperty('text')) {
             waiting.find("[data-role='text']").html(data.text);
         }
