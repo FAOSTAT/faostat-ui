@@ -333,13 +333,14 @@ define([
 
             if (section === 'metadata') {
 
+
                 // adding loading
+                this.$METADATA.empty();
                 amplify.publish(E.LOADING_SHOW, {
                     container: this.$METADATA
                 });
 
                 this.metadataViewer = new MetadataViewer();
-                //this.$METADATA.empty();
                 this.metadataViewer.init({
                     container: this.$METADATA,
                     code: code,
