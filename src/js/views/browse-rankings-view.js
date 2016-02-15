@@ -323,6 +323,8 @@ define([
 
             renderFilter: function(config) {
 
+                log.info("BrowseRankings.renderFilter;", config);
+
                 // create filters
                 if (this.filterBox && this.filterBox.destroy) {
                     this.filterBox.destroy();
@@ -337,19 +339,24 @@ define([
 
             renderDashboard: function(config) {
 
-                console.log("RENDER DASHBOARD!");
+                log.info("BrowseRankings.renderDashboard;", config);
 
                 if (this.dashboard && this.dashboard.destroy) {
+                    log.info("BrowseRankings.dashboard.destroy();");
                     this.dashboard.destroy();
                 }
 
                 this.dashboard = new Dashboard();
+
+                log.info("BrowseRankings.renderDashboard; new Dashboard");
 
                 // setting default filter options (i.e. language and datasouce)
                 config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
                 _.each(config.items, _.bind(function(item) {
                     item.config = ViewUtils.defaultItemOptions(item, CM.view);
                 }, this));
+
+                log.info("BrowseRankings.renderDashboard; applied defaultFilter");
 
                 config._name = 'rankigns';
                 this.dashboard.render(config);

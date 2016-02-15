@@ -65,6 +65,8 @@ define([
 
     ViewUtils.prototype.addRelatedViews = function($container, view, callback) {
 
+        log.info("ViewUtils.addRelatedViews;", $container, view);
+
         if ($container !== undefined && $container !== null) {
             var t = Handlebars.compile(templateRelatedViews);
             $container.html(t({relatedViews: view.relatedViews}));
@@ -79,7 +81,7 @@ define([
 
             }, this));
         }else {
-            log.warn("addRelatedViews not applied. $container not valid:  ", $container);
+            log.warn("ViewUtils.addRelatedViews; not applied. $container not valid:  ", $container);
         }
 
     };
