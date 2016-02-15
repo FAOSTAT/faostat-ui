@@ -76,7 +76,6 @@ define([
 
             View.prototype.attach.call(this, arguments);
 
-
             /* Update State. */
             amplify.publish(E.STATE_CHANGE, {search: 'search'});
             amplify.publish(E.SEARCH_BOX_HIDE);
@@ -127,6 +126,7 @@ define([
                 v.go_to_download = i18nLabels.go_to_download;
                 v.go_to_browse = i18nLabels.go_to_browse;
                 v.download_data = i18nLabels.download_data;
+                v.lang = self.o.lang;
 
                 r.push($.extend(true, {},
                     v,
@@ -192,13 +192,11 @@ define([
 
             log.info("Search.renderResults; results:", results.length, "pages", results.length / pageSize);
 
-
-
             if (results.length === 0) {
 
                 // no data available
                 // TODO: fix it in a more consistant way
-                this.$SEARCH_RESULTS.html('<h1>'+ i18nLabels.no_results_available_for +'<i>'+ unescape(this.o.query) +'</i></h1>');
+                this.$SEARCH_RESULTS.html('<h3>'+ i18nLabels.no_results_available_for +'<i>'+ unescape(this.o.query) +'</i></h1>');
 
 
             }else {
