@@ -127,12 +127,13 @@ define([
 
             _.each(data, function (d, index) {
 
-                //log.info("Table.FAOSTAT_Adapter.formattedData; index, value", index, d[valueKey]);
+                //log.info("Table.FAOSTAT_Adapter.formattedData; index, value", index, d[valueKey], isNaN(d[valueKey]));
 
                 if ( d[valueKey] !== undefined && d[valueKey] !== null && !isNaN(d[valueKey])) {
-                    d[valueKey] = numeral(d[valueKey]).format(formatter);
+                    // TODO: check if parseFloat works in all cases
+                    d[valueKey] = numeral(parseFloat(d[valueKey])).format(formatter);
                 }else{
-                    log.error(d[valueKey]);
+                    log.warn("Table.FAOSTAT_Adapter.formattedData;", d[valueKey], "not valid or already formatted.");
                 }
 
             });
