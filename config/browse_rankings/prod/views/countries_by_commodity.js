@@ -138,9 +138,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 10 Commidities, Net Production Value in {{area}}",
-                                fr: "Top 10 Commidities, Net Production Value in {{area}}",
-                                es: "Top 10 Commidities, Net Production Value in {{area}}"
+                                en: "Top 10 Commodities, Net Production Value in {{area}}",
+                                fr: "Top 10 Commodities, Net Production Value in {{area}}",
+                                es: "Top 10 Commodities, Net Production Value in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }

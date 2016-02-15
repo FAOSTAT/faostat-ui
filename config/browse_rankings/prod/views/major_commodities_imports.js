@@ -72,9 +72,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities, Import Value by country",
-                                fr: "Top 20 Commidities, Import Value by country",
-                                es: "Top 20 Commidities, Import Value by country"
+                                en: "Top 20 Commodities, Import Value by country",
+                                fr: "Top 20 Commodities, Import Value by country",
+                                es: "Top 20 Commodities, Import Value by country"
                             },
                             subtitle: "{{year}}"
                         }

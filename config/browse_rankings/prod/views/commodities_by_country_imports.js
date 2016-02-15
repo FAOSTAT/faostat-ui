@@ -88,9 +88,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 Commidities, Import quantity in {{area}}",
-                                fr: "Top 10 Commidities, Import quantity in {{area}}",
-                                es: "Top 10 Commidities, Import quantity in {{area}}"
+                                en: "Top 10 Commodities, Import quantity in {{area}}",
+                                fr: "Top 10 Commodities, Import quantity in {{area}}",
+                                es: "Top 10 Commodities, Import quantity in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -133,9 +133,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 10 Commidities, Import Value in {{area}}",
-                                fr: "Top 10 Commidities, Import Value in {{area}}",
-                                es: "Top 10 Commidities, Import Value in {{area}}"
+                                en: "Top 10 Commodities, Import Value in {{area}}",
+                                fr: "Top 10 Commodities, Import Value in {{area}}",
+                                es: "Top 10 Commodities, Import Value in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -188,9 +188,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities, Import Quantity in {{area}}",
-                                fr: "Top 20 Commidities, Import Quantity in {{area}}",
-                                es: "Top 20 Commidities, Import Quantity in {{area}}"
+                                en: "Top 20 Commodities, Import Quantity in {{area}}",
+                                fr: "Top 20 Commodities, Import Quantity in {{area}}",
+                                es: "Top 20 Commodities, Import Quantity in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -227,9 +227,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities, Import Value in {{area}}",
-                                fr: "Top 20 Commidities, Import Value in {{area}}",
-                                es: "Top 20 Commidities, Import Value in {{area}}"
+                                en: "Top 20 Commodities, Import Value in {{area}}",
+                                fr: "Top 20 Commodities, Import Value in {{area}}",
+                                es: "Top 20 Commodities, Import Value in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }

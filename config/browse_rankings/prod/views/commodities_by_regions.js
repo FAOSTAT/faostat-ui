@@ -88,9 +88,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 Commidities Production in {{area}}",
-                                fr: "Top 10 Commidities Production in {{area}}",
-                                es: "Top 10 Commidities Production in {{area}}"
+                                en: "Top 10 Commodities Production in {{area}}",
+                                fr: "Top 10 Commodities Production in {{area}}",
+                                es: "Top 10 Commodities Production in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -133,9 +133,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 10 Commidities, Net Production Value in {{area}}",
-                                fr: "Top 10 Commidities, Net Production Value in {{area}}",
-                                es: "Top 10 Commidities, Net Production Value in {{area}}"
+                                en: "Top 10 Commodities, Net Production Value in {{area}}",
+                                fr: "Top 10 Commodities, Net Production Value in {{area}}",
+                                es: "Top 10 Commodities, Net Production Value in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -188,9 +188,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities Production in {{area}}",
-                                fr: "Top 20 Commidities Production in {{area}}",
-                                es: "Top 20 Commidities Production in {{area}}"
+                                en: "Top 20 Commodities Production in {{area}}",
+                                fr: "Top 20 Commodities Production in {{area}}",
+                                es: "Top 20 Commodities Production in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -227,9 +227,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities, Net Production Value in {{area}}",
-                                fr: "Top 20 Commidities, Net Production Value in {{area}}",
-                                es: "Top 20 Commidities, Net Production Value in {{area}}"
+                                en: "Top 20 Commodities, Net Production Value in {{area}}",
+                                fr: "Top 20 Commodities, Net Production Value in {{area}}",
+                                es: "Top 20 Commodities, Net Production Value in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
