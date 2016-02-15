@@ -19,7 +19,7 @@ define(function () {
                     "type": "codelist",
                     "parameter": "List3Codes",
                     "componentType": {
-                        "class": "col-md-4",
+                        "class": "col-xs-6 col-sm-4",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -34,7 +34,7 @@ define(function () {
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-md-2",
+                        "class": "col-xs-3 col-sm-2",
                         "type": "dropDownList"
                     },
                     "config": {
