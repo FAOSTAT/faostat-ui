@@ -5,7 +5,21 @@ define([],function () {
 
     return {
 
-        "model": {
+        "filter": {
+            "domain_codes": ["FS"],
+            "List1Codes": [5000],
+            "List2Codes": [6120],
+            "List4Codes": ['_1'],
+            "List3Codes": [21001],
+            page_size: 0,
+            per_page: 0,
+            limit: -1,
+            "List7Codes": null,
+            "List6Codes": null,
+            "List5Codes": null
+        },
+
+        /*"model": {
             "metadata": {
                 "processing_time": 7796,
                 "dsd": [{"pivot": "H", "index": "2", "label": "Domain Code", "type": "code", "key": "Domain Code"}, {
@@ -549,7 +563,7 @@ define([],function () {
                 "Year Code": 20142016,
                 "Element": "Value"
             }]
-        }
+        }*/
     };
 
 });

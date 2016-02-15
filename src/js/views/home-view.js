@@ -43,7 +43,6 @@ define([
         GO_TO_BROWSE: '[data-role="go_to_browse"]',
         GO_TO_DOWNLOAD: '[data-role="go_to_download"]',
 
-
         CHART: "#fs_home_chart",
         WHATS_NEW: "#fs_home_whats_new",
         COMING_UP: "#fs_home_coming_up",
@@ -106,6 +105,9 @@ define([
 
             this.api = new API();
 
+            this.o = {};
+            this.o.lang = Common.getLocale();
+
         },
 
         configurePage: function () {
@@ -130,7 +132,7 @@ define([
 
             this.api.groups({
                 dataosource: C.DATASOURCE,
-                lang: Common.getLocale()
+                lang: this.o.lang
             }).then(function(json) {
 
                 // TODO: how to handle the browse blacklist/whitelist?
@@ -189,9 +191,20 @@ define([
             var self = this,
                 c = new ChartCreator();
 
-            c.init($.extend(true, {}, CM.chart, {model: ChartModel.model})).then(function (c) {
+            amplify.publish(E.LOADING_SHOW, {container: self.$CHART});
 
-                c.render($.extend(true, {}, CM.chart, {container: self.$CHART}));
+            this.api.data($.extend(true, {}, ChartModel.filter, {
+                lang: this.o.lang,
+                datasource: C.DATASOURCE
+            })).then(function(d) {
+
+                amplify.publish(E.LOADING_HIDE, {container: self.$CHART});
+
+                c.init($.extend(true, {}, CM.chart, {model: d})).then(function (c) {
+
+                    c.render($.extend(true, {}, CM.chart, {container: self.$CHART}));
+
+                });
 
             });
 
