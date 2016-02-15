@@ -53,7 +53,7 @@ define(function () {
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
-                decimal_places:4,
+                decimal_places:2,
                 "null_values": false,
                 filter_list: "1",
                 rank_type: 'DESC'

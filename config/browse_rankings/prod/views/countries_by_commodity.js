@@ -15,16 +15,16 @@ define(function () {
             items: [
                 {
                     // id to be applied on the getData request
-                    "id": "area",
+                    "id": "item",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "List3Codes",
                     "componentType": {
                         "class": "col-md-4",
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "regions",
-                        "defaultCodes": ["5000"],
+                        "dimension_id": "items",
+                        "defaultCodes": ["15"],
                         "filter": {
                         }
                     }
@@ -49,13 +49,15 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                List3Codes: ["_1"],
+                List1Codes: ["_1"],
+                List2Codes: null,
+                List3Codes: null,
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
                 decimal_places:2,
                 "null_values": false,
-                filter_list: "1",
+                filter_list: "3",
                 rank_type: 'DESC'
             },
 
@@ -88,9 +90,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 Commidities Production in {{area}}",
-                                fr: "Top 10 Commidities Production in {{area}}",
-                                es: "Top 10 Commidities Production in {{area}}"
+                                en: "Top 10 Country Production by {{item}}",
+                                fr: "Top 10 Country Production in {{item}}",
+                                es: "Top 10 Country Production in {{item}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -103,7 +105,7 @@ define(function () {
                             xDimensions: ['item'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'element']
+                            seriesDimensions: ['area']
                         },
                         template: {
                             height:'275px'
@@ -125,6 +127,9 @@ define(function () {
                         limit: "10"
                     }
                 },
+
+
+
                 {
                     type: 'chart',
                     class: "col-md-6",
@@ -148,7 +153,7 @@ define(function () {
                             xDimensions: ['item'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'element']
+                            seriesDimensions: ['area']
                         },
                         template: {
                             height:'275px'
@@ -188,9 +193,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities Production in {{area}}",
-                                fr: "Top 20 Commidities Production in {{area}}",
-                                es: "Top 20 Commidities Production in {{area}}"
+                                en: "Top 20 Countries Production by {{item}}",
+                                fr: "Top 20 Countries Production by {{item}}",
+                                es: "Top 20 Countries Production by {{item}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -198,7 +203,7 @@ define(function () {
 
                     config: {
                         adapter: {
-                            columns: ['item', 'year', 'value', 'unit', 'flag'],
+                            columns: ['area', 'item', 'year', 'value', 'unit', 'flag'],
                             showCodes: false
                         },
                         template: {
@@ -227,9 +232,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities, Net Production Value in {{area}}",
-                                fr: "Top 20 Commidities, Net Production Value in {{area}}",
-                                es: "Top 20 Commidities, Net Production Value in {{area}}"
+                                en: "Top 20 Countries, Net Production Value by {{item}}",
+                                fr: "Top 20 Countries, Net Production Value by {{item}}",
+                                es: "Top 20 Countries, Net Production Value by {{item}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -237,7 +242,7 @@ define(function () {
 
                     config: {
                         adapter: {
-                            columns: ['item', 'year', 'value', 'unit', 'flag'],
+                            columns: ['area', 'item', 'year', 'value', 'unit', 'flag'],
                             showCodes: false
                         },
                         template: {

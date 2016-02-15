@@ -9,7 +9,7 @@ define(function () {
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["QC"]
+                "domain_code": ["TP"]
             },
 
             items: [
@@ -23,10 +23,9 @@ define(function () {
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "regions",
-                        "defaultCodes": ["5000"],
-                        "filter": {
-                        }
+                        "dimension_id": "countries",
+                        "defaultCodes": ["2"],
+                        "filter": {}
                     }
                 },
                 {
@@ -53,7 +52,7 @@ define(function () {
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
-                decimal_places:2,
+                decimal_places:4,
                 "null_values": false,
                 filter_list: "1",
                 rank_type: 'DESC'
@@ -88,9 +87,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 Commidities Production in {{area}}",
-                                fr: "Top 10 Commidities Production in {{area}}",
-                                es: "Top 10 Commidities Production in {{area}}"
+                                en: "Top 10 Commidities, Export quantity in {{area}}",
+                                fr: "Top 10 Commidities, Export quantity in {{area}}",
+                                es: "Top 10 Commidities, Export quantity in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -120,8 +119,8 @@ define(function () {
                     allowedFilter: ['area', 'year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        domain_codes: ['QA', 'QC', 'QD', 'QL', 'QP'],
-                        List2Codes: ["5510"],
+                        domain_codes: ['TP'],
+                        List2Codes: ["5910"],
                         limit: "10"
                     }
                 },
@@ -133,9 +132,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 10 Commidities, Net Production Value in {{area}}",
-                                fr: "Top 10 Commidities, Net Production Value in {{area}}",
-                                es: "Top 10 Commidities, Net Production Value in {{area}}"
+                                en: "Top 10 Commidities, Export Value in {{area}}",
+                                fr: "Top 10 Commidities, Export Value in {{area}}",
+                                es: "Top 10 Commidities, Export Value in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -164,8 +163,8 @@ define(function () {
                     allowedFilter: ['area', 'year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        domain_codes: ['QV'],
-                        List2Codes: ["154"],
+                        domain_codes: ['TP'],
+                        List2Codes: ["5922"],
                         limit: "10"
                     }
                 },
@@ -188,9 +187,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities Production in {{area}}",
-                                fr: "Top 20 Commidities Production in {{area}}",
-                                es: "Top 20 Commidities Production in {{area}}"
+                                en: "Top 20 Commidities, Export Quantity in {{area}}",
+                                fr: "Top 20 Commidities, Export Quantity in {{area}}",
+                                es: "Top 20 Commidities, Export Quantity in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -198,7 +197,7 @@ define(function () {
 
                     config: {
                         adapter: {
-                            columns: ['item', 'year', 'value', 'unit', 'flag'],
+                            columns: ['item', 'year', 'value', 'unit'],
                             showCodes: false
                         },
                         template: {
@@ -209,15 +208,14 @@ define(function () {
                             // height: '300'
                         }
                     },
-                    allowedFilter: ['area', 'year', 'item', 'aggregation'],
+                    allowedFilter: ['area', 'element', 'year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        domain_codes: ['QA', 'QC', 'QD', 'QL', 'QP'],
-                        List2Codes: ["5510"],
+                        domain_codes: ['TP'],
+                        List2Codes: ["5910"],
                         limit: "20"
                     }
                 },
-
 
                 {
                     type: 'table',
@@ -227,9 +225,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities, Net Production Value in {{area}}",
-                                fr: "Top 20 Commidities, Net Production Value in {{area}}",
-                                es: "Top 20 Commidities, Net Production Value in {{area}}"
+                                en: "Top 20 Commidities, Export Value in {{area}}",
+                                fr: "Top 20 Commidities, Export Value in {{area}}",
+                                es: "Top 20 Commidities, Export Value in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -237,7 +235,7 @@ define(function () {
 
                     config: {
                         adapter: {
-                            columns: ['item', 'year', 'value', 'unit', 'flag'],
+                            columns: ['item', 'year', 'value', 'unit'],
                             showCodes: false
                         },
                         template: {
@@ -251,8 +249,8 @@ define(function () {
                     allowedFilter: ['area', 'year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        domain_codes: ['QV'],
-                        List2Codes: ["154"],
+                        domain_codes: ['TP'],
+                        List2Codes: ["5922"],
                         limit: "20"
                     }
                 }

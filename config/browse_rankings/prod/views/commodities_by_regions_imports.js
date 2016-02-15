@@ -9,7 +9,7 @@ define(function () {
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["QC"]
+                "domain_code": ["TP"]
             },
 
             items: [
@@ -53,7 +53,7 @@ define(function () {
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
-                decimal_places:2,
+                decimal_places:4,
                 "null_values": false,
                 filter_list: "1",
                 rank_type: 'DESC'
@@ -88,9 +88,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 Commidities Production in {{area}}",
-                                fr: "Top 10 Commidities Production in {{area}}",
-                                es: "Top 10 Commidities Production in {{area}}"
+                                en: "Top 10 Commidities, Import quantity in {{area}}",
+                                fr: "Top 10 Commidities, Import quantity in {{area}}",
+                                es: "Top 10 Commidities, Import quantity in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -120,8 +120,8 @@ define(function () {
                     allowedFilter: ['area', 'year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        domain_codes: ['QA', 'QC', 'QD', 'QL', 'QP'],
-                        List2Codes: ["5510"],
+                        domain_codes: ['TP'],
+                        List2Codes: ["5610"],
                         limit: "10"
                     }
                 },
@@ -133,9 +133,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 10 Commidities, Net Production Value in {{area}}",
-                                fr: "Top 10 Commidities, Net Production Value in {{area}}",
-                                es: "Top 10 Commidities, Net Production Value in {{area}}"
+                                en: "Top 10 Commidities, Import Value in {{area}}",
+                                fr: "Top 10 Commidities, Import Value in {{area}}",
+                                es: "Top 10 Commidities, Import Value in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -164,8 +164,8 @@ define(function () {
                     allowedFilter: ['area', 'year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        domain_codes: ['QV'],
-                        List2Codes: ["154"],
+                        domain_codes: ['TP'],
+                        List2Codes: ["5622"],
                         limit: "10"
                     }
                 },
@@ -188,9 +188,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities Production in {{area}}",
-                                fr: "Top 20 Commidities Production in {{area}}",
-                                es: "Top 20 Commidities Production in {{area}}"
+                                en: "Top 20 Commidities, Import Quantity in {{area}}",
+                                fr: "Top 20 Commidities, Import Quantity in {{area}}",
+                                es: "Top 20 Commidities, Import Quantity in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -198,7 +198,7 @@ define(function () {
 
                     config: {
                         adapter: {
-                            columns: ['item', 'year', 'value', 'unit', 'flag'],
+                            columns: ['item', 'year', 'value', 'unit'],
                             showCodes: false
                         },
                         template: {
@@ -212,8 +212,8 @@ define(function () {
                     allowedFilter: ['area', 'year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        domain_codes: ['QA', 'QC', 'QD', 'QL', 'QP'],
-                        List2Codes: ["5510"],
+                        domain_codes: ['TP'],
+                        List2Codes: ["5610"],
                         limit: "20"
                     }
                 },
@@ -227,9 +227,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 20 Commidities, Net Production Value in {{area}}",
-                                fr: "Top 20 Commidities, Net Production Value in {{area}}",
-                                es: "Top 20 Commidities, Net Production Value in {{area}}"
+                                en: "Top 20 Commidities, Import Value in {{area}}",
+                                fr: "Top 20 Commidities, Import Value in {{area}}",
+                                es: "Top 20 Commidities, Import Value in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -237,7 +237,7 @@ define(function () {
 
                     config: {
                         adapter: {
-                            columns: ['item', 'year', 'value', 'unit', 'flag'],
+                            columns: ['item', 'year', 'value', 'unit'],
                             showCodes: false
                         },
                         template: {
@@ -251,8 +251,8 @@ define(function () {
                     allowedFilter: ['area', 'year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        domain_codes: ['QV'],
-                        List2Codes: ["154"],
+                        domain_codes: ['TP'],
+                        List2Codes: ["5610"],
                         limit: "20"
                     }
                 }

@@ -94,7 +94,7 @@ define([
                         },
                         {
                             title: {
-                                "en": "Commodities by commodity",
+                                "en": "Countries by commodity",
                                 "es": "Países por producto",
                                 "fr": "Pays par produits"
                             },
@@ -114,7 +114,7 @@ define([
                             title: {
                                 "en": "Commodities by regions",
                                 "es": "Productos por Regiones",
-                                "fr": "Produits par regions",
+                                "fr": "Produits par regions"
                             },
                             "id": "commodities_by_regions_imports"
                         },
@@ -148,7 +148,7 @@ define([
                             title: {
                                 "en": "Commodities by regions",
                                 "es": "Productos por Regiones",
-                                "fr": "Produits par regions",
+                                "fr": "Produits par regions"
                             },
                             "id": "commodities_by_regions_exports"
                         },
