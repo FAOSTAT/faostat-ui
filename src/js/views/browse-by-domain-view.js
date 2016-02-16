@@ -145,12 +145,14 @@ define([
 
                 // Go to the download section
                 this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
+                this.$DOWNLOAD_INTERACTIVE_LINK.off('click');
                 this.$DOWNLOAD_INTERACTIVE_LINK.on('click', function(e) {
                     e.preventDefault();
                     Common.changeURL(ROUTE.DOWNLOAD_INTERACTIVE, [code], true);
                 });
 
                 this.$DOWNLOAD_BULK_LINK = this.$el.find(s.DOWNLOAD_BULK_LINK);
+                this.$DOWNLOAD_BULK_LINK.off('click');
                 this.$DOWNLOAD_BULK_LINK.on('click', function(e) {
                     e.preventDefault();
                     Common.changeURL(ROUTE.DOWNLOAD_BULK, [code], true);
