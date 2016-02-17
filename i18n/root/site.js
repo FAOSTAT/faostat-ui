@@ -9,6 +9,7 @@ define({
     menu: 'Menu',
     help_us: 'Help Us',
     follow_faostat: 'Follow FAOSTAT',
+    follow_us: 'Follow Us On',
 
     // fao_links
     fao_links: 'FAO Links',
