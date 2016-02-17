@@ -20,7 +20,7 @@
 <div class="container fs-main-container" id="main-container"></div>
 
 <!-- Page Footer -->
-<footer class="container">
+<footer class="container" style="padding-bottom:15px;">
 
     <div class="row">
         <div class="col-sm-3">
@@ -31,6 +31,13 @@
                 <li>Tel. {{TELEPHONE_FAO_STATISTICS}}</li>
                 <li>Mail. <a href="mailto:{{EMAIL_FAO_STATISTICS}}">{{EMAIL_FAO_STATISTICS}}</a></li>
             </ul>
+            <div class="row">
+                <div class="col-xs-12">
+                        <ul class="list-unstyled">
+                            <li><a href="#" id='territorial-notes'>{{territorial_notes}}</a></li>
+                        </ul>
+                </div>
+            </div>
         </div>
         <div class="col-sm-3">
             <h4>{{menu}}</h4>
@@ -58,12 +65,11 @@
             <h4>{{help_us}}</h4>
 
             <ul class="list-unstyled">
-                <li><a id='feedback-system'>{{feedback_system}}</a></li>
-                <li><a id='territorial-notes'>{{territorial_notes}}</a></li>
+                <li><a href="#" id='feedback-system'>{{feedback_system}}</a></li>
             </ul>
 
             <br>
-            <h4>{{follow_faostat}}</h4>
+            <h4>{{follow_us}}</h4>
 
             <a href="https://www.facebook.com/UNFAO/" target="_blank" class="social-holder">
                 <img src="src/images/facebook_26.png" alt="facebook" title="facebook">
@@ -89,24 +95,31 @@
 
     </div>
 
-    <br><br>
+    <br>
+    <!--  <br>
+
+      <div class="row">
+          <div class="col-xs-12">
+              <div class="text-center">
+                  <ul class="list-unstyled list-inline">
+                      <li><a href="#">Copyright</a></li>
+                      <li><a href="#">Privacy Notice</a></li>
+                      <li><a href="#">Terms of Use</a></li>
+                      <li><a href="#">Fraud Alert</a></li>
+                      <li><a href="#">Contact us</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      -->
 
     <div class="row">
         <div class="col-xs-12">
-            <div class="text-center">
-                <ul class="list-unstyled list-inline">
-                    <li><a href="#">Copyright</a></li>
-                    <li><a href="#">Privacy Notice</a></li>
-                    <li><a href="#">Terms of Use</a></li>
-                    <li><a href="#">Fraud Alert</a></li>
-                    <li><a href="#">Contact us</a></li>
-                </ul>
-            </div>
+            <a href="http://www.fao.org/contact-us/terms/en/" target='_blank' class="pull-right">© FAO,&nbsp;2016</a>
         </div>
     </div>
 
 </footer>
-
 
 <!-- Scrooling -->
 <div class="scroll-top-wrapper ">
