@@ -121,7 +121,10 @@ define([
             $('.scroll-top-wrapper').on('click', this.scrollToTop);
 
             // territorial notes
-            this.$el.find(s.TERRITORIAL_NOTES).on('click', function() {
+            this.$el.find(s.TERRITORIAL_NOTES).on('click', function(e) {
+
+                e.preventDefault();
+
                 amplify.publish(E.NOTIFICATION_INFO, {
                     title: i18nLabels.territorial_notes,
                     text: i18nLabels.territorial_notes_info
@@ -129,7 +132,10 @@ define([
             });
 
             // feedback system
-            this.$el.find(s.FEEDBACK_SYSTEM).on('click', function() {
+            this.$el.find(s.FEEDBACK_SYSTEM).on('click', function(e) {
+
+                e.preventDefault();
+
                 log.warn('The feeback system opens in a popup in faostat3.fao.org');
                 window.open(C.FEEDBACK_SYSTEM_URL, "_target=black");
             });
