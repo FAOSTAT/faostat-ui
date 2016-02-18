@@ -34,7 +34,7 @@ define(function () {
                 bridge: {
 
                     type: "faostat",
-                    requestType: 'data' // data, rankings
+                    //requestType: 'data' // data, rankings
 
                 },
 
