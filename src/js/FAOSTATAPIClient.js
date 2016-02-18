@@ -7,8 +7,7 @@ define(['jquery', 'q'], function ($, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            //base_url: 'http://localhost:8081/api/v1.0/'
-            base_url: 'http://fenixapps2.fao.org/api/v1.0/'
+            base_url: 'http://fenix.fao.org/faostat/api/v1.0/'
         };
 
         /* Extend default configuration. */
@@ -65,12 +64,12 @@ FAOSTATAPIClient.prototype.apply_rankings_defaults = function (config) {
     return config;
 };
 
-        FAOSTATAPIClient.prototype.databean = function(config) {
+        FAOSTATAPIClient.prototype.data = function(config) {
     config = $.extend(true, {}, this.CONFIG, config || {});
-    config = this.apply_databean_defaults(config);
-    if (this.is_valid_databean(config)) {
+    config = this.apply_data_defaults(config);
+    if (this.is_valid_data(config)) {
             return Q($.ajax({
-                url: this.CONFIG.base_url +  config.lang + '/data/bean/',
+                url: this.CONFIG.base_url +  config.lang + '/data/',
                 traditional: true,
                     data: JSON.stringify({"datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domain_codes": config.domain_codes, "decimal_places": config.decimal_places, "filters": config.filters, "null_values": config.null_values, "group_by": config.group_by, "order_by": config.order_by, "operator": config.operator, "page_size": config.page_size, "limit": config.limit, "page_number": config.page_number, "show_codes": config.show_codes, "show_flags": config.show_flags, "show_unit": config.show_unit}),
                     contentType: "application/json",
@@ -81,11 +80,11 @@ FAOSTATAPIClient.prototype.apply_rankings_defaults = function (config) {
     throw 400;
 };
 
-    FAOSTATAPIClient.prototype.is_valid_databean = function(config) {
+    FAOSTATAPIClient.prototype.is_valid_data = function(config) {
         return true;
     };
 
-FAOSTATAPIClient.prototype.apply_databean_defaults = function (config) {
+FAOSTATAPIClient.prototype.apply_data_defaults = function (config) {
     var i,
         parameters = ["lang", "data_bean"],
         defaults = {
@@ -108,12 +107,12 @@ FAOSTATAPIClient.prototype.apply_databean_defaults = function (config) {
     return config;
 };
 
-        FAOSTATAPIClient.prototype.data = function(config) {
+        FAOSTATAPIClient.prototype.databean = function(config) {
     config = $.extend(true, {}, this.CONFIG, config || {});
-    config = this.apply_data_defaults(config);
-    if (this.is_valid_data(config)) {
+    config = this.apply_databean_defaults(config);
+    if (this.is_valid_databean(config)) {
             return Q($.ajax({
-                url: this.CONFIG.base_url +  config.lang + '/data/',
+                url: this.CONFIG.base_url +  config.lang + '/data/bean/',
                 traditional: true,
                     data: {
     "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domain_codes": config.domain_codes, "decimal_places": config.decimal_places, "List1Codes": config.List1Codes, "List2Codes": config.List2Codes, "List3Codes": config.List3Codes, "List4Codes": config.List4Codes, "List5Codes": config.List5Codes, "List6Codes": config.List6Codes, "List7Codes": config.List7Codes, "List1AltCodes": config.List1AltCodes, "List2AltCodes": config.List2AltCodes, "List3AltCodes": config.List3AltCodes, "List4AltCodes": config.List4AltCodes, "List5AltCodes": config.List5AltCodes, "List6AltCodes": config.List6AltCodes, "List7AltCodes": config.List7AltCodes, "null_values": config.null_values, "group_by": config.group_by, "order_by": config.order_by, "operator": config.operator, "page_size": config.page_size, "limit": config.limit, "page_number": config.page_number, "show_codes": config.show_codes, "show_flags": config.show_flags, "show_unit": config.show_unit
@@ -124,7 +123,7 @@ FAOSTATAPIClient.prototype.apply_databean_defaults = function (config) {
     throw 400;
 };
 
-    FAOSTATAPIClient.prototype.is_valid_data = function(config) {
+    FAOSTATAPIClient.prototype.is_valid_databean = function(config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -134,7 +133,7 @@ FAOSTATAPIClient.prototype.apply_databean_defaults = function (config) {
         return true;
     };
 
-FAOSTATAPIClient.prototype.apply_data_defaults = function (config) {
+FAOSTATAPIClient.prototype.apply_databean_defaults = function (config) {
     var i,
         parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"],
         defaults = {

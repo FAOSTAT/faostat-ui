@@ -1,4 +1,4 @@
-/*global define, _:false, console, amplify, FM*/
+/*global define, _:false, console, amplify, FM, L*/
 define([
     'require',
     'jquery',
@@ -40,9 +40,9 @@ define([
 
             countrySearchFilters: 'fs-browse-by-country-search'
 
-        };
+        },
 
-    var BrowseByCountryView = View.extend({
+        BrowseByCountryView = View.extend({
 
         autoRender: true,
 
@@ -163,7 +163,7 @@ define([
 
                         col = {
                             letter: []
-                        }
+                        };
                         size = 0;
                     }
                     var e= {};
@@ -321,9 +321,8 @@ define([
         getCountryName: function () {
 
             var code = this.o.code.toString(),
-                codes = this.cache.countries.data;
-
-            var c = _.where(codes, {code: code});
+                codes = this.cache.countries.data,
+                c = _.where(codes, {code: code});
 
             return (c.length > 0) ? c[0].label : "";
 

@@ -71,7 +71,7 @@ define([
 
             var api = new FAOSTATApi();
 
-            /*api.databean({
+            /*api.data({
                 domain_codes: ['QC'],
                 filters: {
                     area: ['5000>'],
@@ -85,7 +85,7 @@ define([
                 log.info(response)
             });*/
 
-            api.data({
+            api.databean({
                 domain_codes: ['QC'],
                 List1Codes: ['2'],
                 List2Codes: ['2510'],

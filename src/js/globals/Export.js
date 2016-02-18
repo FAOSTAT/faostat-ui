@@ -17,7 +17,8 @@ define([
 
     var defaultOptions = {
 
-        requestType: 'data',
+        //requestType: 'data',
+        requestType: 'databean',
         output_type: 'csv',
         name: "FAOSTAT_Export_data"
 

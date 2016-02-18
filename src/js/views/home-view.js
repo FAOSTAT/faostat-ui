@@ -193,7 +193,7 @@ define([
 
             amplify.publish(E.LOADING_SHOW, {container: self.$CHART});
 
-            this.api.data($.extend(true, {}, ChartModel.filter, {
+            this.api.databean($.extend(true, {}, ChartModel.filter, {
                 lang: this.o.lang,
                 datasource: C.DATASOURCE
             })).then(function(d) {

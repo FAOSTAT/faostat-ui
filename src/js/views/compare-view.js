@@ -244,7 +244,7 @@ define([
                 }, r);
 
                 this.cachedRequest.push(r);
-                requests.push(this.FAOSTATAPIClient.data(r));
+                requests.push(this.FAOSTATAPIClient.databean(r));
 
             }, this));
 
