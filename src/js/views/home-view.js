@@ -21,6 +21,7 @@ define([
     'config/home/sample/whatsNew',
     'config/home/sample/comingUp',
     'config/home/sample/databaseUpdates',
+    'moment',
     'amplify'
 ], function ($, log, View, Common, ROUTE, C, E, CM,
              template,
@@ -32,7 +33,8 @@ define([
              ChartModel,
              WhatsNew,
              ComingUp,
-             DatabaseUpdates
+             DatabaseUpdates,
+             moment
 ) {
 
     'use strict';
@@ -247,7 +249,80 @@ define([
             var self = this,
                 t = Handlebars.compile(templateDatabaseUpdates);
 
-            this.$DATABASE_UPDATES.append(t(DatabaseUpdates));
+            amplify.publish(E.LOADING_SHOW, {container: self.$DATABASE_UPDATES});
+
+            this.api.domainstree({
+                lang: this.o.lang,
+                datasource: C.DATASOURCE
+            }).then(function(d) {
+
+                var sortedDomains = [],
+                    databaseUpdates = {};
+
+                _.each(d.data, function(domain) {
+                    domain.DateUpdate = new Date(domain.DateUpdate);
+                    sortedDomains.push(domain);
+                });
+
+                // order by date
+                sortedDomains = _.sortBy(sortedDomains, function(o){
+                    return -o.DateUpdate.getTime();
+                });
+
+                // parse 10 first domains
+
+
+                moment.locale(Common.getLocale());
+
+                _.each(sortedDomains, function(domain, index) {
+
+                    log.info(domain, index);
+
+                    if (index < CM.MAX_DATABASE_UPDATES) {
+
+                        var m = moment(domain.DateUpdate),
+                            key =  m.format("MMMM YYYY"),
+                            title =  m.format("MMMM YYYY");
+
+                        if (!databaseUpdates.hasOwnProperty(key)) {
+                            databaseUpdates[key] = {
+                                title: title,
+                                data: []
+                            };
+
+                        }
+
+                        databaseUpdates[key].data.push(domain);
+
+                    }
+
+                });
+
+                self.$DATABASE_UPDATES.html(t(databaseUpdates));
+
+                self.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).off('click');
+                self.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
+
+                    e.preventDefault();
+
+                    log.info(ROUTE)
+
+
+                    var section = ROUTE.DOWNLOAD_ABOUT,
+                        code = this.getAttribute('data-code');
+
+                    log.info(this.getAttribute('data-code'))
+
+                    self.changeState({
+                        section:section,
+                        code: code
+                    });
+                });
+
+
+            });
+
+            /*this.$DATABASE_UPDATES.append(t(DatabaseUpdates));
 
             this.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
 
@@ -260,7 +335,7 @@ define([
                     section:section,
                     code: code
                 });
-            });
+            });*/
 
         },
 

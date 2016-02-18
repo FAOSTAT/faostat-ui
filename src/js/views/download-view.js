@@ -278,9 +278,12 @@ define([
 
         switchTabsDomain: function(section, options) {
 
+            moment.locale(Common.getLocale());
+
             var code = options.id,
                 label = options.label,
-                dateUpdate = moment(new Date(options.dateUpdate)).format("MM-DD-YYYY"),
+                dateUpdate = moment(new Date(options.dateUpdate)).format("DD MMMM YYYY"),
+                //dateUpdate = new Date(options.dateUpdate),
                 type = options.type;
 
             if (section === 'bulk') {
