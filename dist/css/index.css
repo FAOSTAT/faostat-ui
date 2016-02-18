@@ -5399,6 +5399,9 @@ footer.fao-footer {
 .domain-icon {
   font-size: 32px; }
 
+.fs-home-domains {
+  min-height: 250px; }
+
 /* Download */
 .fs-download-domain-tree {
   max-height: 750px;
