@@ -105,7 +105,7 @@ define(function () {
             //bridge configuration
             bridge: {
                 type: "faostat",
-                requestType: 'data' // data, rankings
+                //requestType: 'data' // data, rankings
             },
 
             metadata: {},

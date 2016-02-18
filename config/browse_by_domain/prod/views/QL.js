@@ -6,65 +6,35 @@ define(function () {
 
     return {
 
-        "relatedViews" : [
-            {
-                title: {
-                    en: '1961-present',
-                    es: 'Desde 1961 a la actualidad',
-                    fr: 'De 1961 à nos jours'
-                },
-                id: 'G1',
-                selected: true
-            },
-            {
-                title: {
-                    en: 'Projections',
-                    es: 'Proyecciones',
-                    fr: 'Projections'
-                },
-                id: 'G1-PROJ'
-            }
-        ],
-
-        "comment": {
-            "text": {
-                "en": "Emissions of methane and nitrous oxide produced from agricultural activities",
-                "es": "Emisiones de metano y óxido nitroso producido por las actividades agrícolas",
-                "fr": "Émissions de méthane et d'oxyde nitreux provenant des activités agricoles"
-            },
-            //pdf: "GT.pdf"
-        },
-
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GT"]
+                "domain_code": ["QL"]
             },
 
             items: [
                 {
+                    // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList"
+                        //"multiple": true
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1711"],
+                        "defaultCodes": ["1765"],
                         "filter": {
                         }
                     }
                 },
                 {
-                    // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-3",
                         "type": "dropDownList"
                         //"multiple": true
@@ -78,18 +48,33 @@ define(function () {
                 },
                 {
                     "id": "year",
-                    "type": "static",
+                    "type": "codelist",
                     "parameter": "List4Codes",
+                    "componentType": {
+                        "class": "col-lg-2",
+                        "type": "dropDownList-timerange"
+                    },
+                    "config": {
+                        "dimension_id": "year",
+                        "defaultCodes": ['1993'],
+                        "filter": {
+                        }
+                    }
+                },
+                {
+                    "id": "aggregation",
+                    "type": "static",
+                    "parameter": "operator",
                     "componentType": {
                         "class": "col-lg-2",
                         "type": "dropDownList"
                     },
                     "config": {
-                        "defaultCodes": ["2030"],
+                        "defaultCodes": ["AVG"],
                         "data": [
                             // TODO: multilingual?
-                            {"code": "2030", "label": "2030", "selected": true},
-                            {"code": "2050", "label": "2050", "selected": false}
+                            {"code": "AVG", "label": "average", "selected": true},
+                            {"code": "SUM", "label": "sum", "selected": false}
                         ]
                     }
                 }
@@ -100,15 +85,19 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GT'],
-                List2Codes: ["7231"],
+                domain_codes: ['QL'],
+                List2Codes: ["2510"],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
+                decimal_places: 2,
+                decimal_separator: ".",
                 limit: -1,
                 thousand_separator: ",",
                 "null_values": null,
+                // TODO: remove it the page_size!!!
                 page_size: 0,
+                per_page: 0,
                 page_number: 0
             },
 
@@ -143,9 +132,9 @@ define(function () {
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions by country (CO2 equivalent)",
-                                fr: "Émissions par pays (CO2 équivalent)",
-                                es: "Emisiones por país (CO2 equivalente)"
+                                en: "Production of {{item}} by country",
+                                fr: "Production of {{item}} by country",
+                                es: "Production of {{item}} by country"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -154,22 +143,19 @@ define(function () {
 
                     //height:'250px',
                     config: {
-                        layer: {
-                            colorramp: "YlOrRd",
-                            intervals: 7
-                        },
-                        template: {
-
-                        }
+                        template: {}
                     },
-                    allowedFilter: ['item', 'year', 'element'],
+                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"]
-                        //"group_by": 'year',
-                        //"order_by": 'area'
-                    }
+                        List1Codes: ["5000>", "351"],
+                        "group_by": 'year',
+                        "order_by": 'area'
+                    },
+/*                    bridge: {
+                        requestType: 'rankings' // data, rankings
+                    }*/
                 },
                 {
                     type: 'chart',
@@ -177,14 +163,46 @@ define(function () {
 
                     // labels?
                     labels: {
+                        // temp[template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Production of {{item}} in {{area}}",
+                                fr: "Production de {{item}} dans le {{area}}",
+                                es: "Producción de {{item}} en {{area}}"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+                    
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "timeserie",
+                            xDimensions: 'year',
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area', 'item', 'element']
+                        },
+                        template: {},
+                        creator: {}
+                    },
+                    allowedFilter: ['area', 'year', 'item'],
+                    filter: {}
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12 col-sm-6",
+
+                    // labels?
+                    labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions (CO2 equivalent)",
-                                fr: "Émissions (CO2 équivalent)",
-                                es: "Emisiones (CO2 equivalente)"
+                                en: "Production of {{item}} top 10 producers",
+                                fr: "Production of {{item}} top 10 producers",
+                                es: "Production of {{item}} top 10 producers"
                             },
-                            subtitle: ""
+                            subtitle: "{{aggregation}} {{year}}"
                         }
                     },
 
@@ -192,12 +210,15 @@ define(function () {
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: 'area',
+                            xDimensions: ['element'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['year']
+                            seriesDimensions: ['area']
                         },
-                        template: {},
+                        template: {
+                            height:'250px'
+                            // default labels to be applied
+                        },
                         creator: {
                             chartObj: {
                                 chart: {
@@ -206,29 +227,31 @@ define(function () {
                             }
                         }
                     },
-                    allowedFilter: ['item'],
-                    deniedOnLoadFilter: [],
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        List4Codes: ["2030", "2050"]
-                        // TODO: baseline 2005-2006-2007
+                        List1Codes: ["5000>"],
+                        "group_by": 'year, item',
+                        "order_by": 'value DESC',
+                        "limit": '10'
                     }
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-xs-6",
 
                     // labels?
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions (CO2 equivalent)",
-                                fr: "Émissions (CO2 équivalent)",
-                                es: "Emisiones (CO2 equivalente)"
+                                en: "Production share of {{item}} by region",
+                                fr: "Part de la production de {{item}} par région",
+                                es: "Proporción de producción de {{item}} por región"
                             },
-                            subtitle: "{{year}}"
+                            subtitle: "{{aggregation}} {{year}}"
                         }
+
                     },
 
                     config: {
@@ -240,65 +263,16 @@ define(function () {
                             valueDimensions: 'value',
                             seriesDimensions: ['area']
                         },
-                        template: {},
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['year', 'item'],
-                    deniedOnLoadFilter: [],
-                    filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"]
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    labels: {
-                        template: {
-                            title: {
-                                en: "Emissions by sector",
-                                fr: "Émissions par secteur",
-                                es: "Emissions por sector"
-                            },
-                            subtitle: "{{aggregation}} {{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
-                            valueDimensions: 'value',
-                            seriesDimensions: ['item']
-                        },
                         template: {
                             height: '250px'
                         },
                         creator: {}
                     },
-                    allowedFilter: ['area', 'year', 'aggregation'],
+                    allowedFilter: ['year', 'item', 'aggregation'],
                     filter: {
-                        List3Codes: [5067,
-                            5058,
-                            5059,
-                            5060,
-                            5061,
-                            5062,
-                            5063,
-                            5064,
-                            5066,
-                            //1709,
-                            6759
-                        ],
-                        "order_by": 'item'
+                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        "group_by": 'year, item',
+                        "order_by": 'area'
                     }
                 }
             ]
