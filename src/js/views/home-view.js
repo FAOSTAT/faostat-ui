@@ -130,6 +130,8 @@ define([
                 browseWhiteList = BrowseByDomainConfig.whitelist || [];
                 //browseBlackList = BrowseByDomainConfig.blacklist || [];
 
+            amplify.publish(E.LOADING_SHOW, {container: self.$DOMAINS});
+
             this.api.groups({
                 dataosource: C.DATASOURCE,
                 lang: this.o.lang
