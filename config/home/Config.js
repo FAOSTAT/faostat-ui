@@ -9,7 +9,7 @@ define([
 
     return {
 
-        MAX_DATABASE_UPDATES: 10,
+        MAX_DATABASE_UPDATES: 100,
 
         chart: {
 
