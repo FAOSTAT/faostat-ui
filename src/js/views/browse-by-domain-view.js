@@ -110,6 +110,8 @@ define([
 
                         onClick: _.bind(function (callback) {
 
+                            log.info(callback)
+
                             this.o.code = callback.id;
                             this.o.label = callback.label;
 

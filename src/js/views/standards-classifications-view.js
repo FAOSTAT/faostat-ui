@@ -15,7 +15,6 @@ define([
     'FAOSTAT_UI_TREE',
     'list',
     'handlebars',
-    'jstree',
     'amplify'
 ], function ($,
              log,

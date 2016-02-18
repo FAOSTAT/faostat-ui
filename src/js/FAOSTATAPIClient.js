@@ -7,7 +7,8 @@ define(['jquery', 'q'], function ($, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            base_url: 'http://fenix.fao.org/faostat/api/v1.0/'
+            //base_url: 'http://fenix.fao.org/faostat/api/v1.0/'
+            base_url: 'http://localhost:8081/api/v1.0/'
         };
 
         /* Extend default configuration. */

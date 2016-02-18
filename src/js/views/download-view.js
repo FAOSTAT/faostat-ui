@@ -113,6 +113,8 @@ define([
 
                     onClick: function (callback) {
 
+                        log.info(callback)
+
                         callback.type = self.tree.getCodeType();
 
                         self.updateSection(callback);
