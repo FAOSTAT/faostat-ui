@@ -53,5 +53,7 @@ define({
     go_to_download: "Go To Bownload",
     search_data: "Search Data",
 
+    filter_data: 'Filter Data'
+
 
 });
