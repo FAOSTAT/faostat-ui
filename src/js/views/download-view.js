@@ -18,13 +18,13 @@ define([
     //'FENIX_UI_METADATA_VIEWER',
     'fs-m-v/start',
     'FAOSTAT_UI_WELCOME_PAGE',
-
     'lib/download/domains_list/domains-list',
-
+    'moment',
     'amplify'
 ], function ($, log, View, F, C, E, Common, ROUTE,
              template, i18nLabels,
-             Tree, Report, InteractiveDownload, BulkDownloads, MetadataViewer, WelcomePage, DomainsList
+             Tree, Report, InteractiveDownload, BulkDownloads, MetadataViewer, WelcomePage, DomainsList,
+             moment
 ) {
 
     'use strict';
@@ -112,8 +112,6 @@ define([
                 callback: {
 
                     onClick: function (callback) {
-
-                        log.info(callback)
 
                         callback.type = self.tree.getCodeType();
 
@@ -282,6 +280,7 @@ define([
 
             var code = options.id,
                 label = options.label,
+                dateUpdate = moment(new Date(options.dateUpdate)).format("MM-DD-YYYY"),
                 type = options.type;
 
             if (section === 'bulk') {
@@ -304,7 +303,8 @@ define([
                     container: this.$INTERACTIVE_DOWNLOAD,
                     // to output the table outside the standard output area
                     output_area: this.$OUTPUT_AREA,
-                    code: code
+                    code: code,
+                    dateUpdate: dateUpdate
                 });
 
             }
