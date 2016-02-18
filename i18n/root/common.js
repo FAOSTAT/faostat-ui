@@ -11,6 +11,10 @@ define({
     "selector_select_all" : "Select All",
     "selector_select_none" : "Select None",
 
+    follow_faostat: 'Follow FAOSTAT',
+    follow_us: 'Follow Us On',
+    follow_faostatistics: 'Follow @FAOstatistics',
+
     "faostat_domains": "FAOSTAT Domains",
 
     "results": "Results",
@@ -47,6 +51,7 @@ define({
     what_is_a_csv: 'What is a CSV?',
     go_to_browse: "Go To Browse",
     go_to_download: "Go To Bownload",
-    search_data: "Search Data"
+    search_data: "Search Data",
+
 
 });

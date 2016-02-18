@@ -8,8 +8,6 @@ define({
     territorial_notes_info: 'A dispute exists between the Governments of Argentina and the United Kingdom of Great Britain and Northern Ireland concerning sovereignty over the Falkland Islands (Malvinas).',
     menu: 'Menu',
     help_us: 'Help Us',
-    follow_faostat: 'Follow FAOSTAT',
-    follow_us: 'Follow Us On',
 
     // fao_links
     fao_links: 'FAO Links',
