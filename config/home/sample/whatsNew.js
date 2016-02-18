@@ -7,7 +7,7 @@ define([], function () {
 
         data: [
             {
-                title: "NOVEMBER 2015",
+                title: "November 2015",
                 data: [
                     {
                         text: "Research and Development indicators, ASTI."
@@ -22,7 +22,7 @@ define([], function () {
             },
 
             {
-                title: "OCTOBER 2015",
+                title: "October 2015",
                 data: [
                     {
                         text: '<a href="http://www.fao.org/economic/ess/ess-events/wsd/en/" target="_blank">World Statistics Day</a>'
@@ -38,7 +38,7 @@ define([], function () {
             },
 
             {
-                title: "SEPTEMBER 2015",
+                title: "September 2015",
                 data: [
                     {
                         text: '2013 updates for Annual and Monthly producer prices, Annual producer price indices and value of Agricultural production.'

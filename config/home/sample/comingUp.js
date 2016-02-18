@@ -7,7 +7,7 @@ define([], function () {
 
         data: [
             {
-                title: "OCTOBER 2015",
+                title: "October 2015",
                 data: [
                     {
                         text: "Investment."

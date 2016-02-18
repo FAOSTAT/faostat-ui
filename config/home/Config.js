@@ -9,6 +9,8 @@ define([
 
     return {
 
+        MAX_DATABASE_UPDATES: 10,
+
         chart: {
 
             adapter: {
