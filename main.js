@@ -123,7 +123,7 @@ require([
                     amplify: '{FENIX_CDN}/js/amplify/1.1.2/amplify.min',
                     select2: '{FENIX_CDN}/js/select2/3.5.4/select2.min',
                     loglevel: '{FENIX_CDN}/js/loglevel/1.4.0/loglevel',
-                    moment: '{FENIX_CDN}/js/moment/2.9.0/moment.min',
+                    moment: '{FENIX_CDN}/js/moment/2.9.0/moment-with-locales.min',
 
                     typeahead: '//fenixrepo.fao.org/cdn/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
                     bloodhound: '//cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/bloodhound.min',
