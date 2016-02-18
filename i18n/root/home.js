@@ -14,7 +14,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         // info box
         info_box_title: "FAO Statistical Pocketbook 2015",
         info_box_text: "This publication is part of the FAO Statistical Yearbook suite of products. <br><br> The first part of the book includes thematic spreads with data visualizations (graphs, charts, and maps) with basic text. <br><br>  The second part has country-level tables for a selected number of indicators.",
-        info_box_link: "<a target='_blank' href='http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/#.VlXSE3arSG-'>Link</a>",
+        info_box_link: "<a target='_blank' href='http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/#.VlXSE3arSG-'>Pocketbook</a>",
 
         // featured links
         faostat_database_download: 'Download FAOSTAT Database (Zip)',
