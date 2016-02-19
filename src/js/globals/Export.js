@@ -101,6 +101,10 @@ define([
 
         var time = new Date();
 
+        // save memory?
+        result = null;
+        blob = null;
+
         log.info("Export.saveAs; Execution saveAs time: ", (time - start) / 1000 + "s");
 
         /* var csvString = result.responseText,

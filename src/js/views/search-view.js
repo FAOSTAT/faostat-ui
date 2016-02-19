@@ -118,7 +118,7 @@ define([
                 v.index = index;
 
                 // adding domain name
-                v = $.extend(true, {}, v, self.getDomain(v.domainCode));
+                v = $.extend(true, {}, v, self.getDomain(v.DomainCode));
 
                 // i18n
                 v.domain_label = i18nLabels.domain;
@@ -130,7 +130,7 @@ define([
 
                 r.push($.extend(true, {},
                     v,
-                    {addBrowse: ($.inArray(v.domainCode, browseWhitelist) !== -1)}));
+                    {addBrowse: ($.inArray(v.DomainCode, browseWhitelist) !== -1)}));
 
                 //log.info("Search.parseSearchResults; v:", v);
             });
@@ -155,16 +155,16 @@ define([
 
                 if ( $.inArray( v, relatedValues ) === -1 ) {
 
-                    log.info(v.label);
+                    log.info(v.Label);
 
-                    var domainCode = v.domainCode,
+                    var domainCode = v.DomainCode,
                         id = v.id,
                         relations = [];
 
                     // check if a relation exists
                     _.each(values, function(d) {
 
-                        if (d.domainCode === domainCode && d.id !== id) {
+                        if (d.DomainCode === domainCode && d.id !== id) {
 
                             relations.push(d);
 
@@ -261,6 +261,7 @@ define([
                 log.info($(this).data('index'));
 
                 log.info(e);
+                log.info(index);
 
                 self.exportData(index);
             });
@@ -274,11 +275,11 @@ define([
                 exportObj = {
                     datasource: C.DATASOURCE,
                     lang: Common.getLocale(),
-                    domain_codes: [obj.domainCode],
+                    domain_codes: [obj.DomainCode],
                     filters: {}
             };
 
-            exportObj.filters[obj.id] = [obj.code];
+            exportObj.filters[obj.id] = [obj.Code];
 
             log.info(exportObj);
 
@@ -344,6 +345,8 @@ define([
                     query: query
 
                 }).then(function(results) {
+
+                    log.info(results)
 
                     self.results = results;
 
