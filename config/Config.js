@@ -1,51 +1,48 @@
 /*global define*/
-define(function () {
+define(['jquery', 'loglevel'], function ($, log) {
 
         'use strict';
 
-        return {
+            var host = document.location.hostname,
+                DEFAULT = {
 
-            // Configuration
-            "DATASOURCE": "production",
-            "GOOGLE_ANALYTICS_ID": "UA-68486942-1",
+                    "DATASOURCE": "production",
+                    "LOGLEVEL": "error", // trace/debug/info/warn/error
 
-            "LOGLEVEL": "trace", // trace/debug/info/warn/error
+                    // URLs
+                    "URL_PDF_BASEPATH": "http://faostat3.fao.org/modules/faostat-download-js/PDF/",
+                    "URL_FEEDBACK_SYSTEM": "http://fenixapps.fao.org/feedbacksystem/",
+                    "URL_COUNTRY_PROFILES": "http://faostat.fao.org/CountryProfiles/Country_Profile/default.aspx",
+                    "URL_FAOSTAT_DATABASE_ZIP": "http://faostat3.fao.org/ftp-faostat/Bulk/FAOSTAT.zip",
+                    "URL_BULK_DOWNLOADS_BASEPATH": "http://faostat.fao.org/Portals/_Faostat/Downloads/zip_files/",
+                    "URL_METADATA_MODEL": 'http://faostat3.fao.org/mdfaostat/getmd/',
+                    "URL_METADATA_DOMAIN": 'http://faostat3.fao.org/mdfaostat/getdomain/',
+                    "URL_FAOSTAT_DOCUMENTS_BASEPATH": 'http://faostat3.fao.org/faostat-documents/',
 
-            // URLs
-            "URL_PDF_BASEPATH": "http://faostat3.fao.org/modules/faostat-download-js/PDF/",
-            "URL_FEEDBACK_SYSTEM": "http://fenixapps.fao.org/feedbacksystem/",
-            "URL_COUNTRY_PROFILES": "http://faostat.fao.org/CountryProfiles/Country_Profile/default.aspx",
-            "URL_FAOSTAT_DATABASE_ZIP": "http://faostat3.fao.org/ftp-faostat/Bulk/FAOSTAT.zip",
-            "URL_BULK_DOWNLOADS_BASEPATH": "http://faostat.fao.org/Portals/_Faostat/Downloads/zip_files/",
-            "URL_METADATA_MODEL": 'http://faostat3.fao.org/mdfaostat/getmd/',
-            "URL_METADATA_DOMAIN": 'http://faostat3.fao.org/mdfaostat/getdomain/',
-            "URL_FAOSTAT_DOCUMENTS_BASEPATH": 'http://faostat3.fao.org/faostat-documents/',
+                    // EMAIL and TELEPHONE
+                    "EMAIL_FAO_STATISTICS": "FAO-statistics@fao.org",
+                    "TELEPHONE_FAO_STATISTICS": "+39 06 570 55303",
 
-            // EMAIL and TELEPHONE
-            "EMAIL_FAO_STATISTICS": "FAO-statistics@fao.org",
-            "TELEPHONE_FAO_STATISTICS": "+39 06 570 55303",
+                    //Chaplin JS configuration
+                    CHAPLINJS_CONTROLLER_SUFFIX: '-controller',
+                    CHAPLINJS_PROJECT_ROOT: '',
+                    CHAPLINJS_PUSH_STATE: false,
+                    CHAPLINJS_SCROLL_TO: false,
+                    CHAPLINJS_APPLICATION_TITLE: "FAOSTAT"
 
-            //Chaplin JS configuration
-            CHAPLINJS_CONTROLLER_SUFFIX: '-controller',
-            CHAPLINJS_PROJECT_ROOT: '',
-            CHAPLINJS_PUSH_STATE: false,
-            CHAPLINJS_SCROLL_TO: false,
-            CHAPLINJS_APPLICATION_TITLE: "FENIX Web App",
+                };
 
-            //Top Menu configuration
-            TOP_MENU_CONFIG: 'config/submodules/fx-menu/top_menu.json',
-            TOP_MENU_TEMPLATE: 'fx-menu/templates/blank-fluid.html',
-            TOP_MENU_SHOW_BREADCRUMB : true,
-            TOP_MENU_SHOW_BREADCRUMB_HOME : true,
-            TOP_MENU_SHOW_FOOTER: true,
-            TOP_MENU_AUTH_MODE_HIDDEN_ITEMS: ['login'],
-            TOP_MENU_PUBLIC_MODE_HIDDEN_ITEMS :['protected', 'logout'],
+            if (host === "localhost") {
+                return $.extend(true, {}, DEFAULT, {
 
-            SECURITY_NOT_AUTHORIZED_REDIRECTION_LINK : "home",
+                    // Configuration
+                    "GOOGLE_ANALYTICS_ID": "",
+                    "LOGLEVEL": "trace" // trace/debug/info/warn/error
 
-            SOCIAL_LINK_FACEBOOK : "https://facebook.com",
-            SOCIAL_LINK_TWITTER : "https://twitter.com",
-            SOCIAL_LINK_YOUTUBE : "https://youtube.com"
+                });
+            }
 
-        };
-    });
+            return DEFAULT;
+
+
+});
