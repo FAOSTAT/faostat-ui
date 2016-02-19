@@ -24,7 +24,7 @@ define(function () {
                         <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-3",
                         "type": "dropDownList",
-                        "multiple": true
+                        "multiple": false
                     },
                     "config": {
                         "dimension_id": "items",
@@ -40,7 +40,7 @@ define(function () {
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList",
-                        "multiple": true
+                        "multiple": false
                     },
                     "config": {
                         "dimension_id": "area",

@@ -35,7 +35,7 @@ define(function () {
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList",
-                        "multiple": true
+                        "multiple": false
                     },
                     "config": {
                         "dimension_id": "area",

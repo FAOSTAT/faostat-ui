@@ -20,7 +20,7 @@ define(function () {
                     "componentType": {
                         "class": "col-lg-5",
                         "type": "dropDownList",
-                        "multiple": true
+                        "multiple": false
                     },
                     "config": {
                         "dimension_id": "area",
