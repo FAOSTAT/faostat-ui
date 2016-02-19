@@ -23,7 +23,7 @@ define([
                 show_unit: true,
                 decimal_places: 2,
                 decimal_separator: '.',
-                thousand_separator: ','
+                thousand_separator: ''
             },
             template: {
                 tableOptions: {
