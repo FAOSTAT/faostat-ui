@@ -300,6 +300,9 @@ define([
 
             if (section === 'interactive') {
 
+                if (this.interactiveDownload !== undefined && this.interactiveDownload !== null) {
+                    this.interactiveDownload.destroy();
+                }
                 this.interactiveDownload = new InteractiveDownload();
                 this.$INTERACTIVE_DOWNLOAD.empty();
                 this.interactiveDownload.init({
@@ -337,7 +340,6 @@ define([
             }
 
             if (section === 'metadata') {
-
 
                 // adding loading
                 this.$METADATA.empty();
