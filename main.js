@@ -1,4 +1,4 @@
-/*global require*/
+/*global require, window*/
 require([
     './submodules/fenix-ui-common/js/Compiler',
     './submodules/fenix-ui-common/js/paths',
@@ -234,14 +234,6 @@ require([
         //q: [["create", "UA-68486942-1", "auto"]],
         l: Date.now()
     };
-
-    var getQueryString = function ( field, url ) {
-        var href = url ? url : window.location.href;
-        var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-        var string = reg.exec(href);
-        return string ? string[1] : null;
-    };
-
 
     var getLocale = function ( url ) {
         var href = url ? url : window.location.href;
