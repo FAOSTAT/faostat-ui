@@ -20,7 +20,7 @@ define([
         // temporary whitelist
         whitelist: [
             'Q', 'QC', 'QD', 'QA', 'QL',
-            'T', 'TP', 'TA',
+            'T', 'TP', 'TA', 'TM',
             'FB', 'FBS', 'BC', 'BL', 'CC', 'CL',
             'F', 'FO',
             'I', 'EA',
