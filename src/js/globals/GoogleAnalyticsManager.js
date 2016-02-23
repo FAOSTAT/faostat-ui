@@ -12,32 +12,24 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
         return this;
     }
 
-
-    /**
-     *
-     * @param data
-     */
     GoogleAnalyticsManager.prototype.event = function (data) {
 
-        //log.info("GA Event", data);
-
-        // TODO: get category dinamically (CONFIGURATION FILE?)
+        // TODO: get category dynamically (CONFIGURATION FILE?)
         //var category = ''
 
-        // CATEGORIES
+        // Categories
         // DOWNLOAD_STANDARD
         // VISUALIZE_BY_DOMAIN
         // SEARCH
         // VISUALIZE_BY_AREA
         // COMPARE
 
-        // AZIONE
+        // Actions
         // VISUALIZE_BY_AREA -> 'Visualize by Area'
         // DOWNLOAD_STANDARD -> 'Show Tables - TABLE'
         // DOWNLOAD_BULK	-> 'TI'
 
         // LABEL
-        // non e' usata
 
         if (data.category && data.action) {
             ga('send', {
@@ -53,7 +45,9 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
 
     GoogleAnalyticsManager.prototype.pageView = function () {
 
-        //log.info("GA Page view: " + Backbone.history.getFragment());
+        log.info("GA Page view: " + Backbone.history.getFragment());
+
+        // TOD: get page by the fragment?
 
         ga('set', {
             page: Backbone.history.getFragment(),
