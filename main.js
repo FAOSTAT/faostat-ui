@@ -1,4 +1,4 @@
-/*global require, window*/
+/*global require, window, outdatedBrowser*/
 require([
     './submodules/fenix-ui-common/js/Compiler',
     './submodules/fenix-ui-common/js/paths',
@@ -91,7 +91,6 @@ require([
 
                 //locale: 'es',
 
-
                 /* The path where your JavaScripts are located. */
                 baseUrl: './src/js',
 
@@ -125,6 +124,7 @@ require([
                     select2: '{FENIX_CDN}/js/select2/3.5.4/select2.min',
                     loglevel: '{FENIX_CDN}/js/loglevel/1.4.0/loglevel',
                     moment: '{FENIX_CDN}/js/moment/2.9.0/moment-with-locales.min',
+                    outdatedbrowser: '{FENIX_CDN}/js/outdatedbrowser/1.1.1/outdatedbrowser.min',
 
                     typeahead: '//fenixrepo.fao.org/cdn/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
                     bloodhound: '//cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/bloodhound.min',
@@ -255,9 +255,17 @@ require([
         'config/Events',
         'globals/GoogleAnalyticsManager',
         'loglevel',
+        'outdatedbrowser',
         'amplify',
         'domReady!'
     ], function (Application, routes, C, Common, E, GoogleAnalyticsManager, log) {
+
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'transform',
+            languagePath: ''
+        });
 
         Common.setLocale(requirejs.s.contexts._.config.locale);
 
