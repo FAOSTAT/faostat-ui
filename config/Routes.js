@@ -29,7 +29,9 @@ define(function ( ) {
         DOWNLOAD_REPORT: "report",
 
         SEARCHY: "search",
-        SEARCH_QUERY: "search_query"
+        SEARCH_QUERY: "search_query",
+
+        FAQ: "faq"
 
     };
 });
