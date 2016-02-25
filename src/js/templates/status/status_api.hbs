@@ -1,0 +1,45 @@
+
+<script type='text/x-handlebars-template' id='groups'>
+
+    <div>Groups ({{total}})</div>
+    {{#each this}}
+        <p>{{this.label}} {{this.code}}</p>
+    {{/each}}
+
+</script>
+
+<script type='text/x-handlebars-template' id='domains'>
+
+</script>
+
+
+
+<script type='text/x-handlebars-template' id='tab_header_structure'>
+    <li role='presentation'>
+        <a href='#{{id}}' data-tab='{{id}}' aria-controls='{{id}}' role='tab' data-toggle='tab'>
+            {{tab_header_label}}
+        </a>
+    </li>
+</script>
+
+<script type='text/x-handlebars-template' id='tab_content_structure'>
+    <div role='tabpanel' class='tab-pane fade' id='{{id}}' style='height: 150px; width: 100%; overflow-y: auto; overflow-x: hidden;'>
+        <div data-role="tree"></div>
+        <!-- TODO: move style to css -->
+        <!--<div style='height: 150px; width: 100%; overflow-y: auto; overflow-x: hidden;'>asoidjaoisdjoaisjd-->
+        <!--oiajsdoiajsdoiajsd-->
+        <!--pasoidjaoisjdoaijsdoiaj-->
+        <!--aoikjsdpoakpokdas</div>-->
+    </div>
+</script>
+
+<script type='text/x-handlebars-template' id='summary_item'>
+    {{#each items}}
+        <div class='summary-item'
+             data-role='summary-item'
+             data-id='{{id}}'
+             data-code='{{code}}'>
+            {{label}}
+        </div>
+    {{/each}}
+</script>
