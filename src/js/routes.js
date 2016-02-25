@@ -37,6 +37,8 @@ define(['config/Routes'], function (ROUTE) {
 
         match(':lang/search/:query', 'search#show', {name: ROUTE.SEARCH_QUERY});
 
+        match(':lang/faq', 'faq#show', {name: ROUTE.FAQ});
+
 
         match('protected', 'protected#show');
         match('about', 'about#show');
