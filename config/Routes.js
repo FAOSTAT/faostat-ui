@@ -31,7 +31,9 @@ define(function ( ) {
         SEARCHY: "search",
         SEARCH_QUERY: "search_query",
 
-        FAQ: "faq"
+        FAQ: "faq",
+
+        FAOSTAT_STATUS: "status"
 
     };
 });
