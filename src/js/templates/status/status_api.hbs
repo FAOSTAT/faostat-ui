@@ -1,45 +1,90 @@
 
 <script type='text/x-handlebars-template' id='groups'>
 
-    <div>Groups ({{total}})</div>
-    {{#each this}}
-        <p>{{this.label}} {{this.code}}</p>
-    {{/each}}
+    <h4><span><a href="#"><i data-role='show-details' class="fa fa-search-plus"></i></a></span> Total Groups {{total}} </h4>
+    <ul data-role='details' class="hidden">
+        {{#each data}}
+            <li>({{this.code}}) {{this.label}} </li>
+        {{/each}}
+    </ul>
 
 </script>
 
 <script type='text/x-handlebars-template' id='domains'>
 
+    <h4><span><a href="#"><i data-role='show-details' class="fa fa-search-plus"></i></a></span> Total Domains {{total}} </h4>
+    <ul data-role='details' class="hidden">
+        {{#each data}}
+            <li>({{this.GroupCode}}) {{this.GroupName}} - ({{this.DomainCode}}) {{this.DomainName}} </li>
+        {{/each}}
+    </ul>
+
+</script>
+
+<script type='text/x-handlebars-template' id='domain-details'>
+
+    <div data-role="{{DomainCode}}">
+        <h4>({{DomainCode}}) {{DomainName}} </h4>
+
+        <h5><span><a href="#"><i data-role='dimensions-show-details' class="fa fa-search-plus"></i></a></span> Dimensions</h5>
+        <div data-role="dimensions-details"></div>
+
+        <h5><span><a href="#"><i data-role='codes-show-details' class="fa fa-search-plus"></i></a> Codes</h5>
+        <div data-role="codes-details"></div>
+
+        <h5><span><a href="#"><i data-role='data-show-details' class="fa fa-search-plus"></i></a> Data</h5>
+        <div data-role="data-details"></div>
+
+    </div>
+    <hr>
+
 </script>
 
 
-
-<script type='text/x-handlebars-template' id='tab_header_structure'>
-    <li role='presentation'>
-        <a href='#{{id}}' data-tab='{{id}}' aria-controls='{{id}}' role='tab' data-toggle='tab'>
-            {{tab_header_label}}
-        </a>
-    </li>
+<script type='text/x-handlebars-template' id='dimensions'>
+    {{total}}
+    <ul>
+    {{#each data}}
+        <li>{{this.id}} </li>
+        {{#if subdimensions}}
+        <ul>
+            {{#each subdimensions}}
+                <li>{{this.id}}</li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    {{/each}}
+    </ul>
 </script>
 
-<script type='text/x-handlebars-template' id='tab_content_structure'>
-    <div role='tabpanel' class='tab-pane fade' id='{{id}}' style='height: 150px; width: 100%; overflow-y: auto; overflow-x: hidden;'>
-        <div data-role="tree"></div>
-        <!-- TODO: move style to css -->
-        <!--<div style='height: 150px; width: 100%; overflow-y: auto; overflow-x: hidden;'>asoidjaoisdjoaisjd-->
-        <!--oiajsdoiajsdoiajsd-->
-        <!--pasoidjaoisjdoaijsdoiaj-->
-        <!--aoikjsdpoakpokdas</div>-->
+<script type='text/x-handlebars-template' id='codes'>
+    <div class="row">
+        <div class="col-md-2">
+            <h5>{{this.metadata.parameters.id}} </h5>
+        </div>
+        <div class="col-md-2">
+            <p>{{this.metadata.parameters.parameter}}</p>
+        </div>
+        <div class="col-md-2">
+            <p>{{this.total}}</p>
+        </div>
     </div>
 </script>
 
-<script type='text/x-handlebars-template' id='summary_item'>
-    {{#each items}}
-        <div class='summary-item'
-             data-role='summary-item'
-             data-id='{{id}}'
-             data-code='{{code}}'>
-            {{label}}
+
+<script type='text/x-handlebars-template' id='data'>
+    <h5 {{#if this.color}}style='color: {{this.color}}'{{/if}}>Rows {{this.rows}}</h5>
+    <h5 {{#if this.status}}style='color: {{this.color}}'>Status {{this.status}}{{/if}}</h5>
+</script>
+
+<script type='text/x-handlebars-template' id='warning'>
+        <div class="row">
+            <div class="col-md-12">
+                <h4 {{#if this.color}}style='color: {{this.color}}'{{/if}}>({{this.DomainCode}}) {{this.DomainName}} </h4>
+            </div>
         </div>
-    {{/each}}
+</script>
+
+<script type='text/x-handlebars-template' id='databean'>
+
 </script>
