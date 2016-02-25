@@ -1,11 +1,11 @@
 /*global define*/
 define([
     'controllers/base/controller',
-    'views/faq-view'], function (Controller, View) {
+    'views/status-view'], function (Controller, View) {
 
     'use strict';
 
-    var FAQController = Controller.extend({
+    var StatusController = Controller.extend({
 
         show: function (params) {
 
@@ -16,6 +16,6 @@ define([
 
     });
 
-    return FAQController;
+    return StatusController;
 
 });
