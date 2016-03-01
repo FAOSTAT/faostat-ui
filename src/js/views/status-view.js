@@ -182,8 +182,8 @@ define([
             var self = this,
                 lang = this.o.lang,
                 datasource = C.DATASOURCE,
-                domainCode = domain.DomainCode,
-                domainName = domain.DomainName,
+                domainCode = domain.domain_code,
+                domainName = domain.domain_name,
                 html = $(templateAPI).filter('#domain-details').html(),
                 t = Handlebars.compile(html);
 

@@ -15,7 +15,7 @@
     <h4><span><a href="#"><i data-role='show-details' class="fa fa-search-plus"></i></a></span> Total Domains {{total}} </h4>
     <ul data-role='details' class="hidden">
         {{#each data}}
-            <li>({{this.GroupCode}}) {{this.GroupName}} - ({{this.DomainCode}}) {{this.DomainName}} </li>
+            <li>({{this.group_code}}) {{this.group_name}} - ({{this.domain_code}}) {{this.domain_name}} </li>
         {{/each}}
     </ul>
 
@@ -23,8 +23,8 @@
 
 <script type='text/x-handlebars-template' id='domain-details'>
 
-    <div data-role="{{DomainCode}}">
-        <h4>({{DomainCode}}) {{DomainName}} </h4>
+    <div data-role="{{domain_code}}">
+        <h4>({{domain_code}}) {{domain_name}} </h4>
 
         <h5><span><a href="#"><i data-role='dimensions-show-details' class="fa fa-search-plus"></i></a></span> Dimensions</h5>
         <div data-role="dimensions-details"></div>
@@ -80,7 +80,7 @@
 <script type='text/x-handlebars-template' id='warning'>
         <div class="row">
             <div class="col-md-12">
-                <h4 {{#if this.color}}style='color: {{this.color}}'{{/if}}>({{this.DomainCode}}) {{this.DomainName}} </h4>
+                <h4 {{#if this.color}}style='color: {{this.color}}'{{/if}}>({{this.domain_code}}) {{this.domain_name}} </h4>
             </div>
         </div>
 </script>
