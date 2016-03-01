@@ -85,6 +85,8 @@ define([
 
             this.api = new FAOSTATApi();
 
+            this.o.lang = Common.getLocale();
+
             this.$GROUPS = this.$el.find(s.GROUPS);
             this.$DOMAINS = this.$el.find(s.DOMAINS);
             this.$DOMAINS_DETAILS = this.$el.find(s.DOMAINS_DETAILS);
