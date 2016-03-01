@@ -8,7 +8,6 @@ define(['jquery', 'q'], function ($, Q) {
         /* Store configuration. */
         this.CONFIG = {
             base_url: 'http://fenix.fao.org/faostat/api/v1.0/'
-            //base_url: 'http://localhost:8081/api/v1.0/'
         };
 
         /* Extend default configuration. */
@@ -500,15 +499,15 @@ FAOSTATAPIClient.prototype.apply_domainreports_defaults = function (config) {
     return config;
 };
 
-        FAOSTATAPIClient.prototype.domainstree = function(config) {
+        FAOSTATAPIClient.prototype.groupsanddomains = function(config) {
     config = $.extend(true, {}, this.CONFIG, config || {});
-    config = this.apply_domainstree_defaults(config);
-    if (this.is_valid_domainstree(config)) {
+    config = this.apply_groupsanddomains_defaults(config);
+    if (this.is_valid_groupsanddomains(config)) {
             return Q($.ajax({
-                url: this.CONFIG.base_url +  config.lang + '/domainstree/' + config.section + '/',
+                url: this.CONFIG.base_url +  config.lang + '/groupsanddomains',
                 traditional: true,
                     data: {
-    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key
+    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "section": config.section
 },
                 type: 'GET'
             }));
@@ -516,7 +515,7 @@ FAOSTATAPIClient.prototype.apply_domainreports_defaults = function (config) {
     throw 400;
 };
 
-    FAOSTATAPIClient.prototype.is_valid_domainstree = function(config) {
+    FAOSTATAPIClient.prototype.is_valid_groupsanddomains = function(config) {
         var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "section"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
@@ -526,7 +525,7 @@ FAOSTATAPIClient.prototype.apply_domainreports_defaults = function (config) {
         return true;
     };
 
-FAOSTATAPIClient.prototype.apply_domainstree_defaults = function (config) {
+FAOSTATAPIClient.prototype.apply_groupsanddomains_defaults = function (config) {
     var i,
         parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "section"],
         defaults = {
@@ -873,7 +872,7 @@ FAOSTATAPIClient.prototype.apply_codes_defaults = function (config) {
     var i,
         parameters = ["datasource", "output_type", "api_key", "client_key", "domain_code", "report_code", "lang", "id", "domains", "whitelist", "blacklist", "group_subdimensions", "subcodelists", "show_lists", "show_full_metadata", "ord"],
         defaults = {
-            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "report_code": "download", "lang": "en", "domains": "[]", "whitelist": "[]", "blacklist": "[]", "group_subdimensions": "false", "show_lists": "false", "show_full_metadata": "true"
+            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "report_code": "download", "lang": "en", "domains": "[]", "whitelist": "[]", "blacklist": "[]", "group_subdimensions": "false", "subcodelists": "null", "show_lists": "false", "show_full_metadata": "true", "ord": "null"
         },
         key;
     for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -1068,55 +1067,6 @@ FAOSTATAPIClient.prototype.apply_bulkdownloads_defaults = function (config) {
 FAOSTATAPIClient.prototype.apply_documents_defaults = function (config) {
     var i,
         parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_code"],
-        defaults = {
-            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
-        },
-        key;
-    for (i = 0; i < Object.keys(defaults).length; i += 1) {
-        if (defaults[Object.keys(defaults)[i]] === '[]') {
-            defaults[Object.keys(defaults)[i]] = [];
-        }
-    }
-    for (i = 0; i < parameters.length; i += 1) {
-        key =  parameters[i];
-        try {
-            config[key] = config[key] !== undefined ? config[key] : defaults[key];
-        } catch (ignore) {
-            /* No default value available for this parameter. */
-        }
-    }
-    return config;
-};
-
-        FAOSTATAPIClient.prototype.groupsanddomains = function(config) {
-    config = $.extend(true, {}, this.CONFIG, config || {});
-    config = this.apply_groupsanddomains_defaults(config);
-    if (this.is_valid_groupsanddomains(config)) {
-            return Q($.ajax({
-                url: this.CONFIG.base_url +  config.lang + '/groupsanddomains/',
-                traditional: true,
-                    data: {
-    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key
-},
-                type: 'GET'
-            }));
-    }
-    throw 400;
-};
-
-    FAOSTATAPIClient.prototype.is_valid_groupsanddomains = function(config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang"], i;
-        for (i = 0; i < parameters.length; i += 1) {
-            if (config[parameters[i]] === undefined) {
-                throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
-            }
-        }
-        return true;
-    };
-
-FAOSTATAPIClient.prototype.apply_groupsanddomains_defaults = function (config) {
-    var i,
-        parameters = ["datasource", "output_type", "api_key", "client_key", "lang"],
         defaults = {
             "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
         },
