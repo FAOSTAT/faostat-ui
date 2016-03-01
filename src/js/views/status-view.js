@@ -39,7 +39,7 @@ define([
     s = {
 
         GROUPS: '#fs-status-groups',
-        DOMAINS: '#fs-status-domains',
+        DOMAINS: '#fs-status-groups-and-domains',
         DOMAINS_DETAILS: '#fs-status-domains-details',
         WARNING: '#fs-status-warning',
         DIMENSIONS: '#fs-status-dimensions',
@@ -115,7 +115,7 @@ define([
 
             });
 
-           this.api.domainstree({
+           this.api.groupsanddomains({
                 lang: this.o.lang,
                 datasource:  C.DATASOURCE
             }).then(function(domains) {
@@ -124,7 +124,9 @@ define([
 
                 _.each(domains.data, function(domain, index) {
 
-                    self.getDataDomainSample(domain);
+                    //if ( domain.DomainCode === 'HS') {
+                        self.getDataDomainSample(domain);
+                   // }
 
                 });
 
@@ -205,15 +207,14 @@ define([
                 // for each dimensions get sample codes
                 _.each(dimensions.data, function(dimension){
 
-                    //log.info(dimension);
+                    log.info(dimension);
 
                     requestCodes.push(self.api.codes({
                         lang: lang,
                         datasource: datasource,
                         domain_code: domainCode,
                         id: dimension.id,
-                        subcodelists: false,
-                        ord: true
+                        show_lists: true
                     }));
 
                 });
@@ -235,12 +236,12 @@ define([
                         var parameter = code.metadata.parameters.parameter;
                         var id = code.metadata.parameters.id;
 
-                        filters[id] = _.chain(code.data).sample(15).pluck('code').value()
+                        filters[id] = _.chain(code.data).sample(10).pluck('code').value();
 
 
                     });
 
-                    //log.info(filters);
+                    log.info(filters);
 
                     // get codes sample and get data
                     try {
