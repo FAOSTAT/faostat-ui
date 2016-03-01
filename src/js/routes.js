@@ -36,6 +36,7 @@ define(['config/Routes'], function (ROUTE) {
         //match(':lang/indicators/:code', 'indicators#show', {name: ROUTE.INDICATORS_CODE});
 
         match(':lang/search/:query', 'search#show', {name: ROUTE.SEARCH_QUERY});
+        match(':lang/faq', 'faq#show', {name: ROUTE.FAQ});
 
         match(':lang/status', 'status#show', {name: ROUTE.FAOSTAT_STATUS});
 
