@@ -134,23 +134,45 @@ define([
 
             amplify.publish(E.LOADING_SHOW, {container: self.$DOMAINS});
 
-            this.api.groups({
+            this.api.groupsanddomains({
                 dataosource: C.DATASOURCE,
                 lang: this.o.lang
             }).then(function(json) {
 
+                var groups = _.chain(json.data)
+                    .uniq(function(d) {
+                        if ( browseWhiteList.indexOf(d.group_code) > -1) {
+                            d.addBrowse = true;
+                        }
+                        return d.group_code;
+                    })
+                    .value();
+
+                var v = _.chain(json.data).pluck('group_code').unique().value();
+
+
                 // TODO: how to handle the browse blacklist/whitelist?
                 // TODO: should come from the DB?
-                _.each(json.data, function(d) {
+                /*_.each(json.data, function(d) {
+
+                    var v = {
+                        code: d.GroupCode,
+                        label: d.GroupName
+                    };
+
                     // for now implemented just the whitelist from config file
-                    if ( browseWhiteList.indexOf(d.code) > -1) {
-                        d.addBrowse = true;
+                    if ( browseWhiteList.indexOf(d.GroupCode) > -1) {
+                        v.addBrowse = true;
                     }
-                });
+                    log.info(v)
+                    groups.push(v);
+
+                });*/
+
 
                 var t = Handlebars.compile(templateDomains);
                 //self.$DOMAINS.hide().html(t(json)).slideDown(1000);
-                self.$DOMAINS.html(t(json));
+                self.$DOMAINS.html(t(groups));
 
                 // add listeners on domains
                 self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
@@ -161,12 +183,10 @@ define([
                         //code = $(e.target).data("code");
                         code = this.getAttribute('data-code');
 
-                    self.changeState(
-                        {
-                            section:section,
-                            code: code
-                        }
-                    );
+                    self.changeState({
+                        section:section,
+                        code: code
+                    });
 
                 });
 
@@ -178,12 +198,11 @@ define([
                     //code = $(e.target).data("code");
                         code = this.getAttribute('data-code');
 
-                    self.changeState(
-                        {
-                            section:section,
-                            code: code
-                        }
-                    );
+                    self.changeState({
+                        section:section,
+                        code: code
+                    });
+
                 });
 
             });
@@ -251,7 +270,7 @@ define([
 
             amplify.publish(E.LOADING_SHOW, {container: self.$DATABASE_UPDATES});
 
-            this.api.domainstree({
+            this.api.groupsanddomains({
                 lang: this.o.lang,
                 datasource: C.DATASOURCE
             }).then(function(d) {
@@ -260,13 +279,13 @@ define([
                     databaseUpdates = {};
 
                 _.each(d.data, function(domain) {
-                    domain.DateUpdate = new Date(domain.DateUpdate);
+                    domain.date_update = new Date(domain.date_update);
                     sortedDomains.push(domain);
                 });
 
                 // order by date
                 sortedDomains = _.sortBy(sortedDomains, function(o){
-                    return -o.DateUpdate.getTime();
+                    return -o.date_update.getTime();
                 });
 
                 // parse 10 first domains
@@ -280,7 +299,7 @@ define([
 
                     if (index < CM.MAX_DATABASE_UPDATES) {
 
-                        var m = moment(domain.DateUpdate),
+                        var m = moment(domain.date_update),
                             key =  m.format("MMMM YYYY"),
                             title =  m.format("MMMM YYYY");
 
