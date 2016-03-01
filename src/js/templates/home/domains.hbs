@@ -1,19 +1,22 @@
-{{#each data}}
+{{#each this}}
+
     <div class="col-sm-6 col-md-4 col-lg-3">
+
         <div class="fs-domain-holder">
 
-            <span class="pull-left domain-icon icojam_{{this.code}}"></span>
+            <span class="pull-left domain-icon icojam_{{this.group_code}}"></span>
             
-            <h5>{{this.label}}</h5>
+            <h5>{{this.group_name}}</h5>
 
-            <a href="#" data-code="{{this.code}}" data-role="go_to_download">Download</a>
+            <a href="#" data-code="{{this.group_code}}" data-role="go_to_download">Download</a>
 
             <!-- TODO: add an handlebars check if is valid for browse and download -->
             {{#if addBrowse}}
-                <a href="#" data-code="{{this.code}}" data-role="go_to_browse">Browse</a>
+                <a href="#" data-code="{{this.group_code}}" data-role="go_to_browse">Browse</a>
             {{/if}}
 
         </div>
 
     </div>
+
 {{/each}}
