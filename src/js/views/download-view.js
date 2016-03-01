@@ -282,7 +282,7 @@ define([
 
             var code = options.id,
                 label = options.label,
-                dateUpdate = moment(new Date(options.dateUpdate)).format("DD MMMM YYYY"),
+                date_update = moment(new Date(options.date_update)).format("DD MMMM YYYY"),
                 //dateUpdate = new Date(options.dateUpdate),
                 type = options.type;
 
@@ -310,7 +310,7 @@ define([
                     // to output the table outside the standard output area
                     output_area: this.$OUTPUT_AREA,
                     code: code,
-                    dateUpdate: dateUpdate
+                    date_update: date_update
                 });
 
             }

@@ -118,7 +118,7 @@ define([
                 v.index = index;
 
                 // adding domain name
-                v = $.extend(true, {}, v, self.getDomain(v.DomainCode));
+                v = $.extend(true, {}, v, self.getDomain(v.domain_code));
 
                 // i18n
                 v.domain_label = i18nLabels.domain;
@@ -130,7 +130,7 @@ define([
 
                 r.push($.extend(true, {},
                     v,
-                    {addBrowse: ($.inArray(v.DomainCode, browseWhitelist) !== -1)}));
+                    {addBrowse: ($.inArray(v.domain_code, browseWhitelist) !== -1)}));
 
                 //log.info("Search.parseSearchResults; v:", v);
             });
@@ -157,14 +157,14 @@ define([
 
                     log.info(v.Label);
 
-                    var domainCode = v.DomainCode,
+                    var domainCode = v.domain_code,
                         id = v.id,
                         relations = [];
 
                     // check if a relation exists
                     _.each(values, function(d) {
 
-                        if (d.DomainCode === domainCode && d.id !== id) {
+                        if (d.domain_code === domainCode && d.id !== id) {
 
                             relations.push(d);
 
@@ -275,7 +275,7 @@ define([
                 exportObj = {
                     datasource: C.DATASOURCE,
                     lang: Common.getLocale(),
-                    domain_codes: [obj.DomainCode],
+                    domain_codes: [obj.domain_code],
                     filters: {}
             };
 
@@ -296,12 +296,12 @@ define([
             var domains = this.cache.domains;
 
             for(var i=0; i < domains.length; i++) {
-                if (domains[i].DomainCode === code) {
+                if (domains[i].domain_code === code) {
                     return {
-                        domainCode: domains[i].DomainCode,
-                        domainName: domains[i].DomainName,
-                        groupCode: domains[i].GroupCode,
-                        groupName: domains[i].GroupName
+                        domainCode: domains[i].domain_code,
+                        domainName: domains[i].domain_name,
+                        groupCode: domains[i].group_code,
+                        groupName: domains[i].group_name
                     };
                 }
             }
@@ -331,7 +331,7 @@ define([
 
             // TODO: use this API for caching the groups and domains? or the domainstree with 'search' parameter?
             // caching domains
-            this.api.domainstree({
+            this.api.groupsanddomains({
                 datasource: C.DATASOURCE,
                 lang: this.o.lang
             }).then(function(d) {

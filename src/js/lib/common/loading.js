@@ -36,7 +36,8 @@ define([
             $c.prepend('<div id="' + id +'"></div>').find('#' + id);
         }
 
-        $c.find('#' + id).append('<i class="fa fa-refresh fa-spin fa-' + s + '"></i> ');
+        //$c.find('#' + id).append('<i class="fa fa-refresh fa-spin fa-' + s + '"></i> ');
+        $c.find('#' + id).append('<i class="fa fa-circle-o-notch fa-spin fa-' + s + '"></i> ');
 
         if (sl) {
             $c.find('#' + id).append('<span>' + l + '</span>');
