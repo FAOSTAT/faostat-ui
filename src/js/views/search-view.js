@@ -118,7 +118,7 @@ define([
                 v.index = index;
 
                 // adding domain name
-                v = $.extend(true, {}, v, self.getDomain(v.domain_code));
+                v = $.extend(true, {}, v, self.getDomain(v.DomainCode));
 
                 // i18n
                 v.domain_label = i18nLabels.domain;
