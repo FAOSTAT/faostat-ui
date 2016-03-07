@@ -130,7 +130,7 @@ define([
 
                 r.push($.extend(true, {},
                     v,
-                    {addBrowse: ($.inArray(v.domain_code, browseWhitelist) !== -1)}));
+                    {addBrowse: ($.inArray(v.domainCode, browseWhitelist) !== -1)}));
 
                 //log.info("Search.parseSearchResults; v:", v);
             });
