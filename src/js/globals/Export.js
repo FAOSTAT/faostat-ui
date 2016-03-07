@@ -60,10 +60,10 @@ define([
         // switch between the requestType to faostatAPI
         if (typeof this.api[requestType] === 'function') {
 
-            this.api[requestType](r).then(function(csv) {
-                //log.debug(csv);
-            }).fail(function (error) {
+            this.api[requestType](r).then(function(data) {
 
+                //console.log("Csv", data);
+                //
                 amplify.publish(E.WAITING_HIDE);
 
                 var time = new Date();
@@ -72,7 +72,24 @@ define([
 
                 //log.info(error);
                 //window.btoa(unescape(encodeURIComponent(error)))
-                self._exportResult(error, name);
+                self._exportResult(data, name);
+
+            }).fail(function (error) {
+
+                console.log("FAIL");
+
+                // TODO: remove it! This was caused by a wrong produce type in the APIs
+                // TODO: in theory is should not be needed
+
+               /* amplify.publish(E.WAITING_HIDE);
+
+                var time = new Date();
+
+                log.info("Export.exportData; Execution query time: ", (time - start) / 1000 + "s");
+
+                //log.info(error);
+                //window.btoa(unescape(encodeURIComponent(error)))
+                self._exportResult(error, name);*/
 
             });
 
@@ -91,7 +108,7 @@ define([
 
         // TODO: check if it works in all browser. There should be an issue with Sfari 8.0
 
-        var blob = new Blob([result.responseText], {type: "data:application/csv;charset=utf-8;"}),
+        var blob = new Blob([result], {type: "data:application/csv;charset=utf-8;"}),
             d = new Date(),
             filename = name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear() + '.csv';
 

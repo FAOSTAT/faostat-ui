@@ -7,6 +7,7 @@ define(['jquery', 'q'], function ($, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
+            //base_url: 'http://localhost:8081/api/v1.0/'
             base_url: 'http://fenix.fao.org/faostat/api/v1.0/'
         };
 
@@ -872,7 +873,7 @@ FAOSTATAPIClient.prototype.apply_codes_defaults = function (config) {
     var i,
         parameters = ["datasource", "output_type", "api_key", "client_key", "domain_code", "report_code", "lang", "id", "domains", "whitelist", "blacklist", "group_subdimensions", "subcodelists", "show_lists", "show_full_metadata", "ord"],
         defaults = {
-            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "report_code": "download", "lang": "en", "domains": "[]", "whitelist": "[]", "blacklist": "[]", "group_subdimensions": "false", "subcodelists": "null", "show_lists": "false", "show_full_metadata": "true", "ord": "null"
+            "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "report_code": "download", "lang": "en", "domains": "[]", "whitelist": "[]", "blacklist": "[]", "group_subdimensions": "false", "subcodelists": "null", "show_lists": "true", "show_full_metadata": "true", "ord": "null"
         },
         key;
     for (i = 0; i < Object.keys(defaults).length; i += 1) {
