@@ -79,6 +79,7 @@ require([
             welcomePageConfig, reportConfig, reportTableConfig],
         {
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
+            //placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn/faostat"},
 
             config: {
 
