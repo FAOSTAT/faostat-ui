@@ -42,13 +42,14 @@ define(function () {
 
                 items: [
 
+
                     // FORCE SPACING
                     {
                         type: 'custom',
                         class: 'col-xs-12',
                         config: {
                             template: {
-                                html: '<h2>Population</h2>'
+                                html: '<h2>Demographics</h2>'
                             },
                             model: {
                                 "test": "test"
@@ -56,7 +57,7 @@ define(function () {
                         }
                     },
 
-
+                    // DEMOGRAPHICS
                     {
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
@@ -65,43 +66,36 @@ define(function () {
                         labels: {
                             template: {
                                 title: {
-                                    en: "Population composition in selected country (by year)",
-                                    fr: "Composition de la population dans le pays sélectionné (par anne)",
-                                    es: "Composicin de la poblacin en el pas seleccionado (por año)"
+                                    en: "Rural and urban population",
+                                    fr: "",
+                                    es: ""
                                 },
-                                subtitle: ""
+                                subtitle: "1990 - 2015"
                             }
                         },
 
                         config: {
                             adapter: {
                                 adapterType: 'faostat',
-                                type: "standard",
+                                type: "timeserie",
                                 xDimensions: ['year'],
                                 yDimensions: 'unit',
                                 valueDimensions: 'value',
-                                seriesDimensions: ['item', 'element']
+                                seriesDimensions: ['area', 'item', 'element']
                             },
                             template: {
                                 // height: '200px'
-                            },
-                            creator: {
-                                chartObj: {
-                                    chart: {
-                                        type: "column"
-                                    }
-                                }
                             }
                         },
                         allowedFilter: ['area', 'year', 'item', 'aggregation'],
                         filter: {
                             domain_codes: ["OA"],
                             List2Codes: [
-                                511,
-                                551
+                                551,
+                                561
                             ],
                             List3Codes: [3010],
-                            List4Codes: [2000, 2005, 2010, 2015],
+                            List4Codes: [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015],
                             order_by: 'year'
                         }
                     },
@@ -117,7 +111,7 @@ define(function () {
                                     fr: "Rural and Urban Population",
                                     es: "Rural and Urban Population"
                                 },
-                                "subtitle": ""
+                                "subtitle": "2015"
                             }
                         },
 
@@ -146,6 +140,320 @@ define(function () {
                             List4Codes: [2015]
                         }
                     },
+                    // FORCE SPACING
+                    {
+                        type: 'custom',
+                        class: 'clearfix',
+                        config: {
+                            template: {},
+                            model: {}
+                        }
+                    },
+
+                    // INPUTS
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>Inputs</h2>'
+                            },
+                            model: {}
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Fertilizers consumption in nutrients",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: "2000 - 2012"
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                //height: '100px'
+                            },
+                            creator: {
+                                chartObj: {
+                                    chart: {
+                                        type: 'area'
+                                    },
+                                    plotOptions: {
+                                        area: {
+                                            stacking: 'normal'
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            domain_codes: ['RF'],
+                            List2Codes: [5155],
+                            List3Codes: [
+                                3102,
+                                3103,
+                                3104
+                            ],
+                            List4Codes: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012],
+                            "order_by": 'year'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Fertilizers consumption in nutrients",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: "2012"
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'area',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['item', 'element']
+                            },
+                            template: {
+                                // height: '100px'
+                            },
+                            creator: {
+                                chartObj: {
+                                    chart: {
+                                        type: 'column'
+                                    },
+                                    plotOptions: {
+                                        column: {
+                                            stacking: 'normal'
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        allowedFilter: ['year'],
+                        filter: {
+                            domain_codes: ['RF'],
+                            List1Codes: [5100, 5200, 5300, 5400, 5500],
+                            List2Codes: [5155],
+                            List3Codes: [
+                                3102,
+                                3103,
+                                3104
+                            ],
+                            List4Codes: [2012]
+                        }
+                    },
+
+                    // Undernourishment
+
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>Undernourishment</h2>'
+                            },
+                            model: {}
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Number of people undernourished (millions) (3-year average)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21001],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Prevalence of undernourishment (%) (3-year average)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21004],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+
+                    // FOOD AVAILABILITY
+
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>Food Availability</h2>'
+                            },
+                            model: {}
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Average protein supply (g/capita/day) (3-year average)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21013],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Average supply of protein of animal origin (g/capita/day) (3-year average)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21014],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
 
                     // FORCE SPACING
                     {
@@ -156,6 +464,620 @@ define(function () {
                             model: {}
                         }
                     },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Share of dietary energy supply derived from cereals, roots and tubers (%) (3-year average)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21012],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Average dietary energy supply adequacy (%) (3-year average)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21010],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+                    // FORCE SPACING
+                    {
+                        type: 'custom',
+                        class: 'clearfix',
+                        config: {
+                            template: {},
+                            model: {}
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Average value of food production (constant I$ per person) (3-year average)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21011],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+
+                    // FOOD ACCESS
+
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>Food Access</h2>'
+                            },
+                            model: {}
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Depth of the food deficit (kcal/capita/day) (3-year average)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21023],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Domestic food price index (index)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21018],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+
+                    // FORCE SPACING
+                    {
+                        type: 'custom',
+                        class: 'clearfix',
+                        config: {
+                            template: {},
+                            model: {}
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Gross domestic product per capita, PPP (constant 2011 international $)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [22013],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Road density (per 100 square km of land area)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21017],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+
+                    // ECONOMIC AND POLITICAL STABILITY
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>Economic and political stability</h2>'
+                            },
+                            model: {
+                                "test": "test"
+                            }
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Per capita food production variability (I$ per person constant 2004-06)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21030],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Value of food imports over total merchandise exports (%) (3-year average)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21033],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+
+                    // FORCE SPACING
+                    {
+                        type: 'custom',
+                        class: 'clearfix',
+                        config: {
+                            template: {},
+                            model: {}
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Per capita food supply variability (kcal/capita/day)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21031],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Political stability and absence of violence/terrorism (index)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21032],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+
+
+
+
+                    // FOOD UTILIZATION
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>Food utilization</h2>'
+                            },
+                            model: {
+                                "test": "test"
+                            }
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Percentage of children under 5 years of age who are underweight, stunted, affected by wasting (%)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21025, 21026, 21027],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Access to improved water sources (%)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21019],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+
+
+                    // DIETARY ENERGY SUPPLY
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>Dietary energy supply</h2>'
+                            },
+                            model: {}
+                        }
+                    },
+
+
+                    // CROP PRODUCTION
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>Crop Production</h2>'
+                            },
+                            model: {}
+                        }
+                    },
+
 
                     // LAND
                     {
@@ -379,6 +1301,67 @@ define(function () {
                             model: {
                                 "production": "Production"
                             }
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-md-6",
+
+                        //bridge configuration
+                        bridge: {
+
+                            type: "faostat",
+                            requestType: 'rankings' // data, rankings
+
+                        },
+
+                        // labels
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Top 10 commodities production",
+                                    fr: "Top 10 commodities production",
+                                    es: "Top 10 commodities production"
+                                },
+                                subtitle: "2014"
+                            }
+                        },
+
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: ['item'],
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'element']
+                            },
+                            template: {
+                                height:'275px'
+                                // default labels to be applied
+                            },
+                            creator: {
+                                chartObj: {
+                                    chart: {
+                                        type: "column"
+                                    }
+                                }
+                            }
+                        },
+                        allowedFilter: ['area', 'year', 'item', 'aggregation'],
+                        deniedTemplateFilter: [],
+                        filter: {
+                            domain_codes: ['QA', 'QC', 'QD', 'QL', 'QP'],
+                            List2Codes: ["5510"],
+                            List3Codes: ["_1"],
+                            List4Codes: [2014],
+                            limit: "10",
+                            decimal_places:2,
+                            "null_values": false,
+                            filter_list: "1",
+                            rank_type: 'DESC'
                         }
                     },
 
