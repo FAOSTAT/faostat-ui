@@ -275,7 +275,7 @@ define([
                 exportObj = {
                     datasource: C.DATASOURCE,
                     lang: Common.getLocale(),
-                    domain_codes: [obj.domain_code],
+                    domain_codes: [obj.DomainCode],
                     filters: {}
             };
 
@@ -283,7 +283,7 @@ define([
 
             log.info(exportObj);
 
-            amplify.publish(E.EXPORT_DATA, exportObj, {
+           amplify.publish(E.EXPORT_DATA, exportObj, {
                 //requestType: 'databean',
                 requestType: 'data',
                 waitingText: 'Please wait<br> The download could require some time'
