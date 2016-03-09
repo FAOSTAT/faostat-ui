@@ -4,15 +4,43 @@
     <div class='col-lg-12'>
         <ul class='nav nav-tabs' role='tablist'>
             <li class="active" role='presentation'>
-                <a role='tab' data-toggle='tab'>{{faq}}FAQ</a>
+                <a role='tab' data-toggle='tab'>{{faq}}Frequently asked questions</a>
             </li>
         </ul>
     </div>
 </div>
 
+<div style="padding-top: 25px;" id="fs-faq-results">
 
-<div class="row" style="padding-top:15px;">
-    <div class='col-xs-12'>
-        <div id="fs-search-results">FAQs List</div>
+    <p>
+        L'elenco seguente comprende le domande frequenti su ArcGIS Online.
+        <br>
+        In caso di problemi riscontrati durante l'utilizzo di ArcGIS Online, consultare Risoluzione dei problemi per visualizzare le soluzioni consigliate.
+    </p>
+
+    <div data-role="fs-faq-questions">
+            {{#each data as |topic topicIndex|}}
+                <h3 style="padding-top: 10px;">{{{topic.topic}}}</h3>
+                <ul>
+                    {{#each questions as |q qIndex|}}
+                        <li>
+                            <a href='#' data-role="question" data-answer="#fs-faq-question-{{topicIndex}}{{qIndex}}">{{{q.question}}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/each}}
+
     </div>
+
+    <div data-role="fs-faq-answers" style="padding-top: 25px;">
+        {{#each data as |topic topicIndex|}}
+            {{#each questions as |q qIndex|}}
+                <div id="fs-faq-question-{{topicIndex}}{{qIndex}}" style="padding-top: 10px;">
+                    <h4>{{{q.question}}}</h4>
+                    <p>{{{q.answer}}}</p>
+                </div>
+            {{/each}}
+        {{/each}}
+    </div>
+
 </div>

@@ -7,6 +7,7 @@ define([
     'views/base/view',
     'config/Config',
     'config/Events',
+    'config/faq/Config',
     'text!templates/faq/faq.hbs',
     'i18n!nls/common',
     'globals/Common',
@@ -16,18 +17,20 @@ define([
              View,
              C,
              E,
+             CM,
              template,
-             i18nLabels
+             i18nLabels,
+             Common
 ) {
 
     'use strict';
 
-    var s,
-        FAQView;
+    var s = {
 
-    s = {
+            QUESTION: '[data-role="question"]'
 
-    };
+    },
+
 
     FAQView = View.extend({
 
@@ -42,7 +45,7 @@ define([
         },
 
         getTemplateData: function () {
-            return i18nLabels;
+            return $.extend(true, {}, i18nLabels, {data: CM.faq[Common.getLocale()]});
         },
 
         attach: function () {
@@ -66,20 +69,39 @@ define([
 
         },
 
+        goToQuestion: function(id) {
+
+            $('html,body').animate({
+                scrollTop: $(id).offset().top
+            });
+
+        },
+
         initComponents: function () {
 
         },
 
         configurePage: function () {
 
-
         },
 
         bindEventListeners: function () {
 
+            var self = this;
+
+            this.$el.find(s.QUESTION).on('click', function(e) {
+
+                e.preventDefault();
+
+                self.goToQuestion(this.getAttribute('data-answer'));
+
+            });
+
         },
 
         unbindEventListeners: function () {
+
+            this.$el.find(s.QUESTION).off('click');
 
         },
 
