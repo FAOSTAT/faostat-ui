@@ -166,6 +166,41 @@ define([
 
     };
 
+    Export.prototype.exportMatrix = function (options) {
+
+        log.info('EXPORT.exportMatrix; options: ', options);
+
+        var csv = ConvertToCSV(options.data);
+
+        var blob = new Blob([csv], {type: "data:application/csv;charset=utf-8;"}),
+            d = new Date(),
+            filename = (options.name) || this.o.name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear();
+
+        log.info('EXPORT.saveAs;');
+
+        saveAs(blob, filename);
+
+
+        function ConvertToCSV(objArray) {
+            var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+            var str = '';
+
+            for (var i = 0; i < array.length; i++) {
+                var line = '';
+                for (var index in array[i]) {
+                    if (line != '') line += ','
+
+                    line += array[i][index];
+                }
+
+                str += line + '\r\n';
+            }
+
+            return str;
+        }
+
+    };
+
     return new Export();
 
 });

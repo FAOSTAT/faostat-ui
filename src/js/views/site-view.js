@@ -87,6 +87,7 @@ define([
 
             amplify.subscribe(E.EXPORT_DATA, Export, Export.exportData);
             amplify.subscribe(E.EXPORT_TABLE_HTML, Export, Export.exportTable);
+            amplify.subscribe(E.EXPORT_MATRIX_DATA, Export, Export.exportMatrix);
 
             amplify.subscribe(E.SEARCH_BOX_SHOW, this, this.showSearchBox);
             amplify.subscribe(E.SEARCH_BOX_HIDE, this, this.hideSearchBox);

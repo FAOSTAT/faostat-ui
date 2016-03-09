@@ -31,6 +31,7 @@ define(function () {
 
         EXPORT_DATA: 'fs.export_data.event',
         EXPORT_TABLE_HTML: 'fs.export_table_html.event',
+        EXPORT_MATRIX_DATA: 'fs.export_data_matrix.event',
 
         // MAP/CHART resize:
         WINDOW_RESIZE: 'fs.window.resize.event',
