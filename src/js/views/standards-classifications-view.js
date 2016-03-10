@@ -110,6 +110,7 @@ define([
             this.tree.init({
                 placeholder_id: this.$tree,
                 placeholder_search: this.$el.find(s.SEARCH_TREE),
+                lang: this.o.lang,
                 //code: 'QC',
                 callback: {
                     // Render Section
