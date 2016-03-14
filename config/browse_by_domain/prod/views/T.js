@@ -26,7 +26,7 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": [2012],
+                        "defaultCodes": [2013],
                         //"defaultCodes": ["5000"],
                         "filter": {
                         }
@@ -77,7 +77,7 @@ define(function () {
             items: [
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {
@@ -125,7 +125,7 @@ define(function () {
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {
