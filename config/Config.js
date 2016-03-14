@@ -1,5 +1,5 @@
 /*global define*/
-define(['jquery', 'loglevel'], function ($, log) {
+define(['jquery', 'loglevel', 'underscore.string'], function ($, log, _s) {
 
         'use strict';
 
@@ -32,7 +32,8 @@ define(['jquery', 'loglevel'], function ($, log) {
 
                 };
 
-            if (host === "localhost") {
+            // TODO: remove hardcoded local IP
+            if (_s.contains(host, "localhost") || _s.contains(host, "168.202")) {
                 return $.extend(true, {}, DEFAULT, {
 
                     // Configuration
