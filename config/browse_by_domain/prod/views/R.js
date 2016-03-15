@@ -28,6 +28,7 @@ define(function () {
             // labels?
             labels: {
                 // labels to dinamically substitute the title and subtitle
+                // TODO: import i18n in the js to be consistent?
                 default: {
                     aggregation: {
                          en: "Average",
@@ -51,7 +52,7 @@ define(function () {
                                 fr: "Consomation mondiale d'engrais (nutriments)",
                                 es: "Consumo mundial de fertilizantes (nutrientes)"
                             },
-                            subtitle: "{{aggregation}} 2002 - 2009"
+                            subtitle: "2002 - 2009"
                         }
                     },
                     config: {
@@ -93,7 +94,7 @@ define(function () {
                                 fr: "Composition de la surface agricole mondiale",
                                 es: "Composición del área agrícola mundial"
                             },
-                            subtitle: "2002 - 2009"
+                            subtitle: "{{aggregation}} 2002 - 2009"
                         }
                     },
                     config: {
