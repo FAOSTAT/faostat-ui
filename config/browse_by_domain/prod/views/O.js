@@ -178,7 +178,7 @@ define([
                             xDimensions: null,
                             yDimensions: null,
                             valueDimensions: 'value',
-                            seriesDimensions: ['item']
+                            seriesDimensions: ['element']
                         },
                         template: {
                             height: '250px'
@@ -190,101 +190,6 @@ define([
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                         List1Codes: ["5000"],
                         List2Codes: [551, 561]
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-6",
-
-                    // labels?
-                    labels: {
-                        // template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Production of {{item}} top 10 producers",
-                                fr: "Production du {{item}} top 5 des producteurs",
-                                es: "Producción de {{item}} 5 principales productores"
-                            },
-                            subtitle: "{{aggregation}} {{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "standard",
-                            xDimensions: ['area'],
-                            yDimensions: 'unit',
-                            valueDimensions: 'value',
-                            seriesDimensions: ['element']
-                        },
-                        template: {
-                             height:'250px'
-                            // default labels to be applied
-                        },
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['year', 'item', 'aggregation'],
-                    deniedTemplateFilter: [],
-                    filter: {
-                        List1Codes: ["5000>"],
-                        "group_by": 'year, item',
-                        "order_by": 'value DESC',
-                        "limit": '10'
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-6",
-
-                    // labels?
-                    labels: {
-                        // template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Most produced commodities, {{area}}",
-                                fr: "Produits plus fabriqués, {{area}}",
-                                es: "Productos más producidos, {{area}}"
-                            },
-                            subtitle: "{{aggregation}} {{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "standard",
-                            xDimensions: ['item'],
-                            yDimensions: 'unit',
-                            valueDimensions: 'value',
-                            seriesDimensions: ['element']
-                        },
-                        template: {
-                            height:'250px'
-                            // default labels to be applied
-                        },
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['area', 'year', 'aggregation'],
-                    deniedTemplateFilter: [],
-                    filter: {
-                        //List1Codes: ["5000>"],
-                        List3Codes: ["_1"],
-                        "group_by": 'year, area',
-                        "order_by": 'value DESC',
-                        "limit": '10'
                     }
                 }
             ]
