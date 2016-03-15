@@ -22,6 +22,7 @@ define([
             'Q', 'QC', 'QD', 'QA', 'QL', 'QP', 'QI',
             'T', 'TP', 'TA', //'TM',
             'FB', 'FBS', 'BC', 'BL', 'CC', 'CL',
+            'P', 'PP', 'PI',
             //'F', 'FO',
             'I', 'EA',
             'R', 'RL',
