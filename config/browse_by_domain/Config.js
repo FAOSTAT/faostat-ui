@@ -23,7 +23,7 @@ define([
             'T', 'TP', 'TA', //'TM',
             'FB', 'FBS', 'BC', 'BL', 'CC', 'CL',
             'P', 'PI', //'PP'
-            'R', 'RL', 'RF', 'RV',
+            'R', 'RL', 'RF', 'RV', 'RP',
             'F', 'FO',
             'I', 'EA',
             'D', 'FS',
