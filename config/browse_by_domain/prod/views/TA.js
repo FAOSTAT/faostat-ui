@@ -1,6 +1,7 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 
@@ -63,26 +64,7 @@ define(function () {
                         }
                     }
                 },
-                {
-                    "id": "aggregation",
-                    "type": "static",
-                    // TODO: check data parameter
-                    "parameter": "operator",
-                    "componentType": {
-                        "class": "col-lg-2",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-
-                            // TODO: multilingual?
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-
-                        ]
-                    }
-                }
+                C.filter.aggregation
             ]
         },
 
@@ -126,6 +108,86 @@ define(function () {
 
             items: [
                 {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Exports of {{item}} in {{area}}",
+                                fr: "Exportations de {{item}} en {{area}}",
+                                es: "Exportaciones de {{item}} en {{area}}"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "timeserie",
+                            xDimensions: ['year'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area', 'item', 'element']
+                        },
+                        template: {
+                            height:'250px'
+                            // default labels to be applied
+                        },
+                        creator: {
+
+                        }
+                    },
+                    allowedFilter: ['area', 'year', 'item', 'element', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List2Codes: [2910]
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Imports of {{item}} in {{area}}",
+                                fr: "Importations de {{item}} en {{area}}",
+                                es: "Importaciones de {{item}} en {{area}}"
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "timeserie",
+                            xDimensions: ['year'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area', 'item', 'element']
+                        },
+                        template: {
+                            height:'250px'
+                            // default labels to be applied
+                        },
+                        creator: {
+
+                        }
+                    },
+                    allowedFilter: ['area', 'year', 'item', 'element', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List2Codes: [2610]
+                    }
+                },
+               /* {
                     type: 'chart',
                     class: "col-xs-12",
 
@@ -204,7 +266,7 @@ define(function () {
                     filter: {
                         List2Codes: [2620, 2920]
                     }
-                },
+                },*/
                 {
                     type: 'chart',
                     class: "col-xs-6",
@@ -215,8 +277,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Exports of top 5 exporters of {{item}}",
-                                fr: "Exports of top 5 exporters of {{item}}",
-                                es: "Exports of top 5 exporters of {{item}}"
+                                fr: "Exportations des 5 meilleurs exportateurs de {{item}}",
+                                es: "Exportaciones de los 5 principales exportadores de {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -262,8 +324,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Imports of top 5 importers of {{item}}",
-                                fr: "Imports of top 5 importers of {{item}}",
-                                es: "Imports of top 5 importers of {{item}}"
+                                fr: "Importations des 5 meilleurs importateurs de {{item}}",
+                                es: "Importaciones de los 5 principales importadores de {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }

@@ -1,6 +1,7 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 
@@ -58,31 +59,12 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1992'],
+                        "defaultCodes": ['1993'],
                         "filter": {
                         }
                     }
                 },
-                {
-                    "id": "aggregation",
-                    "type": "static",
-                    // TODO: check data parameter
-                    "parameter": "operator",
-                    "componentType": {
-                        "class": "col-lg-2",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-
-                            // TODO: multilingual?
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-
-                        ]
-                    }
-                }
+                C.filter.aggregation
             ]
         },
 
@@ -135,8 +117,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Exports of {{item}} in {{area}}",
-                                fr: "Exports of {{item}} in {{area}}",
-                                es: "Exports of {{item}} in {{area}}"
+                                fr: "Exportations de {{item}} en {{area}}",
+                                es: "Exportaciones de {{item}} en {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -176,8 +158,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Imports of {{item}} in {{area}}",
-                                fr: "Imports of {{item}} in {{area}}",
-                                es: "Imports of {{item}} in {{area}}"
+                                fr: "Importations de {{item}} en {{area}}",
+                                es: "Importaciones de {{item}} en {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -217,8 +199,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Exports of top 5 exporters of {{item}}",
-                                fr: "Exports of top 5 exporters of {{item}}",
-                                es: "Exports of top 5 exporters of {{item}}"
+                                fr: "Exportations des 5 meilleurs exportateurs de {{item}}",
+                                es: "Exportaciones de los 5 principales exportadores de {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -265,8 +247,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Imports of top 5 importers of {{item}}",
-                                fr: "Imports of top 5 importers of {{item}}",
-                                es: "Imports of top 5 importers of {{item}}"
+                                fr: "Importations des 5 meilleurs importateurs de {{item}}",
+                                es: "Importaciones de los 5 principales importadores de {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }

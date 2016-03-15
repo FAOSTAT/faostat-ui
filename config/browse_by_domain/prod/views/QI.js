@@ -1,6 +1,7 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 

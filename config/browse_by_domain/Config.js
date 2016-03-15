@@ -20,7 +20,7 @@ define([
         // temporary whitelist
         whitelist: [
             'Q', 'QC', 'QD', 'QA', 'QL', 'QP', 'QI',
-            'T', 'TP', 'TA', 'TM',
+            'T', 'TP', 'TA', //'TM',
             'FB', 'FBS', 'BC', 'BL', 'CC', 'CL',
             //'F', 'FO',
             'I', 'EA',
@@ -29,7 +29,32 @@ define([
             'G1', 'GE'
         ],
 
-        // default cofing to be applied to each view
+        // default aggregation filter.
+        // if needed alter the configuration in custom views
+        filter: {
+            aggregation: {
+                "id": "aggregation",
+                "type": "static",
+                // TODO: check data parameter
+                "parameter": "operator",
+                "componentType": {
+                    "class": "col-xs-3 col-md-2",
+                    "type": "dropDownList"
+                },
+                "config": {
+                    "defaultCodes": ["AVG"],
+                    "data": [
+
+                        // TODO: multilingual?
+                        {"code": "AVG", "label": i18n.average, "selected": true},
+                        {"code": "SUM", "label": i18n.sum, "selected": false}
+
+                    ]
+                }
+            }
+        },
+
+        // default config to be applied to each view
         view: {
 
             map: {
