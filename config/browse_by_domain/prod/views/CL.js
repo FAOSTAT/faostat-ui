@@ -1,6 +1,7 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 
@@ -57,22 +58,7 @@ define(function () {
                         }
                     }
                 },
-                {
-                    "id": "aggregation",
-                    "type": "static",
-                    "parameter": "operator",
-                    "componentType": {
-                        "class": "col-lg-2",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-                        ]
-                    }
-                }
+                C.filter.aggregation
             ]
         },
 

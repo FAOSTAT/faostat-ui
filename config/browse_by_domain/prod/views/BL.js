@@ -1,6 +1,7 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 
@@ -58,22 +59,7 @@ define(function () {
                         }
                     }
                 },
-                {
-                    "id": "aggregation",
-                    "type": "static",
-                    "parameter": "operator",
-                    "componentType": {
-                        "class": "col-lg-2",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-                        ]
-                    }
-                }
+                C.filter.aggregation
             ]
         },
 
@@ -124,8 +110,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Import - export trends  in {{area}}",
-                                fr: "Tendences de l'import-export {{area}}",
-                                es: "Importación - exportación, tendencias {{area}}"
+                                fr: "Tendences de l'import-export en {{area}}",
+                                es: "Importación - exportación, tendencias en {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -156,9 +142,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Exports by region {{item}}",
-                                fr: "Exportations par régions {{item}}",
-                                es: "Exportaciones por región {{item}}",
+                                en: "Exports by region of {{item}}",
+                                fr: "Exportations par régions de {{item}}",
+                                es: "Exportaciones por región de {{item}}",
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -193,9 +179,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Imports by region {{item}}",
-                                fr: "Importations par régions {{item}}",
-                                es: "Importaciones por región {{item}}"
+                                en: "Imports by region of {{item}}",
+                                fr: "Importations par régions de {{item}}",
+                                es: "Importaciones por región de {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -234,8 +220,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Exports of top 5 exporters {{item}}",
-                                fr: " {{item}}",
-                                es: " {{item}}"
+                                fr: "Exportations des 5 meilleurs exportateurs de {{item}}",
+                                es: "Exportaciones de los 5 principales exportadores de {{item}}",
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -283,8 +269,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Imports of top 5 exporters {{item}}",
-                                fr: " {{item}}",
-                                es: " {{item}}"
+                                fr: "Importations des 5 meilleurs exportateurs de {{item}}",
+                                es: "Importaciones de los 5 principales exportadores de {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -333,8 +319,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Feed, food, other util, waste in {{area}}",
-                                fr: "Alimentation, aliments pour animaux, autres utilisations, pertes {{area}}",
-                                es: "Pienso, alimentos, otra utilidad, desperdicio {{area}}"
+                                fr: "Alimentation, aliments pour animaux, autres utilisations, pertes en {{area}}",
+                                es: "Pienso, alimentos, otra utilidad, desperdicio en {{area}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -383,9 +369,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Feed, food, other util, waste by region {{item}}",
-                                fr: "Alimentation, aliments pour animaux, autres utilisations, pertes par régions  {{item}}",
-                                es: "Pienso, alimentos, otra utilidad, desperdicio por región  {{item}}"
+                                en: "Feed, food, other util, waste by region of {{item}}",
+                                fr: "Alimentation, aliments pour animaux, autres utilisations, pertes par régions de {{item}}",
+                                es: "Pienso, alimentos, otra utilidad, desperdicio por región de {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }

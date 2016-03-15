@@ -1,6 +1,7 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 
@@ -44,22 +45,7 @@ define(function () {
                         }
                     }
                 },
-                {
-                    "id": "aggregation",
-                    "type": "static",
-                    "parameter": "operator",
-                    "componentType": {
-                        "class": "col-lg-2",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-                        ]
-                    }
-                }
+                C.filter.aggregation
             ]
         },
 
@@ -147,7 +133,7 @@ define(function () {
                         template: {
                             title: {
                                 en: "Food supply in {{area}}",
-                                fr: "Disponibilité alimentaire {{area}}",
+                                fr: "Disponibilité alimentaire en {{area}}",
                                 es: "Suministro alimentario de energía en {{area}}"
                             },
                             subtitle: "{{year}}"
@@ -182,8 +168,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Fat supply quantity and protein supply quantity in {{area}}",
-                                fr: "Disponibilité de matière grasse et disponibilité de protéines {{area}}",
-                                es: "Suministro alimentario de energía en {{area}}"
+                                fr: "Disponibilité de matière grasse et disponibilité de protéines en {{area}}",
+                                es: "Suministro alimentarFBSio de energía en {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
