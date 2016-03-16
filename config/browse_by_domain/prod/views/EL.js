@@ -129,12 +129,13 @@ define([
                         layer: {},
                         template: {}
                     },
-                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
+                    allowedFilter: ['item', 'year', 'element'],
                     deniedTemplateFilter: [],
                     filter: {
                         List1Codes: ["5000>", "351"],
                         "group_by": 'year',
-                        "order_by": 'area'
+                        "order_by": 'area',
+                        operator: 'avg'
                     }
                 },
                 {
@@ -168,10 +169,69 @@ define([
                         template: {},
                         creator: {}
                     },
-                    allowedFilter: ['year', 'item'],
+                    allowedFilter: ['year', 'item', 'element'],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        List1Codes: ["5000", "5100", "5200", "5300", "5400", "5500"],
                         "order_by": 'area'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels
+                    labels: {
+
+                        // labels to dinamically substitute the title and subtitle
+                        default: {
+                            aggregation: {
+                                "en": "Average",
+                                "fr": "Moyenne",
+                                "es": "Promedio"
+                            }
+                        },
+
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                "en":"{{item}} {{element}} (Top 10 Countries)",
+                                "fr":"{{item}} {{element}} (10 pays)",
+                                "es":"{{item}} {{element}} (10 países)",
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['area'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['element'],
+                            decimalPlaces: 2
+                        },
+                        template: {
+                            height:'250px'
+                            // default labels to be applied
+                        },
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['year', 'item', 'element', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List1Codes: ["5000>"],
+                        "group_by": 'year, item',
+                        "order_by": 'value DESC',
+                        "limit": '10',
+                        "operator": 'avg'
                     }
                 },
 
