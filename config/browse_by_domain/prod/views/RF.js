@@ -8,6 +8,7 @@ define(function () {
 
         dashboard: {
 
+            // TODO: this should be automatically added if filter is null
             "render": true,
 
             //data base filter
