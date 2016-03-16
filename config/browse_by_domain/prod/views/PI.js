@@ -106,7 +106,8 @@ define([
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['item']
+                            seriesDimensions: ['item'],
+                            decimalPlaces: 2
                         },
                         template: {
                             // height:'350px'

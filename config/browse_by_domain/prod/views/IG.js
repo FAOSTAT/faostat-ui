@@ -142,7 +142,8 @@ define([
                             xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['item','element']
+                            seriesDimensions: ['item','element'],
+                            decimalPlaces: 2
                         },
                         template: {},
                         creator: {
@@ -158,6 +159,7 @@ define([
                     filter: {
                         // africa
                         List1Codes: ["5100>"],
+                        order_by: 'value DESC'
                     }
                 },
             ]
