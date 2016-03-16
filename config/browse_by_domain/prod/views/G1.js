@@ -60,7 +60,6 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-3",
                         "type": "dropDownList"
                         //"multiple": true
@@ -101,6 +100,7 @@ define([
                 List6Codes: null,
                 List7Codes: null,
                 limit: -1,
+                decimal_places: 2,
                 thousand_separator: ",",
                 "null_values": null,
                 page_size: 0,
@@ -118,7 +118,7 @@ define([
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
 
             },
@@ -343,5 +343,5 @@ define([
             ]
         }
 
-    }
+    };
 });

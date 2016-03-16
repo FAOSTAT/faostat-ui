@@ -5,27 +5,29 @@ define([
 
     'use strict';
 
+    var i18n = C.i18n || {};
+
     return {
 
-       "relatedViews" : [
-           {
-               title: i18n.tab_ghg_main,
-               id: 'GE',
-               selected: true
-           },
-           {
-               title: i18n.projections,
-               id: 'GE-PROJ'
-           }
+        "relatedViews" : [
+            {
+                title: i18n.tab_ghg_main,
+                id: 'GE',
+                selected: true
+            },
+            {
+                title: i18n.projections,
+                id: 'GE-PROJ'
+            }
         ],
 
         "comment": {
             "text": {
-              "en": "Emissions of methane produced in digestive systems of livestock",
-              "es": "Emisiones de metano producidas en los sistemas digestivos de los animales",
-              "fr": "Émissions de méthane produites dans les systèmes digestifs des animaux d'élevage"
-            },
-            //pdf: "GT.pdf"
+                "en": "Emissions of methane produced in digestive systems of livestock",
+                "fr": "Émissions de méthane produites dans les systèmes digestifs des animaux d'élevage",
+                "es": "Emisiones de metano producidas en los sistemas digestivos de los animales"
+            }
+            //,pdf: "GT.pdf"
         },
 
         "filter": {
@@ -40,6 +42,7 @@ define([
                     "type": "codelist",
                     // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
+                    //"title": "title",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList"
@@ -78,7 +81,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1992'],
+                        "defaultCodes": ['1990'],
                         "filter": {
                         }
                     }
@@ -97,7 +100,7 @@ define([
                 List6Codes: null,
                 List7Codes: null,
                 limit: -1,
-                decimal_places: 0,
+                decimal_places: 2,
                 thousand_separator: ",",
                 "null_values": null,
                 page_size: 0,
@@ -115,7 +118,7 @@ define([
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
 
             },
@@ -250,9 +253,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by animal type",
-                                fr: "Émissions par type d'animal",
-                                es: "Emisiones por tipo de animal"
+                                en: "Emissions by sector",
+                                fr: "Émissions par secteur",
+                                es: "Emissions por sector"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -274,7 +277,18 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],
                     filter: {
-                        List3Codes: ["1755>"],
+                        List3Codes: [5067,
+                            5058,
+                            5059,
+                            5060,
+                            5061,
+                            5062,
+                            5063,
+                            5064,
+                            5066,
+                            //1709,
+                            6759
+                        ],
                         "group_by": 'year',
                         "order_by": 'item'
                     }
@@ -329,5 +343,5 @@ define([
             ]
         }
 
-    }
+    };
 });

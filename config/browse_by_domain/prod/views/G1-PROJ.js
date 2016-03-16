@@ -101,6 +101,7 @@ define([
                 List6Codes: null,
                 List7Codes: null,
                 limit: -1,
+                decimal_places: 2,
                 thousand_separator: ",",
                 "null_values": null,
                 page_size: 0,

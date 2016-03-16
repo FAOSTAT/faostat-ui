@@ -12,20 +12,20 @@ define([
         "relatedViews" : [
             {
                 title: i18n.tab_ghg_main,
-                id: 'G1'
+                id: 'GE'
             },
             {
                 title: i18n.projections,
-                id: 'G1-PROJ',
+                id: 'GE-PROJ',
                 selected: true
             }
         ],
 
         "comment": {
             "text": {
-                "en": "Emissions of methane and nitrous oxide produced from agricultural activities",
-                "es": "Emisiones de metano y óxido nitroso producido por las actividades agrícolas",
-                "fr": "Émissions de méthane et d'oxyde nitreux provenant des activités agricoles"
+                "en": "Emissions of methane produced in digestive systems of livestock",
+                "fr": "Émissions de méthane produites dans les systèmes digestifs des animaux d'élevage",
+                "es": "Emisiones de metano producidas en los sistemas digestivos de los animales"
             }
             //,pdf: "GT.pdf"
         },
@@ -33,7 +33,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GT"]
+                "domain_code": ["GE"]
             },
 
             items: [
@@ -48,7 +48,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1711"],
+                        "defaultCodes": ["1755"],
                         "filter": {
                         }
                     }
@@ -95,12 +95,13 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GT'],
+                domain_codes: ['GE'],
                 List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
                 limit: -1,
+                decimal_places: 2,
                 thousand_separator: ",",
                 "null_values": null,
                 page_size: 0,
