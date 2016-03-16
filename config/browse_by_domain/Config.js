@@ -27,6 +27,7 @@ define([
             'O', 'OA',
             'F', 'FO',
             'I', 'EA', 'RM', 'IG', 'IC',
+            'M', 'MK',
             'D', 'FS',
             'G1', 'GE'
         ],
