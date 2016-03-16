@@ -35,6 +35,8 @@ define([
             'G1', 'GE'
         ],
 
+        i18n: i18n,
+
         // default aggregation filter.
         // if needed alter the configuration in custom views
         filter: {

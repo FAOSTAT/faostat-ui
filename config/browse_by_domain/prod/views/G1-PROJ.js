@@ -1,28 +1,23 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
+
+    var i18n = C.i18n || {};
 
     return {
 
         "relatedViews" : [
             {
-                title: {
-                    en: '1961-present',
-                    es: 'Desde 1961 a la actualidad',
-                    fr: 'De 1961 à nos jours'
-                },
-                id: 'G1',
-                selected: true
+                title: i18n.tab_ghg_main,
+                id: 'G1'
             },
             {
-                title: {
-                    en: 'Projections',
-                    es: 'Proyecciones',
-                    fr: 'Projections'
-                },
-                id: 'G1-PROJ'
+                title: i18n.projections,
+                id: 'G1-PROJ',
+                selected: true
             }
         ],
 
@@ -31,8 +26,8 @@ define(function () {
                 "en": "Emissions of methane and nitrous oxide produced from agricultural activities",
                 "es": "Emisiones de metano y óxido nitroso producido por las actividades agrícolas",
                 "fr": "Émissions de méthane et d'oxyde nitreux provenant des activités agricoles"
-            },
-            //pdf: "GT.pdf"
+            }
+            //,pdf: "GT.pdf"
         },
 
         "filter": {

@@ -1,30 +1,23 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 
     return {
 
-/*        "relatedViews" : [
-            {
-                title: {
-                    en: '1961-present',
-                    es: 'Desde 1961 a la actualidad',
-                    fr: 'De 1961 à nos jours'
-                },
-                id: 'GE',
-                selected: true
-            },
-            {
-                title: {
-                    en: 'Projections',
-                    es: 'Proyecciones',
-                    fr: 'Projections'
-                },
-                id: 'GE-PROJ'
-            }
-        ],*/
+       "relatedViews" : [
+           {
+               title: i18n.tab_ghg_main,
+               id: 'GE',
+               selected: true
+           },
+           {
+               title: i18n.projections,
+               id: 'GE-PROJ'
+           }
+        ],
 
         "comment": {
             "text": {
@@ -90,24 +83,7 @@ define(function () {
                         }
                     }
                 },
-                {
-                    "id": "aggregation",
-                    "type": "static",
-                    // TODO: check data parameter
-                    "parameter": "operator",
-                    "componentType": {
-                        "class": "col-lg-2",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-                            // TODO: multilingual?
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-                        ]
-                    }
-                }
+                C.filter.aggregation
             ]
         },
 
