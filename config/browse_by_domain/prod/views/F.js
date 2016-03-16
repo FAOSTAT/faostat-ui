@@ -70,7 +70,7 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1993'],
+                        "defaultCodes": ['1994'],
                         "filter": {
                         }
                     }
@@ -258,13 +258,13 @@ define(function () {
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['element'],
+                            xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
-                            height:'250px'
+                            //height:'250px'
                             // default labels to be applied
                         },
                         creator: {

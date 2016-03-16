@@ -52,7 +52,6 @@ define(function () {
                     "componentType": {
                         "class": "col-sm-4",
                         "type": "dropDownList",
-                        "multiple": true
                     },
                     "config": {
                         "dimension_id": "area",
@@ -71,7 +70,7 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1993'],
+                        "defaultCodes": ['1994'],
                         "filter": {
                         }
                     }
@@ -177,9 +176,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "{{item}}, {{element}} in {{area}}",
-                                fr: "{{item}}, {{element}} in {{area}}",
-                                es: "{{item}}, {{element}} in {{area}}"
+                                en: "{{item}} {{element}} in {{area}}",
+                                fr: "{{item}} {{element}} in {{area}}",
+                                es: "{{item}} {{element}} in {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -209,9 +208,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "{{item}}, {{element}} share by region",
-                                fr: "{{item}}, {{element}} share by region",
-                                es: "{{item}}, {{element}} share by region"
+                                en: "{{item}} {{element}} share by region",
+                                fr: "{{item}} {{element}} share by region",
+                                es: "{{item}} {{element}} share by region"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -247,9 +246,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 countries - {{item}}, {{element}}",
-                                fr: "Top 10 countries - {{item}}, {{element}}",
-                                es: "Top 10 countries - {{item}}, {{element}}"
+                                en: "Top 10 countries - {{item}} {{element}}",
+                                fr: "Top 10 countries - {{item}} {{element}}",
+                                es: "Top 10 countries - {{item}} {{element}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -259,13 +258,13 @@ define(function () {
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['element'],
+                            xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
-                            height:'250px'
+                            //height:'250px'
                             // default labels to be applied
                         },
                         creator: {
