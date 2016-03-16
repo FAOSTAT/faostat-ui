@@ -12,20 +12,20 @@ define([
         "relatedViews" : [
             {
                 title: i18n.tab_ghg_main,
-                id: 'GE'
+                id: 'GM'
             },
             {
                 title: i18n.projections,
-                id: 'GE-PROJ',
+                id: 'GM-PROJ',
                 selected: true
             }
         ],
 
         "comment": {
             "text": {
-                "en": "Emissions of methane produced in digestive systems of livestock",
-                "fr": "Émissions de méthane produites dans les systèmes digestifs des animaux d'élevage",
-                "es": "Emisiones de metano producidas en los sistemas digestivos de los animales"
+                "en": "Emissions of methane and nitrous oxide from manure decomposition processes",
+                "fr": "Émissions de méthane et d'oxyde nitreux du processus de décomposition du fumier",
+                "es": "Emisiones de metano y óxido nitroso procedentes de los procesos de descomposición del estiércol"
             }
             //,pdf: "GT.pdf"
         },
@@ -33,7 +33,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GE"]
+                "domain_code": ["GM"]
             },
 
             items: [
@@ -94,7 +94,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GE'],
+                domain_codes: ['GM'],
                 List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,
