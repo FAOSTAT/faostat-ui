@@ -52,10 +52,11 @@ define(function () {
                     "componentType": {
                         "class": "col-sm-4",
                         "type": "dropDownList",
+                        multiple: true
                     },
                     "config": {
                         "dimension_id": "area",
-                        "defaultCodes": ["21"],
+                        "defaultCodes": ["5000"],
                         "filter": {
                         }
                     }
@@ -70,7 +71,7 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1994'],
+                        "defaultCodes": ['1993'],
                         "filter": {
                         }
                     }
@@ -287,5 +288,5 @@ define(function () {
             ]
         }
 
-    }
+    };
 });
