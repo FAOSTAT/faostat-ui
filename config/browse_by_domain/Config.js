@@ -28,7 +28,7 @@ define([
             'F', 'FO',
             'I', 'EA', 'RM', 'IG', 'IC',
             'M', 'MK',
-            'E', 'EC', 'EF', 'EL', 'EK', 'EP', 'ES', //'EE',
+            'E', 'EC', 'EF', 'EL', 'EK', 'EP', 'ES', 'EW', //'EE',
             'D', 'FS',
             'G1', 'GE'
         ],

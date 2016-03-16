@@ -10,7 +10,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["EL"]
+                "domain_code": ["EW"]
             },
 
             items: [
@@ -25,7 +25,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["6610"],
+                        "defaultCodes": ["6720"],
                         "filter": {}
                     }
                 },
@@ -39,7 +39,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "element",
-                        "defaultCodes": ["7209"],
+                        "defaultCodes": ["7222"],
                         "filter": {}
                     }
                 },
@@ -53,7 +53,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['2001'],
+                        "defaultCodes": ['1992'],
                         "filter": {
                         }
                     }
@@ -65,7 +65,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['EL'],
+                domain_codes: ['EW'],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -81,6 +81,11 @@ define([
             labels: {
                 // labels to dinamically substitute the title and subtitle
                 default: {
+                    aggregation: {
+                        "en": "Average",
+                        "fr": "Moyenne",
+                        "es": "Promedio"
+                    }
                 }
             },
 
@@ -88,7 +93,7 @@ define([
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
 
             },
@@ -100,25 +105,17 @@ define([
                     type: 'map',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // labels to dinamically substitute the title and subtitle
-                        default: {
-                            default: {
-                                aggregation: {
-                                    "en": "Average",
-                                    "fr": "Moyenne",
-                                    "es": "Promedio"
-                                }
-                            },
-                        },
+                        default: {},
 
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Distribution of {{item}} {{element}} by country (%)",
-                                fr: "Répartition de {{item}} {{element}} par pays (%)",
-                                es: "Distribución de {{item}} {{element}} por países (%)"
+                                "en": "{{item}} {{element}} by country",
+                                "fr": "{{item}} {{element}} par pays",
+                                "es": "{{item}} {{element}} por país"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -142,43 +139,6 @@ define([
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
-                    labels: {
-                        // temp[late to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Trend of fertilizer nutrient use on arable and permanent crop area by continent",
-                                fr: "Evolution de l'utilisation des engrais nutritif sur la zone des cultures arables et cultures permanentes par continent",
-                                es: "Tendencia del uso de nutrientes de fertilizantes en el área de los cultivos herbáceos y permanente por continente"
-                            },
-                            subtitle: "{{year}}"
-                        }
-
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "timeserie",
-                            xDimensions: "year",
-                            yDimensions: "unit",
-                            valueDimensions: 'value',
-                            seriesDimensions: ['area'],
-                            decimalPlaces: 2
-                        },
-                        template: {},
-                        creator: {}
-                    },
-                    allowedFilter: ['year', 'item', 'element'],
-                    filter: {
-                        List1Codes: ["5000", "5100", "5200", "5300", "5400", "5500"],
-                        "order_by": 'area'
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
                     // labels
                     labels: {
 
@@ -196,7 +156,7 @@ define([
                             title: {
                                 "en":"{{item}} {{element}} (Top 10 Countries)",
                                 "fr":"{{item}} {{element}} (10 pays)",
-                                "es":"{{item}} {{element}} (10 países)",
+                                "es":"{{item}} {{element}} (10 países)"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -209,7 +169,7 @@ define([
                             xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['element'],
+                            seriesDimensions: ['item', 'element'],
                             decimalPlaces: 2
                         },
                         template: {
@@ -228,15 +188,13 @@ define([
                     deniedTemplateFilter: [],
                     filter: {
                         List1Codes: ["5000>"],
-                        "group_by": 'year, item',
+                        "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10',
                         "operator": 'avg'
                     }
                 }
-
             ]
         }
-
-    }
+    };
 });
