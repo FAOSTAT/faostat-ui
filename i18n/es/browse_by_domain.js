@@ -7,6 +7,9 @@ define(['jquery', 'i18n!nls/browse'], function ($, I18N) {
 
         "tree_title": "FAOSTAT Domains",
 
+        "tab_ghg_main": "Desde 1961 a la actualidad",
+        "projections": "Proyecciones"
+
     });
 
 });
