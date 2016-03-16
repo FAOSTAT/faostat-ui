@@ -29,6 +29,8 @@ define([
             'I', 'EA', 'RM', 'IG', 'IC',
             'M', 'MK',
             'E', 'EC', 'EF', 'EL', 'EK', 'EP', 'ES', 'EW', //'EE',
+            //'AS', 'AF', 'AE',
+            'X', 'FA',
             'D', 'FS',
             'G1', 'GE'
         ],
@@ -85,7 +87,7 @@ define([
                     modelType: 'faostat'
                 },
                 template: {
-                    class: 'test',
+                    class: '',
                     height: '350px',
                     footer: '<p>' + i18n.map_footer + '</p>',
                     addExport: true,
