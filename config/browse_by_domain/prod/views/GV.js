@@ -12,20 +12,20 @@ define([
         "relatedViews" : [
             {
                 title: i18n.tab_ghg_main,
-                id: 'GP'
+                id: 'GV',
+                selected: true
             },
             {
                 title: i18n.projections,
-                id: 'GP-PROJ',
-                selected: true
+                id: 'GV-PROJ'
             }
         ],
 
         "comment": {
             "text": {
-                "en": "Emissions of nitrous oxide from manure left by grazing livestock on agricultural soils",
-                "fr": "Émissions de oxyde nitreux provenant du fumier laissé par le pâturage du bétail sur les sols agricoles",
-                "es": "Emisiones de óxido nitroso procedentes del estiércol dejado por el ganado en terrenos agrícolas"
+                "en": "Emissions of nitrous oxide from cultivation of histosols",
+                "fr": "Les émissions d'oxyde nitreux provenant des sols organiques drainés cultivés",
+                "es": "Emisiones de óxido nitroso procedentes del drenaje de suelos orgánicos cultivados"
             }
             //,pdf: "GT.pdf"
         },
@@ -33,7 +33,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GP"]
+                "domain_code": ["GV"]
             },
 
             items: [
@@ -42,13 +42,14 @@ define([
                     "type": "codelist",
                     // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
+                    //"title": "title",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList"
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1755"],
+                        "defaultCodes": ["6729"],
                         "filter": {
                         }
                     }
@@ -76,15 +77,16 @@ define([
                     "parameter": "List4Codes",
                     "componentType": {
                         "class": "col-lg-2",
-                        "type": "dropDownList"
+                        "type": "dropDownList-timerange"
                     },
                     "config": {
-                        "dimension_id": "yearprojections",
-                        "defaultCodes": ['2030'],
+                        "dimension_id": "years",
+                        "defaultCodes": ['1990'],
                         "filter": {
                         }
                     }
-                }
+                },
+                C.filter.aggregation
             ]
         },
 
@@ -92,7 +94,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GP'],
+                domain_codes: ['GV'],
                 List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,
@@ -111,7 +113,6 @@ define([
                 default: {
                 }
             },
-
 
             //bridge configuration
             bridge: {
@@ -155,137 +156,13 @@ define([
 
                         }
                     },
-                    allowedFilter: ['item', 'year', 'element'],
+                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"]
-                        //"group_by": 'year',
-                        //"order_by": 'area'
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-md-6",
-
-                    // labels?
-                    labels: {
-                        // template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Emissions (CO2 equivalent), {{item}}",
-                                fr: "Émissions (CO2 équivalent), {{item}}",
-                                es: "Emisiones (CO2 equivalente), {{item}}"
-                            },
-                            subtitle: ""
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "standard",
-                            xDimensions: 'area',
-                            yDimensions: 'unit',
-                            valueDimensions: 'value',
-                            seriesDimensions: ['year']
-                        },
-                        template: {},
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['item'],
-                    filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        List4Codes: ["2030", "2050"]
-                        // TODO: baseline 2005-2006-2007
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-md-6",
-
-                    // labels?
-                    labels: {
-                        // template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Emissions (CO2 equivalent), {{item}}, {{area}}",
-                                fr: "Émissions (CO2 équivalent), {{item}}, {{area}}",
-                                es: "Emisiones (CO2 equivalente), {{item}}, {{area}}"
-                            },
-                            subtitle: ""
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "standard",
-                            xDimensions: 'area',
-                            yDimensions: 'unit',
-                            valueDimensions: 'value',
-                            seriesDimensions: ['year']
-                        },
-                        template: {},
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['area', 'item'],
-                    filter: {
-                        List4Codes: ["2030", "2050"]
-                        // TODO: baseline 2005-2006-2007
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    // labels?
-                    labels: {
-                        // template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Emissions by continent (CO2 equivalent), {{item}}",
-                                fr: "Émissions par continent (CO2 équivalent), {{item}}",
-                                es: "Emisiones por continente (CO2 equivalente), {{item}}"
-                            },
-                            subtitle: "{{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
-                            valueDimensions: 'value',
-                            seriesDimensions: ['area']
-                        },
-                        template: {},
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['year', 'item'],
-                    deniedOnLoadFilter: [],
-                    filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"]
+                        List1Codes: ["5000>", "351"],
+                        "group_by": 'year',
+                        "order_by": 'area'
                     }
                 },
                 {
@@ -295,9 +172,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by animal type (CO2 equivalent), {{area}}",
-                                fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
-                                es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
+                                en: "Emissions by continent, {{item}}",
+                                fr: "Émissions par continent, {{item}}",
+                                es: "Emisiones por continente, {{item}}",
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -310,17 +187,66 @@ define([
                             xDimensions: null,
                             yDimensions: null,
                             valueDimensions: 'value',
-                            seriesDimensions: ['item']
+                            seriesDimensions: ['area']
                         },
                         template: {
                             height: '250px'
                         },
-                        creator: {
+                        creator: {}
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    filter: {
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        "group_by": 'year',
+                        "order_by": 'area'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Top 10 emitters (CO2 equivalent), {{item}}",
+                                fr: "Principaux 10 émetteurs (CO2 équivalent), {{item}}",
+                                es: "Principales 10 emisores (CO2 equivalente), {{item}}",
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
                         }
                     },
-                    allowedFilter: ['area', 'year', 'aggregation'],
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['element'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {
+                            height:'250px'
+                            // default labels to be applied
+                        },
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    deniedTemplateFilter: [],
                     filter: {
-                        List3Codes: ["1755>"],
+                        List1Codes: ["5000>"],
+                        "group_by": 'year',
+                        "order_by": 'value DESC',
+                        "limit": '10'
                     }
                 }
             ]

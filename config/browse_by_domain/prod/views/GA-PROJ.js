@@ -166,7 +166,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {
@@ -199,10 +199,50 @@ define([
                             }
                         }
                     },
-                    allowedFilter: ['area', 'item'],
-                    deniedOnLoadFilter: ['area'],
+                    allowedFilter: ['item'],
                     filter: {
                         List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        List4Codes: ["2030", "2050"]
+                        // TODO: baseline 2005-2006-2007
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-md-6",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Emissions (CO2 equivalent), {{item}}, {{area}}",
+                                fr: "Émissions (CO2 équivalent), {{item}}, {{area}}",
+                                es: "Emisiones (CO2 equivalente), {{item}}, {{area}}"
+                            },
+                            subtitle: ""
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: 'area',
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['year']
+                        },
+                        template: {},
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['area', 'item'],
+                    filter: {
                         List4Codes: ["2030", "2050"]
                         // TODO: baseline 2005-2006-2007
                     }

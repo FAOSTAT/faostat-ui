@@ -12,20 +12,20 @@ define([
         "relatedViews" : [
             {
                 title: i18n.tab_ghg_main,
-                id: 'GU'
+                id: 'GV'
             },
             {
                 title: i18n.projections,
-                id: 'GU-PROJ',
+                id: 'GV-PROJ',
                 selected: true
             }
         ],
 
         "comment": {
             "text": {
-                "en": "Emissions of nitrous oxide from the application of manure to agricultural soils",
-                "fr": "Émissions d'oxyde nitreux provenant de l'application d'engrais synthétiques dans l'agriculture",
-                "es": "Emisiones de óxido nitroso procedentes de la aplicación de estiércol a los suelos agrícolas"
+                "en": "Emissions of nitrous oxide from cultivation of histosols",
+                "fr": "Les émissions d'oxyde nitreux provenant des sols organiques drainés cultivés",
+                "es": "Emisiones de óxido nitroso procedentes del drenaje de suelos orgánicos cultivados"
             }
             //,pdf: "GT.pdf"
         },
@@ -33,7 +33,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GU"]
+                "domain_code": ["GV"]
             },
 
             items: [
@@ -48,7 +48,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1755"],
+                        "defaultCodes": ["6729"],
                         "filter": {
                         }
                     }
@@ -92,7 +92,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GU'],
+                domain_codes: ['GV'],
                 List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,
@@ -286,48 +286,6 @@ define([
                     deniedOnLoadFilter: [],
                     filter: {
                         List1Codes: ["5100", "5200", "5300", "5400", "5500"]
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    labels: {
-                        template: {
-                            title: {
-                                en: "Emissions by animal type (CO2 equivalent), {{area}}",
-                                fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
-                                es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
-                            },
-                            subtitle: "{{aggregation}} {{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
-                            valueDimensions: 'value',
-                            seriesDimensions: ['item']
-                        },
-                        template: {
-                            height: '250px'
-                        },
-                        creator: {
-                            chartObj: {
-                                legend: {
-                                    layout: 'vertical',
-                                    align: 'right',
-                                    verticalAlign: 'middle'
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['area', 'year', 'aggregation'],
-                    filter: {
-                        List3Codes: ["1755>"],
                     }
                 }
             ]
