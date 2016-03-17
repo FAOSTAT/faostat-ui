@@ -40,7 +40,6 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
                     //"title": "title",
                     "componentType": {
@@ -138,9 +137,9 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions by country (CO2 equivalent)",
-                                fr: "Émissions par pays (CO2 équivalent)",
-                                es: "Emisiones por país (CO2 equivalente)"
+                                en: "Emissions by country (CO2 equivalent), {{item}}",
+                                fr: "Émissions par pays (CO2 équivalent), {{item}}",
+                                es: "Emisiones por país (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -152,14 +151,6 @@ define([
                         layer: {
                             colorramp: "YlOrRd",
                             intervals: 7
-                            //classificationtype: "percentiles"
-                            //colors: ['#004529', '#238B45', '#74C476', '#E1E1E1', '#74C476', '#FFD34A', '#FF9400', '#DE0000'],
-                            //ranges: [-20000,-10000,-1,0, 1,10000,100000],
-                            //classification: "custom"
-
-                            //colors: "004529,238B45,74C476,E1E1E1,FFD34A,FF9400,DE0000",
-                            //ranges: "-20000,-10000,-1,1,10000,100000"
-                            // intervals: 3,
                         },
                         template: {
 
@@ -183,9 +174,9 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions (CO2 equivalent)",
-                                fr: "Émissions (CO2 équivalent)",
-                                es: "Emisiones (CO2 equivalente)"
+                                en: "Emissions (CO2 equivalent), {{item}}",
+                                fr: "Émissions (CO2 équivalent), {{item}}",
+                                es: "Emisiones (CO2 equivalente), {{item}}",
                             },
                             subtitle: "{{year}}"
                         }
@@ -216,9 +207,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by continent",
-                                fr: "Émissions par continent",
-                                es: "Emisiones por continente"
+                                en: "Emissions by continent, {{item}}",
+                                fr: "Émissions par continent, {{item}}",
+                                es: "Emisiones por continente, {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -253,9 +244,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by sector",
-                                fr: "Émissions par secteur",
-                                es: "Emissions por sector"
+                                en: "Emissions by animal type (CO2 equivalent), {{area}}",
+                                fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
+                                es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -273,22 +264,20 @@ define([
                         template: {
                             height: '250px'
                         },
-                        creator: {}
+                        creator: {
+                            /*chartObj: {
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                }
+                            }*/
+                        }
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],
                     filter: {
-                        List3Codes: [5067,
-                            5058,
-                            5059,
-                            5060,
-                            5061,
-                            5062,
-                            5063,
-                            5064,
-                            5066,
-                            //1709,
-                            6759
-                        ],
+                        //List3Codes: [1757, 1759, 1749, 1048],
+                        List3Codes: ["1755>"],
                         "group_by": 'year',
                         "order_by": 'item'
                     }
@@ -302,9 +291,9 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 emitters (CO2 equivalent)",
-                                fr: "Principaux 10 émetteurs (CO2 équivalent)",
-                                es: "Principales 10 emisores (CO2 equivalente)"
+                                en: "Top 10 emitters (CO2 equivalent), {{item}}",
+                                fr: "Principaux 10 émetteurs (CO2 équivalent), {{item}}",
+                                es: "Principales 10 emisores (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }

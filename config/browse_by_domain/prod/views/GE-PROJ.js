@@ -140,7 +140,7 @@ define([
                             title: {
                                 en: "Emissions by country (CO2 equivalent), {{item}}",
                                 fr: "Émissions par pays (CO2 équivalent), {{item}}",
-                                es: "Emisiones por país (CO2 equivalente), {{item}}",
+                                es: "Emisiones por país (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -177,7 +177,7 @@ define([
                             title: {
                                 en: "Emissions (CO2 equivalent), {{item}}",
                                 fr: "Émissions (CO2 équivalent), {{item}}",
-                                es: "Emisiones (CO2 equivalente), {{item}}",
+                                es: "Emisiones (CO2 equivalente), {{item}}"
                             },
                             subtitle: ""
                         }
@@ -257,9 +257,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by sector, {{area}}",
-                                fr: "Émissions par secteur, {{area}}",
-                                es: "Emissions por sector, {{area}}"
+                                en: "Emissions by animal type (CO2 equivalent), {{area}}",
+                                fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
+                                es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -282,7 +282,7 @@ define([
                                 legend: {
                                     layout: 'vertical',
                                     align: 'right',
-                                    verticalAlign: 'middle',
+                                    verticalAlign: 'middle'
                                 }
                             }
                         }

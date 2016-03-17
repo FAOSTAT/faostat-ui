@@ -32,7 +32,7 @@ define([
             //'AS', 'AF', 'AE',
             'X', 'FA',
             'D', 'FS',
-            'G1', 'GE', 'GM'
+            'G1', 'GE', 'GM', 'GR'
         ],
 
         i18n: i18n,

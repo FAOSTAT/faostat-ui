@@ -114,7 +114,6 @@ define([
                 }
             },
 
-
             //bridge configuration
             bridge: {
 
@@ -152,14 +151,6 @@ define([
                         layer: {
                             colorramp: "YlOrRd",
                             intervals: 7
-                            //classificationtype: "percentiles"
-                            //colors: ['#004529', '#238B45', '#74C476', '#E1E1E1', '#74C476', '#FFD34A', '#FF9400', '#DE0000'],
-                            //ranges: [-20000,-10000,-1,0, 1,10000,100000],
-                            //classification: "custom"
-
-                            //colors: "004529,238B45,74C476,E1E1E1,FFD34A,FF9400,DE0000",
-                            //ranges: "-20000,-10000,-1,1,10000,100000"
-                            // intervals: 3,
                         },
                         template: {
 
@@ -274,13 +265,13 @@ define([
                             height: '250px'
                         },
                         creator: {
-                            chartObj: {
+                           /* chartObj: {
                                 legend: {
                                     layout: 'vertical',
                                     align: 'right',
                                     verticalAlign: 'middle',
                                 }
-                            }
+                            }*/
                         }
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],

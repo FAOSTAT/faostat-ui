@@ -138,9 +138,9 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions by country (CO2 equivalent)",
-                                fr: "Émissions par pays (CO2 équivalent)",
-                                es: "Emisiones por país (CO2 equivalente)"
+                                en: "Emissions by country (CO2 equivalent), {{item}}",
+                                fr: "Émissions par pays (CO2 équivalent), {{item}}",
+                                es: "Emisiones por país (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -175,9 +175,9 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions (CO2 equivalent)",
-                                fr: "Émissions (CO2 équivalent)",
-                                es: "Emisiones (CO2 equivalente)"
+                                en: "Emissions (CO2 equivalent), {{item}}",
+                                fr: "Émissions (CO2 équivalent), {{item}}",
+                                es: "Emisiones (CO2 equivalente), {{item}}"
                             },
                             subtitle: ""
                         }
@@ -218,9 +218,9 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions (CO2 equivalent)",
-                                fr: "Émissions (CO2 équivalent)",
-                                es: "Emisiones (CO2 equivalente)"
+                                en: "Emissions by continent (CO2 equivalent), {{item}}",
+                                fr: "Émissions par continent (CO2 équivalent), {{item}}",
+                                es: "Emisiones por continente (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -257,9 +257,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by sector",
-                                fr: "Émissions par secteur",
-                                es: "Emissions por sector"
+                                en: "Emissions by animal type (CO2 equivalent), {{area}}",
+                                fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
+                                es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -281,18 +281,7 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],
                     filter: {
-                        List3Codes: [5067,
-                            5058,
-                            5059,
-                            5060,
-                            5061,
-                            5062,
-                            5063,
-                            5064,
-                            5066,
-                            //1709,
-                            6759
-                        ],
+                        List3Codes: ["1755>"],
                         "order_by": 'item'
                     }
                 }
