@@ -9,23 +9,11 @@ define([
 
     return {
 
-        "relatedViews" : [
-            {
-                title: i18n.tab_ghg_main,
-                id: 'GE',
-                selected: true
-            },
-            {
-                title: i18n.projections,
-                id: 'GE-PROJ'
-            }
-        ],
-
         "comment": {
             "text": {
-                "en": "Emissions of methane produced in digestive systems of livestock",
-                "fr": "Émissions de méthane produites dans les systèmes digestifs des animaux d'élevage",
-                "es": "Emisiones de metano producidas en los sistemas digestivos de los animales"
+                "en": "Emissions of carbon dioxide, methane and nitrous oxide from combustion in various land cover classes",
+                "fr": "Émissions de dioxyde de carbone, méthane et oxyde nitreux provenant de la combustion de diverses classes d'occupation du sol",
+                "es": "Emisiones de dióxido de carbono, metano y óxido nitroso asociadas con la combustión de diferentes clases de cubierta terrestre"
             }
             //,pdf: "GT.pdf"
         },
@@ -33,7 +21,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GE"]
+                "domain_code": ["GI"]
             },
 
             items: [
@@ -42,14 +30,13 @@ define([
                     "type": "codelist",
                     // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
-                    //"title": "title",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList"
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1755"],
+                        "defaultCodes": ["6798"],
                         "filter": {
                         }
                     }
@@ -94,7 +81,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GE'],
+                domain_codes: ['GI'],
                 List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,
@@ -244,9 +231,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by animal type (CO2 equivalent), {{area}}",
-                                fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
-                                es: "Emissions por tipo de animal (CO2 equivalente), {{area}}"
+                                "en": "Emissions by land cover (CO2 equivalent), {{area}}",
+                                "fr": "Émissions par couverture (CO2 équivalent), {{area}}",
+                                "es": "Emisiones por cobertura del suelo (CO2 equivalente), {{area}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -277,7 +264,7 @@ define([
                     allowedFilter: ['area', 'year', 'aggregation'],
                     filter: {
                         //List3Codes: [1757, 1759, 1749, 1048],
-                        List3Codes: ["1755>"],
+                        List3Codes: ["6798>"],
                         "group_by": 'year',
                         "order_by": 'item'
                     }

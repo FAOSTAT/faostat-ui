@@ -9,23 +9,11 @@ define([
 
     return {
 
-        "relatedViews" : [
-            {
-                title: i18n.tab_ghg_main,
-                id: 'GE',
-                selected: true
-            },
-            {
-                title: i18n.projections,
-                id: 'GE-PROJ'
-            }
-        ],
-
         "comment": {
             "text": {
-                "en": "Emissions of methane produced in digestive systems of livestock",
-                "fr": "Émissions de méthane produites dans les systèmes digestifs des animaux d'élevage",
-                "es": "Emisiones de metano producidas en los sistemas digestivos de los animales"
+                "en": "Emissions of carbon dioxide currently limited to histosols under grassland",
+                "fr": "Émissions de dioxyde de carbone actuellement limitées aux histosols sous prairies",
+                "es": "Emisiones de dióxido de carbono limitadas actualmente a los histosoles bajo pastizales"
             }
             //,pdf: "GT.pdf"
         },
@@ -33,14 +21,13 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GE"]
+                "domain_code": ["GG"]
             },
 
             items: [
                 {
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
                     //"title": "title",
                     "componentType": {
@@ -49,7 +36,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1755"],
+                        "defaultCodes": ["6728"],
                         "filter": {
                         }
                     }
@@ -94,8 +81,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GE'],
-                List2Codes: ["7231"],
+                domain_codes: ['GG'],
+                List2Codes: ["7217"],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -137,9 +124,9 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions by country (CO2 equivalent), {{item}}",
-                                fr: "Émissions par pays (CO2 équivalent), {{item}}",
-                                es: "Emisiones por país (CO2 equivalente), {{item}}"
+                                en: "Net emissions/removals by country (CO2 equivalent), {{item}}",
+                                fr: "Net émissions/absorptions par pays (CO2 équivalent), {{item}}",
+                                es: "Emisiones/absorciones netas por país (CO2 equivalente), {{item}}",
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -169,47 +156,12 @@ define([
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
-                    labels: {
-                        // template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Emissions (CO2 equivalent), {{item}}",
-                                fr: "Émissions (CO2 équivalent), {{item}}",
-                                es: "Emisiones (CO2 equivalente), {{item}}",
-                            },
-                            subtitle: "{{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "timeserie",
-                            xDimensions: 'year',
-                            yDimensions: 'unit',
-                            valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
-                        },
-                        template: {},
-                        creator: {}
-                    },
-                    allowedFilter: ['area', 'year', 'item'],
-                    deniedOnLoadFilter: ['area'],
-                    filter: {
-                        List1Codes: ["5000", "5848", "5849"]
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by continent, {{item}}",
-                                fr: "Émissions par continent, {{item}}",
-                                es: "Emisiones por continente, {{item}}",
+                                en: "Net emissions/removals by continent (CO2 equivalent), {{item}}",
+                                fr: "Net émissions/absorptions par continent (CO2 équivalent), {{item}}",
+                                es: "Emisiones/absorciones netas por continente (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -235,51 +187,6 @@ define([
                         List1Codes: ["5100", "5200", "5300", "5400", "5500"],
                         "group_by": 'year',
                         "order_by": 'area'
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    labels: {
-                        template: {
-                            title: {
-                                en: "Emissions by animal type (CO2 equivalent), {{area}}",
-                                fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
-                                es: "Emissions por tipo de animal (CO2 equivalente), {{area}}"
-                            },
-                            subtitle: "{{aggregation}} {{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
-                            valueDimensions: 'value',
-                            seriesDimensions: ['item']
-                        },
-                        template: {
-                            height: '250px'
-                        },
-                        creator: {
-                           /* chartObj: {
-                                legend: {
-                                    layout: 'vertical',
-                                    align: 'right',
-                                    verticalAlign: 'middle',
-                                }
-                            }*/
-                        }
-                    },
-                    allowedFilter: ['area', 'year', 'aggregation'],
-                    filter: {
-                        //List3Codes: [1757, 1759, 1749, 1048],
-                        List3Codes: ["1755>"],
-                        "group_by": 'year',
-                        "order_by": 'item'
                     }
                 },
                 {
