@@ -218,9 +218,9 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions (CO2 equivalent), {{item}}",
-                                fr: "Émissions (CO2 équivalent), {{item}}",
-                                es: "Emisiones (CO2 equivalente), {{item}}"
+                                en: "Emissions by continent (CO2 equivalent), {{item}}",
+                                fr: "Émissions par continent (CO2 équivalent), {{item}}",
+                                es: "Emisiones por continente (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -259,7 +259,7 @@ define([
                             title: {
                                 en: "Emissions by sector, {{area}}",
                                 fr: "Émissions par secteur, {{area}}",
-                                es: "Emissions por sector, {{area}}",
+                                es: "Emissions por sector, {{area}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }

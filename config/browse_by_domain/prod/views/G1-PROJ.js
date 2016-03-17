@@ -40,7 +40,6 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
                     "componentType": {
                         "class": "col-lg-3",
@@ -59,16 +58,13 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-3",
                         "type": "dropDownList"
-                        //"multiple": true
                     },
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
                 {
@@ -82,7 +78,6 @@ define([
                     "config": {
                         "defaultCodes": ["2030"],
                         "data": [
-                            // TODO: multilingual?
                             {"code": "2030", "label": "2030", "selected": true},
                             {"code": "2050", "label": "2050", "selected": false}
                         ]
@@ -139,9 +134,9 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions by country (CO2 equivalent)",
-                                fr: "Émissions par pays (CO2 équivalent)",
-                                es: "Emisiones por país (CO2 equivalente)"
+                                en: "Emissions by country (CO2 equivalent), {{item}}",
+                                fr: "Émissions par pays (CO2 équivalent), {{item}}",
+                                es: "Emisiones por país (CO2 equivalente), {{item}}",
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -176,9 +171,9 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions (CO2 equivalent)",
-                                fr: "Émissions (CO2 équivalent)",
-                                es: "Emisiones (CO2 equivalente)"
+                                en: "Emissions by continent (CO2 equivalent), {{item}}",
+                                fr: "Émissions par continent (CO2 équivalent), {{item}}",
+                                es: "Emisiones por continente (CO2 equivalente), {{item}}"
                             },
                             subtitle: ""
                         }
@@ -219,9 +214,9 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions (CO2 equivalent)",
-                                fr: "Émissions (CO2 équivalent)",
-                                es: "Emisiones (CO2 equivalente)"
+                                en: "Emissions by continent (CO2 equivalent), {{item}}",
+                                fr: "Émissions par continent (CO2 équivalent), {{item}}",
+                                es: "Emisiones por continente (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -258,9 +253,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by sector",
-                                fr: "Émissions par secteur",
-                                es: "Emissions por sector"
+                                en: "Emissions by sector, {{area}}",
+                                fr: "Émissions par secteur, {{area}}",
+                                es: "Emissions por sector, {{area}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -278,11 +273,20 @@ define([
                         template: {
                             height: '250px'
                         },
-                        creator: {}
+                        creator: {
+                            chartObj: {
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                }
+                            }
+                        }
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],
                     filter: {
-                        List3Codes: [5067,
+                        List3Codes: [
+                            5067,
                             5058,
                             5059,
                             5060,
