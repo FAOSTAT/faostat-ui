@@ -11,9 +11,9 @@ define([
 
         "comment": {
             "text": {
-              "en": "Emissions/removals of carbon dioxide associated with forest and net forest conversion",
-              "es": "Emisiones/absorciones de dióxido de carbono asociadas con foresta y conversión neta de bosque",
-              "fr": "Émissions/absorptions de dioxyde de carbone associés à la forêt et à la conversion nette de forêt"
+                "en": "Emissions of carbon dioxide currently limited to cultivation of histosols",
+                "fr": "Émissions de dioxyde de carbone actuellement limitées à la culture de histosols",
+                "es": "Emisiones de dióxido de carbono limitadas actualmente a la cultivación de histosoles"
             }
             //,pdf: "GT.pdf"
         },
@@ -21,14 +21,13 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GF"]
+                "domain_code": ["GC"]
             },
 
             items: [
                 {
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
                     //"title": "title",
                     "componentType": {
@@ -37,7 +36,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["6749"],
+                        "defaultCodes": ["6727"],
                         "filter": {
                         }
                     }
@@ -82,7 +81,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GF'],
+                domain_codes: ['GC'],
                 List2Codes: ["7217"],
                 List5Codes: null,
                 List6Codes: null,
@@ -101,7 +100,6 @@ define([
                 default: {
                 }
             },
-
 
             //bridge configuration
             bridge: {
@@ -138,16 +136,8 @@ define([
                     //height:'250px',
                     config: {
                         layer: {
-                           // colorramp: "YlOrRd",
-                            //intervals: 7,
-                            //classificationtype: "percentiles"
-                            colors: ['#004529', '#238B45', '#74C476', '#E1E1E1', '#FFD34A', '#FF9400', '#DE0000'],
-                            ranges: [-20000,-10000,-1,1,10000,100000],
-                            classification: "custom"
-
-                            //colors: "004529,238B45,74C476,E1E1E1,FFD34A,FF9400,DE0000",
-                            //ranges: "-20000,-10000,-1,1,10000,100000"
-                            // intervals: 3,
+                            colorramp: "YlOrRd",
+                            intervals: 7
                         },
                         template: {
 
@@ -160,41 +150,6 @@ define([
                         List1Codes: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    // labels?
-                    labels: {
-                        // template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Net emissions/removals (CO2 equivalent), {{item}}",
-                                fr: "Net émissions/absorptions (CO2 équivalent), {{item}}",
-                                es: "Emisiones/absorciones netas (CO2 equivalente), {{item}}"
-                            },
-                            subtitle: "{{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "timeserie",
-                            xDimensions: 'year',
-                            yDimensions: 'unit',
-                            valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
-                        },
-                        template: {},
-                        creator: {}
-                    },
-                    allowedFilter: ['area', 'year', 'item'],
-                    deniedOnLoadFilter: ['area'],
-                    filter: {
-                        List1Codes: ["5000", "5848", "5849"]
                     }
                 },
                 {
@@ -215,22 +170,16 @@ define([
                     config: {
                         adapter: {
                             adapterType: 'faostat',
-                            type: "standard",
-                            xDimensions: ["element"],
-                            yDimensions: ["unit"],
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
                             valueDimensions: 'value',
                             seriesDimensions: ['area']
                         },
                         template: {
                             height: '250px'
                         },
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
+                        creator: {}
                     },
                     allowedFilter: ['year', 'item', 'aggregation'],
                     filter: {
@@ -249,9 +198,9 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                "en": "Top 10 source countries (CO2 equivalent), {{item}}",
-                                "fr": "10 principaux pays sources (CO2 équivalent), {{item}}",
-                                "es": "10 principales países fuentes (CO2 equivalente), {{item}}",
+                                en: "Top 10 emitters (CO2 equivalent), {{item}}",
+                                fr: "Principaux 10 émetteurs (CO2 équivalent), {{item}}",
+                                es: "Principales 10 emisores (CO2 equivalente), {{item}}",
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -284,53 +233,6 @@ define([
                         List1Codes: ["5000>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
-                        "limit": '10'
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    // labels?
-                    labels: {
-                        // template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                "en": "Top 10 sink countries (CO2 equivalent), {{item}}",
-                                "fr": "10 principaux pays puits (CO2 équivalent), {{item}}",
-                                "es": "10 principales países sumidero (CO2 equivalente), {{item}}"
-                            },
-                            subtitle: "{{aggregation}} {{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "standard",
-                            xDimensions: ['element'],
-                            yDimensions: 'unit',
-                            valueDimensions: 'value',
-                            seriesDimensions: ['area']
-                        },
-                        template: {
-                            height:'250px'
-                            // default labels to be applied
-                        },
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['year', 'item', 'aggregation'],
-                    deniedTemplateFilter: [],
-                    filter: {
-                        List1Codes: ["5000>"],
-                        "group_by": 'year',
-                        "order_by": 'value ASC',
                         "limit": '10'
                     }
                 }
