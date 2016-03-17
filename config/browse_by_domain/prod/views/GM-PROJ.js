@@ -72,19 +72,17 @@ define([
                 },
                 {
                     "id": "year",
-                    "type": "static",
+                    "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
                         "class": "col-lg-2",
                         "type": "dropDownList"
                     },
                     "config": {
-                        "defaultCodes": ["2030"],
-                        "data": [
-                            // TODO: multilingual?
-                            {"code": "2030", "label": "2030", "selected": true},
-                            {"code": "2050", "label": "2050", "selected": false}
-                        ]
+                        "dimension_id": "yearprojections",
+                        "defaultCodes": ['2030'],
+                        "filter": {
+                        }
                     }
                 }
             ]

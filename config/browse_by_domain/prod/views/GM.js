@@ -79,7 +79,7 @@ define([
                         "type": "dropDownList-timerange"
                     },
                     "config": {
-                        "dimension_id": "year",
+                        "dimension_id": "years",
                         "defaultCodes": ['1990'],
                         "filter": {
                         }

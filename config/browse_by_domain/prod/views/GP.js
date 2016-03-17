@@ -12,20 +12,20 @@ define([
         "relatedViews" : [
             {
                 title: i18n.tab_ghg_main,
-                id: 'GY',
+                id: 'GP',
                 selected: true
             },
             {
                 title: i18n.projections,
-                id: 'GY-PROJ'
+                id: 'GP-PROJ'
             }
         ],
 
         "comment": {
             "text": {
-                "en": "Emissions of methane produced in digestive systems of livestock",
-                "fr": "Émissions de méthane produites dans les systèmes digestifs des animaux d'élevage",
-                "es": "Emisiones de metano producidas en los sistemas digestivos de los animales"
+                "en": "Emissions of nitrous oxide from manure left by grazing livestock on agricultural soils",
+                "fr": "Émissions de oxyde nitreux provenant du fumier laissé par le pâturage du bétail sur les sols agricoles",
+                "es": "Emisiones de óxido nitroso procedentes del estiércol dejado por el ganado en terrenos agrícolas"
             }
             //,pdf: "GT.pdf"
         },
@@ -33,10 +33,27 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GY"]
+                "domain_code": ["GP"]
             },
 
             items: [
+                {
+                    "id": "item",
+                    "type": "codelist",
+                    // TODO: in theory that should come from the dimensions schema!!
+                    "parameter": "List3Codes",
+                    //"title": "title",
+                    "componentType": {
+                        "class": "col-lg-3",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "dimension_id": "item",
+                        "defaultCodes": ["1755"],
+                        "filter": {
+                        }
+                    }
+                },
                 {
                     // id to be applied on the getData request
                     "id": "area",
@@ -77,9 +94,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GY'],
-                List2Codes: ["72313"],
-                List3Codes: ["3102"],
+                domain_codes: ['GP'],
+                List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
