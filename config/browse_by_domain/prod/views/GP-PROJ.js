@@ -12,20 +12,20 @@ define([
         "relatedViews" : [
             {
                 title: i18n.tab_ghg_main,
-                id: 'G1'
+                id: 'GP'
             },
             {
                 title: i18n.projections,
-                id: 'G1-PROJ',
+                id: 'GP-PROJ',
                 selected: true
             }
         ],
 
         "comment": {
             "text": {
-                "en": "Emissions of methane and nitrous oxide produced from agricultural activities",
-                "es": "Emisiones de metano y óxido nitroso producido por las actividades agrícolas",
-                "fr": "Émissions de méthane et d'oxyde nitreux provenant des activités agricoles"
+                "en": "Emissions of nitrous oxide from manure left by grazing livestock on agricultural soils",
+                "fr": "Émissions de oxyde nitreux provenant du fumier laissé par le pâturage du bétail sur les sols agricoles",
+                "es": "Emisiones de óxido nitroso procedentes del estiércol dejado por el ganado en terrenos agrícolas"
             }
             //,pdf: "GT.pdf"
         },
@@ -33,13 +33,14 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GT"]
+                "domain_code": ["GP"]
             },
 
             items: [
                 {
                     "id": "item",
                     "type": "codelist",
+                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
                     "componentType": {
                         "class": "col-lg-3",
@@ -47,7 +48,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1711"],
+                        "defaultCodes": ["1755"],
                         "filter": {
                         }
                     }
@@ -60,11 +61,13 @@ define([
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList"
+                        //"multiple": true
                     },
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
-                        "filter": {}
+                        "filter": {
+                        }
                     }
                 },
                 {
@@ -89,7 +92,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GT'],
+                domain_codes: ['GP'],
                 List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,
@@ -113,7 +116,7 @@ define([
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
 
             },
@@ -135,7 +138,7 @@ define([
                             title: {
                                 en: "Emissions by country (CO2 equivalent), {{item}}",
                                 fr: "Émissions par pays (CO2 équivalent), {{item}}",
-                                es: "Emisiones por país (CO2 equivalente), {{item}}",
+                                es: "Emisiones por país (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -252,9 +255,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by sector, {{area}}",
-                                fr: "Émissions par secteur, {{area}}",
-                                es: "Emissions por sector, {{area}}"
+                                en: "Emissions by animal type (CO2 equivalent), {{area}}",
+                                fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
+                                es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -277,24 +280,11 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],
                     filter: {
-                        List3Codes: [
-                            5067,
-                            5058,
-                            5059,
-                            5060,
-                            5061,
-                            5062,
-                            5063,
-                            5064,
-                            5066,
-                            //1709,
-                            6759
-                        ],
-                        "order_by": 'item'
+                        List3Codes: ["1755>"],
                     }
                 }
             ]
         }
 
-    }
+    };
 });

@@ -276,13 +276,6 @@ define([
                             height: '250px'
                         },
                         creator: {
-                            chartObj: {
-                                legend: {
-                                    layout: 'vertical',
-                                    align: 'right',
-                                    verticalAlign: 'middle'
-                                }
-                            }
                         }
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],
