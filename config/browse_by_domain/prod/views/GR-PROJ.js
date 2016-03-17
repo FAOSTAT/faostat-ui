@@ -12,20 +12,20 @@ define([
         "relatedViews" : [
             {
                 title: i18n.tab_ghg_main,
-                id: 'GE'
+                id: 'GR'
             },
             {
                 title: i18n.projections,
-                id: 'GE-PROJ',
+                id: 'GR-PROJ',
                 selected: true
             }
         ],
 
         "comment": {
             "text": {
-                "en": "Emissions of methane produced in digestive systems of livestock",
-                "fr": "Émissions de méthane produites dans les systèmes digestifs des animaux d'élevage",
-                "es": "Emisiones de metano producidas en los sistemas digestivos de los animales"
+                "en": "Emissions of methane from paddy fields",
+                "fr": "Émissions de méthane provenant des rizières",
+                "es": "Emisiones de metano producidas por los arrozales"
             }
             //,pdf: "GT.pdf"
         },
@@ -33,7 +33,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GE"]
+                "domain_code": ["GR"]
             },
 
             items: [
@@ -48,7 +48,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1755"],
+                        "defaultCodes": ["27"],
                         "filter": {
                         }
                     }
@@ -94,7 +94,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GE'],
+                domain_codes: ['GR'],
                 List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,
@@ -248,48 +248,6 @@ define([
                     deniedOnLoadFilter: [],
                     filter: {
                         List1Codes: ["5100", "5200", "5300", "5400", "5500"]
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    labels: {
-                        template: {
-                            title: {
-                                en: "Emissions by animal type (CO2 equivalent), {{area}}",
-                                fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
-                                es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
-                            },
-                            subtitle: "{{aggregation}} {{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
-                            valueDimensions: 'value',
-                            seriesDimensions: ['item']
-                        },
-                        template: {
-                            height: '250px'
-                        },
-                        creator: {
-                            chartObj: {
-                                legend: {
-                                    layout: 'vertical',
-                                    align: 'right',
-                                    verticalAlign: 'middle'
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['area', 'year', 'aggregation'],
-                    filter: {
-                        List3Codes: ["1755>"],
                     }
                 }
             ]

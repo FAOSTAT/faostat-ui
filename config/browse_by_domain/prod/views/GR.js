@@ -12,20 +12,20 @@ define([
         "relatedViews" : [
             {
                 title: i18n.tab_ghg_main,
-                id: 'GE'
+                id: 'GR',
+                selected: true
             },
             {
                 title: i18n.projections,
-                id: 'GE-PROJ',
-                selected: true
+                id: 'GR-PROJ'
             }
         ],
 
         "comment": {
             "text": {
-                "en": "Emissions of methane produced in digestive systems of livestock",
-                "fr": "Émissions de méthane produites dans les systèmes digestifs des animaux d'élevage",
-                "es": "Emisiones de metano producidas en los sistemas digestivos de los animales"
+                "en": "Emissions of methane from paddy fields",
+                "fr": "Émissions de méthane provenant des rizières",
+                "es": "Emisiones de metano producidas por los arrozales"
             }
             //,pdf: "GT.pdf"
         },
@@ -33,22 +33,22 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GE"]
+                "domain_code": ["GR"]
             },
 
             items: [
                 {
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
+                    //"title": "title",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList"
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1755"],
+                        "defaultCodes": ["27"],
                         "filter": {
                         }
                     }
@@ -72,21 +72,20 @@ define([
                 },
                 {
                     "id": "year",
-                    "type": "static",
+                    "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
                         "class": "col-lg-2",
-                        "type": "dropDownList"
+                        "type": "dropDownList-timerange"
                     },
                     "config": {
-                        "defaultCodes": ["2030"],
-                        "data": [
-                            // TODO: multilingual?
-                            {"code": "2030", "label": "2030", "selected": true},
-                            {"code": "2050", "label": "2050", "selected": false}
-                        ]
+                        "dimension_id": "year",
+                        "defaultCodes": ['1990'],
+                        "filter": {
+                        }
                     }
-                }
+                },
+                C.filter.aggregation
             ]
         },
 
@@ -94,7 +93,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GE'],
+                domain_codes: ['GR'],
                 List2Codes: ["7231"],
                 List5Codes: null,
                 List6Codes: null,
@@ -113,7 +112,6 @@ define([
                 default: {
                 }
             },
-
 
             //bridge configuration
             bridge: {
@@ -157,13 +155,13 @@ define([
 
                         }
                     },
-                    allowedFilter: ['item', 'year', 'element'],
+                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"]
-                        //"group_by": 'year',
-                        //"order_by": 'area'
+                        List1Codes: ["5000>", "351"],
+                        "group_by": 'year',
+                        "order_by": 'area'
                     }
                 },
                 {
@@ -177,50 +175,7 @@ define([
                             title: {
                                 en: "Emissions (CO2 equivalent), {{item}}",
                                 fr: "Émissions (CO2 équivalent), {{item}}",
-                                es: "Emisiones (CO2 equivalente), {{item}}"
-                            },
-                            subtitle: ""
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "standard",
-                            xDimensions: 'area',
-                            yDimensions: 'unit',
-                            valueDimensions: 'value',
-                            seriesDimensions: ['year']
-                        },
-                        template: {},
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
-                    },
-                    allowedFilter: ['area', 'item'],
-                    deniedOnLoadFilter: ['area'],
-                    filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        List4Codes: ["2030", "2050"]
-                        // TODO: baseline 2005-2006-2007
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    // labels?
-                    labels: {
-                        // template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Emissions by continent (CO2 equivalent), {{item}}",
-                                fr: "Émissions par continent (CO2 équivalent), {{item}}",
-                                es: "Emisiones por continente (CO2 equivalente), {{item}}"
+                                es: "Emisiones (CO2 equivalente), {{item}}",
                             },
                             subtitle: "{{year}}"
                         }
@@ -229,25 +184,19 @@ define([
                     config: {
                         adapter: {
                             adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
+                            type: "timeserie",
+                            xDimensions: 'year',
+                            yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['area', 'item', 'element']
                         },
                         template: {},
-                        creator: {
-                            chartObj: {
-                                chart: {
-                                    type: "column"
-                                }
-                            }
-                        }
+                        creator: {}
                     },
-                    allowedFilter: ['year', 'item'],
-                    deniedOnLoadFilter: [],
+                    allowedFilter: ['area', 'year', 'item'],
+                    deniedOnLoadFilter: ['area'],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"]
+                        List1Codes: ["5000", "5848", "5849"]
                     }
                 },
                 {
@@ -257,9 +206,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Emissions by animal type (CO2 equivalent), {{area}}",
-                                fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
-                                es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
+                                en: "Emissions by continent, {{item}}",
+                                fr: "Émissions par continent, {{item}}",
+                                es: "Emisiones por continente, {{item}}",
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -272,24 +221,66 @@ define([
                             xDimensions: null,
                             yDimensions: null,
                             valueDimensions: 'value',
-                            seriesDimensions: ['item']
+                            seriesDimensions: ['area']
                         },
                         template: {
                             height: '250px'
                         },
+                        creator: {}
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    filter: {
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        "group_by": 'year',
+                        "order_by": 'area'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Top 10 emitters (CO2 equivalent), {{item}}",
+                                fr: "Principaux 10 émetteurs (CO2 équivalent), {{item}}",
+                                es: "Principales 10 emisores (CO2 equivalente), {{item}}",
+                            },
+                            subtitle: "{{aggregation}} {{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['element'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {
+                            height:'250px'
+                            // default labels to be applied
+                        },
                         creator: {
                             chartObj: {
-                                legend: {
-                                    layout: 'vertical',
-                                    align: 'right',
-                                    verticalAlign: 'middle'
+                                chart: {
+                                    type: "column"
                                 }
                             }
                         }
                     },
-                    allowedFilter: ['area', 'year', 'aggregation'],
+                    allowedFilter: ['year', 'item', 'aggregation'],
+                    deniedTemplateFilter: [],
                     filter: {
-                        List3Codes: ["1755>"],
+                        List1Codes: ["5000>"],
+                        "group_by": 'year',
+                        "order_by": 'value DESC',
+                        "limit": '10'
                     }
                 }
             ]

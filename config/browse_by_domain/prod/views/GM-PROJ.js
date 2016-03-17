@@ -201,8 +201,8 @@ define([
                             }
                         }
                     },
-                    allowedFilter: ['item'],
-                    deniedOnLoadFilter: [],
+                    allowedFilter: ['area', 'item'],
+                    deniedOnLoadFilter: ['area'],
                     filter: {
                         List1Codes: ["5100", "5200", "5300", "5400", "5500"],
                         List4Codes: ["2030", "2050"]
