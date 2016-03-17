@@ -126,7 +126,7 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Net emissions/removals by country, {{item}}",
+                                en: "Net emissions/removals by country (CO2 equivalent), {{item}}",
                                 fr: "Net émissions/absorptions par pays (CO2 équivalent), {{item}}",
                                 es: "Emisiones/absorciones netas por país (CO2 equivalente), {{item}}",
                             },
