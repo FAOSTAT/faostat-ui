@@ -8,6 +8,7 @@ define([
     'views/base/view',
     'config/Config',
     'config/Events',
+    'config/indicators/Config',
     'text!templates/indicators/indicators.hbs',
     'i18n!nls/indicators',
     'fs-r-t/start',
@@ -19,6 +20,7 @@ define([
              View,
              C,
              E,
+             CM,
              template,
              i18nLabels,
              ReportTable,
@@ -47,7 +49,7 @@ define([
         },
 
         getTemplateData: function () {
-            return i18nLabels;
+            return $.extend(this, {}, i18nLabels, {data: CM.data});
         },
 
         attach: function () {
@@ -85,7 +87,7 @@ define([
                 log.info(response)
             });*/
 
-            api.databean({
+          /*  api.databean({
                 domain_codes: ['QC'],
                 List1Codes: ['2'],
                 List2Codes: ['2510'],
@@ -99,7 +101,7 @@ define([
                 //output_type: 'csv'
             }).then(function (response) {
                 log.info(response);
-            });
+            });*/
 
 
             /*var reportTable = new ReportTable();
