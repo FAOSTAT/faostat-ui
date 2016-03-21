@@ -76,7 +76,7 @@ define([
 
             }).fail(function (error) {
 
-                console.log("FAIL");
+                console.log("FAIL", error);
 
                 // TODO: remove it! This was caused by a wrong produce type in the APIs
                 // TODO: in theory is should not be needed
