@@ -172,7 +172,6 @@ require([
                     /* Google Analytics */
                     "ga": "//www.google-analytics.com/analytics"
 
-
                 },
 
                 shim: {
