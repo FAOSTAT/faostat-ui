@@ -1,6 +1,8 @@
 /*global define, Backbone */
 define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
 
+    var CURRENT_PAGE;
+
     function GoogleAnalyticsManager() {
 
         log.info("GoogleAnalyticsManager; init");
@@ -47,15 +49,23 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
 
     GoogleAnalyticsManager.prototype.pageView = function () {
 
-        log.info("GoogleAnalyticsManager; pageView", Backbone.history.getFragment());
+        if ( this.CURRENT_PAGE !== Backbone.history.getFragment()) {
 
-        // TOD: get page by the fragment?
+            log.info("GoogleAnalyticsManager; pageView", Backbone.history.getFragment());
 
-        ga('set', {
-            page: Backbone.history.getFragment(),
-            title: Backbone.history.getFragment()
-        });
-        ga('send', 'pageview');
+            this.CURRENT_PAGE = Backbone.history.getFragment();
+
+            // TOD: get page by the fragment?
+
+            ga('set', {
+                page: this.CURRENT_PAGE,
+                title: this.CURRENT_PAGE
+            });
+            ga('send', 'pageview');
+
+        }else{
+            log.warn("GoogleAnalyticsManager; page already set", Backbone.history.getFragment(), this.CURRENT_PAGE);
+        }
 
     };
 

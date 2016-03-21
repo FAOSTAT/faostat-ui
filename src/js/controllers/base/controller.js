@@ -16,6 +16,9 @@ define(
 
             amplify.publish(E.SEARCH_BOX_SHOW);
 
+            // TODO: check if it is always worth to set it here
+            amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
+
         }
 
     });
