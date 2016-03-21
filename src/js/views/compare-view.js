@@ -18,7 +18,8 @@ define([
     'fx-c-c/start',
     'fx-ds/itemRenders/tableItem',
     'highcharts-export',
-    'jquery.rangeSlider',
+    //'jquery.rangeSlider',
+    'ion.rangeSlider',
     'amplify'
 ], function ($, log, View, Common, F, C, E, EC, CM, HighchartsTemplate, template, i18nLabels, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
 
@@ -105,7 +106,8 @@ define([
             var filter = this.addFilter();
 
             // init timerange
-            this.$TIMERANGE.rangeSlider(CM.timerange.options);
+            //this.$TIMERANGE.rangeSlider(CM.timerange.options);
+            this.$TIMERANGE.ionRangeSlider(CM.timerange.options);
 
         },
 
@@ -186,9 +188,15 @@ define([
         _retrieveData: function () {
 
             // get years TODO: get all the years in the timerange?
-            var timerange = this.$TIMERANGE.rangeSlider("values"),
+            /*var timerange = this.$TIMERANGE.rangeSlider("values"),
                 minYear = timerange.min,
                 maxYear = timerange.max,
+                years = [];
+            */
+
+            var timerange = this.$TIMERANGE.ionRangeSlider("values"),
+                minYear = timerange.data("from"),
+                maxYear = timerange.data("to"),
                 years = [];
 
             for (var i = minYear; i <= maxYear; i++) {

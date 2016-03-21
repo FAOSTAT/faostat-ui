@@ -8,7 +8,7 @@ define([
     return {
 
         timerange: {
-            options: {
+/*            options: {
                 bounds: {
                     min: 1961,
                     max: 2050
@@ -18,6 +18,18 @@ define([
                     max: 2013
                 },
                 step: 1
+            }*/
+            options: {
+                type: "double",
+                min: 1961,
+                max: 2050,
+                from: 1961,
+                to: 2013,
+                //grid: true,
+                grid_num: 10,
+                step: 1,
+                prettify_enabled: false,
+                drag_interval: true
             }
         },
 

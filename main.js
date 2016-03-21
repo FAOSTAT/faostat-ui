@@ -136,6 +136,7 @@ require([
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
                     'jquery.rangeSlider': '{FENIX_CDN}/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
                     'jquery-ui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
+                    'ion.rangeSlider' : '{FENIX_CDN}/js/ion.rangeSlider/2.1.2/js/ion-rangeSlider/ion.rangeSlider.min',
 
                     //jbPivot: '{FENIX_CDN}/js/jbpivot/0.1.0/jbPivot',
                     jbPivot: '../../submodules/faostat-ui-pivot/dist/js/jbPivot',
@@ -217,6 +218,9 @@ require([
                     },
                     'jquery.rangeSlider': {
                         deps: ['jquery', 'jquery-ui']
+                    },
+                    'ion.rangeSlider': {
+                        deps: ['jquery']
                     },
                     'leaflet-image': {
                         deps: ['leaflet']
