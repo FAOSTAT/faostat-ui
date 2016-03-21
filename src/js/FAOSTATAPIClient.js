@@ -7,7 +7,6 @@ define(['jquery', 'q'], function ($, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            //base_url: 'http://localhost:8081/api/v1.0/'
             base_url: 'http://fenix.fao.org/faostat/api/v1.0/'
         };
 
@@ -1093,10 +1092,10 @@ FAOSTATAPIClient.prototype.apply_documents_defaults = function (config) {
     config = this.apply_suggestions_defaults(config);
     if (this.is_valid_suggestions(config)) {
             return Q($.ajax({
-                url: this.CONFIG.base_url +  config.lang + '/suggestions/' + config.query + '',
+                url: this.CONFIG.base_url +  config.lang + '/suggestions',
                 traditional: true,
                     data: {
-    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key
+    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "q": config.q
 },
                 type: 'GET'
             }));
@@ -1105,7 +1104,7 @@ FAOSTATAPIClient.prototype.apply_documents_defaults = function (config) {
 };
 
     FAOSTATAPIClient.prototype.is_valid_suggestions = function(config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "query"], i;
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "q"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -1116,7 +1115,7 @@ FAOSTATAPIClient.prototype.apply_documents_defaults = function (config) {
 
 FAOSTATAPIClient.prototype.apply_suggestions_defaults = function (config) {
     var i,
-        parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "query"],
+        parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "q"],
         defaults = {
             "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
         },
@@ -1142,10 +1141,10 @@ FAOSTATAPIClient.prototype.apply_suggestions_defaults = function (config) {
     config = this.apply_search_defaults(config);
     if (this.is_valid_search(config)) {
             return Q($.ajax({
-                url: this.CONFIG.base_url +  config.lang + '/search/' + config.query + '',
+                url: this.CONFIG.base_url +  config.lang + '/search',
                 traditional: true,
                     data: {
-    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key
+    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "q": config.q
 },
                 type: 'GET'
             }));
@@ -1154,7 +1153,7 @@ FAOSTATAPIClient.prototype.apply_suggestions_defaults = function (config) {
 };
 
     FAOSTATAPIClient.prototype.is_valid_search = function(config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "query"], i;
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "q"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -1165,7 +1164,7 @@ FAOSTATAPIClient.prototype.apply_suggestions_defaults = function (config) {
 
 FAOSTATAPIClient.prototype.apply_search_defaults = function (config) {
     var i,
-        parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "query"],
+        parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "q"],
         defaults = {
             "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
         },
