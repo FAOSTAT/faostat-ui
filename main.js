@@ -78,8 +78,8 @@ require([
             downloadSelectorConfig, tableConfig, pivotConfig, downloadConfig,
             welcomePageConfig, reportConfig, reportTableConfig],
         {
-            placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
-            //placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn/faostat"},
+            //placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
+            placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn/faostat"},
 
             config: {
 
@@ -133,9 +133,6 @@ require([
 
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
 
-                    // TODO: remove it (download dependency)
-                    wds_client: '../../submodules/fenix-ui-common/js/WDSClient',
-
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
                     'jquery.rangeSlider': '{FENIX_CDN}/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
                     'jquery-ui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
@@ -169,8 +166,13 @@ require([
                     'fenix-ui-map': '../../submodules/fenix-ui-map/dist/fenix-ui-map.min',
                     'fenix-ui-map-config': '../../submodules/fenix-ui-map/dist/fenix-ui-map-config',
 
+                    // PDFs
+                    'jspdf': '{FENIX_CDN}/js/jspdf/1.2.61/jspdf.debug',
+
                     /* Google Analytics */
                     "ga": "//www.google-analytics.com/analytics"
+
+
                 },
 
                 shim: {
@@ -222,6 +224,9 @@ require([
                     },
                     "ga": {
                         exports: "__ga__"
+                    },
+                    jspdf: {
+                        exports: 'jsPDF'
                     }
                 }
             }
