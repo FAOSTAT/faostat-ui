@@ -329,6 +329,9 @@ define([
                 container: this.$SEARCH_RESULTS
             });
 
+            //log.info(query, escape(query), encodeURIComponent(query))
+            //log.info(query, unescape(query), decodeURIComponent(query))
+
             // TODO: use this API for caching the groups and domains? or the domainstree with 'search' parameter?
             // caching domains
             this.api.groupsanddomains({
@@ -342,7 +345,7 @@ define([
                 self.api.search({
                     datasource: C.DATASOURCE,
                     lang: self.o.lang,
-                    query: query
+                    q: query
 
                 }).then(function(results) {
 
@@ -372,7 +375,9 @@ define([
                     searchQuery: function(q) {
 
                         // route to search page
-                        Common.changeURL(ROUTE.SEARCH_QUERY, [escape(q)], true);
+                        //Common.changeURL(ROUTE.SEARCH_QUERY, [escape(q)], true);
+                        Common.changeURL(ROUTE.SEARCH_QUERY, [encodeURIComponent(q)], true);
+                        //Common.changeURL(ROUTE.SEARCH_QUERY, [encodeURI(q)], true);
 
                     }
                 }

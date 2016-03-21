@@ -70,7 +70,7 @@ define([
                     self.api.suggestions({
                         datasource: C.DATASOURCE,
                         lang: self.o.lang,
-                        query: obj.url
+                        q: obj.url
                     }).then(function(d) {
                         onSuccess(d.data);
                         //return d.data;
@@ -93,7 +93,8 @@ define([
 
         // adding query value if needed
         if ( this.o.query) {
-            this.$SEARCH_BOX.val(unescape(this.o.query));
+            this.$SEARCH_BOX.val(decodeURIComponent(this.o.query));
+            //this.$SEARCH_BOX.val(decodeURI(this.o.query));
         }
 
         this.$SEARCH_BOX.typeahead({
@@ -122,8 +123,6 @@ define([
                 if (e.keyCode === 13) {
 
                     if (e.target && e.target.value && e.target.value !== '') {
-
-                        log.info(e.target.value);
 
                         self.$SEARCH_BOX.typeahead('close');
 

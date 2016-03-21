@@ -147,9 +147,16 @@ define([
 
         initComponents: function () {
 
-            //var self = this;
+            this.initMenu();
+            this.initSearchBox();
 
-            /* FAOSTAT menu. */
+            // init breadcrumb (N.B. not used)
+            this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
+
+        },
+
+        initMenu: function() {
+
             /* Initiate the menu. */
             this.menu = new FAOSTATMenu();
             // TODO: fix menu language and check how is it taken
@@ -159,6 +166,10 @@ define([
                 datasource: C.DATASOURCE
             });
 
+        },
+
+        initSearchBox: function() {
+
             this.searchBox =  new SearchBox();
             this.searchBox.init({
                 container: s.SEARCH,
@@ -166,13 +177,12 @@ define([
                     searchQuery: function(q) {
 
                         // route to search page
-                        Common.changeURL(ROUTES.SEARCH_QUERY, [escape(q)], true);
+                        Common.changeURL(ROUTES.SEARCH_QUERY, [encodeURIComponent(q)], true);
+                        //Common.changeURL(ROUTES.SEARCH_QUERY, [encodeURI(q)], true);
 
                     }
                 }
             });
-
-            this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
 
         },
 
