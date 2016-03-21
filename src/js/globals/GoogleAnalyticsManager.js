@@ -3,7 +3,7 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
 
     function GoogleAnalyticsManager() {
 
-        //log.info("INIT GoogleAnalyticsManager");
+        log.info("GoogleAnalyticsManager; init");
 
         // traking page
         ga('create', C.GOOGLE_ANALYTICS_ID, "auto");
@@ -13,6 +13,8 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
     }
 
     GoogleAnalyticsManager.prototype.event = function (data) {
+
+        log.info("GoogleAnalyticsManager; event");
 
         // TODO: get category dynamically (CONFIGURATION FILE?)
         //var category = ''
@@ -45,7 +47,7 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
 
     GoogleAnalyticsManager.prototype.pageView = function () {
 
-        log.info("GA Page view: " + Backbone.history.getFragment());
+        log.info("GoogleAnalyticsManager; pageView", Backbone.history.getFragment());
 
         // TOD: get page by the fragment?
 

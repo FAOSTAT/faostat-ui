@@ -20,6 +20,8 @@ define(['chaplin',
 
     Common.prototype.changeURL = function (name, options, reload) {
 
+        log.info("Common.changeURL;", name, options, reload);
+
         var reload = reload || false;
 
         //if (reload) {
@@ -39,11 +41,14 @@ define(['chaplin',
             Backbone.history.navigate(uri, {trigger: reload});
 
             // Google Analytics change page
+            log.info("Common.changeURL; google analytics page_view");
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
         }
     };
 
     Common.prototype.getURI = function (name, options) {
+
+        log.info("Common.getURI;", name, options);
 
         // add as first element the language
         options.unshift(this.getLocale());
@@ -83,7 +88,7 @@ define(['chaplin',
         this.setLocale(lang)
         window.location.replace(uri);
         window.location.reload();
-    },
+    };
 
     Common.prototype.updateQueryStringParameter = function(uri, key, value) {
         var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
