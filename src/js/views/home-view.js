@@ -172,7 +172,12 @@ define([
 
                 var t = Handlebars.compile(templateDomains);
                 //self.$DOMAINS.hide().html(t(json)).slideDown(1000);
-                self.$DOMAINS.html(t(groups));
+                self.$DOMAINS.html(t(
+                {
+                    groups: groups,
+                    download: i18nLabels.download,
+                    browse: i18nLabels.browse
+                }));
 
                 // add listeners on domains
                 self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
@@ -295,7 +300,7 @@ define([
 
                 _.each(sortedDomains, function(domain, index) {
 
-                    log.info(domain, index);
+                    //log.info(domain, index);
 
                     if (index < CM.MAX_DATABASE_UPDATES) {
 
