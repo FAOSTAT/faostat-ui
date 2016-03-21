@@ -5,15 +5,15 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-        "tree_title": "FAOSTAT Domains",
         "browse_by_domain": "By Domain",
-        "browse_by_country": "By Country/Region",
+        "browse_by_country": "By Country",
         "rankings": "Rankings",
+        "by_rankings": "By Rankings",
 
-        "map_footer": "Las denominaciones empleadas en los mapas y la forma en que aparecen presentados los datos no implican, por parte de la FAO, juicio alguno sobre la condición jurídica de países, territorios o zonas marítimas, ni respecto de la delimitación de sus fronteras. Sudán del Sur declaró su independencia el 9 de julio de 2011. Debido a la disponibilidad de datos, la evaluación presentada en el mapa para Sudán y Sudán del Sur refleja la situación hasta el año 2011 para la antigua Sudán.",
+        map_footer: "<i>The designations employed and the presentation of material in the maps do not imply the expression of any opinion whatsoever on the part of FAO concerning the legal or constitutional status of any country, territory or sea area, or concerning the delimitation of frontiers.                    South Sudan declared its independence on July 9, 2011. Due to data availability, the assessment presented in the map for Sudan and South Sudan reflects the situation up to 2011 for the former Sudan.</i>",
 
         // TODO: leave the sum/average here?
-        "average": "Promedio",
-        "sum": "Suma"
+        "average": "Average",
+        "sum": "Sum"
     });
 });

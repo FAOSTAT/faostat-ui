@@ -10,9 +10,11 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         toyear: 'To Year',
         countries: 'Countries',
         items: 'Items',
+        element: 'Element',
         aggregation: 'Aggregation',
         average: 'Average',
-        sum: 'Sum'
+        sum: 'Sum',
+        please_select_an_option: 'Please select an option'
 
     });
 });
