@@ -9,6 +9,9 @@ define(['jquery', 'loglevel', 'underscore.string'], function ($, log, _s) {
                     "DATASOURCE": "production",
                     "LOGLEVEL": "error", // trace/debug/info/warn/error
 
+                    // Google Analytics ID
+                    "GOOGLE_ANALYTICS_ID": "UA-68486942-1",
+
                     // URLs
                     "URL_PDF_BASEPATH": "http://faostat3.fao.org/modules/faostat-download-js/PDF/",
                     "URL_FEEDBACK_SYSTEM": "http://fenixapps.fao.org/feedbacksystem/",
