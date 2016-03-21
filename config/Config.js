@@ -6,6 +6,10 @@ define(['jquery', 'loglevel', 'underscore.string'], function ($, log, _s) {
             var host = document.location.hostname,
                 DEFAULT = {
 
+/*                    "DATASOURCE": function() {
+                        var datasources = ["production", "test"];
+                        return datasources[Math.floor(Math.random()*datasources.length)];
+                    },*/
                     "DATASOURCE": "production",
                     "LOGLEVEL": "error", // trace/debug/info/warn/error
 
@@ -40,7 +44,7 @@ define(['jquery', 'loglevel', 'underscore.string'], function ($, log, _s) {
                 return $.extend(true, {}, DEFAULT, {
 
                     // Configuration
-                    "GOOGLE_ANALYTICS_ID": "",
+                   // "GOOGLE_ANALYTICS_ID": "",
                     "LOGLEVEL": "trace" // trace/debug/info/warn/error
 
                 });
