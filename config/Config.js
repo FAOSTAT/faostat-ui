@@ -6,7 +6,7 @@ define(['jquery', 'loglevel', 'underscore.string'], function ($, log, _s) {
             var host = document.location.hostname,
                 DEFAULT = {
 
-/*                    "DATASOURCE": function() {
+                    /*"DATASOURCE": function() {
                         var datasources = ["production", "test"];
                         return datasources[Math.floor(Math.random()*datasources.length)];
                     },*/
