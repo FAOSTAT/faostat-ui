@@ -1,4 +1,4 @@
-/*global define,Q, amplify*/
+/*global define, Q, amplify*/
 define(['jquery', 'q' , 'amplify'], function ($, Q) {
 
     'use strict';
@@ -7,7 +7,7 @@ define(['jquery', 'q' , 'amplify'], function ($, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            base_url: 'http://fenix.fao.org/api/v1.0/'
+            base_url: 'http://fenix.fao.org/faostat/api/v1.0/'
         };
 
         /* Extend default configuration. */
@@ -37,7 +37,7 @@ define(['jquery', 'q' , 'amplify'], function ($, Q) {
                         data: data,
                     type: 'POST'
                 })).then(function (d) {
-                    <!-- TODO: this should be at the schema level for each request and not a global one -->
+                    // <!-- TODO: this should be at the schema level for each request and not a global one -->
                     try {
                         amplify.store.sessionStorage(key, d);
                     }catch(e) {

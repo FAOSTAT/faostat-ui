@@ -38,17 +38,28 @@ define(['jquery', 'loglevel', 'underscore.string'], function ($, log, _s) {
                 };
 
             // TODO: remove hardcoded local IP
-            if (_s.contains(host, "localhost") || _s.contains(host, "168.202")) {
+            if (_s.contains(host, "localhost") ||
+                _s.contains(host, "168.202")   ||
+                _s.contains(host, "/dev/"))
+            {
                 return $.extend(true, {}, DEFAULT, {
 
                     // Configuration
-                   // "GOOGLE_ANALYTICS_ID": "",
+                    "GOOGLE_ANALYTICS_ID": "UA-68486942-2",
                     "LOGLEVEL": "trace" // trace/debug/info/warn/error
 
                 });
             }
 
-            return DEFAULT;
+        if (_s.contains(host, "/demo/")) {
+            return $.extend(true, {}, DEFAULT, {
 
+                // Configuration
+                "GOOGLE_ANALYTICS_ID": "UA-68486942-3"
+
+            });
+        }
+
+        return DEFAULT;
 
 });
