@@ -44,9 +44,7 @@ define([
         };
 
     // TODO: remove hardcoded local IP
-    if (_s.contains(host, "localhost") ||
-        _s.contains(host, "168.202"))
-    {
+    if (_s.contains(host, "localhost") || _s.contains(host, "168.202")) {
         return $.extend(true, {}, DEFAULT, {
 
             // Configuration
