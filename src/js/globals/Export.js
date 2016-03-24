@@ -182,8 +182,7 @@ define([
         log.info('EXPORT.saveAs;');
 
         saveAs(blob, filename);
-
-
+        
         function ConvertToCSV(objArray) {
             var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
             var str = '';
@@ -191,15 +190,26 @@ define([
             for (var i = 0; i < array.length; i++) {
                 var line = '';
                 for (var index in array[i]) {
-                    if (line != '') line += ','
 
-                    line += array[i][index];
+                    if (line !== '') {
+                        line += ',';
+                    }
+
+                    line += EscapeCSV(array[i][index]);
                 }
 
                 str += line + '\r\n';
             }
 
             return str;
+        }
+
+        function EscapeCSV(text) {
+
+            // TODO: escaping the ", there should be a check on the character before the " to check if it is not already escaped
+            // return '"' + _s.replaceAll(text, '"', "'") + '"';
+            return '"' + text.replace(/"/g, '""') + '"';
+
         }
 
     };
