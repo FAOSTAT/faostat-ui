@@ -176,6 +176,9 @@ define([
             d = new Date(),
             filename = (options.name) || this.o.name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear();
 
+        // adding the extension
+        filename += ".csv";
+
         log.info('EXPORT.saveAs;');
 
         saveAs(blob, filename);
