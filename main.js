@@ -165,7 +165,8 @@ require([
 
                     // fenix-ui-map
                     'fenix-ui-map': '../../submodules/fenix-ui-map/dist/fenix-ui-map.min',
-                    'fenix-ui-map-config': '../../submodules/fenix-ui-map/dist/fenix-ui-map-config',
+                    //'fenix-ui-map-config': '../../submodules/fenix-ui-map/dist/fenix-ui-map-config',
+                    'fenix-ui-map-config': '../../config/submodules/fx-map/fenix-ui-map-config',
 
                     // PDFs
                     'jspdf': '{FENIX_CDN}/js/jspdf/1.2.61/jspdf.debug',
