@@ -1,10 +1,12 @@
 /*global define, amplify*/
 define([
     'views/base/view',
+    'globals/Common',
+    'config/Routes',
     'text!templates/404.hbs',
     'config/Events',
     'amplify'
-], function (View, template, E) {
+], function (View, Common, ROUTE, template, E) {
 
     'use strict';
 
@@ -22,12 +24,19 @@ define([
 
         attach: function () {
 
-            View.prototype.attach.call(this, arguments);
+            Common.changeURL(ROUTE.HOME, [], true);
+
+           /* View.prototype.attach.call(this, arguments);
 
             //update State
-            amplify.publish(E.STATE_CHANGE, {menu: '404'});
+            amplify.publish(E.STATE_CHANGE, {menu: '404'});*/
+
+
 
         }
+
+
+
     });
 
     return NotFoundView;
