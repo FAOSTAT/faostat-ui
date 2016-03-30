@@ -53,7 +53,12 @@ define([
 
         getTemplateData: function () {
             // add lang
-            return $.extend(true, {locale: Common.getLocale()}, C, i18nLabels);
+            return $.extend(true,
+                {
+                    locale: Common.getLocale()
+                },
+                C,
+                i18nLabels);
         },
 
         attach: function () {
@@ -130,15 +135,6 @@ define([
                     title: i18nLabels.territorial_notes,
                     text: i18nLabels.territorial_notes_info
                 });
-            });
-
-            // feedback system
-            this.$el.find(s.FEEDBACK_SYSTEM).on('click', function(e) {
-
-                e.preventDefault();
-
-                log.warn('The feeback system opens in a popup in faostat3.fao.org');
-                window.open(C.FEEDBACK_SYSTEM_URL, "_target=black");
             });
 
             this.$SEACH_BOX = this.$el.find(s.SEARCH);
