@@ -43,8 +43,22 @@ define([
 
         };
 
+    // Demo
+    if (_s.contains(href, "/demo/")) {
+
+        return $.extend(true, {}, DEFAULT, {
+
+            // Configuration
+            "GOOGLE_ANALYTICS_ID": "UA-68486942-3"
+
+        });
+
+    }
+
+    // Dev localhost
     // TODO: remove hardcoded local IP
     if (_s.contains(host, "localhost") || _s.contains(host, "168.202")) {
+
         return $.extend(true, {}, DEFAULT, {
 
             // Configuration
@@ -55,32 +69,41 @@ define([
         });
     }
 
+    // Dev
     if (_s.contains(href, "/dev/")) {
 
-        $('body')
-            .prepend('<div class="alert alert-warning alert-dismissible fade in" role="alert">' +
-                '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>' +
-                'FAOSTAT is in <strong>DEV</strong> mode. Using <strong>'+ DEFAULT.DATASOURCE.toUpperCase() +'</strong> datasource' +
-                '</div>');
-
-        return $.extend(true, {}, DEFAULT, {
+        var o = {
 
             // Configuration
             "GOOGLE_ANALYTICS_ID": "UA-68486942-2",
             "LOGLEVEL": "trace"
+        };
 
-        });
-    }
+        if (_s.contains(href, "/db3/")) {
+            o.DATASOURCE = "db3";
+        }
 
-    if (_s.contains(href, "/demo/")) {
+        if (_s.contains(href, "/db4/")) {
+            o.DATASOURCE = "db4";
+        }
 
-        return $.extend(true, {}, DEFAULT, {
+        if (_s.contains(href, "/latest/")) {
+            o.DATASOURCE = "production";
+        }
 
-            // Configuration
-            "GOOGLE_ANALYTICS_ID": "UA-68486942-3"
+        if (_s.contains(href, "/internal/")) {
+            o.DATASOURCE = "test";
+        }
 
-        });
+        o = $.extend(true, {}, DEFAULT, o);
 
+        $('body')
+            .prepend('<div class="alert alert-warning alert-dismissible fade in" role="alert">' +
+                '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>' +
+                'FAOSTAT is in <strong>DEV</strong> mode. Using <strong>' + o.DATASOURCE.toUpperCase() + '</strong> datasource' +
+                '</div>');
+
+        return o;
     }
 
     return DEFAULT;
