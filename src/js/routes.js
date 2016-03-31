@@ -39,6 +39,7 @@ define(['config/Routes'], function (ROUTE) {
         match(':lang/faq', 'faq#show', {name: ROUTE.FAQ});
 
         match(':lang/status', 'status#show', {name: ROUTE.FAOSTAT_STATUS});
+        match(':lang/status/configuration', 'configuration#show', {name: ROUTE.FAOSTAT_CONFIGURATION});
 
         match('protected', 'protected#show');
         match('about', 'about#show');

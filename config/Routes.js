@@ -33,7 +33,8 @@ define(function ( ) {
 
         FAQ: "faq",
 
-        FAOSTAT_STATUS: "status"
+        FAOSTAT_STATUS: "status",
+        FAOSTAT_CONFIGURATION: "configuration"
 
     };
 });
