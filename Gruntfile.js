@@ -6,7 +6,9 @@ module.exports = function(grunt) {
     //grunt.loadNpmTasks('grunt-zip');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-rename');
-
+    grunt.loadNpmTasks('grunt-replace');
+    grunt.loadNpmTasks('grunt-config');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -22,36 +24,61 @@ module.exports = function(grunt) {
             ' * \n'+
             ' */\n'
         },
-        clean: {
-            dist: {
-                src: ['dist/war/*']
+
+        config: {
+            dev: {
+                options: {
+                    variables: {
+			'dest': 'dev',
+                        'url_api': 'http://fenix.fao.org/faostat/dev/api/v1.0'
+                    }
+                }
+            },
+            demo: {
+                options: {
+                    variables: {
+			'dest': 'demo',
+                        'url_api': 'http://fenix.fao.org/faostat/demo/api/v1.0'
+                    }
+                }
+            },
+            prod: {
+                options: {
+                    variables: {
+			'dest': 'prod',
+                        'url_api': 'http://fenix.fao.org/faostat/api/v1.0'
+                    }
+                }
             }
         },
 
-        war: {
-            target: {
+        clean: {
+            dist: {
+                src: ['dist/zip/*']
+            }
+        },
+
+        replace: {
+            dist: {
                 options: {
-                    //war_dist_folder: 'dist/war/',    /* Folder where to generate the WAR. */
-                    war_dist_folder: '/home/vortex/Desktop/',
-                    war_name: 'faostat-ui'                    /* The name fo the WAR file (.war will be the extension) */
+                    variables: {
+                        'url_api': '<%= grunt.config.get("url_api") %>'
+                    },
+                    force: true
                 },
                 files: [
                     {
-                        expand: true,
-                        cwd: './',
-                        src: ['**'],
-                        dest: ''
-                    }
+			expand: true, 
+			src: ['src/js/FAOSTATAPIClient.js'], 
+			dest: 'dist/zip//<%= grunt.config.get("dest") %>/faostat-ui/'
+		    }
+			//dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/js/'}
                 ]
             }
         },
 
-        compress: {
+        copy: {
             faostat: {
-                options: {
-                    archive: 'dist/war/faostat-ui.war.zip',
-                    mode: 'zip'
-                },
                 files: [
                     {
                         src: [
@@ -61,26 +88,68 @@ module.exports = function(grunt) {
                             'i18n/**',
                             'submodules/**',
                             'src/**'
+                        ],
+		    	dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/'
+                    }
+                ]
+            }
+        },
+
+        compress: {
+            faostat: {
+                options: {
+                    archive: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui.zip',
+                    mode: 'zip'
+                },
+                files: [
+                    {
+                        src: [
+                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/*',
+                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/config/**',
+                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/dist/**',
+                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/i18n/**',
+                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/submodules/**',
+                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/**'
                         ]
                     }
                 ]
             }
         },
 
-        rename: {
+        /*rename: {
             war: {
                 files: [
-                    {src: ['dist/war/faostat-ui.war.zip'], dest: 'dist/war/faostat-ui.war'}
+                    // {src: ['dist/war/faostat-ui.war.zip'], dest: 'dist/war/faostat-ui.war'}
+                    {src: ['dist/war/faostat-ui.war.zip'], dest: 'dist/war/faostat-ui.zip'}
                 ]
             }
-        }
+        }*/
 
     });
 
-    grunt.registerTask('war', [
+    grunt.registerTask('zip', [
         'clean:dist',
+
+	// dev
+	'config:dev',
+	'copy:faostat',
+        'replace:dist',
         'compress:faostat',
-        'rename:war'
+
+	// demo
+	'config:demo',
+	'copy:faostat',
+        'replace:dist',
+        'compress:faostat',
+
+	// prod
+	'config:prod',
+	'copy:faostat',
+        'replace:dist',
+        'compress:faostat',
+
+
+        //'rename:war'
     ]);
 
 };
