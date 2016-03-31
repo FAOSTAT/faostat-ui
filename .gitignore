@@ -8,3 +8,4 @@ Web.config
 .DS_Store
 /node_modules/
 /resources/
+/build/
