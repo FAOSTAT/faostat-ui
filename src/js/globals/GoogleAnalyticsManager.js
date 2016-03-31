@@ -16,7 +16,10 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
 
     GoogleAnalyticsManager.prototype.event = function (data) {
 
-        log.info("GoogleAnalyticsManager; event");
+        log.info("GoogleAnalyticsManager; event", data, this);
+
+        // set the current pageView (it could be different i.e. using different browser tabs)
+        this.pageView();
 
         // TODO: get category dynamically (CONFIGURATION FILE?)
         //var category = ''

@@ -87,8 +87,8 @@ define([
             amplify.subscribe(E.LOADING_SHOW, this, Loading.show);
             amplify.subscribe(E.LOADING_HIDE, this, Loading.hide);
 
-            amplify.subscribe(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
-            amplify.subscribe(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
+            amplify.subscribe(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager, GoogleAnalyticsManager.pageView);
+            amplify.subscribe(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager, GoogleAnalyticsManager.event);
 
             amplify.subscribe(E.EXPORT_DATA, Export, Export.exportData);
             amplify.subscribe(E.EXPORT_TABLE_HTML, Export, Export.exportTable);
