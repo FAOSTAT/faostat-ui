@@ -30,7 +30,7 @@ module.exports = function(grunt) {
                 options: {
                     variables: {
 			'dest': 'dev',
-                        'url_api': 'http://fenix.fao.org/faostat/dev/api/v1.0'
+                        'url_api': 'http://fenix.fao.org/faostat/dev/api/v1.0/'
                     }
                 }
             },
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
                 options: {
                     variables: {
 			'dest': 'demo',
-                        'url_api': 'http://fenix.fao.org/faostat/demo/api/v1.0'
+                        'url_api': 'http://fenix.fao.org/faostat/demo/api/v1.0/'
                     }
                 }
             },
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                 options: {
                     variables: {
 			'dest': 'prod',
-                        'url_api': 'http://fenix.fao.org/faostat/api/v1.0'
+                        'url_api': 'http://fenix.fao.org/faostat/api/v1.0/'
                     }
                 }
             }
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
 
         clean: {
             dist: {
-                src: ['dist/zip/*']
+                src: ['build/*']
             }
         },
 
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
                     {
 			expand: true, 
 			src: ['src/js/FAOSTATAPIClient.js'], 
-			dest: 'dist/zip//<%= grunt.config.get("dest") %>/faostat-ui/'
+			dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
 		    }
 			//dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/js/'}
                 ]
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
                             'submodules/**',
                             'src/**'
                         ],
-		    	dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/'
+		    	dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
                     }
                 ]
             }
@@ -98,23 +98,25 @@ module.exports = function(grunt) {
         compress: {
             faostat: {
                 options: {
-                    archive: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui.zip',
+                    archive: 'build/<%= grunt.config.get("dest") %>/faostat-ui.zip',
                     mode: 'zip'
                 },
-                files: [
-                    {
-                        src: [
-                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/*',
-                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/config/**',
-                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/dist/**',
-                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/i18n/**',
-                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/submodules/**',
-                            'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/**'
-                        ]
-                    }
-                ]
+		files: [{
+			expand: true, 
+		        cwd: 'build/<%= grunt.config.get("dest") %>/faostat-ui/',
+		        src: [
+		            './*',
+		            'config/**',
+			    // TODO: check if css is enough.
+		            'dist/**',
+		            'i18n/**',
+		            'submodules/**',
+		            'src/**'
+		        ]
+		}]
             }
         },
+
 
         /*rename: {
             war: {
