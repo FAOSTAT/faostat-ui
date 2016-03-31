@@ -125,8 +125,15 @@
 
             <div>
                 <h4>{{follow_faostatistics}}</h4>
-                <a class="twitter-timeline" data-chrome="" height="350" href="https://twitter.com/FAOstatistics" data-widget-id="700247798168551424">Tweets by @FAOstatistics</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                <a id="fs_home_twitter" class="twitter-timeline" data-chrome="" height="350" href="https://twitter.com/FAOstatistics" data-widget-id="700247798168551424">Tweets by @FAOstatistics</a>
+                <script>
+
+                    <!-- TODO: check if is it needed -->
+                    setTimeout(function() {
+                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                    },1500);
+
+                </script>
             </div>
 
         </div>

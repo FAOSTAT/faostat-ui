@@ -53,7 +53,8 @@ define([
         DATABASE_UPDATES: "#fs_home_database_updates",
         RELEASE_CALENDAR: "#fs_home_release_calendar",
         PARTNERS: "#fs_home_partners",
-        COUNTRY_PROFILES: "#fs_home_country_profiles"
+        COUNTRY_PROFILES: "#fs_home_country_profiles",
+        TWITTER: "#fs_home_twitter"
 
     },
         HomeView = View.extend({
@@ -104,6 +105,7 @@ define([
             this.$DATABASE_UPDATES = this.$el.find(s.DATABASE_UPDATES);
             this.$RELEASE_CALENDAR = this.$el.find(s.RELEASE_CALENDAR);
             this.$COUNTRY_PROFILES = this.$el.find(s.COUNTRY_PROFILES);
+            this.$TWITTER = this.$el.find(s.TWITTER);
 
             this.api = new API();
 
@@ -123,6 +125,8 @@ define([
             this.initComingUp();
 
             this.initDatabaseUpdates();
+
+            this.initTwitter();
 
         },
 
@@ -365,6 +369,10 @@ define([
 
         initReleaseCalendar: function() {
 
+        },
+
+        initTwitter: function() {
+           amplify.publish(E.LOADING_SHOW, {container: this.$TWITTER});
         },
 
         bindEventListeners: function () {

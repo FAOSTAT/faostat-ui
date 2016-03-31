@@ -172,7 +172,9 @@ require([
                     'jspdf': '{FENIX_CDN}/js/jspdf/1.2.61/jspdf.debug',
 
                     /* Google Analytics */
-                    "ga": "//www.google-analytics.com/analytics"
+                    // "ga": "//www.google-analytics.com/analytics"
+                    // TODO: not sure about the version (it is taken from www.google-analytics.com/analytics)
+                    "ga":  '{FENIX_CDN}/js/googleanalytics/0.3.7/analytics'
 
                 },
 
