@@ -280,7 +280,7 @@ define([
                         whitelist: [],
                         blacklist: [],
                         subcodelists: null,
-                        show_lists: null,
+                        show_lists: false,
                         show_full_metadata: null,
                         ord: null
                     })
