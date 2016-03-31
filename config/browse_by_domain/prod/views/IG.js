@@ -10,7 +10,8 @@ define([
         filter: {
 
             defaultFilter: {
-                "domain_code": ["IG"]
+                "domain_code": ["IG"],
+                "show_lists": false
             },
 
             items: [

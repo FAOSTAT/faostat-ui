@@ -10,7 +10,9 @@ define([
         filter: {
 
             defaultFilter: {
-                "domain_code": ["QC"]
+                "domain_code": ["QC"],
+                // this force all the filters to avoid the "lists" codes
+                "show_lists": false
             },
 
             items: [
@@ -22,7 +24,7 @@ define([
                     "parameter": "List3Codes",
                     //"title": "title",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
+                        // <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-3",
                         "type": "dropDownList",
                         "multiple": false
@@ -30,8 +32,7 @@ define([
                     "config": {
                         "dimension_id": "items",
                         "defaultCodes": ["27"],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
                 {

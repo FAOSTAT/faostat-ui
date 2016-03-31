@@ -33,7 +33,8 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GU"]
+                "domain_code": ["GU"],
+                "show_lists": false
             },
 
             items: [

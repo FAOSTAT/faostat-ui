@@ -9,7 +9,10 @@ define(function () {
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["EA"]
+                "domain_code": ["EA"],
+                "filter": {
+                    "show_lists": false
+                }
             },
 
             items: [

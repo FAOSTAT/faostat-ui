@@ -21,7 +21,8 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GC"]
+                "domain_code": ["GC"],
+                "show_lists": false
             },
 
             items: [

@@ -42,7 +42,6 @@ define(function () {
 
                 items: [
 
-
                     // FORCE SPACING
                     {
                         type: 'custom',
@@ -1437,6 +1436,16 @@ define(function () {
                             "order_by": 'value DESC',
                             "limit": '10',
                             "operator": "avg"
+                        }
+                    },
+
+                    // FORCE SPACING
+                    {
+                        type: 'custom',
+                        class: 'clearfix',
+                        config: {
+                            template: {},
+                            model: {}
                         }
                     },
 

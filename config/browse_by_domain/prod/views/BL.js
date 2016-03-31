@@ -26,7 +26,9 @@ define([
                     "config": {
                         "dimension_id": "item",
                         "defaultCodes": ["2949"],
-                        "filter": {}
+                        "filter": {
+                            "show_lists": false
+                        }
                     }
                 },
                 {
@@ -41,7 +43,9 @@ define([
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
-                        "filter": {}
+                        "filter": {
+                            "show_lists": false
+                        }
                     }
                 },
                 {

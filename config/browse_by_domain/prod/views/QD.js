@@ -10,7 +10,8 @@ define([
         filter: {
 
             defaultFilter: {
-                "domain_code": ["QD"]
+                "domain_code": ["QD"],
+                "show_lists": false
             },
 
             items: [
@@ -22,7 +23,7 @@ define([
                     "parameter": "List3Codes",
                     //"title": "title",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
+                        // <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-3",
                         "type": "dropDownList",
                         "multiple": false
@@ -46,7 +47,8 @@ define([
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
-                        "filter": {}
+                        "filter": {
+                        }
                     }
                 },
                 {

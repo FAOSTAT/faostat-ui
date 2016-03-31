@@ -26,6 +26,7 @@ define([
                         "dimension_id": "year",
                         "defaultCodes": ['1992'],
                         "filter": {
+                            "show_lists": false
                         }
                     }
                 }

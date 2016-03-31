@@ -7,12 +7,11 @@ define([
 
     return {
 
-        "relatedViews" : [],
-
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["RP"]
+                "domain_code": ["RP"],
+                "show_lists": false
             },
 
             items: [

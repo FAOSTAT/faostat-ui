@@ -9,7 +9,8 @@ define(function () {
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["RL"]
+                "domain_code": ["RL"],
+                "show_lists": false
             },
 
             items: [

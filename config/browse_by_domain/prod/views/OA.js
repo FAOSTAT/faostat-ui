@@ -10,7 +10,8 @@ define([
         filter: {
 
             defaultFilter: {
-                "domain_code": ["OA"]
+                "domain_code": ["OA"],
+                "show_lists": false
             },
 
             items: [

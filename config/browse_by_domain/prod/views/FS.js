@@ -9,7 +9,8 @@ define(function () {
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["FS"]
+                "domain_code": ["FS"],
+                "show_lists": false
             },
 
             items: [

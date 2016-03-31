@@ -33,7 +33,8 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GA"]
+                "domain_code": ["GA"],
+                "show_lists": false
             },
 
             items: [

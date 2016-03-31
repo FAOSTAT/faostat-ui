@@ -12,7 +12,8 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["QI"]
+                "domain_code": ["QI"],
+                "show_lists": false
             },
 
             items: [
@@ -29,7 +30,8 @@ define([
                     "config": {
                         "dimension_id": "item",
                         "defaultCodes": ["2051"],
-                        "filter": {}
+                        "filter": {
+                        }
                     }
                 },
                 {

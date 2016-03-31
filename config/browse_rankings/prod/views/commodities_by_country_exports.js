@@ -9,7 +9,8 @@ define(function () {
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["TP"]
+                "domain_code": ["TP"],
+                "show_lists": false
             },
 
             items: [

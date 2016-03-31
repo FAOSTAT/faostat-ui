@@ -19,7 +19,7 @@ define(function () {
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
+                        // <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-5",
                         "type": "dropDownList"
                         //"multiple": true
@@ -29,6 +29,7 @@ define(function () {
                         //"defaultCodes": ["249"],
                         "defaultCodes": ["5000"],
                         "filter": {
+                            "show_lists": false
                         }
                     }
                 }

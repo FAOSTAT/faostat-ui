@@ -9,7 +9,8 @@ define(function () {
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["QC"]
+                "domain_code": ["QC"],
+                "show_lists": false
             },
 
             items: [

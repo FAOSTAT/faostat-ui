@@ -10,7 +10,8 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["EP"]
+                "domain_code": ["EP"],
+                "show_lists": false
             },
 
             items: [

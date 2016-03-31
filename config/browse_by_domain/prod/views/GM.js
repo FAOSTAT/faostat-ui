@@ -33,7 +33,8 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GM"]
+                "domain_code": ["GM"],
+                "show_lists": false
             },
 
             items: [
@@ -50,6 +51,7 @@ define([
                         "dimension_id": "item",
                         "defaultCodes": ["1755"],
                         "filter": {
+                            
                         }
                     }
                 },

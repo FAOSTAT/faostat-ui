@@ -21,7 +21,8 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["GL"]
+                "domain_code": ["GL"],
+                "show_lists": false
             },
 
             items: [

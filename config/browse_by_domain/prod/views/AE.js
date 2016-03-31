@@ -27,7 +27,9 @@ define([
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["4"],
-                        "filter": {}
+                        "filter": {
+                            "show_lists": false
+                        }
                     }
                 },
                 {
@@ -42,6 +44,7 @@ define([
                         "dimension_id": "year",
                         "defaultCodes": ['2000'],
                         "filter": {
+                            "show_lists": false
                         }
                     }
                 },
