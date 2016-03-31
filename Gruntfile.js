@@ -29,7 +29,7 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     variables: {
-			'dest': 'dev',
+                        'dest': 'dev',
                         'url_api': 'http://fenix.fao.org/faostat/dev/api/v1.0/'
                     }
                 }
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             demo: {
                 options: {
                     variables: {
-			'dest': 'demo',
+                        'dest': 'demo',
                         'url_api': 'http://fenix.fao.org/faostat/demo/api/v1.0/'
                     }
                 }
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
             prod: {
                 options: {
                     variables: {
-			'dest': 'prod',
+                        'dest': 'prod',
                         'url_api': 'http://fenix.fao.org/faostat/api/v1.0/'
                     }
                 }
@@ -68,11 +68,11 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-			expand: true, 
-			src: ['src/js/FAOSTATAPIClient.js'], 
-			dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
-		    }
-			//dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/js/'}
+                        expand: true,
+                        src: ['src/js/FAOSTATAPIClient.js'],
+                        dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
+                    }
+                    //dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/js/'}
                 ]
             }
         },
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
                             'submodules/**',
                             'src/**'
                         ],
-		    	dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
+                        dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
                     }
                 ]
             }
@@ -101,52 +101,52 @@ module.exports = function(grunt) {
                     archive: 'build/<%= grunt.config.get("dest") %>/faostat-ui.zip',
                     mode: 'zip'
                 },
-		files: [{
-			expand: true, 
-		        cwd: 'build/<%= grunt.config.get("dest") %>/faostat-ui/',
-		        src: [
-		            './*',
-		            'config/**',
-			    // TODO: check if css is enough.
-		            'dist/**',
-		            'i18n/**',
-		            'submodules/**',
-		            'src/**'
-		        ]
-		}]
+                files: [{
+                    expand: true,
+                    cwd: 'build/<%= grunt.config.get("dest") %>/faostat-ui/',
+                    src: [
+                        './*',
+                        'config/**',
+                        // TODO: check if css is enough.
+                        'dist/**',
+                        'i18n/**',
+                        'submodules/**',
+                        'src/**'
+                    ]
+                }]
             }
         },
 
 
         /*rename: {
-            war: {
-                files: [
-                    // {src: ['dist/war/faostat-ui.war.zip'], dest: 'dist/war/faostat-ui.war'}
-                    {src: ['dist/war/faostat-ui.war.zip'], dest: 'dist/war/faostat-ui.zip'}
-                ]
-            }
-        }*/
+         war: {
+         files: [
+         // {src: ['dist/war/faostat-ui.war.zip'], dest: 'dist/war/faostat-ui.war'}
+         {src: ['dist/war/faostat-ui.war.zip'], dest: 'dist/war/faostat-ui.zip'}
+         ]
+         }
+         }*/
 
     });
 
     grunt.registerTask('zip', [
         'clean:dist',
 
-	// dev
-	'config:dev',
-	'copy:faostat',
+        // dev
+        'config:dev',
+        'copy:faostat',
         'replace:dist',
         'compress:faostat',
 
-	// demo
-	'config:demo',
-	'copy:faostat',
+        // demo
+        'config:demo',
+        'copy:faostat',
         'replace:dist',
         'compress:faostat',
 
-	// prod
-	'config:prod',
-	'copy:faostat',
+        // prod
+        'config:prod',
+        'copy:faostat',
         'replace:dist',
         'compress:faostat',
 
