@@ -92,7 +92,6 @@ define([
                 this.$VIEW = this.$el.find(s.VIEW);
                 this.$VIEW_NOT_AVAILABLE = this.$el.find(s.VIEW_NOT_AVAILABLE);
 
-
             },
 
             initComponents: function () {
@@ -122,7 +121,7 @@ define([
 
                         }, this),
 
-                        onGroupClick: _.bind(function (callback) {
+                        onGroupClick: _.bind(function () {
 
                             this.$VIEW_CONTAINER.hide();
                             this.$VIEW_NOT_AVAILABLE.show();
@@ -365,7 +364,7 @@ define([
 
             updateDashboard: function(c) {
 
-                var isOnLoad = (c)? c.isOnLoad || false: false,
+                var isOnLoad = c? c.isOnLoad || false: false,
                     isCurrentKey = (c.requestKey === this.o.requestKey);
 
                 if ( isCurrentKey ) {
