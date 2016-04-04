@@ -13,7 +13,6 @@
 @import '../../submodules/fenix-ui-common/css/base/fonts/eldorado/font-eldorado-main';
 @import '../../src/css/components/icons';
 
-
 /* Components */
 @import '../../src/css/components/faostat-tabs';
 @import '../../src/css/components/scroll-up';
@@ -22,17 +21,14 @@
 @import '../../src/css/components/fx-range-slider';
 @import '../../src/css/components/typeahead';
 
-
 /* Third parties */
 @import '../../submodules/fenix-ui-common/css/vendor/fx-jstree';
-
 
 /* Pages */
 @import '../../src/css/pages/home';
 @import '../../src/css/pages/download';
 @import '../../src/css/pages/browse';
 @import '../../src/css/pages/compare';
-
 
 /* Menu and some Header stuff TODO: remove the header related css from here */
 //@import '../../submodules/faostat-ui-menu/css/faostat-ui-menu';
@@ -42,4 +38,3 @@
 //@import '../../submodules/faostat-ui-download-selector/css/faostat-download-selector';
 //@import '../../submodules/faostat-ui-download-options/css/fenix-ui-download-options';
 //@import '../../submodules/faostat-ui-table/css/faostat-ui-table';
-
