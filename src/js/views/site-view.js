@@ -2,27 +2,30 @@
 define([
     'jquery',
     'loglevel',
-    'chaplin',
-    'underscore',
     'config/Config',
     'config/Events',
     'config/Routes',
-    'globals/State',
+    //'globals/State',
     'views/base/view',
-    'globals/AuthManager',
+    //'globals/AuthManager',
     'i18n!nls/site',
     'text!templates/site.hbs',
     'FAOSTAT_UI_MENU',
     'lib/common/waiting',
     'lib/common/loading',
-    'sweetAlert',
     'globals/Common',
     // TODO: move analytics in another section?
     'globals/GoogleAnalyticsManager',
     'globals/Export',
     'lib/search/search-box',
-    'fs-m-v/start'
-], function ($, log, Chaplin, _, C, E, ROUTES, State, View, AuthManager, i18nLabels, template, FAOSTATMenu, Waiting, Loading, swal, Common, GoogleAnalyticsManager, Export, SearchBox, MetadataViewer) {
+    'fs-m-v/start',
+    'sweetAlert',
+], function ($, log, C, E, ROUTES,
+             //State,
+             View,
+             //AuthManager,
+             i18nLabels, template, FAOSTATMenu, Waiting, Loading, Common, GoogleAnalyticsManager, Export, SearchBox, MetadataViewer,
+             swal) {
 
     'use strict';
 
