@@ -8,7 +8,8 @@ define([
         'fs-t-c/adapters/FAOSTAT_adapter',
         /*'lib/table/templates/base_template',
         'lib/table/adapters/FAOSTAT_adapter',*/
-        'i18n!nls/common'
+        'i18n!nls/common',
+        //'screenfull'
     ],
     function ($, log, Common, Handlebars, Template, Adapter, i18n) {
 
@@ -42,6 +43,10 @@ define([
                 }
             }
 
+        },
+
+        s = {
+            FULLSCREEN: '[data-role="fullscreen"]'
         };
 
         function Table() {
@@ -67,6 +72,9 @@ define([
 
             // render table
             this.template.render(this.o);
+
+            // bind events
+            this.bindEventListeners();
 
         };
 
@@ -158,6 +166,20 @@ define([
                 default: return null;
             }
 
+        };
+
+        Table.prototype.bindEventListeners = function() {
+
+          /*  
+          var self = this;
+            
+            this.o.container.find(s.FULLSCREEN).on('click', function() {
+                if (screenfull.enabled) {
+                    screenfull.request($(self.o.container)[0]);
+                }
+            });
+            
+            */
         };
 
         Table.prototype.destroy = function () {
