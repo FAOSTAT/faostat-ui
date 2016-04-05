@@ -9,9 +9,10 @@ define([
     'bloodhound',
     'handlebars',
     'underscore',
+    'underscore.string',
     'faostatapiclient',
     'amplify'
-], function ($, log, C, E, Common, typeahead, Bloodhound, Handlebars, _, FAOSTATAPIClient) {
+], function ($, log, C, E, Common, typeahead, Bloodhound, Handlebars, _, _s, FAOSTATAPIClient) {
 
     'use strict';
 
@@ -63,9 +64,17 @@ define([
             remote: {
                 url: '%QUERY',
                 wildcard: '%QUERY',
+                // escaping the url (this probably is not needed)
+                /* prepare: function(d){
+                    var q = _s.trim(d);
+                    q  = encodeURIComponent(q);
+                    //log.info("prepare", d, q);
+                    return q;
+
+                },*/
                 transport: function (obj, onSuccess, onError) {
 
-                    log.info('SearchBox.prototype.initComponents; request', obj);
+                    log.info('SearchBox.initComponents; request', obj);
 
                     self.api.suggestions({
                         datasource: C.DATASOURCE,
@@ -140,42 +149,6 @@ define([
         this.$SEARCH_BOX.typeahead('val', '');
 
     };
-
-    /*SearchBox.prototype.initComponentsBK = function () {
-
-
-        var self = this;
-
-        var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-            'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-            'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-            'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-            'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-            'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-            'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-            'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-            'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-        ];
-
-        var search = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            // `states` is an array of state names defined in "The Basics"
-            local: states
-
-        });
-
-        this.$SEARCH_BOX.typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            },
-            {
-                name: 'states',
-                source: states
-            });
-
-    };*/
 
     return SearchBox;
 });
