@@ -138,6 +138,8 @@ require([
                     'jquery-ui': '{FENIX_CDN}/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
                     'ion.rangeSlider' : '{FENIX_CDN}/js/ion.rangeSlider/2.1.2/js/ion-rangeSlider/ion.rangeSlider.min',
 
+                    'jquery.visible': '{FENIX_CDN}/js/jquery.visible/1.2.0/jquery.visible.min',
+
                     //jbPivot: '{FENIX_CDN}/js/jbpivot/0.1.0/jbPivot',
                     jbPivot: '../../submodules/faostat-ui-pivot/dist/js/jbPivot',
                     pivot_exporter: '../../submodules/faostat-ui-pivot/src/js/PivotExporter',
@@ -222,6 +224,9 @@ require([
                     },
                     'jquery.rangeSlider': {
                         deps: ['jquery', 'jquery-ui']
+                    },
+                    'jquery.visible': {
+                        deps: ['jquery']
                     },
                     'ion.rangeSlider': {
                         deps: ['jquery']

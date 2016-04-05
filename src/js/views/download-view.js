@@ -119,6 +119,10 @@ define([
 
                         self.changeState();
 
+                        amplify.publish(E.SCROLL_TO_SELECTOR, {
+                            container: self.$MAIN_CONTAINER_TITLE
+                        });
+
                     },
 
                     onTreeRendered: function (callback) {

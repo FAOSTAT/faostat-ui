@@ -20,6 +20,7 @@ define([
     'lib/search/search-box',
     'fs-m-v/start',
     'sweetAlert',
+    'jquery.visible'
 ], function ($, log, C, E, ROUTES,
              //State,
              View,
@@ -199,8 +200,12 @@ define([
 
         scrollTo: function(options) {
 
-            var scrollPos =  $(options.container).offset().top;
-            $(window).scrollTop(scrollPos);
+            if (options && options.container) {
+                if (!$(options.container).visible() || options.force) {
+                    var scrollPos = $(options.container).offset().top;
+                    $(window).scrollTop(scrollPos);
+                }
+            }
 
         },
 
