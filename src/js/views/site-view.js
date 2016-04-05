@@ -102,6 +102,8 @@ define([
 
             amplify.subscribe(E.METADATA_SHOW, this, this.showMetadata);
 
+            amplify.subscribe(E.SCROLL_TO_SELECTOR, this, this.scrollTo);
+
             // publishing GA Events
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
             //amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {});
@@ -194,6 +196,14 @@ define([
             $('html, body').animate({scrollTop: offsetTop}, 400, 'linear');
 
         },
+
+        scrollTo: function(options) {
+
+            var scrollPos =  $(options.container).offset().top;
+            $(window).scrollTop(scrollPos);
+
+        },
+
 
         onStateUpdate: function (s) {
 
