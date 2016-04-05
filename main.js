@@ -127,9 +127,9 @@ require([
                     moment: '{FENIX_CDN}/js/moment/2.9.0/moment-with-locales.min',
                     outdatedbrowser: '{FENIX_CDN}/js/outdatedbrowser/1.1.1/outdatedbrowser.min',
 
-                    typeahead: '//fenixrepo.fao.org/cdn/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
-                    bloodhound: '//cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/bloodhound.min',
-                    bootpag: '//cdnjs.cloudflare.com/ajax/libs/bootpag/1.0.7/jquery.bootpag.min',
+                    typeahead: '{FENIX_CDN}/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
+                    bloodhound: '{FENIX_CDN}/js/bloodhound/0.11.1/bloodhound.min',
+                    bootpag: '{FENIX_CDN}/js/bootpag/1.0.7/jquery.bootpag.min',
 
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
 
@@ -170,6 +170,7 @@ require([
 
                     // PDFs
                     'jspdf': '{FENIX_CDN}/js/jspdf/1.2.61/jspdf.debug',
+                    'screenfull': '{FENIX_CDN}/js/screenfull/3.0.0/screenfull.min',
 
                     /* Google Analytics */
                     // "ga": "//www.google-analytics.com/analytics"
