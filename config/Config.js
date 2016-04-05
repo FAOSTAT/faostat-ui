@@ -17,7 +17,7 @@ define([
              return datasources[Math.floor(Math.random()*datasources.length)];
              },*/
             "DATASOURCE": "production",
-            "LOGLEVEL": "error", // trace/debug/info/warn/error
+            "LOGLEVEL": "silent", // trace/debug/info/warn/error/silent
 
             // Google Analytics ID
             "GOOGLE_ANALYTICS_ID": "UA-68486942-1",
