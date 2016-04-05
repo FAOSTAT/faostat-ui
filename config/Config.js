@@ -27,7 +27,7 @@ define([
             "URL_FEEDBACK_SYSTEM": "http://fenixapps.fao.org/feedbacksystem/",
             "URL_COUNTRY_PROFILES": "http://faostat.fao.org/CountryProfiles/Country_Profile/default.aspx",
             "URL_FAOSTAT_DATABASE_ZIP": "http://faostat3.fao.org/ftp-faostat/Bulk/FAOSTAT.zip",
-            "URL_BULK_DOWNLOADS_BASEPATH": "http://faostat.fao.org/Portals/_Faostat/Downloads/zip_files/",
+            "URL_BULK_DOWNLOADS_BASEPATH": "http://faostat3.fao.org/faostat-bulkdownloads/",
             "URL_FAOSTAT_DOCUMENTS_BASEPATH": 'http://faostat3.fao.org/faostat-documents/',
 
             // EMAIL and TELEPHONE
