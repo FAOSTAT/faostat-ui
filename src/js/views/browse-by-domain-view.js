@@ -196,15 +196,6 @@ define([
 
             },
 
-            dispose: function () {
-
-                //log.info("DISPOSE!")
-
-                this.unbindEventListeners();
-
-                View.prototype.dispose.call(this, arguments);
-            },
-
             // TODO: move to a common area for all the modules? (create a submodule?)
             createView: function(c) {
 
@@ -233,7 +224,7 @@ define([
 
                     // update related views
                     // TODO: review the relatedViews template part
-                    if ( updatedRelatedViews) {
+                    if (updatedRelatedViews) {
                         ViewUtils.addRelatedViews(this.$RELATED_VIEWS, view, _.bind(this.createView, this));
                     }
 
@@ -282,7 +273,6 @@ define([
                 }
 
                 this.filterBox = new FilterBox();
-                //log.info(this.filterBox);
 
                 // render filters
                 this.filterBox.render(config, false);
@@ -331,6 +321,15 @@ define([
                     this.dashboard.destroy();
                 }
 
+            },
+
+            dispose: function () {
+
+                //log.info("DISPOSE!")
+
+                this.unbindEventListeners();
+
+                View.prototype.dispose.call(this, arguments);
             }
 
         });

@@ -168,23 +168,16 @@ define([
             labels: []
         };
 
-        var textData = this.$DD.select2('data');
-        if (Array.isArray(textData)){
-            _.each(textData, function(t) {
-                if (t.text) {
-                    f.labels.push(t.text);
-                    //f.labels.push(t.text.trim());
-                }
-            });
-        }
-        else{
-            if (textData.text) {
-                f.labels.push(textData.text);
-                //f.labels.push(textData.text.trim());
-            }
-        }
+        _.each(this.$DD.find(':selected'), function(o) {
+            log.info(o);
+            f.labels.push(o.text);
+        });
+
+        log.info("Filter.getFilterStandard; f.labels:", f.labels);
 
         f.labels = f.labels.join(this.o.labelSeparator);
+
+        log.info("Filter.getFilterStandard; labels:", f.labels);
 
         // TODO: remove the alert?
         if (f.codes.length <= 0) {

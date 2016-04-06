@@ -50,6 +50,9 @@ define([
             template: template,
 
             initialize: function (options) {
+
+                log.info("BrowseRankings.initialize; options", options);
+
                 this.o = $.extend(true, {}, defaultOptions, options);
 
                 this.o.lang = Common.getLocale();
@@ -64,10 +67,13 @@ define([
             },
 
             getTemplateData: function () {
+                log.info("BrowseRankings.getTemplateData;");
                 return i18nLabels;
             },
 
             attach: function () {
+
+                log.info("BrowseRankings.attach;");
 
                 View.prototype.attach.call(this, arguments);
 
@@ -85,6 +91,8 @@ define([
 
             initVariables: function () {
 
+                log.info("BrowseRankings.initVariables;");
+
                 this.$TREE = this.$el.find(s.TREE);
 
                 this.$VIEW_CONTAINER = this.$el.find(s.VIEW_CONTAINER);
@@ -95,6 +103,8 @@ define([
             },
 
             initComponents: function () {
+
+                log.info("BrowseRankings.initComponents;");
 
                 this.tree = new Tree();
                 this.tree.init({
@@ -111,8 +121,6 @@ define([
                             this.o.code = callback.id;
                             this.o.label = callback.label;
 
-                            log.info(this.o);
-
                             // update view
                             this.updateView();
 
@@ -128,7 +136,7 @@ define([
 
                         }, this),
 
-                        onTreeRendered:  _.bind(function (callback) {
+                        onTreeRendered: _.bind(function (callback) {
 
                             this.o.code = callback.id;
                             this.o.label = callback.label;
@@ -148,6 +156,8 @@ define([
             },
 
             updateView: function () {
+
+                log.info("BrowseRankingsView.updateView;");
 
                 this.$VIEW_NOT_AVAILABLE.hide();
                 this.$VIEW_CONTAINER.show();
@@ -248,15 +258,10 @@ define([
 
             },
 
-            dispose: function () {
-
-                this.unbindEventListeners();
-
-                View.prototype.dispose.call(this, arguments);
-            },
-
             // TODO: move to a common area for all the modules? (create a submodule?)
             createView: function(c) {
+
+                log.info("BrowseRankings.createView;", c);
 
                 var lang = this.o.lang,
                     basePath = c.basePath || CM.viewsBasePath,
@@ -267,10 +272,14 @@ define([
                 // get and render the right view
                 Require([basePath + c.viewID], _.bind(function(view) {
 
+                    log.info("BrowseRankings.createView; view:", view);
+
                     var filter = view.filter || null,
                         dashboard = view.dashboard || null,
                         requestKey = ++this.o.requestKey,
                         t  = Handlebars.compile(templateView);
+
+                    log.info("BrowseRankings.createView; view:", filter);
 
                     // extending view
                     view = $.extend(true, {}, c.config, view);
@@ -278,19 +287,23 @@ define([
                     // set comments
                     ViewUtils.setDashboardComment(view);
 
+                    log.info("BrowseRankings.createView; appending", view);
+
                     /* Load main structure. */
                     this.$VIEW.append(t(view));
 
+                    log.info("BrowseRankings.createView; updatedRelatedViews", updatedRelatedViews);
+
                     // update related views
                     // TODO: review the relatedViews template part
-                    if ( updatedRelatedViews) {
+                    if (updatedRelatedViews) {
                         ViewUtils.addRelatedViews(this.$RELATED_VIEWS, view, _.bind(this.createView, this));
                     }
 
                     this.$FILTER_BOX = this.$VIEW.find(s.FILTER_BOX);
                     this.$DASHBOARD = this.$VIEW.find(s.DASHBOARD);
 
-
+                    log.info("BrowseRankings.createView; filter", filter);
                     // render filters
                     if (filter !== null) {
                         this.renderFilter({
@@ -303,6 +316,7 @@ define([
                         });
                     }
 
+                    log.info("BrowseRankings.createView; dashboard", dashboard);
                     // render dashboard
                     if (dashboard !== null) {
                         this.renderDashboard($.extend(true, {}, view.dashboard, {
@@ -325,8 +339,12 @@ define([
                 log.info("BrowseRankings.renderFilter;", config);
 
                 // create filters
-                if (this.filterBox && this.filterBox.destroy) {
-                    this.filterBox.destroy();
+                try {
+                    if (this.filterBox && this.filterBox.destroy) {
+                        this.filterBox.destroy();
+                    }
+                }catch (e) {
+                    log.error(e);
                 }
 
                 this.filterBox = new FilterBox();
@@ -336,9 +354,9 @@ define([
 
             },
 
-            renderDashboard: function(config) {
+            /*renderDashboard: function(config) {
 
-                log.info("BrowseRankings.renderDashboard;", config);
+                log.info("BrowseRankings.renderDashboard; config", config);
 
                 if (this.dashboard && this.dashboard.destroy) {
                     log.info("BrowseRankings.dashboard.destroy();");
@@ -351,6 +369,8 @@ define([
 
                 // setting default filter options (i.e. language and datasouce)
                 config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
+
+                log.info("BrowseRankings.renderDashboard; config", config);
                 _.each(config.items, _.bind(function(item) {
                     item.config = ViewUtils.defaultItemOptions(item, CM.view);
                 }, this));
@@ -360,11 +380,36 @@ define([
                 config._name = 'rankigns';
                 this.dashboard.render(config);
 
+            },*/
+
+            renderDashboard: function(config) {
+
+                log.info("BrowseRankings.renderDashboard; config", config);
+
+                if (this.dashboard && this.dashboard.destroy) {
+                    this.dashboard.destroy();
+                }
+
+                this.dashboard = new Dashboard();
+
+                log.info("BrowseRankings.renderDashboard; new Dashboard");
+
+                // setting default filter options (i.e. language and datasouce)
+
+                config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
+                log.info("BrowseRankings.renderDashboard; config", config);
+                _.each(config.items, _.bind(function(item) {
+                    item.config = ViewUtils.defaultItemOptions(item, CM.view);
+                }, this));
+
+                config._name = 'rankigns';
+                this.dashboard.render(config);
+
             },
 
             updateDashboard: function(c) {
 
-                var isOnLoad = c? c.isOnLoad || false: false,
+                var isOnLoad = (c)? c.isOnLoad || false: false,
                     isCurrentKey = (c.requestKey === this.o.requestKey);
 
                 if ( isCurrentKey ) {
@@ -385,6 +430,13 @@ define([
                     this.dashboard.destroy();
                 }
 
+            },
+
+            dispose: function () {
+
+                this.unbindEventListeners();
+
+                View.prototype.dispose.call(this, arguments);
             }
 
         });

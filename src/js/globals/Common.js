@@ -48,6 +48,8 @@ define(['chaplin',
 
     Common.prototype.getURI = function (name, options) {
 
+        options = options || [];
+
         log.info("Common.getURI;", name, options);
 
         // add as first element the language

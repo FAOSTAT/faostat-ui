@@ -50,7 +50,7 @@ define([
 
             this.$TABLE = $table_content.find(s.TABLE);
 
-            log.info(this.o);
+            log.info("Table._injectTemplate; o:", this.o);
 
             // switch between server side (ajax) of full table rendering
             if (this.o.template.ajax !== undefined) {

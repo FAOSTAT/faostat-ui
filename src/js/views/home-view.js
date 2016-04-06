@@ -72,6 +72,8 @@ define([
             var d = $.extend(true, {}, i18nLabels, {
                 URL_FAOSTAT_DATABASE_ZIP: C.URL_FAOSTAT_DATABASE_ZIP,
                 URL_COUNTRY_PROFILES: C.URL_COUNTRY_PROFILES,
+                URL_BROWSE_BY_COUNTRY: Common.getURI(ROUTE.BROWSE_BY_COUNTRY),
+                URL_BROWSE_RANKINGS: Common.getURI(ROUTE.BROWSE_RANKINGS_CODE, ['commodities_by_regions']),
                 EMAIL_FAO_STATISTICS: C.EMAIL_FAO_STATISTICS,
                 TELEPHONE_FAO_STATISTICS: C.TELEPHONE_FAO_STATISTICS
             });
@@ -333,7 +335,7 @@ define([
 
                     e.preventDefault();
 
-                    log.info(ROUTE)
+                    log.info(ROUTE);
 
 
                     var section = ROUTE.DOWNLOAD_ABOUT,
@@ -349,21 +351,6 @@ define([
 
 
             });
-
-            /*this.$DATABASE_UPDATES.append(t(DatabaseUpdates));
-
-            this.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
-
-                e.preventDefault();
-
-                var section = ROUTE.DOWNLOAD_WELCOME,
-                    code = this.getAttribute('data-code');
-
-                self.changeState({
-                    section:section,
-                    code: code
-                });
-            });*/
 
         },
 
