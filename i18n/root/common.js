@@ -47,6 +47,8 @@ define({
 
     filter_data: 'Filter Data',
 
-    "rankings": "Rankings"
-
+    rankings: "Rankings",
+    faq: "FAQ",
+    faqs: "FAQs",
+    frequently_asked_questions: "Frequently Asked Questions"
 });

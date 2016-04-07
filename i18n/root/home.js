@@ -6,6 +6,8 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
     return $.extend(true, {}, Common, {
 
         home_welcome_title : 'Welcome to the FAOSTAT prototype',
+        
+        welcome_text: 'Find your statistical data by exploring FAOSTAT data domains. Click on the domain groups below.',
 
         featured_links: 'Featured Links',
         whats_new: "What's new in FAOSTAT?",

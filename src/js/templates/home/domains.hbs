@@ -4,7 +4,12 @@
 
         <div class="fs-domain-holder">
 
-            <span class="pull-left domain-icon icojam_{{this.group_code}}"></span>
+            <!-- TODO: remove style inline -->
+            <span style="cursor: pointer;"
+                  data-code="{{this.group_code}}"
+                  data-role="go_to_download"
+                  class="pull-left domain-icon icojam_{{this.group_code}}">
+            </span>
             
             <h5>{{this.group_name}}</h5>
 
