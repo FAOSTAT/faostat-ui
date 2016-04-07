@@ -20,7 +20,7 @@ define(function () {
                     "parameter": "List1Codes",
                     "componentType": {
                         // <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-lg-5",
+                        "class": "col-xs-8 col-sm-6 col-md-5",
                         "type": "dropDownList"
                         //"multiple": true
                     },
@@ -42,7 +42,7 @@ define(function () {
             defaultFilter: {
                 domain_codes: ['FS'],
                 List2Codes: [6120],
-                List4Codes: [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2009, 2010, 2011, 2012],
+                List4Codes: ['_1'],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -77,7 +77,7 @@ define(function () {
             metadata: {},
 
             items: [
-               {
+                {
                     type: 'chart',
                     class: "col-xs-12",
 
@@ -93,7 +93,7 @@ define(function () {
                             subtitle: "{{year}}"
                         }
                     },
-                    
+
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -101,7 +101,8 @@ define(function () {
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item']
+                            seriesDimensions: ['area', 'item'],
+                            decimalPlaces: 1
                         },
                         creator: {
                             chartObj: {
@@ -145,7 +146,8 @@ define(function () {
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item']
+                            seriesDimensions: ['area', 'item'],
+                            decimalPlaces: 1
                         },
                         creator: {
                             chartObj: {
@@ -189,7 +191,8 @@ define(function () {
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item']
+                            seriesDimensions: ['area', 'item'],
+                            decimalPlaces: 2
                         },
                         creator: {
                             chartObj: {
@@ -233,12 +236,13 @@ define(function () {
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item']
+                            seriesDimensions: ['area', 'item'],
+                            decimalPlaces: 2
                         },
                         creator: {
-                           chartObj: {
+                            chartObj: {
                                 chart: {
-                                   // type: "column"
+                                    // type: "column"
                                 },
                                 xAxis: {
                                     labels: {
@@ -252,8 +256,7 @@ define(function () {
                                         connectNulls: false // by default
                                     }
                                 }
-                            },
-                            onBefore: function(){},
+                            }
                         },
                         template: {
                         }
