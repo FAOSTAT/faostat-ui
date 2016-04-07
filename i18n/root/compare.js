@@ -13,7 +13,8 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         "compare_data": "Compare Data",
         "add_filter": "Add Filter",
         "remove_filter": "Remove Filter",
-        "chart_title": "Timeseries on selected data"
+        "chart_title": "Timeseries on selected data",
+        "select_a_timerange": "Select a timerange"
 
     });
 });
