@@ -25,6 +25,7 @@ define(['chaplin',
         var reload = reload || false;
 
         //if (reload) {
+        // TODO: is it enough the Backbone trigger?
         if (false) {
 
             // TODO: how to handle?
