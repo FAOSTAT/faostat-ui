@@ -19,13 +19,15 @@ define([
     'globals/Export',
     'lib/search/search-box',
     'fs-m-v/start',
+    'lib/common/modal',
     'sweetAlert',
-    'jquery.visible'
+    'jquery.visible',
 ], function ($, log, C, E, ROUTES,
              //State,
              View,
              //AuthManager,
              i18nLabels, template, FAOSTATMenu, Waiting, Loading, Common, GoogleAnalyticsManager, Export, SearchBox, MetadataViewer,
+             Modal,
              swal) {
 
     'use strict';
@@ -102,6 +104,7 @@ define([
             amplify.subscribe(E.SEARCH_BOX_HIDE, this, this.hideSearchBox);
 
             amplify.subscribe(E.METADATA_SHOW, this, this.showMetadata);
+            amplify.subscribe(E.GLOSSARY_SHOW, Modal, Modal.glossary);
 
             amplify.subscribe(E.SCROLL_TO_SELECTOR, this, this.scrollTo);
 

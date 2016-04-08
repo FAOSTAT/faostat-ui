@@ -43,7 +43,9 @@ define(function () {
         METADATA_SHOW: 'fs.metadata.show.event',
 
         // GO_TO
-        SCROLL_TO_SELECTOR: 'fs.scroll.selector.event'
+        SCROLL_TO_SELECTOR: 'fs.scroll.selector.event',
+
+        GLOSSARY_SHOW: 'fs.glossary.show.event'
 
     };
 });

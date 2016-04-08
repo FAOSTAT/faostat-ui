@@ -134,7 +134,7 @@ define([
                         'data-pagination': true,
                         'data-sortable': false,
                         'data-search': true,
-                        'data-toggle': true,
+                        'data-show-toggle': true,
                         // TODO: change with selectors
                         'data-toolbar': s.TABLE_TOOLBAR
                     },
