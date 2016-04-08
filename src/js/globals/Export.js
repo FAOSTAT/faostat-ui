@@ -1,7 +1,3 @@
-/**
- * Created by vortex on 11/20/15.
- */
-
 /*global define, saveAs, amplify, Blob*/
 define([
     'jquery',
@@ -76,20 +72,7 @@ define([
 
             }).fail(function (error) {
 
-                console.log("FAIL", error);
-
-                // TODO: remove it! This was caused by a wrong produce type in the APIs
-                // TODO: in theory is should not be needed
-
-               /* amplify.publish(E.WAITING_HIDE);
-
-                var time = new Date();
-
-                log.info("Export.exportData; Execution query time: ", (time - start) / 1000 + "s");
-
-                //log.info(error);
-                //window.btoa(unescape(encodeURIComponent(error)))
-                self._exportResult(error, name);*/
+                log.error("FAIL", error);
 
             });
 
@@ -123,22 +106,6 @@ define([
         blob = null;
 
         log.info("Export.saveAs; Execution saveAs time: ", (time - start) / 1000 + "s");
-
-        /* var csvString = result.responseText,
-         csvData = new Blob([csvString], { type: 'text/csv' }),
-         csvUrl = URL.createObjectURL(csvData),
-         a = document.createElement('a'),
-         d = new Date(),
-         filename = name + "_" + (d.getMonth()+1) +'-' + d.getDate() +'-'+ d.getFullYear() + '.csv';
-
-         a.href = csvUrl;
-         a.target = '_blank';
-         a.download = filename;
-         document.body.appendChild(a);
-         a.click();
-         document.body.removeChild(a);*/
-
-        // TODO: clean it up from the body
 
     };
 
@@ -184,7 +151,7 @@ define([
         saveAs(blob, filename);
         
         function ConvertToCSV(objArray) {
-            var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+            var array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray;
             var str = '';
 
             for (var i = 0; i < array.length; i++) {
