@@ -50,5 +50,12 @@ define({
     rankings: "Rankings",
     faq: "FAQ",
     faqs: "FAQs",
-    frequently_asked_questions: "Frequently Asked Questions"
+    frequently_asked_questions: "Frequently Asked Questions",
+
+    units: 'Units',
+    abbreviations: 'abbreviations',
+    methodology: 'Methodology',
+    methodologies: 'Methodologies',
+    classifications: 'Classifications',
+    glossary: 'Glossary'
 });
