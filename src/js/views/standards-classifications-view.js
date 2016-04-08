@@ -136,6 +136,9 @@ define([
 
             // hide intro
             this.$intro.hide();
+            this.$output.empty();
+            this.$output.show();
+
             this.o.label = label;
 
             amplify.publish(E.LOADING_HIDE, {container: this.$output});
