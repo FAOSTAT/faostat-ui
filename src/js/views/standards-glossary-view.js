@@ -3,39 +3,38 @@
 /*jslint nomen: true */
 define([
     'jquery',
+    'loglevel',
     'views/base/view',
     'config/Config',
     'config/Events',
     'globals/Common',
     'text!templates/standards/standards-glossary.hbs',
-    'text!templates/standards/standards-glossary-table.hbs',
     'i18n!nls/standards-glossary',
     'faostatapiclient',
-    'list',
     'handlebars',
+    'lib/table/table',
     'amplify'
 ], function ($,
+             log,
              View,
              C,
              E,
              Common,
              template,
-             templateTable,
              i18nLabels,
              FAOSTATAPIClient,
-             List,
-             Handlebars) {
+             Handlebars,
+             Table
+) {
 
     'use strict';
 
-    var s,
-        o,
-        GlossaryView;
+    var s = {
 
-    s = {
-
-        TABLE: "#fs-glossary-table",
-        EXPORT_DATA: "[data-role='export']"
+        CONTAINER: "[data-role='container']",
+        TABLE: "[data-role='table']",
+        EXPORT_DATA: "[data-role='export']",
+        TABLE_TOOLBAR: "#fs-glossary-table-toolbar"
 
     },
 
@@ -43,9 +42,9 @@ define([
 
         requestType: 'glossary',
 
-        tableSearchFilters: ['fs-mes-code', 'fs-mes-label', 'fs-mes-source' ]
+        cache: {}
 
-    };
+    },
 
     GlossaryView = View.extend({
 
@@ -87,6 +86,7 @@ define([
 
             this.$table = this.$el.find(s.TABLE);
             this.$export_data = this.$el.find(s.EXPORT_DATA);
+            this.$table_toolbar = this.$el.find(s.TABLE_TOOLBAR);
 
         },
 
@@ -101,28 +101,84 @@ define([
 
         },
 
-        showTable: function(json) {
+        showTable: function(model) {
 
             amplify.publish(E.LOADING_HIDE, {container: this.$table});
 
-            var template, dynamic_data, html;
+            var table = new Table();
 
-            /* Load main structure. */
-            template = Handlebars.compile(templateTable);
-            dynamic_data = {
-                rows: json.data
-            };
-            $.extend(dynamic_data, i18nLabels);
-            html = template(dynamic_data);
-            this.$table.append(html);
+            // TODO: this should come from the service or anyway should be read from the first row of the model.data
+            model.metadata.dsd = [
+                {
+                    key: "code",
+                    label: i18nLabels.code_title
+                },{
+                    key: "label",
+                    label: i18nLabels.label_title
+                },{
+                    key: "source",
+                    label: i18nLabels.source_title
+                }
 
-            // add list.js
-            var options = {
-                valueNames: this.o.tableSearchFilters,
-                page: 200000
-            };
+            ];
 
-            new List(this.$table.selector.replace('#',''), options);
+            table.render({
+                container: this.$table,
+                model: model,
+                adapter: {
+                },
+                template: {
+                    // TODO: add in config
+                    height: '650',
+                    tableOptions: {
+                        'data-pagination': true,
+                        'data-sortable': false,
+                        'data-search': true,
+                        'data-toggle': true,
+                        // TODO: change with selectors
+                        'data-toolbar': s.TABLE_TOOLBAR
+                    },
+                    sortable: true,
+                    addPanel: false,
+                    addExport: false
+                },
+                remote: {
+                    enabled: false,
+                    request: {}
+                }
+            });
+
+            this.o.cache.model = model;
+
+            this.$table_toolbar.show();
+
+            this.o.matrix = this.createExportMatrix();
+
+        },
+
+        createExportMatrix: function () {
+
+            var model = this.o.cache.model,
+                dsd = model.metadata.dsd,
+                data = model.data,
+                matrix = [],
+                v = [];
+
+            v = [];
+            _.each(dsd, function(d) {
+                v.push(d.label || "");
+            });
+            matrix.push(v);
+
+            _.each(data, function(row) {
+                v = [];
+                _.each(dsd, function(d) {
+                    v.push(row[d.key] || "");
+                });
+                matrix.push(v);
+            });
+
+            return matrix;
 
         },
 
@@ -135,10 +191,9 @@ define([
             var self = this;
 
             this.$export_data.on('click', function() {
-                amplify.publish(E.EXPORT_DATA,
-                    {},
+                amplify.publish(E.EXPORT_MATRIX_DATA,
                     {
-                        "requestType": self.o.requestType
+                        data: self.o.matrix
                     }
                 );
             });

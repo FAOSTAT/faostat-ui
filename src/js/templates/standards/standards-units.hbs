@@ -1,22 +1,6 @@
-<!--<h2>{{title}}</h2>-->
-<!--<br>-->
 
-<div id="fs-units-table" class="fs-content-padding">
-
-    <div class="row">
-        <div class="col-lg-3">
-            <input type="text" class="form-control search" placeholder="{{filter_results}}" aria-describedby="basic-addon1">
-        </div>
-        <div class="col-lg-3">
-            <button class="btn btn-default sort" data-sort="fs-mes-label" type="button">{{sort_by_title}}</button>
-        </div>
-
-        <div class="col-lg-2 pull-right">
-            <button class="btn btn-default pull-right" type="button" data-role="export">{{export_data}}</button>
-        </div>
-
-    </div>
-
-    <br><br>
-
+<div id="fs-units-table-toolbar" style="display:none" class="btn-group">
+    <a class="btn btn-primary" data-role="export"><i class="fa fa-download"></i>  {{export_data}}</a>
 </div>
+
+<div data-role='table' class="fs-content-padding"></div>

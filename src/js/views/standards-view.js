@@ -114,13 +114,16 @@ define([
                 // switch tab
                 self.switchStandardsTab(section);
 
-                Common.changeURL(section, [], true);
+                // TODO: check why if was at "true"
+                Common.changeURL(section, [], false);
 
             });
 
         },
 
         switchStandardsTab: function(section) {
+
+            log.info("StandardsView.switchStandardsTab; section", section);
 
             if (section === this.$units.data("section")) {
                 this.initUnits();
@@ -204,7 +207,6 @@ define([
 
         },
 
-
         unbindEventListeners: function () {
 
             // unbind tabs listeners
@@ -222,6 +224,15 @@ define([
             }
             if ( this.view_abbreviations !== undefined) {
                 this.view_abbreviations.dispose();
+            }
+            if ( this.view_glossary !== undefined) {
+                this.view_glossary.dispose();
+            }
+            if ( this.view_classifications !== undefined) {
+                this.view_classifications.dispose();
+            }
+            if ( this.view_methodology !== undefined) {
+                this.view_methodology.dispose();
             }
 
             View.prototype.dispose.call(this, arguments);

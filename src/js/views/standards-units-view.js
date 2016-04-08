@@ -1,158 +1,215 @@
-/*global define, _:false, amplify, FM*/
+/*global define, _:false, $, console, amplify, FM*/
 /*jslint todo: true */
 /*jslint nomen: true */
 define([
     'jquery',
+    'loglevel',
     'views/base/view',
     'config/Config',
     'config/Events',
     'globals/Common',
     'text!templates/standards/standards-units.hbs',
-    'text!templates/standards/standards-table.hbs',
     'i18n!nls/standards-units',
     'faostatapiclient',
-    'list',
     'handlebars',
+    'lib/table/table',
     'amplify'
 ], function ($,
+             log,
              View,
              C,
              E,
              Common,
              template,
-             templateTable,
              i18nLabels,
              FAOSTATAPIClient,
-             List,
-             Handlebars) {
+             Handlebars,
+             Table
+) {
 
     'use strict';
 
-    var s,
-        o,
-        UnitsView;
+    var s = {
 
-    s = {
-
-        TABLE: "#fs-units-table",
-        EXPORT_DATA: "[data-role='export']"
-
-    },
-
-    o = {
-
-        requestType: 'units',
-
-        tableSearchFilters: ['fs-mes-code', 'fs-mes-label' ]
-
-    };
-
-    UnitsView = View.extend({
-
-        autoRender: true,
-
-        className: 'standards',
-
-        template: template,
-
-        initialize: function (options) {
-            this.o = $.extend(true, {}, o, options);
-        },
-
-        getTemplateData: function () {
-            return i18nLabels;
-        },
-
-        attach: function () {
-
-            View.prototype.attach.call(this, arguments);
-
-            /* Update State. */
-            amplify.publish(E.STATE_CHANGE, {standards: 'standards'});
-
-            this.initVariables();
-
-            this.initComponents();
-
-            this.bindEventListeners();
-
-            this.configurePage();
-        },
-
-        initVariables: function () {
-
-            this.o.lang = Common.getLocale();
-
-            this.FAOSTATAPIClient = new FAOSTATAPIClient();
-
-            this.$table = this.$el.find(s.TABLE);
-            this.$export_data = this.$el.find(s.EXPORT_DATA);
+            CONTAINER: "[data-role='container']",
+            TABLE: "[data-role='table']",
+            EXPORT_DATA: "[data-role='export']",
+            TABLE_TOOLBAR: "#fs-units-table-toolbar"
 
         },
 
-        initComponents: function () {
+        o = {
 
-            amplify.publish(E.LOADING_SHOW, {container: this.$table});
+            requestType: 'units',
 
-            this.FAOSTATAPIClient[this.o.requestType]({
-                datasource: C.DATASOURCE,
-                lang: this.o.lang
-            }).then(_.bind(this.showTable, this));
+            cache: {}
 
         },
 
-        showTable: function(json) {
+        AbbreviationsView = View.extend({
 
-            amplify.publish(E.LOADING_HIDE, {container: this.$table});
+            autoRender: true,
 
-            var t = Handlebars.compile(templateTable),
-                data= $.extend(true, {}, i18nLabels, {rows: json.data });
+            className: 'standards',
 
-            this.$table.append(t(data));
+            template: template,
 
-            // add list.js
-            var options = {
-                valueNames: this.o.tableSearchFilters,
-                page: 200000
-            };
+            initialize: function (options) {
+                this.o = $.extend(true, {}, o, options);
+            },
 
-            var list = new List(this.$table.selector.replace('#',''), options);
+            getTemplateData: function () {
+                return i18nLabels;
+            },
 
-        },
+            attach: function () {
 
-        configurePage: function () {
+                View.prototype.attach.call(this, arguments);
 
-        },
+                /* Update State. */
+                amplify.publish(E.STATE_CHANGE, {standards: 'standards'});
 
-        bindEventListeners: function () {
+                this.initVariables();
 
-            var self = this;
+                this.initComponents();
 
-            this.$export_data.on('click', function() {
-                amplify.publish(E.EXPORT_DATA,
-                    {},
+                this.bindEventListeners();
+
+                this.configurePage();
+            },
+
+            initVariables: function () {
+
+                this.o.lang = Common.getLocale();
+
+                this.FAOSTATAPIClient = new FAOSTATAPIClient();
+
+                this.$table = this.$el.find(s.TABLE);
+                this.$export_data = this.$el.find(s.EXPORT_DATA);
+                this.$table_toolbar = this.$el.find(s.TABLE_TOOLBAR);
+
+            },
+
+            initComponents: function () {
+
+                amplify.publish(E.LOADING_SHOW, {container: this.$table});
+
+                this.FAOSTATAPIClient[this.o.requestType]({
+                    datasource: C.DATASOURCE,
+                    lang: this.o.lang
+                }).then(_.bind(this.showTable, this));
+
+            },
+
+            showTable: function(model) {
+
+                amplify.publish(E.LOADING_HIDE, {container: this.$table});
+
+                var table = new Table();
+
+                // TODO: this should come from the service or anyway should be read from the first row of the model.data
+                model.metadata.dsd = [
                     {
-                        "requestType": self.o.requestType
+                        key: "code",
+                        label: i18nLabels.code_title
+                    },{
+                        key: "label",
+                        label: i18nLabels.label_title
                     }
-                );
-            });
+                ];
 
-        },
+                table.render({
+                    container: this.$table,
+                    model: model,
+                    adapter: {
+                    },
+                    template: {
+                        // TODO: add in config
+                        height: '650',
+                        tableOptions: {
+                            'data-pagination': true,
+                            'data-sortable': false,
+                            'data-search': true,
+                            'data-toggle': true,
+                            // TODO: change with selectors
+                            'data-toolbar': s.TABLE_TOOLBAR
+                        },
+                        sortable: true,
+                        addPanel: false,
+                        addExport: false
+                    },
+                    remote: {
+                        enabled: false,
+                        request: {}
+                    }
+                });
 
-        unbindEventListeners: function () {
+                this.o.cache.model = model;
 
-            this.$export_data.off('click');
+                this.$table_toolbar.show();
 
-        },
+                this.o.matrix = this.createExportMatrix();
 
-        dispose: function () {
+            },
 
-            this.unbindEventListeners();
+            createExportMatrix: function () {
 
-            View.prototype.dispose.call(this, arguments);
-        }
-    });
+                var model = this.o.cache.model,
+                    dsd = model.metadata.dsd,
+                    data = model.data,
+                    matrix = [],
+                    v = [];
 
-    return UnitsView;
+                v = [];
+                _.each(dsd, function(d) {
+                    v.push(d.label || "");
+                });
+                matrix.push(v);
+
+                _.each(data, function(row) {
+                    v = [];
+                    _.each(dsd, function(d) {
+                        v.push(row[d.key] || "");
+                    });
+                    matrix.push(v);
+                });
+
+                return matrix;
+
+            },
+
+            configurePage: function () {
+
+            },
+
+            bindEventListeners: function () {
+
+                var self = this;
+
+                this.$export_data.on('click', function() {
+                    amplify.publish(E.EXPORT_MATRIX_DATA,
+                        {
+                            data: self.o.matrix
+                        }
+                    );
+                });
+
+            },
+
+            unbindEventListeners: function () {
+
+                this.$export_data.off('click');
+
+            },
+
+            dispose: function () {
+
+                this.unbindEventListeners();
+
+                View.prototype.dispose.call(this, arguments);
+            }
+        });
+
+    return AbbreviationsView;
 
 });

@@ -13,7 +13,7 @@ define([
     'i18n!nls/standards-classifications',
     'faostatapiclient',
     'FAOSTAT_UI_TREE',
-    'list',
+    'lib/table/table',
     'handlebars',
     'amplify'
 ], function ($,
@@ -27,17 +27,13 @@ define([
              i18nLabels,
              FAOSTATAPIClient,
              Tree,
-             List,
+             Table,
              Handlebars)
     {
 
     'use strict';
 
-    var s,
-        o,
-        ClassificationsView;
-
-    s = {
+    var s = {
 
         //TABLE: "#fs-methodology-table",
         TREE: "#fs-classifications-tree",
@@ -45,18 +41,19 @@ define([
 
         INTRO: "#fs-classifications-intro",
         OUTPUT: "#fs-classifications-output",
-        TABLE: '#fs-classifications-table',
 
-        EXPORT_DATA: "[data-role='export']"
+        TABLE: "[data-role='table']",
+        EXPORT_DATA: "[data-role='export']",
+        TABLE_TOOLBAR: "#fs-classification-table-toolbar"
 
     },
     o = {
 
         requestType: 'classifications',
 
-        tableSearchFilters: ['fs-mes-code', 'fs-mes-label', 'fs-mes-description' ]
+        cache: {}
 
-    };
+    },
 
     ClassificationsView = View.extend({
 
@@ -137,55 +134,118 @@ define([
 
         showClassification: function(code, label) {
 
-            var self = this;
-
             // hide intro
             this.$intro.hide();
+            this.o.label = label;
 
-
-            this.$intro.hide();
-
+            amplify.publish(E.LOADING_HIDE, {container: this.$output});
 
             // get classification
             this.FAOSTATAPIClient[this.o.requestType]({
                 domain_code: code,
                 datasource: C.DATASOURCE,
                 lang: this.o.lang
-            }).then(_.bind(function(json){
+            }).then(_.bind(this.showTable, this));
 
-                var t = Handlebars.compile(templateOutput),
-                    data = $.extend({}, i18nLabels);
+        },
 
-                data.rows = json.data;
-                data.classsification_title = i18nLabels.classification + ' - ' + label;
+        showTable: function(model) {
 
-                this.$output.html(t(data));
+            var t = Handlebars.compile(templateOutput),
+                data = $.extend(true, {}, i18nLabels),
+                label = this.o.label,
+                self = this;
 
-                // add list.js
-                var options = {
-                    valueNames: this.o.tableSearchFilters,
-                    page: 200000
-                };
+            data.classsification_title = i18nLabels.classification + ' - ' + label;
 
-                var list = new List(s.TABLE.replace('#',''), options);
+            this.$output.html(t(data));
 
-                // add export listener
-                this.$output.find(s.EXPORT_DATA).on('click', function() {
-                    amplify.publish(E.EXPORT_DATA,
-                        {
-                            domain_code: code
-                        },
-                        {
-                            "requestType": self.o.requestType
-                        }
-                    );
+            this.$table = this.$el.find(s.TABLE);
+            this.$export_data = this.$el.find(s.EXPORT_DATA);
+            this.$table_toolbar = this.$el.find(s.TABLE_TOOLBAR);
+
+            var table = new Table();
+
+            // TODO: this should come from the service or anyway should be read from the first row of the model.data
+            model.metadata.dsd = [
+                {
+                    key: "code",
+                    label: i18nLabels.code_title
+                },{
+                    key: "label",
+                    label: i18nLabels.label_title
+                },{
+                    key: "description",
+                    label: i18nLabels.description_title
+                }
+
+            ];
+
+            table.render({
+                container: this.$table,
+                model: model,
+                adapter: {
+                },
+                template: {
+                    // TODO: add in config
+                    height: '650',
+                    tableOptions: {
+                        'data-pagination': true,
+                        'data-sortable': false,
+                        'data-search': true,
+                        'data-toggle': true,
+                        // TODO: change with selectors
+                        'data-toolbar': s.TABLE_TOOLBAR
+                    },
+                    sortable: true,
+                    addPanel: false,
+                    addExport: false
+                },
+                remote: {
+                    enabled: false,
+                    request: {}
+                }
+            });
+
+            this.o.cache.model = model;
+
+            this.$table_toolbar.show();
+
+            this.o.matrix = this.createExportMatrix();
+
+            this.$export_data.on('click', function() {
+                log.info(self.o.matrix);
+                amplify.publish(E.EXPORT_MATRIX_DATA,
+                    {
+                        data: self.o.matrix
+                    }
+                );
+            });
+        },
+
+        createExportMatrix: function () {
+
+            var model = this.o.cache.model,
+                dsd = model.metadata.dsd,
+                data = model.data,
+                matrix = [],
+                v = [];
+
+            v = [];
+            _.each(dsd, function(d) {
+                v.push(d.label || "");
+            });
+            matrix.push(v);
+
+            _.each(data, function(row) {
+                v = [];
+                _.each(dsd, function(d) {
+                    v.push(row[d.key] || "");
                 });
+                matrix.push(v);
+            });
 
-
-                // render output
-                this.$output.show();
-
-            }, this));
+            return matrix;
 
         },
 

@@ -2,8 +2,9 @@
        {{#if tableOptions}}
            data-striped="true"
            data-search="{{#if tableOptions.data-search}}{{tableOptions.data-search}}{{else}}false{{/if}}"
-           data-show-columns="false"
+           data-show-columns="{{#if tableOptions.show-columns}}{{tableOptions.show-columns}}{{else}}false{{/if}}"
            data-show-header="{{#if tableOptions.data-show-header}}{{tableOptions.data-show-header}}{{else}}true{{/if}}"
+           data-show-toggle="{{#if tableOptions.data-show-toggle}}{{tableOptions.data-show-toggle}}{{else}}false{{/if}}"
            data-pagination="{{#if tableOptions.data-pagination}}{{tableOptions.data-pagination}}{{else}}false{{/if}}"
            data-page-size="{{#if tableOptions.data-page-size}}{{tableOptions.data-page-size}}{{else}}50{{/if}}"
            data-page-list="{{#if tableOptions.data-page-list}}{{tableOptions.data-page-list}}{{else}}[10,25,50,100]{{/if}}"
@@ -11,9 +12,10 @@
            data-pagination-pre-text="{{#if tableOptions.previous_text}}{{tableOptions.previous_text}}{{else}}Previous{{/if}}"
            data-pagination-next-text="{{#if tableOptions.next_text}}{{tableOptions.next_text}}{{else}}Next{{/if}}"
            data-pagination-last-text="{{#if tableOptions.last_text}}{{tableOptions.last_text}}{{else}}Last{{/if}}"
+           {{#if tableOptions.data-toolbar}}data-toolbar={{tableOptions.data-toolbar}}{{/if}}
 
            data-ajax="{{#if tableOptions.data-ajax}}{{tableOptions.data-ajax}}{{/if}}"
-           data-side-pagination={{#if tableOptions.data-side-pagination}}{{tableOptions.data-side-pagination}}{{/if}}
+           {{#if tableOptions.data-side-pagination}}data-side-pagination={{tableOptions.data-side-pagination}}{{/if}}
        {{/if}}
         {{#if height}}
             data-height="{{height}}"
