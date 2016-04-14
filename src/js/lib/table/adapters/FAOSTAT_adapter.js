@@ -122,6 +122,9 @@ define([
             _.each(dsd, function (c) {
                 if ( c.type === "value" ) {
                     valueKey = c.key;
+                    // forcing alignment to right
+                    // DIRTY overridel of the dsd
+                    c.align = "right";
                 }
             });
 

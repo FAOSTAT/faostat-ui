@@ -25,11 +25,11 @@
     <tr>
         {{#if sortable}}
             {{#each dsd}}
-                <th data-field="{{{this.key}}}" data-sortable="true">{{{this.label}}}</th>
+                <th {{#if this.align}}data-align="{{this.align}}"{{/if}} data-field="{{{this.key}}}" data-sortable="true">{{{this.label}}}</th>
             {{/each}}
         {{else}}
             {{#each dsd}}
-                <th data-field="{{{this.key}}}">{{{this.label}}}</th>
+                <th {{#if this.align}}data-align="{{this.align}}"{{/if}} data-field="{{{this.key}}}">{{{this.label}}}</th>
             {{/each}}
         {{/if}}
     </tr>
