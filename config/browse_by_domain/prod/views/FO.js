@@ -53,7 +53,7 @@ define(function () {
                     "componentType": {
                         "class": "col-sm-4",
                         "type": "dropDownList",
-                        multiple: true
+                        //"multiple": true
                     },
                     "config": {
                         "dimension_id": "area",
