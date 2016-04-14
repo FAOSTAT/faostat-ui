@@ -57,5 +57,9 @@ define({
     methodology: 'Methodology',
     methodologies: 'Methodologies',
     classifications: 'Classifications',
-    glossary: 'Glossary'
+    glossary: 'Glossary',
+
+    metadata: 'Metadata',
+    bulk_downloads: 'Bulk Downloads',
+    interactive_download: 'Interactive Download',
 });

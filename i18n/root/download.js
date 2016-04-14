@@ -17,9 +17,6 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         preview_options_label: 'Preview Options',
         download_as_label: 'Download as...',
         preview: 'Preview',
-        metadata: 'Metadata',
-        bulk_downloads: 'Bulk Downloads',
-        interactive_download: 'Interactive Download',
         welcome_page: 'About',
         report: 'Report',
 
