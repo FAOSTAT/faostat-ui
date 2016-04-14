@@ -1,4 +1,4 @@
-/*global define*/
+/*global define, Backbone, amplify, window*/
 define(['chaplin',
         'config/Events',
         'loglevel',
@@ -63,7 +63,6 @@ define(['chaplin',
         return uri;
     };
 
-
     Common.prototype.setLocale = function(lang) {
         this.lang = lang;
         return this.lang;
@@ -74,35 +73,26 @@ define(['chaplin',
         //return (this.lang !== DEFAULT_LANGUAGE)? this.lang: undefined;
         //return (amplify.store('locale') !== DEFAULT_LANGUAGE)? amplify.store('locale'): undefined;
     };
-
-/*
-    Common.prototype.changeURLLanguage = function() {
-        var locale = (this.lang !== DEFAULT_LANGUAGE)? this.lang: undefined;
-        return this.lang;
-        //return (this.lang !== DEFAULT_LANGUAGE)? this.lang: undefined;
-        //return (amplify.store('locale') !== DEFAULT_LANGUAGE)? amplify.store('locale'): undefined;
-    };
-*/
-
     // TODO: Handle better the change of language
     Common.prototype.changeURLLanguage = function(lang) {
         var uri = window.location.href;
         uri = uri.replace('#' + this.getLocale() + "/", '#' + lang + "/");
-        this.setLocale(lang)
+        this.setLocale(lang);
         window.location.replace(uri);
         window.location.reload();
     };
 
     Common.prototype.updateQueryStringParameter = function(uri, key, value) {
-        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-        var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i"),
+            separator = uri.indexOf('?') !== -1 ? "&" : "?";
+
         if (value) {
             if (uri.match(re)) {
                 return uri.replace(re, '$1' + key + "=" + value + '$2');
             }
-            else {
-                return uri + separator + key + "=" + value;
-            }
+
+            return uri + separator + key + "=" + value;
+
         }
         return uri;
     };
