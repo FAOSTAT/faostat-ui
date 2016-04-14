@@ -1,3 +1,4 @@
+/*global define*/
 define([
     'jquery',
     'loglevel',
@@ -8,7 +9,7 @@ define([
 
     // TODO: there should be a template
     var size = '2x',
-        id = "fs-loading",
+        role = "data-role='fs-loading'",
         label = i18nLabels.loading,
         renderType = 'append', //or 'prepend'
         showLabel = false;
@@ -30,24 +31,24 @@ define([
             $c = $(data.container);
 
         if (rt === 'append') {
-            $c.append('<div id="' + id + '"></div>');
+            $c.append('<div style="padding:15px;" ' + role + '></div>');
         }
         else if (rt === 'prepend') {
-            $c.prepend('<div id="' + id +'"></div>').find('#' + id);
+            $c.prepend('<div style="padding:15px;" ' + role +'></div>').find('[' + role + ']');
         }
 
         //$c.find('#' + id).append('<i class="fa fa-refresh fa-spin fa-' + s + '"></i> ');
-        $c.find('#' + id).append('<i class="fa fa-circle-o-notch fa-spin fa-' + s + '"></i> ');
+        $c.find('[' + role + ']').append('<i class="fa fa-circle-o-notch fa-spin fa-' + s + '"></i> ');
 
         if (sl) {
-            $c.find('#' + id).append('<span>' + l + '</span>');
+            $c.find('[' + role + ']').append('<span>' + l + '</span>');
         }
 
     };
 
     Loading.prototype.hide = function (data) {
 
-        $(data.container).find('#' + id).empty();
+        $(data.container).find('[' + role + ']').remove();
 
     };
 

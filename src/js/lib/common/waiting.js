@@ -1,6 +1,3 @@
-/**
- * Created by vortex on 10/5/15.
- */
 /*global define, _:false, $, console, amplify, FM*/
 define([
     'jquery',
