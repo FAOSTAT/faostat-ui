@@ -88,9 +88,9 @@ define([
 
         this._preloadCodelists().then(function(f) {
 
-            _.each(f, function (c, index) {
+            amplify.publish(E.LOADING_HIDE, {container: self.$CONTAINER});
 
-                amplify.publish(E.LOADING_HIDE, {container: self.$CONTAINER});
+            _.each(f, function (c, index) {
 
                 var id = 'filter_box_' + index;
 
