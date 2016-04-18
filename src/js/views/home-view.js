@@ -216,6 +216,14 @@ define([
 
                 });
 
+            }).fail(function(e) {
+
+                // TODO: Handle error
+                log.error("Home.initDomains; error", e);
+
+                amplify.publish(E.LOADING_HIDE, {container: self.$DOMAINS});
+                amplify.publish(E.CONNECTION_PROBLEM, {});
+
             });
 
         },
@@ -240,6 +248,14 @@ define([
 
                 });
 
+            }).fail(function(e) {
+
+                // TODO: Handle error
+                log.error("Home.initChart; error", e);
+                //amplify.publish(E.NOTIFICATION_WARNING, {title: "Error Connection", text: "We are expecting connection problems"});
+                amplify.publish(E.LOADING_HIDE, {container: self.$CHART});
+                amplify.publish(E.CONNECTION_PROBLEM, {});
+
             });
 
         },
@@ -262,8 +278,6 @@ define([
         initComingUp: function () {
 
             amplify.publish(E.LOADING_SHOW, {container: this.$COMING_UP});
-
-            amplify.publish(E.LOADING_HIDE, {container: this.$COMING_UP});
 
             /* this.api.comingUp({}).then(function() {
 
@@ -341,7 +355,7 @@ define([
                     var section = ROUTE.DOWNLOAD_ABOUT,
                         code = this.getAttribute('data-code');
 
-                    log.info(this.getAttribute('data-code'))
+                    log.info(this.getAttribute('data-code'));
 
                     self.changeState({
                         section:section,
@@ -349,6 +363,13 @@ define([
                     });
                 });
 
+
+            }).fail(function(e) {
+
+                // TODO: Handle error
+                log.error("Home.initChart; error", e);
+                amplify.publish(E.LOADING_HIDE, {container: self.$DATABASE_UPDATES});
+                amplify.publish(E.CONNECTION_PROBLEM, {});
 
             });
 
@@ -377,7 +398,7 @@ define([
 
             log.info(section, code);
 
-            Common.changeURL(section, (code) ? [code] : [], true);
+            Common.changeURL(section, code? [code] : [], true);
 
         },
 

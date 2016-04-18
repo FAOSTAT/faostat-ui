@@ -46,11 +46,11 @@ define([
 
     },
 
-    o = {
+        o = {
 
-        tableSearchFilters: ['fs-mes-label' ]
+            tableSearchFilters: ['fs-mes-label' ]
 
-    };
+        };
 
     MethodologyView = View.extend({
 
@@ -101,9 +101,13 @@ define([
 
             // TODO: lang
             this.FAOSTATAPIClient.methodologies({
-                datasource: C.DATASOURCE,
-                lang: this.o.lang
-            }).then(_.bind(this.showMethodologies, this));
+                    datasource: C.DATASOURCE,
+                    lang: this.o.lang
+                })
+                .then(_.bind(this.showMethodologies, this))
+                .fail(function(e) {
+                    amplify.publish(E.CONNECTION_PROBLEM, {});
+                });
 
         },
 
@@ -125,7 +129,7 @@ define([
 
             this.tree = new Tree();
             this.tree.init({
-               // options: CM.tree.options || null,
+                // options: CM.tree.options || null,
                 datasource: C.DATASOURCE,
                 placeholder_id: this.$tree,
                 placeholder_search: this.$el.find(s.SEARCH_TREE),

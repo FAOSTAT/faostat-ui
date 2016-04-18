@@ -145,10 +145,14 @@ define([
 
             // get classification
             this.FAOSTATAPIClient[this.o.requestType]({
-                domain_code: code,
-                datasource: C.DATASOURCE,
-                lang: this.o.lang
-            }).then(_.bind(this.showTable, this));
+                    domain_code: code,
+                    datasource: C.DATASOURCE,
+                    lang: this.o.lang
+                })
+                .then(_.bind(this.showTable, this))
+                .fail(function(e) {
+                    amplify.publish(E.CONNECTION_PROBLEM, {});
+                });
 
         },
 

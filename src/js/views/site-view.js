@@ -107,6 +107,8 @@ define([
             amplify.subscribe(E.GLOSSARY_SHOW, Modal, Modal.glossary);
 
             amplify.subscribe(E.SCROLL_TO_SELECTOR, this, this.scrollTo);
+            
+            amplify.subscribe(E.CONNECTION_PROBLEM, this, this.connectionProblem);
 
             // publishing GA Events
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
@@ -212,6 +214,17 @@ define([
 
         },
 
+        connectionProblem: function(options) {
+
+            // TODO: Handle connection problems
+           amplify.publish(E.NOTIFICATION_WARNING,
+               {
+                   title: "Connection Problem",
+                   text: "We are expecting connection problems. Sorry for the inconvenience."
+               }
+           );
+
+        },
 
         onStateUpdate: function (s) {
 

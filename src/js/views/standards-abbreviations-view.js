@@ -92,12 +92,18 @@ define([
 
             initComponents: function () {
 
+                var self = this;
+
                 amplify.publish(E.LOADING_SHOW, {container: this.$table});
 
                 this.FAOSTATAPIClient[this.o.requestType]({
                     datasource: C.DATASOURCE,
                     lang: this.o.lang
-                }).then(_.bind(this.showTable, this));
+                }).then(_.bind(this.showTable, this))
+                  .fail(function(e) {
+                      amplify.publish(E.LOADING_HIDE, {container: self.$table});
+                      amplify.publish(E.CONNECTION_PROBLEM, {});
+                  });
 
             },
 
