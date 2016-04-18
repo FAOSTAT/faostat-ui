@@ -106,6 +106,8 @@ define([
 
                 log.info("BrowseRankings.initComponents;");
 
+                var self = this;
+
                 this.tree = new Tree();
                 this.tree.init({
                     options: CM.tree.options || null,
@@ -126,6 +128,10 @@ define([
 
                             // change url state
                             this.changeState();
+
+                            amplify.publish(E.SCROLL_TO_SELECTOR, {
+                                container: self.$VIEW_TITLE
+                            });
 
                         }, this),
 
