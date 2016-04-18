@@ -279,6 +279,8 @@ define([
 
             amplify.publish(E.LOADING_SHOW, {container: this.$COMING_UP});
 
+            amplify.publish(E.LOADING_HIDE, {container: this.$COMING_UP});
+
             /* this.api.comingUp({}).then(function() {
 
              }); */
