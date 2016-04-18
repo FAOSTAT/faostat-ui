@@ -152,7 +152,7 @@ define([
                     });
 
                     var v = [];
-                    var maxSize = (countries.length / 4) + 5;
+                    var maxSize = (countries.length / 4) + 7;
                     var col = {
                         letter: []
                     };
