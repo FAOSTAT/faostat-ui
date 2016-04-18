@@ -7,9 +7,10 @@ define([
         'text!fs-t-c/templates/table_template.hbs',
        /*'text!lib/table/templates/custom_template.hbs',
         'text!lib/table/templates/table_template.hbs',*/
-        'bootstrap-table'
+        'i18n!nls/common',
+        'bootstrap-table',
     ],
-    function ($, Handlebars, log, template, templateTable) {
+    function ($, Handlebars, log, template, templateTable, i18n) {
 
         'use strict';
 
@@ -40,7 +41,8 @@ define([
 
             // inject basic structure
             var t = Handlebars.compile(template);
-            this.o.$container.html(t(this.o.template || {}));
+            // this.o.$container.html(t(this.o.template || {}));
+            this.o.$container.html(t($.extend(true, {download_data: i18n.download_data}, this.o.template || {})));
 
             // inject table
             var $table_content = this.o.$container.find(s.TABLE_CONTENT);
