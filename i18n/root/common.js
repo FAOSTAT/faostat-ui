@@ -62,4 +62,7 @@ define({
     metadata: 'Metadata',
     bulk_downloads: 'Bulk Downloads',
     interactive_download: 'Interactive Download',
+    
+    "average": "Average",
+    "sum": "Sum"
 });

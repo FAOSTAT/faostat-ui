@@ -45,6 +45,9 @@ define({
     go_to_download: "Go To Download",
     search_data: "Search Data",
 
-    filter_data: 'Filter Data'
+    filter_data: 'Filter Data',
+    
+    "average": "Promedio",
+    "sum": "Suma"
 
 });
