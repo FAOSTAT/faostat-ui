@@ -16,7 +16,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         faostat_domains: 'FAOSTAT Domains',
         preview_options_label: 'Preview Options',
         download_as_label: 'Download as...',
-        preview: 'Preview',
+        preview: 'Preview Data',
         welcome_page: 'About',
         report: 'Report',
 
