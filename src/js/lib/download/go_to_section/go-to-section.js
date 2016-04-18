@@ -29,15 +29,15 @@ define([
             },
             {
                 id: ROUTE.DOWNLOAD_INTERACTIVE,
-                name: i18nLabels.interactive_download_title
+                name: i18nLabels.interactive_download
             },
             {
                 id: ROUTE.DOWNLOAD_BULK,
-                name: i18nLabels.bulk_downloads_title
+                name: i18nLabels.bulk_downloads
             },
             {
                 id: ROUTE.DOWNLOAD_METADATA,
-                name: i18nLabels.metadata_title
+                name: i18nLabels.metadata
             }
         ]
 
