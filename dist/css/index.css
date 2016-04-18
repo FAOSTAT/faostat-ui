@@ -27,9 +27,6 @@ body {
   -moz-border-radius: 0;
   -ms-border-radius: 0;
   border-radius: 0;
-  background-color: transparent;
-  border: 1px solid #337ab7;
-  color: #337ab7;
   outline: none; }
 
 .bootstrap-content-box-reset * {
@@ -37,19 +34,18 @@ body {
   -moz-box-sizing: content-box;
   box-sizing: content-box; }
 
-.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
+/*.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
 .open > .dropdown-toggle.btn-primary, .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus,
 .btn:active:focus, .btn:focus, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus,
 .btn-info:hover, .open > .dropdown-toggle.btn-info, .btn-default.active, .btn-default.focus, .btn-default:active,
 .btn-default:focus, .btn-default:hover, .open > .dropdown-toggle.btn-default {
-  background-color: #f2f2f2;
-  border: 1px solid #337ab7;
-  color: #337ab7;
+  background-color: $superlight-gray;
+  //border-color: transparent;
+  border: 1px solid $buttons;
+  color: $buttons;
   outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none; }
-
+  @include fx-noshadow;
+}*/
 /* Menu */
 .fs-menu-search-container {
   background-color: white; }
