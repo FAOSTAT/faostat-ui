@@ -38,8 +38,8 @@ define({
 
     download_report: 'Download Report',
 
-    download_csv: 'Download CSV',
-    download_data: 'Download Data',
+    download_csv: 'Télécharger CSV',
+    download_data: 'Télécharger Données',
     what_is_a_csv: 'What is a CSV?',
     go_to_browse: "Go To Browse",
     go_to_download: "Go To Download",

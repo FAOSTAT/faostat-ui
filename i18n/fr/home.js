@@ -38,8 +38,8 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         department_ess: 'Economic and Social Development Department',
         address_fao: 'Viale delle Terme di Caracalla 00153 Rome, Italy',
 
-        download: "Download",
-        browse: "Browse"
+        download: "Télécharger",
+        browse: "Explorer"
 
     });
 
