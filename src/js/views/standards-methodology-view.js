@@ -138,6 +138,8 @@ define([
 
                         self.showMethodology(e.id, e.label);
 
+                        amplify.publish(E.SCROLL_TO_SELECTOR, { container: self.$output});
+
                     }, this),
 
                     onTreeRendered:  _.bind(function (callback) {
@@ -154,12 +156,16 @@ define([
             var self = this;
             this.$intro.hide();
 
+            amplify.publish(E.LOADING_SHOW, {container: self.$output});
+
             // TODO: lang
             this.FAOSTATAPIClient.methodology({
                 id: id,
                 datasource: C.DATASOURCE,
                 lang: this.o.lang
             }).then(function(json) {
+
+                amplify.publish(E.LOADING_HIDE, {container: self.$output});
 
                 /* Load main structure. */
                 var t = Handlebars.compile(templateOutput),
