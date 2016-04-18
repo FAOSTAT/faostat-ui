@@ -26,11 +26,10 @@ body {
 
 .btn {
   @include fx-border-radius(0);
-  background-color: transparent;
-  border: 1px solid $buttons;
-  color: $buttons;
+  //background-color: transparent;
+  //border: 1px solid $buttons;
+  //color: $buttons;
   outline: none;
-
 }
 
 
@@ -59,7 +58,7 @@ body {
 
 }
 
-.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
+/*.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover,
 .open > .dropdown-toggle.btn-primary, .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus,
 .btn:active:focus, .btn:focus, .btn-info.active, .btn-info.focus, .btn-info:active, .btn-info:focus,
 .btn-info:hover, .open > .dropdown-toggle.btn-info, .btn-default.active, .btn-default.focus, .btn-default:active,
@@ -70,7 +69,7 @@ body {
   color: $buttons;
   outline: none;
   @include fx-noshadow;
-}
+}*/
 
 
 /* Menu */
