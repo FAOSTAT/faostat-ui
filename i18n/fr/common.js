@@ -59,9 +59,9 @@ define({
     classifications: 'Classifications',
     glossary: 'Glossary',
 
-    metadata: 'Metadata',
-    bulk_downloads: 'Bulk Downloads',
-    interactive_download: 'Interactive Download',
+    metadata: ' Métadonnées',
+    bulk_downloads: 'Données Completes',
+    interactive_download: 'Télécharger interactive',
 
     "average": "Moyenne",
     "sum": "Somme"

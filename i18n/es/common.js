@@ -57,8 +57,8 @@ define({
     classifications: 'Classifications',
     glossary: 'Glossary',
 
-    metadata: 'Metadata',
-    bulk_downloads: 'Bulk Downloads',
+    metadata: ' Metadatos',
+    bulk_downloads: 'Todos Lost Datos',
     interactive_download: 'Interactive Download',
     
     "average": "Promedio",

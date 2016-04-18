@@ -6,9 +6,6 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
     return $.extend(true, {}, Common, {
 
         about: 'About',
-        interactive_download_title: 'Interactive Download',
-        bulk_downloads_title: 'Bulk Downloads',
-        metadata_title: 'Metadata',
         related_documents: 'Related Documents',
         no_docs_available: 'No documents available for',
         go_to_section: 'Go To Section',
@@ -16,10 +13,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         faostat_domains: 'FAOSTAT Domains',
         preview_options_label: 'Preview Options',
         download_as_label: 'Download as...',
-        preview: 'Preview',
-        metadata: 'Metadata',
-        bulk_downloads: 'Bulk Downloads',
-        interactive_download: 'Interactive Download',
+        preview: 'Preview Data',
         welcome_page: 'About',
         report: 'Report',
 
