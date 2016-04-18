@@ -45,7 +45,9 @@ define(function () {
         // GO_TO
         SCROLL_TO_SELECTOR: 'fs.scroll.selector.event',
 
-        GLOSSARY_SHOW: 'fs.glossary.show.event'
+        GLOSSARY_SHOW: 'fs.glossary.show.event',
+        
+        CONNECTION_PROBLEM: 'fs.connection.problem'
 
     };
 });
