@@ -5,13 +5,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-        units: 'Units',
-        abbreviations: 'abbreviations',
-        filter_results: 'Filter Table',
-        methodology: 'Methodology',
-        methodologies: 'Methodologies',
-        classifications: 'Classifications',
-        glossary: 'Glossary'
-
+        filter_results: 'Filter Table'
+        
     });
 });

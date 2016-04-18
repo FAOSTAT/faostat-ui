@@ -7,7 +7,7 @@ define({
     follow_us: 'Follow Us On',
     follow_faostatistics: 'Follow @FAOstatistics',
 
-    "faostat_domains": "FAOSTAT Domains",
+    "faostat_domains": "Dominios de FAOSTAT",
 
     "results": "Results",
 
@@ -43,9 +43,23 @@ define({
     what_is_a_csv: 'What is a CSV?',
     go_to_browse: "Go To Browse",
     go_to_download: "Go To Download",
-    search_data: "Search Data",
+    search_data: "Buscar Datos",
 
-    filter_data: 'Filter Data',
+    rankings: "Clasificaciones",
+    faq: "FAQ",
+    faqs: "FAQs",
+    frequently_asked_questions: "Frequently Asked Questions",
+
+    units: 'Units',
+    abbreviations: 'abbreviations',
+    methodology: 'Methodology',
+    methodologies: 'Methodologies',
+    classifications: 'Classifications',
+    glossary: 'Glossary',
+
+    metadata: 'Metadata',
+    bulk_downloads: 'Bulk Downloads',
+    interactive_download: 'Interactive Download',
     
     "average": "Promedio",
     "sum": "Suma"
