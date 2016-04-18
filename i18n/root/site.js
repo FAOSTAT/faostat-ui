@@ -23,7 +23,6 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         fisheries_and_aquaculture: 'Fisheries and Acquaculture',
         forestry: 'Forestry',
 
-        toggle_navigation: 'toggle_navigation',
         home: 'Home',
         browse: 'Browse Data',
         download: 'Download Data',

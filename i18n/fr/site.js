@@ -1,32 +1,38 @@
 /*global define*/
-define({
+define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
-    fao: "Organisation des Nations Unies pour l'Alimentation et l'Agriculture",
-    statistics_division: 'Division Statistique',
-    feedback_system: 'AIDEZ-NOUS AVEC VOS COMMENTAIRES - Allez sur le système de feedbacks',
-    territorial_notes: 'Remarques Pays / Territoire',
-    territorial_notes_info: 'Il existe un diff&eacute;rend entre les Gouvernements de l&#180;Argentine et du Royaume-Uni de Grande-Bretagne et d&#180;Irlande du Nord concernant la souverainet&eacute; sur les îles Falkland (Malvinas).',
+    'use strict';
 
-    menu: 'Menu',
-    help_us: 'Help Us',
+    return $.extend(true, {}, Common, {
 
-    // fao_links
-    fao_links: 'FAO Links',
-    division_ess: 'Statistics Division (ESS)',
-    department_es: 'Economic and Social Development Department',
-    countrystat: 'CountrySTAT',
-    acquastat: 'AcquaSTAT',
-    fisheries_and_aquaculture: 'Fisheries and Acquaculture',
-    forestry: 'Forestry',
+        fao: 'Food and Agriculture Organization of the United Nations',
+        statistics_division: 'Statistics Division',
+        feedback_system: 'Système De Feedbacks ',
+        territorial_notes: 'Country / Territorial Notes',
+        territorial_notes_info: 'A dispute exists between the Governments of Argentina and the United Kingdom of Great Britain and Northern Ireland concerning sovereignty over the Falkland Islands (Malvinas).',
+    
+        menu: 'Menu',
+        help_us: 'Help Us',
+    
+        // fao_links
+        fao_links: 'FAO Links',
+        division_ess: 'Statistics Division (ESS)',
+        department_es: 'Economic and Social Development Department',
+        countrystat: 'CountrySTAT',
+        acquastat: 'AcquaSTAT',
+        fisheries_and_aquaculture: 'Fisheries and Acquaculture',
+        forestry: 'Forestry',
 
-    toggle_navigation: 'toggle_navigation',
-    home: 'Home',
-    browse: 'Browse Data',
-    download: 'Download Data',
-    compare: 'Compare Data',
-    search: 'Search Data',
-    analysis: 'Analysis',
-    mes: 'Methods & Standards',
-    fao_label: 'Food and Agriculture Organization of the United Nations',
-    ess_label: 'Statistics Division'
+        home: 'Accueil',
+        browse: 'Explorer Données',
+        indicators: 'Indicators',
+        download: 'Télécharger Données',
+        compare: 'Comparer Données',
+        search: 'Rechercher Données',
+        mes: 'Méthodes & Standards',
+        fao_label: 'Food and Agriculture Organization of the United Nations',
+        ess_label: 'Statistics Division'
+
+    });
+
 });
