@@ -5,7 +5,7 @@ define(['jquery', 'i18n!nls/standards'], function ($, Standards) {
 
     return $.extend(true, {}, Standards, {
         
-        select_methodology: 'Sélectionnez un domaine sur la gauche pour voir les détails.',
+        select_methodology: 'Sélectionnez un domaine sur la gauche pour voir les détails',
         search_methodology: 'Search for a Methodology',
 
         estimation_title: 'Estimation',
