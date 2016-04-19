@@ -29,6 +29,7 @@ define({
     toyear: 'To Year',
     countries: 'Countries',
     aggregation: 'Aggregation',
+    yearprojections: 'Year',
 
     no_data_available: 'No data available.',
     no_data_available_for_current_selection: 'No data available for current selection',
