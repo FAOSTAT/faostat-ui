@@ -5,15 +5,12 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-        "compare": "Compare",
-        "title": "Compare Data",
-        "selectors": "Selectors",
-        "filters": "Filters",
-        "add_new_selector": "Add New Selector",
-        "compare_data": "Compare Data",
-        "add_filter": "Add Filter",
-        "remove_filter": "Remove Filter",
-        "chart_title": "Timeseries on selected data"
+        "compare": "Comparer",
+        "compare_data": "Comparer Données",
+        "add_filter": "Ajouter un nouveau filtre",
+        "chart_title": "Timeseries on selected data",
+        "select_a_timerange": "Select a timerange",
+        "filter_box_title": "(Filter Box)"
 
     });
 });
