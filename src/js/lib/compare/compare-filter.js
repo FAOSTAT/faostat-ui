@@ -76,7 +76,7 @@ define([
         }
 
         this.$DD.select2({
-            placeholder: this.o.placeholder || "Select a..."
+            placeholder: this.o.placeholder || i18nLabels.please_select_an_option
         });
 
         this.$VALIDATION = this.$DD_CONTAINER.find(s.VALIDATION);

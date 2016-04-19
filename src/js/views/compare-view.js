@@ -117,6 +117,7 @@ define([
 
         // filters
         addFilter: function () {
+
             // TODO: keep track of the filters
             var f = new FilterBoxView({
                 filterBoxID: ++filterBoxIDs

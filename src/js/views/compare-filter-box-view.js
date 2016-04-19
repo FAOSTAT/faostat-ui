@@ -102,6 +102,8 @@ define([
         configurePage: function () {
             var self = this;
 
+            amplify.publish(E.LOADING_SHOW, { container: this.$GROUPS});
+
             this.FAOSTATAPIClient.groups({
                 datasource: C.DATASOURCE,
                 lang: this.o.lang,
@@ -141,6 +143,7 @@ define([
         },
 
         createDomainFilter: function(json) {
+
             var self = this;
 
             // TODO: remove filters (dispose)
@@ -149,7 +152,7 @@ define([
             var filter = new Filter({
                 container: this.$DOMAINS,
                 title: i18nLabels.domains,
-                placeholder: i18nLabels.select_a_domain || "Select a domain",
+                placeholder: i18nLabels.please_select_an_option,
                 data: json.data
             });
 
@@ -178,6 +181,10 @@ define([
 
             this.$GROUP_HEADING_TITLE.html(label);
             this.$DOMAIN_HEADING_TITLE.empty();
+
+            // loading domains by group
+            this.$DOMAINS.empty();
+            amplify.publish(E.LOADING_SHOW, { container: this.$DOMAINS});
 
             this.FAOSTATAPIClient.domains({
                 group_code: code,
@@ -211,6 +218,9 @@ define([
             // clean old filters
             this.o.filters = {};
 
+            // loading filters by domain
+            amplify.publish(E.LOADING_SHOW, { container: this.$FILTERS});
+
             // parse the dimensions to create dinamically the dropdowns needed
             this.FAOSTATAPIClient.dimensions({
                 datasource: C.DATASOURCE,
@@ -218,6 +228,8 @@ define([
                 domain_code: this.domainCode
             }).then(_.bind(this._preloadDomainDimensions, this))
                 .then(_.bind(function(json) {
+
+                    amplify.publish(E.LOADING_HIDE, { container: this.$FILTERS});
 
                     _.each(json, _.bind(function(v) {
 
@@ -229,7 +241,7 @@ define([
                             v.container = this.createFilterContainer(id);
 
                             // TODO: get label from metadata
-                            v.title = i18nLabels[id] || id;
+                            v.title = i18nLabels[id.toLowerCase()] || id;
                             v.parameter = this.DIMENSION_PARAMETER_MAPPING[id];
 
                             v.ddOptions = {
