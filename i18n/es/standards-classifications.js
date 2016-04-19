@@ -4,8 +4,7 @@ define(['jquery', 'i18n!nls/standards'], function ($, Standards) {
     'use strict';
 
     return $.extend(true, {}, Standards, {
-
-
+        
         code_title: 'Código',
         label_title: 'Producto',
         description_title: 'Descripción',

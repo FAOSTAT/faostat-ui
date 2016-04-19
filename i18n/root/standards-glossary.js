@@ -5,11 +5,9 @@ define(['jquery', 'i18n!nls/standards'], function ($, Standards) {
 
     return $.extend(true, {}, Standards, {
 
-        title: 'Glossary List in FAOSTAT',
         code_title: 'Title',
         label_title: 'Definition',
-        source_title: 'Source',
-        sort_by_title: 'Sort By Title'
+        source_title: 'Source'
         
     });
 });
