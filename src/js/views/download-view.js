@@ -53,7 +53,7 @@ define([
 
         initialize: function (options) {
 
-            log.info(options);
+            log.info("DownloadView.initialize; options", options);
 
             this.o = $.extend(true, {}, options);
             this.o.lang = Common.getLocale();
