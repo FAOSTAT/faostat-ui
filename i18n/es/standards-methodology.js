@@ -5,10 +5,14 @@ define(['jquery', 'i18n!nls/standards'], function ($, Standards) {
 
     return $.extend(true, {}, Standards, {
 
-        title: 'Methodologies used in FAOSTAT',
-        select_methodology: 'Select a methodology on the left to view details',
+        select_methodology: 'Seleccionar una metodología de la izquierda para ver los detalles.',
         search_methodology: 'Search for a Methodology',
-        methodology: 'Methodology'
+
+        estimation_title: 'Estimation',
+        coverage_title: 'Coverage',
+        collection_title: 'Collection',
+        reference_title: 'Reference',
+        note_title: 'Note'
 
     });
 });

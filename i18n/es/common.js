@@ -50,12 +50,12 @@ define({
     faqs: "FAQs",
     frequently_asked_questions: "Frequently Asked Questions",
 
-    units: 'Units',
-    abbreviations: 'abbreviations',
-    methodology: 'Methodology',
-    methodologies: 'Methodologies',
-    classifications: 'Classifications',
-    glossary: 'Glossary',
+    units: 'Unidades',
+    abbreviations: 'Abreviaturas',
+    methodology: 'Metodología',
+    methodologies: 'Metodologías',
+    classifications: 'Clasificaciones',
+    glossary: 'Glosario',
 
     metadata: ' Metadatos',
     bulk_downloads: 'Todos Lost Datos',

@@ -52,12 +52,12 @@ define({
     faqs: "FAQs",
     frequently_asked_questions: "Frequently Asked Questions",
 
-    units: 'Units',
-    abbreviations: 'abbreviations',
-    methodology: 'Methodology',
-    methodologies: 'Methodologies',
+    units: 'Méthodologie',
+    abbreviations: 'Abréviations',
+    methodology: 'Méthodologie',
+    methodologies: 'Méthodologies',
     classifications: 'Classifications',
-    glossary: 'Glossary',
+    glossary: 'Glossaire',
 
     metadata: ' Métadonnées',
     bulk_downloads: 'Données Completes',
