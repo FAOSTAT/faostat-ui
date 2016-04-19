@@ -5,6 +5,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
+     /*
         year: 'Year',
         fromyear: 'From Year',
         toyear: 'To Year',
@@ -15,6 +16,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         average: 'Average',
         sum: 'Sum',
         please_select_an_option: 'Please select an option'
+    */
 
     });
 });

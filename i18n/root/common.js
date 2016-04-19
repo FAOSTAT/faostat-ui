@@ -16,13 +16,19 @@ define({
     "domain": "Domain",
     "domains": "Domains",
     "item": "Item",
+    "items": "Items",
     "element": "Element",
     "regions": "Regions",
     "area": "Area",
     "year": "Year",
+    "years": "Years",
     "donor": "Donor",
     "recipientarea": "Recipient Area",
     "analyticalaggregates": "Aid Aggregates",
+    fromyear: 'From Year',
+    toyear: 'To Year',
+    countries: 'Countries',
+    aggregation: 'Aggregation',
 
     no_data_available: 'No data available.',
     no_data_available_for_current_selection: 'No data available for current selection',
@@ -65,4 +71,5 @@ define({
     
     "average": "Average",
     "sum": "Sum"
+    
 });
