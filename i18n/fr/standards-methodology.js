@@ -9,10 +9,10 @@ define(['jquery', 'i18n!nls/standards'], function ($, Standards) {
         search_methodology: 'Search for a Methodology',
 
         estimation_title: 'Estimation',
-        coverage_title: 'Coverage',
+        coverage_title: 'Couverture',
         collection_title: 'Collection',
-        reference_title: 'Reference',
-        note_title: 'Note'
+        reference_title: 'Référence',
+        note_title: 'Noter'
 
     });
 });

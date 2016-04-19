@@ -8,11 +8,11 @@ define(['jquery', 'i18n!nls/standards'], function ($, Standards) {
         select_methodology: 'Seleccionar una metodología de la izquierda para ver los detalles.',
         search_methodology: 'Search for a Methodology',
 
-        estimation_title: 'Estimation',
+        estimation_title: 'Estimación',
         coverage_title: 'Coverage',
-        collection_title: 'Collection',
-        reference_title: 'Reference',
-        note_title: 'Note'
+        collection_title: 'Cobertura',
+        reference_title: 'Referencia',
+        note_title: 'Nota'
 
     });
 });
