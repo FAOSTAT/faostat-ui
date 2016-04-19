@@ -6,17 +6,19 @@
 
                 <!-- TODO: avoid replication of the info icon -->
                 {{#if comment.url}}
-                        <span class="fa-stack">
-                              <i class="fa fa-circle-o fa-stack-2x"></i>
-                              <i class="fa fa fa-info fa-stack-1x"></i>
-                        </span>
+<!--                    <span class="fa-stack">
+                          <i class="fa fa-circle-o fa-stack-2x"></i>
+                          <i class="fa fa fa-info fa-stack-1x"></i>
+                    </span>-->
+                    <i class="fa fa-info-circle"></i>
                     <a href="{{comment.url}}" target="_blank">{{comment.text}}</a>
                 {{else}}
                     <p>
-                        <span class="fa-stack">
-                              <i class="fa fa-circle-o fa-stack-2x"></i>
-                              <i class="fa fa fa-info fa-stack-1x"></i>
-                        </span>
+                        <!--                    <span class="fa-stack">
+                                                  <i class="fa fa-circle-o fa-stack-2x"></i>
+                                                  <i class="fa fa fa-info fa-stack-1x"></i>
+                                            </span>-->
+                        <i class="fa fa-info-circle"></i>
                         {{comment.text}}
                     </p>
                 {{/if}}
