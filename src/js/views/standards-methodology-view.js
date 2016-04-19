@@ -99,6 +99,10 @@ define([
 
         initComponents: function () {
 
+            var self = this;
+
+            amplify.publish(E.LOADING_SHOW, {container: this.$tree});
+
             // TODO: lang
             this.FAOSTATAPIClient.methodologies({
                     datasource: C.DATASOURCE,
@@ -106,12 +110,15 @@ define([
                 })
                 .then(_.bind(this.showMethodologies, this))
                 .fail(function(e) {
+                    amplify.publish(E.LOADING_HIDE, {container: self.$tree});
                     amplify.publish(E.CONNECTION_PROBLEM, {});
                 });
 
         },
 
         showMethodologies: function(json) {
+
+            amplify.publish(E.LOADING_HIDE, {container: this.$tree});
 
             var self = this;
             var data = [];
