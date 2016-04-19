@@ -28,7 +28,7 @@ define({
     no_data_available_for_current_selection: 'No data available for current selection',
     loading: 'Loading',
     warning: 'Warning',
-    export_data: 'Export Data',
+    export_data: 'Exporter Données',
     next: "Next",
     previous: "Previous",
     first: "First",
