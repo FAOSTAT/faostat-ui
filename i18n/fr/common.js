@@ -52,7 +52,7 @@ define({
     faqs: "FAQs",
     frequently_asked_questions: "Frequently Asked Questions",
 
-    units: 'Méthodologie',
+    units: 'Unités',
     abbreviations: 'Abréviations',
     methodology: 'Méthodologie',
     methodologies: 'Méthodologies',
