@@ -36,10 +36,10 @@ define({
     loading: 'Loading',
     warning: 'Warning',
     export_data: 'Exportar Datos',
-    next: "Next",
-    previous: "Previous",
-    first: "First",
-    last: "Last",
+    next: "siguente",
+    previous: "anterior",
+    first: "primero",
+    last: "último",
     please_select_an_option: "Please select an option",
     filter_domain_tree: "Search for a FAOSTAT Domain",
 
@@ -66,7 +66,7 @@ define({
     classifications: 'Clasificaciones',
     glossary: 'Glosario',
 
-    metadata: ' Metadatos',
+    metadata: 'Metadato',
     bulk_downloads: 'Todos Lost Datos',
     interactive_download: 'Interactive Download',
     
