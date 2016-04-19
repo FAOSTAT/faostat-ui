@@ -119,12 +119,16 @@ define([
 
                         this.showClassification(code, label);
 
+                        amplify.publish(E.SCROLL_TO_SELECTOR, {container: this.$output});
+
                     }, this),
 
                     onGroupClick: _.bind(function (callback) {
 
                         this.$output.hide();
                         this.$intro.show();
+
+                        amplify.publish(E.SCROLL_TO_SELECTOR, {container: this.$output});
 
                     }, this)
                 }
@@ -163,7 +167,7 @@ define([
                 label = this.o.label,
                 self = this;
 
-            data.classsification_title = i18nLabels.classification + ' - ' + label;
+            data.classsification_title = label;
 
             this.$output.html(t(data));
 
