@@ -1,20 +1,8 @@
 
 {{#each this}}
     <div class="fs-home-update">
-        <!-- TODO: probably this should not be an <h2> -->
-        <h5 style="text-transform: capitalize;">{{this.title}}</h5>
-
-        <ul>
-
-        {{#each this.data}}
-
-            <li>
-                <a href='#' data-role="go_to_download" data-code='{{this.domain_code}}'>{{this.domain_name}} ({{this.group_name}})</a>
-            </li>
-
-        {{/each}}
-
-        </ul>
-
+        <h5><a href='#' data-role="go_to_download" data-code='{{this.domain_code}}'>{{this.title}}</a></h5>
+        <p>{{this.date}}</p>
+        <hr>
     </div>
 {{/each}}
