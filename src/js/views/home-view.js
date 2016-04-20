@@ -22,6 +22,7 @@ define([
     'config/home/sample/comingUp',
     'config/home/sample/databaseUpdates',
     'moment',
+    'underscore.string',
     'amplify'
 ], function ($, log, View, Common, ROUTE, C, E, CM,
              template,
@@ -34,7 +35,8 @@ define([
              WhatsNew,
              ComingUp,
              DatabaseUpdates,
-             moment
+             moment,
+             _s
 ) {
 
     'use strict';
@@ -306,6 +308,11 @@ define([
                         databaseUpdates = [];
 
                     _.each(d.data, function(domain) {
+
+                        // clean date for firefox
+                        //http://stackoverflow.com/questions/3257460/new-date-is-working-in-chrome-but-not-firefox
+                        domain.date_update = _s.strLeft(_s.replaceAll(domain.date_update, '-', '/'), ".");
+                        
                         domain.date_update = new Date(domain.date_update);
                         sortedDomains.push(domain);
                     });
@@ -328,6 +335,9 @@ define([
 
                             var m = moment(domain.date_update),
                                 date =  m.format("MMM DD, YYYY");
+
+                            log.info(m, domain.date_update)
+                            log.info(date)
 
                             domain.title = domain.domain_name + " ("+ domain.group_name + ")";
                             domain.date = date;
