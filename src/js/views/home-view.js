@@ -292,6 +292,86 @@ define([
 
         initDatabaseUpdates: function () {
 
+                var self = this,
+                    t = Handlebars.compile(templateDatabaseUpdates);
+
+                amplify.publish(E.LOADING_SHOW, {container: self.$DATABASE_UPDATES});
+
+                this.api.groupsanddomains({
+                    lang: this.o.lang,
+                    datasource: C.DATASOURCE
+                }).then(function(d) {
+
+                    var sortedDomains = [],
+                        databaseUpdates = [];
+
+                    _.each(d.data, function(domain) {
+                        domain.date_update = new Date(domain.date_update);
+                        sortedDomains.push(domain);
+                    });
+
+                    // order by date
+                    sortedDomains = _.sortBy(sortedDomains, function(o){
+                        return -o.date_update.getTime();
+                    });
+
+                    // parse 10 first domains
+                    log.info("Home.initDatabaseUpdates; sortedDomains", sortedDomains);
+
+                    moment.locale(Common.getLocale());
+
+                    _.each(sortedDomains, function(domain, index) {
+
+                        //log.info(domain, index);
+
+                        if (index < CM.MAX_DATABASE_UPDATES) {
+
+                            var m = moment(domain.date_update),
+                                date =  m.format("MMM DD, YYYY");
+
+                            domain.title = domain.domain_name + " ("+ domain.group_name + ")";
+                            domain.date = date;
+
+                            databaseUpdates.push(domain);
+
+                        }
+
+                    });
+
+                    log.info("Home.initDatabaseUpdates; databaseUpdates", databaseUpdates);
+
+                    self.$DATABASE_UPDATES.html(t(databaseUpdates));
+
+                    self.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).off('click');
+                    self.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
+
+                        e.preventDefault();
+
+                        var section = ROUTE.DOWNLOAD_ABOUT,
+                            code = this.getAttribute('data-code');
+
+                        log.info(this.getAttribute('data-code'));
+
+                        self.changeState({
+                            section:section,
+                            code: code
+                        });
+                    });
+
+
+                }).fail(function(e) {
+
+                    // TODO: Handle error
+                    log.error("Home.initChart; error", e);
+                    amplify.publish(E.LOADING_HIDE, {container: self.$DATABASE_UPDATES});
+                    amplify.publish(E.CONNECTION_PROBLEM, {});
+
+                });
+
+            },
+
+      /*  initDatabaseUpdates: function () {
+
             var self = this,
                 t = Handlebars.compile(templateDatabaseUpdates);
 
@@ -375,7 +455,7 @@ define([
 
             });
 
-        },
+        },*/
 
         initReleaseCalendar: function() {
 
