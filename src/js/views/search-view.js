@@ -218,9 +218,9 @@ define([
                     //log.info('Search.paging; number', num, 'event', event);
 
                     self.$SEARCH_RESULTS.html(self.getPage(results, num, pageSize));
-                    //self.$SEARCH_RESULTS.focus();
-                    //self.$SEARCH_RESULTS.animate({ scrollTop: 0 }, "fast");
-                    $('body, html').scrollTop(0);
+
+                    // scroll to search box to show the results
+                    amplify.publish(E.SCROLL_TO_SELECTOR, {container: self.$SEARCH_BOX});
 
                     // bind export data selection
                     self.bindExportDataSelection();
