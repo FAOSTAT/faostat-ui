@@ -30,7 +30,7 @@ module.exports = function(grunt) {
                 options: {
                     variables: {
                         'dest': 'dev',
-                        'url_api': 'http://fenix.fao.org/faostat/dev/api/v1.0/'
+                        'url_api': 'http://fenix.fao.org/faostat/dev/api/v1/'
                     }
                 }
             },
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
                 options: {
                     variables: {
                         'dest': 'demo',
-                        'url_api': 'http://fenix.fao.org/faostat/demo/api/v1.0/'
+                        'url_api': 'http://fenix.fao.org/faostat/demo/api/v1/'
                     }
                 }
             },
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                 options: {
                     variables: {
                         'dest': 'prod',
-                        'url_api': 'http://fenix.fao.org/faostat/api/v1.0/'
+                        'url_api': 'http://fenix.fao.org/faostat/api/v1/'
                     }
                 }
             }
