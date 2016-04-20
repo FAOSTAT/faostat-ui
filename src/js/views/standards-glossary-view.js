@@ -40,6 +40,10 @@ define([
 
     o = {
 
+        table: {
+            height: 650
+        },
+
         requestType: 'glossary',
 
         cache: {}
@@ -135,7 +139,7 @@ define([
                 },
                 template: {
                     // TODO: add in config
-                    height: '650',
+                    height: this.o.table.height,
                     tableOptions: {
                         'data-pagination': true,
                         'data-sortable': false,
