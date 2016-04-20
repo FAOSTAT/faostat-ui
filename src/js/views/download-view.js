@@ -20,11 +20,13 @@ define([
     'FAOSTAT_UI_WELCOME_PAGE',
     'lib/download/domains_list/domains-list',
     'moment',
+    'underscore.string',
     'amplify'
 ], function ($, log, View, F, C, E, Common, ROUTE,
              template, i18nLabels,
              Tree, Report, InteractiveDownload, BulkDownloads, MetadataViewer, WelcomePage, DomainsList,
-             moment
+             moment,
+             _s
 ) {
 
     'use strict';
@@ -284,9 +286,11 @@ define([
 
             moment.locale(Common.getLocale());
 
+
             var code = options.id,
+                date_update = _s.strLeft(_s.replaceAll(options.date_update, '-', '/'), "."),
                 label = options.label,
-                date_update = moment(new Date(options.date_update)).format("DD MMMM YYYY"),
+                date_update = moment(new Date(date_update)).format("DD MMMM YYYY"),
                 //dateUpdate = new Date(options.dateUpdate),
                 type = options.type;
 
