@@ -71,6 +71,8 @@ define({
     interactive_download: 'Télécharger interactive',
 
     "average": "Moyenne",
-    "sum": "Somme"
+    "sum": "Somme",
+    
+    "close": "close"
 
 });

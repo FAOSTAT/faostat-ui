@@ -71,6 +71,8 @@ define({
     interactive_download: 'Interactive Download',
     
     "average": "Average",
-    "sum": "Sum"
+    "sum": "Sum",
+
+    "close": "close"
     
 });
