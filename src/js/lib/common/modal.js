@@ -28,40 +28,43 @@ define([
 
     Modal.prototype._initModal = function (config) {
 
-        var config = config || {},
-            title = config.title || "";
+        var c = config || {},
+            title = c.title || "",
+            html = $(templates).filter(s.MODAL).html(),
+            t = Handlebars.compile(html);
 
-        this.$MODAL = $(s.MODAL);
+        $('body').append(t({
+            title: title,
+            close: i18nLabels.close
+        }));
 
-        // initialize modal template if doesn't exists
-        if (this.$MODAL.length <= 0) {
+        return $(s.MODAL);
 
-            var html = $(templates).filter('#fs-modal').html(),
-                t = Handlebars.compile(html);
-
-            $('body').append(t({
-                title: title
-            }));
-
-            this.$MODAL = $(s.MODAL);
-
-        }
-
-        this.$CONTAINER = this.$MODAL.find(s.CONTAINER);
     };
 
     Modal.prototype.glossary = function () {
 
-        this._initModal({
-            title:  i18nLabels.glossary
-        });
+        // TODO: in theory could be a singleton
+        var $MODAL = this._initModal({
+                title:  i18nLabels.glossary
+            }),
+            $CONTAINER = $MODAL.find(s.CONTAINER),
+            view_glossary = new GlossaryView({
+                table: {
+                    height: 300
+                }
+            });
 
-        this.view_glossary = new GlossaryView();
-        this.$CONTAINER.html(this.view_glossary.$el);
+        $CONTAINER.html(view_glossary.$el);
 
         // show modal
-        this.$MODAL.modal('show');
+        $MODAL.modal('show');
 
+        // destroy event listener on the modal and dispose the view
+        $MODAL.on('hidden.bs.modal', function () {
+            $MODAL.off('hidden.bs.modal');
+            view_glossary.dispose();
+        });
 
     };
 
