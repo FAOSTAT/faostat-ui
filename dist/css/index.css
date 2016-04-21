@@ -5136,7 +5136,7 @@ button_new_2:before {
   visibility: hidden;
   overflow: hidden;
   text-align: center;
-  z-index: 99999999;
+  z-index: 1000;
   background-color: #777777;
   color: #eeeeee;
   width: 50px;
