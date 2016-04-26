@@ -5272,6 +5272,7 @@ footer.fao-footer {
   margin-top: 8px !important;
   height: 5px !important; }
 
+/* Third parties */
 .typeahead, .tt-query, .tt-hint {
   /*width: 396px;*/
   /*height: 30px;*/
@@ -5346,7 +5347,6 @@ footer.fao-footer {
 #rtl-support .tt-menu {
   text-align: right; }
 
-/* Third parties */
 /* Fenix - Js tree */
 .jstree-default .jstree-search {
   color: #666666;

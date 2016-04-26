@@ -5,6 +5,7 @@
 
 /* Fenix Utils*/
 @import '../../submodules/fenix-ui-common/css/utils/fx-utils';
+//@import '../../submodules/fenix-ui-common/css/components/fx-fixed-height';
 
 /* Base */
 @import '../../src/css/theme/default';
@@ -19,10 +20,12 @@
 @import '../../src/css/components/fao-footer';
 @import '../../src/css/components/map';
 @import '../../src/css/components/fx-range-slider';
-@import '../../src/css/components/typeahead';
+
 
 /* Third parties */
-@import '../../submodules/fenix-ui-common/css/vendor/fx-jstree';
+//@import '../../submodules/fenix-ui-common/css/vendor/fx-jstree';
+@import '../../src/css/third_party/typeahead';
+@import '../../src/css/third_party/fx-jstree';
 
 /* Pages */
 @import '../../src/css/pages/home';
@@ -38,4 +41,3 @@
 //@import '../../submodules/faostat-ui-download-selector/css/faostat-download-selector';
 //@import '../../submodules/faostat-ui-download-options/css/fenix-ui-download-options';
 //@import '../../submodules/faostat-ui-table/css/faostat-ui-table';
-
