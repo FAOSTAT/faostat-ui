@@ -1,0 +1,11 @@
+<div class="{{#if class}}{{class}}{{else}}col-lg-3{{/if}}"
+     data-role="{{#if role}}{{role}}{{/if}}">
+    <h5>{{title}}</h5>
+    <select data-role="dd" class="js-example-responsive" style="width: 100%" {{#if multiple}}multiple{{/if}}>
+        {{#each data}}
+            <option value={{code}} {{#if selected}}selected{{/if}}>{{label}}</option>
+        {{/each}}
+    </select>
+   <!-- TODO: remove hardcoded style! -->
+    <p data-role="validation" style="display:none; color:#E00000; font-weight:bold; margin-top:5px;">* {{please_select_an_option}}</p>
+</div>
