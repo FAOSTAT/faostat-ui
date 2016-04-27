@@ -25,6 +25,7 @@ define([
     'views/browse-by-domain-view',
     'handlebars',
     'faostatapiclient',
+    'lib/common/text-wrapper',
     'amplify'
 ], function ($, log, View, F, C, E, Common, ROUTE,
              template, i18nLabels,
@@ -38,7 +39,8 @@ define([
              _s,
              DomainView,
              Handlebars,
-             FAOSTATApi
+             FAOSTATApi,
+             TextWrapper
 ) {
 
     'use strict';
@@ -71,7 +73,9 @@ define([
             TREE_CLOSE: '[data-role="fs-domains-tree-container-close"]',
 
             // this is used to change the link to the interactive download
-            DOWNLOAD_INTERACTIVE_LINK: '[data-role="download-interactive-link"]'
+            DOWNLOAD_INTERACTIVE_LINK: '[data-role="download-interactive-link"]',
+
+            DESCRIPTION: '[data-role="description"]'
 
     },
 
@@ -142,6 +146,7 @@ define([
             this.$LAST_UPDATE_DATE = this.$el.find(s.LAST_UPDATE_DATE);
             this.$METADATA_BUTTON = this.$el.find(s.METADATA_BUTTON);
             this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
+            this.$DESCRIPTION = this.$el.find(s.DESCRIPTION);
 
             this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
 
@@ -224,6 +229,7 @@ define([
             //this._renderBulkDownloadsSidebar(code);
 
             this._renderBulkDownloadCaret(code);
+            this._renderDescription(code);
 
             // check tab availability
             this.checkSectionsAvailability(section, code);
@@ -306,7 +312,7 @@ define([
 
             }
 
-            if (section === 'browse') {
+            if (section === 'browse_by_domain_code') {
 
                 this._browseByDomain(options);
 
@@ -420,7 +426,7 @@ define([
             }
 
             // TODO: move to a common function
-            if( section === 'browse') {
+            if( section === 'browse_by_domain_code') {
 
                 this._browseByDomain(options);
 
@@ -430,12 +436,14 @@ define([
 
         _browseByDomain: function(options) {
 
-            log.info(options);
-            options.code = options.id;
-            options.lang = this.o.lang;
+            var browseOptions = {};
+            browseOptions.code = options.id;
+            browseOptions.lang = this.o.lang;
 
             // TODO: section shouldn't be need
-            options.section = ROUTE.BROWSE_BY_DOMAIN; //ROUTE.BROWSE_BY_DOMAIN_CODE;
+            browseOptions.section = ROUTE.BROWSE_BY_DOMAIN; //ROUTE.BROWSE_BY_DOMAIN_CODE;
+
+            log.info("Download._browseByDomain; options:", browseOptions);
 
             if (this.view_domain) {
                 this.view_domain.dispose();
@@ -444,9 +452,9 @@ define([
             // {region: "main", section: "browse_by_domain", lang: "en", code: "P"}
 
             // init browse by domain
-            this.view_domain = new DomainView(options);
+            this.view_domain = new DomainView(browseOptions);
 
-            this.$BROWSE.empty()
+            this.$BROWSE.empty();
             var $S = this._createRandomElement(this.$BROWSE);
             $S.html(this.view_domain.$el);
 
@@ -587,9 +595,11 @@ define([
             
         },
 
-        _renderLastUpdate: function(code) {
+        _renderLastUpdate: function() {
 
             this.$LAST_UPDATE_DATE.empty();
+
+
         },
 
         _renderRelatedDocuments: function(code) {
@@ -602,6 +612,45 @@ define([
                 container: this.$RELATED_DOCUMENTS,
                 code: code
            });
+
+        },
+
+        _renderDescription: function(code) {
+
+            var self = this;
+
+            this.$DESCRIPTION.empty();
+
+            this.api.metadata({
+                datasource: C.DATASOURCE,
+                lang: this.o.lang,
+                domain_code: code
+            }).then(function(d) {
+
+                if(d.hasOwnProperty('data') && d.data.length > 0 ) {
+
+                    var description = _.find(d.data, function(v) {
+                        return v.metadata_code === "3.1";
+                    });
+
+                    if ( description ) {
+                        var t = new TextWrapper();
+                        t.render({
+                            container: self.$DESCRIPTION,
+                            text: description.metadata_text,
+                            length: 250
+                        });
+                    }
+
+                }else{
+                    self.$DESCRIPTION.html("No description available.");
+                }
+
+            });
+
+        },
+
+        _renderContacts: function(code) {
 
         },
 
