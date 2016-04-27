@@ -73,6 +73,10 @@ define({
     "average": "Average",
     "sum": "Sum",
 
-    "close": "close"
+    "close": "close",
+
+    "browse": "browse",
+
+    no_docs_available: 'No documents available',
     
 });

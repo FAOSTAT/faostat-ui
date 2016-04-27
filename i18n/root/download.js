@@ -7,7 +7,6 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
         about: 'About',
         related_documents: 'Related Documents',
-        no_docs_available: 'No documents available for',
         go_to_section: 'Go To Section',
 
         faostat_domains: 'FAOSTAT Domains',
