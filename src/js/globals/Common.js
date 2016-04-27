@@ -54,12 +54,18 @@ define(['chaplin',
 
         log.info("Common.getURI;", name, options);
 
-        // add as first element the language
-        options.unshift(this.getLocale());
+        try {
+            // add as first element the language
+            options.unshift(this.getLocale());
 
-        var uri = Chaplin.utils.reverse(
-            name, options
-        );
+            var uri = Chaplin.utils.reverse(
+                name, options
+            );
+        }
+        catch(e) {
+            log.error("Common.getURI;", e);
+            return null;
+        }
 
         return uri;
     };
