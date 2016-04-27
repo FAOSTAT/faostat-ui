@@ -145,9 +145,10 @@ define([
 
         return json;
     };
+    
     Groups.prototype.destroy = function () {
 
-        log.info("Groups.destroy;")
+        log.info("Groups.destroy;");
 
         // destroy all filters
         if (this.$CONTAINER !== undefined) {
