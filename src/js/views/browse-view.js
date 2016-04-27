@@ -32,8 +32,7 @@ define([
 
         // TODO: remove
         events: {
-            'click': function(a) {
-            }
+            //'click': function(a) {}
         },
 
         initialize: function (options) {

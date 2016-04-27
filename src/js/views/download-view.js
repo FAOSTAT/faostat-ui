@@ -17,16 +17,28 @@ define([
     'FAOSTAT_UI_BULK_DOWNLOADS',
     //'FENIX_UI_METADATA_VIEWER',
     'fs-m-v/start',
-    'FAOSTAT_UI_WELCOME_PAGE',
+    'lib/related_documents/related_documents',
+    //'FAOSTAT_UI_WELCOME_PAGE',
     'lib/download/domains_list/domains-list',
     'moment',
     'underscore.string',
+    'views/browse-by-domain-view',
+    'handlebars',
+    'faostatapiclient',
     'amplify'
 ], function ($, log, View, F, C, E, Common, ROUTE,
              template, i18nLabels,
-             Tree, Report, InteractiveDownload, BulkDownloads, MetadataViewer, WelcomePage, DomainsList,
+             Tree, Report, InteractiveDownload,
+             BulkDownloads,
+             MetadataViewer,
+             //WelcomePage,
+             RelatedDocuments,
+             DomainsList,
              moment,
-             _s
+             _s,
+             DomainView,
+             Handlebars,
+             FAOSTATApi
 ) {
 
     'use strict';
@@ -42,9 +54,31 @@ define([
             BULK: "#bulk_downloads",
             ABOUT: "#about",
             INTERACTIVE_DOWNLOAD: "#interactive_download",
-            METADATA: "#metadata"
+            METADATA: "#metadata",
+            BROWSE: "#browse",
+
+            // Related Documents
+            RELATED_DOCUMENTS: '[data-role="fs-download-related-documents"]',
+            LAST_UPDATED_DATE: '[data-role="fs-download-last-update-date"]',
+            BULK_SIDEBAR: '[data-role="fs-download-bulk-downloads-sidebar"]',
+            LAST_UPDATE_DATE: '[data-role="fs-download-last-update-date"]',
+            METADATA_BUTTON: '[data-role="fs-download-metadata-button"]',
+            BULK_CARET: "[data-role='bulk-downloads-caret']",
+
+            // Tree
+            MENU_TREE: '[data-role="fs-domains-menu"]',
+            TREE_CONTAINER: '[data-role="fs-domains-tree-container"]',
+            TREE_CLOSE: '[data-role="fs-domains-tree-container-close"]',
+
+            // this is used to change the link to the interactive download
+            DOWNLOAD_INTERACTIVE_LINK: '[data-role="download-interactive-link"]'
 
     },
+
+    defaultOptions = {
+
+    },
+
     DownloadView = View.extend({
 
         autoRender: true,
@@ -57,8 +91,11 @@ define([
 
             log.info("DownloadView.initialize; options", options);
 
-            this.o = $.extend(true, {}, options);
+            this.o = $.extend(true, {}, defaultOptions, options);
             this.o.lang = Common.getLocale();
+
+            // TODO: should not be here
+            this.api = new FAOSTATApi();
 
             // TODO: useful?
             this.options = $.extend(true, {}, options);
@@ -74,7 +111,7 @@ define([
             View.prototype.attach.call(this, arguments);
 
             //update State
-            amplify.publish(E.STATE_CHANGE, {download: 'download'});
+            amplify.publish(E.STATE_CHANGE, {data: 'data'});
 
             this.initVariables();
 
@@ -95,6 +132,16 @@ define([
             this.$INTERACTIVE_DOWNLOAD = this.$el.find(s.INTERACTIVE_DOWNLOAD);
             this.$ABOUT = this.$el.find(s.ABOUT);
             this.$MAIN_CONTAINER_TITLE = this.$el.find(s.MAIN_CONTAINER_TITLE);
+            this.$BROWSE = this.$el.find(s.BROWSE);
+            this.$MENU_TREE = this.$el.find(s.MENU_TREE);
+            this.$TREE_CONTAINER = this.$el.find(s.TREE_CONTAINER);
+            this.$TREE_CLOSE = this.$el.find(s.TREE_CLOSE);
+            this.$RELATED_DOCUMENTS = this.$el.find(s.RELATED_DOCUMENTS);
+            this.$BULK_SIDEBAR = this.$el.find(s.BULK_SIDEBAR);
+            this.$BULK_CARET = this.$el.find(s.BULK_CARET);
+            this.$LAST_UPDATE_DATE = this.$el.find(s.LAST_UPDATE_DATE);
+            this.$METADATA_BUTTON = this.$el.find(s.METADATA_BUTTON);
+            this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
 
             this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
 
@@ -116,6 +163,8 @@ define([
                     onClick: function (callback) {
 
                         callback.type = self.tree.getCodeType();
+
+                        self.$TREE_CONTAINER.hide();
 
                         self.updateSection(callback);
 
@@ -142,34 +191,15 @@ define([
 
         updateSection: function(options) {
 
-            log.info("Update section");
-
-            // TODO: check tabs
-
             this.o.selected = $.extend(true, {}, options);
+
+            log.info("Download.updateSection", this.o.selected, options);
 
             this.switchTabs(this.o.section, this.o.selected);
 
         },
 
         configurePage: function () {
-
-        },
-
-        bindEventListeners: function () {
-
-            var self = this;
-
-            // bind tabs listeners
-            this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-
-                self.o.section = $(e.target).data("section"); // activated tab
-
-                self.switchTabs(self.o.section, self.o.selected);
-
-                self.changeState();
-
-            });
 
         },
 
@@ -186,6 +216,14 @@ define([
 
             // Set Title
             this.$MAIN_CONTAINER_TITLE.html(label);
+
+            // Set Related Documents
+            // TODO: this in theory should change only when a domain/group is changed and not when a tab is switched.
+            this._renderRelatedDocuments(code);
+            //this._renderLastUpdate(code);
+            //this._renderBulkDownloadsSidebar(code);
+
+            this._renderBulkDownloadCaret(code);
 
             // check tab availability
             this.checkSectionsAvailability(section, code);
@@ -224,7 +262,7 @@ define([
 
                 this.welcomePage = new WelcomePage();
                 this.welcomePage.init({
-                    container: this.$ABOUT,
+                    container: this._createRandomElement(this.$ABOUT),
                     domain_code: code,
                     domain_name: label,
                     base_url: C.URL_FAOSTAT_DOCUMENTS_BASEPATH
@@ -237,7 +275,7 @@ define([
                 this.bulkDownloads = new BulkDownloads();
                 this.$BULK.empty();
                 this.bulkDownloads.init({
-                    container: this.$BULK,
+                    container: this._createRandomElement(this.$BULK),
                     code: code,
                     bulk_downloads_root: C.URL_BULK_DOWNLOADS_BASEPATH
                 });
@@ -268,13 +306,19 @@ define([
 
             }
 
+            if (section === 'browse') {
+
+                this._browseByDomain(options);
+
+            }
+
         },
 
         createDomainsList: function(container, section, code, section_description) {
 
             this.domainsList = new DomainsList();
             this.domainsList.init({
-                container: container,
+                container: this._createRandomElement($(container)),
                 section: section,
                 code: code,
                 section_description: section_description
@@ -286,20 +330,17 @@ define([
 
             moment.locale(Common.getLocale());
 
-
             var code = options.id,
-                date_update = _s.strLeft(_s.replaceAll(options.date_update, '-', '/'), "."),
+                date_sanitized = _s.strLeft(_s.replaceAll(options.date_update, '-', '/'), "."),
                 label = options.label,
-                date_update = moment(new Date(date_update)).format("DD MMMM YYYY"),
-                //dateUpdate = new Date(options.dateUpdate),
+                date_update = moment(new Date(date_sanitized)).format("DD MMMM YYYY"),
                 type = options.type;
 
+            // TODO destroy old bulkthis._createRandomElement(this.$ABOUT),
             if (section === 'bulk') {
-
                 this.bulkDownloads = new BulkDownloads();
-                this.$BULK.empty();
                 this.bulkDownloads.init({
-                    container: this.$BULK,
+                    container: this._createRandomElement(this.$BULK),
                     code: code,
                     bulk_downloads_root: C.URL_BULK_DOWNLOADS_BASEPATH
                 });
@@ -314,7 +355,7 @@ define([
                 this.interactiveDownload = new InteractiveDownload();
                 this.$INTERACTIVE_DOWNLOAD.empty();
                 this.interactiveDownload.init({
-                    container: this.$INTERACTIVE_DOWNLOAD,
+                    container: this._createRandomElement(this.$INTERACTIVE_DOWNLOAD),
                     // to output the table outside the standard output area
                     output_area: this.$OUTPUT_AREA,
                     code: code,
@@ -331,7 +372,7 @@ define([
                     this.report = new Report();
                     this.$REPORT.empty();
                     this.report.init({
-                        container: this.$REPORT,
+                        container: this._createRandomElement(this.$REPORT),
                         code: code
                     });
 
@@ -357,7 +398,7 @@ define([
 
                 this.metadataViewer = new MetadataViewer();
                 this.metadataViewer.init({
-                    container: this.$METADATA,
+                    container: this._createRandomElement(this.$METADATA),
                     code: code,
                     lang: Common.getLocale(),
                     url_get_metadata: C.URL_METADATA_MODEL,
@@ -370,13 +411,44 @@ define([
 
                 this.welcomePage = new WelcomePage();
                 this.welcomePage.init({
-                    container: this.$ABOUT,
+                    container: this._createRandomElement(this.$ABOUT),
                     domain_code: code,
                     domain_name: label,
                     base_url: C.URL_FAOSTAT_DOCUMENTS_BASEPATH
                 });
 
             }
+
+            // TODO: move to a common function
+            if( section === 'browse') {
+
+                this._browseByDomain(options);
+
+            }
+
+        },
+
+        _browseByDomain: function(options) {
+
+            log.info(options);
+            options.code = options.id;
+            options.lang = this.o.lang;
+
+            // TODO: section shouldn't be need
+            options.section = ROUTE.BROWSE_BY_DOMAIN; //ROUTE.BROWSE_BY_DOMAIN_CODE;
+
+            if (this.view_domain) {
+                this.view_domain.dispose();
+            }
+
+            // {region: "main", section: "browse_by_domain", lang: "en", code: "P"}
+
+            // init browse by domain
+            this.view_domain = new DomainView(options);
+
+            this.$BROWSE.empty()
+            var $S = this._createRandomElement(this.$BROWSE);
+            $S.html(this.view_domain.$el);
 
         },
 
@@ -392,10 +464,159 @@ define([
 
         },
 
+        bindEventListeners: function () {
+
+            var self = this;
+
+            // bind tabs listeners
+            this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+                self.o.section = $(e.target).data("section"); // activated tab
+
+                self.switchTabs(self.o.section, self.o.selected);
+
+                self.changeState();
+
+            });
+
+            this.$MENU_TREE.on('click', function() {
+
+                self.$TREE_CONTAINER.toggle({
+                    direction: 'left'
+                }, 500);
+                
+            });
+
+            this.$TREE_CLOSE.on('click', function() {
+                self.$TREE_CONTAINER.hide({
+                    direction: 'left'
+                }, 500);
+            });
+
+            this.$METADATA_BUTTON.on('click', function() {
+
+                if (self.o.hasOwnProperty("selected")) {
+                    // TODO: this.o.section should be always updated
+                    amplify.publish(E.METADATA_SHOW, {
+                        code: self.o.selected.id
+                    });
+                }
+                else {
+                    log.error("Download.MetadataButton; this.o.selected.code doesn't exists", self.o);
+                }
+
+            });
+
+            this.$DOWNLOAD_INTERACTIVE_LINK.on('click', function() {
+
+                // TODO: replace it with an anchor
+                self.$el.find('[data-section="interactive"]').tab('show');
+
+/*                if (self.o.hasOwnProperty("selected")) {
+                    Common.changeURL(ROUTE.DOWNLOAD_INTERACTIVE, [self.o.selected.id], true);
+                }
+                else {
+                    log.error("Download.DownloadInteractiveLink; this.o.selected.code doesn't exists", self.o);
+                }*/
+
+            });
+        },
+
         unbindEventListeners: function () {
 
             // unbind tabs listeners
             this.$el.find('a[data-toggle="tab"]').off('shown.bs.tab');
+
+            this.$MENU_TREE.off('click');
+            this.$TREE_CLOSE.off('click');
+
+        },
+
+        _renderBulkDownloadsSidebar: function(code) {
+
+            this.$BULK_SIDEBAR.empty();
+
+            var bulkDownloads = new BulkDownloads();
+            bulkDownloads.init({
+                container: this._createRandomElement(this.$BULK_SIDEBAR),
+                code: code,
+                bulk_downloads_root: C.URL_BULK_DOWNLOADS_BASEPATH,
+                show_header: false
+            });
+
+        },
+
+        // TODO: remove it from here
+        _renderBulkDownloadCaret: function(code) {
+            
+
+            var self = this;
+
+            this.$BULK_CARET.empty();
+
+            // TODO: this should be in a common functionality?
+            /* Fetch available bulk downloads. */
+            this.api.bulkdownloads({
+                datasource: C.DATASOURCE,
+                lang: this.o.lang,
+                domain_code: code
+            }).then(function (json) {
+
+                log.info(json)
+
+                var data = json.data,
+                    template = "{{#each data}}<li><a target='_blank' href='{{this.url}}'>{{this.FileContent}}</a></li>{{/each}}",
+                    t = Handlebars.compile(template);
+
+                if(data.length > 0) {
+
+                    _.each(data, function(d) {
+
+                        d.url = C.URL_BULK_DOWNLOADS_BASEPATH + d.FileName;
+                        d.FileContent = _s.capitalize(_s.replaceAll(d.FileContent, '_', ' '));
+
+                    });
+
+                    self.$BULK_CARET.html(t({data: data}));
+
+                }else {
+                    self.$BULK_CARET.html('<li><a>'+ i18nLabels.no_data_available +'</a></li>');
+                }
+
+            });
+            
+        },
+
+        _renderLastUpdate: function(code) {
+
+            this.$LAST_UPDATE_DATE.empty();
+        },
+
+        _renderRelatedDocuments: function(code) {
+
+           this.$RELATED_DOCUMENTS.empty();
+
+           var related_documents = new RelatedDocuments();
+
+           related_documents.render({
+                container: this.$RELATED_DOCUMENTS,
+                code: code
+           });
+
+        },
+
+        _createRandomElement: function($CONTAINER, empty) {
+
+            var empty = empty || true,
+                id = Math.random().toString().replace(".", "");
+
+            if(empty) {
+                $CONTAINER.empty();
+            }
+
+            $CONTAINER.append("<div id='"+ id +"'>");
+
+            return $CONTAINER.find('#' + id);
 
         },
 
@@ -409,6 +630,7 @@ define([
 
             View.prototype.dispose.call(this, arguments);
         }
+
     });
 
     return DownloadView;

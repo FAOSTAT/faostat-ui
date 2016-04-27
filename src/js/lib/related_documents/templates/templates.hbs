@@ -2,66 +2,15 @@
 
 
 <script type='text/x-handlebars-template' id='template'>
-    <div class="row" style="padding-top:25px">
-        <div class="col-sm-9">
-            <div data-role="groups"></div>
-        </div>
-        <div class="col-sm-3 hidden-xs">
-            <div data-role="groups-list"></div>
-        </div>
-    </div>
-</script>
-
-<script type='text/x-handlebars-template' id='groups'>
-
-
-
-    {{#each this}}
-
-        {{#if this.row}}
-        <div class="row">
-        {{/if}}
-
-            <div class="col-xs-6">
-
-                <div class="col-xs-12">
-               <span style="cursor: pointer;"
-                     data-code="{{this.code}}"
-                     data-role="go_to_download"
-                     class="pull-left domain-icon icojam_{{this.code}}">
-                </span>
-                    <h4 class="truncate" style="padding-left:5px;">
-                        {{this.title}}
-                    </h4>
-                </div>
-
-                {{#each this.data}}
-                    <div class="col-sm-12">
-                        <a href="#{{this.link}}">{{this.domain_name}}</a>
-                    </div>
-                {{/each}}
-
-            </div>
-
-        {{#if this.row}}
-            <div class="clearfix"></div>
-             <hr>
-         </div>
-        {{/if}}
-
-    {{/each}}
-
-</script>
-
-<script type='text/x-handlebars-template' id='domains'>
-
-</script>
-
-<script type='text/x-handlebars-template' id='groups-list'>
-    <ul class="list-unstyled">
-        {{#each this}}
-            <li><h4><a target="_blank" href="#">{{this.group_name}}</a></h4></li>
-            <hr>
-        {{/each}}
-    </ul>
+    {{#if documents}}
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
+            {{#each documents}}
+                <li style="margin-top:15px;">
+                    <a target='_blank' href='{{base_url}}{{FileName}}'><i class="fa fa-file-pdf-o"></i> {{FileTitle}}</a>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>{{no_docs_available}}.</p>
+    {{/if}}
 </script>

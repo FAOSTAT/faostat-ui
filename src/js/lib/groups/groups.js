@@ -1,51 +1,51 @@
 /*global define, _:false, $, amplify, FM */
 define([
     'jquery',
+    'loglevel',
     'globals/Common',
     'config/Config',
     'config/Events',
+    'config/Routes',
     'i18n!nls/common',
+    'text!lib/groups/templates/templates.hbs',
     'handlebars',
     'faostatapiclient',
     'underscore',
-    'lib/groups/filter',
-    'q',
-    'loglevel',
     'amplify'
-], function ($, Common, C, E, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q, log) {
+], function ($, log, Common, C, E, ROUTES, i18nLabels, templates, Handlebars, FAOSTATAPIClient, _) {
 
     'use strict';
 
     var s = {
-        
+        GROUPS: "[data-role=groups]",
+        GROUPS_LIST: "[data-role=groups-list]"
     },
 
     defaultOptions = {
         
     };
 
-    function FilterBox() {
+    function Groups() {
         return this;
     }
 
-    FilterBox.prototype.render = function (options) {
+    Groups.prototype.render = function (options) {
+
+        log.info("Groups.render");
 
         this.o = $.extend(true, {}, defaultOptions, options);
 
-       // log.info(this.o);
-
         this.o.lang = Common.getLocale();
 
-        this.initVariables();
+        this.api = new FAOSTATAPIClient();
 
-        this.applyDefaultFilter();
+        this._initVariables();
 
-        this.configurePage();
+        this._configurePage();
 
     };
 
-
-    FilterBox.prototype.initVariables = function () {
+    Groups.prototype._initVariables = function () {
 
         this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
@@ -53,158 +53,108 @@ define([
         //log.info(this.o.container);
         this.$CONTAINER = $(this.o.container);
 
-    };
+        /* Load main structure. */
+        var t = Handlebars.compile($(templates).filter("#template").html());
+        this.$CONTAINER.html(t({}));
 
-
-    FilterBox.prototype.applyDefaultFilter = function () {
-
-        var filterItems = this.o.filter.items|| [],
-            defaultFilter =  this.o.filter.defaultFilter || {};
-
-        _.each(filterItems, _.bind(function(f) {
-            // TODO: in theory all filters should have it
-            if (f.hasOwnProperty('config') && f.config.hasOwnProperty('filter')) {
-                f.config.filter = $.extend(true, {}, defaultFilter, f.config.filter);
-            }
-        }, this));
+        // init variable
+        this.$GROUPS = this.$CONTAINER.find(s.GROUPS);
+        this.$GROUPS_LIST = this.$CONTAINER.find(s.GROUPS_LIST);
 
     };
 
-    FilterBox.prototype.configurePage = function() {
+    Groups.prototype._configurePage = function() {
 
-        var self = this;
-        this.o.filters = [];
-
-        amplify.publish(E.LOADING_SHOW, {container: this.$CONTAINER});
-
-        this._preloadCodelists().then(function(f) {
-
-            amplify.publish(E.LOADING_HIDE, {container: self.$CONTAINER});
-
-            _.each(f, function (c, index) {
-
-                var id = 'filter_box_' + index;
-
-                // TODO: dirty append for the filters
-                self.$CONTAINER.append('<div id="' + id + '"></div>');
-
-                // render filter
-                var filter = new Filter();
-
-                // binding the right event publish/subscriber
-                c.E = self.o.E;
-                c.requestKey = self.o.requestKey;
-
-                c.container = self.$CONTAINER.find('#' + id);
-
-                filter.init(c);
-
-                self.o.filters.push(filter);
-
-            });
-
-        }).done(function() {
-
-            amplify.publish(self.o.E.ON_FILTER_CHANGE, {isOnLoad: true, requestKey: self.o.requestKey});
-
-        });
-
-    };
-
-    FilterBox.prototype._preloadCodelists = function () {
-
-        var r = [],
-            filterItems = this.o.filter.items,
-            self = this;
-
-        _.each(filterItems, function(filter) {
-
-            var type = filter.type;
-
-            switch(type) {
-                case 'codelist':
-                    r.push(self._preloadCodes(filter));
-                    break;
-                default:
-                    r.push(self._preloadStaticCodes(filter));
-                    break;
-            }
-
-        });
-
-        return Q.all(r);
-    };
-
-    FilterBox.prototype._preloadCodes = function (filter) {
-
-        var id = filter.config.dimension_id,
-            defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [],
-            request = $.extend({}, true, {
+        this.api.groupsanddomains({
             datasource: C.DATASOURCE,
-            lang: this.o.lang,
-            subcodelists: null,
-            show_lists: null,
-            show_full_metadata: null,
-            ord: null,
-            id: id
-        }, filter.config.filter);
-
-        return this.FAOSTATAPIClient.codes(request).then(function(c) {
-
-            // TODO: use directly metadata/data returned by APIs?
-            var codes = [];
-
-            // process codes/defaults
-            _.each(c.data, function(d) {
-                codes.push($.extend({}, d, {selected: defaultCodes.indexOf(d.code) > -1 }));
-            });
-            filter.config.data = codes;
-            return filter;
-
+            lang: this.o.lang
+        }).then(_.bind(this._show, this))
+          .fail(function(e) {
+            log.error("Groups.initVariables; error", e);
         });
 
     };
 
-    FilterBox.prototype._preloadStaticCodes = function (config) {
+    Groups.prototype._show = function(d) {
 
-        // TODO: add boolean "translatable"? in the json definition?
-        _.each(config.config.data, function(d) {
+        var data = d.data;
 
-            // change labels if needed with i18nlabels.
-            d.label = i18nLabels[d.label] || d.label;
+        this._showGroupsAndDomains(data);
+        this._showGroups(data);
+
+    };
+
+
+    Groups.prototype._showGroups = function(data) {
+        
+        var t = Handlebars.compile($(templates).filter('#groups-list').html());
+        this.$GROUPS_LIST.html(t(this._getGroups(data)));
+
+    };
+
+    Groups.prototype._getGroups = function(data) {
+
+        // get unique domains
+        var groups = _.chain(data)
+            .uniq(function(v) {
+                return v.group_name;
+            })
+            .value();
+
+        return groups;
+
+    };
+
+    Groups.prototype._showGroupsAndDomains = function(data) {
+
+        var t = Handlebars.compile($(templates).filter('#groups').html());
+        this.$GROUPS.html(t(this._getGroupsAndDomains(data)));
+
+    };
+
+    Groups.prototype._getGroupsAndDomains = function(data) {
+
+        var json = {};
+
+        _.each(data, function(d) {
+
+            var id = d.group_code;
+
+            if(!json.hasOwnProperty(id)) {
+                var rowStart = (Object.keys(json).length % 2 === 0);
+                var rowEnd = (Object.keys(json).length % 2 === 1);
+                json[id] = {
+                    title: d.group_name,
+                    code: d.group_code,
+                    data: [],
+                    // TODO: remove rowStart and rowEnd
+                    rowStart: rowStart,
+                    rowEnd: rowEnd
+                };
+            }
+
+            // links
+            d.link = Common.getURI(ROUTES.BROWSE_BY_DOMAIN_CODE, [d.domain_code]);
+
+            json[id].data.push(d);
 
         });
 
-        return config;
+        // testing for groups
+        //var t = _.groupBy(data, 'group_name');
+
+        return json;
     };
+    Groups.prototype.destroy = function () {
 
-    FilterBox.prototype.getFilters = function () {
-
-        var f = [];
-        try {
-            _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
-                f.push(this.o.filters[filterKey].getFilter());
-            }, this));
-        }catch (e) {
-            log.error(e);
-        }
-
-        //log.info("end getFilters");
-
-        return f;
-    };
-
-
-    FilterBox.prototype.destroy = function () {
+        log.info("Groups.destroy;")
 
         // destroy all filters
         if (this.$CONTAINER !== undefined) {
             this.$CONTAINER.empty();
         }
 
-        log.warn("Handle destroy of all filters");
-
     };
 
-    return FilterBox;
+    return Groups;
 });

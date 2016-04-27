@@ -20,9 +20,9 @@ define(['chaplin',
 
     Common.prototype.changeURL = function (name, options, reload) {
 
-        log.info("Common.changeURL;", name, options, reload);
-
         var reload = reload || false;
+
+        log.info("Common.changeURL;", name, options, reload);
 
         //if (reload) {
         // TODO: is it enough the Backbone trigger?
@@ -39,6 +39,7 @@ define(['chaplin',
             //console.warn('TODO Common.changeURL: check if the Backbone trigger should be set on true or false');
 
             //# TODO: if trigger should be set on false or true and the difference
+            //Backbone.history.navigate(uri, {trigger: reload});
             Backbone.history.navigate(uri, {trigger: reload});
 
             // Google Analytics change page

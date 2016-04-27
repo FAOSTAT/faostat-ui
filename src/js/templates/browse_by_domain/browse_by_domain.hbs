@@ -1,12 +1,12 @@
 <div class="row">
-    <div class='col-md-3 fs-tree-holder'>
+    <div class='col-md-3 fs-tree-holder' style="display:none">
         <input class='form-control' placeholder='{{filter_domain_tree}}' id='fs-browse-by-domain-search'>
         <br>
         <span class="label label-default">{{faostat_domains}}</span>
         <div id="fs-browse-by-domain-tree"></div>
     </div>
-    <div class="col-md-9" style="padding-top:10px;">
-        <div class="col-xs-8 col-sm-10">
+    <div class="col-md-12" style="padding-top:10px;">
+        <div class="col-xs-12 col-sm-12" style="display:none">
             <h1 style="text-overflow: ellipsis; white-space: nowrap;overflow: hidden;" id="fs-browse-by-domain-view-title"></h1>
         </div>
 
@@ -52,32 +52,32 @@
         </div> -->
 
         <!-- Split button -->
-        <div class="col-xs-4 col-sm-2">
-            <div class="dropdown pull-right" style="padding-top:10px;">
-                <!--<div class="btn-group pull-right" style="padding-top:20px;">-->
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        <!--<div class="col-xs-4 col-sm-2">-->
+            <!--<div class="dropdown pull-right" style="padding-top:10px;">-->
+                <!--&lt;!&ndash;<div class="btn-group pull-right" style="padding-top:20px;">&ndash;&gt;-->
+                <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">-->
+                    <!--&lt;!&ndash;<span class="caret"></span></button>&ndash;&gt;-->
+                    <!--<i class="test fa fa-download" aria-hidden="true"></i>-->
+                    <!--Download-->
+                    <!--&lt;!&ndash;<span><i class="fa fa-bars" aria-hidden="true"></i></span>&ndash;&gt;-->
                     <!--<span class="caret"></span></button>-->
-                    <i class="test fa fa-download" aria-hidden="true"></i>
-                    Download
-                    <!--<span><i class="fa fa-bars" aria-hidden="true"></i></span>-->
-                    <span class="caret"></span></button>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="javascript:;" data-role="metadata"><i class="fa fa-info-circle" aria-hidden="true"></i> {{metadata}}</a></li>
-                    <li><a href="javascript:;" data-role="glossary"><i class="fa fa-info-circle" aria-hidden="true"></i> {{glossary}}</a></li>
-                    <li><a href="#" data-role="download-interactive-link"><i class="fa fa-sliders" aria-hidden="true"></i> {{interactive_download}}</a></li>
-                    <li>
-                        <!-- TODO: remove test-->
-                        <a class="test" href="#"><i class="fa fa-download" aria-hidden="true"></i> {{bulk_downloads}} <span class="caret"></span></a>
-                        <ul class="dropdown-menu" data-role="bulk-downloads"></ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                <!--</button>-->
+                <!--<ul class="dropdown-menu">-->
+                    <!--<li><a href="javascript:;" data-role="metadata"><i class="fa fa-info-circle" aria-hidden="true"></i> {{metadata}}</a></li>-->
+                    <!--<li><a href="javascript:;" data-role="glossary"><i class="fa fa-info-circle" aria-hidden="true"></i> {{glossary}}</a></li>-->
+                    <!--<li><a href="#" data-role="download-interactive-link"><i class="fa fa-sliders" aria-hidden="true"></i> {{interactive_download}}</a></li>-->
+                    <!--<li>-->
+                        <!--&lt;!&ndash; TODO: remove test&ndash;&gt;-->
+                        <!--<a class="test" href="#"><i class="fa fa-download" aria-hidden="true"></i> {{bulk_downloads}} <span class="caret"></span></a>-->
+                        <!--<ul class="dropdown-menu" data-role="bulk-downloads"></ul>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
 
 
         <!-- TODO: remove it-->
-        <script>
+       <!-- <script>
             $(document).ready(function(){
                 $('.dropdown a.test').on("click", function(e){
                     $(this).next('ul').toggle();
@@ -85,14 +85,17 @@
                     e.preventDefault();
                 });
             });
-        </script>
+        </script>-->
 
-        <div class="col-xs-12">
-            <span>Use this section to have an overview of the domain. Please use the selectors below to filter the data according to your needs.</span>
-            <span>Go to the <a data-role="download-interactive-link" href="#">Download Data</a> section to extract the data.</span>
-            <span>Please consider to visit the <a data-role="download-bulk-link" href="#">Bulk Downloads</a> sections if you need all the data contained in this domain.</span>
-
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <span>Use this section to have an overview of the domain. Please use the selectors below to filter the data according to your needs.</span>
+                <span>Go to the <a data-role="download-interactive-link" href="#">Download Data</a> section to extract the data.</span>
+                <!--<span>Please consider to visit the <a data-role="download-bulk-link" href="#">Bulk Downloads</a> sections if you need all the data contained in this domain.</span>-->
+            </div>
         </div>
+
 
 
 
@@ -112,11 +115,13 @@
             </div>
         </div>-->
 
-        <div class="col-xs-12"  style="padding-top:5px;">
+        <div class="row">
+            <div class="col-xs-12"  style="padding-top:5px;">
 
-            <div id="fs-browse-by-domain-view-related-views"></div>
-            <div class="clearfix"></div>
-            <div id="fs-browse-by-domain-view"></div>
+                <div id="fs-browse-by-domain-view-related-views"></div>
+                <div class="clearfix"></div>
+                <div id="fs-browse-by-domain-view"></div>
+            </div>
         </div>
 
     </div>

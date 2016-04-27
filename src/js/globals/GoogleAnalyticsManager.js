@@ -72,6 +72,25 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
 
     };
 
+    GoogleAnalyticsManager.prototype.timing = function (data) {
+
+        // set the current pageView (it could be different i.e. using different browser tabs)
+        this.pageView();
+
+        var category = 'test',
+            action = 'test',
+            value = 100; // in milliseconds
+
+        // ga('send', 'timing', [timingCategory], [timingVar], [timingValue], [timingLabel], [fieldsObject]);
+        ga('send', {
+            hitType: 'timing',
+            timingCategory: category,
+            timingVar: action,
+            timingValue: value
+        });
+
+    };
+
     return new GoogleAnalyticsManager();
 
 });

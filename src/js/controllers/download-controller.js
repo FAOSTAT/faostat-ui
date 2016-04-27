@@ -34,6 +34,10 @@ define([
 
         show_report: function (params) {
             this.show(params, 'report');
+        },
+
+        show_browse: function (params) {
+            this.show(params, 'browse');
         }
 
     });

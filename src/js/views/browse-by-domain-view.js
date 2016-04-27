@@ -46,7 +46,9 @@ define([
 
         },
         defaultOptions = {
-            requestKey: 0
+            // TODO: replaceit with random div
+            requestKey: 0,
+            section: ROUTE.BROWSE_BY_DOMAIN_CODE
         },
 
         BrowseByDomainView = View.extend({
@@ -82,8 +84,9 @@ define([
 
                 View.prototype.attach.call(this, arguments);
 
-                //update State. needed?
-                amplify.publish(E.STATE_CHANGE, {browse: 'browse'});
+                // update State. needed?
+                // removed because it changes the menu selection
+                //amplify.publish(E.STATE_CHANGE, {browse: 'browse'});
 
                 this.initVariables();
 
@@ -202,7 +205,7 @@ define([
                 // change bulk downloads
                 this.initBulkDownloads();
 
-                E.GLOSSARY_SHOW
+                //E.GLOSSARY_SHOW
                 this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
                 this.$DOWNLOAD_INTERACTIVE_LINK.off('click');
 
@@ -267,8 +270,8 @@ define([
             changeState: function() {
 
                 // TODO: fix it: this.o.section + '_code'
-
-                Common.changeURL(this.o.section + '_code', [this.o.code], false);
+                //Common.changeURL(this.o.section + '_code', [this.o.code], false);
+                Common.changeURL(this.o.section, [this.o.code], false);
 
             },
 

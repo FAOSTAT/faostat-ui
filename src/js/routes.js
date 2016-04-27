@@ -7,15 +7,15 @@ define(['config/Routes'], function (ROUTE) {
 
         match(':lang/home', 'home#show', {name: ROUTE.HOME});
 
-        match(':lang/download/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DOWNLOAD_BULK});
+/*        match(':lang/download/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DOWNLOAD_BULK});
         match(':lang/download/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
         match(':lang/download/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
         match(':lang/download/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
-        match(':lang/download/report/:code', 'download#show_report', {name: ROUTE.DOWNLOAD_REPORT});
+        match(':lang/download/report/:code', 'download#show_report', {name: ROUTE.DOWNLOAD_REPORT});*/
 
 
         //match(':lang/browse/domain', 'browse#show_browse_by_domain', {name: 'browse_by_domain'});
-        match(':lang/browse/domain/:code', 'browse#show_browse_by_domain', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
+        //match(':lang/browse/domain/:code', 'browse#show_browse_by_domain', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
 
         match(':lang/browse/country', 'browse#show_browse_by_country', {name: ROUTE.BROWSE_BY_COUNTRY});
         match(':lang/browse/country/:code', 'browse#show_browse_by_country', {name: ROUTE.BROWSE_BY_COUNTRY_CODE});
@@ -40,6 +40,14 @@ define(['config/Routes'], function (ROUTE) {
 
         match(':lang/status', 'status#show', {name: ROUTE.FAOSTAT_STATUS});
         match(':lang/status/configuration', 'configuration#show', {name: ROUTE.FAOSTAT_CONFIGURATION});
+
+        match(':lang/data', 'data#show', {name: ROUTE.DATA});
+        match(':lang/data/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DOWNLOAD_BULK});
+        match(':lang/data/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
+        match(':lang/data/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
+        match(':lang/data/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
+        match(':lang/data/report/:code', 'download#show_report', {name: ROUTE.DOWNLOAD_REPORT});
+        match(':lang/data/browse/:code', 'download#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
 
         match('protected', 'protected#show');
         match('about', 'about#show');
