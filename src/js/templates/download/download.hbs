@@ -1,75 +1,48 @@
-<!--<h1>{{title}}</h1>-->
-<!--<hr>-->
-<!--<br>-->
-<!--<div class="text-center">
-    <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#fs-domains-tree-container1">
+
+<!-- TODO: remove it -->
+<div class="text-center">
+    <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#myModal">
         Left Sidebar Modal
     </button>
 </div>
+<!-- Modal -->
+<div style="position:relative">
+    <div class="modal left fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
 
-&lt;!&ndash; Modal &ndash;&gt;
-<div class="modal left fade" id="fs-domains-tree-container1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Left Sidebar</h4>
-            </div>
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-            <div class="modal-body">
-                <div id='fs-download-domain-tree' class="fs-download-domain-tree"></div>
-            </div>
 
-        </div>&lt;!&ndash; modal-content &ndash;&gt;
-    </div>&lt;!&ndash; modal-dialog &ndash;&gt;
-</div>&lt;!&ndash; modal &ndash;&gt;-->
+                    <span class="label label-default">{{faostat_domains}}</span>
+                    <input class='form-control' placeholder='{{filter_domain_tree}}' id='fs-download-tree-search'>
+                    <br>
+
+                    <div id='fs-download-domain-tree'></div>
+
+                </div>
+
+            </div><!-- modal-content -->
+        </div><!-- modal-dialog -->
+    </div><!-- modal -->
+</div>
 
 
 <div style="position:relative">
     <div class="row">
         <div class="col-md-12">
             <h1>
-                <!--<i class="fa fa-bars" aria-hidden="true" style="cursor:pointer;" data-role="fs-domains-menu">-->
-                    <!--data-target="#fs-domains-tree-container1"-->
-                <!--data-toggle="modal" -->
-                <!--</i>&ndash;&gt;-->
-
-                <i class="fa fa-bars" aria-hidden="true" style="cursor:pointer;" data-role="fs-domains-menu"></i>
                 <span id='fs-download-main-container-title'> </span>
-              <!--  <span>
-                    <i class="fa fa-arrow-down" aria-hidden="true" style="cursor:pointer;" data-role="fs-domains-menu"></i>
-                </span>
-
-                -->
                 <span class="pull-right">
+                    <!-- TODO: use Common.getURI(ROUTE.DATA)-->
                     <a href="#en/data" type="button" class="btn btn-default" id="fs-browse-by-country-profile-back"><i class="fa fa-arrow-left"></i>  Back to domains' list</a>
                 </span>
             </h1>
         </div>
     </div>
 
-    <div data-role="fs-domains-tree-container"
-         class='col-md-4'
-         style="border:1px solid; opacity:0.93; position:absolute; z-index:1000; top:25; left:0; background-color:white;
-         display:none
-        ">
-        <div>
-            <h4>
-                FAOSTAT Domains
-                <a data-role="fs-domains-tree-container-close" class="btn btn-default pull-right">
-                    <i class="fa fa-times" title="Settings" aria-hidden="true"></i>
-                    <span class="sr-only">Close</span>
-                </a>
-
-            </h4>
-        </div>
-
-        <input class='form-control' placeholder='{{filter_domain_tree}}' id='fs-download-tree-search'>
-        <br>
-        <span class="label label-default">{{faostat_domains}}</span>
-        <div id='fs-download-domain-tree' class="fs-download-domain-tree"></div>
-    </div>
 </div>
 
 <!--<h1><span class="" id='fs-download-main-container-title'></span></h1>-->
@@ -81,7 +54,7 @@
                 <i class="fa fa-bars fa-lg" aria-hidden="true" style="cursor:pointer;" data-role="fs-domains-menu"></i>
             </li>-->
             <li role='presentation'>
-                <a href='#browse' data-section='browse' role='tab' data-toggle='tab'>{{browse}}</a>
+                <a href='#browse' data-section='browse_by_domain_code' role='tab' data-toggle='tab'>{{browse}}</a>
             </li>
 <!--            <li role='presentation'>
                 <a href='#bulk_downloads' data-section='bulk' role='tab' data-toggle='tab'>{{bulk_downloads}}</a>
@@ -118,7 +91,8 @@
             <div class="tab-pane" id="interactive_download" data-section='interactive_download' ></div>
             <div class="tab-pane" id="report" data-section='report' ></div>
             <div class="tab-pane" id="bulk_downloads" data-section='bulk_downloads' ></div>
-            <div class="tab-pane" id="metadata" data-section='metadata' ></div><div class="tab-pane" id="browse" data-section='browse_by_domain_code'></div>
+            <div class="tab-pane" id="metadata" data-section='metadata' ></div>
+            <div class="tab-pane" id="browse" data-section='browse_by_domain_code'></div>
         </div>
 
     </div>
@@ -126,18 +100,39 @@
     <div class='col-md-3'>
 
         <br>
-        <p>Last Update: July, 25 2016</p>
+
+        <p class="label label-default">Data Description</p>
+        <div data-role="description">
+
+        </div>
+
+        <br>
+
+        <p class="label label-default">Last Update</p>
+        <p data-role="last-update">July, 25 2016</p>
+
+        <p class="label label-default">Contacts</p>
+        <p data-role="last-update">Francesco Nicola Tubiello, Paolo Prosperi</p>
+
+        <p class="label label-default">Contacts Email</p>
+        <p data-role="last-update">
+            <a href="mailto:francesco.tubiello@fao.org">francesco.tubiello@fao.org</a>
+            <a href="mailto:paolo.prosperi@fao.org">paolo.prosperi@fao.org</a>
+        </p>
+
+        <br>
+
 
         <!-- Bulk Downloads -->
         <div class="btn-group btn-block">
-            <button type="button" class="btn btn-primary col-xs-10 btn-lg">
+            <button type="button" class="btn btn-default col-xs-10 btn-lg">
                 <i class="fa fa-download" aria-hidden="true"></i> Download All Data
             </button>
-            <button type="button" class="btn btn-primary dropdown-toggle col-xs-2 btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-default dropdown-toggle col-xs-2 btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
-                <span class="sr-only">Toggle Bulk Downloads</span>
+                <span class="sr-only"><span>
             </button>
-            <ul class="dropdown-menu col-xs-12" style=" height: auto; max-height: 300px; overflow-x: hidden;" data-role="bulk-downloads-caret">
+            <ul class="dropdown-menu col-xs-12" style="height: auto; max-height: 300px; overflow-x: hidden;" data-role="bulk-downloads-caret">
 
             </ul>
         </div>
@@ -146,19 +141,19 @@
         <br>
 
         <!-- interactive Download -->
-        <a type="button" class="btn btn-primary btn-lg btn-block" data-role="download-interactive-link">
+        <a type="button" class="btn btn-default btn-lg btn-block" data-role="download-interactive-link">
             <i class="fa fa-sliders" aria-hidden="true"></i> Interactive Download
         </a>
 
         <br>
 
-        <a type="button"  class="btn btn-info btn-lg btn-block" data-role="fs-download-metadata-button" data-target="#">
+        <a type="button"  class="btn btn-default btn-lg btn-block" data-role="fs-download-metadata-button" data-target="#">
             <i class="fa fa-info-circle" aria-hidden="true"></i> {{metadata}}
         </a>
 
         <p data-role="fs-download-last-update-date"></p>
         <br>
-        <h4>{{related_documents}}</h4>
+        <p class="label label-default">{{related_documents}}</p>
         <div data-role="fs-download-related-documents"></div>
 
     </div>
