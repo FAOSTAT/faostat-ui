@@ -78,5 +78,8 @@ define({
     "browse": "browse",
 
     no_docs_available: 'No documents available',
-    
+
+    show_more: 'show more',
+    show_less: 'show less'
+
 });
