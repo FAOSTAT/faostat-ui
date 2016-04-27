@@ -64,7 +64,7 @@ define([
         return $.extend(true, {}, DEFAULT, {
 
             // Configuration
-            "DATASOURCE": "test",
+            "DATASOURCE": "production",
             "GOOGLE_ANALYTICS_ID": "UA-68486942-2",
             "LOGLEVEL": "trace"
 
