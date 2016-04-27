@@ -37,7 +37,7 @@ define([
         },
 
         show_browse: function (params) {
-            this.show(params, 'browse');
+            this.show(params, 'browse_by_domain_code');
         }
 
     });
