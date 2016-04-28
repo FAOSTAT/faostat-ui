@@ -180,7 +180,7 @@ define([
             var section = $(this).data("section"),
                 $container = self.$GROUPS.find("[data-section='" + section + "']");
 
-            if ( $container.length > 0) {
+            if ( $container.length > 0 && $container.is(':visible')) {
                 amplify.publish(E.SCROLL_TO_SELECTOR, {
                     container: $container,
                     force: true,

@@ -203,24 +203,33 @@ define([
 
         },
 
-        scrollTo: function(options) {
+        scrollTo: function(o) {
 
-            var options = options || {},
-                paddingTop = options.paddingTop || 15,
-                animate = options.animate || false,
-                animateTime = options.animateTime || 500;
+            var o = o || {},
+                $container =  $(o.container),
+                paddingTop = o.paddingTop || 15,
+                animate = o.animate || false,
+                animateTime = o.animateTime || 500,
+                force = o.force || false,
+                forceInvisible =  o.forceInvisible || false;
 
-            if (options && options.container) {
-                if (!$(options.container).visible() || options.force) {
+            if (o && $container) {
 
-                    var scrollPos = $(options.container).offset().top + (-paddingTop);
+                // if not visible in the page (!$container.visible())
+                if ((!$container.visible()) || force || forceInvisible) {
 
-                    if ( animate ) {
-                        $('html, body').animate({
-                            scrollTop: scrollPos
-                        }, animateTime);
-                    }else{
-                        $(window).scrollTop(scrollPos);
+                    // if is not hidden ($container.is(':visible'))
+                    if ($container.is(':visible') || forceInvisible) {
+
+                        var scrollPos = $(o.container).offset().top + (-paddingTop);
+
+                        if (animate) {
+                            $('html, body').animate({
+                                scrollTop: scrollPos
+                            }, animateTime);
+                        } else {
+                            $(window).scrollTop(scrollPos);
+                        }
                     }
                 }
             }
