@@ -50,7 +50,7 @@ define([
         var text = this.o.text,
             length = this.o.length;
 
-        this.o.shortText =  _s.prune(text, length);
+        this.o.shortText = _s.prune(text, length);
 
         this.$CONTAINER.html(Handlebars.compile(template)({
             show_more: i18nLabels.show_more,
