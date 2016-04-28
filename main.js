@@ -130,6 +130,7 @@ require([
                     typeahead: '{FENIX_CDN}/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
                     bloodhound: '{FENIX_CDN}/js/bloodhound/0.11.1/bloodhound.min',
                     bootpag: '{FENIX_CDN}/js/bootpag/1.0.7/jquery.bootpag.min',
+                    instafilta: '{FENIX_CDN}/js/instafilta/1.4.4/instafilta.min',
 
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
 
@@ -239,6 +240,9 @@ require([
                     },
                     jspdf: {
                         exports: 'jsPDF'
+                    },
+                    instafilta: {
+                        deps: ['jquery']
                     }
                 }
             }
