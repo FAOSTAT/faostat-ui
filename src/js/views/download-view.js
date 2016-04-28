@@ -75,7 +75,8 @@ define([
             // this is used to change the link to the interactive download
             DOWNLOAD_INTERACTIVE_LINK: '[data-role="download-interactive-link"]',
 
-            DESCRIPTION: '[data-role="description"]'
+            DESCRIPTION: '[data-role="description"]',
+            CONTACTS: '[data-role="contact-name"]'
 
     },
 
@@ -147,6 +148,7 @@ define([
             this.$METADATA_BUTTON = this.$el.find(s.METADATA_BUTTON);
             this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
             this.$DESCRIPTION = this.$el.find(s.DESCRIPTION);
+            this.$CONTACTS = this.$el.find(s.CONTACTS);
 
             this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
 
@@ -229,7 +231,7 @@ define([
             //this._renderBulkDownloadsSidebar(code);
 
             this._renderBulkDownloadCaret(code);
-            this._renderDescription(code);
+            this._renderMetadata(code);
 
             // check tab availability
             this.checkSectionsAvailability(section, code);
@@ -394,6 +396,7 @@ define([
 
             }
 
+            // TODO: the metadataViewer should be the only entry point to get Metadata Informations
             if (section === 'metadata') {
 
                 // adding loading
@@ -401,6 +404,10 @@ define([
                 amplify.publish(E.LOADING_SHOW, {
                     container: this.$METADATA
                 });
+
+                if (this.metadataViewer && this.metadataViewer.hasOwnProperty("destroy")) {
+                    this.metadataViewer.destroy();
+                }
 
                 this.metadataViewer = new MetadataViewer();
                 this.metadataViewer.init({
@@ -615,11 +622,9 @@ define([
 
         },
 
-        _renderDescription: function(code) {
+        _renderMetadata: function(code) {
 
             var self = this;
-
-            this.$DESCRIPTION.empty();
 
             this.api.metadata({
                 datasource: C.DATASOURCE,
@@ -629,34 +634,72 @@ define([
 
                 if(d.hasOwnProperty('data') && d.data.length > 0 ) {
 
-                    var description = _.find(d.data, function(v) {
-                        return v.metadata_code === "3.1";
-                    });
-
-                    if ( description ) {
-                        var t = new TextWrapper();
-                        t.render({
-                            container: self.$DESCRIPTION,
-                            text: description.metadata_text,
-                            length: 250
-                        });
-                    }
-
-                }else{
-                    self.$DESCRIPTION.html("No description available.");
+                    self._renderDescription(d.data);
+                    self._renderContacts(d.data);
                 }
+
+                else {
+
+                    // add text for no metadata available
+                    self.$DESCRIPTION.html(i18nLabels.no_data_available);
+                    self.$CONTACTS.html(i18nLabels.no_data_available);
+
+               }
 
             });
 
         },
 
-        _renderContacts: function(code) {
+        // TODO: the metadataViewer should be the only entry point to get Metadata Informations
+        _renderDescription: function(data) {
+
+            this.$DESCRIPTION.empty();
+
+            var description = _.find(data, function(v) {
+                return v.metadata_code === "3.1";
+            });
+
+            if ( description ) {
+                new TextWrapper().render({
+                    container: this.$DESCRIPTION,
+                    text: description.metadata_text,
+                    length: 250
+                });
+            }
+
+
+        },
+
+        // TODO: the metadataViewer should be the only entry point to get Metadata Informations
+        _renderContacts: function(data) {
+
+            this.$CONTACTS.empty();
+
+            var contacts = _.find(data, function(v) {
+                return v.metadata_code === "1.3";
+            });
+
+            var contactsEmail = _.find(data, function(v) {
+                return v.metadata_code === "1.5";
+            });
+
+            log.info(contacts, contactsEmail)
+
+
+            if ( contacts ) {
+
+                new TextWrapper().render({
+                    container: this.$CONTACTS,
+                    text: contactsEmail.metadata_text,
+                    length: 250
+                });
+            }
 
         },
 
         _createRandomElement: function($CONTAINER, empty) {
 
-            var empty = empty || true,
+            var empty = (empty && typeof(empty) === "boolean")? empty : true,
                 id = Math.random().toString().replace(".", "");
 
             if(empty) {
