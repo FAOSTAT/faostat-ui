@@ -97,4 +97,5 @@ define([
     };
 
     return TextWrapper;
+    
 });
