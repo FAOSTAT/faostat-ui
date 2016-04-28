@@ -5328,6 +5328,12 @@ footer.fao-footer {
   border-bottom-color: #EEEEEE;
   background-color: #FAFAFA; }
 
+/*.markText {
+  background-color: #FFFF33;
+}*/
+.instafilta-match {
+  background-color: #FFFF33; }
+
 /* Third parties */
 .typeahead, .tt-query, .tt-hint {
   /*width: 396px;*/
