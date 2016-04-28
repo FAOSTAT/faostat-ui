@@ -277,17 +277,16 @@ define([
             }
             else {
 
-                var metadataViewer = new MetadataViewer();
-                metadataViewer.init($.extend(true, {},
-                        {
-                            modal: true,
-                            addHeaders: false,
-                            lang: Common.getLocale(),
-                            url_get_metadata: C.URL_METADATA_MODEL,
-                            url_get_domain: C.URL_METADATA_DOMAIN
-                        },
-                        options)
+                var metadataViewer = new MetadataViewer($.extend(true, {},
+                    {
+                        modal: true,
+                        addHeaders: false,
+                        lang: Common.getLocale()
+                    },
+                    options)
                 );
+
+                metadataViewer.render();
             }
 
         },
