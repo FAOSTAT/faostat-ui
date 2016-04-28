@@ -5,128 +5,28 @@
         <span class="label label-default">{{faostat_domains}}</span>
         <div id="fs-browse-by-domain-tree"></div>
     </div>
-    <div class="col-md-12" style="padding-top:10px;">
+    <div class="col-md-12">
         <div class="col-xs-12 col-sm-12" style="display:none">
             <h1 class="trucate" id="fs-browse-by-domain-view-title"></h1>
         </div>
-
-
-       <!-- <div class="col-sm-3">
-            <div class="" style="padding-top:20px;">
-                <button type="button" class="btn btn-info btn-block" data-role="metadata">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i> {{metadata}}</button>
-                <button type="button" class="btn btn-primary btn-block" data-role="download-interactive-link">
-                    <i class="fa fa-download" aria-hidden="true"></i> {{interactive_download}}</button>
-                <div class="btn-group btn-block">
-                    <button type="button" class="btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown">
-                        <i class="fa fa-download" aria-hidden="true"></i>
-                        {{bulk_downloads}} <span class="caret"></span></button>
-                    <ul class="dropdown-menu"  style=" height: auto; max-height: 300px; overflow-x: hidden;" role="menu" data-role="bulk-downloads">
-                    </ul>
-                </div>
-           </div>
-        </div>-->
-
-
-        <!-- Split button
-        <div class="col-sm-2">
-            <div class="dropdown pull-right" style="padding-top:20px;">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                    <span><i class="fa fa-bars" aria-hidden="true"></i></span></button>
-                <ul class="dropdown-menu">
-                    <button type="button" class="btn btn-info btn-block" data-role="metadata">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i> {{metadata}}
-                    </button>
-                    <button type="button" class="btn btn-primary btn-block" data-role="download-interactive-link">
-                        <i class="fa fa-download" aria-hidden="true"></i> {{interactive_download}}
-                    </button>
-                    <div class="btn-group btn-block">
-                        <button type="button" class="test btn btn-primary dropdown-toggle btn-block" data-toggle="dropdown">
-                            <i class="test fa fa-download" aria-hidden="true"></i>
-                            {{bulk_downloads}} <span class="caret"></span></button>
-                        <ul class="test dropdown-menu"  style=" height: auto; max-height: 300px; overflow-x: hidden;" role="menu" data-role="bulk-downloads">
-                        </ul>
-                    </div>
-                </ul>
-            </div>
-        </div> -->
-
-        <!-- Split button -->
-        <!--<div class="col-xs-4 col-sm-2">-->
-            <!--<div class="dropdown pull-right" style="padding-top:10px;">-->
-                <!--&lt;!&ndash;<div class="btn-group pull-right" style="padding-top:20px;">&ndash;&gt;-->
-                <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">-->
-                    <!--&lt;!&ndash;<span class="caret"></span></button>&ndash;&gt;-->
-                    <!--<i class="test fa fa-download" aria-hidden="true"></i>-->
-                    <!--Download-->
-                    <!--&lt;!&ndash;<span><i class="fa fa-bars" aria-hidden="true"></i></span>&ndash;&gt;-->
-                    <!--<span class="caret"></span></button>-->
-                <!--</button>-->
-                <!--<ul class="dropdown-menu">-->
-                    <!--<li><a href="javascript:;" data-role="metadata"><i class="fa fa-info-circle" aria-hidden="true"></i> {{metadata}}</a></li>-->
-                    <!--<li><a href="javascript:;" data-role="glossary"><i class="fa fa-info-circle" aria-hidden="true"></i> {{glossary}}</a></li>-->
-                    <!--<li><a href="#" data-role="download-interactive-link"><i class="fa fa-sliders" aria-hidden="true"></i> {{interactive_download}}</a></li>-->
-                    <!--<li>-->
-                        <!--&lt;!&ndash; TODO: remove test&ndash;&gt;-->
-                        <!--<a class="test" href="#"><i class="fa fa-download" aria-hidden="true"></i> {{bulk_downloads}} <span class="caret"></span></a>-->
-                        <!--<ul class="dropdown-menu" data-role="bulk-downloads"></ul>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
-        <!-- TODO: remove it-->
-       <!-- <script>
-            $(document).ready(function(){
-                $('.dropdown a.test').on("click", function(e){
-                    $(this).next('ul').toggle();
-                    e.stopPropagation();
-                    e.preventDefault();
-                });
-            });
-        </script>-->
-
-        <br>
-        <div class="row">
+        <!--<br>-->
+        <!--<div class="row">
             <div class="col-xs-12">
                 <span>Use this section to have an overview of the domain. Please use the selectors below to filter the data according to your needs.</span>
-                <span>Go to the <a href="#en/data/interactive/TP">Interactive Download</a>
-                    <a href="javascript:location.href = location.href+'#en/data/interactive/TP'">Reload</a> section to extract the data.</span>
-
-                    <!--data-role="download-interactive-link"-->
-                                   <!--href="#en/data/interactive/TP">Interactive Download</a> section to extract the data.</span>-->
-                <!--<span>Please consider to visit the <a data-role="download-bulk-link" href="#">Bulk Downloads</a> sections if you need all the data contained in this domain.</span>-->
-            </div>
-        </div>
-
-
-
-
-
-       <!-- <div class="col-md-12">
-            <div class="btn-group" style="padding-top:15px; padding-bottom:15px;">
-                <button type="button" class="btn btn-primary" data-role="metadata">{{metadata}}</button>
-                <button type="button" class="btn btn-primary" data-role="download-interactive-link">{{interactive_download}}</button>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        {{bulk_downloads}} <span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu" data-role="bulk-downloads">
-                        <li><a href="#">Tablet</a></li>
-                        <li><a href="#">Smartphone</a></li>
-                    </ul>
-                </div>
+                <span>Go to the
+                    &lt;!&ndash; TODO: remove it &ndash;&gt;
+                    <a href="#en/data/interactive/TP">Interactive Download</a>
+                    <a href="javascript:location.href = location.href+'#en/data/interactive/TP'">!!!!RELOAD!</a>
+                    section to extract the data.
+                </span>
             </div>
         </div>-->
-
         <div class="row">
-            <div class="col-xs-12"  style="padding-top:5px;">
-
+            <div class="col-xs-12">
                 <div id="fs-browse-by-domain-view-related-views"></div>
                 <div class="clearfix"></div>
                 <div id="fs-browse-by-domain-view"></div>
             </div>
         </div>
-
     </div>
 </div>

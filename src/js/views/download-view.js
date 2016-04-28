@@ -456,7 +456,7 @@ define([
             browseOptions.lang = this.o.lang;
 
             // TODO: section shouldn't be need
-            browseOptions.section = ROUTE.BROWSE_BY_DOMAIN; //ROUTE.BROWSE_BY_DOMAIN_CODE;
+            browseOptions.section = ROUTE.BROWSE_BY_DOMAIN_CODE; //ROUTE.BROWSE_BY_DOMAIN_CODE;
 
             log.info("Download._browseByDomain; options:", browseOptions);
 
@@ -465,6 +465,8 @@ define([
             }
 
             // {region: "main", section: "browse_by_domain", lang: "en", code: "P"}
+
+            log.info(browseOptions)
 
             // init browse by domain
             this.view_domain = new DomainView(browseOptions);

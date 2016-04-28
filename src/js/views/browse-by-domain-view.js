@@ -38,11 +38,7 @@ define([
             DOWNLOAD_BULK_LINK: '[data-role="download-bulk-link"]',
 
             FILTER_BOX: "[data-role='filter-box']",
-            DASHBOARD: "[data-role='dashboard']",
-
-            METADATA: "[data-role='metadata']",
-            BULK_DOWNLOADS: "[data-role='bulk-downloads']",
-            GLOSSARY: "[data-role='glossary']"
+            DASHBOARD: "[data-role='dashboard']"
 
         },
         defaultOptions = {
@@ -104,13 +100,18 @@ define([
                 this.$VIEW_TITLE = this.$el.find(s.VIEW_TITLE);
                 this.$VIEW = this.$el.find(s.VIEW);
                 this.$RELATED_VIEWS = this.$el.find(s.RELATED_VIEWS);
-                this.$METADATA = this.$el.find(s.METADATA);
-                this.$BULK_DOWNLOADS = this.$el.find(s.BULK_DOWNLOADS);
-                this.$GLOSSARY = this.$el.find(s.GLOSSARY);
 
             },
 
             initComponents: function () {
+
+                this.updateView();
+
+                // this._initTree();
+
+            },
+
+            _initTree: function() {
 
                 var self = this;
 
@@ -157,55 +158,11 @@ define([
 
             },
 
-            initBulkDownloads: function() {
-
-                var self = this;
-
-                self.$BULK_DOWNLOADS.hide();
-
-                // TODO: this should be in a common functionality?
-                /* Fetch available bulk downloads. */
-                this.api.bulkdownloads({
-                    datasource: C.DATASOURCE,
-                    lang: this.o.lang,
-                    domain_code: this.o.code
-                }).then(function (json) {
-
-                    var data = json.data,
-                        template = "{{#each data}}<li><a target='_blank' href='{{this.url}}'>{{this.FileContent}}</a></li>{{/each}}",
-                        t = Handlebars.compile(template);
-
-                    if(data.length > 0) {
-
-                        _.each(data, function(d) {
-
-                            d.url = C.URL_BULK_DOWNLOADS_BASEPATH + d.FileName;
-                            d.FileContent = _s.capitalize(_s.replaceAll(d.FileContent, '_', ' '));
-
-                        });
-
-                        self.$BULK_DOWNLOADS.html(t({data: data}));
-                        //self.$BULK_DOWNLOADS.show();
-                    }else {
-                        // self.$BULK_DOWNLOADS.html('<li>'+ i18nLabels.no_data_available +'</li>');
-                        self.$BULK_DOWNLOADS.html('<li><a>'+ i18nLabels.no_data_available +'</a></li>');
-
-                        //self.$BULK_DOWNLOADS.hide();
-                    }
-
-                });
-
-            },
-
             updateView: function() {
 
                 var code = this.o.code,
                     title = this.o.label;
 
-                // change bulk downloads
-                this.initBulkDownloads();
-
-                //E.GLOSSARY_SHOW
                 this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
                 this.$DOWNLOAD_INTERACTIVE_LINK.off('click');
 
@@ -244,26 +201,14 @@ define([
 
             bindEventListeners: function () {
 
-                var self = this;
-
                 amplify.subscribe(EM.ON_FILTER_CHANGE, this, this.updateDashboard);
                 amplify.subscribe(EM.ON_FILTER_INVALID_SELECTION, this, this.onFilterInvalidSelection);
-
-                this.$METADATA.on('click', function() {
-                    amplify.publish(E.METADATA_SHOW, {code: self.o.code});
-                });
-
-                this.$GLOSSARY.on('click', function() {
-                    amplify.publish(E.GLOSSARY_SHOW);
-                });
 
             },
 
             unbindEventListeners: function () {
 
                 amplify.unsubscribe(EM.ON_FILTER_CHANGE, this.updateDashboard);
-
-                this.$METADATA.off('click');
 
             },
 
