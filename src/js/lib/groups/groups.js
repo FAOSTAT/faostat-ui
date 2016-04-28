@@ -183,7 +183,9 @@ define([
             if ( $container.length > 0) {
                 amplify.publish(E.SCROLL_TO_SELECTOR, {
                     container: $container,
-                    force: true
+                    force: true,
+                    animate: true,
+                    paddingTop: 30
                 });
             }
 

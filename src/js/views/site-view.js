@@ -205,10 +205,23 @@ define([
 
         scrollTo: function(options) {
 
+            var options = options || {},
+                paddingTop = options.paddingTop || 15,
+                animate = options.animate || false,
+                animateTime = options.animateTime || 500;
+
             if (options && options.container) {
                 if (!$(options.container).visible() || options.force) {
-                    var scrollPos = $(options.container).offset().top;
-                    $(window).scrollTop(scrollPos);
+
+                    var scrollPos = $(options.container).offset().top + (-paddingTop);
+
+                    if ( animate ) {
+                        $('html, body').animate({
+                            scrollTop: scrollPos
+                        }, animateTime);
+                    }else{
+                        $(window).scrollTop(scrollPos);
+                    }
                 }
             }
 
