@@ -80,6 +80,8 @@ define({
     no_docs_available: 'No documents available',
 
     show_more: 'show more',
-    show_less: 'show less'
+    show_less: 'show less',
+
+    filter_domains: 'filter domains'
 
 });
