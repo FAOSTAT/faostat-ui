@@ -10,12 +10,26 @@ define([
         filter: {
 
             defaultFilter: {
-                "domain_code": ["QV"],
-                // this force all the filters to avoid the "lists" codes
+                "domain_code": ["TI"],
                 "show_lists": false
             },
 
             items: [
+                {
+                    "id": "area",
+                    "type": "codelist",
+                    "parameter": "List1Codes",
+                    "componentType": {
+                        "class": "col-xs-4",
+                        "type": "dropDownList",
+                        "multiple": false
+                    },
+                    "config": {
+                        "dimension_id": "countries",
+                        "defaultCodes": ["3"],
+                        "filter": {}
+                    }
+                },
                 {
                     // id to be applied on the getData request
                     "id": "item",
@@ -27,8 +41,8 @@ define([
                         "multiple": false
                     },
                     "config": {
-                        "dimension_id": "items",
-                        "defaultCodes": ["800"],
+                        "dimension_id": "item",
+                        "defaultCodes": ["1882"],
                         "filter": {}
                     }
                 },
@@ -38,21 +52,14 @@ define([
                     "type": "codelist",
                     "parameter": "List2Codes",
                     "componentType": {
-                        "class": "col-xs-6",
+                        "class": "col-xs-4",
                         "type": "dropDownList",
                         "multiple": false
                     },
                     "config": {
-                        "dimension_id": "element",
-                        "defaultCodes": ["57"],
-                        "filter": {
-                            whitelist: [
-                                57,
-                                152,
-                                154,
-                                58
-                            ]
-                        }
+                        "dimension_id": "elements",
+                        "defaultCodes": ["64"],
+                        "filter": {}
                     }
                 }
             ]
@@ -62,9 +69,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['QV'],
-                List1Codes: ["5000"],
-                List2Codes: ["57"],
+                domain_codes: ['TI'],
                 List4Codes: ["_1"],
                 List5Codes: null,
                 List6Codes: null,
@@ -134,5 +139,5 @@ define([
             ]
         }
 
-    }
+    };
 });
