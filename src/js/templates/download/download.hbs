@@ -100,27 +100,36 @@
 
         <br>
 
-        <p class="label label-default">Data Description</p>
+        <!-- Description -->
         <div data-role="description">
+            <p class="label label-default">{{data_description}}Data Description</p>
+            <p data-role="text"></p>
+        </div>
 
+        <!-- Organization -->
+        <div data-role="organization">
+            <small data-role="text"></small>
         </div>
 
         <br>
 
-        <p class="label label-default">Last Update</p>
-        <p data-role="last-update">July, 25 2016</p>
+        <!-- Last Update -->
+        <div data-role="last-update">
+            <p class="label label-default">{{last_update}}Last update</p>
+            <p data-role="date"></p>
+        </div>
 
-        <p class="label label-default">Contacts</p>
-        <p data-role="contact-name"></p>
+        <!-- Contacts -->
+        <div data-role="contact-name">
+            <p class="label label-default">{{contacts}}Contacts</p>
+            <p data-role="text"></p>
+        </div>
 
-        <p class="label label-default">Contacts Email</p>
-        <p data-role="last-update">
-            <a href="mailto:francesco.tubiello@fao.org">francesco.tubiello@fao.org</a>
-            <a href="mailto:paolo.prosperi@fao.org">paolo.prosperi@fao.org</a>
-        </p>
-
-        <br>
-
+        <!-- Email -->
+        <div data-role="contact-email" style="display:none">
+            <p class="label label-default">{{contacts_email}}Contacts Email</p>
+            <p data-role="text"></p>
+        </div>
 
         <!-- Bulk Downloads -->
         <div class="btn-group btn-block">
@@ -129,7 +138,7 @@
             </button>
             <button type="button" class="btn btn-default dropdown-toggle col-xs-2 btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
-                <span class="sr-only"><span>
+                <span class="sr-only"></span>
             </button>
             <ul class="dropdown-menu col-xs-12" style="height: auto; max-height: 300px; overflow-x: hidden;" data-role="bulk-downloads-caret">
 
@@ -150,8 +159,8 @@
             <i class="fa fa-info-circle" aria-hidden="true"></i> {{metadata}}
         </a>
 
-        <p data-role="fs-download-last-update-date"></p>
         <br>
+
         <p class="label label-default">{{related_documents}}</p>
         <div data-role="fs-download-related-documents"></div>
 

@@ -61,9 +61,6 @@ define([
 
             // Related Documents
             RELATED_DOCUMENTS: '[data-role="fs-download-related-documents"]',
-            LAST_UPDATED_DATE: '[data-role="fs-download-last-update-date"]',
-            BULK_SIDEBAR: '[data-role="fs-download-bulk-downloads-sidebar"]',
-            LAST_UPDATE_DATE: '[data-role="fs-download-last-update-date"]',
             METADATA_BUTTON: '[data-role="fs-download-metadata-button"]',
             BULK_CARET: "[data-role='bulk-downloads-caret']",
 
@@ -76,7 +73,10 @@ define([
             DOWNLOAD_INTERACTIVE_LINK: '[data-role="download-interactive-link"]',
 
             DESCRIPTION: '[data-role="description"]',
-            CONTACTS: '[data-role="contact-name"]'
+            CONTACTS: '[data-role="contact-name"]',
+            BULK_SIDEBAR: '[data-role="fs-download-bulk-downloads-sidebar"]',
+            LAST_UPDATE_DATE: '[data-role="last-update"]',
+            ORGANIZATION: '[data-role="organization"]'
 
     },
 
@@ -149,6 +149,7 @@ define([
             this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
             this.$DESCRIPTION = this.$el.find(s.DESCRIPTION);
             this.$CONTACTS = this.$el.find(s.CONTACTS);
+            this.$ORGANIZATION = this.$el.find(s.ORGANIZATION);
 
             this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
 
@@ -202,7 +203,7 @@ define([
 
             log.info("Download.updateSection", this.o.selected, options);
 
-            this.switchTabs(this.o.section, this.o.selected);
+            this.switchTabs();
 
         },
 
@@ -210,31 +211,24 @@ define([
 
         },
 
-        switchTabs: function(section, options) {
+        switchTabs: function() {
+
+            // getting section and options (selected)
+            var section = this.o.section,
+                options = this.o.selected;
+
+            moment.locale(Common.getLocale());
 
             log.info('switch tab: ', section, options);
 
             var code = options.id,
                 label = options.label,
-                type = options.type;
+                type = options.type,
+                date_sanitized = _s.strLeft(_s.replaceAll(options.date_update, '-', '/'), "."),
+                date_update = moment(new Date(date_sanitized)).format("DD MMMM YYYY");
 
             // this sections should be always cleaned
             this.$OUTPUT_AREA.empty();
-
-            // Set Title
-            this.$MAIN_CONTAINER_TITLE.html(label);
-
-            // Set Related Documents
-            // TODO: this in theory should change only when a domain/group is changed and not when a tab is switched.
-            this._renderRelatedDocuments(code);
-            //this._renderLastUpdate(code);
-            //this._renderBulkDownloadsSidebar(code);
-
-            this._renderBulkDownloadCaret(code);
-            this._renderMetadata(code);
-
-            // check tab availability
-            this.checkSectionsAvailability(section, code);
 
             if ( type === 'group') {
                 this.switchTabsGroup(section, options);
@@ -243,6 +237,22 @@ define([
             if ( type === 'domain') {
                 this.switchTabsDomain(section, options);
             }
+
+            // Set Title
+            this.$MAIN_CONTAINER_TITLE.html(label);
+
+            // date update
+            this._renderLastUpdate((type === 'domain')? date_update: null);
+
+            // Set Related Documents
+            // TODO: this in theory should change only when a domain/group is changed and not when a tab is switched.
+            this._renderRelatedDocuments(code);
+
+            this._renderBulkDownloadCaret(code);
+            this._renderMetadata(code);
+
+            // check tab availability
+            this.checkSectionsAvailability(section, code);
 
         },
 
@@ -409,14 +419,12 @@ define([
                     this.metadataViewer.destroy();
                 }
 
-                this.metadataViewer = new MetadataViewer();
-                this.metadataViewer.init({
+                this.metadataViewer = new MetadataViewer({
                     container: this._createRandomElement(this.$METADATA),
                     code: code,
-                    lang: Common.getLocale(),
-                    url_get_metadata: C.URL_METADATA_MODEL,
-                    url_get_domain: C.URL_METADATA_DOMAIN
+                    lang: Common.getLocale()
                 });
+                this.metadataViewer.render();
 
             }
 
@@ -602,10 +610,14 @@ define([
             
         },
 
-        _renderLastUpdate: function() {
+        _renderLastUpdate: function(date_update) {
 
-            this.$LAST_UPDATE_DATE.empty();
-
+            if (date_update) {
+                this.$LAST_UPDATE_DATE.find('[data-role="date"]').html(date_update);
+                this.$LAST_UPDATE_DATE.show();
+            } else {
+                this.$LAST_UPDATE_DATE.hide();
+            }
 
         },
 
@@ -624,76 +636,93 @@ define([
 
         _renderMetadata: function(code) {
 
-            var self = this;
+            this._renderDescription(code);
+            this._renderContacts(code);
+            this._renderOrganization(code);
 
-            this.api.metadata({
-                datasource: C.DATASOURCE,
-                lang: this.o.lang,
-                domain_code: code
-            }).then(function(d) {
+        },
 
-                if(d.hasOwnProperty('data') && d.data.length > 0 ) {
+        _renderDescription: function(code) {
 
-                    self._renderDescription(d.data);
-                    self._renderContacts(d.data);
+            var self = this,
+                // TODO: in theory should not be reinstantiated, but should check the state of the object
+                m = new MetadataViewer({
+                    code: code,
+                    lang: this.o.lang
+                }),
+                $container = this.$DESCRIPTION.find('[data-role="text"]');
+
+            $container.empty();
+            $container = self._createRandomElement($container);
+
+            m.getDescription().then(function(m) {
+
+                var text = m !== undefined? m.text: i18nLabels.no_data_available;
+
+                new TextWrapper().render({
+                    container: $container,
+                    text: text,
+                    length: 250
+                });
+
+
+            }).fail(function(e) {
+               log.error("Download._renderDescription; error:", e);
+            });
+
+        },
+
+        _renderOrganization: function(code) {
+
+            var self = this,
+                // TODO: in theory should not be reinstantiated, but should check the state of the object
+                m = new MetadataViewer({
+                    code: code,
+                    lang: this.o.lang
+                }),
+                $container = this.$ORGANIZATION.find('[data-role="text"]');
+
+            $container.empty();
+            $container = self._createRandomElement($container);
+
+            m.getOrganization().then(function(m) {
+
+                if (m !== undefined) {
+                    $container.html(m.text);
                 }
 
-                else {
-
-                    // add text for no metadata available
-                    self.$DESCRIPTION.html(i18nLabels.no_data_available);
-                    self.$CONTACTS.html(i18nLabels.no_data_available);
-
-               }
-
+            }).fail(function(e) {
+                log.error("Download._renderOrganization; error:", e);
             });
 
         },
 
-        // TODO: the metadataViewer should be the only entry point to get Metadata Informations
-        _renderDescription: function(data) {
+        _renderContacts: function(code) {
 
-            this.$DESCRIPTION.empty();
+            var self = this,
+                // TODO: in theory should not be reinstantiated, but should check the state of the object
+                m = new MetadataViewer({
+                    code: code,
+                    lang: this.o.lang
+                }),
+                $container = this.$CONTACTS.find('[data-role="text"]');
 
-            var description = _.find(data, function(v) {
-                return v.metadata_code === "3.1";
-            });
+            $container.empty();
+            $container = self._createRandomElement($container);
 
-            if ( description ) {
-                new TextWrapper().render({
-                    container: this.$DESCRIPTION,
-                    text: description.metadata_text,
-                    length: 250
-                });
-            }
+            m.getContacts().then(function(m) {
 
-
-        },
-
-        // TODO: the metadataViewer should be the only entry point to get Metadata Informations
-        _renderContacts: function(data) {
-
-            this.$CONTACTS.empty();
-
-            var contacts = _.find(data, function(v) {
-                return v.metadata_code === "1.3";
-            });
-
-            var contactsEmail = _.find(data, function(v) {
-                return v.metadata_code === "1.5";
-            });
-
-            log.info(contacts, contactsEmail)
-
-
-            if ( contacts ) {
+                var text = m !== undefined? m.text: i18nLabels.no_data_available;
 
                 new TextWrapper().render({
-                    container: this.$CONTACTS,
-                    text: contactsEmail.metadata_text,
+                    container: $container,
+                    text: text,
                     length: 250
                 });
-            }
+
+            }).fail(function(e) {
+                log.error("Download._renderContacts; error:", e);
+            });
 
         },
 
@@ -716,7 +745,7 @@ define([
 
             this.unbindEventListeners();
 
-            if (this.report && this.report.destroy) {
+            if (this.report && _.isFunction(this.report.destroy)) {
                 this.report.destroy();
             }
 
