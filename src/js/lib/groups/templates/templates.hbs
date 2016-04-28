@@ -1,6 +1,4 @@
 
-
-
 <script type='text/x-handlebars-template' id='template'>
     <div class="row">
         <div class="col-md-9">
@@ -9,18 +7,19 @@
 
                 <li role="presentation" class="active">
                     <a href="#methodologies" data-section="methodologies" role="tab" data-toggle="tab" aria-expanded="true">
-                        Domains
+                        {{domains}}
                     </a>
                 </li>
 
                 <li class="pull-right">
-                    <input type="text" class="form-control" placeholder="Filter Domains">
-                    <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                    <input data-role="search" type="text" class="form-control" placeholder="{{filter_domains}}">
                 </li>
 
             </ul>
-
             <br>
+
+            <div style="display:none" data-role="no-data">{{no_data_available}}</div>
+
             <div data-role="groups"></div>
 
         </div>
@@ -31,44 +30,80 @@
     </div>
 </script>
 
-<script type='text/x-handlebars-template' id='groups'>
+<!--<script type='text/x-handlebars-template' id='groups'>
 
     {{#each this}}
 
-        {{#if this.rowStart}}
+    {{#if this.rowStart}}
         <div class="row">
         {{/if}}
 
-            <div class="col-md-6">
+            <div class="col-md-6 instafilta-section">
 
+                <div class="row">
+                    <div class="col-md-12">
+                       <span style="cursor: pointer;"
+                             data-code="{{this.code}}"
+                             data-role="go_to_download"
+                             class="pull-left domain-icon icojam_{{this.code}}">
+                        </span>
+                            <h4 class="truncate" style="padding-left:5px;">
+                                {{this.title}}
+                            </h4>
+                        </div>
+                </div>
+
+                {{#each this.data}}
                     <div class="row">
                         <div class="col-md-12">
-                           <span style="cursor: pointer;"
-                                 data-code="{{this.code}}"
-                                 data-role="go_to_download"
-                                 class="pull-left domain-icon icojam_{{this.code}}">
-                            </span>
-                                <h4 class="truncate" style="padding-left:5px;">
-                                    {{this.title}}
-                                </h4>
-                            </div>
+                            <a class="instafilta-target" href="#{{this.link}}">{{this.domain_name}}</a>
+                        </div>
                     </div>
-
-                        {{#each this.data}}
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <a href="#{{this.link}}">{{this.domain_name}}</a>
-                                </div>
-                            </div>
-                        {{/each}}
+                {{/each}}
 
             </div>
 
         {{#if this.rowEnd}}
             <div class="clearfix"></div>
-            <hr>
+            <hr style="border: none;">
         </div>
         {{/if}}
+
+{{/each}}
+
+</script>-->
+
+<script type='text/x-handlebars-template' id='groups'>
+
+    {{#each this}}
+
+        <div class="instafilta-section" data-section="{{this.group_code}}">
+            <div class="row">
+            <div class="col-md-12">
+                       <span style="cursor: pointer;"
+                             data-code="{{this.group_code}}"
+                             data-role="go_to_download"
+                             class="pull-left domain-icon icojam_{{this.group_code}}">
+                        </span>
+            <h4 class="truncate" style="padding-left:5px;">
+                {{this.title}}
+            </h4>
+        </div>
+
+        <div class="row">
+            {{#each this.data}}
+                <div class="col-md-6">
+                    <a class="instafilta-target" href="#{{this.link}}">{{this.domain_name}}</a>
+                </div>
+            {{/each}}
+        </div>
+        </div>
+
+        <hr>
+
+        <div class="clearfix"></div>
+
+        </div>
 
     {{/each}}
 
@@ -81,7 +116,7 @@
 <script type='text/x-handlebars-template' id='groups-list'>
     <ul class="list-unstyled">
         {{#each this}}
-            <li><h4><a target="_blank" href="#">{{this.group_name}}</a></h4></li>
+            <li><h4><a data-section="{{this.group_code}}" href="#">{{this.group_name}}</a></h4></li>
             <hr>
         {{/each}}
     </ul>

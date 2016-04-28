@@ -11,14 +11,18 @@ define([
     'handlebars',
     'faostatapiclient',
     'underscore',
-    'amplify'
-], function ($, log, Common, C, E, ROUTES, i18nLabels, templates, Handlebars, FAOSTATAPIClient, _) {
+    'underscore.string',
+    'amplify',
+    'instafilta'
+], function ($, log, Common, C, E, ROUTES, i18nLabels, templates, Handlebars, FAOSTATAPIClient, _, _s) {
 
     'use strict';
 
     var s = {
-        GROUPS: "[data-role=groups]",
-        GROUPS_LIST: "[data-role=groups-list]"
+        GROUPS: "[data-role='groups']",
+        GROUPS_LIST: "[data-role='groups-list']",
+        SEARCH: "[data-role='search']",
+        NO_DATA: "[data-role='no-data']"
     },
 
     defaultOptions = {
@@ -55,11 +59,17 @@ define([
 
         /* Load main structure. */
         var t = Handlebars.compile($(templates).filter("#template").html());
-        this.$CONTAINER.html(t({}));
+        this.$CONTAINER.html(t({
+            no_data_available: i18nLabels.no_data_available,
+            domains: i18nLabels.domains,
+            filter_domains: i18nLabels.filter_domains
+        }));
 
         // init variable
         this.$GROUPS = this.$CONTAINER.find(s.GROUPS);
         this.$GROUPS_LIST = this.$CONTAINER.find(s.GROUPS_LIST);
+        this.$SEARCH = this.$CONTAINER.find(s.SEARCH);
+        this.$NO_DATA = this.$CONTAINER.find(s.NO_DATA);
 
     };
 
@@ -77,10 +87,23 @@ define([
 
     Groups.prototype._show = function(d) {
 
-        var data = d.data;
+        var data = d.data,
+            self = this;
 
         this._showGroupsAndDomains(data);
         this._showGroups(data);
+
+        this.$SEARCH.instaFilta({
+            markMatches: true,
+            onFilterComplete: function(matchedItems) {
+
+                // show/hide no data div
+                matchedItems.length > 0? self.$NO_DATA.hide(): self.$NO_DATA.show();
+
+            }
+        });
+
+        this._bindEventListeners();
 
     };
 
@@ -125,7 +148,7 @@ define([
                 var rowEnd = (Object.keys(json).length % 2 === 1);
                 json[id] = {
                     title: d.group_name,
-                    code: d.group_code,
+                    group_code: d.group_code,
                     data: [],
                     // TODO: remove rowStart and rowEnd
                     rowStart: rowStart,
@@ -145,10 +168,39 @@ define([
 
         return json;
     };
+
+    Groups.prototype._bindEventListeners = function () {
+
+        var self = this;
+
+        this.$GROUPS_LIST.find("a").on('click', function(e) {
+
+            e.preventDefault();
+
+            var section = $(this).data("section"),
+                $container = self.$GROUPS.find("[data-section='" + section + "']");
+
+            if ( $container.length > 0) {
+                amplify.publish(E.SCROLL_TO_SELECTOR, {
+                    container: $container,
+                    force: true
+                });
+            }
+
+        });
+
+    };
+
+    Groups.prototype._unbindEventListeners = function () {
+
+        this.$GROUPS_LIST.find("a").off();
+    };
     
     Groups.prototype.destroy = function () {
 
         log.info("Groups.destroy;");
+
+        this._unbindEventListeners();
 
         // destroy all filters
         if (this.$CONTAINER !== undefined) {
