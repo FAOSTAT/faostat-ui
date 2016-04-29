@@ -10,7 +10,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["FM"],
+                "domain_code": ["FT"],
                 "show_lists": false
             },
 
@@ -26,7 +26,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "reporterarea",
-                        "defaultCodes": ["2"],
+                        "defaultCodes": ["21"],
                         "filter": {}
                     }
                 },
@@ -41,7 +41,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["15"],
+                        "defaultCodes": ["1875"],
                         "filter": {}
                     }
                 },
@@ -70,7 +70,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1992'],
+                        "defaultCodes": ['1997'],
                         "filter": {
                         }
                     }
@@ -83,7 +83,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['FM'],
+                domain_codes: ['FT'],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -163,6 +163,6 @@ define([
                 }
             ]
         }
-        
+
     };
 });
