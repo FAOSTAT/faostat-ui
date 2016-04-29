@@ -19,7 +19,7 @@ define([
         DD: '[data-role="dd"]',
         FROM_YEAR: 'fromyear',
         TO_YEAR: 'toyear',
-        VALIDATION: '[data-role="validation"]',
+        VALIDATION: '[data-role="validation"]'
 
     },defaultOptions = {
 
@@ -98,7 +98,13 @@ define([
 
         if (this.o.config.defaultCodes === undefined) {
             // TODO: trhrow an error
-            log.error('timerange filter is not properly configured.');
+            log.info(this.o.config.data);
+            log.warn("Timerange filter doesn't have default codes. Adding it manually.");
+
+            // TODO: make a proper sorting for the year codes.
+            // this should be the older available year
+            this.o.config.defaultCodes = [this.o.config.data[this.o.config.data.length-1].code];
+
         }
 
         // tODO check if this.o.config.defaultCodes exists
@@ -135,7 +141,7 @@ define([
                 selected = (d.code === select.code);
             }
             else if (select.index) {
-                selected = (index == select.index)
+                selected = (index == select.index);
             }
             values.push($.extend({}, d, {selected: selected}));
         });
