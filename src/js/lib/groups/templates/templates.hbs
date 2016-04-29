@@ -80,20 +80,21 @@
         <div class="instafilta-section" data-section="{{this.group_code}}">
             <div class="row">
             <div class="col-md-12">
-                       <span style="cursor: pointer;"
-                             data-code="{{this.group_code}}"
-                             data-role="go_to_download"
-                             class="pull-left domain-icon icojam_{{this.group_code}}">
-                        </span>
-            <h4 class="truncate" style="padding-left:5px;">
-                {{this.title}}
-            </h4>
+
+               <span style="cursor: pointer;"
+                     data-code="{{this.group_code}}"
+                     data-role="go_to_download"
+                     class="pull-left domain-icon icojam_{{this.group_code}}">
+                </span>
+                <h4 class="truncate" style="padding-left:5px;">
+                    {{this.title}}
+                </h4>
         </div>
 
         <div class="row">
             {{#each this.data}}
                 <div class="col-md-6">
-                    <a class="instafilta-target" href="#{{this.link}}">{{this.domain_name}}</a>
+                    <a class="instafilta-target" href="{{this.link}}">{{this.domain_name}}</a>
                 </div>
             {{/each}}
         </div>

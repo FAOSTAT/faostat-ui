@@ -157,7 +157,7 @@ define([
             }
 
             // links
-            d.link = Common.getURI(ROUTES.BROWSE_BY_DOMAIN_CODE, [d.domain_code]);
+            d.link = '#' + Common.getURI(ROUTES.BROWSE_BY_DOMAIN_CODE, [d.domain_code]);
 
             json[id].data.push(d);
 
