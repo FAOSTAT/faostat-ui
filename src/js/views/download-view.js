@@ -1,5 +1,6 @@
-/*global define, _:false, $, console, amplify, FM*/
+/*global define, _:false, $, console, amplify, Q*/
 define([
+    'require',
     'jquery',
     'loglevel',
     'views/base/view',
@@ -11,37 +12,42 @@ define([
     'text!templates/download/download.hbs',
     'i18n!nls/download',
     'FAOSTAT_UI_TREE',
-    'fs-r-p/start',
-    'fs-i-d/start',
+    //'fs-r-p/start',
+    // 'fs-i-d/start',
     // TODO: change Names
-    'FAOSTAT_UI_BULK_DOWNLOADS',
+    //'FAOSTAT_UI_BULK_DOWNLOADS',
     //'FENIX_UI_METADATA_VIEWER',
-    'fs-m-v/start',
+    //'fs-m-v/start',
     'lib/related_documents/related_documents',
     //'FAOSTAT_UI_WELCOME_PAGE',
-    'lib/download/domains_list/domains-list',
+    //'lib/download/domains_list/domains-list',
     'moment',
     'underscore.string',
-    'views/browse-by-domain-view',
+    //'views/browse-by-domain-view',
     'handlebars',
     'faostatapiclient',
     'lib/common/text-wrapper',
     'amplify'
-], function ($, log, View, F, C, E, Common, ROUTE,
+], function (Require,
+             $, log, View, F, C, E, Common, ROUTE,
              template, i18nLabels,
-             Tree, Report, InteractiveDownload,
-             BulkDownloads,
-             MetadataViewer,
+             Tree,
+             //Report,
+             //InteractiveDownload,
+             //BulkDownloads,
+             //MetadataViewer,
              //WelcomePage,
              RelatedDocuments,
-             DomainsList,
+             //DomainsList,
              moment,
              _s,
-             DomainView,
+            // DomainView,
              Handlebars,
              FAOSTATApi,
              TextWrapper
 ) {
+
+    // TODO: N.B. Pay attention to the internals calls to: InteractiveDownload, DomainView, DomainsList, MetadataViewer
 
     'use strict';
 
@@ -278,25 +284,13 @@ define([
 
             if (section === 'about') {
 
-                this.welcomePage = new WelcomePage();
-                this.welcomePage.init({
-                    container: this._createRandomElement(this.$ABOUT),
-                    domain_code: code,
-                    domain_name: label,
-                    base_url: C.URL_FAOSTAT_DOCUMENTS_BASEPATH
-                });
+                this._renderWelcomePage(code, label);
 
             }
 
             if (section === 'bulk') {
 
-                this.bulkDownloads = new BulkDownloads();
-                this.$BULK.empty();
-                this.bulkDownloads.init({
-                    container: this._createRandomElement(this.$BULK),
-                    code: code,
-                    bulk_downloads_root: C.URL_BULK_DOWNLOADS_BASEPATH
-                });
+                this._renderBulkDownloadsGroups(code);
 
             }
 
@@ -332,15 +326,51 @@ define([
 
         },
 
+        _renderWelcomePage: function(code, label) {
+
+            Require(['FAOSTAT_UI_WELCOME_PAGE'], _.bind(function(WelcomePage) {
+
+                this.welcomePage = new WelcomePage();
+                this.welcomePage.init({
+                    container: this._createRandomElement(this.$ABOUT),
+                    domain_code: code,
+                    domain_name: label,
+                    base_url: C.URL_FAOSTAT_DOCUMENTS_BASEPATH
+                });
+
+            }, this));
+
+        },
+
+        _renderBulkDownloadsGroups: function(code) {
+
+            Require(['FAOSTAT_UI_BULK_DOWNLOADS'], _.bind(function(BulkDownloads) {
+
+                this.bulkDownloads = new BulkDownloads();
+                this.$BULK.empty();
+                this.bulkDownloads.init({
+                    container: this._createRandomElement(this.$BULK),
+                    code: code,
+                    bulk_downloads_root: C.URL_BULK_DOWNLOADS_BASEPATH
+                });
+
+            }, this));
+
+        },
+
         createDomainsList: function(container, section, code, section_description) {
 
-            this.domainsList = new DomainsList();
-            this.domainsList.init({
-                container: this._createRandomElement($(container)),
-                section: section,
-                code: code,
-                section_description: section_description
-            });
+            Require(['lib/download/domains_list/domains-list'], _.bind(function(DomainsList) {
+
+                this.domainsList = new DomainsList();
+                this.domainsList.init({
+                    container: this._createRandomElement($(container)),
+                    section: section,
+                    code: code,
+                    section_description: section_description
+                });
+
+            }, this));
 
         },
 
@@ -356,6 +386,7 @@ define([
 
             // TODO destroy old bulkthis._createRandomElement(this.$ABOUT),
             if (section === 'bulk') {
+
                 this.bulkDownloads = new BulkDownloads();
                 this.bulkDownloads.init({
                     container: this._createRandomElement(this.$BULK),
@@ -367,25 +398,61 @@ define([
 
             if (section === 'interactive') {
 
-                if (this.interactiveDownload !== undefined && this.interactiveDownload !== null) {
-                    this.interactiveDownload.destroy();
-                }
-                this.interactiveDownload = new InteractiveDownload();
-                this.$INTERACTIVE_DOWNLOAD.empty();
-                this.interactiveDownload.init({
-                    container: this._createRandomElement(this.$INTERACTIVE_DOWNLOAD),
-                    // to output the table outside the standard output area
-                    output_area: this.$OUTPUT_AREA,
-                    code: code,
-                    date_update: date_update
-                });
+                Require(['fs-i-d/start'], _.bind(function(InteractiveDownload) {
+
+                    if (this.interactiveDownload !== undefined && this.interactiveDownload !== null) {
+                        this.interactiveDownload.destroy();
+                    }
+                    this.interactiveDownload = new InteractiveDownload();
+                    this.$INTERACTIVE_DOWNLOAD.empty();
+                    this.interactiveDownload.init({
+                        container: this._createRandomElement(this.$INTERACTIVE_DOWNLOAD),
+                        // to output the table outside the standard output area
+                        output_area: this.$OUTPUT_AREA,
+                        code: code,
+                        date_update: date_update
+                    });
+
+                }, this));
 
             }
 
             if (section === 'report') {
 
+                this._renderReport(code);
+
+            }
+
+            // TODO: the metadataViewer should be the only entry point to get Metadata Informations
+            if (section === 'metadata') {
+
+                this._renderMetadataViewer(code);
+
+            }
+
+            if (section === 'about') {
+
+                this._renderWelcomePage(code, label);
+
+            }
+
+            // TODO: move to a common function
+            if( section === 'browse_by_domain_code') {
+
+                this._browseByDomain(options);
+
+            }
+
+        },
+
+        _renderReport: function(code) {
+
+            log.info(code)
+
+            Require(['fs-r-p/start'], _.bind(function(Report) {
+
                 // TODO: check on tabs APIs
-                if ( options.id === 'FBS') {
+                if (code === 'FBS') {
 
                     this.report = new Report();
                     this.$REPORT.empty();
@@ -404,10 +471,13 @@ define([
                     });
                 }
 
-            }
+            }, this));
 
-            // TODO: the metadataViewer should be the only entry point to get Metadata Informations
-            if (section === 'metadata') {
+        },
+
+        _renderMetadataViewer: function(code) {
+
+            Require(['fs-m-v/start'], _.bind(function(MetadataViewer) {
 
                 // adding loading
                 this.$METADATA.empty();
@@ -426,54 +496,40 @@ define([
                 });
                 this.metadataViewer.render();
 
-            }
-
-            if (section === 'about') {
-
-                this.welcomePage = new WelcomePage();
-                this.welcomePage.init({
-                    container: this._createRandomElement(this.$ABOUT),
-                    domain_code: code,
-                    domain_name: label,
-                    base_url: C.URL_FAOSTAT_DOCUMENTS_BASEPATH
-                });
-
-            }
-
-            // TODO: move to a common function
-            if( section === 'browse_by_domain_code') {
-
-                this._browseByDomain(options);
-
-            }
+            }, this));
 
         },
 
         _browseByDomain: function(options) {
 
-            var browseOptions = {};
-            browseOptions.code = options.id;
-            browseOptions.lang = this.o.lang;
+           Require(['views/browse-by-domain-view'], _.bind(function(DomainView) {
 
-            // TODO: section shouldn't be need
-            browseOptions.section = ROUTE.BROWSE_BY_DOMAIN_CODE; //ROUTE.BROWSE_BY_DOMAIN_CODE;
+                var browseOptions = {};
+                browseOptions.code = options.id;
+                browseOptions.lang = this.o.lang;
 
-            log.info("Download._browseByDomain; options:", browseOptions);
+                // TODO: section shouldn't be need
+                browseOptions.section = ROUTE.BROWSE_BY_DOMAIN_CODE; //ROUTE.BROWSE_BY_DOMAIN_CODE;
 
-            if (this.view_domain) {
-                this.view_domain.dispose();
-            }
+                log.info("Download._browseByDomain; options:", browseOptions);
 
-            // {region: "main", section: "browse_by_domain", lang: "en", code: "P"}
+                if (this.view_domain) {
+                    this.view_domain.dispose();
+                }
 
-            log.info(browseOptions)
+                // {region: "main", section: "browse_by_domain", lang: "en", code: "P"}
 
-            // init browse by domain
-            this.view_domain = new DomainView(browseOptions);
+                log.info(browseOptions)
 
-            this.$BROWSE.empty();
-            var $S = this._createRandomElement(this.$BROWSE);
-            $S.html(this.view_domain.$el);
+                // init browse by domain
+                this.view_domain = new DomainView(browseOptions);
+
+                this.$BROWSE.empty();
+                var $S = this._createRandomElement(this.$BROWSE);
+                $S.html(this.view_domain.$el);
+
+            }, this));
+
 
         },
 
@@ -573,7 +629,6 @@ define([
 
         // TODO: remove it from here
         _renderBulkDownloadCaret: function(code) {
-            
 
             var self = this;
 
@@ -646,86 +701,98 @@ define([
 
         _renderDescription: function(code) {
 
-            var self = this,
+            Require(['fs-m-v/start'], _.bind(function(MetadataViewer) {
+
+                var self = this,
                 // TODO: in theory should not be reinstantiated, but should check the state of the object
-                m = new MetadataViewer({
-                    code: code,
-                    lang: this.o.lang
-                }),
-                $container = this.$DESCRIPTION.find('[data-role="text"]');
+                    m = new MetadataViewer({
+                        code: code,
+                        lang: this.o.lang
+                    }),
+                    $container = this.$DESCRIPTION.find('[data-role="text"]');
 
-            $container.empty();
-            $container = self._createRandomElement($container);
+                $container.empty();
+                $container = self._createRandomElement($container);
 
-            m.getDescription().then(function(m) {
+                m.getDescription().then(function(m) {
 
-                var text = m !== undefined? m.text: i18nLabels.no_data_available;
+                    var text = m !== undefined? m.text: i18nLabels.no_data_available;
 
-                new TextWrapper().render({
-                    container: $container,
-                    text: text,
-                    length: 250
+                    new TextWrapper().render({
+                        container: $container,
+                        text: text,
+                        length: 250
+                    });
+
+
+                }).fail(function(e) {
+                    log.error("Download._renderDescription; error:", e);
                 });
 
 
-            }).fail(function(e) {
-               log.error("Download._renderDescription; error:", e);
-            });
+            }, this));
 
         },
 
         _renderOrganization: function(code) {
 
-            var self = this,
-                // TODO: in theory should not be reinstantiated, but should check the state of the object
-                m = new MetadataViewer({
-                    code: code,
-                    lang: this.o.lang
-                }),
-                $container = this.$ORGANIZATION.find('[data-role="text"]');
+            Require(['fs-m-v/start'], _.bind(function(MetadataViewer) {
 
-            $container.empty();
-            $container = self._createRandomElement($container);
+                var self = this,
+                    // TODO: in theory should not be reinstantiated, but should check the state of the object
+                    m = new MetadataViewer({
+                        code: code,
+                        lang: this.o.lang
+                    }),
+                    $container = this.$ORGANIZATION.find('[data-role="text"]');
 
-            m.getOrganization().then(function(m) {
+                $container.empty();
+                $container = self._createRandomElement($container);
 
-                if (m !== undefined) {
-                    $container.html(m.text);
-                }
+                m.getOrganization().then(function(m) {
 
-            }).fail(function(e) {
-                log.error("Download._renderOrganization; error:", e);
-            });
+                    if (m !== undefined) {
+                        $container.html(m.text);
+                    }
+
+                }).fail(function(e) {
+                    log.error("Download._renderOrganization; error:", e);
+                });
+
+            }, this));
 
         },
 
         _renderContacts: function(code) {
 
-            var self = this,
-                // TODO: in theory should not be reinstantiated, but should check the state of the object
-                m = new MetadataViewer({
-                    code: code,
-                    lang: this.o.lang
-                }),
-                $container = this.$CONTACTS.find('[data-role="text"]');
+            Require(['fs-m-v/start'], _.bind(function(MetadataViewer) {
 
-            $container.empty();
-            $container = self._createRandomElement($container);
+                var self = this,
+                    // TODO: in theory should not be reinstantiated, but should check the state of the object
+                    m = new MetadataViewer({
+                        code: code,
+                        lang: this.o.lang
+                    }),
+                    $container = this.$CONTACTS.find('[data-role="text"]');
 
-            m.getContacts().then(function(m) {
+                $container.empty();
+                $container = self._createRandomElement($container);
 
-                var text = m !== undefined? m.text: i18nLabels.no_data_available;
+                m.getContacts().then(function(m) {
 
-                new TextWrapper().render({
-                    container: $container,
-                    text: text,
-                    length: 250
+                    var text = m !== undefined? m.text: i18nLabels.no_data_available;
+
+                    new TextWrapper().render({
+                        container: $container,
+                        text: text,
+                        length: 250
+                    });
+
+                }).fail(function(e) {
+                    log.error("Download._renderContacts; error:", e);
                 });
 
-            }).fail(function(e) {
-                log.error("Download._renderContacts; error:", e);
-            });
-
+            }, this));
         },
 
         _createRandomElement: function($CONTAINER, empty) {
