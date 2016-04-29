@@ -44,8 +44,6 @@ define([
             // TODO: in theory should be requirejs.s.contexts._.config.locale?
             var lang = Common.getLocale();
 
-
-
             return keyword[lang.toUpperCase()] || keyword[lang.toLowerCase()];
 
         }
@@ -56,58 +54,37 @@ define([
 
     });
 
+    // TODO: quick fix for aggregations
+    Handlebars.registerHelper('isMultipleYears', function() {
 
-/*
-    Handlebars.registerHelper("list_countries_creator", function(array) {
+        // TODO: in general could be simplified
+        var args = [],
+            options = arguments[arguments.length - 1];
 
-        var countries = array,
-            result = '',
-            firstDone = false,
-            secondDone = false;
-
-        if (typeof keyword === 'array') {
-
-            _.each(array, function(v, index) {
-
-            });
-
+        for (var i = 0; i < arguments.length - 1; i++) {
+            args.push(arguments[i]);
         }
 
-        var countries = array,
-            result = '',
-            firstDone = false,
-            secondDone = false;
+        //log.info("-----------------------");
+        //log.info(context, options);
+        //log.info(args);
 
-
-
-        for(var i = 0, length = countries.length; i<length; i++) {
-            // first
-            if(i===0 || i %3 ===0){
-                //result+= '<div>';
-                result += '<div class="col-md-4 country-item">' +
-                    '<a href="profile/'+countries[i].code+'">'
-                    + countries[i].label + '</a></div>';
-                firstDone = true;
-            }else if(i===1 || firstDone) {
-                result += '<div class="col-md-4 country-item">' +
-                     '<a href="profile/'+countries[i].code+'">'
-                     + countries[i].label +'</a></div>';
-                firstDone = false;
-                secondDone  =true;
-            }else if (i===2 || secondDone) {
-                result += '<div class="col-md-4 country-item">' +
-                     '<a href="profile/'+countries[i].code+'">'
-                    + countries[i].label + '</a></div>';
-                secondDone  =false;
+        // years
+        if ( args.length === 2 ) {
+            if (args[0].length > 4) {
+                // aggregation
+                return args[1] + " " || "";
+            } else {
+                return "";
             }
+        } else {
+            log.error("Utils.Handlebars.registerHelper.isMultipleYears; Helper is not set properly. Args passed are", args);
+            log.error("i.e. setting {{#isMultipleYears year aggregation}}");
+            log.error("Utils.Handlebars.registerHelper.isMultipleYears; Returning an empty String.");
         }
-        /!* if(length%3 !== 0) {
-         result+= '</div>';
-         }*!/
-        log.info(result)
-        return new Handlebars.SafeString(result);
+        return "";
 
-    });*/
+    });
 
     utils.getLabel = function (obj) {
         var lang = Common.getLocale();
