@@ -10,7 +10,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["PI"],
+                "domain_code": ["PP"],
                 "show_lists": false
             },
 
@@ -18,31 +18,44 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List1Codes",
-                    //"title": "title",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-md-3",
                         "type": "dropDownList"
                     },
                     "config": {
                         "dimension_id": "area",
-                        "defaultCodes": ["2"],
+                        "defaultCodes": ["3"],
                         "filter": {}
                     }
                 },
                 {
-                    "id": "year",
+                    "id": "item",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "List3Codes",
                     "componentType": {
-                        "class": "col-lg-2",
-                        "type": "dropDownList-timerange"
+                        "class": "col-md-3",
+                        "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "year",
-                        "defaultCodes": ['2003'],
+                        "dimension_id": "items",
+                        "defaultCodes": ["515"],
+                        "filter": {}
+                    }
+                },
+                {
+                    "id": "element",
+                    "type": "codelist",
+                    "parameter": "List2Codes",
+                    "componentType": {
+                        "class": "col-md-4",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "dimension_id": "elements",
+                        "defaultCodes": ["5532"],
                         "filter": {
+                            whitelist: [5532]
                         }
                     }
                 }
@@ -53,7 +66,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['PI'],
+                domain_codes: ['PP'],
+                List4Codes: ['_1'],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -90,11 +104,10 @@ define([
                         // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Producer price indices (2004-2006=100), {{area}}",
-                                fr: "Indices des prix à la production (2004-2006=100), {{area}} ",
-                                es: "Índices de precios al productor (2004-2006=100), {{area}} "
-                            },
-                            subtitle: "{{year}}"
+                                en: "{{area}} {{element}} - {{item}}",
+                                fr: "{{area}} {{element}} - {{item}}",
+                                es: "{{area}} {{element}} - {{item}}"
+                            }
                         }
                     },
 
@@ -105,8 +118,7 @@ define([
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['item'],
-                            decimalPlaces: 2
+                            seriesDimensions: ['area', 'element', 'item']
                         },
                         template: {
                             // height:'350px'
@@ -114,10 +126,8 @@ define([
                         },
                         creator: {}
                     },
-                    allowedFilter: ['area', 'year'],
+                    allowedFilter: ['area', 'item', 'element'],
                     filter: {
-                        List2Codes: [5539],
-                        List3Codes: [2051, 2044, 1717, 1720, 1726, 1732, 1735, 1738, 1780, 1783]
                     }
                 }
             ]

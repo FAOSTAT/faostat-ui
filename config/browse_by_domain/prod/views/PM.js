@@ -10,7 +10,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["PP"],
+                "domain_code": ["PM"],
                 "show_lists": false
             },
 
@@ -44,18 +44,16 @@ define([
                     }
                 },
                 {
-                    "id": "element",
+                    "id": "year",
                     "type": "codelist",
-                    "parameter": "List2Codes",
+                    "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-md-4",
+                        "class": "col-md-2",
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "elements",
-                        "defaultCodes": ["5532"],
+                        "dimension_id": "year",
                         "filter": {
-                            whitelist: [5532]
                         }
                     }
                 }
@@ -66,8 +64,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['PP'],
-                List4Codes: ['_1'],
+                domain_codes: ['PM'],
+                List2Codes: ['_1'],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -87,7 +85,7 @@ define([
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
 
             },
@@ -104,7 +102,7 @@ define([
                         // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "{{area}} {{element}} - {{item}}",
+                                en: "{{area}} {{element}} - {{year}}",
                                 fr: "{{area}} {{element}} - {{item}}",
                                 es: "{{area}} {{element}} - {{item}}"
                             }
@@ -114,11 +112,11 @@ define([
                     config: {
                         adapter: {
                             adapterType: 'faostat',
-                            type: "timeserie",
-                            xDimensions: 'year',
+                            type: "standard",
+                            xDimensions: 'month',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'element', 'item']
+                            seriesDimensions: ['area', 'item', 'year']
                         },
                         template: {
                             // height:'350px'
@@ -126,12 +124,12 @@ define([
                         },
                         creator: {}
                     },
-                    allowedFilter: ['area', 'item', 'element'],
+                    allowedFilter: ['area', 'item', 'year'],
                     filter: {
                     }
                 }
             ]
         }
 
-    }
+    };
 });

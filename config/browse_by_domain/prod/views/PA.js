@@ -10,7 +10,7 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["PM"],
+                "domain_code": ["PA"],
                 "show_lists": false
             },
 
@@ -25,7 +25,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "area",
-                        "defaultCodes": ["3"],
+                        "defaultCodes": ["4"],
                         "filter": {}
                     }
                 },
@@ -39,21 +39,23 @@ define([
                     },
                     "config": {
                         "dimension_id": "items",
-                        "defaultCodes": ["515"],
+                        "defaultCodes": ["221"],
                         "filter": {}
                     }
                 },
                 {
-                    "id": "year",
+                    "id": "element",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "List2Codes",
                     "componentType": {
-                        "class": "col-md-2",
+                        "class": "col-md-4",
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "year",
+                        "dimension_id": "elements",
+                        "defaultCodes": ["5530"],
                         "filter": {
+                            whitelist: [5530]
                         }
                     }
                 }
@@ -64,8 +66,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['PM'],
-                List2Codes: ['_1'],
+                domain_codes: ['PA'],
+                List4Codes: ['_1'],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -102,7 +104,7 @@ define([
                         // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "{{area}} {{element}} - {{year}}",
+                                en: "{{area}} {{element}} - {{item}}",
                                 fr: "{{area}} {{element}} - {{item}}",
                                 es: "{{area}} {{element}} - {{item}}"
                             }
@@ -112,11 +114,11 @@ define([
                     config: {
                         adapter: {
                             adapterType: 'faostat',
-                            type: "standard",
-                            xDimensions: 'month',
+                            type: "timeserie",
+                            xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'year']
+                            seriesDimensions: ['area', 'element', 'item']
                         },
                         template: {
                             // height:'350px'
@@ -124,7 +126,7 @@ define([
                         },
                         creator: {}
                     },
-                    allowedFilter: ['area', 'item', 'year'],
+                    allowedFilter: ['area', 'item', 'element'],
                     filter: {
                     }
                 }
