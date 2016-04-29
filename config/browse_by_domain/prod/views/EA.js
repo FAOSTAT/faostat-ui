@@ -158,7 +158,7 @@ define(function () {
                                 fr: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices",
                                 es: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
                     config: {
@@ -227,7 +227,7 @@ define(function () {
                                 fr: "Top 10 recipients of {{donor}} in US$, 2013 prices",
                                 es: "Top 10 recipients of {{donor}} in US$, 2013 prices"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -269,7 +269,7 @@ define(function () {
                                 fr: "Top 10 donors of {{recipientarea}} in US$, 2013 prices",
                                 es: "Top 10 donors of {{recipientarea}} in US$, 2013 prices"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

@@ -150,7 +150,7 @@ define([
                                 fr: "Exportations par régions {{item}}",
                                 es: "Exportaciones por región {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -187,7 +187,7 @@ define([
                                 fr: "Importations par régions {{item}}",
                                 es: "Importaciones por región {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -237,7 +237,7 @@ define([
                                 fr: "Exportations des 5 meilleurs exportateurs de {{item}}",
                                 es: "Exportaciones de los 5 principales exportadores de {{item}}",
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -286,7 +286,7 @@ define([
                                 fr: "Importations des 5 meilleurs exportateurs de {{item}}",
                                 es: "Importaciones de los 5 principales exportadores de {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -346,7 +346,7 @@ define([
                                 fr: "Alimentation, aliments pour animaux, autres utilisations, pertes en {{area}}",
                                 es: "Pienso, alimentos, otra utilidad, desperdicio en {{area}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

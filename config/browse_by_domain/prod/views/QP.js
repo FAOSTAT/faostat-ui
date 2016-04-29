@@ -122,11 +122,10 @@ define([
                                 fr: "Quantités de {{item}} par pays",
                                 es: "Cantidades de {{item}} por país"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
-
+                    
                     //height:'250px',
                     config: {
                         template: {}
@@ -188,7 +187,7 @@ define([
                                 fr: "Part de la production de {{item}} par région",
                                 es: "Proporción de producción de {{item}} por región"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
 
                     },
@@ -228,7 +227,7 @@ define([
                                 fr: "Production of {{item}} top 10 producers",
                                 es: "Production of {{item}} top 10 producers"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

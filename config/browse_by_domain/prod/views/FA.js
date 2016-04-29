@@ -117,7 +117,7 @@ define([
                                 "fr": "Expédition d'aides alimentaires par pays (Total donateurs)",
                                 "es": "Envíos de ayuda alimentaria por país (Total de donantes)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -199,7 +199,7 @@ define([
                                 "fr": "Expédition d'aides alimentaires par continent (Total donateurs)",
                                 "es": "Envíos de ayuda alimentaria por continente (Total de donantes)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
 
                     },
@@ -240,7 +240,7 @@ define([
                                 fr: "Top 10 food aid shipments, {{item}} by country (Total Donors)",
                                 es: "Top 10 food aid shipments, {{item}} by country (Total Donors)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -288,7 +288,7 @@ define([
                                 fr: "Top 10 food aid shipments, {{recipientarea}} by item (Total Donors)",
                                 es: "Top 10 food aid shipments, {{recipientarea}} by item (Total Donors)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

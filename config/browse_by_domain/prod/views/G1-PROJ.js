@@ -114,7 +114,7 @@ define([
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
 
             },
@@ -136,9 +136,9 @@ define([
                             title: {
                                 en: "Emissions by country (CO2 equivalent), {{item}}",
                                 fr: "Émissions par pays (CO2 équivalent), {{item}}",
-                                es: "Emisiones por país (CO2 equivalente), {{item}}",
+                                es: "Emisiones por país (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -297,7 +297,7 @@ define([
                                 fr: "Émissions par secteur, {{area}}",
                                 es: "Emissions por sector, {{area}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -337,5 +337,5 @@ define([
             ]
         }
 
-    }
+    };
 });

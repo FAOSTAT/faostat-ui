@@ -134,7 +134,7 @@ define(function () {
                                 fr: "Production of {{item}} top 10 producers",
                                 es: "Production of {{item}} top 10 producers"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

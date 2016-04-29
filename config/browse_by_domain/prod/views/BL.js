@@ -150,7 +150,7 @@ define([
                                 fr: "Exportations par régions de {{item}}",
                                 es: "Exportaciones por región de {{item}}",
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -187,7 +187,7 @@ define([
                                 fr: "Importations par régions de {{item}}",
                                 es: "Importaciones por región de {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

@@ -105,7 +105,7 @@ define([
                                 fr: "Disponibilité alimentaire",
                                 es: "Suministro alimentario de energía"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

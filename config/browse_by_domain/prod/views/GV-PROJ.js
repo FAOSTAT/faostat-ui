@@ -141,11 +141,10 @@ define([
                                 fr: "Émissions par pays (CO2 équivalent), {{item}}",
                                 es: "Emisiones por país (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
-
+                    
                     //height:'250px',
                     config: {
                         layer: {

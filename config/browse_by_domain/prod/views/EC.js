@@ -146,7 +146,7 @@ define([
                                 "fr":"Ammoniac (NH3) provenant de l'agriculture (10 pays)",
                                 "es":"Amoniaco (NH3) procedentes de la agricultura (10 países)",
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

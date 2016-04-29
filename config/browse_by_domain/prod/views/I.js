@@ -122,7 +122,7 @@ define([
                                 fr: "Composition du stock de capital par région",
                                 es: "Composición de la reserva de capital por región"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -165,5 +165,5 @@ define([
                 }
             ]
         }
-    }
+    };
 });

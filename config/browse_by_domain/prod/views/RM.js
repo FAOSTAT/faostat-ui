@@ -93,7 +93,7 @@ define([
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
 
             },
@@ -112,7 +112,7 @@ define([
                             title: {
                                 en: "Machinery stock, {{area}}",
                                 fr: "Stock de machines, {{area}}",
-                                es: "Reserva de maquinaria, {{area}}",
+                                es: "Reserva de maquinaria, {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -146,9 +146,9 @@ define([
                             title: {
                                 en: "Imports of top 10 importers (quantity), {{item}}",
                                 fr: "Importations du top 10 des importateurs (quantité), {{item}}",
-                                es: "Importaciones de los 10 principales importadores (cantidad), {{item}}",
+                                es: "Importaciones de los 10 principales importadores (cantidad), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -192,9 +192,9 @@ define([
                             title: {
                                 en: "Exports of top 10 exportes (quantity), {{item}}",
                                 fr: "exportations du top 10 des exportateurs (quantité), {{item}}",
-                                es: "Exportaciones de los 10 principales exportadores (cantidad), {{item}}",
+                                es: "Exportaciones de los 10 principales exportadores (cantidad), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -238,9 +238,9 @@ define([
                             title: {
                                 en: "Imports of top 10 importers (value), {{item}}",
                                 fr: "Importations du top 10 des importateurs (valeur), {{item}}",
-                                es: "Importaciones de los 10 principales importadores (valor), {{item}}",
+                                es: "Importaciones de los 10 principales importadores (valor), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -284,9 +284,9 @@ define([
                             title: {
                                 en: "Exports of top 10 exportes (value), {{item}}",
                                 fr: "exportations du top 10 des exportateurs (valeur), {{item}}",
-                                es: "Exportaciones de los 10 principales exportadores (valor), {{item}}",
+                                es: "Exportaciones de los 10 principales exportadores (valor), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -318,8 +318,8 @@ define([
                         "order_by": 'value DESC',
                         "limit": '10'
                     }
-                },
+                }
             ]
         }
-    }
+    };
 });

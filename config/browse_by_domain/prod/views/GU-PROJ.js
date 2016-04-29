@@ -141,11 +141,10 @@ define([
                                 fr: "Émissions par pays (CO2 équivalent), {{item}}",
                                 es: "Emisiones por país (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
-
+                    
                     //height:'250px',
                     config: {
                         layer: {
@@ -300,7 +299,7 @@ define([
                                 fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
                                 es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -328,7 +327,7 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],
                     filter: {
-                        List3Codes: ["1755>"],
+                        List3Codes: ["1755>"]
                     }
                 }
             ]

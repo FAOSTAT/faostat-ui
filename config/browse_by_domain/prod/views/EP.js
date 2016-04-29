@@ -105,7 +105,7 @@ define([
                                 fr: "Uutilisation de pesticides dans l'ingrédient actif sur les terres arables et cultures permanentes (tonnes pour 1000 ha) par pays",
                                 es: "Uso de pesticidas en el ingrediente activo en tierras de cultivo y los cultivos permanentes (1.000 toneladas por Ha) por país"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

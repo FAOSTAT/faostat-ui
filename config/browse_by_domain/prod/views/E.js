@@ -89,7 +89,7 @@ define([
                                 fr: "Terres arables en % de la superficie agricole",
                                 es: "Tierras de cultivo en % del área agrícola"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -132,7 +132,7 @@ define([
                                 fr: "Les engrais d'azote (N total des nutriments) utilisent le domaine des cultures arables et cultures permanentes (%)",
                                 es: "Abonos de nitrógeno (N total de nutrientes) utilizan en el área de los cultivos herbáceos y permanente (%)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

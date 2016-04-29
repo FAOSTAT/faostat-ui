@@ -129,11 +129,10 @@ define([
                                 fr: "Émissions par pays (CO2 équivalent), {{item}}",
                                 es: "Emisiones por país (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
-
+                    
                     //height:'250px',
                     config: {
                         layer: {
@@ -164,7 +163,7 @@ define([
                             title: {
                                 en: "Emissions (CO2 equivalent), {{item}}",
                                 fr: "Émissions (CO2 équivalent), {{item}}",
-                                es: "Emisiones (CO2 equivalente), {{item}}",
+                                es: "Emisiones (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -197,9 +196,9 @@ define([
                             title: {
                                 en: "Emissions by continent, {{item}}",
                                 fr: "Émissions par continent, {{item}}",
-                                es: "Emisiones por continente, {{item}}",
+                                es: "Emisiones por continente, {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -236,7 +235,7 @@ define([
                                 "fr": "Émissions par couverture (CO2 équivalent), {{area}}",
                                 "es": "Emisiones por cobertura del suelo (CO2 equivalente), {{area}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -281,9 +280,9 @@ define([
                             title: {
                                 en: "Top 10 emitters (CO2 equivalent), {{item}}",
                                 fr: "Principaux 10 émetteurs (CO2 équivalent), {{item}}",
-                                es: "Principales 10 emisores (CO2 equivalente), {{item}}",
+                                es: "Principales 10 emisores (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

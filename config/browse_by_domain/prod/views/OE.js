@@ -97,11 +97,10 @@ define([
                                 fr: "Agriculture value added per worker (constant 2005 US$)",
                                 es: "Agriculture value added per worker (constant 2005 US$)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
-
+                    
                     //height:'250px',
                     config: {
                         template: {}

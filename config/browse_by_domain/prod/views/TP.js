@@ -203,7 +203,7 @@ define([
                                 fr: "Exportations des 5 meilleurs exportateurs de {{item}}",
                                 es: "Exportaciones de los 5 principales exportadores de {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -251,7 +251,7 @@ define([
                                 fr: "Importations des 5 meilleurs importateurs de {{item}}",
                                 es: "Importaciones de los 5 principales importadores de {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

@@ -134,7 +134,7 @@ define([
                                 fr: "{{item}} {{element}} by country",
                                 es: "{{item}} {{element}} by country"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -199,7 +199,7 @@ define([
                                 fr: "Top 10 countries - {{item}}, {{element}}",
                                 es: "Top 10 countries - {{item}}, {{element}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -237,5 +237,5 @@ define([
             ]
         }
 
-    }
+    };
 });

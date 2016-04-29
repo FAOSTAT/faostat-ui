@@ -118,7 +118,7 @@ define([
                                 "fr": "{{item}} {{element}} par pays",
                                 "es": "{{item}} {{element}} por país"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -159,7 +159,7 @@ define([
                                 "fr":"{{item}} {{element}} (10 pays)",
                                 "es":"{{item}} {{element}} (10 países)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

@@ -141,11 +141,10 @@ define([
                                 fr: "Émissions par pays (CO2 équivalent), {{item}}",
                                 es: "Emisiones por país (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
-
+                    
                     //height:'250px',
                     config: {
                         layer: {
@@ -300,7 +299,7 @@ define([
                                 fr: "Émissions par couverture du soil (CO2 équivalent), {{area}}",
                                 es: "Emissions por cobertura del suelo (CO2 equivalente), {{area}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -321,7 +320,7 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],
                     filter: {
-                        List3Codes: ["6795>"],
+                        List3Codes: ["6795>"]
                     }
                 }
             ]

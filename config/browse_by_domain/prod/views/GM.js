@@ -143,10 +143,9 @@ define([
                                 fr: "Émissions par pays (CO2 équivalent), {{item}}",
                                 es: "Emisiones por país (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
 
                     //height:'250px',
                     config: {
@@ -213,7 +212,7 @@ define([
                                 fr: "Émissions par continent, {{item}}",
                                 es: "Emisiones por continente, {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -250,7 +249,7 @@ define([
                                 fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
                                 es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -297,7 +296,7 @@ define([
                                 fr: "Principaux 10 émetteurs (CO2 équivalent), {{item}}",
                                 es: "Principales 10 emisores (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

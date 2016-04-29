@@ -129,12 +129,11 @@ define([
                             title: {
                                 en: "Net emissions/removals by country (CO2 equivalent), {{item}}",
                                 fr: "Net émissions/absorptions par pays (CO2 équivalent), {{item}}",
-                                es: "Emisiones/absorciones netas por país (CO2 equivalente), {{item}}",
+                                es: "Emisiones/absorciones netas por país (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
 
                     //height:'250px',
                     config: {
@@ -209,7 +208,7 @@ define([
                                 fr: "Net émissions/absorptions par continent (CO2 équivalent), {{item}}",
                                 es: "Emisiones/absorciones netas por continente (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -252,9 +251,9 @@ define([
                             title: {
                                 "en": "Top 10 source countries (CO2 equivalent), {{item}}",
                                 "fr": "10 principaux pays sources (CO2 équivalent), {{item}}",
-                                "es": "10 principales países fuentes (CO2 equivalente), {{item}}",
+                                "es": "10 principales países fuentes (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -301,7 +300,7 @@ define([
                                 "fr": "10 principaux pays puits (CO2 équivalent), {{item}}",
                                 "es": "10 principales países sumidero (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

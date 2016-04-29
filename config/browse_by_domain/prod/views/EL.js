@@ -89,7 +89,7 @@ define([
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
 
             },
@@ -111,7 +111,7 @@ define([
                                     "fr": "Moyenne",
                                     "es": "Promedio"
                                 }
-                            },
+                            }
                         },
 
                         // temp[late to be applied to the config.template for the custom object
@@ -121,7 +121,7 @@ define([
                                 fr: "Répartition de {{item}} {{element}} par pays (%)",
                                 es: "Distribución de {{item}} {{element}} por países (%)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -197,9 +197,9 @@ define([
                             title: {
                                 "en":"{{item}} {{element}} (Top 10 Countries)",
                                 "fr":"{{item}} {{element}} (10 pays)",
-                                "es":"{{item}} {{element}} (10 países)",
+                                "es":"{{item}} {{element}} (10 países)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -239,5 +239,5 @@ define([
             ]
         }
 
-    }
+    };
 });

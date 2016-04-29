@@ -114,7 +114,7 @@ define([
                                 fr: "Engrais utilisation des éléments nutritifs sur la zone des cultures arables et cultures permanentes par pays",
                                 es: "El uso de nutrientes de fertilizantes en el área de los cultivos herbáceos y permanente por país"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -185,7 +185,7 @@ define([
                                 fr: "Engrais utilisation des éléments nutritifs sur la zone des cultures arables et cultures permanentes (10 pays)",
                                 es: "El uso de nutrientes de fertilizantes en el área de los cultivos herbáceos y permanente (10 países)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

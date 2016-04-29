@@ -129,9 +129,9 @@ define([
                             title: {
                                 en: "Net emissions/removals by country (CO2 equivalent), {{item}}",
                                 fr: "Net émissions/absorptions par pays (CO2 équivalent), {{item}}",
-                                es: "Emisiones/absorciones netas por país (CO2 equivalente), {{item}}",
+                                es: "Emisiones/absorciones netas por país (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -209,7 +209,7 @@ define([
                                 fr: "Net émissions/absorptions par continent (CO2 équivalent), {{item}}",
                                 es: "Emisiones/absorciones netas por continente (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -246,7 +246,7 @@ define([
                                 fr: "Net émissions/absorptions par couverture du soil (CO2 équivalent), {{area}}",
                                 es: "Emisiones/absorciones por cobertura del suelo (CO2 equivalente), {{area}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -282,9 +282,9 @@ define([
                             title: {
                                 en: "Top 10 emitters (CO2 equivalent), {{item}}",
                                 fr: "Principaux 10 émetteurs (CO2 équivalent), {{item}}",
-                                es: "Principales 10 emisores (CO2 equivalente), {{item}}",
+                                es: "Principales 10 emisores (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

@@ -101,7 +101,7 @@ define([
                                 "fr": "Number of agricultural researchers (FTE) by country",
                                 "es": "Number of agricultural researchers (FTE) by country"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

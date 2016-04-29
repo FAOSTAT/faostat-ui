@@ -132,10 +132,9 @@ define([
                                 fr: "{{item}}",
                                 es: "{{item}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
 
                     //height:'250px',
                     config: {

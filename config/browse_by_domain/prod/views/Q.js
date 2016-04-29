@@ -113,7 +113,7 @@ define([
                                 fr: "Quantités de production de {{item}} par pays",
                                 es: "Cantidades de producción de {{item}} por país"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

@@ -139,11 +139,10 @@ define([
                                 fr: "Quantités de production de {{item}} par pays",
                                 es: "Cantidades de producción de {{item}} por país"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
-
+                    
                     //height:'250px',
                     config: {
                         template: {}
@@ -210,7 +209,7 @@ define([
                                 fr: "Part de la production de {{item}} par région",
                                 es: "Proporción de producción de {{item}} por región"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
 
                     },
@@ -250,7 +249,7 @@ define([
                                 fr: "Production du {{item}} top 5 des producteurs",
                                 es: "Producción de {{item}} 5 principales productores"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -297,7 +296,7 @@ define([
                                 fr: "Produits plus fabriqués, {{area}}",
                                 es: "Productos más producidos, {{area}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -335,5 +334,5 @@ define([
             ]
         }
 
-    }
+    };
 });

@@ -97,7 +97,7 @@ define(function () {
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
 
             },
@@ -162,7 +162,7 @@ define(function () {
                                 fr: "Composition de la surface agricole mondiale",
                                 es: "Composición del área agrícola mundial"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
                     config: {
@@ -203,5 +203,5 @@ define(function () {
                 }
             ]
         }
-    }
+    };
 });

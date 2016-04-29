@@ -148,7 +148,7 @@ define(function () {
                                 fr: "{{item}} {{element}} by country",
                                 es: "{{item}} {{element}} by country"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -213,7 +213,7 @@ define(function () {
                                 fr: "{{item}} {{element}} share by region",
                                 es: "{{item}} {{element}} share by region"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
@@ -251,7 +251,7 @@ define(function () {
                                 fr: "Top 10 countries - {{item}} {{element}}",
                                 es: "Top 10 countries - {{item}} {{element}}"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 

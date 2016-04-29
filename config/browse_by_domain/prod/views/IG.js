@@ -132,7 +132,7 @@ define([
                                 fr: "Government Expenditures on Agriculture in Africa (% of Total Outlays)",
                                 es: "Government Expenditures on Agriculture in Africa (% of Total Outlays)"
                             },
-                            subtitle: "{{aggregation}} {{year}}"
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
 
