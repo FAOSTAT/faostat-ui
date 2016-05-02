@@ -161,10 +161,10 @@ define([
             this.$TABLES_CONTAINER.empty();
 
             // Google Analytics Add CompareData Event
-            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+/*            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
                 category: F.GOOGLE_ANALYTICS.COMPARE.category,
                 action: F.GOOGLE_ANALYTICS.COMPARE.action.compare_data
-            });
+            });*/
 
             try {
                 this._retrieveData().then(function (models) {
