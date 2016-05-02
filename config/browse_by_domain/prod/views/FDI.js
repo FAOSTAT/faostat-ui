@@ -1,6 +1,7 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 
@@ -9,10 +10,9 @@ define(function () {
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["FO"],
+                "domain_code": ["FDI"],
                 "show_lists": false
             },
-
             items: [
                 {
                     "id": "item",
@@ -20,13 +20,19 @@ define(function () {
                     // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
                     "componentType": {
-                        "class": "col-sm-4",
+                        "class": "col-sm-3",
                         "type": "dropDownList"
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["1663"],
+                        "defaultCodes": [23080],
                         "filter": {
+                            "whitelist": [
+                                23080,
+                                23081,
+                                23083,
+                                23084
+                            ]
                         }
                     }
                 },
@@ -35,14 +41,13 @@ define(function () {
                     "type": "codelist",
                     "parameter": "List2Codes",
                     "componentType": {
-                        "class": "col-sm-4",
+                        "class": "col-sm-2",
                         "type": "dropDownList"
                     },
                     "config": {
                         "dimension_id": "element",
-                        "defaultCodes": ["2510"],
-                        "filter": {
-                        }
+                        "defaultCodes": [6110],
+                        "filter": {}
                     }
                 },
                 {
@@ -51,14 +56,15 @@ define(function () {
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-sm-4",
-                        "type": "dropDownList",
+                        "class": "col-sm-3",
+                        "type": "dropDownList"
                         //"multiple": true
                     },
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
                         "filter": {
+
                         }
                     }
                 },
@@ -72,29 +78,19 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1993'],
+                        "defaultCodes": ['1991'],
                         "filter": {
                         }
                     }
                 },
-                {
-                    "id": "aggregation",
-                    "type": "static",
-                    // TODO: check data parameter
-                    "parameter": "operator",
+                $.extend(true, {}, C.filter.aggregation, {
                     "componentType": {
-                        "class": "col-sm-2",
-                        "type": "dropDownList"
+                        "class": "hide"
                     },
                     "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-                            // TODO: multilingual?
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-                        ]
+                        "defaultCodes": ["avg"]
                     }
-                }
+                })
             ]
         },
 
@@ -102,7 +98,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['FO'],
+                domain_codes: ['FDI'],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -125,9 +121,8 @@ define(function () {
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
-
             },
 
             metadata: {},
