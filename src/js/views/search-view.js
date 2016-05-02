@@ -128,8 +128,8 @@ define([
                 v.download_data = i18nLabels.download_data;
 
                 // TODO: this can be computed and rendered at runtime on page change.
-                v.download_link = Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [v.domainCode]);
-                v.browse_link = Common.getURI(ROUTE.BROWSE_BY_DOMAIN_CODE, [v.domainCode]);
+                v.download_link = "#" + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [v.domainCode]);
+                v.browse_link = "#" + Common.getURI(ROUTE.BROWSE_BY_DOMAIN_CODE, [v.domainCode]);
 
                 r.push(v);
 
