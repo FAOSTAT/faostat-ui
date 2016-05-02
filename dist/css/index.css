@@ -2,6 +2,92 @@
 /* RLM - Variables */
 /* Variables */
 /* Fenix Utils*/
+/* Preload CSS */
+.loading {
+  display: inline-block;
+  border: 0 solid rgba(215, 215, 215, 0.25);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%; }
+
+.loading:before {
+  content: '';
+  display: block;
+  border: 0 solid transparent;
+  border-top-color: #bebebe;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-animation: loading 1s ease infinite;
+  -moz-animation: loading 1s ease infinite;
+  -ms-animation: loading 1s ease infinite;
+  -o-animation: loading 1s ease infinite;
+  animation: loading 1s ease infinite; }
+
+/***************************************/
+/*				 LOADING			   */
+/***************************************/
+.loading-16 {
+  width: 12px;
+  height: 12px;
+  border-width: 2px; }
+
+.loading-16:before {
+  width: 12px;
+  height: 12px;
+  border-width: 2px;
+  margin: -2px 0 0 -2px; }
+
+.loading-24 {
+  width: 18px;
+  height: 18px;
+  border-width: 3px; }
+
+.loading-24:before {
+  width: 18px;
+  height: 18px;
+  border-width: 3px;
+  margin: -3px 0 0 -3px; }
+
+.loading-32 {
+  width: 26px;
+  height: 26px;
+  border-width: 4px; }
+
+.loading-32:before {
+  width: 26px;
+  height: 26px;
+  border-width: 4px;
+  margin: -4px 0 0 -4px; }
+
+.loading-48 {
+  width: 38px;
+  height: 38px;
+  border-width: 5px; }
+
+.loading-48:before {
+  width: 38px;
+  height: 38px;
+  border-width: 5px;
+  margin: -5px 0 0 -5px; }
+
+@-webkit-keyframes loading {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@-moz-keyframes loading {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@-ms-keyframes loading {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@-o-keyframes loading {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@keyframes loading {
+  100% {
+    transform: rotate(360deg); } }
 /* Base */
 /* Base style File */
 body {
@@ -5328,9 +5414,6 @@ footer.fao-footer {
   border-bottom-color: #EEEEEE;
   background-color: #FAFAFA; }
 
-/*.markText {
-  background-color: #FFFF33;
-}*/
 .instafilta-match {
   background-color: #FFFF33; }
 
