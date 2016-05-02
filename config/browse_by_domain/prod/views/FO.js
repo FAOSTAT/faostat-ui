@@ -1,6 +1,7 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 
@@ -77,24 +78,7 @@ define(function () {
                         }
                     }
                 },
-                {
-                    "id": "aggregation",
-                    "type": "static",
-                    // TODO: check data parameter
-                    "parameter": "operator",
-                    "componentType": {
-                        "class": "col-sm-2",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-                            // TODO: multilingual?
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-                        ]
-                    }
-                }
+                C.filter.aggregation
             ]
         },
 
@@ -103,6 +87,7 @@ define(function () {
             //data base filter
             defaultFilter: {
                 domain_codes: ['FO'],
+                aggregation: 'avg',
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
