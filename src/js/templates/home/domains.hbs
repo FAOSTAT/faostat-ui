@@ -13,6 +13,7 @@
             
             <h5>{{this.group_name}}</h5>
 
+            <!-- ../download is the outer scope of Handlebars http://stackoverflow.com/questions/13645084/access-a-variable-outside-the-scope-of-a-handlebars-js-each-loop-->
             <a href="#" data-code="{{this.group_code}}" data-role="go_to_download">{{../download}}</a>
 
             <!-- TODO: add an handlebars check if is valid for browse and download -->

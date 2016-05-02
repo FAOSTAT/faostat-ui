@@ -135,7 +135,6 @@ define([
         },
 
         initDomains: function () {
-
             var self = this,
                 browseWhiteList = BrowseByDomainConfig.whitelist || [];
                 //browseBlackList = BrowseByDomainConfig.blacklist || [];
@@ -186,7 +185,7 @@ define([
                     download: i18nLabels.download,
                     browse: i18nLabels.browse
                 }));
-
+                
                 // add listeners on domains
                 self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
 

@@ -82,7 +82,9 @@ define([
             CONTACTS: '[data-role="contact-name"]',
             BULK_SIDEBAR: '[data-role="fs-download-bulk-downloads-sidebar"]',
             LAST_UPDATE_DATE: '[data-role="last-update"]',
-            ORGANIZATION: '[data-role="organization"]'
+            ORGANIZATION: '[data-role="organization"]',
+
+            TREE_MODAL: '#myModal'
 
     },
 
@@ -156,6 +158,7 @@ define([
             this.$DESCRIPTION = this.$el.find(s.DESCRIPTION);
             this.$CONTACTS = this.$el.find(s.CONTACTS);
             this.$ORGANIZATION = this.$el.find(s.ORGANIZATION);
+            this.$TREE_MODAL = this.$el.find(s.TREE_MODAL);
 
             this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
 
@@ -178,15 +181,17 @@ define([
 
                         callback.type = self.tree.getCodeType();
 
-                        self.$TREE_CONTAINER.hide();
-
                         self.updateSection(callback);
 
                         self.changeState();
 
+                        self.$TREE_MODAL.modal('hide');
+
                         amplify.publish(E.SCROLL_TO_SELECTOR, {
                             container: self.$MAIN_CONTAINER_TITLE
                         });
+
+                        self.$TREE_CONTAINER.hide();
 
                     },
 
@@ -194,6 +199,7 @@ define([
 
                         callback.type = self.tree.getCodeType();
 
+                        // TODO: this can be outside the tree rendering. It's missing hte label and the "node" type.
                         self.updateSection(callback);
 
                     }
@@ -398,11 +404,14 @@ define([
 
             if (section === 'interactive') {
 
+                amplify.publish(E.LOADING_SHOW, {container: this.$INTERACTIVE_DOWNLOAD});
+
+                if (this.interactiveDownload !== undefined && this.interactiveDownload !== null) {
+                    this.interactiveDownload.destroy();
+                }
+
                 Require(['fs-i-d/start'], _.bind(function(InteractiveDownload) {
 
-                    if (this.interactiveDownload !== undefined && this.interactiveDownload !== null) {
-                        this.interactiveDownload.destroy();
-                    }
                     this.interactiveDownload = new InteractiveDownload();
                     this.$INTERACTIVE_DOWNLOAD.empty();
                     this.interactiveDownload.init({
@@ -447,8 +456,6 @@ define([
 
         _renderReport: function(code) {
 
-            log.info(code)
-
             Require(['fs-r-p/start'], _.bind(function(Report) {
 
                 // TODO: check on tabs APIs
@@ -477,17 +484,17 @@ define([
 
         _renderMetadataViewer: function(code) {
 
+            if (this.metadataViewer && this.metadataViewer.hasOwnProperty("destroy")) {
+                this.metadataViewer.destroy();
+            }
+
+
+            // adding loading
+            this.$METADATA.empty();
+
+            amplify.publish(E.LOADING_SHOW, {container: this.$METADATA});
+
             Require(['fs-m-v/start'], _.bind(function(MetadataViewer) {
-
-                // adding loading
-                this.$METADATA.empty();
-                amplify.publish(E.LOADING_SHOW, {
-                    container: this.$METADATA
-                });
-
-                if (this.metadataViewer && this.metadataViewer.hasOwnProperty("destroy")) {
-                    this.metadataViewer.destroy();
-                }
 
                 this.metadataViewer = new MetadataViewer({
                     container: this._createRandomElement(this.$METADATA),
@@ -502,6 +509,19 @@ define([
 
         _browseByDomain: function(options) {
 
+            // disposing the old domain view
+            // TODO: this should be performed on tab switching
+            if (this.view_domain && _.isFunction(this.view_domain.dispose)) {
+                this.view_domain.dispose();
+            }
+
+            this.$BROWSE.empty();
+
+            // TODO: probably should be avoided
+           amplify.publish(E.LOADING_SHOW, {
+               container: this.$BROWSE
+           });
+
            Require(['views/browse-by-domain-view'], _.bind(function(DomainView) {
 
                 var browseOptions = {};
@@ -513,18 +533,14 @@ define([
 
                 log.info("Download._browseByDomain; options:", browseOptions);
 
-                if (this.view_domain) {
-                    this.view_domain.dispose();
-                }
-
                 // {region: "main", section: "browse_by_domain", lang: "en", code: "P"}
 
-                log.info(browseOptions)
+                log.info("Download._browseByDomain; browseOptions:", browseOptions);
 
                 // init browse by domain
                 this.view_domain = new DomainView(browseOptions);
 
-                this.$BROWSE.empty();
+
                 var $S = this._createRandomElement(this.$BROWSE);
                 $S.html(this.view_domain.$el);
 

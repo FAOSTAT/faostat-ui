@@ -11,10 +11,18 @@ define([
 
     // TODO: move to templates
     var waiting = $('<div class="modal" data-backdrop="static" data-keyboard="false" >' +
+        '<span style="color: #eeeeee;opacity: 1.0; position: absolute;top: 50%;left: 50%;">' +
+        '<div class="text-center">' +
+        '<span class="loading loading-48"></span> ' +
+        '<h5 data-role="text"></h5>' +
+        '</div>' +
+        '</span>' +
+        '</div>');
+    /*    var waiting = $('<div class="modal" data-backdrop="static" data-keyboard="false" >' +
         '<span style="color: #eeeeee;opacity: 0.9; position: absolute;top: 50%;left: 50%;">' +
         '<i class="fa fa-cog fa-spin fa-4x"></i><h5 data-role="text"></h5>' +
         '</span>' +
-        '</div>');
+        '</div>');*/
 
 
     function Waiting() {
