@@ -148,6 +148,7 @@ define([
                 var rowEnd = (Object.keys(json).length % 2 === 1);
                 json[id] = {
                     title: d.group_name,
+                    link: '#' + Common.getURI(ROUTES.BROWSE_BY_DOMAIN_CODE, [d.group_code]),
                     group_code: d.group_code,
                     data: [],
                     // TODO: remove rowStart and rowEnd
