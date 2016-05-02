@@ -36,25 +36,11 @@
                     <div class="pull-left">
                         <div style="padding-top:15px;">
                         <!-- TODO: with routing an multilanguage -->
-                        <a href="#{{this.lang}}/data/interactive/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>
-                        {{#if this.addBrowse}}
-                            <!--|-->
-                            <!-- TODO: with routing an multilanguage -->
-                            <a style="margin-left:15px;" href="#{{this.lang}}/data/browse/{{this.domainCode}}"><i class="fa fa-external-link"></i> {{go_to_browse}}</a>
-                        {{/if}}
+                        <a href="{{this.download_link}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>
+                        <a style="margin-left:15px;" href="{{this.browse_link}}"><i class="fa fa-external-link"></i> {{go_to_browse}}</a>
                         </div>
                     </div>
                     <div class="pull-right">
-<!--                        <button class="btn btn-default">
-                            <a href="#en/download/interactive/{{this.domainCode}}">{{go_to_download}}Go To Download</a>
-                        </button>
-                        {{#if this.addBrowse}}
-                            |
-                        <button class="btn btn-default">
-                            <a href="#en/browse/domain/{{this.domainCode}}">{{go_to_browse}}Go To Browse</a>
-                        </button>
-                        {{/if}}
-                        |-->
                         <button class="btn btn-primary" data-role="download" data-index="{{index}}">
                             <i class="fa fa-download"></i> {{download_data}}
                             <!--<a href="#" data-role="download" data-index="{{index}}">{{download_data}}Export Data</a>-->

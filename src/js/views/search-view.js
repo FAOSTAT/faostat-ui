@@ -16,7 +16,6 @@ define([
     'underscore.string',
     'handlebars',
     'bootpag',
-    'config/browse_by_domain/Config',
     'faostatapiclient',
     'lib/search/search-box',
     'amplify'
@@ -34,7 +33,6 @@ define([
              _s,
              Handlebars,
              bootpag,
-             BrowseByDomainConfig,
              FAOSTATClientAPI,
              SearchBox
 ){
@@ -111,9 +109,9 @@ define([
 
             // cluster results
             var r = [],
-                browseWhitelist = BrowseByDomainConfig.whitelist,
                 self = this;
 
+            // TODO: this can be computed and rendered at runtime on page change.
             _.each(results.data, function(v, index) {
 
                 // index used to retrieve the obj in cached results
@@ -128,13 +126,13 @@ define([
                 v.go_to_download = i18nLabels.go_to_download;
                 v.go_to_browse = i18nLabels.go_to_browse;
                 v.download_data = i18nLabels.download_data;
-                v.lang = self.o.lang;
 
-                r.push($.extend(true, {},
-                    v,
-                    {addBrowse: ($.inArray(v.domainCode, browseWhitelist) !== -1)}));
+                // TODO: this can be computed and rendered at runtime on page change.
+                v.download_link = Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [v.domainCode]);
+                v.browse_link = Common.getURI(ROUTE.BROWSE_BY_DOMAIN_CODE, [v.domainCode]);
 
-                //log.info("Search.parseSearchResults; v:", v);
+                r.push(v);
+
             });
 
             log.info("Search.parseSearchResults; parsed results", r);
@@ -143,7 +141,7 @@ define([
 
         },
 
-        parseSearchResultsClustered: function(results) {
+        /*parseSearchResultsClustered: function(results) {
 
             log.info(results);
 
@@ -169,7 +167,6 @@ define([
                         if (d.domain_code === domainCode && d.id !== id) {
 
                             relations.push(d);
-
                             relatedValues.push(d);
 
                         }
@@ -184,7 +181,7 @@ define([
 
             this.renderResults(cluster);
 
-        },
+        },*/
 
         renderResults: function (results) {
 
