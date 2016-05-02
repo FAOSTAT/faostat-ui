@@ -25,12 +25,12 @@ define(['config/Routes'], function (ROUTE) {
 
         match(':lang/compare', 'compare#show', {name: ROUTE.COMPARE});
 
-        match(':lang/standards', 'standards#show');
-        match(':lang/standards/methodologies', 'standards#show_methodologies', {name: ROUTE.METHODOLOGIES});
-        match(':lang/standards/units', 'standards#show_units', {name: ROUTE.UNITS});
-        match(':lang/standards/abbreviations', 'standards#show_abbreviations', {name: ROUTE.ABBREVIATIONS});
-        match(':lang/standards/glossary', 'standards#show_glossary', {name: ROUTE.GLOSSARY});
-        match(':lang/standards/classifications', 'standards#show_classifications', {name: ROUTE.CLASSIFICATIONS});
+        //match(':lang/standards', 'standards#show');
+        match(':lang/methodologies', 'standards#show_methodologies', {name: ROUTE.METHODOLOGIES});
+        match(':lang/units', 'standards#show_units', {name: ROUTE.UNITS});
+        match(':lang/abbreviations', 'standards#show_abbreviations', {name: ROUTE.ABBREVIATIONS});
+        match(':lang/glossary', 'standards#show_glossary', {name: ROUTE.GLOSSARY});
+        match(':lang/classifications', 'standards#show_classifications', {name: ROUTE.CLASSIFICATIONS});
 
         match(':lang/indicators', 'indicators#show', {name: ROUTE.INDICATORS});
         //match(':lang/indicators/:code', 'indicators#show', {name: ROUTE.INDICATORS_CODE});
@@ -43,11 +43,15 @@ define(['config/Routes'], function (ROUTE) {
 
         match(':lang/data', 'data#show', {name: ROUTE.DATA});
         match(':lang/data/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DOWNLOAD_BULK});
-        match(':lang/data/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
-        match(':lang/data/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
+        // match(':lang/data/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
+        match(':lang/data/:code/metadata', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
+        // match(':lang/data/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
+        match(':lang/data/:code/interactive', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
         match(':lang/data/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
         match(':lang/data/report/:code', 'download#show_report', {name: ROUTE.DOWNLOAD_REPORT});
-        match(':lang/data/browse/:code', 'download#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
+        // match(':lang/data/browse/:code', 'download#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
+        match(':lang/data/:code', 'download#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
+        // match(':lang/data/:code/browse', 'download#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
 
         match('protected', 'protected#show');
         match('about', 'about#show');
