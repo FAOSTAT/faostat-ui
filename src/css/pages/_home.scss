@@ -15,7 +15,8 @@
       &:after{
 
          content: '';
-         @include fx-small-icons($locX: -135px, $locY: -15px);
+         //@include fx-small-icons($locX: -135px, $locY: -15px);
+         @include fx-small-icons($locX: -120px, $locY: -15px);
          display: inline-block;
          position: relative;
          top: 4px;
