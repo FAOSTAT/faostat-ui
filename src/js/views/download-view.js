@@ -350,10 +350,11 @@ define([
 
         _renderBulkDownloadsGroups: function(code) {
 
+            this.$BULK.empty();
+
             Require(['FAOSTAT_UI_BULK_DOWNLOADS'], _.bind(function(BulkDownloads) {
 
                 this.bulkDownloads = new BulkDownloads();
-                this.$BULK.empty();
                 this.bulkDownloads.init({
                     container: this._createRandomElement(this.$BULK),
                     code: code,
@@ -393,36 +394,13 @@ define([
             // TODO destroy old bulkthis._createRandomElement(this.$ABOUT),
             if (section === 'bulk') {
 
-                this.bulkDownloads = new BulkDownloads();
-                this.bulkDownloads.init({
-                    container: this._createRandomElement(this.$BULK),
-                    code: code,
-                    bulk_downloads_root: C.URL_BULK_DOWNLOADS_BASEPATH
-                });
+                this._renderBulkDownloads(code);
 
             }
 
             if (section === 'interactive') {
 
-                amplify.publish(E.LOADING_SHOW, {container: this.$INTERACTIVE_DOWNLOAD});
-
-                if (this.interactiveDownload !== undefined && this.interactiveDownload !== null) {
-                    this.interactiveDownload.destroy();
-                }
-
-                Require(['fs-i-d/start'], _.bind(function(InteractiveDownload) {
-
-                    this.interactiveDownload = new InteractiveDownload();
-                    this.$INTERACTIVE_DOWNLOAD.empty();
-                    this.interactiveDownload.init({
-                        container: this._createRandomElement(this.$INTERACTIVE_DOWNLOAD),
-                        // to output the table outside the standard output area
-                        output_area: this.$OUTPUT_AREA,
-                        code: code,
-                        date_update: date_update
-                    });
-
-                }, this));
+                this._renderInteractiveDownload(code);
 
             }
 
@@ -451,6 +429,47 @@ define([
                 this._browseByDomain(options);
 
             }
+
+        },
+
+        _renderInteractiveDownload: function(code) {
+
+            amplify.publish(E.LOADING_SHOW, {container: this.$INTERACTIVE_DOWNLOAD});
+
+            if (this.interactiveDownload !== undefined && this.interactiveDownload !== null) {
+                this.interactiveDownload.destroy();
+            }
+
+            this.$INTERACTIVE_DOWNLOAD.empty();
+
+            Require(['fs-i-d/start'], _.bind(function(InteractiveDownload) {
+
+                this.interactiveDownload = new InteractiveDownload();
+                this.interactiveDownload.init({
+                    container: this._createRandomElement(this.$INTERACTIVE_DOWNLOAD),
+                    // to output the table outside the standard output area
+                    output_area: this.$OUTPUT_AREA,
+                    code: code
+                });
+
+            }, this));
+
+        },
+
+        _renderBulkDownloads: function(code) {
+
+            this.$BULK.empty();
+
+            Require(['FAOSTAT_UI_BULK_DOWNLOADS'], _.bind(function(BulkDownloads) {
+
+                this.bulkDownloads = new BulkDownloads();
+                this.bulkDownloads.init({
+                    container: this._createRandomElement(this.$BULK),
+                    code: code,
+                    bulk_downloads_root: C.URL_BULK_DOWNLOADS_BASEPATH
+                });
+
+            }, this));
 
         },
 
