@@ -5529,7 +5529,7 @@ footer.fao-footer {
       content: '';
       height: 15px;
       width: 15px;
-      background: url("../../submodules/fenix-ui-common/css/img/fenix-catalog-sprite-small.svg") no-repeat -135px -15px;
+      background: url("../../submodules/fenix-ui-common/css/img/fenix-catalog-sprite-small.svg") no-repeat -120px -15px;
       background-size: 150px 30px;
       display: inline-block;
       position: relative;
