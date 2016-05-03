@@ -91,8 +91,8 @@ define([
         }
 
         if (_s.contains(href, "/latest/")) {
-            //o.DATASOURCE = "production";
-            o.DATASOURCE = "test";
+            o.DATASOURCE = "production";
+            //o.DATASOURCE = "test";
         }
 
         if (_s.contains(href, "/internal/")) {
