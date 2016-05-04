@@ -1,5 +1,14 @@
 /*global define, Backbone */
-define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
+define([
+    'loglevel',
+    'globals/Common',
+    'config/Config',
+    'ga'
+], function (
+    log,
+    Common,
+    C,
+    ga) {
 
     var CURRENT_PAGE;
 
@@ -20,33 +29,20 @@ define(['loglevel', 'config/Config', 'ga'], function (log, C, ga) {
 
         // set the current pageView (it could be different i.e. using different browser tabs)
         this.pageView();
-
-        // TODO: get category dynamically (CONFIGURATION FILE?)
-        //var category = ''
-
-        // Categories
-        // DOWNLOAD_STANDARD
-        // VISUALIZE_BY_DOMAIN
-        // SEARCH
-        // VISUALIZE_BY_AREA
-        // COMPARE
-
-        // Actions
-        // VISUALIZE_BY_AREA -> 'Visualize by Area'
-        // DOWNLOAD_STANDARD -> 'Show Tables - TABLE'
-        // DOWNLOAD_BULK	-> 'TI'
-
-        // LABEL
-
-        if (data.category && data.action) {
+        
+        // add section to object
+        data.label = data.label || "";
+        
+        if (data.category !== undefined && data.action !== undefined) {
             ga('send', {
                 hitType: 'event',
                 eventCategory: data.category,
-                eventAction: data.action
+                eventAction: data.action,
+                eventLabel: data.label
             });
         }
         else {
-            //log.error('Event not saved: ', data);
+            log.warn('GoogleAnalyticsManager.event; Event has not been saved:', data);
         }
     };
 
