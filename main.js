@@ -145,6 +145,7 @@ require([
                     jbPivot: '../../submodules/faostat-ui-pivot/dist/js/jbPivot',
                     pivot_exporter: '../../submodules/faostat-ui-pivot/src/js/PivotExporter',
                     swal: '{FENIX_CDN}/js/sweet-alert/0.5.0/sweet-alert.min',
+                    //sweetAlert: '{FENIX_CDN}/js/sweet-alert/0.5.0/sweet-alert.min',
                     numeral: '{FENIX_CDN}/js/numeral/1.5.3/min/numeral.min',
 
                     // Export
@@ -175,6 +176,9 @@ require([
                     'jspdf': '{FENIX_CDN}/js/jspdf/1.2.61/jspdf.debug',
                     'screenfull': '{FENIX_CDN}/js/screenfull/3.0.0/screenfull.min',
 
+
+                    "twitter": "//platform.twitter.com/widgets",
+
                     /* Google Analytics */
                     // "ga": "//www.google-analytics.com/analytics"
                     // TODO: not sure about the version (it is taken from www.google-analytics.com/analytics)
@@ -183,6 +187,9 @@ require([
                 },
 
                 shim: {
+                    amplify: {
+                        deps: ["jquery"]
+                    },
                     "tableExport": {
                         deps: ["jquery", 'FileSaver']
                     },
