@@ -1,12 +1,14 @@
-<h5>{{section_description}}</h5>
+
 <br>
-{{#each links}}
-    <div class='row'>
-        <div class='col-lg-12'>
-            <!--<a href='{{this.link}}'><i class='fa fa-link'></i> {{this.label}}</a>-->
-            <a href='{{this.link}}'><i class="fa fa-external-link"></i> {{this.label}}</a>
+
+<h5>{{section_description}}</h5>
+
+<br>
+
+<div class="row">
+    {{#each links}}
+        <div class="col-md-6">
+            <a href='{{this.link}}'>{{this.label}}</a>
         </div>
-    </div>
-    <br>
-{{/each}}
+    {{/each}}
 </div>
