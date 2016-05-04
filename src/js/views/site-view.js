@@ -20,7 +20,7 @@ define([
     'lib/search/search-box',
     'fs-m-v/start',
     'lib/common/modal',
-    'sweetAlert',
+    'swal',
     'jquery.visible',
 ], function ($, log, C, E, ROUTES,
              //State,
