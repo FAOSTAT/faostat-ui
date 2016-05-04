@@ -2,12 +2,14 @@
 define([
     'jquery',
     'loglevel',
+    'underscore',
+    'config/Analytics',
     'config/Events',
     'faostatapiclient',
     'FileSaver',
     'tableExport',
     'amplify'
-], function ($, log, E, API) {
+], function ($, log, _, A, E, API) {
 
     'use strict';
 
@@ -47,11 +49,8 @@ define([
             r.output_type = this.o.output_type;
         }
 
-        // TODO: add google analytics event
-        // amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
-
         // waiting
-        amplify.publish(E.WAITING_SHOW, { text: waitingText});
+        amplify.publish(E.WAITING_SHOW, { text: waitingText });
 
         // switch between the requestType to faostatAPI
         if (typeof this.api[requestType] === 'function') {
@@ -66,6 +65,13 @@ define([
 
                 log.info("Export.exportData; Execution query time: ", (time - start) / 1000 + "s");
 
+                // TODO: add google analytics event
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                    category: A.download.category,
+                    action: A.download.action.download,
+                    label: _.isObject(r)? JSON.stringify(r) : ""
+                });
+                
                 //log.info(error);
                 //window.btoa(unescape(encodeURIComponent(error)))
                 self._exportResult(data, name);
