@@ -1,4 +1,4 @@
-/*global define, _:false, $, console, amplify, FM*/
+/*global define, _:false, $, console, amplify, FM, twttr*/
 define([
     'jquery',
     'loglevel',
@@ -23,7 +23,9 @@ define([
     'config/home/sample/databaseUpdates',
     'moment',
     'underscore.string',
-    'amplify'
+    'amplify',
+    'bootstrap',
+    'twitter'
 ], function ($, log, View, Common, ROUTE, C, E, CM,
              template,
              templateNews,
@@ -56,7 +58,7 @@ define([
         RELEASE_CALENDAR: "#fs_home_release_calendar",
         PARTNERS: "#fs_home_partners",
         COUNTRY_PROFILES: "#fs_home_country_profiles",
-        TWITTER: "#fs_home_twitter"
+        TWITTER: "fs_home_twitter"
 
     },
         HomeView = View.extend({
@@ -100,7 +102,6 @@ define([
         initVariables: function () {
 
             this.$DOMAINS = this.$el.find(s.DOMAINS);
-            this.$CHART = this.$el.find(s.CHART);
             this.$WHATS_NEW = this.$el.find(s.WHATS_NEW);
             this.$COMING_UP = this.$el.find(s.COMING_UP);
             this.$INFO = this.$el.find(s.INFO);
@@ -109,7 +110,10 @@ define([
             this.$DATABASE_UPDATES = this.$el.find(s.DATABASE_UPDATES);
             this.$RELEASE_CALENDAR = this.$el.find(s.RELEASE_CALENDAR);
             this.$COUNTRY_PROFILES = this.$el.find(s.COUNTRY_PROFILES);
-            this.$TWITTER = this.$el.find(s.TWITTER);
+            this.$CHART1 = this.$el.find(s.CHART + "1");
+            this.$CHART2 = this.$el.find(s.CHART + "2");
+            this.$CHART3 = this.$el.find(s.CHART + "3");
+            this.$CHART4 = this.$el.find(s.CHART + "4");
 
             this.api = new API();
 
@@ -234,27 +238,31 @@ define([
             var self = this,
                 c = new ChartCreator();
 
-            amplify.publish(E.LOADING_SHOW, {container: self.$CHART});
+            amplify.publish(E.LOADING_SHOW, {container: self.$CHART1});
 
             this.api.databean($.extend(true, {}, ChartModel.filter, {
                 lang: this.o.lang,
                 datasource: C.DATASOURCE
             })).then(function(d) {
 
-                amplify.publish(E.LOADING_HIDE, {container: self.$CHART});
+                amplify.publish(E.LOADING_HIDE, {container: self.$CHART1});
 
                 c.init($.extend(true, {}, CM.chart, {model: d})).then(function (c) {
 
-                    c.render($.extend(true, {}, CM.chart, {container: self.$CHART}));
+                    c.render($.extend(true, {}, CM.chart, {container: self.$CHART1}));
+                    c.render($.extend(true, {}, CM.chart, {container: self.$CHART2}));
+                    c.render($.extend(true, {}, CM.chart, {container: self.$CHART3}));
+                    c.render($.extend(true, {}, CM.chart, {container: self.$CHART4}));
 
                 });
+                
 
             }).fail(function(e) {
 
                 // TODO: Handle error
                 log.error("Home.initChart; error", e);
                 //amplify.publish(E.NOTIFICATION_WARNING, {title: "Error Connection", text: "We are expecting connection problems"});
-                amplify.publish(E.LOADING_HIDE, {container: self.$CHART});
+                amplify.publish(E.LOADING_HIDE, {container: self.$CHART1});
                 amplify.publish(E.CONNECTION_PROBLEM, {});
 
             });
@@ -334,9 +342,6 @@ define([
 
                             var m = moment(domain.date_update),
                                 date =  m.format("MMM DD, YYYY");
-
-                            log.info(m, domain.date_update)
-                            log.info(date)
 
                             domain.title = domain.domain_name + " ("+ domain.group_name + ")";
                             domain.date = date;
@@ -471,7 +476,23 @@ define([
         },
 
         initTwitter: function() {
-           amplify.publish(E.LOADING_SHOW, {container: this.$TWITTER});
+
+           amplify.publish(E.LOADING_SHOW, {container: document.getElementById(s.TWITTER)});
+
+            setTimeout(function() {
+
+                amplify.publish(E.LOADING_HIDE, {container: document.getElementById(s.TWITTER)});
+
+                twttr.widgets.createTimeline(
+                    "700247798168551424",
+                    document.getElementById(s.TWITTER),
+                    {
+                        height: 400,
+                        screenName: "FAOStatistics"
+                    }
+                );
+
+            }, 1000);
         },
 
         bindEventListeners: function () {
