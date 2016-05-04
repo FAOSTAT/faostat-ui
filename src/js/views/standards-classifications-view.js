@@ -7,6 +7,7 @@ define([
     'views/base/view',
     'config/Config',
     'config/Events',
+    'config/Analytics',
     'globals/Common',
     'text!templates/standards/standards-classifications.hbs',
     'text!templates/standards/standards-classifications-output.hbs',
@@ -21,6 +22,7 @@ define([
              View,
              C,
              E,
+             A,
              Common,
              template,
              templateOutput,
@@ -117,6 +119,8 @@ define([
                         var code =  callback.id,
                             label = callback.label;
 
+                        this._analyticsSelection(code);
+
                         this.showClassification(code, label);
 
                         amplify.publish(E.SCROLL_TO_SELECTOR, {container: this.$output});
@@ -143,6 +147,7 @@ define([
             this.$output.empty();
             this.$output.show();
 
+            this.o.code = code;
             this.o.label = label;
 
             amplify.publish(E.LOADING_HIDE, {container: this.$output});
@@ -225,12 +230,17 @@ define([
             this.o.matrix = this.createExportMatrix();
 
             this.$export_data.on('click', function() {
+
                 log.info(self.o.matrix);
+
                 amplify.publish(E.EXPORT_MATRIX_DATA,
                     {
                         data: self.o.matrix
                     }
                 );
+
+                self._analyticsDownload(self.o.code);
+                
             });
         },
 
@@ -257,6 +267,26 @@ define([
             });
 
             return matrix;
+
+        },
+
+        _analyticsSelection: function (code) {
+
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                category: A.classifications.selection.category,
+                action: A.classifications.selection.action,
+                label: code
+            });
+
+        },
+
+        _analyticsDownload: function (code) {
+
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                category: A.classifications.download.category,
+                action: A.classifications.download.action,
+                label: code
+            });
 
         },
 

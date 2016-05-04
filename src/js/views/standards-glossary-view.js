@@ -7,6 +7,7 @@ define([
     'views/base/view',
     'config/Config',
     'config/Events',
+    'config/Analytics',
     'globals/Common',
     'text!templates/standards/standards-glossary.hbs',
     'i18n!nls/standards-glossary',
@@ -19,6 +20,7 @@ define([
              View,
              C,
              E,
+             A,
              Common,
              template,
              i18nLabels,
@@ -192,6 +194,16 @@ define([
 
         },
 
+        _analyticsDownload: function () {
+
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                category: A.glossary.download.category,
+                action: A.glossary.download.action,
+                label: ""
+            });
+
+        },
+
         configurePage: function () {
 
         },
@@ -201,11 +213,15 @@ define([
             var self = this;
 
             this.$export_data.on('click', function() {
+                
                 amplify.publish(E.EXPORT_MATRIX_DATA,
                     {
                         data: self.o.matrix
                     }
                 );
+
+                self._analyticsDownload();
+
             });
 
         },

@@ -7,6 +7,7 @@ define([
     'views/base/view',
     'config/Config',
     'config/Events',
+    'config/Analytics',
     'globals/Common',
     'text!templates/standards/standards-abbreviations.hbs',
     'i18n!nls/standards-abbreviations',
@@ -19,6 +20,7 @@ define([
              View,
              C,
              E,
+             A,
              Common,
              template,
              i18nLabels,
@@ -184,6 +186,16 @@ define([
 
             },
 
+            _analytics: function () {
+
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                    category: A.abbreviations.download.category,
+                    action: A.abbreviations.download.action,
+                    label: A.abbreviations.download.label
+                });
+
+            },
+
             configurePage: function () {
 
             },
@@ -198,6 +210,9 @@ define([
                             data: self.o.matrix
                         }
                     );
+
+                    self._analytics();
+
                 });
 
             },

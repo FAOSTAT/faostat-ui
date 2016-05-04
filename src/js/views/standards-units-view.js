@@ -1,17 +1,15 @@
 /*global define, _:false, $, console, amplify, FM*/
-/*jslint todo: true */
-/*jslint nomen: true */
 define([
     'jquery',
     'loglevel',
     'views/base/view',
     'config/Config',
     'config/Events',
+    'config/Analytics',
     'globals/Common',
     'text!templates/standards/standards-units.hbs',
     'i18n!nls/standards-units',
     'faostatapiclient',
-    'handlebars',
     'lib/table/table',
     'amplify'
 ], function ($,
@@ -19,11 +17,11 @@ define([
              View,
              C,
              E,
+             A,
              Common,
              template,
              i18nLabels,
              FAOSTATAPIClient,
-             Handlebars,
              Table
 ) {
 
@@ -178,6 +176,16 @@ define([
 
             },
 
+            _analyticsDownload: function () {
+
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                    category: A.units.download.category,
+                    action: A.units.download.action,
+                    label: ""
+                });
+
+            },
+
             configurePage: function () {
 
             },
@@ -187,11 +195,15 @@ define([
                 var self = this;
 
                 this.$export_data.on('click', function() {
+
                     amplify.publish(E.EXPORT_MATRIX_DATA,
                         {
                             data: self.o.matrix
                         }
                     );
+
+                    self._analyticsDownload();
+                    
                 });
 
             },

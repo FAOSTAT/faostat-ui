@@ -7,6 +7,7 @@ define([
     'views/base/view',
     'config/Config',
     'config/Events',
+    'config/Analytics',
     'globals/Common',
     'text!templates/standards/standards-methodology.hbs',
     'text!templates/standards/standards-methodology-output.hbs',
@@ -20,6 +21,7 @@ define([
              View,
              C,
              E,
+             A,
              Common,
              template,
              templateOutput,
@@ -153,7 +155,7 @@ define([
 
                     }, this),
 
-                    onTreeRendered:  _.bind(function (callback) {
+                    onTreeRendered: _.bind(function (callback) {
 
                     }, this)
 
@@ -166,6 +168,9 @@ define([
 
             var self = this;
             this.$intro.hide();
+
+            // Analytics
+            this._analytics(id);
 
             amplify.publish(E.LOADING_SHOW, {container: self.$output});
 
@@ -186,6 +191,16 @@ define([
 
                 self.$output.html(t(data));
 
+            });
+
+        },
+
+        _analytics: function (id) {
+
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                category: A.methodology.selection.category,
+                action: A.methodology.selection.action,
+                label: id
             });
 
         },
