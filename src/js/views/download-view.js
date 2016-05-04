@@ -4,7 +4,7 @@ define([
     'jquery',
     'loglevel',
     'views/base/view',
-    'config/FAOSTAT',
+    'config/Analytics',
     'config/Config',
     'config/Events',
     'globals/Common',
@@ -29,7 +29,7 @@ define([
     'lib/common/text-wrapper',
     'amplify'
 ], function (Require,
-             $, log, View, F, C, E, Common, ROUTE,
+             $, log, View, A, C, E, Common, ROUTE,
              template, i18nLabels,
              Tree,
              //Report,
@@ -530,8 +530,8 @@ define([
 
             // disposing the old domain view
             // TODO: this should be performed on tab switching
-            if (this.view_domain && _.isFunction(this.view_domain.dispose)) {
-                this.view_domain.dispose();
+            if (this.viewDomain && _.isFunction(this.viewDomain.dispose)) {
+                this.viewDomain.dispose();
             }
 
             this.$BROWSE.empty();
@@ -557,11 +557,11 @@ define([
                 log.info("Download._browseByDomain; browseOptions:", browseOptions);
 
                 // init browse by domain
-                this.view_domain = new DomainView(browseOptions);
+                this.viewDomain = new DomainView(browseOptions);
 
 
                 var $S = this._createRandomElement(this.$BROWSE);
-                $S.html(this.view_domain.$el);
+                $S.html(this.viewDomain.$el);
 
             }, this));
 
@@ -847,16 +847,42 @@ define([
 
         dispose: function () {
 
+            log.info("Download.dispose;");
+
             this.unbindEventListeners();
 
+            log.info("Download.dispose; viewDomain", this.viewDomain);
+            if (this.viewDomain && _.isFunction(this.viewDomain.dispose)) {
+                this.viewDomain.dispose();
+            }
+
+            log.info("Download.dispose; report", this.report);
             if (this.report && _.isFunction(this.report.destroy)) {
                 this.report.destroy();
             }
 
+            log.info("Download.dispose; metadataViewer", this.metadataViewer);
+            if (this.metadataViewer && _.isFunction(this.metadataViewer.destroy)) {
+                this.metadataViewer.destroy();
+            }
+
+            log.info("Download.dispose; interactiveDownload", this.interactiveDownload);
+            if (this.interactiveDownload && _.isFunction(this.interactiveDownload.destroy)) {
+                this.interactiveDownload.destroy();
+            }
+
+
+            log.info("Download.dispose; interactiveDownload", this.interactiveDownload);
+            if (this.interactiveDownload && _.isFunction(this.interactiveDownload.destroy)) {
+                this.interactiveDownload.destroy();
+            }
+
             View.prototype.dispose.call(this, arguments);
+
         }
 
     });
 
     return DownloadView;
+
 });
