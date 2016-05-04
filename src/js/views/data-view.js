@@ -3,7 +3,7 @@ define([
     'jquery',
     'loglevel',
     'views/base/view',
-    'config/FAOSTAT',
+    'config/Analytics',
     'config/Config',
     'config/Events',
     'globals/Common',
@@ -12,7 +12,7 @@ define([
     'i18n!nls/download',
     'lib/groups/groups',
     'amplify'
-], function ($, log, View, F, C, E, Common, ROUTE,
+], function ($, log, View, A, C, E, Common, ROUTE,
              template, i18nLabels,
              Groups
 ) {

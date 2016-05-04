@@ -4,7 +4,7 @@ define([
     'loglevel',
     'require',
     'views/base/view',
-    'config/FAOSTAT',
+    'config/Analytics',
     'config/Config',
     'config/Events',
     'config/browse_rankings/Config',
@@ -19,7 +19,7 @@ define([
     'fx-ds/start',
     'lib/view/view-utils',
     'amplify'
-], function ($, log, Require, View, F, C, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils) {
+], function ($, log, Require, View, A, C, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils) {
 
     'use strict';
 

@@ -4,7 +4,7 @@ define([
     'jquery',
     'loglevel',
     'views/base/view',
-    'config/FAOSTAT',
+    'config/Analytics',
     'config/Config',
     'config/Routes',
     'config/Events',
@@ -23,7 +23,7 @@ define([
     'underscore.string',
     'bootstrap',
     'amplify'
-], function (Require, $, log, View, F, C, ROUTE, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils, FAOSTATApi, _s) {
+], function (Require, $, log, View, A, C, ROUTE, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils, FAOSTATApi, _s) {
 
     'use strict';
 
@@ -209,6 +209,7 @@ define([
             unbindEventListeners: function () {
 
                 amplify.unsubscribe(EM.ON_FILTER_CHANGE, this.updateDashboard);
+                amplify.unsubscribe(EM.ON_FILTER_INVALID_SELECTION, this.onFilterInvalidSelection);
 
             },
 
@@ -329,6 +330,8 @@ define([
 
                 if ( isCurrentKey ) {
 
+                    log.info("BrowseByDomainView.updateDashboard; this.filterBox", this.filterBox);
+
                     // getFilters
                     var filters = this.filterBox.getFilters();
 
@@ -349,7 +352,7 @@ define([
 
             dispose: function () {
 
-                //log.info("DISPOSE!")
+                log.info("BrowseByDomainView.dispose;");
 
                 this.unbindEventListeners();
 

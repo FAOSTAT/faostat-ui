@@ -2,7 +2,7 @@
 define([
     'jquery',
     'views/base/view',
-    'config/FAOSTAT',
+    'config/Analytics',
     'config/Config',
     'config/Events',
     'text!templates/browse/browse.hbs',
@@ -13,7 +13,7 @@ define([
     'views/browse-by-country-view',
     'views/browse-rankings-view',
     'amplify'
-], function ($, View, F, C, E, template, i18nLabels, Handlebars, DomainView, CountryView, RankingsView) {
+], function ($, View, A, C, E, template, i18nLabels, Handlebars, DomainView, CountryView, RankingsView) {
 
     'use strict';
 

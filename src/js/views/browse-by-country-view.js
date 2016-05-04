@@ -4,7 +4,7 @@ define([
     'jquery',
     'loglevel',
     'views/base/view',
-    'config/FAOSTAT',
+    'config/Analytics',
     'config/Config',
     'config/Routes',
     'config/Events',
@@ -20,7 +20,7 @@ define([
     'lib/view/view-utils',
     'fenix-ui-map',
     'amplify'
-], function (Require, $, log, View, F, C, ROUTE, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List, Dashboard, ViewUtils) {
+], function (Require, $, log, View, A, C, ROUTE, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List, Dashboard, ViewUtils) {
 
     'use strict';
 

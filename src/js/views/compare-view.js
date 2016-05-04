@@ -4,7 +4,7 @@ define([
     'loglevel',
     'views/base/view',
     'globals/Common',
-    'config/FAOSTAT',
+    'config/Analytics',
     'config/Config',
     'config/Events',
     'config/compare/Events',
@@ -21,7 +21,7 @@ define([
     //'jquery.rangeSlider',
     'ion.rangeSlider',
     'amplify'
-], function ($, log, View, Common, F, C, E, EC, CM, HighchartsTemplate, template, i18nLabels, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
+], function ($, log, View, Common, A, C, E, EC, CM, HighchartsTemplate, template, i18nLabels, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
 
     'use strict';
 
