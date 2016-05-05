@@ -73,7 +73,7 @@ define([
                 limit: -1,
                 decimal_places: 2,
                 thousand_separator: ",",
-                "null_values": null,
+                null_values: null,
                 page_size: 0,
                 page_number: 0
             },
@@ -164,7 +164,7 @@ define([
                             xDimensions: "year",
                             yDimensions: "unit",
                             valueDimensions: 'value',
-                            seriesDimensions: ['area'],
+                            seriesDimensions: ['area', 'item', 'element'],
                             decimalPlaces: 2
                         },
                         template: {},
@@ -173,7 +173,7 @@ define([
                     allowedFilter: ['year', 'item', 'element'],
                     filter: {
                         List1Codes: ["5000", "5100", "5200", "5300", "5400", "5500"],
-                        "order_by": 'area'
+                        "order_by": 'area, year'
                     }
                 },
                 {
