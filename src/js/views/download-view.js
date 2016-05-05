@@ -677,10 +677,9 @@ define([
                 domain_code: code
             }).then(function (json) {
 
-                log.info(json)
-
                 var data = json.data,
-                    template = "{{#each data}}<li><a target='_blank' href='{{this.url}}'>{{this.FileContent}}</a></li>{{/each}}",
+                    // TODO: load it with an external template
+                    template = "{{#each data}}<li><a target='_blank' data-filename='{{this.FileName}}' href='{{this.url}}'>{{this.FileContent}}</a></li>{{/each}}",
                     t = Handlebars.compile(template);
 
                 if(data.length > 0) {
@@ -697,6 +696,17 @@ define([
                 }else {
                     self.$BULK_CARET.html('<li><a>'+ i18nLabels.no_data_available +'</a></li>');
                 }
+
+                // track on click google analytics
+                self.$BULK_CARET.find('a').on('click',function(e) {
+                    
+                    amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                        category: A.download_bulk.download.category,
+                        action: A.download_bulk.download.action,
+                        label: $(e.target).data('filename')
+                    });
+
+                });
 
             });
             
