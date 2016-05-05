@@ -84,7 +84,7 @@ define([
             LAST_UPDATE_DATE: '[data-role="last-update"]',
             ORGANIZATION: '[data-role="organization"]',
 
-            TREE_MODAL: '#myModal'
+            TREE_MODAL: '#fs-data-tree-domain-modal'
 
     },
 
