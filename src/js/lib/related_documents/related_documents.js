@@ -5,13 +5,14 @@ define([
     'globals/Common',
     'config/Config',
     'config/Events',
+    'config/Analytics',
     'text!lib/related_documents/templates/templates.hbs',
     'i18n!nls/common',
     'handlebars',
     'faostatapiclient',
     'underscore',
     'amplify'
-], function ($, log, Common, C, E, templates, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
+], function ($, log, Common, C, E, A, templates, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
 
     'use strict';
 
@@ -97,6 +98,17 @@ define([
             no_docs_available: i18nLabels.no_docs_available,
             documents: documents
         }));
+
+        // tracking google anlytics documents
+        this.$CONTAINER.find('a').on('click', function(e) {
+
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                category: A.documents.download.category,
+                action: A.documents.download.action,
+                label: $(e.target).data('filename')
+            });
+
+        });
     };
 
     RelatedDocuments.prototype.destroy = function () {
