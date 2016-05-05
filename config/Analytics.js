@@ -7,14 +7,15 @@ define(function () {
 
         // GOOGLE ANALYTICS BINDINGS
 
-        // categories
+        // centralized download export
+        /* global interaction events */
         download: {
             category: 'download',
             action: {
                 preview_table: 'preview',
                 download_table: 'download',
                 preview_pivot: 'download',
-                download_pivot: 'download',
+                download_pivot: 'download'
             },
             label: {
                 // section should be derived from the page viewed
@@ -22,24 +23,102 @@ define(function () {
             } //domain code
         },
 
-        download_bulk: {
-            category: 'download_bulk',
-            action: {
-                download: 'download'
+
+        /* specificic to the different sections */
+
+        /* interactive_download */
+        interactive_download: {
+
+            table_preview: {
+
+                category: 'data',
+                action: 'table_preview',
+                label: '' //domain_codes
+
             },
-            label: {
-                filename: '',
-                section: ''
+
+            table_download_csv: {
+
+                category: 'data',
+                action: 'table_download_csv',
+                label: '' //domain_codes
+
+            },
+
+            pivot_preview: {
+
+                category: 'data',
+                action: 'pivot_preview',
+                label: '' //domain_codes
+
+            },
+
+            pivot_download: {
+
+                category: 'data',
+                action: 'pivot_download',
+                label: '' //domain_codes
+
+            }
+
+        },
+
+        /* download section (both groups display that downlaod section */
+        data: {
+
+            // to track if the left side are used
+            selection_metadata: {
+                category: 'data',
+                action: 'selection',
+                label: 'matadata'
+            },
+
+            // to track if the left side are used
+            selection_interactive_download: {
+                category: 'data',
+                action: 'selection',
+                label: 'interactive_download'
+            },
+
+            selection_back_to_domains: {
+                category: 'data',
+                action: 'selection',
+                label: 'back_to_domains'
+            },
+
+            selection_show_more: {
+                category: 'data',
+                action: 'selection',
+                label: 'back_to_domains'
+            }
+
+        },
+
+        /* report */
+        report: {
+
+        },
+
+
+
+        /******************** FATTI *******/
+
+        download_bulk: {
+
+            download: {
+                category: 'download_bulk',
+                action: 'download',
+                label: '' //filename
             }
         },
 
-        /* data */
-        data: {
+        /* related documents */ 
+        documents: {
 
-            search: {
-                category: 'data',
-                action: 'seach',
-                label: '' //text searched
+            download: {
+                category: 'documents',
+                action: 'download',
+                label: '' //filename
             }
 
         },
@@ -56,7 +135,6 @@ define(function () {
         },
 
         /* methodos and standards specific tracking */
-        // DONE
         methodology: {
             selection: {
                 category: 'methodology',
@@ -112,7 +190,6 @@ define(function () {
         },
 
         /* search */
-        // DONE
         search: {
 
             // tracking query
@@ -148,7 +225,6 @@ define(function () {
         },
 
         /* compare */
-        // DONE
         compare: {
 
             add_filter: {
