@@ -68,9 +68,6 @@ define([
 
             View.prototype.attach.call(this, arguments);
 
-            // Google Analytics change page
-            amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
-
             //update State
             amplify.publish(E.STATE_CHANGE, {compare: 'compare'});
             amplify.subscribe(EC.FILTER_BOX_REMOVE, this, this.onFilterBoxRemove);
@@ -188,17 +185,12 @@ define([
 
         _retrieveData: function () {
 
-            // get years TODO: get all the years in the timerange?
-            /*var timerange = this.$TIMERANGE.rangeSlider("values"),
-                minYear = timerange.min,
-                maxYear = timerange.max,
-                years = [];
-            */
-
             var timerange = this.$TIMERANGE.ionRangeSlider("values"),
                 minYear = timerange.data("from"),
                 maxYear = timerange.data("to"),
-                years = [];
+                years = [],
+                // the domain codes are cached for analytics
+                domainCodes = [];
 
             for (var i = minYear; i <= maxYear; i++) {
                 years.push(i.toString());
@@ -207,15 +199,15 @@ define([
             // get for each filterBox the relative filters (domain, items etc...)
             var filters = this._getFiltersSelections();
 
-            //log.info(filters)
-
             // retrieve with getData the data for the single box
-
             var requests = [];
             // TODO: fix the requests array (DIRTY fix to pass it to the tables)
             this.cachedRequest = [];
             _.each(filters, _.bind(function (f, index) {
                 var r = {};
+
+                // the domain codes are cached for analytics
+                domainCodes.push(f.filterBox.getDomainCode());
 
                 _.each(f.filter, function (filterParameter) {
 
@@ -259,6 +251,14 @@ define([
 
             // WAITING_SHOW
             amplify.publish(E.WAITING_SHOW);
+
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                category: A.compare.compare_data.category,
+                action: A.compare.compare_data.action,
+                label: {
+                    code: domainCodes
+                }
+            });
 
             return Q.all(requests);
 
@@ -362,8 +362,25 @@ define([
 
         bindEventListeners: function () {
 
-            this.$ADD_FILTER.on('click', _.bind(this.addFilter, this));
-            this.$COMPARE_DATA.on('click', _.bind(this.compareData, this));
+            var self = this;
+
+            this.$ADD_FILTER.on('click', function() {
+
+                self.addFilter();
+
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                    category: A.compare.add_filter.category,
+                    action: A.compare.add_filter.action,
+                    label: ''
+                });
+
+            });
+
+            this.$COMPARE_DATA.on('click', function() {
+
+                self.compareData();
+
+            });
 
         },
 
@@ -374,6 +391,8 @@ define([
         },
 
         dispose: function () {
+
+            // TODO: delete all filters
 
             this.unbindEventListeners();
 

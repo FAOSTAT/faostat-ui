@@ -6,6 +6,7 @@ define([
     'globals/Common',
     'config/Config',
     'config/Events',
+    'config/Analytics',
     'config/compare/Events',
     'config/compare/Config',
     'text!templates/compare/compare_filter_box.hbs',
@@ -20,7 +21,7 @@ define([
     //'lib/filter/filter',
     'q',
     'amplify'
-], function ($, log, View, Common, C, E, EC, CM, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
+], function ($, log, View, Common, C, E, A, EC, CM, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
 
     'use strict';
 
@@ -375,9 +376,16 @@ define([
             // TODO: onRemove the filter add popup to check if the user want to remove it?
             //amplify.publish(E.NOTIFICATION_ACCEPT, {filter: this});
             amplify.publish(EC.FILTER_BOX_REMOVE, {filter: this});
+
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                category: A.compare.remove_filter.category,
+                action: A.compare.remove_filter.action,
+                label: ""
+            });
         },
 
         collapseFilterBox: function(e) {
+            
             var self = this;
 
             this.$PANEL_BODY.toggle("fast", function() {
@@ -389,6 +397,12 @@ define([
                     self.$COLLAPSE_FILTER_BOX.addClass("fa-chevron-up");
                 }
             });
+
+        },
+
+        getDomainCode: function() {
+
+            return this.o.domains.$DD.val();
 
         },
 

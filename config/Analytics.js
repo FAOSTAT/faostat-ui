@@ -44,6 +44,7 @@ define(function () {
         },
 
         /* methodos and standards specific tracking */
+        // DONE
         methodology: {
             selection: {
                 category: 'methodology',
@@ -127,6 +128,8 @@ define(function () {
 
         },
 
+        /* compare */
+        // DONE
         compare: {
 
             add_filter: {
@@ -143,10 +146,21 @@ define(function () {
 
             compare_data: {
                 category: 'compare',
-                action: 'compare_domains',
+                action: 'compare_data',
                 label: {
                     codes: []
                 }
+            }
+
+        },
+
+        /* data */
+        data: {
+
+            search: {
+                category: 'data',
+                action: 'seach',
+                label: '' //text searched
             }
 
         }

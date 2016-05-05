@@ -3,11 +3,13 @@ define([
     'loglevel',
     'globals/Common',
     'config/Config',
+    'underscore',
     'ga'
 ], function (
     log,
     Common,
     C,
+    _,
     ga) {
 
     var CURRENT_PAGE;
@@ -32,6 +34,9 @@ define([
         
         // add section to object
         data.label = data.label || "";
+
+        // if is an Object has to be stringified
+        data.label = !_.isObject(data.label)? data.label: JSON.stringify(data.label);
         
         if (data.category !== undefined && data.action !== undefined) {
             ga('send', {
