@@ -7,6 +7,7 @@ define([
     'views/base/view',
     'config/Config',
     'config/Events',
+    'config/Analytics',
     'config/Routes',
     'globals/Common',
     'text!templates/search/search.hbs',
@@ -24,6 +25,7 @@ define([
              View,
              C,
              E,
+             A,
              ROUTE,
              Common,
              template,
@@ -214,8 +216,6 @@ define([
                     disabledClass: 'disabled'
                 }).on("page", function (event, /* page number here */ num) {
 
-                    //log.info('Search.paging; number', num, 'event', event);
-
                     self.$SEARCH_RESULTS.html(self.getPage(results, num, pageSize));
 
                     // scroll to search box to show the results
@@ -255,20 +255,12 @@ define([
 
                 e.preventDefault();
 
-                var index = $(this).data('index');
+                self.exportData($(this).data('index'));
 
-                log.info($(this).data('index'));
-
-                log.info(e);
-                log.info(index);
-
-                self.exportData(index);
             });
         },
 
         exportData: function(index) {
-
-            log.info(this.results.data[index]);
 
             var obj = this.results.data[index],
                 exportObj = {
@@ -276,17 +268,21 @@ define([
                     lang: Common.getLocale(),
                     domain_codes: [obj.DomainCode],
                     filters: {}
-            };
+                };
 
+            // adding the export code to the filters
             exportObj.filters[obj.id] = [obj.Code];
 
-            log.info(exportObj);
+            log.info("Search.exportData;", exportObj);
 
            amplify.publish(E.EXPORT_DATA, exportObj, {
                 //requestType: 'databean',
                 requestType: 'data',
                 waitingText: 'Please wait<br> The download could require some time'
             });
+
+            // this will be a double counting event, but useful to track the events coming from the search
+            this._analyticsDownload(exportObj);
 
         },
 
@@ -324,6 +320,10 @@ define([
             var self = this,
                 query = self.o.query;
 
+
+            // add query to analytics
+            this._analyticsQuery(query);
+
             amplify.publish(E.LOADING_SHOW, {
                 container: this.$SEARCH_RESULTS
             });
@@ -357,6 +357,7 @@ define([
 
                 });
 
+
             });
 
         },
@@ -379,6 +380,30 @@ define([
                         //Common.changeURL(ROUTE.SEARCH_QUERY, [encodeURI(q)], true);
 
                     }
+                }
+            });
+
+        },
+
+        _analyticsQuery: function(query) {
+
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                category: A.search.query.category,
+                action: A.search.query.action,
+                label: query
+            });
+            
+        },
+
+        _analyticsDownload: function(obj) {
+
+            // this will be a double counting event, but useful to track the events coming from the search
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                category: A.search.download.category,
+                action: A.search.download.action,
+                label: {
+                    domain_codes: obj.domain_codes,
+                    filters: obj.filters
                 }
             });
 

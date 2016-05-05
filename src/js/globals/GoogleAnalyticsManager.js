@@ -37,6 +37,7 @@ define([
 
         // if is an Object has to be stringified
         data.label = !_.isObject(data.label)? data.label: JSON.stringify(data.label);
+        data.action = !_.isObject(data.action)? data.action: JSON.stringify(data.action);
         
         if (data.category !== undefined && data.action !== undefined) {
             ga('send', {

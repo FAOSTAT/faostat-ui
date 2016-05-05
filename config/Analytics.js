@@ -33,14 +33,26 @@ define(function () {
             }
         },
 
-        metadata: {
-            category: 'metadata',
-            action: {
-                download: 'download'
-            },
-            label:  {
-                section: ''
+        /* data */
+        data: {
+
+            search: {
+                category: 'data',
+                action: 'seach',
+                label: '' //text searched
             }
+
+        },
+
+        /* metadata */
+        metadata: {
+
+            download_csv: {
+                category: 'metadata',
+                action: 'download_csv',
+                label: '' //code
+            }
+
         },
 
         /* methodos and standards specific tracking */
@@ -100,20 +112,27 @@ define(function () {
         },
 
         /* search */
+        // DONE
         search: {
 
-            text: {
+            // tracking query
+            query: {
                 category: 'search',
-                action: 'text',
+                action: 'query',
                 label: '' //text searched
             },
 
+            // tracking the downloads on the search page
             download: {
-                category: 'download',
-                action: 'text',
-                label: '' //text searched
-            },
+                category: 'search',
+                action: 'download',
+                label: '' // filter object
+            }
 
+            /*
+            
+            // the link now is in the anchor
+             
             go_to_browse: {
                 category: 'search',
                 action: 'go_to_browse',
@@ -125,7 +144,7 @@ define(function () {
                 action: 'go_to_download',
                 label: '' // url
             }
-
+            */
         },
 
         /* compare */
@@ -152,17 +171,7 @@ define(function () {
                 }
             }
 
-        },
-
-        /* data */
-        data: {
-
-            search: {
-                category: 'data',
-                action: 'seach',
-                label: '' //text searched
-            }
-
         }
+
     };
 });
