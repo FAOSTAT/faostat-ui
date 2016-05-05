@@ -1,7 +1,6 @@
 
-<!--
 
-<div class="row">
+<!--<div class="row">
     <div class='col-lg-12'>
         <ul class='nav nav-tabs' role='tablist'>
             <li class="active" role='presentation'>
@@ -9,15 +8,11 @@
             </li>
         </ul>
     </div>
-</div>
+</div>-->
 
-<div style="padding-top: 25px;" id="fs-faq-results">
+<h1>Frequently asked questions</h1>
 
-    <p>
-        L'elenco seguente comprende le domande frequenti su ArcGIS Online.
-        <br>
-        In caso di problemi riscontrati durante l'utilizzo di ArcGIS Online, consultare Risoluzione dei problemi per visualizzare le soluzioni consigliate.
-    </p>
+<div id="fs-faq-results">
 
     <div data-role="fs-faq-questions">
             {{#each data as |topic topicIndex|}}
@@ -40,9 +35,10 @@
                     <h4>{{{q.question}}}</h4>
                     <p>{{{q.answer}}}</p>
                 </div>
+                <br>
             {{/each}}
         {{/each}}
     </div>
 
 </div>
--->
+
