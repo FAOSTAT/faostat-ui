@@ -852,30 +852,28 @@ define([
 
         destroySections: function() {
 
-            log.info("Download.dispose; viewDomain", this.viewDomain);
+            log.info("-------Download.dispose; viewDomain", this.viewDomain);
             if (this.viewDomain && _.isFunction(this.viewDomain.dispose)) {
                 this.viewDomain.dispose();
+                delete this.viewDomain;
             }
 
-            log.info("Download.dispose; report", this.report);
+            log.info("-------Download.dispose; report", this.report);
             if (this.report && _.isFunction(this.report.destroy)) {
                 this.report.destroy();
+                delete this.report;
             }
 
-            log.info("Download.dispose; metadataViewer", this.metadataViewer);
+            log.info("-------Download.dispose; metadataViewer", this.metadataViewer);
             if (this.metadataViewer && _.isFunction(this.metadataViewer.destroy)) {
                 this.metadataViewer.destroy();
+                delete this.metadataViewer;
             }
 
-            log.info("Download.dispose; interactiveDownload", this.interactiveDownload);
+            log.info("------Download.dispose; interactiveDownload", this.interactiveDownload);
             if (this.interactiveDownload && _.isFunction(this.interactiveDownload.destroy)) {
                 this.interactiveDownload.destroy();
-            }
-
-
-            log.info("Download.dispose; interactiveDownload", this.interactiveDownload);
-            if (this.interactiveDownload && _.isFunction(this.interactiveDownload.destroy)) {
-                this.interactiveDownload.destroy();
+                delete this.interactiveDownload;
             }
 
         },
