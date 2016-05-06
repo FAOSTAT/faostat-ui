@@ -23,46 +23,6 @@ define(function () {
             } //domain code
         },
 
-
-        /* specificic to the different sections */
-
-        /* interactive_download */
-        interactive_download: {
-
-            table_preview: {
-
-                category: 'data',
-                action: 'table_preview',
-                label: '' //domain_codes
-
-            },
-
-            table_download_csv: {
-
-                category: 'data',
-                action: 'table_download_csv',
-                label: '' //domain_codes
-
-            },
-
-            pivot_preview: {
-
-                category: 'data',
-                action: 'pivot_preview',
-                label: '' //domain_codes
-
-            },
-
-            pivot_download: {
-
-                category: 'data',
-                action: 'pivot_download',
-                label: '' //domain_codes
-
-            }
-
-        },
-
         /* download section (both groups display that downlaod section */
         data: {
 
@@ -94,6 +54,65 @@ define(function () {
 
         },
 
+
+        /* specificic to the different sections */
+
+
+        /******************** FATTI *******/
+        
+        /* interactive_download */
+        interactive_download: {
+
+            table_preview: {
+
+                category: 'interactive_download',
+                action: 'table_preview',
+                label: '' //domain_codes, if queryPassed
+
+            },
+
+            table_download_csv: {
+
+                category: 'interactive_download',
+                action: 'table_download_csv',
+                label: '' //domain_codes
+
+            },
+
+            table_query_size: {
+
+                category: 'interactive_download',
+                action: 'table_query_size',
+                label: '' //domain_codes
+
+            },
+
+            pivot_preview: {
+
+                category: 'interactive_download',
+                action: 'pivot_preview',
+                label: '' //domain_codes
+
+            },
+
+            pivot_download: {
+
+                category: 'interactive_download',
+                action: 'pivot_download',
+                label: '' //domain_codes
+
+            },
+
+            pivot_query_size: {
+
+                category: 'interactive_download',
+                action: 'pivot_query_size',
+                label: '' //domain_codes
+
+            }
+
+        },
+
         /* report */
         report: {
 
@@ -110,8 +129,6 @@ define(function () {
             }
             
         },
-
-        /******************** FATTI *******/
 
         /* browse by domain */
         browse_by_domain: {
