@@ -52,6 +52,8 @@ define([
         // waiting
         amplify.publish(E.WAITING_SHOW, { text: waitingText });
 
+        var start = new Date();
+
         // switch between the requestType to faostatAPI
         if (typeof this.api[requestType] === 'function') {
 
@@ -65,16 +67,12 @@ define([
 
                 log.info("Export.exportData; Execution query time: ", (time - start) / 1000 + "s");
 
-                // TODO: add google analytics event
-                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
-                    category: A.download.category,
-                    action: A.download.action.download,
-                    label: _.isObject(r)? JSON.stringify(r) : ""
-                });
-                
                 //log.info(error);
                 //window.btoa(unescape(encodeURIComponent(error)))
                 self._exportResult(data, name);
+
+                // analytics
+                self._analyticsExportData(r, new Date() - start);
 
             }).fail(function (error) {
 
@@ -112,6 +110,20 @@ define([
         blob = null;
 
         log.info("Export.saveAs; Execution saveAs time: ", (time - start) / 1000 + "s");
+
+    };
+
+    Export.prototype._analyticsExportData = function (r, value) {
+
+        // TODO: add google analytics event
+        amplify.publish(E.GOOGLE_ANALYTICS_EVENT, 
+            $.extend(true, {},
+                A.export.data,
+                {
+                    label: r,
+                    value: value
+                })
+        );
 
     };
 

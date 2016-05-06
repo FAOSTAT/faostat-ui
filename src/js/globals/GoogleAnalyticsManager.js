@@ -38,14 +38,22 @@ define([
         // if is an Object has to be stringified
         data.label = !_.isObject(data.label)? data.label: JSON.stringify(data.label);
         data.action = !_.isObject(data.action)? data.action: JSON.stringify(data.action);
+
+        // event
+        var event =  {
+            hitType: 'event',
+            eventCategory: data.category,
+            eventAction: data.action,
+            eventLabel: data.label
+        };
+
+        // adding value if exists
+        if (data.hasOwnProperty("value")) {
+            event.eventValue = data.value;
+        }
         
         if (data.category !== undefined && data.action !== undefined) {
-            ga('send', {
-                hitType: 'event',
-                eventCategory: data.category,
-                eventAction: data.action,
-                eventLabel: data.label
-            });
+            ga('send', event);
         }
         else {
             log.warn('GoogleAnalyticsManager.event; Event has not been saved:', data);
