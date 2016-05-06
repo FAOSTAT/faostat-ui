@@ -97,12 +97,34 @@ define(function () {
         /* report */
         report: {
 
+            preview: {
+                category: 'report',
+                action: 'preview',
+                label: '' //code
+            },
+
+            download: {
+                category: 'report',
+                action: 'download',
+                label: '' //code
+            }
+            
         },
-
-
 
         /******************** FATTI *******/
 
+        /* browse by domain */
+        browse_by_domain: {
+
+            selection_change: {
+                category: 'browse_by_domain',
+                action: 'selection',
+                label: 'change' //type?
+            }
+
+        },
+
+        /* bulk downloads (currently on the "data" caret) */
         download_bulk: {
 
             download: {
