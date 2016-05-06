@@ -9,19 +9,6 @@ define(function () {
 
         // centralized download export
         /* global interaction events */
-        download: {
-            category: 'download',
-            action: {
-                preview_table: 'preview',
-                download_table: 'download',
-                preview_pivot: 'download',
-                download_pivot: 'download'
-            },
-            label: {
-                // section should be derived from the page viewed
-                section: '', //i.e. browse_by_domain/download_interactive from ChaplinJS etc
-            } //domain code
-        },
 
         /* download section (both groups display that downlaod section */
         data: {
@@ -59,6 +46,19 @@ define(function () {
 
 
         /******************** FATTI *******/
+
+        /* global export csv */
+        export: {
+
+            data: {
+
+                category: 'export',
+                action: 'export_data',
+                label: '' // json request and timing query
+
+            }
+
+        },
         
         /* interactive_download */
         interactive_download: {
