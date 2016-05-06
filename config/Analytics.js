@@ -45,7 +45,7 @@ define(function () {
         /* specificic to the different sections */
 
 
-        /******************** FATTI *******/
+        /****** ALREADY MAPPED *******/
 
         /* global export csv */
         export: {
