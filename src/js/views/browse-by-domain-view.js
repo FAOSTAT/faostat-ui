@@ -328,6 +328,12 @@ define([
                 var isOnLoad = (c)? c.isOnLoad || false: false,
                     isCurrentKey = (c.requestKey === this.o.requestKey);
 
+                // track the request change
+                if ( !isOnLoad ) {
+                    this._analyticsOnChange();
+                }
+
+                // update view
                 if ( isCurrentKey ) {
 
                     log.info("BrowseByDomainView.updateDashboard; this.filterBox", this.filterBox);
@@ -339,6 +345,16 @@ define([
                     this.dashboard.filter(filters, isOnLoad);
 
                 }
+
+            },
+
+            _analyticsOnChange: function() {
+
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
+                    category: A.browse_by_domain.selection_change.category,
+                    action: A.browse_by_domain.selection_change.action,
+                    label: A.browse_by_domain.selection_change.label
+                });
 
             },
 

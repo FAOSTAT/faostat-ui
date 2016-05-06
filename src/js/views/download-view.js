@@ -229,6 +229,9 @@ define([
             var section = this.o.section,
                 options = this.o.selected;
 
+            // destroy sections
+            this.destroySections();
+
             moment.locale(Common.getLocale());
 
             log.info('switch tab: ', section, options);
@@ -436,10 +439,6 @@ define([
 
             amplify.publish(E.LOADING_SHOW, {container: this.$INTERACTIVE_DOWNLOAD});
 
-            if (this.interactiveDownload !== undefined && this.interactiveDownload !== null) {
-                this.interactiveDownload.destroy();
-            }
-
             this.$INTERACTIVE_DOWNLOAD.empty();
 
             Require(['fs-i-d/start'], _.bind(function(InteractiveDownload) {
@@ -475,13 +474,14 @@ define([
 
         _renderReport: function(code) {
 
+            this.$REPORT.empty();
+
             Require(['fs-r-p/start'], _.bind(function(Report) {
 
                 // TODO: check on tabs APIs
                 if (code === 'FBS') {
 
                     this.report = new Report();
-                    this.$REPORT.empty();
                     this.report.init({
                         container: this._createRandomElement(this.$REPORT),
                         code: code
@@ -503,11 +503,6 @@ define([
 
         _renderMetadataViewer: function(code) {
 
-            if (this.metadataViewer && this.metadataViewer.hasOwnProperty("destroy")) {
-                this.metadataViewer.destroy();
-            }
-
-
             // adding loading
             this.$METADATA.empty();
 
@@ -528,7 +523,7 @@ define([
 
         _browseByDomain: function(options) {
 
-            // disposing the old domain view
+            // disposing the old domain view (in theory should be already destroyed()
             // TODO: this should be performed on tab switching
             if (this.viewDomain && _.isFunction(this.viewDomain.dispose)) {
                 this.viewDomain.dispose();
@@ -855,11 +850,7 @@ define([
 
         },
 
-        dispose: function () {
-
-            log.info("Download.dispose;");
-
-            this.unbindEventListeners();
+        destroySections: function() {
 
             log.info("Download.dispose; viewDomain", this.viewDomain);
             if (this.viewDomain && _.isFunction(this.viewDomain.dispose)) {
@@ -886,6 +877,16 @@ define([
             if (this.interactiveDownload && _.isFunction(this.interactiveDownload.destroy)) {
                 this.interactiveDownload.destroy();
             }
+
+        },
+
+        dispose: function () {
+
+            log.info("Download.dispose;");
+
+            this.unbindEventListeners();
+
+            this.destroySections();
 
             View.prototype.dispose.call(this, arguments);
 
