@@ -56,7 +56,7 @@ define([
             TREE: "#fs-download-domain-tree",
             SEARCH_TREE: "#fs-download-tree-search",
             OUTPUT_AREA: "#fs-download-output-area",
-            MAIN_CONTAINER_TITLE: "#fs-download-main-container-title",
+            MAIN_CONTAINER_TITLE: '[data-role="domain-tile"]',
 
             REPORT: "#report",
             BULK: "#bulk_downloads",
@@ -638,8 +638,12 @@ define([
             // unbind tabs listeners
             this.$el.find('a[data-toggle="tab"]').off('shown.bs.tab');
 
-            this.$MENU_TREE.off('click');
-            this.$TREE_CLOSE.off('click');
+            if (this.$MENU_TREE) {
+                this.$MENU_TREE.off('click');
+            }
+            if (this.$TREE_CLOSE) {
+                this.$TREE_CLOSE.off('click');
+            }
 
         },
 

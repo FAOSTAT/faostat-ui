@@ -24,7 +24,7 @@
 
 <div class="row">
     <div class="col-md-9">
-        <h1 data-toggle="modal" data-target="#fs-data-tree-domain-modal" class='truncate' id='fs-download-main-container-title'></h1>
+        <h1 class='truncate'><span data-toggle="modal" data-target="#fs-data-tree-domain-modal" data-role="domain-tile"></span></h1>
     </div>
     <div class="col-md-3">
         <h1>
@@ -124,15 +124,19 @@
 
         <!-- Bulk Downloads -->
         <div class="btn-group btn-block">
-            <button type="button" class="btn btn-default col-xs-10 btn-lg">
-                <i class="fa fa-download" aria-hidden="true"></i>
+            <button type="button" class="btn btn-danger col-xs-10 btn-lg">
+                <h5>
+                    <i class="fa fa-download" aria-hidden="true"></i>
 
-                <!-- TODO: add file to download and google analytics tracking -->
-                Download All Data
+                    <!-- TODO: add file to download and google analytics tracking -->
+                    Download All Domain Data
+                </h5>
             </button>
-            <button type="button" class="btn btn-default dropdown-toggle col-xs-2 btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-danger dropdown-toggle col-xs-2 btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <h5>
                 <span class="caret"></span>
                 <span class="sr-only"></span>
+                </h5>
             </button>
             <ul class="dropdown-menu col-xs-12" style="height: auto; max-height: 300px; overflow-x: hidden;" data-role="bulk-downloads-caret"></ul>
         </div>

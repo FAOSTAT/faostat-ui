@@ -149,6 +149,7 @@ define([
                 json[id] = {
                     title: d.group_name,
                     link: '#' + Common.getURI(ROUTES.BROWSE_BY_DOMAIN_CODE, [d.group_code]),
+                    //link: '#' + Common.getURI(ROUTES.DOWNLOAD_INTERACTIVE, [d.group_code]),
                     group_code: d.group_code,
                     data: [],
                     // TODO: remove rowStart and rowEnd
@@ -159,6 +160,7 @@ define([
 
             // links
             d.link = '#' + Common.getURI(ROUTES.BROWSE_BY_DOMAIN_CODE, [d.domain_code]);
+            //d.link = '#' + Common.getURI(ROUTES.DOWNLOAD_INTERACTIVE, [d.domain_code]);
 
             json[id].data.push(d);
 
