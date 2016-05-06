@@ -34,7 +34,7 @@
 
     {{#each this}}
 
-        <div class="instafilta-section" data-section="{{this.group_code}}">
+        <div class="instafilta-section" data-instafilta-category="{{this.title}}" data-section="{{this.group_code}}">
             <div class="row">
                 <div class="col-md-12">
                     <h4>
@@ -43,7 +43,7 @@
                              data-role="go_to_download"
                              class="domain-icon icojam_{{this.group_code}}">
                        </span>
-                        <a href="{{this.link}}" class="truncate">
+                        <a style="color: #333333;"  href="{{this.link}}" class="truncate">
                             {{this.title}}
                         </a>
                     </h4>
@@ -51,9 +51,9 @@
 
                 <div class="row">
                     {{#each this.data}}
-                        <div class="col-md-6">
-                            <a class="instafilta-target" href="{{this.link}}">{{this.domain_name}}</a>
-                        </div>
+                        <a style="padding-left:30px;padding-top:5px;" class="col-md-6 instafilta-target" href="{{this.link}}">{{this.domain_name}}
+                            <span style="display:none">{{../title}}</span>
+                        </a>
                     {{/each}}
                 </div>
             </div>

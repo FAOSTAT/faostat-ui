@@ -107,7 +107,6 @@ define([
 
     };
 
-
     Groups.prototype._showGroups = function(data) {
         
         var t = Handlebars.compile($(templates).filter('#groups-list').html());
