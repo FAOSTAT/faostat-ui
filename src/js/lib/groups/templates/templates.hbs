@@ -1,30 +1,29 @@
-
 <script type='text/x-handlebars-template' id='template'>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-sm-9">
 
             <ul class="nav nav-tabs" role="tablist">
 
                 <li role="presentation" class="active">
-                    <a href="#methodologies" data-section="methodologies" role="tab" data-toggle="tab" aria-expanded="true">
+                    <a href="#methodologies" data-section="methodologies" role="tab" data-toggle="tab"
+                       aria-expanded="true">
                         {{domains}}
                     </a>
                 </li>
-
-                <li class="pull-right">
-                    <input style="height:28px;" data-role="search" type="text" class="form-control text-capitalize" placeholder="{{filter_domains}}">
-                </li>
-
             </ul>
             <br>
 
             <div style="display:none" data-role="no-data">{{no_data_available}}</div>
 
+            <input style="height:28px;" data-role="search" type="text" class="form-control pull-right fs-domain-filter"
+                   placeholder="{{filter_domains}}">
+
             <div data-role="groups"></div>
 
         </div>
-        <div class="col-md-3 hidden-xs">
-            <br><br>
+        <div class="col-sm-3 hidden-xs">
+
+
             <div data-role="groups-list"></div>
         </div>
     </div>
@@ -32,39 +31,148 @@
 
 <script type='text/x-handlebars-template' id='groups'>
 
+
     {{#each this}}
 
-        <div class="instafilta-section" data-section="{{this.group_code}}">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>
-                       <span style="cursor: pointer;"
-                             data-code="{{this.group_code}}"
-                             data-role="go_to_download"
+        {{#if this.rowStart}}
+        <div class="row">
+            <div class="row-height">
+        {{/if}}
+
+            <div class="col-md-6 col-md-height instafilta-section domain-group-list" data-section="{{this.group_code}}">
+
+
+                <h4>
+                       <span data-role="go_to_download"
                              class="domain-icon icojam_{{this.group_code}}">
                        </span>
-                        <a style="color: #333333;"  href="{{this.link}}" class="truncate">
-                            {{this.title}}
-                        </a>
-                    </h4>
-                </div>
+                    <a style="color: #333333;" href="{{this.link}}" class="truncate">
+                        {{this.title}}
+                    </a>
+                </h4>
 
-                <div class="row">
+                <ul class="list-unstyled">
+
                     {{#each this.data}}
-                        <a style="padding-left:30px;padding-top:5px;" class="col-md-4 instafilta-target" href="{{this.link}}">{{this.domain_name}}
-                            <span style="display:none">{{../title}}</span>
-                        </a>
+                        <li class="domanis-list">
+                            <a class="instafilta-target"
+                               href="{{this.link}}">{{this.domain_name}}
+                                <span style="display:none">{{../title}}</span>
+                            </a>
+                        </li>
                     {{/each}}
-                </div>
+
+                </ul>
+
+
+
             </div>
 
-            <hr>
-
-            <div class="clearfix"></div>
+        {{#if this.rowEnd}}
+            </div>
 
         </div>
+        {{/if}}
 
     {{/each}}
+
+
+    <!--<div class="row">-->
+        <!--<div class="row-height">-->
+
+            <!--<div class="col-md-6 col-md-height">-->
+
+                <!--<h4>-->
+                       <!--<span style="cursor: pointer;" data-code="Q" data-role="go_to_download"-->
+                             <!--class="domain-icon icojam_Q">-->
+                       <!--</span>-->
+                    <!--<a style="color: #333333;" href="#en/data/Q" class="truncate">-->
+                        <!--Production-->
+                    <!--</a>-->
+                <!--</h4>-->
+
+                <!--<ul class="list-unstyled">-->
+
+                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
+                        <!--<span style="display:none">Production</span></a></li>-->
+                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
+                        <!--<span style="display:none">Production</span></a></li>-->
+                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
+                        <!--<span style="display:none">Production</span></a></li>-->
+                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
+                        <!--<span style="display:none">Production</span></a></li>-->
+                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
+                        <!--<span style="display:none">Production</span></a></li>-->
+                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
+                        <!--<span style="display:none">Production</span></a></li>-->
+
+                <!--</ul>-->
+
+
+            <!--</div>-->
+
+            <!--<div class="col-md-6 col-md-height">-->
+
+                <!--<h4>-->
+                       <!--<span style="cursor: pointer;" data-code="Q" data-role="go_to_download"-->
+                             <!--class="domain-icon icojam_Q">-->
+                       <!--</span>-->
+                    <!--<a style="color: #333333;" href="#en/data/Q" class="truncate">-->
+                        <!--Production-->
+                    <!--</a>-->
+                <!--</h4>-->
+
+                <!--<ul class="list-unstyled">-->
+
+                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
+                        <!--<span style="display:none">Production</span></a></li>-->
+                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
+                        <!--<span style="display:none">Production</span></a></li>-->
+
+
+                <!--</ul>-->
+
+
+            <!--</div>-->
+
+
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--{{#each this}}-->
+
+        <!--<div class="instafilta-section" data-section="{{this.group_code}}">-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-12">-->
+                    <!--<h4>-->
+                       <!--<span style="cursor: pointer;"-->
+                             <!--data-code="{{this.group_code}}"-->
+                             <!--data-role="go_to_download"-->
+                             <!--class="domain-icon icojam_{{this.group_code}}">-->
+                       <!--</span>-->
+                        <!--<a style="color: #333333;" href="{{this.link}}" class="truncate">-->
+                            <!--{{this.title}}-->
+                        <!--</a>-->
+                    <!--</h4>-->
+                <!--</div>-->
+
+                <!--<div class="row">-->
+                    <!--{{#each this.data}}-->
+                        <!--<a style="padding-left:30px;padding-top:5px;" class="col-md-4 instafilta-target"-->
+                           <!--href="{{this.link}}">{{this.domain_name}}-->
+                            <!--<span style="display:none">{{../title}}</span>-->
+                        <!--</a>-->
+                    <!--{{/each}}-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<hr>-->
+
+            <!--<div class="clearfix"></div>-->
+
+        <!--</div>-->
+
+    <!--{{/each}}-->
 
 </script>
 
@@ -73,10 +181,13 @@
 </script>
 
 <script type='text/x-handlebars-template' id='groups-list'>
-    <ul class="list-unstyled">
+    <p class="label label-default label-aligned">Groups List</p>
+    <br>
+    <ul class="list-unstyled groups-list">
         {{#each this}}
-            <li><h4><a data-section="{{this.group_code}}" href="#">{{this.group_name}}</a></h4></li>
-            <hr>
+            <li><h5><a data-section="{{this.group_code}}" href="#">{{this.group_name}}</a></h5></li>
         {{/each}}
     </ul>
 </script>
+
+
