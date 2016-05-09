@@ -390,7 +390,7 @@ define([
             amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
                 category: A.search.query.category,
                 action: A.search.query.action,
-                label: query
+                label: decodeURIComponent(query)
             });
             
         },
