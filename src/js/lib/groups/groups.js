@@ -98,8 +98,9 @@ define([
             onFilterComplete: function(matchedItems) {
 
                 // show/hide no data div
-                matchedItems.length > 0? self.$NO_DATA.hide(): self.$NO_DATA.show();
-
+                if (matchedItems) {
+                    matchedItems.length > 0 ? self.$NO_DATA.hide() : self.$NO_DATA.show();
+                }
             }
         });
 
@@ -143,17 +144,12 @@ define([
             var id = d.group_code;
 
             if(!json.hasOwnProperty(id)) {
-                var rowStart = (Object.keys(json).length % 2 === 0);
-                var rowEnd = (Object.keys(json).length % 2 === 1);
                 json[id] = {
                     title: d.group_name,
                     link: '#' + Common.getURI(ROUTES.BROWSE_BY_DOMAIN_CODE, [d.group_code]),
                     //link: '#' + Common.getURI(ROUTES.DOWNLOAD_INTERACTIVE, [d.group_code]),
                     group_code: d.group_code,
-                    data: [],
-                    // TODO: remove rowStart and rowEnd
-                    rowStart: rowStart,
-                    rowEnd: rowEnd
+                    data: []
                 };
             }
 

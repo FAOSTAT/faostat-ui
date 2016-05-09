@@ -12,7 +12,7 @@
                 </li>
 
                 <li class="pull-right">
-                    <input data-role="search" type="text" class="form-control" placeholder="{{filter_domains}}">
+                    <input style="height:28px;" data-role="search" type="text" class="form-control text-capitalize" placeholder="{{filter_domains}}">
                 </li>
 
             </ul>
@@ -34,7 +34,7 @@
 
     {{#each this}}
 
-        <div class="instafilta-section" data-instafilta-category="{{this.title}}" data-section="{{this.group_code}}">
+        <div class="instafilta-section" data-section="{{this.group_code}}">
             <div class="row">
                 <div class="col-md-12">
                     <h4>
@@ -51,7 +51,7 @@
 
                 <div class="row">
                     {{#each this.data}}
-                        <a style="padding-left:30px;padding-top:5px;" class="col-md-6 instafilta-target" href="{{this.link}}">{{this.domain_name}}
+                        <a style="padding-left:30px;padding-top:5px;" class="col-md-4 instafilta-target" href="{{this.link}}">{{this.domain_name}}
                             <span style="display:none">{{../title}}</span>
                         </a>
                     {{/each}}

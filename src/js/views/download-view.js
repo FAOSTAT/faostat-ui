@@ -56,7 +56,7 @@ define([
             TREE: "#fs-download-domain-tree",
             SEARCH_TREE: "#fs-download-tree-search",
             OUTPUT_AREA: "#fs-download-output-area",
-            MAIN_CONTAINER_TITLE: '[data-role="domain-tile"]',
+            MAIN_CONTAINER_TITLE: '[data-role="domain-title"]',
 
             REPORT: "#report",
             BULK: "#bulk_downloads",
