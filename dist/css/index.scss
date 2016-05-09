@@ -6,7 +6,7 @@
 /* Fenix Utils*/
 @import '../../submodules/fenix-ui-common/css/utils/fx-utils';
 @import '../../submodules/fenix-ui-common/css/components/fx-preload';
-//@import '../../submodules/fenix-ui-common/css/components/fx-fixed-height';
+@import '../../submodules/fenix-ui-common/css/components/fx-fixed-height';
 
 
 /* Base */
@@ -31,10 +31,11 @@
 @import '../../src/css/third_party/fx-jstree';
 
 /* Pages */
-@import '../../src/css/pages/home';
-@import '../../src/css/pages/download';
 @import '../../src/css/pages/browse';
 @import '../../src/css/pages/compare';
+@import '../../src/css/pages/data';
+@import '../../src/css/pages/download';
+@import '../../src/css/pages/home';
 
 
 

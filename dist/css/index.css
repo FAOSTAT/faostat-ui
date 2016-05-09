@@ -88,11 +88,126 @@
 @keyframes loading {
   100% {
     transform: rotate(360deg); } }
+.inside-full-height {
+  /*
+  // if you want to give content full height give him height: 100%;
+  // with content full height you can't apply margins to the content
+  // content full height does not work in ie http://stackoverflow.com/questions/27384433/ie-display-table-cell-child-ignores-height-100
+  */
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0; }
+
+.content {
+  padding: 12px 3px; }
+
+/* columns of same height styles */
+.row-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%; }
+
+.col-height {
+  display: table-cell;
+  float: none;
+  height: 100%; }
+
+.col-top {
+  vertical-align: top; }
+
+.col-middle {
+  vertical-align: middle; }
+
+.col-bottom {
+  vertical-align: bottom; }
+
+@media (min-width: 480px) {
+  .row-xs-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%; }
+
+  .col-xs-height {
+    display: table-cell;
+    float: none;
+    height: 100%; }
+
+  .col-xs-top {
+    vertical-align: top; }
+
+  .col-xs-middle {
+    vertical-align: middle; }
+
+  .col-xs-bottom {
+    vertical-align: bottom; } }
+@media (min-width: 768px) {
+  .row-sm-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%; }
+
+  .col-sm-height {
+    display: table-cell;
+    float: none;
+    height: 100%; }
+
+  .col-sm-top {
+    vertical-align: top; }
+
+  .col-sm-middle {
+    vertical-align: middle; }
+
+  .col-sm-bottom {
+    vertical-align: bottom; } }
+@media (min-width: 992px) {
+  .row-md-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%; }
+
+  .col-md-height {
+    display: table-cell;
+    float: none;
+    height: 100%; }
+
+  .col-md-top {
+    vertical-align: top; }
+
+  .col-md-middle {
+    vertical-align: middle; }
+
+  .col-md-bottom {
+    vertical-align: bottom; } }
+@media (min-width: 1200px) {
+  .row-lg-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%; }
+
+  .col-lg-height {
+    display: table-cell;
+    float: none;
+    height: 100%; }
+
+  .col-lg-top {
+    vertical-align: top; }
+
+  .col-lg-middle {
+    vertical-align: middle; }
+
+  .col-lg-bottom {
+    vertical-align: bottom; } }
 /* Base */
 /* Base style File */
 body {
   font-family: "FrutigerLTW02-45Light", Arial, Helvetica, Verdana, sans-serif;
-  background-color: #f1f1f1; }
+  background-color: #f1f1f1;
+  color: #333333; }
 
 .fs-main-container {
   padding-bottom: 60px; }
@@ -114,6 +229,9 @@ body {
   -ms-border-radius: 0;
   border-radius: 0;
   outline: none; }
+
+.label-aligned {
+  padding-left: 0; }
 
 .bootstrap-content-box-reset * {
   -webkit-box-sizing: content-box;
@@ -168,7 +286,7 @@ body {
     padding: 7px; }
 
   .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
-    color: #666666;
+    color: #333333;
     background-color: #e7e7e7; }
 
   #faostat_ui_menu .navbar-default {
@@ -177,9 +295,9 @@ body {
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     border-radius: 0;
-    border-bottom: 1px solid #cccccc !important; }
+    border-bottom: 1px solid #eeeeee !important; }
     #faostat_ui_menu .navbar-default .navbar-nav > li > a {
-      color: #666666;
+      color: #333333;
       border-right: 0; }
     #faostat_ui_menu .navbar-default .navbar-nav > li.pull-right > a {
       border-right: 0; }
@@ -238,7 +356,7 @@ footer.container {
   color: #337ab7; }
 
 .label-danger {
-  color: #e00000; }
+  color: #E00000; }
 
 .label {
   background-color: transparent; }
@@ -5165,7 +5283,7 @@ button_new_2:before {
     margin-bottom: 0; }
     .nav-tabs > li > a {
       padding: 5px 10px 5px;
-      color: #666666;
+      color: #333333;
       font-weight: 500;
       font-size: 12px;
       text-transform: uppercase; }
@@ -5318,7 +5436,7 @@ footer.fao-footer {
 .ui-rangeSlider-innerBar {
   height: 3px !important;
   top: 7px !important;
-  background-color: #d2d0d0 !important; }
+  background-color: #D2D0D0 !important; }
 
 .ui-rangeSlider-arrow.ui-rangeSlider-leftArrow {
   background: url(img/arrow-left-on.svg) no-repeat !important;
@@ -5440,7 +5558,7 @@ footer.fao-footer {
   background-color: white; }
 
 .tt-hint {
-  color: #666666; }
+  color: #333333; }
 
 .tt-menu {
   width: 100%;
@@ -5468,7 +5586,7 @@ footer.fao-footer {
   background-color: #cfe1f2; }
 
 .tt-suggestion.tt-cursor {
-  color: #666666;
+  color: #333333;
   background-color: #cfe1f2; }
 
 .tt-suggestion p {
@@ -5494,7 +5612,7 @@ footer.fao-footer {
 
 /* Fenix - Js tree */
 .jstree-default .jstree-search {
-  color: #666666;
+  color: #333333;
   font-weight: 300;
   font-style: normal; }
 
@@ -5515,33 +5633,41 @@ footer.fao-footer {
   background-color: #cfe1f2; }
 
 /* Pages */
-/* Homepage */
-.fs-domain-holder {
-  padding: 10px 0;
-  border-bottom: 1px solid #f2f2f2; }
-  .fs-domain-holder .domain-icon {
-    margin-right: 10px;
-    margin-top: 10px; }
-  .fs-domain-holder a {
-    font-size: 12px;
-    margin-right: 10px; }
-    .fs-domain-holder a:after {
-      content: '';
-      height: 15px;
-      width: 15px;
-      background: url("../../submodules/fenix-ui-common/css/img/fenix-catalog-sprite-small.svg") no-repeat -120px -15px;
-      background-size: 150px 30px;
-      display: inline-block;
-      position: relative;
-      top: 4px; }
-  .fs-domain-holder h5 {
-    margin-bottom: 0; }
+.fs-browse-content-padding {
+  margin-top: 15px; }
 
-.domain-icon {
-  font-size: 32px; }
+.fs-browse-view-padding {
+  margin-top: 30px; }
 
-.fs-home-domains {
-  min-height: 250px; }
+.fs-map .panel-body {
+  padding: 0; }
+.fs-map .panel-footer p {
+  font-size: 11px; }
+
+/* Download */
+.fs-compare-filter-box .panel-body {
+  padding: 0px 15px 15px 15px; }
+
+/* Data Page */
+.fs-domain-filter {
+  width: 200px; }
+
+.groups-list li {
+  border-bottom: 1px solid #eeeeee; }
+
+.domain-group-list span {
+  position: relative;
+  top: 7px; }
+.domain-group-list .domanis-list {
+  padding-left: 50px;
+  margin-bottom: 10px; }
+
+.domain-group-list {
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 15px; }
+
+[data-role="groups-list"] {
+  padding-top: 12px; }
 
 /* Download */
 .fs-download-domain-tree {
@@ -5565,7 +5691,7 @@ footer.fao-footer {
     display: inline-block;
     margin: 3px 0;
     cursor: pointer;
-    border: 1px solid #d2d0d0;
+    border: 1px solid #D2D0D0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -5611,28 +5737,69 @@ footer.fao-footer {
 
 .pivot .collapse_button {
   background-color: transparent;
-  border: 1px solid #d2d0d0;
+  border: 1px solid #D2D0D0;
   font-family: "FrutigerLTW02-45Light", Arial, Helvetica, Verdana, sans-serif;
   font-weight: normal;
-  color: #d2d0d0; }
+  color: #D2D0D0; }
 
 [data-role="output-area"] {
   margin-top: 50px; }
 
-.fs-browse-content-padding {
-  margin-top: 15px; }
+/* Homepage */
+.home-content {
+  margin-top: 40px; }
 
-.fs-browse-view-padding {
-  margin-top: 30px; }
+.fs-domain-holder {
+  padding: 10px 0;
+  border-bottom: 1px solid #f2f2f2; }
+  .fs-domain-holder .domain-icon {
+    margin-right: 10px;
+    margin-top: 10px; }
+  .fs-domain-holder a {
+    font-size: 12px;
+    margin-right: 10px; }
+    .fs-domain-holder a:after {
+      content: '';
+      height: 15px;
+      width: 15px;
+      background: url("../../submodules/fenix-ui-common/css/img/fenix-catalog-sprite-small.svg") no-repeat -120px -15px;
+      background-size: 150px 30px;
+      display: inline-block;
+      position: relative;
+      top: 4px; }
+  .fs-domain-holder h5 {
+    margin-bottom: 0; }
 
-.fs-map .panel-body {
-  padding: 0; }
-.fs-map .panel-footer p {
-  font-size: 11px; }
+.domain-icon {
+  font-size: 32px; }
 
-/* Download */
-.fs-compare-filter-box .panel-body {
-  padding: 0px 15px 15px 15px; }
+.fs-home-domains {
+  min-height: 250px; }
+
+.left.carousel-control, .right.carousel-control {
+  background: none; }
+
+.carousel-home-body .carousel-inner {
+  padding: 0 50px; }
+
+.carousel-home-ctrl-forward, .carousel-home-ctrl-backward {
+  position: absolute;
+  top: 40%;
+  z-index: 5;
+  display: inline-block;
+  text-shadow: none;
+  color: #333333;
+  font-size: 40px; }
+  .carousel-home-ctrl-forward:hover, .carousel-home-ctrl-backward:hover {
+    color: #337ab7; }
+
+.carousel-home-ctrl-backward {
+  left: 5px; }
+
+.carousel-home-ctrl-forward {
+  right: 5px; }
 
 /* Menu and some Header stuff TODO: remove the header related css from here */
 /* Modules. */
+
+/*# sourceMappingURL=index.css.map */
