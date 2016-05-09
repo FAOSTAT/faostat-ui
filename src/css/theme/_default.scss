@@ -3,7 +3,7 @@
 body {
   font-family: $standard-text;
   background-color: $fenix-light-bg;
-
+  color: $fenix-text;
 }
 
 .fs-main-container {
@@ -32,6 +32,10 @@ body {
   outline: none;
 }
 
+
+.label-aligned{
+  padding-left: 0;
+}
 
 
 //.checkbox, .radio{

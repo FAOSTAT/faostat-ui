@@ -1,5 +1,9 @@
 /* Homepage */
 
+.home-content{
+   margin-top: 40px;
+}
+
 .fs-domain-holder{
   //height: 80px;
 
@@ -42,6 +46,47 @@
 .fs-home-domains {
    min-height:250px;
 }
+
+.left.carousel-control, .right.carousel-control{
+   background: none;
+
+}
+
+.carousel-home-body{
+
+   .carousel-inner{
+      padding: 0 50px;
+   }
+
+
+}
+
+.carousel-home-ctrl-forward, .carousel-home-ctrl-backward{
+   position: absolute;
+   top: 40%;
+   z-index: 5;
+   display: inline-block;
+   text-shadow: none;
+   color: $fenix-text;
+   font-size: 40px;
+
+
+   &:hover{
+      color: $fx-cool-blue;
+   }
+
+}
+
+.carousel-home-ctrl-backward{
+   left: 5px;
+
+}
+
+.carousel-home-ctrl-forward{
+   right: 5px;
+}
+
+
 
 
 //.btn-home-domain{
