@@ -1,194 +1,188 @@
-
 <div class="row">
     <div class="col-lg-12">
 
-        <h5>
-            {{welcome_text}}
-        </h5>
-        
+        <!--<h5>-->
+            <!--{{welcome_text}}-->
+        <!--</h5>-->
+
         <div class="row">
             <div class="fs-home-domains" id="fs_home_domains"></div>
         </div>
-        
+
     </div>
 </div>
 
-<div class="row">
+<div class="row home-content">
 
     <!-- left side -->
     <div class="col-lg-8">
-        <br><br>
 
-        <!-- Chart -->
-        <!--<div  class="col-lg-12">-->
-        <!--<h1>{{chart_title}}</h1>-->
-        <!--<h2>{{chart_subtitle}}</h2>-->
-        <!--<div id="fs_home_chart"></div>-->
-        <!--</div>-->
 
-        <!--<div class="panel panel-default">
-            <div class="panel-heading">
-                <h5>{{chart_title}}</h5>
-                <h6>{{chart_subtitle}}</h6>
-            </div>
-            <div class="panel-body">
-                <div id="fs_home_chart"></div>
-            </div>
-        </div>-->
-
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <h5>{{chart_title}}</h5>
-                    <h6>{{chart_subtitle}}</h6>
-                    <div id="fs_home_chart1"></div>
-                </div>
-
-                <div class="item">
-                    <h5>{{chart_title}}</h5>
-                    <h6>{{chart_subtitle}}</h6>
-                    <div id="fs_home_chart2"></div>
-                </div>
-
-                <div class="item">
-                    <h5>{{chart_title}}</h5>
-                    <h6>{{chart_subtitle}}</h6>
-                    <div id="fs_home_chart3"></div>
-                </div>
-
-                <div class="item">
-                    <h5>{{chart_title}}</h5>
-                    <h6>{{chart_subtitle}}</h6>
-                    <div id="fs_home_chart4"></div>
-                </div>
+        <div class="panel panel-default ">
+            <div class="panel-heading clearfix">
+                <h5 class="pull-left">Hihlights</h5>
+                <h6 class="pull-right">{{chart_subtitle}}</h6>
             </div>
 
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+            <div class="panel-body carousel-home-body">
 
-        <br>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-        <div class="row">
-            <div class="col-md-6">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h5>{{database_updates}}</h5>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+
+                            <div id="fs_home_chart1"></div>
+                        </div>
+
+                        <div class="item">
+
+                            <div id="fs_home_chart2"></div>
+                        </div>
+
+                        <div class="item">
+
+
+                            <div id="fs_home_chart3"></div>
+                        </div>
+
+                        <div class="item">
+
+
+                            <div id="fs_home_chart4"></div>
+                        </div>
                     </div>
-                    <div class="panel-body"  style="max-height: 210px; overflow-y: auto;">
-                        <div id="fs_home_database_updates"></div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <!--<span class="icojam_symbol_backward"></span>-->
+                        <span class="icojam_symbol_backward carousel-home-ctrl-backward"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="icojam_symbol_foward carousel-home-ctrl-forward"></span>
+                        <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5>{{database_updates}}</h5>
+                        </div>
+                        <div class="panel-body" style="max-height: 210px; overflow-y: auto;">
+                            <div id="fs_home_database_updates"></div>
+                        </div>
+                        <div class="panel-footer">
+                            <h5>
+                                <i class="fa fa-calendar"></i> <a
+                                    href="http://faostat3.fao.org/releasecalendar/Default.aspx"
+                                    target="_blank">{{release_calendar}}</a>
+                            </h5>
+                        </div>
                     </div>
-                    <div class="panel-footer">
-                        <h5>
-                            <i class="fa fa-calendar"></i> <a href="http://faostat3.fao.org/releasecalendar/Default.aspx" target="_blank" >{{release_calendar}}</a>
-                        </h5>
+                </div>
+
+                <div class="col-md-6">
+
+                    <!-- info box -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5>{{info_box_title}}</h5>
+                        </div>
+                        <div class="panel-body">
+                            {{{info_box_text}}}
+                        </div>
+                        <div class="panel-footer">
+                            <h5>
+                                <i class="fa fa-link"></i> {{{info_box_link}}}
+                            </h5>
+                        </div>
+
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <!-- Partners List -->
+            <br>
 
-                <!-- info box -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h5>{{info_box_title}}</h5>
-                    </div>
-                    <div class="panel-body">
-                        {{{info_box_text}}}
-                    </div>
-                    <div class="panel-footer">
-                        <h5>
-                            <i class="fa fa-link"></i> {{{info_box_link}}}
-                        </h5>
-                    </div>
-
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5>{{partners}}</h5>
                 </div>
-            </div>
-        </div>
+                <div class="panel-body">
+                    <p>TBD</p>
+                </div>
 
-        <!-- Partners List -->
-        <br>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h5>{{partners}}</h5>
-            </div>
-            <div class="panel-body">
-                <p>TBD</p>
             </div>
 
         </div>
 
-    </div>
+        <!-- right side -->
+        <div class="col-lg-4">
 
-    <!-- right side -->
-    <div class="col-lg-4">
-        <br>
-        <div class="col-lg-12">
 
-            <div>
-                <h4>{{featured_links}}</h4>
+            <div class="col-lg-12">
 
-                <!-- TODO: how to get the right size? -->
                 <div>
-                    <i class="fa fa-download"></i> <a href="{{URL_FAOSTAT_DATABASE_ZIP}}">{{faostat_database_download}}</a>
-                </div>
-                <div id="fs_home_country_profiles">
-                    <i class="fa fa-line-chart"></i> <a href="#{{URL_BROWSE_BY_COUNTRY}}">{{country_profiles}}</a>
-                </div>
-                <div id="fs_home_rankings">
-                    <i class="fa fa-line-chart"></i> <a href="#{{URL_BROWSE_RANKINGS}}">{{rankings}}</a>
-                </div>
-            </div>
+                    <h4>{{featured_links}}</h4>
 
-            <hr>
-            <div>
-                <h4>{{whats_new}}</h4>
-                <div id="fs_home_whats_new"></div>
-            </div>
+                    <!-- TODO: how to get the right size? -->
+                    <div>
+                        <i class="fa fa-download"></i> <a
+                            href="{{URL_FAOSTAT_DATABASE_ZIP}}">{{faostat_database_download}}</a>
+                    </div>
 
-            <hr>
-<!--            <div>
+
+                    <div id="fs_home_country_profiles">
+                        <i class="fa fa-line-chart"></i> <a href="#{{URL_BROWSE_BY_COUNTRY}}">{{country_profiles}}</a>
+                    </div>
+                    <div id="fs_home_rankings">
+                        <i class="fa fa-line-chart"></i> <a href="#{{URL_BROWSE_RANKINGS}}">{{rankings}}</a>
+                    </div>
+                </div>
+
+                <hr>
+                <div>
+                    <h4>{{whats_new}}</h4>
+
+                    <div id="fs_home_whats_new"></div>
+                </div>
+
+                <hr>
+                <!--            <div>
                 <h4>{{coming_up}}</h4>
                 <div id="fs_home_coming_up"></div>
             </div>
             <hr>
 -->
 
-            <div>
-                <!--<h4>{{follow_faostatistics}}</h4>-->
-                <a id="fs_home_twitter"
-                   class="twitter-timeline"
-                   data-chrome=""
-                   height="350"
-                   href="https://twitter.com/FAOstatistics"
-                   data-widget-id="{widget_id}"
-                >
-                   <!--data-widget-id="700247798168551424">-->
-                   <!--Tweets by @FAOstatistics-->
-                </a>
-                <script>
+                <div>
+                    <!--<h4>{{follow_faostatistics}}</h4>-->
+                    <a id="fs_home_twitter"
+                       class="twitter-timeline"
+                       data-chrome=""
+                       height="350"
+                       href="https://twitter.com/FAOstatistics"
+                       data-widget-id="{widget_id}"
+                            >
+                        <!--data-widget-id="700247798168551424">-->
+                        <!--Tweets by @FAOstatistics-->
+                    </a>
+                    <script>
 
-                </script>
+                    </script>
+                </div>
+
             </div>
-
         </div>
-    </div>
 
-</div>
+    </div>
