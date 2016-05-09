@@ -1,0 +1,39 @@
+/* Data Page */
+
+.fs-domain-filter{
+  width: 200px;
+}
+
+.groups-list{
+
+  li{
+    border-bottom: 1px solid $fenix-light-hr;
+  }
+
+
+}
+
+.domain-group-list{
+
+  span{
+    position: relative;
+    top: 7px;
+  }
+
+  .domanis-list{
+    padding-left: 50px;
+    margin-bottom: 10px;
+  }
+
+}
+
+
+.domain-group-list{
+  border-bottom: 1px solid $fenix-light-hr;
+  padding-bottom: 15px;
+}
+
+
+[data-role="groups-list"]{
+  padding-top: 12px;
+}
