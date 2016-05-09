@@ -29,6 +29,9 @@ define([
                     chart: {
                         type: 'line'
                     },
+                    exporting: {
+                        enabled: false
+                    },
                     xAxis: {
                         labels: {
                             rotation: -45
