@@ -1,0 +1,201 @@
+<!-- TODO: remove it -->
+<!-- Modal -->
+<div style="position:relative">
+    <div class="modal left fade " id="fs-data-tree-domain-modal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+
+                    <span class="label label-default">{{faostat_domains}}</span>
+                    <input class='form-control' placeholder='{{filter_domain_tree}}' id='fs-download-tree-search'>
+                    <br>
+
+                    <div id='fs-download-domain-tree'></div>
+
+                </div>
+
+            </div>
+            <!-- modal-content -->
+        </div>
+        <!-- modal-dialog -->
+    </div>
+    <!-- modal -->
+</div>
+
+<div class="row">
+    <div class="col-xs-7 col-sm-9 clearfix">
+        <a data-toggle="modal" data-target="#fs-data-tree-domain-modal" class="pull-left btn-floating waves-effect waves-light btn-primary fs-btn-tree" data-role="export"><i class="material-icons">menu</i> </a>
+        <h1 class="truncate" data-role="domain-title"></h1>
+    </div>
+    <div class="col-xs-5 col-sm-3 clearfix">
+        <!-- TODO: use Common.getURI(ROUTE.DATA)-->
+        <a href="#en/data" type="button" class="btn btn-link pull-right fs-section-back"
+           id="fs-browse-by-country-profile-back">
+            <i class="left material-icons">undo</i>
+            Back to domains' list
+        </a>
+    </div>
+</div>
+
+
+<!--<h1><span class="" id='fs-download-main-container-title'></span></h1>-->
+
+<div class="row">
+    <div class='col-lg-12'>
+        <ul class='nav nav-tabs' role='tablist'>
+            <!--
+              <li role='presentation' style="padding-top:5px;">
+                            <i class="fa fa-bars fa-lg" aria-hidden="true" style="cursor:pointer;" data-role="fs-domains-menu"></i>
+                        </li>-->
+
+            <!--
+             <li role='presentation'>
+                <a href='#bulk_downloads' data-section='bulk' role='tab' data-toggle='tab'>{{bulk_downloads}}</a>
+            </li>-->
+            <!--
+            <li role='presentation'>
+                <a href='#about' data-section='about' role='tab' data-toggle='tab'>{{welcome_page}}</a>
+            </li>
+            -->
+            <li role='presentation'>
+                <a href='#interactive_download' data-section='interactive' role='tab'
+                   data-toggle='tab'>{{interactive_download}}</a>
+            </li>
+            <li role='presentation'>
+                <a href='#browse' data-section='browse_by_domain_code' role='tab' data-toggle='tab'>{{browse}}</a>
+            </li>
+            <li role='presentation'>
+                <a style='display:none' href='#report' data-section='report' role='tab' data-toggle='tab'>{{report}}</a>
+            </li>
+            <li role='presentation'>
+                <a href='#metadata' data-section='metadata' role='tab' data-toggle='tab'>{{metadata}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class='row'>
+
+    <div class='col-md-9 fs-data-padding-top'>
+
+        <!-- Container tab-panels -->
+        <div class="tab-content">
+            <div class="tab-pane" id="about" data-section='about'></div>
+            <div class="tab-pane" id="interactive_download" data-section='interactive_download'></div>
+            <div class="tab-pane" id="report" data-section='report'></div>
+            <div class="tab-pane" id="bulk_downloads" data-section='bulk_downloads'></div>
+            <div class="tab-pane" id="metadata" data-section='metadata'></div>
+            <div class="tab-pane" id="browse" data-section='browse_by_domain_code'>
+            </div>
+        </div>
+
+    </div>
+
+    <div class='col-md-3 fs-data-padding-top'>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 data-role="domain-title"></h4>
+            </div>
+
+            <div class="panel-footer amber lighten-3">
+
+                <div>
+                    <h5>Bulk Downloads</h5>
+                    <ul class="list-unstyled list-download" data-role="bulk-downloads-caret"></ul>
+                </div>
+            </div>
+
+            <div class="panel-body" >
+                <!-- Description -->
+                <div data-role="description">
+
+                    <p data-role="text"></p>
+                </div>
+
+                <!-- Organization -->
+                <div data-role="organization">
+                    <small data-role="text"></small>
+                </div>
+
+            </div>
+
+            <div class="panel-footer">
+
+                <!-- Last Update -->
+                <div data-role="last-update">
+                    <p class="label label-default label-aligned">{{last_update}}Last update</p>
+                    <p data-role="date"></p>
+                </div>
+
+                <!-- Contacts -->
+                <div data-role="contact-name">
+                    <p class="label label-default label-aligned">{{contacts}}Contacts</p>
+
+                    <p data-role="text"></p>
+                </div>
+
+                <!-- Email -->
+                <div data-role="contact-email" style="display:none">
+                    <p class="label label-default label-aligned">{{contacts_email}}Contacts Email</p>
+
+                    <p data-role="text"></p>
+                </div>
+
+                <p class="label label-default label-aligned">{{related_documents}}</p>
+
+                <!--TODO: remove when data are not available -->
+                <div data-role="fs-download-related-documents"></div>
+
+                <a class="btn btn-block" target='_blank' data-role="fs-download-metadata-button">
+                    <i class="material-icons left">info_outline</i>Full {{metadata}}
+                </a>
+
+            </div>
+        </div>
+
+
+
+        <!-- Bulk Downloads -->
+        <!--<div class="btn-group btn-block">
+            <button type="button" class="btn btn-danger col-xs-10 btn-lg">
+                <h6>
+                    <i class="fa fa-download" aria-hidden="true"></i>
+
+                    &lt;!&ndash; TODO: add file to download and google analytics tracking &ndash;&gt;
+                    Bulk Download All Domain Data
+                </h6>
+            </button>
+            <button type="button" class="btn btn-danger dropdown-toggle col-xs-2 btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <h6>
+                    <span class="caret"></span>
+                    <span class="sr-only"></span>
+                </h6>
+            </button>
+            <ul class="dropdown-menu col-xs-12" style="height: auto; max-height: 300px; overflow-x: hidden;" data-role="bulk-downloads-caret"></ul>
+        </div>-->
+
+        <!-- interactive Download -->
+        <!--
+                <a type="button" class="btn btn-default btn-lg btn-block" data-role="download-interactive-link">
+                    <i class="fa fa-sliders" aria-hidden="true"></i> Interactive Download
+                </a>
+
+                <br>
+                -->
+
+
+
+    </div>
+
+</div>
+
+<div class='row'>
+    <div class='col-xs-12'>
+        <div id='fs-download-output-area'></div>
+    </div>
+</div>
