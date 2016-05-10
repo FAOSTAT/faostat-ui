@@ -1,0 +1,407 @@
+/* Material Theme */
+.panel.panel-default{
+  background-color: white;
+  transition: box-shadow .25s;
+  @include fx-border-radius(2px);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+  border-color: transparent;
+  border: 0;
+
+  .panel-heading{
+    background-color: white;
+    border-color: transparent;
+    border-bottom-color:$fenix-light-hr ;
+  }
+
+  .panel-footer{
+    background-color: white;
+    border-color: transparent;
+    border-top-color:$fenix-light-hr ;
+
+  }
+
+
+}
+
+/*********************
+  Shadows
+**********************/
+
+.z-depth-0 {
+  box-shadow: none !important;
+}
+
+.z-depth-1, .btn, .btn-floating, .card-panel, .card, .dropdown-content, .dropdown-menu {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.z-depth-1-half, .btn:hover, .btn-floating:hover {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.z-depth-2 {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.z-depth-3 {
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.z-depth-4 {
+  box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
+}
+
+.z-depth-5 {
+  box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+}
+
+.hoverable:hover {
+  transition: box-shadow .25s;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*********************
+  Waves
+**********************/
+/*!
+ * Waves v0.6.0
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
+ * https://github.com/fians/Waves/blob/master/LICENSE
+ */
+.waves-effect {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+  will-change: opacity, transform;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.waves-effect .waves-ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.7s ease-out;
+  -moz-transition: all 0.7s ease-out;
+  -o-transition: all 0.7s ease-out;
+  -ms-transition: all 0.7s ease-out;
+  transition: all 0.7s ease-out;
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  -o-transition-property: -o-transform, opacity;
+  transition-property: transform, opacity;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  pointer-events: none;
+}
+
+.waves-effect.waves-light .waves-ripple {
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+.waves-effect.waves-red .waves-ripple {
+  background-color: rgba(244, 67, 54, 0.7);
+}
+
+.waves-effect.waves-yellow .waves-ripple {
+  background-color: rgba(255, 235, 59, 0.7);
+}
+
+.waves-effect.waves-orange .waves-ripple {
+  background-color: rgba(255, 152, 0, 0.7);
+}
+
+.waves-effect.waves-purple .waves-ripple {
+  background-color: rgba(156, 39, 176, 0.7);
+}
+
+.waves-effect.waves-green .waves-ripple {
+  background-color: rgba(76, 175, 80, 0.7);
+}
+
+.waves-effect.waves-teal .waves-ripple {
+  background-color: rgba(0, 150, 136, 0.7);
+}
+
+.waves-notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+
+.waves-circle {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+}
+
+.waves-input-wrapper {
+  border-radius: 0.2em;
+  vertical-align: bottom;
+}
+
+.waves-input-wrapper .waves-button-input {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.waves-circle {
+  text-align: center;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  border-radius: 50%;
+  -webkit-mask-image: none;
+}
+
+.waves-block {
+  display: block;
+}
+
+/* Firefox Bug: link not triggered */
+a.waves-effect .waves-ripple {
+  z-index: -1;
+}
+
+/*********************
+  Buttons
+**********************/
+.btn-flat {
+  background-color: transparent;
+  position: relative;
+  padding: 8px 30px;
+  border: none;
+  margin: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: none !important;
+}
+
+.btn-flat:focus {
+  background-color: transparent;
+}
+
+.btn {
+  line-height: 31px;
+  position: relative;
+  padding: 5px 22px;
+  border: 0;
+  //margin: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  //text-transform: uppercase;
+  text-decoration: none;
+  outline: none !important;
+  -webkit-transition: 0.2s ease-out;
+  -moz-transition: 0.2s ease-out;
+  -o-transition: 0.2s ease-out;
+  -ms-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.btn.btn-block {
+  margin: 10px 0;
+}
+
+.btn i,
+.btn-flat i {
+  font-size: 1.3rem;
+  line-height: inherit;
+}
+
+.btn-floating {
+  display: inline-block;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 37px;
+  height: 37px;
+  line-height: 37px;
+  padding: 0;
+  background-color: #aa66cc;
+  @include fx-border-radius(50%);
+  transition: .3s;
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 10px;
+}
+
+.btn-floating i {
+  width: inherit;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+
+  line-height: 37px;
+}
+
+.btn-floating:before {
+  border-radius: 0;
+}
+
+.btn-floating.btn-large {
+  width: 55.5px;
+  height: 55.5px;
+}
+
+.btn-floating.btn-large i {
+  line-height: 55.5px;
+}
+
+.btn-floating.btn-small {
+  height: 47px;
+  width: 47px;
+  line-height: 0;
+}
+
+.btn-floating.btn-small .fa, .btn-floating.btn-small .material-icons {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+button.btn-floating {
+  border: none;
+}
+
+.btn .badge {
+  margin-left: 7px;
+}
+
+.btn-default {
+  color: #fff;
+  background: #2BBBAD;
+}
+
+.btn-default:hover, .btn-default:focus {
+  background-color: #30cfc0 !important;
+  color: #fff !important;
+}
+
+.btn-primary {
+  background: #4285F4;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #5a95f5 !important;
+  color: #fff;
+}
+
+.btn-success {
+  background: #00C851;
+}
+
+.btn-success:hover, .btn-success:focus {
+  background-color: #00d255 !important;
+  color: #fff;
+}
+
+.btn-info {
+  background: #33b5e5;
+}
+
+.btn-info:hover, .btn-info:focus {
+  background-color: #4abde8 !important;
+  color: #fff;
+}
+
+.btn-warning {
+  background: #FF8800;
+}
+
+.btn-warning:hover, .btn-warning:focus {
+  background-color: #ff961f !important;
+  color: #fff;
+}
+
+.btn-danger {
+  background: #CC0000;
+}
+
+.btn-danger:hover, .btn-danger:focus {
+  background-color: #db0000 !important;
+  color: #fff;
+}
+
+.btn-link {
+  background-color: white;
+  color: #000;
+}
+
+.btn-link:hover {
+  background-color: white;
+  text-decoration: none;
+}
+
+.btn-link:focus {
+  background-color: white;
+  text-decoration: none;
+}
+
+.btn-xlg {
+  padding: 18px 24px;
+  font-size: 21px;
+  line-height: 1.33333;
+}
+
+.btn-lg {
+  padding: 14px 20px;
+  font-size: 18px;
+  line-height: 1.33333;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.btn-xs {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+i.left {
+  float: left;
+  margin-right: 10px;
+}
+
+
+//.fs-download-selector-panel{
+//  [role="tabpanel"]{
+//    border-top: 1px solid $fenix-light-hr;
+//    border-bottom: 1px solid $fenix-light-hr;
+//  }
+//}
+

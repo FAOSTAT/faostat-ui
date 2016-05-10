@@ -1,13 +1,17 @@
 /* Dist - Index */
 
-/* RLM - Variables */
+/* Variables */
 @import '../../src/css/theme/variables';
 
 /* Fenix Utils*/
 @import '../../submodules/fenix-ui-common/css/utils/fx-utils';
+@import '../../submodules/fenix-ui-common/css/utils/fx-mixins';
 @import '../../submodules/fenix-ui-common/css/components/fx-preload';
 @import '../../submodules/fenix-ui-common/css/components/fx-fixed-height';
 
+/* Material Theme */
+@import '../../src/css/theme/material-theme';
+@import '../../src/css/theme/material-colors';
 
 /* Base */
 @import '../../src/css/theme/default';

@@ -177,6 +177,7 @@ require([
                     'screenfull': '{FENIX_CDN}/js/screenfull/3.0.0/screenfull.min',
 
 
+                    "waves-effect": "./waves-effect",
                     "twitter": "//platform.twitter.com/widgets",
 
                     /* Google Analytics */
@@ -284,9 +285,10 @@ require([
         'config/Events',
         'globals/GoogleAnalyticsManager',
         'loglevel',
+        'waves-effect',
         'outdatedbrowser',
         'amplify',
-        'domReady!'
+        'domReady!',
     ], function (Application, routes, C, Common, E, GoogleAnalyticsManager, log) {
 
         outdatedBrowser({
@@ -298,10 +300,14 @@ require([
 
         Common.setLocale(requirejs.s.contexts._.config.locale);
 
-/*        // Mapping GoogleAnalyticsManager
-        amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
-        amplify.publish(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
-        */
+        // Adds .waves-effect and .waves-light to <button> elems
+        //Waves.attach('button', 'waves-light');
+
+
+        /*        // Mapping GoogleAnalyticsManager
+                amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
+                */
 
         // setting global LOGLEVEL level
         log.setLevel(C.LOGLEVEL);

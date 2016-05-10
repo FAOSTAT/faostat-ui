@@ -1,9 +1,9 @@
 {{#if addPanel}}
-    <div class="panel panel-default {{#if class}}{{class}}{{/if}}" {{#if style}}style="{{style}}"{{/if}}>
+    <div class="panel panel-default hoverable {{#if class}}{{class}}{{/if}}" {{#if style}}style="{{style}}"{{/if}}>
         <div class="panel-heading">
             {{#if addExport}}
                 <div class="pull-right">
-                    <a class="btn btn-default" data-role="export"><i class="fa fa-download"></i> {{download_data}}</a>
+                    <a class="btn-floating waves-effect waves-light btn-default" data-role="export"><i class="material-icons">file_download</i> </a>
                 </div>
             {{/if}}
             <h5>{{title}}</h5>

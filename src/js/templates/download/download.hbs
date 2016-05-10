@@ -27,15 +27,15 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-7 col-sm-9">
-        <h1 class="truncate" data-toggle="modal" data-target="#fs-data-tree-domain-modal"
-            data-role="domain-title"></h1>
+    <div class="col-xs-7 col-sm-9 clearfix">
+        <a data-toggle="modal" data-target="#fs-data-tree-domain-modal" class="pull-left btn-floating waves-effect waves-light btn-primary fs-btn-tree" data-role="export"><i class="material-icons">menu</i> </a>
+        <h1 class="truncate" data-role="domain-title"></h1>
     </div>
     <div class="col-xs-5 col-sm-3 clearfix">
         <!-- TODO: use Common.getURI(ROUTE.DATA)-->
-        <a href="#en/data" type="button" class="btn btn-default pull-right fs-section-back"
+        <a href="#en/data" type="button" class="btn btn-link pull-right fs-section-back"
            id="fs-browse-by-country-profile-back">
-            <i class="fa fa-arrow-left"></i>
+            <i class="left material-icons">undo</i>
             Back to domains' list
         </a>
     </div>
@@ -51,9 +51,7 @@
               <li role='presentation' style="padding-top:5px;">
                             <i class="fa fa-bars fa-lg" aria-hidden="true" style="cursor:pointer;" data-role="fs-domains-menu"></i>
                         </li>-->
-            <li role='presentation'>
-                <a href='#browse' data-section='browse_by_domain_code' role='tab' data-toggle='tab'>{{browse}}</a>
-            </li>
+
             <!--
              <li role='presentation'>
                 <a href='#bulk_downloads' data-section='bulk' role='tab' data-toggle='tab'>{{bulk_downloads}}</a>
@@ -66,6 +64,9 @@
             <li role='presentation'>
                 <a href='#interactive_download' data-section='interactive' role='tab'
                    data-toggle='tab'>{{interactive_download}}</a>
+            </li>
+            <li role='presentation'>
+                <a href='#browse' data-section='browse_by_domain_code' role='tab' data-toggle='tab'>{{browse}}</a>
             </li>
             <li role='presentation'>
                 <a style='display:none' href='#report' data-section='report' role='tab' data-toggle='tab'>{{report}}</a>
@@ -84,8 +85,7 @@
         <!-- Container tab-panels -->
         <div class="tab-content">
             <div class="tab-pane" id="about" data-section='about'></div>
-            <div class="tab-pane" id="interactive_download" data-section='interactive_download'>
-            </div>
+            <div class="tab-pane" id="interactive_download" data-section='interactive_download'></div>
             <div class="tab-pane" id="report" data-section='report'></div>
             <div class="tab-pane" id="bulk_downloads" data-section='bulk_downloads'></div>
             <div class="tab-pane" id="metadata" data-section='metadata'></div>
@@ -97,55 +97,69 @@
 
     <div class='col-md-3 fs-data-padding-top'>
 
-        <h4 data-role="domain-title"></h4>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 data-role="domain-title"></h4>
+            </div>
+            <div class="panel-body" >
+                <!-- Description -->
+                <div data-role="description">
 
-        <!-- Description -->
-        <div data-role="description">
+                    <p data-role="text"></p>
+                </div>
 
-            <p data-role="text"></p>
+                <!-- Organization -->
+                <div data-role="organization">
+                    <small data-role="text"></small>
+                </div>
+
+
+            </div>
+            <div class="panel-footer amber lighten-4">
+
+                <div>
+                    <h5>Bulk Downloads</h5>
+                    <ul  class="list-unstyled list-download" data-role="bulk-downloads-caret"></ul>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <h5>{{metadata}}</h5>
+                <ul class="list-unstyled list-download">
+                    <li><a  target='_blank' data-role="fs-download-metadata-button">  {{metadata}} </a></li>
+                </ul>
+
+            </div>
+            <div class="panel-footer">
+
+                <!-- Last Update -->
+                <div data-role="last-update">
+                    <p class="label label-default label-aligned">{{last_update}}Last update</p>
+
+                    <p data-role="date"></p>
+                </div>
+
+                <!-- Contacts -->
+                <div data-role="contact-name">
+                    <p class="label label-default label-aligned">{{contacts}}Contacts</p>
+
+                    <p data-role="text"></p>
+                </div>
+
+                <!-- Email -->
+                <div data-role="contact-email" style="display:none">
+                    <p class="label label-default label-aligned">{{contacts_email}}Contacts Email</p>
+
+                    <p data-role="text"></p>
+                </div>
+
+                <p class="label label-default label-aligned">{{related_documents}}</p>
+
+                <div data-role="fs-download-related-documents"></div>
+
+            </div>
         </div>
 
-        <!-- Organization -->
-        <div data-role="organization">
-            <small data-role="text"></small>
-        </div>
 
-        <hr>
-        <div>
-            <p class="label label-default label-aligned">Download all data</p>
-            <ul style="height: auto; max-height: 250px; overflow-x: hidden;" class="list-unstyled list-indent"
-                data-role="bulk-downloads-caret"></ul>
-        </div>
-
-        <div>
-            <p class="label label-default label-aligned">{{metadata}}</p>
-            <ul class="list-unstyled list-indent">
-                <li><a target='_blank' data-role="fs-download-metadata-button">  {{metadata}} </a></li>
-            </ul>
-
-
-        </div>
-
-        <!-- Last Update -->
-        <div data-role="last-update">
-            <p class="label label-default label-aligned">{{last_update}}Last update</p>
-
-            <p data-role="date"></p>
-        </div>
-
-        <!-- Contacts -->
-        <div data-role="contact-name">
-            <p class="label label-default label-aligned">{{contacts}}Contacts</p>
-
-            <p data-role="text"></p>
-        </div>
-
-        <!-- Email -->
-        <div data-role="contact-email" style="display:none">
-            <p class="label label-default label-aligned">{{contacts_email}}Contacts Email</p>
-
-            <p data-role="text"></p>
-        </div>
 
         <!-- Bulk Downloads -->
         <!--<div class="btn-group btn-block">
@@ -174,9 +188,7 @@
 
                 <br>
                 -->
-        <p class="label label-default label-aligned">{{related_documents}}</p>
 
-        <div data-role="fs-download-related-documents"></div>
 
 
     </div>

@@ -678,7 +678,7 @@ define([
 
                 var data = json.data,
                     // TODO: load it with an external template
-                    template = "{{#each data}}<li><a target='_blank' data-filename='{{this.FileName}}' href='{{this.url}}'>{{this.FileContent}}</a></li>{{/each}}",
+                    template = "{{#each data}}<li><a target='_blank'  data-filename='{{this.FileName}}' href='{{this.url}}'>{{this.FileContent}}</a></li>{{/each}}",
                     t = Handlebars.compile(template);
 
                 if(data.length > 0) {
