@@ -765,7 +765,7 @@ define([
                     new TextWrapper().render({
                         container: $container,
                         text: text,
-                        length: 250
+                        length: 150
                     });
 
 
