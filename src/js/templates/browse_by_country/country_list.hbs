@@ -1,16 +1,39 @@
-<!--<ul class="list">-->
-<ul class="list">
-    {{#each list}}
-        <div class="col-md-3">
-            {{#each letter}}
-                    {{#each this}}
-                        <h1>{{@key}}</h1>
-                        {{#each data}}
-                            <p><a href="#" class="fs-browse-by-country-search" style="color: black" data-id="{{code}}">{{i18n label}}</a></p>
+<div class="col-xs-12">
+
+    <h1>Country Profiles</h1>
+
+    <ul class="nav nav-tabs" role="tablist">
+
+        <li role="presentation" class="active">
+            <a href="#country_list" data-section="country_list" role="tab" data-toggle="tab"
+               aria-expanded="true">
+                Country list
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+<div class="col-xs-12">
+
+    <div class="row">
+
+        <ul class="list list-unstyled">
+
+            {{#each list}}
+                <div class="col-md-3">
+                    {{#each letter}}
+                        {{#each this}}
+                            <h1>{{@key}}</h1>
+                            {{#each data}}
+                                <p><a href="#" class="fs-browse-by-country-search" data-id="{{code}}">{{i18n label}}</a></p>
+                            {{/each}}
                         {{/each}}
+                        <hr>
                     {{/each}}
-                <hr>
+                </div>
             {{/each}}
-        </div>
-    {{/each}}
-</ul>
+
+        </ul>
+    </div>
+</div>
