@@ -1,12 +1,15 @@
 
-
-
 <script type='text/x-handlebars-template' id='template'>
     {{#if documents}}
-        <ul style="list-style-type: none; padding: 0; margin: 0;">
+        <ul class="list-unstyled list-download">
             {{#each documents}}
-                <li style="margin-top:15px;">
-                    <a target='_blank' data-filename='{{FileName}}' href='{{base_url}}{{FileName}}'><i class="fa fa-file-pdf-o"></i> {{FileTitle}}</a>
+                <li>
+                    <a target='_blank' data-filename='{{FileName}}' href='{{base_url}}{{FileName}}'
+                       class="">
+                        <!--<i class="material-icons left">picture_as_pdf</i>-->
+                        {{FileTitle}}
+                    </a>
+
                 </li>
             {{/each}}
         </ul>

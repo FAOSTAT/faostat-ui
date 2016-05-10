@@ -1,8 +1,6 @@
 
 
 
-
-
 <div class="row" id="fs-browse-by-country-list-container" style="display:none">
 
     <!--<div class="col-xs-12">-->
@@ -25,11 +23,20 @@
 <div id="fs-browse-by-country-profile" style="display:none">
 
     <div class="row">
-        <div class="col-md-12 clearfix">
-            <h1 class="truncate pull-left fs-section-title" id="fs-browse-by-country-profile-title"></h1>
-            <button class="btn btn-default pull-right fs-section-back" id="fs-browse-by-country-profile-back"><i class="fa fa-arrow-left"></i>  {{back_to_country_list}}</button>
+        <div class="col-xs-7 col-sm-9 clearfix">
+            <h1 class="truncate fs-section-title" id="fs-browse-by-country-profile-title"></h1>
+        </div>
+        <div class="col-xs-5 col-sm-3 clearfix">
+            <!-- TODO: use Common.getURI(ROUTE.DATA)-->
+            <a type="button" class="btn btn-link pull-right fs-section-back"
+               id="fs-browse-by-country-profile-back">
+                <i class="left material-icons">undo</i>
+                {{back_to_country_list}}
+            </a>
+
         </div>
     </div>
+
 
 
     <div id="fs-browse-by-country-profile-map" style="height: 250px;"></div>
