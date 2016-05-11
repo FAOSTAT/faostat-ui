@@ -9,7 +9,7 @@ define([
     return Controller.extend({
 
         show: function (params, section) {
-            console.log("download-controller.show()");
+            console.log("download-metadata-controller.show()");
             this.view = new View({
                 region: 'main',
                 section: section,
@@ -17,10 +17,13 @@ define([
             });
         },
 
-
         show_interactive_download: function (params) {
             this.show(params, 'interactive');
         },
+
+        show_metadata: function (params) {
+            this.show(params, 'metadata');
+        }
 
     });
 

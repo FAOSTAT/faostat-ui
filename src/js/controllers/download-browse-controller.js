@@ -7,20 +7,20 @@ define([
     'use strict';
 
     return Controller.extend({
+        
 
         show: function (params, section) {
-            console.log("download-controller.show()");
+            console.log("download-browse-controller.show()");
             this.view = new View({
                 region: 'main',
                 section: section,
                 code: params.code.toUpperCase()
             });
         },
-
-
-        show_interactive_download: function (params) {
-            this.show(params, 'interactive');
-        },
+        
+        show_browse: function (params) {
+            this.show(params, 'browse_by_domain_code');
+        }
 
     });
 

@@ -9,7 +9,7 @@ define([
     'config/Events',
     'globals/Common',
     'config/Routes',
-    'text!templates/download/download.hbs',
+    'text!templates/download/download2.hbs',
     'i18n!nls/download',
     'FAOSTAT_UI_TREE',
     //'fs-r-p/start',
@@ -179,13 +179,23 @@ define([
 
                     onClick: function (callback) {
 
-                        callback.type = self.tree.getCodeType();
+                        self.o.selected = $.extend(true, {}, callback, { type:  self.tree.getCodeType()});
 
-                        self.updateSection(callback);
+                        if (self.o.selected.type === "domain") {
 
-                        self.changeState();
+                           // self.$TREE_MODAL.modal('hide');
+                            self.$TREE_MODAL.data('dismiss', "modal");
 
-                        self.$TREE_MODAL.modal('hide');
+                            //self.updateSection();
+
+                            self.changeState();
+
+                        } else {
+
+                            // expand collapse tree
+                            log.info(self.o.selected);
+
+                        }
 
                         amplify.publish(E.SCROLL_TO_SELECTOR, {
                             container: self.$MAIN_CONTAINER_TITLE
@@ -197,10 +207,10 @@ define([
 
                     onTreeRendered: function (callback) {
 
-                        callback.type = self.tree.getCodeType();
+                        self.o.selected = $.extend(true, {}, callback, { type:  self.tree.getCodeType()});
 
                         // TODO: this can be outside the tree rendering. It's missing hte label and the "node" type.
-                        self.updateSection(callback);
+                        self.updateSection();
 
                     }
 
@@ -209,11 +219,11 @@ define([
 
         },
 
-        updateSection: function(options) {
+        updateSection: function() {
 
-            this.o.selected = $.extend(true, {}, options);
+            //this.o.selected = $.extend(true, {}, options);
 
-            log.info("Download.updateSection", this.o.selected, options);
+            log.info("Download.updateSection", this.o.selected);
 
             this.switchTabs();
 
@@ -443,6 +453,8 @@ define([
 
             Require(['fs-i-d/start'], _.bind(function(InteractiveDownload) {
 
+                log.info(this)
+                log.info(InteractiveDownload)
                 this.interactiveDownload = new InteractiveDownload();
                 this.interactiveDownload.init({
                     container: this._createRandomElement(this.$INTERACTIVE_DOWNLOAD),
@@ -523,12 +535,6 @@ define([
 
         _browseByDomain: function(options) {
 
-            // disposing the old domain view (in theory should be already destroyed()
-            // TODO: this should be performed on tab switching
-            if (this.viewDomain && _.isFunction(this.viewDomain.dispose)) {
-                this.viewDomain.dispose();
-            }
-
             this.$BROWSE.empty();
 
             // TODO: probably should be avoided
@@ -584,7 +590,7 @@ define([
 
                 self.o.section = $(e.target).data("section"); // activated tab
 
-                self.switchTabs(self.o.section, self.o.selected);
+                //self.switchTabs(self.o.section, self.o.selected);
 
                 self.changeState();
 
@@ -884,11 +890,17 @@ define([
 
         dispose: function () {
 
-            log.info("Download.dispose;");
+            // dirty fix on modal
+            // TODO: fix modal on close
+            this.$TREE_MODAL.modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+            this.destroySections();
 
             this.unbindEventListeners();
 
-            this.destroySections();
+            this.$el.empty();
 
             View.prototype.dispose.call(this, arguments);
 
