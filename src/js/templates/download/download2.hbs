@@ -7,9 +7,7 @@
             <div class="modal-content">
 
                 <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <span class="label label-default">{{faostat_domains}}</span>
                     <input class='form-control' placeholder='{{filter_domain_tree}}' id='fs-download-tree-search'>
                     <br>
@@ -62,11 +60,15 @@
             </li>
             -->
             <li role='presentation'>
-                <a href='#interactive_download' data-section='interactive' role='tab'
-                   data-toggle='tab'>{{interactive_download}}</a>
+                <a href='#interactive_download' data-section='interactive' role='tab' data-toggle='tab'>
+                    <!--{{interactive_download}}-->
+                    Download Data
+                </a>
             </li>
             <li role='presentation'>
-                <a href='#browse' data-section='browse_by_domain_code' role='tab' data-toggle='tab'>{{browse}}</a>
+                <a href='#browse' data-section='browse_by_domain_code' role='tab' data-toggle='tab'>
+                    Visualize Data
+                </a>
             </li>
             <li role='presentation'>
                 <a style='display:none' href='#report' data-section='report' role='tab' data-toggle='tab'>{{report}}</a>
@@ -89,8 +91,7 @@
             <div class="tab-pane" id="report" data-section='report'></div>
             <div class="tab-pane" id="bulk_downloads" data-section='bulk_downloads'></div>
             <div class="tab-pane" id="metadata" data-section='metadata'></div>
-            <div class="tab-pane" id="browse" data-section='browse_by_domain_code'>
-            </div>
+            <div class="tab-pane" id="browse" data-section='browse_by_domain_code'></div>
         </div>
 
     </div>
@@ -102,18 +103,10 @@
                 <h4 data-role="domain-title"></h4>
             </div>
 
-            <div class="panel-footer amber lighten-3">
-
-                <div>
-                    <h5>Bulk Downloads</h5>
-                    <ul class="list-unstyled list-download" data-role="bulk-downloads-caret"></ul>
-                </div>
-            </div>
-
             <div class="panel-body" >
+
                 <!-- Description -->
                 <div data-role="description">
-
                     <p data-role="text"></p>
                 </div>
 
@@ -124,6 +117,15 @@
 
             </div>
 
+
+            <div class="panel-footer amber lighten-3">
+
+                <div>
+                    <h5>Bulk Downloads</h5>
+                    <ul class="list-unstyled list-download" data-role="bulk-downloads-caret"></ul>
+                </div>
+            </div>
+            
             <div class="panel-footer">
 
                 <!-- Last Update -->
