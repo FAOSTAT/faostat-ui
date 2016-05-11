@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-xs-7 col-sm-9 clearfix">
         <a data-toggle="modal" data-target="#fs-data-tree-domain-modal"
-           class="pull-left btn-floating waves-effect waves-light red fs-btn-tree" data-role="export">
+           class="pull-left btn-floating waves-effect waves-light btn-primary fs-btn-tree" data-role="export">
             <!--<i class="material-icons">toc</i>-->
             <!--<i class="material-icons">perm_data_setting</i>-->
             <i class="material-icons">keyboard_arrow_down</i>
@@ -121,7 +121,7 @@
             </div>
 
 
-            <div class="panel-footer amber lighten-3">
+            <div class="panel-footer amber lighten-4">
 
                 <div>
                     <h5>Bulk Downloads</h5>
@@ -201,6 +201,23 @@
 
 <div class='row'>
     <div class='col-xs-12'>
-        <div id='fs-download-output-area'></div>
+        <div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Preview Data</h4>
+                </div>
+                <div class="panel-body fs-output-preview">
+
+                    <h5 class="text-center fs-output-preview-message">
+                        <span class="fs-icojam-icon icojam_rotate_4"></span><br>
+                        Please make a selection above
+
+
+                    </h5>
+                    <div data-role="output-content"></div>
+                    <div id='fs-download-output-area'></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

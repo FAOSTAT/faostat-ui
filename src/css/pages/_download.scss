@@ -134,3 +134,22 @@
   margin-left: 0;
   margin-top: 15px;
 }
+
+
+.fs-output-preview{
+  min-height: 200px;
+  position: relative;
+
+  .fs-output-preview-message{
+    position: absolute;
+    top: 45%;
+    width: calc(100% - 30px);
+    @include fx-transfor-me(translateY(-50%));
+    margin: 0;
+  }
+
+  .fs-icojam-icon{
+    font-size: 45px;
+  }
+
+}
