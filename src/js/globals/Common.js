@@ -40,7 +40,8 @@ define(['chaplin',
 
             //# TODO: if trigger should be set on false or true and the difference
             //Backbone.history.navigate(uri, {trigger: reload});
-            Backbone.history.navigate(uri, {trigger: reload});
+            //Backbone.history.navigate(uri, {trigger: false});
+            Backbone.history.navigate(uri, {trigger: true});
 
             // Google Analytics change page
             log.info("Common.changeURL; google analytics page_view");
