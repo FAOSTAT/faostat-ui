@@ -46,6 +46,8 @@ define([
 
     };
 
+    // TODO: fix routing
+    
     StandardsView = View.extend({
 
         autoRender: true,
@@ -112,7 +114,7 @@ define([
                 var section = $(e.target).data("section"); // activated tab
 
                 // switch tab
-                self.switchStandardsTab(section);
+                //self.switchStandardsTab(section);
 
                 // TODO: check why if was at "true"
                 Common.changeURL(section, [], false);
@@ -218,6 +220,8 @@ define([
 
             this.unbindEventListeners();
 
+            log.info(this)
+
             // TODO: all the dispose
             if ( this.view_units !== undefined) {
                 this.view_units.dispose();
@@ -235,7 +239,10 @@ define([
                 this.view_methodology.dispose();
             }
 
+            this.$el.empty();
+
             View.prototype.dispose.call(this, arguments);
+
         }
     });
 
