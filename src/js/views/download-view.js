@@ -71,8 +71,6 @@ define([
             BULK_CARET: "[data-role='bulk-downloads-caret']",
 
             // Tree
-            MENU_TREE: '[data-role="fs-domains-menu"]',
-            TREE_CONTAINER: '[data-role="fs-domains-tree-container"]',
             TREE_CLOSE: '[data-role="fs-domains-tree-container-close"]',
 
             // this is used to change the link to the interactive download
@@ -146,9 +144,6 @@ define([
             this.$ABOUT = this.$el.find(s.ABOUT);
             this.$MAIN_CONTAINER_TITLE = this.$el.find(s.MAIN_CONTAINER_TITLE);
             this.$BROWSE = this.$el.find(s.BROWSE);
-            this.$MENU_TREE = this.$el.find(s.MENU_TREE);
-            this.$TREE_CONTAINER = this.$el.find(s.TREE_CONTAINER);
-            this.$TREE_CLOSE = this.$el.find(s.TREE_CLOSE);
             this.$RELATED_DOCUMENTS = this.$el.find(s.RELATED_DOCUMENTS);
             this.$BULK_SIDEBAR = this.$el.find(s.BULK_SIDEBAR);
             this.$BULK_CARET = this.$el.find(s.BULK_CARET);
@@ -183,12 +178,21 @@ define([
 
                         if (self.o.selected.type === "domain") {
 
-                           // self.$TREE_MODAL.modal('hide');
-                            self.$TREE_MODAL.data('dismiss', "modal");
+                            self.$TREE_MODAL.modal('hide');
+                            $('.modal-backdrop').remove();
+
+                            //self.$TREE_MODAL.modal('hide');
+                            //self.$TREE_MODAL.data('dismiss', "modal");
 
                             //self.updateSection();
 
                             self.changeState();
+
+/*                            amplify.publish(E.SCROLL_TO_SELECTOR, {
+                                container: self.$MAIN_CONTAINER_TITLE
+                            });*/
+
+                            //self.$TREE_CONTAINER.hide();
 
                         } else {
 
@@ -196,12 +200,6 @@ define([
                             log.info(self.o.selected);
 
                         }
-
-                        amplify.publish(E.SCROLL_TO_SELECTOR, {
-                            container: self.$MAIN_CONTAINER_TITLE
-                        });
-
-                        self.$TREE_CONTAINER.hide();
 
                     },
 
@@ -596,20 +594,6 @@ define([
 
             });
 
-            this.$MENU_TREE.on('click', function() {
-
-                self.$TREE_CONTAINER.toggle({
-                    direction: 'left'
-                }, 500);
-                
-            });
-
-            this.$TREE_CLOSE.on('click', function() {
-                self.$TREE_CONTAINER.hide({
-                    direction: 'left'
-                }, 500);
-            });
-
             this.$METADATA_BUTTON.on('click', function() {
 
                 if (self.o.hasOwnProperty("selected")) {
@@ -643,13 +627,6 @@ define([
 
             // unbind tabs listeners
             this.$el.find('a[data-toggle="tab"]').off('shown.bs.tab');
-
-            if (this.$MENU_TREE) {
-                this.$MENU_TREE.off('click');
-            }
-            if (this.$TREE_CLOSE) {
-                this.$TREE_CLOSE.off('click');
-            }
 
         },
 
@@ -892,9 +869,9 @@ define([
 
             // dirty fix on modal
             // TODO: fix modal on close
-            this.$TREE_MODAL.modal('hide');
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
+            this.$TREE_MODAL.remove();
+            //$('body').removeClass('modal-open');
+           // $('.modal-backdrop').remove();
 
             this.destroySections();
 
