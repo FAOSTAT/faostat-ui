@@ -9,7 +9,7 @@ define([
     'config/Events',
     'globals/Common',
     'config/Routes',
-    'text!templates/download/download2.hbs',
+    'text!templates/download/download.hbs',
     'i18n!nls/download',
     'FAOSTAT_UI_TREE',
     //'fs-r-p/start',

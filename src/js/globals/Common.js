@@ -39,7 +39,6 @@ define(['chaplin',
             //console.warn('TODO Common.changeURL: check if the Backbone trigger should be set on true or false');
 
             //# TODO: if trigger should be set on false or true and the difference
-            //Backbone.history.navigate(uri, {trigger: reload});
             //Backbone.history.navigate(uri, {trigger: false});
             Backbone.history.navigate(uri, {trigger: true});
 
