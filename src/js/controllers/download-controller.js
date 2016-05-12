@@ -16,11 +16,10 @@ define([
                 code: params.code.toUpperCase()
             });
         },
-
-
+        
         show_interactive_download: function (params) {
             this.show(params, 'interactive');
-        },
+        }
 
     });
 

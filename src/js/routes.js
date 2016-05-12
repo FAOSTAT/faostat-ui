@@ -48,7 +48,7 @@ define(['config/Routes'], function (ROUTE) {
         // match(':lang/data/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
         match(':lang/data/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
         match(':lang/data/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
-        match(':lang/data/report/:code', 'download#show_report', {name: ROUTE.DOWNLOAD_REPORT});
+        match(':lang/data/report/:code', 'download-report#show_report', {name: ROUTE.DOWNLOAD_REPORT});
         // match(':lang/data/browse/:code', 'download#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
         match(':lang/data/:code/visualize', 'download-browse#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
         // match(':lang/data/:code/browse', 'download#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});

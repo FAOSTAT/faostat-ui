@@ -17,8 +17,8 @@ define([
             });
         },
 
-        show_metadata: function (params) {
-            this.show(params, 'metadata');
+        show_report: function (params) {
+            this.show(params, 'report');
         }
 
     });
