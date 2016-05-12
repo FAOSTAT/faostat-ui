@@ -71,6 +71,9 @@ define([
         this.$SEARCH = this.$CONTAINER.find(s.SEARCH);
         this.$NO_DATA = this.$CONTAINER.find(s.NO_DATA);
 
+        // focus on search
+        this.$SEARCH.focus();
+
     };
 
     Groups.prototype._configurePage = function() {
