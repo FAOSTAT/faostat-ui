@@ -40,6 +40,13 @@
 
 }
 
+.fs-download-selector-filter{
+  @include fx-no-border-radius;
+  @include fx-no-border;
+  @include fx-noshadow;
+  border-bottom: 1px solid $fenix-light-hr;
+}
+
 .faostat-download-selector-resume-holder{
   margin-top: 5px;
 

@@ -7998,6 +7998,33 @@ footer.fao-footer {
   .faostat-downlaod-selector-single .panel-footer .btn-group .btn {
     width: 50%; }
 
+.fs-download-selector-filter {
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-bottom: 1px solid #dddddd; }
+
 .faostat-download-selector-resume-holder {
   margin-top: 5px; }
   .faostat-download-selector-resume-holder .faostat-summary-item {
