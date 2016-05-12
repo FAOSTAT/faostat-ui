@@ -33,3 +33,11 @@
 .jstree-default > .jstree-wholerow-ul .jstree-hovered, .jstree-default > .jstree-wholerow-ul .jstree-clicked {
 
 }
+
+
+
+.jstree-wholerow-clicked.jstree-wholerow-hovered{
+  background: none;
+  background-color: lighten($fx-main-color-lighter, 5%);
+}
+

@@ -2639,7 +2639,11 @@ footer.container {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  opacity: .65; }
+  opacity: .45; }
+
+.panel-border {
+  border: 1px solid #dddddd;
+  margin-bottom: 15px; }
 
 /* Table Style */
 .fs-table, .fs-pivot {
@@ -7916,6 +7920,10 @@ footer.fao-footer {
   background: none;
   background-color: #cfe1f2; }
 
+.jstree-wholerow-clicked.jstree-wholerow-hovered {
+  background: none;
+  background-color: #e3eef7; }
+
 /* Pages */
 .fs-browse-view-padding {
   margin-top: 30px; }
@@ -7958,6 +7966,9 @@ footer.fao-footer {
   max-height: 750px;
   overflow-y: auto;
   overflow-x: hidden; }
+
+.fs-download-domain-title .domain-icon {
+  display: inline-block; }
 
 .faostat-downlaod-selector-single .panel-body {
   padding: 0; }
@@ -8051,7 +8062,7 @@ footer.fao-footer {
     font-size: 45px; }
 
 .fs-download-options {
-  margin-bottom: 50px; }
+  margin-bottom: 0; }
   .fs-download-options .fs-download-option-title {
     margin-top: 0; }
   .fs-download-options button {

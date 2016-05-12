@@ -315,8 +315,17 @@ footer.container{
   cursor: not-allowed;
   filter: alpha(opacity=65);
   @include fx-noshadow();
-  opacity: .65;
+  opacity: .45;
 }
+
+.panel-border{
+  border: 1px solid $fenix-light-hr;
+  //margin: 15px;
+  margin-bottom: 15px;
+
+
+}
+
 
 /* Table Style */
 
