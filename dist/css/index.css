@@ -7947,9 +7947,6 @@ footer.fao-footer {
 .groups-list li {
   border-bottom: 1px solid #dddddd; }
 
-.domain-group-list span {
-  position: relative;
-  top: 7px; }
 .domain-group-list .domanis-list {
   padding-left: 50px;
   margin-bottom: 10px; }
@@ -7960,6 +7957,30 @@ footer.fao-footer {
 
 [data-role="groups-list"] {
   padding-top: 25px; }
+
+/* Masonry-like patch for columns */
+.row-mason {
+  -moz-column-width: 20em;
+  -webkit-column-width: 20em;
+  -moz-column-gap: 2em;
+  -webkit-column-gap: 2em; }
+
+.menu-category {
+  display: inline-block;
+  margin: 0.25rem;
+  padding: 1rem;
+  width: 100%; }
+
+.fs-data-group-title {
+  position: relative;
+  padding-left: 47px; }
+  .fs-data-group-title span {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%); }
 
 /* Download */
 .fs-download-domain-tree {

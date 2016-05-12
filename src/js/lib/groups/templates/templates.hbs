@@ -1,6 +1,6 @@
 <script type='text/x-handlebars-template' id='template'>
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col-sm-12">
 
             <ul class="nav nav-tabs" role="tablist">
 
@@ -13,42 +13,53 @@
             </ul>
             <br>
 
-            <div style="display:none" data-role="no-data">{{no_data_available}}</div>
 
 
-            <input data-role="search" type="text" class="form-control" placeholder="Search for a Domain">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 col-sm-offset-2 control-label">Search for a domain</label>
+                    <div class="col-sm-5">
+                        <input data-role="search" type="text" class="form-control" placeholder="E.g. Crops">
+                    </div>
+                </div>
+            </form>
+
+
+
+
 
             <div data-role="groups"></div>
 
+            <div style="display:none" data-role="no-data">{{no_data_available}}</div>
+
         </div>
-        <div class="col-sm-3 hidden-xs">
+        <!--<div class="col-sm-3 hidden-xs">-->
 
 
-            <div data-role="groups-list"></div>
-        </div>
+            <!--<div data-role="groups-list"></div>-->
+        <!--</div>-->
     </div>
 </script>
 
 <script type='text/x-handlebars-template' id='groups'>
 
 
-    {{#each this}}
+    <div class="menu row-mason">
 
-        {{#if this.rowStart}}
-        <div class="row">
-            <div class="row-height">
-        {{/if}}
+        {{#each this}}
 
-            <div class="col-md-6 col-md-height instafilta-section domain-group-list" data-section="{{this.group_code}}">
+            <div class="menu-category instafilta-section domain-group-list" data-section="{{this.group_code}}">
 
-                <h4>
-                       <span data-role="go_to_download"
-                             class="domain-icon icojam_{{this.group_code}}">
-                       </span>
-                    <a style="color: #333333;" class="truncate">
-                        {{this.title}}
-                    </a>
-                </h4>
+
+
+                <h1 class="fs-data-group-title">
+                    <span data-role="go_to_download"
+                          class="domain-icon icojam_{{this.group_code}}">
+                   </span>
+                    {{this.title}}
+                </h1>
+
+
 
                 <ul class="list-unstyled">
 
@@ -63,17 +74,12 @@
 
                 </ul>
 
-
-
             </div>
 
-        {{#if this.rowEnd}}
-            </div>
+        {{/each}}
 
-        </div>
-        {{/if}}
+    </div>
 
-    {{/each}}
 
 
     <!--<div class="row">-->
