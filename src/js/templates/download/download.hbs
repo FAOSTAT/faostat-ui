@@ -201,21 +201,33 @@
 
 <div class='row'>
     <div class='col-xs-12'>
-        <div>
+        <div class="fs-preview-container">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>Preview Data</h4>
+
+
+                <div class="panel-heading clearfix">
+                    <div class="pull-right">
+                        <a class="btn-floating waves-effect waves-light btn-default disabled" data-role="export"><i class="material-icons">file_download</i> </a>
+                    </div>
+                    <h4>Show Data</h4>
                 </div>
+
+
+
+
                 <div class="panel-body fs-output-preview">
+
+                    <h3 class="text-center">
+                        Where is the data?
+                    </h3>
 
                     <h5 class="text-center fs-output-preview-message">
                         <span class="fs-icojam-icon icojam_rotate_4"></span><br>
                         Please make a selection above
 
-
                     </h5>
                     <div data-role="output-content"></div>
-                    <div id='fs-download-output-area'></div>
+                    <div id='fs-download-output-area' class="fs-download-output-area"></div>
                 </div>
             </div>
         </div>

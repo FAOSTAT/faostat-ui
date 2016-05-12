@@ -153,3 +153,62 @@
   }
 
 }
+
+
+
+
+.fs-download-options{
+
+  margin-bottom: 50px;
+
+
+  .fs-download-option-title{
+    margin-top: 0;
+  }
+
+  button{
+    margin-bottom: 0;
+  }
+
+
+  [data-role="options"]{
+    margin-bottom: 15px;
+  }
+
+
+
+  hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+
+
+  .list-inline>li{
+    padding: 0;
+  }
+
+  input[type="checkbox"] + label, input[type="radio"] + label {
+    font-size: 12px;
+    margin: 0 6px;
+  }
+
+  input[type="checkbox"] + label:before{
+    @include fx-border-radius(0);
+  }
+
+
+}
+
+.fs-preview-container{
+  .btn-floating{
+    margin: 0;
+  }
+}
+
+.fs-download-output-area{
+
+
+
+
+}

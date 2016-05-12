@@ -76,14 +76,14 @@ define([
                         "fr": "Alimentation et production agricole"
                     },
                     "views": [
-                        {
+                       /* {
                             title: {
                                 "en": "Commodities by regions",
                                 "es": "Productos por regiones",
                                 "fr": "Produits par régions"
                             },
                             "id": "commodities_by_regions"
-                        },
+                        },*/
                         {
                             title: {
                                 "en": "Commodities by country",

@@ -28,6 +28,7 @@ define([
                 thousand_separator: ''
             },
             template: {
+                tableClass: "fs-table",
                 tableOptions: {
                     next_text: _s.capitalize(i18n.next),
                     previous_text: _s.capitalize(i18n.previous),

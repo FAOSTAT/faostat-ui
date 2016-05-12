@@ -59,7 +59,7 @@ define([
 
                 this.api = new FAOSTATClientAPI();
 
-                this.changeState(ROUTE.BROWSE_BY_COUNTRY);
+                //this.changeState(ROUTE.BROWSE_BY_COUNTRY);
 
             },
 
@@ -197,7 +197,7 @@ define([
                         this.o.code = $(e.target).data("id");
                         this.o.section = ROUTE.BROWSE_BY_COUNTRY_CODE;
 
-                        this.renderCountryProfile();
+                        //this.renderCountryProfile();
 
                         // routing
                         this.changeState();
@@ -357,7 +357,7 @@ define([
                     this.o.code = null;
                     this.o.section = ROUTE.BROWSE_BY_COUNTRY;
 
-                    this.renderCountryList();
+                    //this.renderCountryList();
 
                     // routing
                     this.changeState();

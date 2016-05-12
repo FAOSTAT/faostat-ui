@@ -122,6 +122,7 @@ define([
                     adapter: {
                     },
                     template: {
+                        tableClass: null,
                         // TODO: add in config
                         height: '650',
                         tableOptions: {

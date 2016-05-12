@@ -1,4 +1,4 @@
-<table class="fs-table" data-role="table"
+<table class="{{#if this.tableClass}}{{this.tableClass}}{{/if}}" data-role="table"
        {{#if tableOptions}}
            data-striped="true"
            data-search="{{#if tableOptions.data-search}}{{tableOptions.data-search}}{{else}}false{{/if}}"

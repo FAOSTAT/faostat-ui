@@ -179,7 +179,7 @@ define([
                         if (self.o.selected.type === "domain") {
 
                             self.$TREE_MODAL.modal('hide');
-                            $('.modal-backdrop').remove();
+                            //$('.modal-backdrop').remove();
 
                             //self.$TREE_MODAL.modal('hide');
                             //self.$TREE_MODAL.data('dismiss', "modal");

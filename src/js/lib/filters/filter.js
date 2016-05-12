@@ -292,9 +292,21 @@ define([
 
     Filter.prototype.unbindEventListeners = function () {
 
+        if (this.$DD) {
+            this.$DD.off('change');
+        }
+
+        if (this.$DD_FROM_YEAR) {
+            this.$DD_FROM_YEAR.off('change');
+        }
+
+        if (this.$DD_TO_YEAR) {
+            this.$DD_TO_YEAR.off('change');
+        }
+
     };
 
-    Filter.prototype.dispose = function () {
+    Filter.prototype.destroy = function () {
 
         this.unbindEventListeners();
     };

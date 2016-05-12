@@ -191,9 +191,12 @@ define([
 
         var f = [];
         try {
-            _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
-                f.push(this.o.filters[filterKey].getFilter());
-            }, this));
+            if (this.o.filters) {
+                _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
+                    log.info(filterKey, this.o.filters);
+                    f.push(this.o.filters[filterKey].getFilter());
+                }, this));
+            }
         }catch (e) {
             log.error(e);
         }
@@ -205,6 +208,17 @@ define([
 
 
     FilterBox.prototype.destroy = function () {
+
+        if (this.o.filters) {
+            _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
+
+                log.info(filterKey, this.o.filters)
+                this.o.filters[filterKey].destroy();
+            }, this));
+
+            delete this.o.filters;
+        }
+
 
         // destroy all filters
         if (this.$CONTAINER !== undefined) {

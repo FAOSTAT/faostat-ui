@@ -140,6 +140,7 @@ define([
                 adapter: {
                 },
                 template: {
+                    tableClass: null,
                     // TODO: add in config
                     height: this.o.table.height,
                     tableOptions: {

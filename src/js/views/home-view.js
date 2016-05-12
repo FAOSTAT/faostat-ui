@@ -77,7 +77,7 @@ define([
                 URL_FAOSTAT_DATABASE_ZIP: C.URL_FAOSTAT_DATABASE_ZIP,
                 URL_COUNTRY_PROFILES: C.URL_COUNTRY_PROFILES,
                 URL_BROWSE_BY_COUNTRY: Common.getURI(ROUTE.BROWSE_BY_COUNTRY),
-                URL_BROWSE_RANKINGS: Common.getURI(ROUTE.BROWSE_RANKINGS_CODE, ['commodities_by_regions']),
+                URL_BROWSE_RANKINGS: Common.getURI(ROUTE.BROWSE_RANKINGS_CODE, ['commodities_by_country']),
                 EMAIL_FAO_STATISTICS: C.EMAIL_FAO_STATISTICS,
                 TELEPHONE_FAO_STATISTICS: C.TELEPHONE_FAO_STATISTICS
             });

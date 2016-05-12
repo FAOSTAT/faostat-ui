@@ -311,3 +311,18 @@ footer.container{
 
 
 
+.btn-floating.disabled {
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  @include fx-noshadow();
+  opacity: .65;
+}
+
+/* Table Style */
+
+.fs-table, .fs-pivot{
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 11px;
+  color: #666666;
+}
+

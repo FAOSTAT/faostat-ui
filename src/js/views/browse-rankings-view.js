@@ -62,7 +62,7 @@ define([
                     this.o.code = CM.defaultCode;
                 }
 
-                this.changeState();
+                //this.changeState();
 
             },
 
@@ -124,14 +124,14 @@ define([
                             this.o.label = callback.label;
 
                             // update view
-                            this.updateView();
+                            //this.updateView();
 
                             // change url state
                             this.changeState();
 
-                            amplify.publish(E.SCROLL_TO_SELECTOR, {
-                                container: self.$VIEW_TITLE
-                            });
+                            //amplify.publish(E.SCROLL_TO_SELECTOR, {
+                            //    container: self.$VIEW_TITLE
+                            //});
 
                         }, this),
 
@@ -306,6 +306,8 @@ define([
                         ViewUtils.addRelatedViews(this.$RELATED_VIEWS, view, _.bind(this.createView, this));
                     }
 
+                    log.info(this.$VIEW.find(s.FILTER_BOX))
+                    log.info(this.$VIEW.find(s.DASHBOARD))
                     this.$FILTER_BOX = this.$VIEW.find(s.FILTER_BOX);
                     this.$DASHBOARD = this.$VIEW.find(s.DASHBOARD);
 
@@ -432,7 +434,7 @@ define([
 
             onFilterInvalidSelection: function() {
 
-                if ( this.dashboard) {
+                if ( this.dashboard && _.isFunction(this.dashboard.destroy)) {
                     this.dashboard.destroy();
                 }
 
@@ -441,6 +443,19 @@ define([
             dispose: function () {
 
                 this.unbindEventListeners();
+
+                if ( this.dashboard && _.isFunction(this.dashboard.destroy)) {
+                    this.dashboard.destroy();
+                }
+
+
+                if ( this.filterBox && _.isFunction(this.filterBox.destroy)) {
+                    this.filterBox.destroy();
+                }
+
+                this.$FILTER_BOX.empty();
+                this.$DASHBOARD.empty();
+                this.$el.empty();
 
                 View.prototype.dispose.call(this, arguments);
             }

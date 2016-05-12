@@ -2633,6 +2633,20 @@ footer.container {
 .label {
   background-color: transparent; }
 
+.btn-floating.disabled {
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  opacity: .65; }
+
+/* Table Style */
+.fs-table, .fs-pivot {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 11px;
+  color: #666666; }
+
 /* Icons */
 /* ELDORADO FONT STANDARD CONFIGURATION*/
 /* Eldorado  */
@@ -8035,6 +8049,31 @@ footer.fao-footer {
     margin: 0; }
   .fs-output-preview .fs-icojam-icon {
     font-size: 45px; }
+
+.fs-download-options {
+  margin-bottom: 50px; }
+  .fs-download-options .fs-download-option-title {
+    margin-top: 0; }
+  .fs-download-options button {
+    margin-bottom: 0; }
+  .fs-download-options [data-role="options"] {
+    margin-bottom: 15px; }
+  .fs-download-options hr {
+    margin-top: 10px;
+    margin-bottom: 10px; }
+  .fs-download-options .list-inline > li {
+    padding: 0; }
+  .fs-download-options input[type="checkbox"] + label, .fs-download-options input[type="radio"] + label {
+    font-size: 12px;
+    margin: 0 6px; }
+  .fs-download-options input[type="checkbox"] + label:before {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0; }
+
+.fs-preview-container .btn-floating {
+  margin: 0; }
 
 /* Homepage */
 .home-content {
