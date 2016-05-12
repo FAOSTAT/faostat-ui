@@ -55,7 +55,7 @@ define([
 
             TREE: "#fs-download-domain-tree",
             SEARCH_TREE: "#fs-download-tree-search",
-            OUTPUT_AREA: "#fs-download-output-area",
+            OUTPUT_CONTAINER: "#fs-download-output-container",
             MAIN_CONTAINER_TITLE: '[data-role="domain-title"]',
 
             REPORT: "#report",
@@ -136,7 +136,7 @@ define([
         initVariables: function () {
 
             this.$TREE = this.$el.find(s.TREE);
-            this.$OUTPUT_AREA = this.$el.find(s.OUTPUT_AREA);
+            this.$OUTPUT_CONTAINER = this.$el.find(s.OUTPUT_CONTAINER);
             this.$REPORT = this.$el.find(s.REPORT);
             this.$BULK = this.$el.find(s.BULK);
             this.$METADATA = this.$el.find(s.METADATA);
@@ -249,9 +249,6 @@ define([
                 type = options.type,
                 date_sanitized = _s.strLeft(_s.replaceAll(options.date_update, '-', '/'), "."),
                 date_update = moment(new Date(date_sanitized)).format("DD MMMM YYYY");
-
-            // this sections should be always cleaned
-            this.$OUTPUT_AREA.empty();
 
             if ( type === 'group') {
                 this.switchTabsGroup(section, options);
@@ -450,14 +447,12 @@ define([
             this.$INTERACTIVE_DOWNLOAD.empty();
 
             Require(['fs-i-d/start'], _.bind(function(InteractiveDownload) {
-
-                log.info(this)
-                log.info(InteractiveDownload)
+                
                 this.interactiveDownload = new InteractiveDownload();
                 this.interactiveDownload.init({
                     container: this._createRandomElement(this.$INTERACTIVE_DOWNLOAD),
                     // to output the table outside the standard output area
-                    output_area: this.$OUTPUT_AREA,
+                    output_container:  this.$OUTPUT_CONTAINER,
                     code: code
                 });
 

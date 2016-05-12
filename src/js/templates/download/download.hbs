@@ -87,146 +87,118 @@
 
 
 
-    <div class='row'>
+<div class='row'>
 
+    <div class='col-md-9 fs-data-padding-top'>
 
-        <div class='col-md-9 fs-data-padding-top'>
-
-            <!-- Container tab-panels -->
-            <div class="tab-content">
-                <div class="tab-pane" id="about" data-section='about'></div>
-                <div class="tab-pane" id="interactive_download" data-section='interactive_download'></div>
-                <div class="tab-pane" id="report" data-section='report'></div>
-                <div class="tab-pane" id="bulk_downloads" data-section='bulk_downloads'></div>
-                <div class="tab-pane" id="metadata" data-section='metadata'></div>
-                <div class="tab-pane" id="browse" data-section='browse_by_domain_code'></div>
-            </div>
-
-        </div>
-
-        <div class='col-md-3 fs-data-padding-top'>
-
-            <div class="panel panel-default hoverable">
-                <div class="panel-heading">
-                    <h4 data-role="domain-title" class="fs-download-domain-title"></h4>
-                </div>
-
-                <div class="panel-body grey lighten-5" >
-
-                    <!-- Description -->
-                    <div data-role="description">
-                        <p data-role="text"></p>
-                    </div>
-
-                    <!-- Organization -->
-                    <div data-role="organization">
-                        <small data-role="text"></small>
-                    </div>
-
-                </div>
-
-
-                <div class="panel-footer amber lighten-4">
-
-                    <div>
-                        <h5><i class="material-icons left">file_download</i>Bulk Downloads</h5>
-                        <ul class="list-unstyled list-download" data-role="bulk-downloads-caret"></ul>
-                    </div>
-                </div>
-
-                <div class="panel-footer grey lighten-5">
-
-                    <!-- Last Update -->
-                    <div data-role="last-update">
-                        <p class="label label-default label-aligned">{{last_update}}Last update</p>
-                        <p data-role="date"></p>
-                    </div>
-
-                    <!-- Contacts -->
-                    <div data-role="contact-name">
-                        <p class="label label-default label-aligned">{{contacts}}Contacts</p>
-
-                        <p data-role="text"></p>
-                    </div>
-
-                    <!--&lt;!&ndash; Group &ndash;&gt;-->
-                    <!--<div data-role="">-->
-                        <!--<p class="label label-default label-aligned">Group</p>-->
-                        <!--<p><span data-role="go_to_download" class="domain-icon icojam_Q"></span></p>-->
-                        <!--<p data-role="text">Commodity Balances - Livestock and Fish Primary Equivalent</p>-->
-                    <!--</div>-->
-
-
-                    <!-- Email -->
-                    <div data-role="contact-email" style="display:none">
-                        <p class="label label-default label-aligned">{{contacts_email}}Contacts Email</p>
-
-                        <p data-role="text"></p>
-                    </div>
-
-                    <p class="label label-default label-aligned">{{related_documents}}</p>
-
-                    <!--TODO: remove when data are not available -->
-                    <div data-role="fs-download-related-documents"></div>
-
-                    <a class="btn btn-link btn-block" target='_blank' data-role="fs-download-metadata-button">
-                        <i class="material-icons left">info_outline</i>Full {{metadata}}
-                    </a>
-
-                </div>
-            </div>
-
-
-
-            <!-- Bulk Downloads -->
-            <!--<div class="btn-group btn-block">
-                <button type="button" class="btn btn-danger col-xs-10 btn-lg">
-                    <h6>
-                        <i class="fa fa-download" aria-hidden="true"></i>
-
-                        &lt;!&ndash; TODO: add file to download and google analytics tracking &ndash;&gt;
-                        Bulk Download All Domain Data
-                    </h6>
-                </button>
-                <button type="button" class="btn btn-danger dropdown-toggle col-xs-2 btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h6>
-                        <span class="caret"></span>
-                        <span class="sr-only"></span>
-                    </h6>
-                </button>
-                <ul class="dropdown-menu col-xs-12" style="height: auto; max-height: 300px; overflow-x: hidden;" data-role="bulk-downloads-caret"></ul>
-            </div>-->
-
-            <!-- interactive Download -->
-            <!--
-                    <a type="button" class="btn btn-default btn-lg btn-block" data-role="download-interactive-link">
-                        <i class="fa fa-sliders" aria-hidden="true"></i> Interactive Download
-                    </a>
-
-                    <br>
-                    -->
-
-
-
+        <!-- Container tab-panels -->
+        <div class="tab-content">
+            <div class="tab-pane" id="about" data-section='about'></div>
+            <div class="tab-pane" id="interactive_download" data-section='interactive_download'></div>
+            <div class="tab-pane" id="report" data-section='report'></div>
+            <div class="tab-pane" id="bulk_downloads" data-section='bulk_downloads'></div>
+            <div class="tab-pane" id="metadata" data-section='metadata'></div>
+            <div class="tab-pane" id="browse" data-section='browse_by_domain_code'></div>
         </div>
 
     </div>
 
-    <div class='row'>
-        <div class='col-xs-12'>
-            <div class="fs-preview-container">
-                <div class="panel panel-default">
+    <div class='col-md-3 fs-data-padding-top'>
+
+        <div class="panel panel-default hoverable">
+            <div class="panel-heading">
+                <h4 data-role="domain-title" class="fs-download-domain-title"></h4>
+            </div>
+
+            <div class="panel-body grey lighten-5" >
+
+                <!-- Description -->
+                <div data-role="description">
+                    <p data-role="text"></p>
+                </div>
+
+                <!-- Organization -->
+                <div data-role="organization">
+                    <small data-role="text"></small>
+                </div>
+
+            </div>
 
 
-                    <div class="panel-heading clearfix">
-                        <div class="pull-right">
-                            <a class="btn-floating waves-effect waves-light btn-default disabled" data-role="export"><i class="material-icons">file_download</i> </a>
-                        </div>
-                        <h4>Show Data</h4>
+            <div class="panel-footer amber lighten-4">
+
+                <div>
+                    <h5><i class="material-icons left">file_download</i>Bulk Downloads</h5>
+                    <ul class="list-unstyled list-download" data-role="bulk-downloads-caret"></ul>
+                </div>
+            </div>
+
+            <div class="panel-footer grey lighten-5">
+
+                <!-- Last Update -->
+                <div data-role="last-update">
+                    <p class="label label-default label-aligned">{{last_update}}Last update</p>
+                    <p data-role="date"></p>
+                </div>
+
+                <!-- Contacts -->
+                <div data-role="contact-name">
+                    <p class="label label-default label-aligned">{{contacts}}Contacts</p>
+
+                    <p data-role="text"></p>
+                </div>
+
+                <!--&lt;!&ndash; Group &ndash;&gt;-->
+                <!--<div data-role="">-->
+                <!--<p class="label label-default label-aligned">Group</p>-->
+                <!--<p><span data-role="go_to_download" class="domain-icon icojam_Q"></span></p>-->
+                <!--<p data-role="text">Commodity Balances - Livestock and Fish Primary Equivalent</p>-->
+                <!--</div>-->
+
+
+                <!-- Email -->
+                <div data-role="contact-email" style="display:none">
+                    <p class="label label-default label-aligned">{{contacts_email}}Contacts Email</p>
+
+                    <p data-role="text"></p>
+                </div>
+
+                <p class="label label-default label-aligned">{{related_documents}}</p>
+
+                <!--TODO: remove when data are not available -->
+                <div data-role="fs-download-related-documents"></div>
+
+                <a class="btn btn-link btn-block" target='_blank' data-role="fs-download-metadata-button">
+                    <i class="material-icons left">info_outline</i>Full {{metadata}}
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class='row' id="fs-download-output-container" style="display:none;">
+
+    <div class='col-xs-12'>
+        <div class="fs-preview-container">
+            <div class="panel panel-default">
+
+                <div class="panel-heading clearfix">
+                    <div class="pull-right">
+                        <a class="btn-floating waves-effect waves-light btn-default disabled"
+                           data-role="export"
+                        ><i class="material-icons">file_download</i>
+                        </a>
                     </div>
+                    <h4>Show Data</h4>
+                </div>
 
-                    <div class="panel-body fs-output-preview">
+                <div class="panel-body fs-output-preview">
 
+                    <!-- message preview -->
+                    <div data-role="message">
                         <h3 class="text-center">
                             Where is the data?
                         </h3>
@@ -234,12 +206,15 @@
                         <h5 class="text-center fs-output-preview-message">
                             <span class="fs-icojam-icon icojam_rotate_4"></span><br>
                             Please make a selection above
-
                         </h5>
-                        <div data-role="output-content"></div>
-                        <div id='fs-download-output-area' class="fs-download-output-area"></div>
                     </div>
+
+                    <!-- output content -->
+                    <div data-role="content" class="fs-download-output-area" ></div>
+
                 </div>
             </div>
         </div>
     </div>
+
+</div>
