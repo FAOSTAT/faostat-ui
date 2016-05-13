@@ -254,7 +254,7 @@ define([
 
             unbindEventListeners: function () {
 
-                amplify.subscribe(EM.ON_FILTER_CHANGE, this.updateDashboard);
+                amplify.unsubscribe(EM.ON_FILTER_CHANGE, this.updateDashboard);
 
             },
 
@@ -362,34 +362,6 @@ define([
 
             },
 
-            /*renderDashboard: function(config) {
-
-                log.info("BrowseRankings.renderDashboard; config", config);
-
-                if (this.dashboard && this.dashboard.destroy) {
-                    log.info("BrowseRankings.dashboard.destroy();");
-                    this.dashboard.destroy();
-                }
-
-                this.dashboard = new Dashboard();
-
-                log.info("BrowseRankings.renderDashboard; new Dashboard");
-
-                // setting default filter options (i.e. language and datasouce)
-                config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
-
-                log.info("BrowseRankings.renderDashboard; config", config);
-                _.each(config.items, _.bind(function(item) {
-                    item.config = ViewUtils.defaultItemOptions(item, CM.view);
-                }, this));
-
-                log.info("BrowseRankings.renderDashboard; applied defaultFilter");
-
-                config._name = 'rankigns';
-                this.dashboard.render(config);
-
-            },*/
-
             renderDashboard: function(config) {
 
                 log.info("BrowseRankings.renderDashboard; config", config);
@@ -452,12 +424,11 @@ define([
                 if ( this.filterBox && _.isFunction(this.filterBox.destroy)) {
                     this.filterBox.destroy();
                 }
-
-                this.$FILTER_BOX.empty();
-                this.$DASHBOARD.empty();
+                
                 this.$el.empty();
 
                 View.prototype.dispose.call(this, arguments);
+
             }
 
         });
