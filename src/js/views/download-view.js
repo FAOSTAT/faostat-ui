@@ -114,7 +114,10 @@ define([
         },
 
         getTemplateData: function () {
-            return i18nLabels;
+            return $.extend(true, {},
+                i18nLabels, {
+                url_data_section: '#' + Common.getURI(ROUTE.DATA)
+            });
         },
 
         attach: function () {

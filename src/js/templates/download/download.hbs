@@ -34,7 +34,7 @@
     </div>
     <div class="col-xs-5 col-sm-3 clearfix">
         <!-- TODO: use Common.getURI(ROUTE.DATA)-->
-        <a href="#en/data" type="button" class="btn btn-link pull-right fs-section-back"
+        <a href="{{url_data_section}}" type="button" class="btn btn-link pull-right fs-section-back waves-effect"
            id="fs-browse-by-country-profile-back">
             <i class="left material-icons">undo</i>
             Back to domains' list
@@ -167,7 +167,7 @@
                 <!--TODO: remove when data are not available -->
                 <div data-role="fs-download-related-documents"></div>
 
-                <a class="btn btn-link btn-block" target='_blank' data-role="fs-download-metadata-button">
+                <a class="btn btn-link btn-block waves-effect" target='_blank' data-role="fs-download-metadata-button">
                     <i class="material-icons left">info_outline</i>Full {{metadata}}
                 </a>
 
