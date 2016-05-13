@@ -176,6 +176,13 @@ define([
                     // TODO: create table
                     self._createTables(models);
 
+                    amplify.publish(E.SCROLL_TO_SELECTOR, {
+                        container: self.$OUTPUT,
+                        paddingTop: 0,
+                        force: true,
+                        forceInvisible: true
+                    });
+
                 });
             } catch (e) {
                 amplify.publish(E.WAITING_HIDE);
