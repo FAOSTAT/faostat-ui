@@ -424,7 +424,7 @@ define([
                 if ( this.filterBox && _.isFunction(this.filterBox.destroy)) {
                     this.filterBox.destroy();
                 }
-                
+
                 this.$el.empty();
 
                 View.prototype.dispose.call(this, arguments);
