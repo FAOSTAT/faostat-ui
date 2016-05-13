@@ -366,6 +366,7 @@ define([
 
                             domain.title = domain.domain_name + " ("+ domain.group_name + ")";
                             domain.date = date;
+                            domain.url = '#' + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [domain.domain_code ]);
 
                             databaseUpdates.push(domain);
 
