@@ -126,6 +126,7 @@ require([
                     loglevel: '{FENIX_CDN}/js/loglevel/1.4.0/loglevel',
                     moment: '{FENIX_CDN}/js/moment/2.9.0/moment-with-locales.min',
                     outdatedbrowser: '{FENIX_CDN}/js/outdatedbrowser/1.1.1/outdatedbrowser.min',
+                    swiper:  '{FENIX_CDN}/js/swiper/3.3.1/dist/js/swiper.min',
 
                     typeahead: '{FENIX_CDN}/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
                     bloodhound: '{FENIX_CDN}/js/bloodhound/0.11.1/bloodhound.min',
@@ -188,6 +189,9 @@ require([
                 },
 
                 shim: {
+                    swiper: {
+                        deps: ["jquery"]
+                    },
                     amplify: {
                         deps: ["jquery"]
                     },

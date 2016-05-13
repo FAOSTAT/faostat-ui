@@ -47,48 +47,221 @@
    min-height:250px;
 }
 
-.left.carousel-control, .right.carousel-control{
-   background: none;
-
+.fao-logo-home{
+   margin: 15px 120px 15px 0;
 }
-
-.carousel-home-body{
-
-   .carousel-inner{
-      padding: 0 50px;
-   }
-
-
-}
-
-.carousel-home-ctrl-forward, .carousel-home-ctrl-backward{
-   position: absolute;
-   top: 40%;
-   z-index: 5;
-   display: inline-block;
-   text-shadow: none;
-   color: $fenix-text;
-   font-size: 40px;
-
-
-   &:hover{
-      color: $fx-cool-blue;
-   }
-
-}
-
-.carousel-home-ctrl-backward{
-   left: 5px;
-
-}
-
-.carousel-home-ctrl-forward{
-   right: 5px;
-}
-
-
 
 
 //.btn-home-domain{
 //   border-color: transparent !important;
 //}
+
+/* Home Slider */
+
+
+.swiper-container {
+   width: 100%;
+
+   //position: relative;
+   //left: -15px;
+   //width: calc(100% + 30px);
+
+   height: 400px;
+   background: white;
+}
+.swiper-slide {
+   position: relative;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+   //padding: 40px 60px;
+}
+.parallax-bg {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   -webkit-background-size: cover;
+   background-size: cover;
+   background-position: center center;
+   z-index: -1;
+}
+
+
+.swiper-slide .title{
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   
+   .white-stripe{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(white, .85);
+      z-index:1;
+   }
+
+
+}
+
+.swiper-slide .title h1, .swiper-slide .title h2,{
+   position: relative;
+   z-index: 2;
+   color: $fenix-text;
+   margin: 0;
+}
+
+
+.swiper-slide .title h1 {
+   padding: 20px 15px 20px 15px;
+   font-size: 18px;
+
+   @media (min-width: 768px) and (max-width: 991px) {
+      font-size: 20px;
+      padding: 40px 60px 10px 60px;
+   }
+
+   @media (min-width: 992px) {
+      font-size: 23px;
+      padding: 40px 60px 10px 60px;
+   }
+
+
+}
+
+.swiper-slide .title h2{
+   padding: 10px 55px 30px 55px;
+   font-size: 14px;
+
+   @media (min-width: 768px) and (max-width: 991px) {
+      padding: 10px 60px 40px 60px;
+
+      font-size: 14px;
+   }
+
+   @media (min-width: 992px) {
+      padding: 10px 60px 40px 60px;
+      font-size: 14px;
+   }
+
+}
+
+.swiper-slide .text {
+   font-size: 14px;
+   max-width: 400px;
+   line-height: 1.3;
+}
+
+.swiper-pagination{
+   text-align: right;
+}
+
+.swiper-button-next, .swiper-button-prev{
+   background: none;
+   .btn-floating{
+      margin: 0;
+      position: relative;
+   }
+
+}
+
+.swiper-button-next{
+   .btn-floating{
+      left: -10px;
+   }
+}
+
+.swiper-pagination-bullet-active{
+   background-color: $material-default;
+}
+
+
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+   top: 10px;
+   left: auto;
+   right: 15px;
+}
+
+.feature-bar{
+   margin-top: 20px;
+
+
+   a.feature-panel{
+      position: relative;
+      text-decoration: none !important;
+      color: rgba($fenix-text, .7);
+
+      &:hover, &:active, &:visited{
+         color: rgba($fenix-text, .85);
+      }
+
+
+
+   }
+
+   .feature-icon{
+      display: block;
+      position: absolute;
+      background-color: white;
+      top: 0;left: 0;
+      width: 80px;
+      height: 100%;
+
+      &:before{
+         position: absolute;
+         font-size: 45px;
+         top: 50%;
+         left: 50%;
+         @include fx-transfor-me(translate(-50%, -50%))
+      }
+
+   }
+
+   .feature-title{
+      font-size: 15px;
+      margin-top: 10px;
+      padding-left: 90px;
+   }
+
+   .feature-subtitle{
+      padding-left: 90px;
+      font-size: 12px;
+   }
+
+
+}
+
+
+
+
+.swiper-container-updates {
+   width: 100%;
+   height: 160px;
+   position: relative;
+   overflow: hidden;
+
+   hr{
+      margin-top: 10px;
+      margin-bottom: 10px;
+   }
+
+   .swiper-wrapper{
+      width: 100%;
+   }
+
+   .swiper-slide {
+      height: auto;
+      color: $fenix-text;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 0 15px 0 0;
+   }
+
+}
+
+
+
+

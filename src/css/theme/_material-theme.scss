@@ -406,3 +406,89 @@ i.left {
 //  }
 //}
 
+
+
+/* Card Special */
+
+.elegant-card {
+  margin: .5rem 0 1rem;
+  position: relative;
+  border-radius: 2px
+}
+.elegant-card,
+.elegant-card .card-up {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px
+}
+.elegant-card .card-up {
+  overflow: hidden;
+  border-radius: 2px
+}
+.elegant-card .btn-floating {
+  margin: -2.1em 2em;
+  float: right
+}
+.elegant-card .btn-floating .fa {
+  font-size: 14px
+}
+.elegant-card .card-content {
+  padding: 2em;
+  color: #666;
+  background-color: #fff
+}
+.elegant-card .card-content h5 {
+  margin-bottom: 5px;
+}
+.elegant-card .card-content p {
+
+}
+.elegant-card .card-footer {
+  background-color: #3E4551;
+  height: 50px;
+  color: #fff;
+  text-align: center;
+  font-size: 15px
+}
+
+
+.testimonial-card .avatar,
+.testimonial-card .card-up {
+  overflow: hidden;
+  height: 120px
+}
+.elegant-card .card-footer ul {
+  padding-top: 15px;
+  padding-bottom: 15px
+}
+.elegant-card .card-footer ul .fa {
+  margin-right: 5px
+}
+.elegant-card .card-footer ul a {
+  color: #fff
+}
+.elegant-card .card-label {
+  margin-bottom: -27px;
+  margin-top: 0;
+  z-index: 10;
+  position: relative
+}
+.elegant-card .card-label .label {
+  border-radius: 0;
+  font-weight: 300
+}
+.elegant-card .card-details,
+.elegant-card .card-details a {
+  color: #666
+}
+@media only screen and (max-width: 500px) {
+  .elegant-card .card-up {
+    max-height: 150px
+  }
+  .elegant-card .card-content {
+    padding: 1em
+  }
+}
+
+
+

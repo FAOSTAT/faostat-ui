@@ -25,7 +25,8 @@ define([
     'underscore.string',
     'amplify',
     'bootstrap',
-    'twitter'
+    'twitter',
+    'swiper'
 ], function ($, log, View, Common, ROUTE, C, E, CM,
              template,
              templateNews,
@@ -83,6 +84,7 @@ define([
             });
 
             return d;
+
         },
 
         attach: function () {
@@ -124,6 +126,8 @@ define([
 
         configurePage: function () {
 
+            this.initSlideShow();
+
             this.initDomains();
 
             this.initChart();
@@ -135,6 +139,21 @@ define([
             this.initDatabaseUpdates();
 
             this.initTwitter();
+
+
+        },
+
+        initSlideShow: function() {
+
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                parallax: true,
+                autoplay: 5000,
+                speed: 600
+            });
 
         },
 
@@ -370,6 +389,15 @@ define([
                             section:section,
                             code: code
                         });
+                    });
+
+
+                    var swiper = new Swiper('.swiper-container-updates', {
+                        scrollbar: '.swiper-scrollbar',
+                        direction: 'vertical',
+                        slidesPerView: 'auto',
+                        mousewheelControl: true,
+                        freeMode: true
                     });
 
 
