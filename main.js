@@ -126,7 +126,7 @@ require([
                     loglevel: '{FENIX_CDN}/js/loglevel/1.4.0/loglevel',
                     moment: '{FENIX_CDN}/js/moment/2.9.0/moment-with-locales.min',
                     outdatedbrowser: '{FENIX_CDN}/js/outdatedbrowser/1.1.1/outdatedbrowser.min',
-                    swiper:  '{FENIX_CDN}/js/swiper/3.3.1/dist/js/swiper.min',
+                    swiper:  '{FENIX_CDN}/js/swiper/3.3.1/dist/swiper.min',
 
                     typeahead: '{FENIX_CDN}/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
                     bloodhound: '{FENIX_CDN}/js/bloodhound/0.11.1/bloodhound.min',
@@ -178,7 +178,7 @@ require([
                     'screenfull': '{FENIX_CDN}/js/screenfull/3.0.0/screenfull.min',
 
 
-                    "waves-effect": "./waves-effect",
+                    //"waves-effect": "./waves-effect",
                     "twitter": "//platform.twitter.com/widgets",
 
                     /* Google Analytics */
@@ -289,7 +289,7 @@ require([
         'config/Events',
         'globals/GoogleAnalyticsManager',
         'loglevel',
-        'waves-effect',
+        //'waves-effect',
         'outdatedbrowser',
         'amplify',
         'domReady!',
