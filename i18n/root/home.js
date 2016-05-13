@@ -19,7 +19,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         info_box_link: "<a target='_blank' href='http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/#.VlXSE3arSG-'>Pocketbook</a>",
 
         // featured links
-        faostat_database_download: 'Download FAOSTAT Database (Zip)',
+        faostat_database_download: 'Download All FAOSTAT Data',
         country_profiles: 'Country Profiles',
 
         // partners

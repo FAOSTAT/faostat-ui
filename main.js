@@ -127,6 +127,7 @@ require([
                     moment: '{FENIX_CDN}/js/moment/2.9.0/moment-with-locales.min',
                     outdatedbrowser: '{FENIX_CDN}/js/outdatedbrowser/1.1.1/outdatedbrowser.min',
                     swiper:  '{FENIX_CDN}/js/swiper/3.3.1/dist/js/swiper.min',
+                    waves: 'https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.5/waves',
 
                     typeahead: '{FENIX_CDN}/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
                     bloodhound: '{FENIX_CDN}/js/bloodhound/0.11.1/bloodhound.min',
@@ -178,7 +179,6 @@ require([
                     'screenfull': '{FENIX_CDN}/js/screenfull/3.0.0/screenfull.min',
 
 
-                    //"waves-effect": "./waves-effect",
                     "twitter": "//platform.twitter.com/widgets",
 
                     /* Google Analytics */
@@ -189,6 +189,9 @@ require([
                 },
 
                 shim: {
+                    waves: {
+                        deps: ["jquery"]
+                    },
                     swiper: {
                         deps: ["jquery"]
                     },
@@ -289,11 +292,11 @@ require([
         'config/Events',
         'globals/GoogleAnalyticsManager',
         'loglevel',
-        //'waves-effect',
+        'waves',
         'outdatedbrowser',
         'amplify',
         'domReady!',
-    ], function (Application, routes, C, Common, E, GoogleAnalyticsManager, log) {
+    ], function (Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves) {
 
         outdatedBrowser({
             bgColor: '#f25648',
@@ -304,14 +307,13 @@ require([
 
         Common.setLocale(requirejs.s.contexts._.config.locale);
 
-        // Adds .waves-effect and .waves-light to <button> elems
-        //Waves.attach('button', 'waves-light');
+        Waves.init();
 
 
         /*        // Mapping GoogleAnalyticsManager
-                amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
-                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
-                */
+         amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
+         amplify.publish(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
+         */
 
         // setting global LOGLEVEL level
         log.setLevel(C.LOGLEVEL);

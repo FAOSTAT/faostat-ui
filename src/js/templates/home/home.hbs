@@ -187,8 +187,10 @@
                     </div>
 
                     <!-- Button -->
-                    <a class="btn-floating btn-large waves-effect waves-light stylish-color"><i class="material-icons">event_note</i></i>
+                    <a href='{{URL_RELEASE_CALENDAR}}' target="_blank" class="btn-floating btn-large waves-effect waves-light stylish-color">
+                        <i class="material-icons">event_note</i>
                     </a>
+
                     <!-- Content -->
                     <div class="card-content">
                         <h3>{{database_updates}}</h3>
@@ -223,16 +225,16 @@
                     </div>
 
                     <!-- Button -->
-                    <a class="btn-floating btn-large waves-effect waves-light stylish-color"><i
-                            class="fa fa-chevron-right"></i></a>
+                    <a href='{{URL_DATA}}' class="btn-floating btn-large waves-effect waves-light stylish-color">
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+
                     <!-- Content -->
                     <div class="card-content">
                         <h3>Data</h3>
 
                         <p>Faostat offers free and easy access to data for 245 countries and 35 regional areas from 1961 through the most recent year available. </p>
-
-
-                            <p>Enhanced features include browsing and analysis of data, an advanced interactive data download, and enhanced data exchange through web services.</p>
+                        <p>Enhanced features include browsing and analysis of data, an advanced interactive data download, and enhanced data exchange through web services.</p>
                     </div>
 
                 </div>
@@ -245,14 +247,16 @@
 
             <div class="col-sm-6">
                 <div class="elegant-card z-depth-1 hoverable">
+
                     <!-- Image wrapper -->
                     <div class="card-up view overlay hm-white-slight">
                         <a><img src="src/images/homepage/pocket.jpg" class="img-responsive"></a>
                     </div>
 
                     <!-- Button -->
-                    <a class="btn-floating btn-large waves-effect waves-light stylish-color"><i
-                            class="fa fa-chevron-right"></i></a>
+                    <a target='_blank' href='http://www.fao.org/3/a-i4691e.pdf?utm_campaign=faostatistics&utm_source=twitter&utm_medium=social%20media' taget="_blank" class="btn-floating btn-large waves-effect waves-light stylish-color">
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
                     <!-- Content -->
                     <div class="card-content">
                         <h3>{{info_box_title}}</h3>
@@ -271,7 +275,10 @@
                     </div>
 
                     <!-- Button -->
-                    <a class="btn-floating btn-large waves-effect waves-light stylish-color"><i class="fa fa-chevron-right"></i></a>
+                    <a target='_bnlak' href='http://www.fao.org/resources/infographics/en/' class="btn-floating btn-large waves-effect waves-light stylish-color">
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+
                     <!-- Content -->
                     <div class="card-content">
                         <h3>Make #NotWasting a way of life</h3>
@@ -279,7 +286,6 @@
                         <p>Each year one third of global food production for human consumption never ﬁnds its way onto
                             plates and is lost or wasted. Cutting food loss and waste reduces poverty and hunger and
                             ﬁghts climate change. Make #NotWasting Your Way of Life.</p>
-
 
                     </div>
 
@@ -289,67 +295,31 @@
 
         </div>
         <div class="visible-xs"><br><br></div>
-        <!--&lt;!&ndash; Partners List &ndash;&gt;-->
-        <!--<br>-->
-
-        <!--<div class="panel panel-default">-->
-        <!--<div class="panel-heading">-->
-        <!--<h5>{{partners}}</h5>-->
-        <!--</div>-->
-        <!--<div class="panel-body">-->
-        <!--<p>TBD</p>-->
-        <!--</div>-->
-
-        <!--</div>-->
-
     </div>
 
     <!-- right side -->
     <div class="col-md-4">
 
-
-        <!--<div>-->
-        <!--<h4>{{featured_links}}</h4>-->
-
-        <!--&lt;!&ndash; TODO: how to get the right size? &ndash;&gt;-->
-        <!--<div>-->
-        <!--<i class="fa fa-download"></i> <a-->
-        <!--href="{{URL_FAOSTAT_DATABASE_ZIP}}">{{faostat_database_download}}</a>-->
-        <!--</div>-->
-
-
-        <!--<div id="fs_home_country_profiles">-->
-        <!--<i class="fa fa-line-chart"></i> <a href="#{{URL_BROWSE_BY_COUNTRY}}">{{country_profiles}}</a>-->
-        <!--</div>-->
-        <!--<div id="fs_home_rankings">-->
-        <!--<i class="fa fa-line-chart"></i> <a href="#{{URL_BROWSE_RANKINGS}}">{{rankings}}</a>-->
-        <!--</div>-->
-        <!--</div>-->
-
-        <!--<hr>-->
-
-
         <div class="panel panel-default hoverable">
+
             <div class="panel-heading">
                 <h4>{{featured_links}}</h4>
             </div>
 
-
             <div class="panel-body grey lighten-5">
 
                 <!-- Featured Links -->
-                <a class="btn btn-primary btn-block" target='_blank' data-role="fs-download-metadata-button">
-                    <i class="material-icons left">file_download</i>Download All FAOSTAT Data</a>
+                <a href="{{URL_FAOSTAT_DATABASE_ZIP}}" class="btn btn-primary btn-block" target='_blank' data-role="fs-download-metadata-button">
+                    <i class="material-icons left">file_download</i>{{faostat_database_download}}
+                </a>
 
-                <a href="#{{URL_BROWSE_BY_COUNTRY}}" class="btn btn-link btn-block" target='_blank'
-                   data-role="fs-download-metadata-button">
-                    <i class="material-icons left">flag</i>{{country_profiles}}</a>
+                <a href="{{URL_BROWSE_BY_COUNTRY}}" class="btn btn-link btn-block">
+                    <i class="material-icons left">flag</i>{{country_profiles}}
+                </a>
 
-                <a href="#{{URL_BROWSE_RANKINGS}}" class="btn btn-link btn-block" target='_blank'
-                   data-role="fs-download-metadata-button">
-                    <i class="material-icons left">trending_up</i>{{rankings}}</a>
-
-
+                <a href="{{URL_BROWSE_RANKINGS}}" class="btn btn-link btn-block">
+                    <i class="material-icons left">trending_up</i>{{rankings}}
+                </a>
             </div>
 
             <div class="panel-footer">
@@ -370,10 +340,10 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <p class="label label-default label-aligned">Contacts</p>
+                <!--<p class="label label-default label-aligned">Contacts</p>-->
                 <img src="src/images/FAO_logo_Blue_3lines_en.svg" class="img-responsive fao-logo-home" alt="">
 
-                <p class="small">{{welcome_text}}</p>
+                <!--<p class="small">{{welcome_text}}</p>-->
 
                 <address>
                     <strong>Statistics division</strong><br>
@@ -391,7 +361,6 @@
             </div>
 
         </div>
-
 
     </div>
 

@@ -29,6 +29,7 @@ define([
             "URL_FAOSTAT_DATABASE_ZIP": "http://faostat3.fao.org/ftp-faostat/FAOSTAT.zip",
             "URL_BULK_DOWNLOADS_BASEPATH": "http://faostat3.fao.org/faostat-bulkdownloads/",
             "URL_FAOSTAT_DOCUMENTS_BASEPATH": 'http://faostat3.fao.org/faostat-documents/',
+            "URL_RELEASE_CALENDAR": ' http://faostat3.fao.org/releasecalendar/Default.aspx',
 
             // EMAIL and TELEPHONE
             "EMAIL_FAO_STATISTICS": "FAO-statistics@fao.org",

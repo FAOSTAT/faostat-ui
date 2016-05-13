@@ -344,7 +344,7 @@ input[type="radio"]:disabled + label {
  * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE
  */
-.waves-effect {
+/*.waves-effect {
   position: relative;
   cursor: pointer;
   display: inline-block;
@@ -361,7 +361,8 @@ input[type="radio"]:disabled + label {
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   -ms-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out; }
+  transition: all 0.3s ease-out;
+}
 
 .waves-effect .waves-ripple {
   position: absolute;
@@ -386,35 +387,44 @@ input[type="radio"]:disabled + label {
   -ms-transform: scale(0);
   -o-transform: scale(0);
   transform: scale(0);
-  pointer-events: none; }
+  pointer-events: none;
+}
 
 .waves-effect.waves-light .waves-ripple {
-  background-color: rgba(255, 255, 255, 0.45); }
+  background-color: rgba(255, 255, 255, 0.45);
+}
 
 .waves-effect.waves-red .waves-ripple {
-  background-color: rgba(244, 67, 54, 0.7); }
+  background-color: rgba(244, 67, 54, 0.7);
+}
 
 .waves-effect.waves-yellow .waves-ripple {
-  background-color: rgba(255, 235, 59, 0.7); }
+  background-color: rgba(255, 235, 59, 0.7);
+}
 
 .waves-effect.waves-orange .waves-ripple {
-  background-color: rgba(255, 152, 0, 0.7); }
+  background-color: rgba(255, 152, 0, 0.7);
+}
 
 .waves-effect.waves-purple .waves-ripple {
-  background-color: rgba(156, 39, 176, 0.7); }
+  background-color: rgba(156, 39, 176, 0.7);
+}
 
 .waves-effect.waves-green .waves-ripple {
-  background-color: rgba(76, 175, 80, 0.7); }
+  background-color: rgba(76, 175, 80, 0.7);
+}
 
 .waves-effect.waves-teal .waves-ripple {
-  background-color: rgba(0, 150, 136, 0.7); }
+  background-color: rgba(0, 150, 136, 0.7);
+}
 
 .waves-notransition {
   -webkit-transition: none !important;
   -moz-transition: none !important;
   -o-transition: none !important;
   -ms-transition: none !important;
-  transition: none !important; }
+  transition: none !important;
+}
 
 .waves-circle {
   -webkit-transform: translateZ(0);
@@ -422,17 +432,20 @@ input[type="radio"]:disabled + label {
   -ms-transform: translateZ(0);
   -o-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%); }
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+}
 
 .waves-input-wrapper {
   border-radius: 0.2em;
-  vertical-align: bottom; }
+  vertical-align: bottom;
+}
 
 .waves-input-wrapper .waves-button-input {
   position: relative;
   top: 0;
   left: 0;
-  z-index: 1; }
+  z-index: 1;
+}
 
 .waves-circle {
   text-align: center;
@@ -440,15 +453,16 @@ input[type="radio"]:disabled + label {
   height: 2.5em;
   line-height: 2.5em;
   border-radius: 50%;
-  -webkit-mask-image: none; }
+  -webkit-mask-image: none;
+}
 
 .waves-block {
-  display: block; }
-
+  display: block;
+}*/
 /* Firefox Bug: link not triggered */
-a.waves-effect .waves-ripple {
-  z-index: -1; }
-
+/*a.waves-effect .waves-ripple {
+  z-index: -1;
+}*/
 /*********************
   Buttons
 **********************/
@@ -646,7 +660,7 @@ i.left {
 .elegant-card .card-content {
   padding: 2em;
   color: #666;
-  background-color: #fff; }
+  background-color: white; }
 
 .elegant-card .card-content h5 {
   margin-bottom: 5px; }
@@ -671,7 +685,7 @@ i.left {
   margin-right: 5px; }
 
 .elegant-card .card-footer ul a {
-  color: #fff; }
+  color: white; }
 
 .elegant-card .card-label {
   margin-bottom: -27px;
@@ -685,7 +699,7 @@ i.left {
 
 .elegant-card .card-details,
 .elegant-card .card-details a {
-  color: #666; }
+  color: #666666; }
 
 @media only screen and (max-width: 500px) {
   .elegant-card .card-up {
@@ -2701,7 +2715,7 @@ footer.container {
   color: #337ab7; }
 
 .label-danger {
-  color: #E00000; }
+  color: #e00000; }
 
 .label {
   background-color: transparent; }
@@ -7797,7 +7811,7 @@ footer.fao-footer {
 .ui-rangeSlider-innerBar {
   height: 3px !important;
   top: 7px !important;
-  background-color: #D2D0D0 !important; }
+  background-color: #d2d0d0 !important; }
 
 .ui-rangeSlider-arrow.ui-rangeSlider-leftArrow {
   background: url(img/arrow-left-on.svg) no-repeat !important;
@@ -8107,7 +8121,7 @@ footer.fao-footer {
     display: inline-block;
     margin: 3px 0;
     cursor: pointer;
-    border: 1px solid #D2D0D0;
+    border: 1px solid #d2d0d0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -8153,10 +8167,10 @@ footer.fao-footer {
 
 .pivot .collapse_button {
   background-color: transparent;
-  border: 1px solid #D2D0D0;
+  border: 1px solid #d2d0d0;
   font-family: "FrutigerLTW02-45Light", Arial, Helvetica, Verdana, sans-serif;
   font-weight: normal;
-  color: #D2D0D0; }
+  color: #d2d0d0; }
 
 [data-role="output-area"] {
   margin-top: 50px; }
@@ -8325,7 +8339,7 @@ footer.fao-footer {
   left: -10px; }
 
 .swiper-pagination-bullet-active {
-  background-color: #2BBBAD; }
+  background-color: #2bbbad; }
 
 .swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
   top: 10px;
@@ -8383,5 +8397,3 @@ footer.fao-footer {
 
 /* Menu and some Header stuff TODO: remove the header related css from here */
 /* Modules. */
-
-/*# sourceMappingURL=index.css.map */
