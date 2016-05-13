@@ -2,18 +2,23 @@
 <!--<div style="border-style: solid;">-->
 
     <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading clearfix">
             <!--<h2 class="panel-title">-->
-            <h5>
+            <h4>
 
                 <span data-role="group-heading-title">{{filter_box_title}}</span>
                 <i><span data-role="domain-heading-title"></span></i>
                 <!--<span>(Filter Box)</span>-->
 
-                <a><i data-role="remove_filter_box" class="fa fa-times pull-right"></i></a>
-                <a><i data-role="collapse_filter_box" class="fa fa-chevron-down pull-right"></i></a>
+                <a class="btn-floating waves-effect waves-light btn-danger pull-right" data-role="remove_filter_box">
+                    <i class="material-icons">close</i>
+                </a>
 
-            </h5>
+                <a class="btn-floating waves-effect waves-light btn-default pull-right" data-role="collapse_filter_box">
+                    <i class="material-icons blue">keyboard_arrow_down</i>
+                </a>
+
+            </h4>
 
         </div>
         <div class="panel-body" data-role="panel_body_filter_box">

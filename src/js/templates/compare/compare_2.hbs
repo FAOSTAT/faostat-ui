@@ -1,25 +1,31 @@
-<!--<h1>{{title}}</h1><hr>-->
-
-<!--<h1>Compare (BETA)</h1>-->
-
 
 <!-- Add filter -->
+<h1>Compare Data</h1>
 
-<h1>Compare</h1>
 
 <div class="row">
-    <div class="col-lg-12">
-        <button type="button" data-role="add_filter" class="btn btn-default pull-right"><span><i class="fa fa-filter"></i></span> {{add_filter}}</button>
+    <div class='col-xs-12'>
+        <ul class='nav nav-tabs' role='tablist'>
+            <li class="active" role='presentation'>
+                <a role='tab' data-toggle='tab'>Compare Data</a>
+            </li>
+        </ul>
     </div>
 </div>
 
-<!--<div class="row fs-content-padding"></div>-->
-<!--<div class="clearfix"></div>-->
+<br>
+
+<div class="row">
+    <div class="col-xs-12">
+        <button type="button" data-role="add_filter" class="btn btn-default waves-effect waves-light pull-right">
+            <i class="material-icons left">playlist_add</i>{{add_filter}}
+        </button>
+    </div>
+</div>
 
 <!-- Box Selectors Filters -->
-
 <div class="row fs-content-padding">
-    <div class="col-lg-12">
+    <div class="col-xs-12">
         <div data-role="filters_container" class="fs-compare-filter-box">
             <!-- this contains a list of selector-view -->
         </div>
@@ -38,8 +44,9 @@
         <div data-role="timerange"></div>
     </div>
     <div class="col-xs-6">
-        <button type="button" data-role="compare_data" class="btn btn-primary pull-right"><span><i class="fa fa-database"></i></span> {{compare_data}}</button>
-        <!--<button type="button" data-role="add_filter" class="btn btn-default pull-right"><span><i class="fa fa-filter"></i></span> {{add_filter}}</button>-->
+        <button type="button" data-role="compare_data" class="btn btn-primary waves-effect waves-light pull-right">
+            <i class="material-icons left">compare_arrows</i>{{compare_data}}
+        </button>
     </div>
 </div>
 

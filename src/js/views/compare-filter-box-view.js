@@ -372,7 +372,8 @@ define([
 
         removeFilterBox: function(e) {
 
-            console.warn("TODO: dispose of the box and the filters");
+            e.preventDefault();
+
             // TODO: onRemove the filter add popup to check if the user want to remove it?
             //amplify.publish(E.NOTIFICATION_ACCEPT, {filter: this});
             amplify.publish(EC.FILTER_BOX_REMOVE, {filter: this});
@@ -385,6 +386,8 @@ define([
         },
 
         collapseFilterBox: function(e) {
+
+            e.preventDefault();
             
             var self = this;
 
