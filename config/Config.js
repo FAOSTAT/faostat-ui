@@ -38,7 +38,7 @@ define([
             CHAPLINJS_CONTROLLER_SUFFIX: '-controller',
             CHAPLINJS_PROJECT_ROOT: '',
             CHAPLINJS_PUSH_STATE: false,
-            CHAPLINJS_SCROLL_TO: false,
+            CHAPLINJS_SCROLL_TO: true,
             CHAPLINJS_APPLICATION_TITLE: "FAOSTAT"
 
         };
