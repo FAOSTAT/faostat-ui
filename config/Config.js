@@ -99,6 +99,12 @@ define([
             o.DATASOURCE = "test";
         }
 
+        // temporary versionin
+        if (_s.contains(href, "/v")) {
+            o.DATASOURCE = "production";
+            o.LOGLEVEL = "silent";
+        }
+
         o = $.extend(true, {}, DEFAULT, o);
 
         $('body')

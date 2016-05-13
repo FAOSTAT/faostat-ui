@@ -178,23 +178,16 @@ define([
 
                         if (self.o.selected.type === "domain") {
 
+                            // once the animation is finished can be switched the routing
+                            self.$TREE_MODAL.on('hidden.bs.modal', function() {
+                                self.changeState();
+                            });
+
                             self.$TREE_MODAL.modal('hide');
-                            //$('.modal-backdrop').remove();
-
-                            //self.$TREE_MODAL.modal('hide');
-                            //self.$TREE_MODAL.data('dismiss', "modal");
-
-                            //self.updateSection();
-
-                            self.changeState();
-
-/*                            amplify.publish(E.SCROLL_TO_SELECTOR, {
-                                container: self.$MAIN_CONTAINER_TITLE
-                            });*/
-
-                            //self.$TREE_CONTAINER.hide();
 
                         } else {
+
+                            // TODO: handlke group selection
 
                             // expand collapse tree
                             log.info(self.o.selected);
@@ -447,7 +440,7 @@ define([
             this.$INTERACTIVE_DOWNLOAD.empty();
 
             Require(['fs-i-d/start'], _.bind(function(InteractiveDownload) {
-                
+
                 this.interactiveDownload = new InteractiveDownload();
                 this.interactiveDownload.init({
                     container: this._createRandomElement(this.$INTERACTIVE_DOWNLOAD),
