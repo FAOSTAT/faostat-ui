@@ -1,0 +1,27 @@
+/* Country Profile Page */
+
+/* Masonry-like patch for columns */
+.country-list-container {
+
+  .row-mason {
+    -moz-column-width: 18em;
+    -webkit-column-width: 18em;
+    -moz-column-gap: 2em;
+    -webkit-column-gap: 2em;
+  }
+
+  .menu-category {
+    display: inline-block;
+    margin: 0rem;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .country-list {
+
+      margin-bottom: 10px;
+
+  }
+
+
+}
