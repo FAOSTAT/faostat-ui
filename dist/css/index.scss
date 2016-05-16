@@ -9,6 +9,7 @@
 @import '../../submodules/fenix-ui-common/css/components/fx-preload';
 @import '../../submodules/fenix-ui-common/css/components/fx-radio-checkbox';
 @import '../../submodules/fenix-ui-common/css/components/fx-fixed-height';
+@import '../../submodules/fenix-ui-common/css/components/fx-icons';
 
 /* Material Theme */
 @import '../../src/css/theme/material-theme';
@@ -17,18 +18,20 @@
 /* Base */
 @import '../../src/css/theme/default';
 
-/* Icons */
+/* Eldorado */
 @import '../../submodules/fenix-ui-common/css/base/fonts/eldorado/font-eldorado-main';
-@import '../../src/css/components/icons';
 
 /* Components */
-@import '../../src/css/components/faostat-tabs';
-@import '../../src/css/components/scroll-up';
+@import '../../src/css/components/buttons';
 @import '../../src/css/components/fao-footer';
-@import '../../src/css/components/map';
-@import '../../src/css/components/fx-range-slider';
-@import '../../src/css/components/left-sidebar-modal';
+@import '../../src/css/components/fao-navigation';
+@import '../../src/css/components/faostat-tabs';
 @import '../../src/css/components/highlight-text';
+@import '../../src/css/components/icons';
+@import '../../src/css/components/left-sidebar-modal';
+@import '../../src/css/components/map';
+@import '../../src/css/components/range-slider';
+@import '../../src/css/components/scroll-up';
 
 /* Third parties */
 //@import '../../submodules/fenix-ui-common/css/vendor/fx-jstree';
@@ -40,6 +43,7 @@
 @import '../../src/css/pages/compare';
 @import '../../src/css/pages/data';
 @import '../../src/css/pages/download';
+@import '../../src/css/pages/faq';
 @import '../../src/css/pages/home';
 
 

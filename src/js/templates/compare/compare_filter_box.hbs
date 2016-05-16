@@ -2,21 +2,26 @@
 <!--<div style="border-style: solid;">-->
 
     <div class="panel panel-default hoverable">
-        <div class="panel-heading clearfix">
+        <div class="panel-heading clearfix fs-compare-heading">
             <!--<h2 class="panel-title">-->
             <h4>
 
                 <span data-role="group-heading-title">{{filter_box_title}}</span>
-                <i><span data-role="domain-heading-title"></span></i>
+                <span class="small" data-role="domain-heading-title"></span>
                 <!--<span>(Filter Box)</span>-->
 
-                <a class="btn-floating waves-effect waves-light btn-danger pull-right" data-role="remove_filter_box">
-                    <i class="material-icons">close</i>
-                </a>
+                <!--<a class="btn-floating waves-effect waves-light btn-danger pull-right" >-->
+                    <!--<i class="material-icons">close</i>-->
+                <!--</a>-->
 
-                <a class="btn-floating waves-effect waves-light btn-default pull-right" data-role="collapse_filter_box">
-                    <i class="material-icons blue">keyboard_arrow_down</i>
-                </a>
+                <!--<a class="btn-floating waves-effect waves-light btn-default pull-right" data-role="collapse_filter_box">-->
+                    <!--<i class="material-icons blue">keyboard_arrow_down</i>-->
+                <!--</a>-->
+
+                <button class="fx-btn-round pull-right" type="button" data-role="remove_filter_box">
+                    <span class="fx-icon fx-icon-close" aria-hidden="true"></span>
+                </button>
+
 
             </h4>
 
@@ -25,31 +30,19 @@
 
             <div class="row">
                 <!--<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">-->
-                <div class="col-xs-12 col-lg-3">
+                <div class="col-md-3">
                     <div data-role="groups"></div>
                 </div>
                 <!--<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">-->
-                <div class="col-xs-12 col-lg-3">
+                <div class="col-md-3">
                     <div data-role="domains"></div>
                 </div>
 
                 <!--<div class="clearfix"></div>-->
 
                 <div data-role="filters"></div>
+
             </div>
-            <!--<div class="row">-->
-                <!--<div data-role="filters"></div>-->
-                <!-- LIST of the filters depending on the domain -->
-            <!--</div>-->
-
-
-            <!--
-                <div data-role="alert" class="alert alert-info">
-                    <strong data-role="alert_type">Info!</strong> <span data-role="alert_message">Please select a group.</span>
-                </div>
-            -->
-
-            <!--<div data-role="summary">summary to be implemented</div>-->
         </div>
         <!--<div class="panel-footer">Panel footer</div>-->
     </div>

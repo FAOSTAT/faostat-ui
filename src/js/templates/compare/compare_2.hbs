@@ -17,7 +17,13 @@
 
 
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-2">
+                <h5 class="fs-timerange-label">{{select_a_timerange}}</h5>
+            </div>
+            <div class="col-md-6">
+                <div data-role="timerange"></div>
+            </div>
+            <div class="col-md-4">
                 <button type="button" data-role="add_filter" class="btn btn-default waves-effect waves-light pull-right">
                     <i class="material-icons left">playlist_add</i>{{add_filter}}
                 </button>
@@ -35,16 +41,9 @@
 
         <!-- Timerange -->
         <br>
+
         <div class="row">
             <div class="col-xs-12">
-                <h5>{{select_a_timerange}}</h5>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6">
-                <div data-role="timerange"></div>
-            </div>
-            <div class="col-xs-6">
                 <button type="button" data-role="compare_data" class="btn btn-primary waves-effect waves-light pull-right">
                     <i class="material-icons left">compare_arrows</i>{{compare_data}}
                 </button>

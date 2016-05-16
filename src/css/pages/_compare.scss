@@ -7,8 +7,26 @@
    // padding: 5px 0;
   }
 
+
+  .fs-compare-heading{
+    padding: 0 15px;
+
+    .fx-btn-round{
+      position: relative;
+      top: -2px;
+    }
+
+  }
+
   .panel-body{
     padding: 0px 15px 15px 15px;
   }
 
+}
+
+
+.fs-timerange-label{
+  position: relative;
+  top: 20px;
+  text-align: right;
 }

@@ -1,0 +1,37 @@
+/* Range Slider */
+
+.irs-bar, .irs-bar-edge, .irs-line{
+  height: 5px;
+  top: 37px;
+}
+
+
+.irs-bar {
+  border-top: 1px solid $fx-cool-blue;
+  border-bottom: 1px solid $fx-cool-blue;
+}
+
+
+.irs-bar-edge{
+  border: 1px solid $fx-cool-blue;
+}
+
+
+.irs-bar, .irs-bar-edge{
+  background: $fx-cool-blue;
+}
+
+.irs-line{
+  background: $fenix-light-gray;
+  border-color: transparent;
+}
+
+.irs-slider{
+  background: white;
+  @include fx-noshadow;
+}
+
+.irs-from, .irs-to, .irs-single {
+  background: transparent;
+  color: $fx-cool-blue;
+}

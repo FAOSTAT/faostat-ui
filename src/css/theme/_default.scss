@@ -174,7 +174,7 @@ hr{
 
 
 
-  #faostat_ui_menu .navbar-default {
+  .faostat_ui_menu .navbar-default {
     background-color: white;
     @include fx-border-radius(0);
     border-bottom: 1px solid $fenix-light-hr !important;
@@ -247,7 +247,10 @@ footer.container{
 }
 
 
-
+.fs-footer-logo{
+  position: relative;
+  left: -15px;
+}
 
 
 /* Override Fenix Tree */
@@ -338,6 +341,9 @@ footer.container{
 
 
 }
+
+
+
 
 
 /* Table Style */
