@@ -672,7 +672,7 @@ i.left {
 .elegant-card .card-content {
   padding: 2em;
   color: #666;
-  background-color: #fff; }
+  background-color: white; }
 
 .elegant-card .card-content h5 {
   margin-bottom: 5px; }
@@ -697,7 +697,7 @@ i.left {
   margin-right: 5px; }
 
 .elegant-card .card-footer ul a {
-  color: #fff; }
+  color: white; }
 
 .elegant-card .card-label {
   margin-bottom: -27px;
@@ -711,7 +711,7 @@ i.left {
 
 .elegant-card .card-details,
 .elegant-card .card-details a {
-  color: #666; }
+  color: #666666; }
 
 @media only screen and (max-width: 500px) {
   .elegant-card .card-up {
@@ -2731,7 +2731,7 @@ footer.container {
   color: #337ab7; }
 
 .label-danger {
-  color: #E00000; }
+  color: #e00000; }
 
 .label {
   background-color: transparent; }
@@ -7782,7 +7782,7 @@ footer.fao-footer {
     /* IE10+ */
     background: linear-gradient(to bottom, #0e6da5 0%, #0d5399 100%);
     /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0e6da5', endColorstr='#0d5399',GradientType=0 );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0e6da5', endColorstr='#0d5399',GradientType=0 );
     /* IE6-8 */ }
     .faostat_ui_menu .navbar-default .navbar-brand {
       color: white; }
@@ -8138,7 +8138,7 @@ footer.fao-footer {
 .groups-list li {
   border-bottom: 1px solid #dddddd; }
 
-.domain-group-list .domanis-list {
+.domain-group-list .domain-list {
   padding-left: 50px;
   margin-bottom: 10px; }
 
@@ -8150,22 +8150,20 @@ footer.fao-footer {
   padding-top: 25px; }
 
 /* Masonry-like patch for columns */
-.row-mason {
+.domain-list-container .row-mason {
   -moz-column-width: 20em;
   -webkit-column-width: 20em;
   -moz-column-gap: 2em;
   -webkit-column-gap: 2em; }
-
-.menu-category {
+.domain-list-container .menu-category {
   display: inline-block;
   margin: 0.25rem;
   padding: 1rem;
   width: 100%; }
-
-.fs-data-group-title {
+.domain-list-container .fs-data-group-title {
   position: relative;
   padding-left: 47px; }
-  .fs-data-group-title span {
+  .domain-list-container .fs-data-group-title span {
     position: absolute;
     left: 0;
     top: 50%;
@@ -8225,7 +8223,7 @@ footer.fao-footer {
     display: inline-block;
     margin: 3px 0;
     cursor: pointer;
-    border: 1px solid #D2D0D0;
+    border: 1px solid #d2d0d0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -8271,10 +8269,10 @@ footer.fao-footer {
 
 .pivot .collapse_button {
   background-color: transparent;
-  border: 1px solid #D2D0D0;
+  border: 1px solid #d2d0d0;
   font-family: "FrutigerLTW02-45Light", Arial, Helvetica, Verdana, sans-serif;
   font-weight: normal;
-  color: #D2D0D0; }
+  color: #d2d0d0; }
 
 [data-role="output-area"] {
   margin-top: 50px; }
@@ -8449,7 +8447,7 @@ footer.fao-footer {
   left: -10px; }
 
 .swiper-pagination-bullet-active {
-  background-color: #2BBBAD; }
+  background-color: #2bbbad; }
 
 .swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
   top: 10px;
@@ -8505,7 +8503,20 @@ footer.fao-footer {
     box-sizing: border-box;
     padding: 0 15px 0 0; }
 
+/* Country Profile Page */
+/* Masonry-like patch for columns */
+.country-list-container .row-mason {
+  -moz-column-width: 18em;
+  -webkit-column-width: 18em;
+  -moz-column-gap: 2em;
+  -webkit-column-gap: 2em; }
+.country-list-container .menu-category {
+  display: inline-block;
+  margin: 0rem;
+  padding: 1rem;
+  width: 100%; }
+.country-list-container .country-list {
+  margin-bottom: 10px; }
+
 /* Menu and some Header stuff TODO: remove the header related css from here */
 /* Modules. */
-
-/*# sourceMappingURL=index.css.map */
