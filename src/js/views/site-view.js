@@ -230,15 +230,15 @@ define([
                             log.info("JAODSOSADJDSAOads")
                             //$(o.container).animate({"height": "47px", "padding-top": "25px"}, {duration: 10, easing: 'easeOutBounce'});
 
-                            /*$('html, body').stop(1000).animate(
+                            $('html, body').stop(1000).animate(
                                 {
                                     scrollTop: scrollPos
                                 },
-                                1000
-                            );*/
+                                animateTime
+                            );
 
                             // TODO: this requires jquery-ui
-                            $('html, body').animate(
+                            /*$('html, body').animate(
                                 {
                                     scrollTop: scrollPos
                                 },{
@@ -248,9 +248,9 @@ define([
                                        // width: "linear",
                                         height: "easeInOutElastic"
                                     },*/
-                                    complete: function() {}
+                                   /* complete: function() {}
                                 }
-                            );
+                            );*/
 /*
                             $('html, body').stop().animate({
                                 'scrollTop': scrollPos
