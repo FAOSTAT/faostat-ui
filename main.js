@@ -110,7 +110,7 @@ require([
                     // TODO: switch to submodule? */
                     'fs-t-c': './lib/table',
 
-                    jquery:  '{FENIX_CDN}/js/jquery/2.1.1/jquery.min',
+                    jquery:  '{FENIX_CDN}/js/jquery/2.2.3/jquery.min',
                     bootstrap: "{FENIX_CDN}/js/bootstrap/3.3.4/js/bootstrap.min",
                     underscore: "{FENIX_CDN}/js/underscore/1.7.0/underscore.min",
                     "underscore.string": "{FENIX_CDN}/js/underscore.string/3.2.2/underscore.string.min",
