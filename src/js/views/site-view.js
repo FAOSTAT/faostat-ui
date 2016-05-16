@@ -209,7 +209,7 @@ define([
                 $container =  $(o.container),
                 paddingTop = o.paddingTop || 15,
                 animate = o.animate || true,
-                animateTime = o.animateTime || 500,
+                animateTime = o.animateTime || 1000,
                 force = o.force || false,
                 forceInvisible =  o.forceInvisible || false;
 
@@ -223,11 +223,7 @@ define([
 
                         var scrollPos = $(o.container).offset().top + (-paddingTop);
 
-                        
-                        log.info("JAODSOSADJDSAOads")
-
                         if (animate) {
-                            log.info("JAODSOSADJDSAOads")
                             //$(o.container).animate({"height": "47px", "padding-top": "25px"}, {duration: 10, easing: 'easeOutBounce'});
 
                             $('html, body').stop(1000).animate(
