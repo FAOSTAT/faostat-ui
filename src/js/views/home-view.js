@@ -9,35 +9,38 @@ define([
     'config/Events',
     'config/home/Config',
     'text!templates/home/home.hbs',
-    'text!templates/home/news.hbs',
+   // 'text!templates/home/news.hbs',
     'text!templates/home/domains.hbs',
     'text!templates/home/database_updates.hbs',
     'i18n!nls/home',
     'handlebars',
     'faostatapiclient',
     'fx-c-c/start',
-    'config/browse_by_domain/Config',
-    'config/home/sample/chartModel',
+    //'config/browse_by_domain/Config',
+    /*'config/home/sample/chartModel',
     'config/home/sample/whatsNew',
     'config/home/sample/comingUp',
-    'config/home/sample/databaseUpdates',
+    'config/home/sample/databaseUpdates',*/
     'moment',
     'underscore.string',
     'amplify',
     'bootstrap',
     'twitter',
     'swiper'
-], function ($, log, View, Common, ROUTE, C, E, CM,
+], function ($, log,
+             View,
+             Common,
+             ROUTE, C, E, CM,
              template,
-             templateNews,
+            // templateNews,
              templateDomains,
              templateDatabaseUpdates,
              i18nLabels, Handlebars, API, ChartCreator,
-             BrowseByDomainConfig,
-             ChartModel,
+             //BrowseByDomainConfig,
+            /* ChartModel,
              WhatsNew,
              ComingUp,
-             DatabaseUpdates,
+             DatabaseUpdates,*/
              moment,
              _s
 ) {
@@ -130,13 +133,13 @@ define([
 
             this.initSlideShow();
 
-            this.initDomains();
+            //this.initDomains();
 
-            this.initChart();
+            //this.initChart();
 
-            this.initWhatsNew();
+            //this.initWhatsNew();
 
-            this.initComingUp();
+            //this.initComingUp();
 
             this.initDatabaseUpdates();
 
@@ -160,8 +163,8 @@ define([
         },
 
         initDomains: function () {
-            var self = this,
-                browseWhiteList = BrowseByDomainConfig.whitelist || [];
+            var self = this;
+                //browseWhiteList = BrowseByDomainConfig.whitelist || [];
                 //browseBlackList = BrowseByDomainConfig.blacklist || [];
 
             amplify.publish(E.LOADING_SHOW, {container: self.$DOMAINS});
@@ -173,9 +176,9 @@ define([
 
                 var groups = _.chain(json.data)
                     .uniq(function(d) {
-                        if ( browseWhiteList.indexOf(d.group_code) > -1) {
+                       /* if ( browseWhiteList.indexOf(d.group_code) > -1) {
                             d.addBrowse = true;
-                        }
+                        }*/
                         return d.group_code;
                     })
                     .value();

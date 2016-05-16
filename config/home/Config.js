@@ -1,9 +1,13 @@
     /*global define*/
 define([
-    'jquery',
-    'i18n!nls/home',
-    'config/submodules/fx-chart/highcharts_template'
-],function ($, i18n, HighchartsTemplate) {
+   // 'jquery',
+    //'i18n!nls/home'
+    //'config/submodules/fx-chart/highcharts_template'
+],function (
+    //$,
+          //  i18n,
+          //  HighchartsTemplate
+) {
 
     'use strict';
 
@@ -11,7 +15,7 @@ define([
 
         MAX_DATABASE_UPDATES: 100,
 
-        chart: {
+        /*chart: {
 
             adapter: {
                 adapterType: 'faostat',
@@ -81,7 +85,7 @@ define([
                     }
                 })
             }
-        }
+        }*/
 
     };
 });
