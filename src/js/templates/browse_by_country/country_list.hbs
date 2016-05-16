@@ -1,39 +1,55 @@
-<div class="col-xs-12">
 
-    <h1>Country Profiles</h1>
+<div class="row">
+    <div class="col-xs-12">
 
-    <ul class="nav nav-tabs" role="tablist">
+        <h1>Country Profiles</h1>
 
-        <li role="presentation" class="active">
-            <a href="#country_list" data-section="country_list" role="tab" data-toggle="tab"
-               aria-expanded="true">
-                Country list
-            </a>
-        </li>
-    </ul>
+        <ul class="nav nav-tabs" role="tablist">
 
+            <li role="presentation" class="active">
+                <a href="#country_list" data-section="country_list" role="tab" data-toggle="tab"
+                   aria-expanded="true">
+                    Country list
+                </a>
+            </li>
+        </ul>
+
+    </div>
 </div>
 
-<div class="col-xs-12">
+<br>
 
-    <div class="row">
-
-        <ul class="list list-unstyled">
-
-            {{#each list}}
-                <div class="col-md-3">
-                    {{#each letter}}
-                        {{#each this}}
-                            <h1>{{@key}}</h1>
-                            {{#each data}}
-                                <p><a href="#" class="fs-browse-by-country-search" data-id="{{code}}">{{i18n label}}</a></p>
-                            {{/each}}
-                        {{/each}}
-                        <hr>
-                    {{/each}}
-                </div>
-            {{/each}}
-
-        </ul>
+<!--<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <input data-role="search" type="text" class="form-control" placeholder="Search a Countr e.g. Afghanistan, Italy, Zimbabwe">
     </div>
+</div>
+
+<br>-->
+
+<div class="country-list-container">
+
+    <div class="menu row-mason">
+
+        {{#each this}}
+
+            <div class="menu-category instafilta-section domain-group-list">
+
+                <h1>{{@key}}</h1>
+
+                <ul class="list-unstyled">
+
+                    {{#each this.data}}
+                        <li class="country-list">
+                            <a class="instafilta-target" href="{{this.link}}">{{i18n label}}</a>
+                        </li>
+                    {{/each}}
+
+                </ul>
+            </div>
+
+        {{/each}}
+
+    </div>
+
 </div>

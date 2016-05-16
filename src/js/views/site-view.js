@@ -208,7 +208,7 @@ define([
             var o = o || {},
                 $container =  $(o.container),
                 paddingTop = o.paddingTop || 15,
-                animate = o.animate || false,
+                animate = o.animate || true,
                 animateTime = o.animateTime || 500,
                 force = o.force || false,
                 forceInvisible =  o.forceInvisible || false;
@@ -223,10 +223,41 @@ define([
 
                         var scrollPos = $(o.container).offset().top + (-paddingTop);
 
+                        
+                        log.info("JAODSOSADJDSAOads")
+
                         if (animate) {
-                            $('html, body').animate({
-                                scrollTop: scrollPos
-                            }, animateTime);
+                            log.info("JAODSOSADJDSAOads")
+                            //$(o.container).animate({"height": "47px", "padding-top": "25px"}, {duration: 10, easing: 'easeOutBounce'});
+
+                            /*$('html, body').stop(1000).animate(
+                                {
+                                    scrollTop: scrollPos
+                                },
+                                1000
+                            );*/
+
+                            // TODO: this requires jquery-ui
+                            $('html, body').animate(
+                                {
+                                    scrollTop: scrollPos
+                                },{
+                                    duration: animateTime,
+                                    easing: 'easeInBounce',
+                                   /* specialEasing: {
+                                       // width: "linear",
+                                        height: "easeInOutElastic"
+                                    },*/
+                                    complete: function() {}
+                                }
+                            );
+/*
+                            $('html, body').stop().animate({
+                                'scrollTop': scrollPos
+                            }, 1000, 'swing', function () {
+                                //window.location.hash = target;
+                            });*/
+
                         } else {
                             $(window).scrollTop(scrollPos);
                         }

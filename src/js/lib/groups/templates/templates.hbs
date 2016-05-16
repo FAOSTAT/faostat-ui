@@ -15,7 +15,6 @@
 
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-offset-3 control-label"></label>
                     <div class="col-sm-6 col-sm-offset-3">
                         <input data-role="search" type="text" class="form-control" placeholder="Search a Domain e.g. crops, food security, fertilizers">
                     </div>
@@ -24,7 +23,7 @@
 
 
 
-            <div data-role="groups"></div>
+            <div class="domain-list-container" data-role="groups"></div>
 
             <div style="display:none" data-role="no-data">{{no_data_available}}</div>
 
@@ -39,14 +38,11 @@
 
 <script type='text/x-handlebars-template' id='groups'>
 
-
     <div class="menu row-mason">
 
         {{#each this}}
 
             <div class="menu-category instafilta-section domain-group-list" data-section="{{this.group_code}}">
-
-
 
                 <h1 class="fs-data-group-title">
                     <span data-role="go_to_download"
@@ -60,7 +56,7 @@
                 <ul class="list-unstyled">
 
                     {{#each this.data}}
-                        <li class="domanis-list">
+                        <li class="domain-list">
                             <a class="instafilta-target"
                                href="{{this.link}}">{{this.domain_name}}
                                 <span style="display:none">{{../title}}</span>
