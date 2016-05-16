@@ -8,7 +8,7 @@ define([
        /*'text!lib/table/templates/custom_template.hbs',
         'text!lib/table/templates/table_template.hbs',*/
         'i18n!nls/common',
-        'bootstrap-table',
+        'bootstrap-table'
     ],
     function ($, Handlebars, log, template, templateTable, i18n) {
 
@@ -53,6 +53,11 @@ define([
             this.$TABLE = $table_content.find(s.TABLE);
 
             log.info("Table._injectTemplate; o:", this.o);
+
+
+            // http://bootstrap-table.wenzhixin.net.cn/documentation/
+            //formatLoadingMessage 'Loading, please wait…'
+            // formatNoMatches
 
             // switch between server side (ajax) of full table rendering
             if (this.o.template.ajax !== undefined) {

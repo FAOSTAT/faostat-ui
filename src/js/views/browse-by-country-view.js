@@ -15,12 +15,17 @@ define([
     'handlebars',
     'globals/Common',
     'faostatapiclient',
-    'list',
+    //'list',
     'fx-ds/start',
     'lib/view/view-utils',
     'fenix-ui-map',
-    'amplify'
-], function (Require, $, log, View, A, C, ROUTE, E, CM, template, templateCountryList, i18nLabels, Handlebars, Common, FAOSTATClientAPI, List, Dashboard, ViewUtils) {
+    'amplify',
+    'instafilta'
+], function (Require, $, log, View, A, C, ROUTE, E, CM,
+             template, templateCountryList,
+             i18nLabels, Handlebars, Common, FAOSTATClientAPI,
+            // List,
+             Dashboard, ViewUtils) {
 
     'use strict';
 
@@ -32,7 +37,9 @@ define([
             COUNTRY_PROFILE_TITLE: "#fs-browse-by-country-profile-title",
             COUNTRY_PROFILE_DASHBOARD: "#fs-browse-by-country-profile-dashboard",
             COUNTRY_PROFILE_BACK: "#fs-browse-by-country-profile-back",
-            COUNTRY_PROFILE_MAP: "#fs-browse-by-country-profile-map"
+            COUNTRY_PROFILE_MAP: "#fs-browse-by-country-profile-map",
+
+            SEARCH: "[data-role='search']"
 
         },
 
@@ -134,77 +141,51 @@ define([
 
             renderCountryList: function () {
 
+                var self = this;
+
                 this.$COUNTRY_PROFILE.hide();
                 this.$COUNTRY_LIST_CONTAINER.show();
 
-                if (this.$COUNTRY_LIST_CONTAINER.find('.' + this.o.countrySearchFilters).length <= 0) {
+                //if (this.$COUNTRY_LIST_CONTAINER.find('.' + this.o.countrySearchFilters).length <= 0) {
 
                     var countries = this.cache.countries.data,
                         t = Handlebars.compile(templateCountryList),
                         d = {};
-                    //d = $.extend(true, {}, i18nLabels, {data: countries});
 
                     // format data
                     _.each(countries, function(c) {
                         var letter = c.label[0];
                         d[letter] = d[letter] || { data: []};
+                        c.link = '#' + Common.getURI(ROUTE.BROWSE_BY_COUNTRY_CODE, [c.code]);
                         d[letter].data.push(c);
                     });
 
-                    var v = [];
-                    var maxSize = (countries.length / 4) + 6;
-                    var col = {
-                        letter: []
-                    };
-                    var size = 0;
-                    _.each(d, function(c, key) {
-                        if ( size + c.data.length > maxSize) {
-                            v.push(col);
+                    this.$COUNTRY_LIST_CONTAINER.append(t(d));
+                
 
-                            col = {
-                                letter: []
-                            };
-                            size = 0;
+                    /* Search **/
+                    /*this.$SEARCH = this.$COUNTRY_LIST_CONTAINER.find(s.SEARCH);
+
+                    // focus on search
+                    this.$SEARCH.focus();
+
+                    this.$SEARCH.instaFilta({
+                        //markMatches: true,
+                        //scope: '.country-list-container',
+                        beginsWith: true,
+                        typeDelay: 200,
+                        onFilterComplete: function(matchedItems) {
+
+                            log.info(matchedItems)
+
+                            // show/hide no data div
+                            //if (matchedItems) {
+                               // matchedItems.length > 0 ? self.$NO_DATA.hide() : self.$NO_DATA.show();
+                            //}
                         }
-                        var e= {};
-                        e[key] = c;
+                    });*/
 
-                        col.letter.push(e);
-                        size += c.data.length;
-                    });
-                    v.push(col);
-
-                    d = $.extend(true, {}, i18nLabels, {list: v});
-
-                    //d = $.extend(true, {}, i18nLabels, {data: countries});
-
-                    var html = t(d);
-
-                    this.$COUNTRY_LIST_CONTAINER.append(html);
-
-                    // add list.js
-                    var options = {
-                        valueNames: [this.o.countrySearchFilters],
-                        page: 200000
-                    };
-
-                    new List(this.$COUNTRY_LIST_CONTAINER.selector.replace('#', ''), options);
-
-                    this.$COUNTRY_LIST_CONTAINER.find('.' + this.o.countrySearchFilters).on('click', _.bind(function (e) {
-
-                        e.preventDefault();
-
-                        this.o.code = $(e.target).data("id");
-                        this.o.section = ROUTE.BROWSE_BY_COUNTRY_CODE;
-
-                        //this.renderCountryProfile();
-
-                        // routing
-                        this.changeState();
-
-                    }, this));
-
-                }
+                //}
             },
 
             renderCountryProfile: function () {
@@ -387,6 +368,8 @@ define([
             dispose: function () {
 
                 this.unbindEventListeners();
+
+                this.$el.empty();
 
                 View.prototype.dispose.call(this, arguments);
             }
