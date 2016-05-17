@@ -163,9 +163,8 @@ define([
         },
 
         initDomains: function () {
+
             var self = this;
-                //browseWhiteList = BrowseByDomainConfig.whitelist || [];
-                //browseBlackList = BrowseByDomainConfig.blacklist || [];
 
             amplify.publish(E.LOADING_SHOW, {container: self.$DOMAINS});
 
@@ -176,9 +175,6 @@ define([
 
                 var groups = _.chain(json.data)
                     .uniq(function(d) {
-                       /* if ( browseWhiteList.indexOf(d.group_code) > -1) {
-                            d.addBrowse = true;
-                        }*/
                         return d.group_code;
                     })
                     .value();
@@ -213,7 +209,7 @@ define([
                     download: i18nLabels.download,
                     browse: i18nLabels.browse
                 }));
-                
+
                 // add listeners on domains
                 self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
 
