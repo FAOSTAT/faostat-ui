@@ -288,7 +288,7 @@ require([
         'globals/GoogleAnalyticsManager',
         'loglevel',
         'waves',
-        'modernizr',
+        //'modernizr',
         'outdatedbrowser',
         'amplify',
         'domReady!'
@@ -316,7 +316,7 @@ require([
         log.setLevel(C.LOGLEVEL);
 
         // modernizr
-        ModernizrFixes();
+        //ModernizrFixes();
 
         // starting the Application
         var app = new Application({
