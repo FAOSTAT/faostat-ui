@@ -285,6 +285,7 @@ require([
 
     /* Bootstrap the application. */
     require([
+        'jquery',
         'application',
         'routes',
         'config/Config',
@@ -295,9 +296,11 @@ require([
         'waves',
         'outdatedbrowser',
         'amplify',
-        'domReady!',
-    ], function (Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves) {
+        'domReady!'
+    ], function ($, Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves) {
 
+        // outdatedBrowser. Has been moved here to avoid Google tracking it.
+        $('body').append('<div id="outdated"><h6>Your browser is out of date!</h6><p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p> <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p></div>');
         outdatedBrowser({
             bgColor: '#f25648',
             color: '#ffffff',
@@ -305,23 +308,19 @@ require([
             languagePath: ''
         });
 
+        // saving Locale
         Common.setLocale(requirejs.s.contexts._.config.locale);
+        // Alternative is to use the amplify storage.
+        //amplify.store( 'locale', requirejs.s.contexts._.config.locale);
+        //amplify.store( 'lang', requirejs.s.contexts._.config.locale);
 
+        // init Wave effect applaied on buttons
         Waves.init();
-
-
-        /*        // Mapping GoogleAnalyticsManager
-         amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, GoogleAnalyticsManager.pageView);
-         amplify.publish(E.GOOGLE_ANALYTICS_EVENT, GoogleAnalyticsManager.event);
-         */
 
         // setting global LOGLEVEL level
         log.setLevel(C.LOGLEVEL);
 
-        // TODO: use locale or lang?
-        //amplify.store( 'locale', requirejs.s.contexts._.config.locale);
-        //amplify.store( 'lang', requirejs.s.contexts._.config.locale);
-
+        // starting the Application
         var app = new Application({
             routes: routes,
             root: C.CHAPLINJS_PROJECT_ROOT,
