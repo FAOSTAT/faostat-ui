@@ -32,9 +32,28 @@ define([
                         "dimension_id": "items",
                         "defaultCodes": ["23101"],
                         "filter": {
-                            whitelist: [
-                                "23101"
-                            ]
+                            whitelist: ["23101"]
+                        }
+                    }
+                },
+                {
+                    // id to be applied on the getData request
+                    "id": "element",
+                    "type": "codelist",
+                    // TODO: in theory that should come from the dimensions schema!!
+                    "parameter": "List2Codes",
+                    //"title": "title",
+                    "componentType": {
+                        <!-- TODO: add a class instead of bootstrap -->
+                        "class": "col-xs-7 col-md-5",
+                        "type": "dropDownList",
+                        "multiple": false
+                    },
+                    "config": {
+                        "dimension_id": "element",
+                        "defaultCodes": ["6111"],
+                        "filter": {
+                            whitelist: ["6111"]
                         }
                     }
                 },
@@ -48,8 +67,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "year",
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 }
             ]
