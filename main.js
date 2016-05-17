@@ -10,17 +10,16 @@ require([
     './submodules/faostat-ui-bulk-downloads/src/js/paths',
     './submodules/faostat-ui-download-selectors-manager/src/js/paths',
     './submodules/faostat-ui-menu/src/js/paths',
-    './submodules/faostat-ui-options-manager/src/js/paths',
     './submodules/faostat-ui-download-options/src/js/paths',
     './submodules/faostat-ui-download-selector/src/js/paths',
     './submodules/faostat-ui-table/src/js/paths',
     './submodules/faostat-ui-pivot/src/js/paths',
     './submodules/faostat-ui-download/src/js/paths',
-    //'./submodules/faostat-ui-welcome-page/src/js/paths',
     './submodules/faostat-ui-report/src/js/paths',
     './submodules/faostat-ui-report-table/src/js/paths'
 ], function (Compiler, Common, Tree, MapCreator, ChartCreator, Dashboard, MetadataViewer,
-             BulkDownloads, DownloadSelectorsManager, FAOSTATMenu, OptionsManager,
+             BulkDownloads, DownloadSelectorsManager, FAOSTATMenu,
+             //OptionsManager,
              DownloadOptions, DownloadSelector, Table, Pivot,
              Download,
             // WelcomePage,
@@ -38,13 +37,11 @@ require([
         bulkDownloadsConfig = BulkDownloads,
         downloadSelectorsManagerConfig = DownloadSelectorsManager,
         faostatMenuConfig = FAOSTATMenu,
-        optionsManagerConfig = OptionsManager,
         downloadOptionsConfig = DownloadOptions,
         downloadSelectorConfig = DownloadSelector,
         tableConfig = Table,
         pivotConfig = Pivot,
         downloadConfig = Download,
-       // welcomePageConfig = WelcomePage,
         reportConfig = Report,
         reportTableConfig = ReportTable;
 
@@ -57,28 +54,23 @@ require([
     bulkDownloadsConfig.baseUrl = submodules_path + '/faostat-ui-bulk-downloads/src/js';
     downloadSelectorsManagerConfig.baseUrl = submodules_path + '/faostat-ui-download-selectors-manager/src/js';
     faostatMenuConfig.baseUrl = submodules_path + '/faostat-ui-menu/src/js';
-    optionsManagerConfig.baseUrl = submodules_path + '/faostat-ui-options-manager/src/js';
     downloadOptionsConfig.baseUrl = submodules_path + '/faostat-ui-download-options/src/js';
     downloadSelectorConfig.baseUrl = submodules_path + '/faostat-ui-download-selector/src/js';
     tableConfig.baseUrl = submodules_path + '/faostat-ui-table/src/js';
     pivotConfig.baseUrl = submodules_path + '/faostat-ui-pivot/src/js';
     downloadConfig.baseUrl = submodules_path + '/faostat-ui-download/src/js';
-    //welcomePageConfig.baseUrl = submodules_path + '/faostat-ui-welcome-page/src/js';
     reportConfig.baseUrl = submodules_path + '/faostat-ui-report/src/js';
     reportTableConfig.baseUrl = submodules_path + '/faostat-ui-report-table/src/js';
 
     Compiler.resolve([commonConfig, mapConfig, chartConfig,
             dashboardConfig, metadataConfig, bulkDownloadsConfig,
             downloadSelectorsManagerConfig, faostatMenuConfig,
-            optionsManagerConfig, treeConfig,
+            treeConfig,
             downloadOptionsConfig,
             downloadSelectorConfig, tableConfig, pivotConfig, downloadConfig,
-            //welcomePageConfig,
             reportConfig, reportTableConfig],
         {
-            //placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn"},
             placeholders: {"FENIX_CDN": "//fenixrepo.fao.org/cdn/faostat"},
-
             config: {
 
                 waitSeconds: 20,
@@ -297,7 +289,7 @@ require([
         'domReady!'
     ], function ($, Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves) {
 
-        // outdatedBrowser. Has been moved here to avoid Google tracking it.
+        // outdatedBrowser. Has been moved here to avoid Google indexing it.
         $('body').append('<div id="outdated"><h6>Your browser is out of date!</h6><p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p> <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p></div>');
         outdatedBrowser({
             bgColor: '#f25648',
