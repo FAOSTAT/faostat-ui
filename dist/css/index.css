@@ -8173,8 +8173,15 @@ footer.fao-footer {
 
 /* Download */
 /* To remove */
-.jstree-icon.jstree-ocl {
+.faostat-downlaod-selector-single .jstree-icon.jstree-ocl {
   width: 10px !important; }
+
+.inline-icon {
+  display: inline-block;
+  font-size: 20px;
+  position: relative;
+  top: 3px;
+  margin-right: 8px; }
 
 .fs-download-domain-tree {
   max-height: 750px;
