@@ -108,11 +108,13 @@ define([
 
         o = $.extend(true, {}, DEFAULT, o);
 
-        $('body')
-            .prepend('<div class="alert alert-warning alert-dismissible fade in" role="alert">' +
-                '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>' +
-                'FAOSTAT is in <strong>DEV</strong> mode. Using <strong>' + o.DATASOURCE.toUpperCase() + '</strong> datasource' +
-                '</div>');
+        if (!_s.contains(href, "/v")) {
+            $('body')
+                .prepend('<div class="alert alert-warning alert-dismissible fade in" role="alert">' +
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>' +
+                    'FAOSTAT is in <strong>DEV</strong> mode. Using <strong>' + o.DATASOURCE.toUpperCase() + '</strong> datasource' +
+                    '</div>');
+        }
 
         return o;
     }
