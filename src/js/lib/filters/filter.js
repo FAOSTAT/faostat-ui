@@ -165,7 +165,6 @@ define([
 
     };
 
-
     Filter.prototype.getFilterStandard = function () {
         var f = {
             id: this.o.id,
@@ -196,7 +195,6 @@ define([
 
         return f;
     };
-
 
     Filter.prototype.getFilterTimerange = function () {
         var f = {
@@ -309,6 +307,19 @@ define([
     Filter.prototype.destroy = function () {
 
         this.unbindEventListeners();
+
+        if (this.$DD) {
+            this.$DD.empty();
+        }
+
+        if (this.$DD_FROM_YEAR) {
+            this.$DD_FROM_YEAR.empty();
+        }
+
+        if (this.$DD_TO_YEAR) {
+            this.$DD_TO_YEAR.empty();
+        }
+
     };
 
     return Filter;
