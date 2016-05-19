@@ -10,7 +10,7 @@ define([
     'config/compare/Events',
     'config/compare/Config',
     'config/submodules/fx-chart/highcharts_template',
-    'text!templates/compare/compare_2.hbs',
+    'text!templates/compare/compare.hbs',
     'i18n!nls/compare',
     'faostatapiclient',
     'views/compare-filter-box-view',
