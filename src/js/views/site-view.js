@@ -209,7 +209,7 @@ define([
                 $container =  $(o.container),
                 paddingTop = o.paddingTop || 15,
                 animate = o.animate || true,
-                animateTime = o.animateTime || 1000,
+                animateTime = o.animateTime || 800,
                 force = o.force || false,
                 forceInvisible =  o.forceInvisible || false;
 
@@ -226,7 +226,7 @@ define([
                         if (animate) {
                             //$(o.container).animate({"height": "47px", "padding-top": "25px"}, {duration: 10, easing: 'easeOutBounce'});
 
-                            $('html, body').stop(1000).animate(
+                            $('html, body').stop(animateTime).animate(
                                 {
                                     scrollTop: scrollPos
                                 },
