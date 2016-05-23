@@ -113,6 +113,24 @@ div#google_search input#search-submit {
 
 .language-menu{
   margin-top: 15px;
+
+  a {
+
+    &.active {
+
+      color: black !important;
+
+    }
+
+    &.disabled {
+
+      color: #f1f1f1 !important;
+
+    }
+
+  }
+
+
 }
 
 .faostat_ui_menu .navbar-default{

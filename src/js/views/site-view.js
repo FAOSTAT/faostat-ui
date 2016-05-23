@@ -36,7 +36,7 @@ define([
 
         TERRITORIAL_NOTES: '#territorial-notes',
         FEEDBACK_SYSTEM: '#feedback-system',
-        LANGUAGES: '#fs-languages',
+        LANGUAGE: '#fs-language',
         SEARCH: '#fs-search',
 
         TOP_MENU_CONTAINER: '#top-menu-container',
@@ -117,14 +117,14 @@ define([
 
 
             /* Switch Language */
-            this.$el.find(s.LANGUAGES).find('a').on('click', function(e) {
+            this.$el.find(s.LANGUAGE).find('a').on('click', function(e) {
 
                 e.preventDefault();
 
-                //log.info(this.getAttribute("data-locale"))
+                self.changeLanguage(this.getAttribute('data-locale'));
 
-                self.changeLanguage(this.getAttribute("data-locale"));
             });
+            this.$el.find(s.LANGUAGE).find('[data-locale=' + Common.getLocale() + ']').addClass('active');
 
             // scrolling
             $(document).on( 'scroll', function(){
