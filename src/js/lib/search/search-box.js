@@ -5,6 +5,7 @@ define([
     'config/Config',
     'config/Events',
     'globals/Common',
+    'i18n!nls/common',
     'typeahead',
     'bloodhound',
     'handlebars',
@@ -12,7 +13,7 @@ define([
     'underscore.string',
     'faostatapiclient',
     'amplify'
-], function ($, log, C, E, Common, typeahead, Bloodhound, Handlebars, _, _s, FAOSTATAPIClient) {
+], function ($, log, C, E, Common, i18nLabels, typeahead, Bloodhound, Handlebars, _, _s, FAOSTATAPIClient) {
 
     'use strict';
 
@@ -117,7 +118,7 @@ define([
                 display: 'label',
                 limit: 100,
                 templates: {
-                    empty: 'No data',
+                    empty: '<p class="text-capitalize" style="padding:5px 0 0 5px;font-size:12px;">' + i18nLabels.no_data_available + '</p>',
                     suggestion: Handlebars.compile('<p>{{label}} <small>({{id}})</small></p>')
                 }
             }).on('typeahead:selected', function (e, d) {
