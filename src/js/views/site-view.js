@@ -324,6 +324,8 @@ define([
 
             this.menu.select(s);
 
+            this.menu.collapse();
+            
         },
 
         // Notifications
