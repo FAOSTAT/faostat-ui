@@ -54,8 +54,9 @@
    min-height:250px;
 }
 
-.fao-logo-home{
-   margin: 15px 120px 15px 0;
+.fao-logo-home {
+   margin: 0px 0px 0px -15px;
+   //margin-left: -15px;
 }
 
 
@@ -114,7 +115,7 @@
 
 }
 
-.swiper-slide .title h1, .swiper-slide .title h2,{
+.swiper-slide .title h1, .swiper-slide .title h2 {
    position: relative;
    z-index: 2;
    color: $fenix-text;

@@ -97,7 +97,7 @@ define([
             View.prototype.attach.call(this, arguments);
 
             //update State
-            amplify.publish(E.STATE_CHANGE, {menu: 'home'});
+            amplify.publish(E.STATE_CHANGE, {home: 'home'});
 
             this.initVariables();
 

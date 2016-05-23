@@ -3,13 +3,14 @@
     <div class="col-md-12 fao-header">
         <header class="header">
 
-            <h1 id="logo-ltr" class="logo">FAO.org<a class="internal-link" title="FAO homepage" href="/home/en/">
+            <h1 id="logo-ltr" class="logo">FAO.org
+                <a class="internal-link" title="FAO homepage" target="_blank" href="//www.fao.org/home/{{locale}}">
                 <img width="321" height="60" class="fao-logo-header" alt="" src="src/images/FAO_logo_Black_2lines_en.svg"></a></h1>
 
             <div id="google_search" class="hidden-xs">
                 <div id="c205206" class="csc-default">
                     <div class="tx-xinclude-pi1">
-                        <form action="/search/en/" method="get" target="_self"
+                        <form action="//www.fao.org/search/{{locale}}/" method="get" target="_blank"
                               id="searchbox_018170620143701104933:qq82jsfba7w">
                             <input type="hidden" name="cx" value="018170620143701104933:qq82jsfba7w">
                             <!-- Google CSE Search Box Begins -->
@@ -17,13 +18,10 @@
                                    style="border: 0px; background: url(&quot;https://www.google.com/cse/static/en/google_custom_search_watermark.gif&quot;) 0% 50% no-repeat rgb(255, 255, 255);">
                             <input type="hidden" name="cof" value="FORID:9">
                             <input id="search-submit" type="submit" value="Search">
-                            <input name="siteurl" type="hidden"
-                                   value="www.fao.org/in-action/voices-of-the-hungry/en/"><input name="ref" type="hidden"
-                                                                                                 value="www.fao.org/in-action/voices-of-the-hungry/test/en/"><input
-                                name="ss" type="hidden" value=""></form>
                         <script type="text/javascript"
                                 src="http://www.google.com/coop/cse/brand?form=searchbox_018170620143701104933%3Aqq82jsfba7w"></script>
                         <!-- Google CSE Search Box Ends -->
+                        </form>
                     </div>
                 </div>
             </div>
@@ -32,56 +30,57 @@
 
     <div class="col-md-12 fao-header clearfix hidden-xs">
 
-            <ul class="list-unstyled list-inline fao-menu-list pull-right">
-                <li>
-                    <a href="#">About FAO</a>
-                </li>
-                <li>
-                    <a href="#">In Action</a>
-                </li>
-                <li>
-                    <a href="#">Countries</a>
-                </li>
-                <li>
-                    <a href="#">Themes</a>
-                </li>
-                <li>
-                    <a href="#">Media</a></li>
-                <li>
-                    <a href="#">Publications</a>
-                </li>
-                <li>
-                    <a href="#">Statistics</a>
-                </li>
-                <li>
-                    <a href="#">Partnerships</a>
-                </li>
-            </ul>
-
+        <ul class="list-unstyled list-inline fao-menu-list pull-right">
+            <li>
+                <a href="#">About FAO</a>
+            </li>
+            <li>
+                <a href="#">In Action</a>
+            </li>
+            <li>
+                <a href="#">Countries</a>
+            </li>
+            <li>
+                <a href="#">Themes</a>
+            </li>
+            <li>
+                <a href="#">Media</a></li>
+            <li>
+                <a href="#">Publications</a>
+            </li>
+            <li>
+                <a href="#">Statistics</a>
+            </li>
+            <li>
+                <a href="#">Partnerships</a>
+            </li>
+        </ul>
 
     </div>
 
     <div class="col-md-12 clearfix">
-        <img src="src/images/faostat-logo-blue-capital-only-text.svg" width="108px" height="20px" alt="Faostat" class="img-responsive faostat-header-logo pull-left">
-        <div class="language-menu pull-right">
+
+        <a href="{{url_home}}">
+            <img src="src/images/faostat-logo-blue-capital-only-text.svg" width="108px" height="20px" alt="Faostat" class="img-responsive faostat-header-logo pull-left">
+        </a>
+
+        <div id="fs-languages" class="language-menu pull-right">
 
             <ul class="list-unstyled list-inline">
+                <li style="color:#f1f1f1">العربية
+                </li>
+                <li style="color:#f1f1f1">中文</li>
                 <li>
-                    <a href="#">English</a>
+                    <a data-locale="en" href="#">English</a>
                 </li>
                 <li>
-                    <a href="#">Español</a>
+                    <a data-locale="fr" href="#">Français</a>
                 </li>
+                <li style="color:#f1f1f1">Русский</li>
                 <li>
-                    <a href="#">Français</a>
+                    <a data-locale="es" href="#">Español</a>
                 </li>
             </ul>
-
-            <div></div>
-
-
-
-
 
         </div>
     </div>

@@ -2,7 +2,7 @@
     <div class="row">
 
 
-        <div class="col-md-9">
+        <div class="col-sm-8 col-md-9">
             <h4>
                 {{this.Label}}
                 <!-- TODO: id should be translated and take from the db as typeLabel -->
@@ -14,10 +14,7 @@
                     <span class="domain-icon icojam_{{this.groupCode}}"></span>
                 </h5>-->
                 <h5>
-                    <!--<small>{{domain_label}}</small>-->
-                    <!--({{this.domainCode}})-->
-
-                    <a href="{{this.download_link}}"><i class="fa fa-external-link"></i> {{this.domainName}}</a> ({{this.groupName}})
+                    <a href="{{this.download_link}}">{{this.domainName}}</a> ({{this.groupName}})
                 </h5>
             </div>
             {{#each relations}}
@@ -25,8 +22,8 @@
             {{/each}}
         </div>
 
-        <div class="col-md-3">
-            <button class="btn btn-primary btn-block waves-effect waves-light" data-role="download" data-index="{{index}}">
+        <div class="col-sm-4 col-md-3">
+            <button class="btn btn-default btn-block waves-effect waves-light" data-role="download" data-index="{{index}}">
                 <i class="material-icons left hidden-xs">file_download</i>{{download_data}}
             </button>
 

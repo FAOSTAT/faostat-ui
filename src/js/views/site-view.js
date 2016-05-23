@@ -36,7 +36,7 @@ define([
 
         TERRITORIAL_NOTES: '#territorial-notes',
         FEEDBACK_SYSTEM: '#feedback-system',
-        LANGUAGES: '#fs-lang',
+        LANGUAGES: '#fs-languages',
         SEARCH: '#fs-search',
 
         TOP_MENU_CONTAINER: '#top-menu-container',
@@ -45,6 +45,7 @@ define([
         LANG: "#footer-menu-container"
 
     }, 
+        
     SiteView = View.extend({
 
         container: 'body',
