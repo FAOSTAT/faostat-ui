@@ -7,7 +7,7 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            base_url: 'http://fenix.fao.org/faostat/dev/api/v1/'
+            base_url: 'http://fenix.fao.org/faostat/api/v1/'
             //base_url: '@@url_api'
         };
 
