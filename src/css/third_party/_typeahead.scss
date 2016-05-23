@@ -1,11 +1,12 @@
 .typeahead, .tt-query, .tt-hint {
-  width: 250px;
+  width: 230px;
   /*height: 30px;*/
   //padding: 3px 10px;
   //font-size: 13px;
   //line-height: 24px;
 
-  padding: 14px 10px;
+  padding: 13px 10px 14px 10px;
+
   background-color: #f8f8f8;
   border: none;
   @include fx-border-radius(0);

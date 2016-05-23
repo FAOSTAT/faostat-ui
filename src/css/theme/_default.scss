@@ -104,7 +104,8 @@ hr {
 /* Menu */
 .fs-menu-search-container {
   background-color: white;
-
+  border-right: 0 !important;
+  
 }
 
 .fs-search-icon {
@@ -119,13 +120,15 @@ hr {
 footer.container {
 
   padding-top: 30px;
-  background-color: #cccccc;
-  //color: white;
-  color: black;
+  background-color: #0D6CAC;
+
+  color: white;
+  //color: black;
 
   a {
-    color: black !important;
+    color: white !important;
   }
+
 
   h4 {
     margin-top: 15px;

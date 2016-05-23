@@ -170,6 +170,18 @@ div#google_search input#search-submit {
       }
 
 
+      &.active{
+
+        .home-ico{
+          display: none;
+        }
+
+
+        .home-h-ico{
+          display: block;
+        }
+      }
+
 
 
     }
@@ -179,6 +191,10 @@ div#google_search input#search-submit {
       //border-right: 1px solid #D2D0D0;
       border-left: 1px solid #D2D0D0;
 
+
+      &:last-child{
+        border-right: 1px solid #D2D0D0;
+      }
 
 
       a{
