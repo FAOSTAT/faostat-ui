@@ -62,7 +62,8 @@ define([
             // add lang
             return $.extend(true,
                 {
-                    locale: Common.getLocale()
+                    locale: Common.getLocale(),
+                    url_home: Common.getURI(ROUTES.HOME)
                 },
                 C,
                 i18nLabels);

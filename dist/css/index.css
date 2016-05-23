@@ -7786,7 +7786,7 @@ div#google_search input#search-submit {
   margin-top: 15px; }
   .language-menu a.active {
     color: black !important; }
-  .language-menu a.disabled {
+  .language-menu li.disabled {
     color: #f1f1f1 !important; }
 
 .faostat_ui_menu .navbar-default .home-h-ico {
