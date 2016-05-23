@@ -74,9 +74,13 @@ define([
         // focus on search
         this.$SEARCH.focus();
 
+        amplify.publish(E.LOADING_SHOW, {container: this.$GROUPS});
+
     };
 
     Groups.prototype._configurePage = function() {
+
+        var self = this;
 
         this.api.groupsanddomains({
             datasource: C.DATASOURCE,
@@ -84,6 +88,7 @@ define([
         }).then(_.bind(this._show, this))
           .fail(function(e) {
             log.error("Groups.initVariables; error", e);
+              amplify.publish(E.LOADING_HIDE, {container: self.$GROUPS});
         });
 
     };
