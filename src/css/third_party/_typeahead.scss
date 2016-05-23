@@ -1,11 +1,11 @@
 .typeahead, .tt-query, .tt-hint {
-  /*width: 396px;*/
+  width: 250px;
   /*height: 30px;*/
   //padding: 3px 10px;
   //font-size: 13px;
   //line-height: 24px;
 
-  padding: 15px 10px;
+  padding: 14px 10px;
   background-color: #f8f8f8;
   border: none;
   @include fx-border-radius(0);
@@ -15,6 +15,18 @@
   &:focus{
     outline: 0;
     outline-width: 0;
+  }
+
+
+
+
+}
+
+
+.twitter-typeahead{
+  pre{
+    height: 0 !important;
+    display: none !important;
   }
 
 }
@@ -87,9 +99,18 @@
   -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
   box-shadow: 0 5px 10px rgba(0,0,0,.2);
 
+  z-index: 9999999 !important;
+
   // scrollbar
   max-height:250px;
   overflow-y: auto;
+
+  
+  @media (min-width: 0) and (max-width: 768px) {
+    display: none !important;
+  }
+
+
 
 }
 
@@ -99,7 +120,20 @@
   //line-height: 24px;
   //font-size: 13px;
   padding: 5px 10px;
+  font-size: 12px;
+
+
+
+  strong{
+    background-color: #FFFF33;
+  }
+
+
+
 }
+
+
+
 
 .tt-suggestion:hover {
   cursor: pointer;
