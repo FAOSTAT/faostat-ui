@@ -1,56 +1,55 @@
 {{#each data}}
-    <div class="row clearfix">
+    <div class="row">
 
-        <div class="col-lg-12">
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div>
-                        <h4>
-                            {{this.Label}}
-                            <!-- TODO: id should be translated and take from the db as typeLabel -->
-                            <small>({{this.id}})</small>
-                        </h4>
-                        <div>
-                            <h5>
-                                <small>{{group_label}}</small>
-                                <!--({{this.groupCode}}) -->
-                                {{this.groupName}}
-                                <!--<span class="domain-icon icojam_{{this.groupCode}}"></span>-->
-                            </h5>
-                            <h5>
-                                <small>{{domain_label}}</small>
-                                <!--({{this.domainCode}})-->
-                                {{this.domainName}}
-                            </h5>
-                        </div>
-                        {{#each relations}}
-                            <span> {{this.Label}} </span>
-                        {{/each}}
-                    </div>
-                </div>
+        <div class="col-md-9">
+            <h4>
+                {{this.Label}}
+                <!-- TODO: id should be translated and take from the db as typeLabel -->
+                <small>({{this.id}})</small>
+            </h4>
+            <div>
+                <h5>
+                    <small>{{group_label}}</small>
+                    <!--({{this.groupCode}}) -->
+                    {{this.groupName}}
+                    <!--<span class="domain-icon icojam_{{this.groupCode}}"></span>-->
+                </h5>
+                <h5>
+                    <small>{{domain_label}}</small>
+                    <!--({{this.domainCode}})-->
+                    {{this.domainName}}
+                </h5>
             </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="pull-left">
-                        <div style="padding-top:15px;">
-                        <!-- TODO: with routing an multilanguage -->
-                        <a href="{{this.download_link}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>
-                        <a style="margin-left:15px;" href="{{this.browse_link}}"><i class="fa fa-external-link"></i> {{go_to_browse}}</a>
-                        </div>
-                    </div>
-                    <div class="pull-right">
-                        <button class="btn btn-primary" data-role="download" data-index="{{index}}">
-                            <i class="fa fa-download"></i> {{download_data}}
-                            <!--<a href="#" data-role="download" data-index="{{index}}">{{download_data}}Export Data</a>-->
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <hr>
+            {{#each relations}}
+                <span> {{this.Label}} </span>
+            {{/each}}
         </div>
-        <div class="clearfix"></div>
+
+        <div class="col-md-3">
+            <button class="btn btn-primary btn-block waves-effect waves-light" data-role="download" data-index="{{index}}">
+                <i class="material-icons left hidden-xs">file_download</i>{{download_data}}
+            </button>
+
+            <a href="{{this.download_link}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>
+            <!--<a style="margin-left:15px;" href="{{this.browse_link}}"><i class="fa fa-external-link"></i>Visualize Data {{go_to_visualize_data}}</a>-->
+
+        </div>
 
     </div>
+
+<!--    <div class="row clearfix">
+        <div class="col-md-9">
+            <div style="padding-top:15px;">
+                &lt;!&ndash; TODO: with routing an multilanguage &ndash;&gt;
+                <a href="{{this.download_link}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>
+                <a style="margin-left:15px;" href="{{this.browse_link}}"><i class="fa fa-external-link"></i> {{go_to_browse}}</a>
+            </div>
+
+        </div>
+
+    </div>-->
+
+    <hr>
+
 {{/each}}
