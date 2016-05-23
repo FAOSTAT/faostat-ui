@@ -9,16 +9,15 @@
                 <small>({{this.id}})</small>
             </h4>
             <div>
-                <h5>
+<!--                <h5>
                     <small>{{group_label}}</small>
-                    <!--({{this.groupCode}}) -->
-                    {{this.groupName}}
-                    <!--<span class="domain-icon icojam_{{this.groupCode}}"></span>-->
-                </h5>
+                    <span class="domain-icon icojam_{{this.groupCode}}"></span>
+                </h5>-->
                 <h5>
-                    <small>{{domain_label}}</small>
+                    <!--<small>{{domain_label}}</small>-->
                     <!--({{this.domainCode}})-->
-                    {{this.domainName}}
+
+                    <a href="{{this.download_link}}"><i class="fa fa-external-link"></i> {{this.domainName}}</a> ({{this.groupName}})
                 </h5>
             </div>
             {{#each relations}}
@@ -31,7 +30,7 @@
                 <i class="material-icons left hidden-xs">file_download</i>{{download_data}}
             </button>
 
-            <a href="{{this.download_link}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>
+            <!--<a href="{{this.download_link}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>-->
             <!--<a style="margin-left:15px;" href="{{this.browse_link}}"><i class="fa fa-external-link"></i>Visualize Data {{go_to_visualize_data}}</a>-->
 
         </div>
