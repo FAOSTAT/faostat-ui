@@ -123,6 +123,8 @@ define([
                     container: this.$GROUPS,
                     title: i18nLabels.groups,
                     addEmptySelection: true,
+                    //placeholder: i18nLabels.please_select_an_option,
+                    placeholder: " ",
                     data: groupsData
                 });
 
@@ -153,7 +155,8 @@ define([
             var filter = new Filter({
                 container: this.$DOMAINS,
                 title: i18nLabels.domains,
-                placeholder: i18nLabels.please_select_an_option,
+                //placeholder: i18nLabels.please_select_an_option,
+                placeholder: " ",
                 data: json.data
             });
 
@@ -252,6 +255,9 @@ define([
                                 allowClear: false,
                                 show: (CM.filters.blacklistCodesID.indexOf(id) <= -1)
                             };
+
+                            // v.placeholder = i18nLabels.please_select_an_option;
+                            v.placeholder = " ";
 
                             this.o.filters[id] = {};
                             this.o.filters[id].filter = new Filter(v);
