@@ -155,6 +155,8 @@ require([
                     // boostrap bplugins
                     'bootstrap-table': '{FENIX_CDN}/js/bootstrap-table/1.9.1/bootstrap-table.min',
                     'bootstrap-treeview': '{FENIX_CDN}/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
+                    'bootstrap-tour': '{FENIX_CDN}/js/bootstrap-tour/0.10.3/build/js/bootstrap-tour.min',
+
 
                     // leaflet-image
                     //'leaflet-image': '//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image',
@@ -210,6 +212,9 @@ require([
                     },
                     bootstrap: {
                         deps: ["jquery"]
+                    },
+                    'bootstrap-tour': {
+                        deps: ["jquery", "bootstrap"],
                     },
                     underscore: {
                         exports: '_'
