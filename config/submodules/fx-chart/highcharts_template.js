@@ -206,7 +206,7 @@ define(function () {
                 marker: {
                     enabled: true, //Attiva o disattiva i marker
                     symbol: 'circle', // Tipologia di marker
-                    radius: 4,
+                    radius: 3,
                     lineWidth: 1,
                     //lineColor: '#379bcd',
                     //fillColor: '#FFFFFF',
@@ -221,9 +221,8 @@ define(function () {
                         }
                     }
                 }
-            },
+            }
         },
-
 
         title: {
             enabled: false,
