@@ -7784,7 +7784,6 @@ div#google_search input#search-submit {
 
 .faostat-header-logo {
   position: relative;
-  left: -15px;
   margin: 15px 0; }
 
 .language-menu {
@@ -8453,9 +8452,6 @@ div#google_search input#search-submit {
 
 .fs-home-domains {
   min-height: 250px; }
-
-.fao-logo-home {
-  margin: 0px 0px 0px -15px; }
 
 /* Home Slider */
 .swiper-container {
