@@ -8220,13 +8220,12 @@ div#google_search input#search-submit {
 .groups-list li {
   border-bottom: 1px solid #dddddd; }
 
-.domain-group-list .domain-list {
-  padding-left: 50px;
-  margin-bottom: 10px; }
-
 .domain-group-list {
   border-bottom: 1px solid #dddddd;
   padding-bottom: 15px; }
+  .domain-group-list .domain-list {
+    padding-left: 50px;
+    margin-bottom: 10px; }
 
 [data-role="groups-list"] {
   padding-top: 25px; }

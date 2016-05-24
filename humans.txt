@@ -2,27 +2,12 @@
 
 Statistician, DBA: Amanda Gordon
 Contact: amanda.gordon [at] fao.com
-Github: Rome, Italy
-
-Software developer: Jacques Joyeux
-Contact: jacques.joyeux [at] fao.org
-Location: Montpellier, France
-Github: deneb1
+Location: Rome, Italy
 
 Software engineer: Simone Murzilli
 Contact: simone.murzilli [at] fao.com
-Github: Rome, Italy
-Github: simonefenix
-
-Software developer: Stefano Cudini
-Contact: stefano.cudini [at] gmail.com
 Location: Rome, Italy
-Github: stefanocudini
-
-Software engineer: Daniele Salvatore
-Contact: daniele.salvatore [at] fao.com
-Github: Rome, Italy
-Github: danielefenix
+Github: simonemurzilli
 
 Software engineer: Guido Barbaglia
 Contact: guido.barbaglia [at] gmail.com
@@ -35,3 +20,8 @@ Designer: Nicola Selleri
 Contact: nicola.selleri [at] fao.org
 Location: Rome, Italy
 Github: nicolafenix
+
+Software engineer: Daniele Salvatore
+Contact: daniele.salvatore [at] fao.com
+Location: Rome, Italy
+Github: danielefenix

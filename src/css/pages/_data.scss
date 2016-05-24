@@ -8,19 +8,16 @@
 
 }
 
-.domain-group-list{
+.domain-group-list {
+
+  border-bottom: 1px solid $fenix-light-hr;
+  padding-bottom: 15px;
 
   .domain-list {
     padding-left: 50px;
     margin-bottom: 10px;
   }
 
-}
-
-
-.domain-group-list{
-  border-bottom: 1px solid $fenix-light-hr;
-  padding-bottom: 15px;
 }
 
 
