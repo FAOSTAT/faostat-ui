@@ -31,7 +31,16 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         analysis: 'Analysis',
         mes: 'Methods & Standards',
         fao_label: 'Food and Agriculture Organization of the United Nations',
-        ess_label: 'Statistics Division'
+        ess_label: 'Statistics Division',
+
+        about_fao: "About FAO",
+        in_action: "In Action",
+        countries: "Countries",
+        themes: "Themes",
+        media: "Media",
+        publications: "Publications",
+        statistics: "Statistics",
+        partnerships: "Partnerships"
 
     });
 
