@@ -11,6 +11,7 @@ define([
     'config/browse_by_country/Config',
     'text!templates/browse_by_country/browse_by_country.hbs',
     'text!templates/browse_by_country/country_list.hbs',
+    'text!templates/browse_by_country/country_profile.hbs',
     'i18n!nls/browse_by_country',
     'handlebars',
     'globals/Common',
@@ -22,7 +23,7 @@ define([
     'amplify',
     'instafilta'
 ], function (Require, $, log, View, A, C, ROUTE, E, CM,
-             template, templateCountryList,
+             template, templateCountryList, templateCountryProfile,
              i18nLabels, Handlebars, Common, FAOSTATClientAPI,
             // List,
              Dashboard, ViewUtils) {
@@ -34,12 +35,14 @@ define([
             COUNTRY_LIST_CONTAINER: "#fs-browse-by-country-list-container",
             //COUNTRY_LIST: "#fs-browse-by-country-list",
             COUNTRY_PROFILE: "#fs-browse-by-country-profile",
-            COUNTRY_PROFILE_TITLE: "#fs-browse-by-country-profile-title",
-            COUNTRY_PROFILE_DASHBOARD: "#fs-browse-by-country-profile-dashboard",
-            COUNTRY_PROFILE_BACK: "#fs-browse-by-country-profile-back",
-            COUNTRY_PROFILE_MAP: "#fs-browse-by-country-profile-map",
 
-            SEARCH: "[data-role='search']"
+            SEARCH: "[data-role='search']",
+
+            // country profile
+            COUNTRY_PROFILE_SECTIONS: '[data-role="sections"]',
+            COUNTRY_PROFILE_DASHBOARDS: "#fs-browse-by-country-profile-dashboards",
+            COUNTRY_PROFILE_BACK: "#fs-browse-by-country-profile-back",
+            COUNTRY_PROFILE_MAP: "#fs-browse-by-country-profile-map"
 
         },
 
@@ -96,10 +99,10 @@ define([
                 this.$COUNTRY_LIST_CONTAINER = this.$el.find(s.COUNTRY_LIST_CONTAINER);
                 //this.$COUNTRY_LIST = this.$el.find(s.COUNTRY_LIST);
                 this.$COUNTRY_PROFILE = this.$el.find(s.COUNTRY_PROFILE);
-                this.$COUNTRY_PROFILE_TITLE = this.$el.find(s.COUNTRY_PROFILE_TITLE);
+/*                this.$COUNTRY_PROFILE_TITLE = this.$el.find(s.COUNTRY_PROFILE_TITLE);
                 this.$COUNTRY_PROFILE_DASHBOARD = this.$el.find(s.COUNTRY_PROFILE_DASHBOARD);
                 this.$COUNTRY_PROFILE_BACK = this.$el.find(s.COUNTRY_PROFILE_BACK);
-                this.$COUNTRY_PROFILE_MAP = this.$el.find(s.COUNTRY_PROFILE_MAP);
+                this.$COUNTRY_PROFILE_MAP = this.$el.find(s.COUNTRY_PROFILE_MAP);*/
 
             },
 
@@ -188,22 +191,201 @@ define([
                 //}
             },
 
-            renderCountryProfile: function () {
 
+            renderCountryProfile: function() {
+
+                var html = $(templateCountryProfile).filter('#country_profile').html(),
+                    t = Handlebars.compile(html),
+                    basePath = CM.viewsBasePath,
+                    countryName = this.getCountryName(),
+                    code = this.o.code;
+
+
+                this.$COUNTRY_PROFILE.empty();
                 this.$COUNTRY_LIST_CONTAINER.hide();
                 this.$COUNTRY_PROFILE.show();
-                this.$COUNTRY_PROFILE_DASHBOARD.empty();
 
-                var countryName = this.getCountryName(),
+                this.$COUNTRY_PROFILE.html(t({
+                    country_name: countryName,
+                    sections: i18nLabels.sections || "Sections",
+                    back_to_country_list: i18nLabels.back_to_country_list
+                }));
+
+                this.$COUNTRY_PROFILE_DASHBOARDS = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_DASHBOARDS);
+                this.$COUNTRY_PROFILE_BACK = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_BACK);
+                this.$COUNTRY_PROFILE_MAP = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_MAP);
+                this.$COUNTRY_PROFILE_SECTIONS = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_SECTIONS);
+
+                // initialize map
+                this.initializeMap(code);
+
+                this.$COUNTRY_PROFILE_BACK.on('click', _.bind(function () {
+
+                    this.o.code = null;
+                    this.o.section = ROUTE.BROWSE_BY_COUNTRY;
+
+                    //this.renderCountryList();
+
+                    // routing
+                    this.changeState();
+
+                }, this));
+
+
+                // get and render the right view
+                Require([basePath + "country_profile"], _.bind(function(views) {
+
+                    // for each key create a dashboard
+
+                    // quick fix for view that should be splitted by topic
+                    /*view = view.population;
+
+                    var dashboard = view.dashboard || null;
+
+                    // adding default country
+                    dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
+
+                    // render structure (structure i.e. change view on click selection)
+
+                    // render dashboard
+                    if (dashboard !== null) {
+
+                        this.renderDashboard($.extend(true, {}, view.dashboard, {
+                            container: this.$COUNTRY_PROFILE_DASHBOARD,
+                            layout: 'fluid',
+                            lang: lang}));
+
+                    }else{
+                        log.error("View is not defined, handle exception");
+                    }*/
+
+
+                    this.renderCountryProfileSections(views);
+
+
+                   //setTimeout(_.bind(function () {
+                        _.each(views, _.bind(function(view, key) {
+
+                            setTimeout(_.bind(function () {
+                                this.renderCountryProfileDashboard(view, key);
+                            },this), 1000);
+
+                        }, this));
+                  //},this), 1000);
+
+
+                }, this));
+
+            },
+
+            renderCountryProfileSections: function(views) {
+
+                var html = $(templateCountryProfile).filter('#sections').html(),
+                    t = Handlebars.compile(html),
+                    sections = [],
+                    self = this;
+
+                _.each(views, _.bind(function(view, key) {
+
+                    sections.push({
+                        title: view.title,
+                        index: key
+                    });
+
+                }, this));
+
+                this.$COUNTRY_PROFILE_SECTIONS.html(t({
+                    sections: sections
+                }));
+
+
+                this.$COUNTRY_PROFILE_SECTIONS.find('a').on('click', function(e) {
+
+                    e.preventDefault();
+
+                    var index = $(this).data('dashboard-index');
+
+                    amplify.publish(E.SCROLL_TO_SELECTOR,
+                        {
+                            container: self.$COUNTRY_PROFILE_DASHBOARDS.find('[data-dashboard-index='+ index +']')
+                        });
+                });
+
+            },
+
+            renderCountryProfileDashboard: function(view, key) {
+
+                var $container = this._createRandomElement(this.$COUNTRY_PROFILE_DASHBOARDS, false),
+                    html = $(templateCountryProfile).filter('#dashboard').html(),
+                    t = Handlebars.compile(html),
+                    title = view.title || "",
+                    dashboard = view.dashboard || null,
+                    code = this.o.code,
+                    lang = this.o.lang;
+
+                log.info("BrowseByCountryView.renderCountryProfileDashboard;", key, title, dashboard);
+
+                // render dashboard
+                if (dashboard !== null) {
+
+                    $container.html(t({
+                        title: title,
+                        index: key
+                    }));
+
+                    var $dashboard = $container.find('[data-role="dashboard"]');
+
+                    // adding default country
+                    dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
+
+
+                    this.renderDashboard($.extend(true, {}, dashboard, {
+                        container: $dashboard,
+                        layout: 'fluid',
+                        lang: lang}));
+
+                }else{
+                    log.error("View is not defined, handle exception");
+                }
+
+            },
+
+            OLDrenderCountryProfile: function () {
+
+              /*  var html = $(templateCountryProfile).filter('#country_profile').html(),
+                    t = Handlebars.compile(html),
+                    countryName = this.getCountryName(),
                     lang = this.o.lang,
                     basePath = CM.viewsBasePath,
                     code = this.o.code;
+
+                this.$COUNTRY_PROFILE.empty();
+                this.$COUNTRY_LIST_CONTAINER.hide();
+                this.$COUNTRY_PROFILE.show();
+
+                alert()
+
+                this.$COUNTRY_PROFILE.html(t({
+                    country_name: countryName
+                }));
+
+                alert()
+
+                this.$COUNTRY_PROFILE_TITLE = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_TITLE);
+                this.$COUNTRY_PROFILE_DASHBOARD = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_DASHBOARD);
+                this.$COUNTRY_PROFILE_BACK = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_BACK);
+                this.$COUNTRY_PROFILE_MAP = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_MAP);
+
+                alert()
+
+
+                this.$COUNTRY_PROFILE_DASHBOARD.empty();
 
                 //this.$COUNTRY_PROFILE_BACK.focus();
                 this.$COUNTRY_PROFILE_TITLE.html(countryName);
 
                 // initialize map
-                this.initializeMap(this.o.code);
+                this.initializeMap(code);
 
                 // get and render the right view
                 Require([basePath + "country_profile"], _.bind(function(view) {
@@ -231,7 +413,7 @@ define([
                     }
 
 
-                }, this));
+                }, this));*/
 
             },
 
@@ -311,13 +493,8 @@ define([
 
             renderDashboard: function(config) {
 
-                if (this.dashboard && this.dashboard.destroy) {
-                    this.dashboard.destroy();
-                }
-
-                this.dashboard = new Dashboard();
-
-                // setting default filter options (i.e. language and datasouce)
+                var dashboard = new Dashboard();
+                               // setting default filter options (i.e. language and datasouce)
                 config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
                 _.each(config.items, _.bind(function(item) {
                     item.config = ViewUtils.defaultItemOptions(item, CM.view);
@@ -326,30 +503,41 @@ define([
                 config.render =  true;
 
                 config._name = 'by_country';
-                this.dashboard.render(config);
+                dashboard.render(config);
+
+                // save dashboard for destroy
+                if (this.dashboards === undefined) {
+                    this.dashboards = [];
+                }
+
+                this.dashboards.push(dashboard);
 
             },
 
+            _createRandomElement: function($CONTAINER, empty) {
+
+                var empty = (empty !== undefined && typeof(empty) === "boolean")? empty : true,
+                    id = Math.random().toString().replace(".", "");
+
+                if(empty == true) {
+                    $CONTAINER.empty();
+                }
+
+                $CONTAINER.append("<div id='"+ id +"'>");
+
+                return $CONTAINER.find('#' + id);
+
+            },
 
             bindEventListeners: function () {
-
-                this.$COUNTRY_PROFILE_BACK.on('click', _.bind(function () {
-
-                    this.o.code = null;
-                    this.o.section = ROUTE.BROWSE_BY_COUNTRY;
-
-                    //this.renderCountryList();
-
-                    // routing
-                    this.changeState();
-
-                }, this));
 
             },
 
             unbindEventListeners: function () {
 
-                this.$COUNTRY_PROFILE_BACK.off('click');
+                if (this.$COUNTRY_PROFILE_BACK) {
+                    this.$COUNTRY_PROFILE_BACK.off('click');
+                }
 
             },
 
@@ -365,9 +553,25 @@ define([
                 }
             },
 
+            destroyDashBoards: function () {
+
+               if (this.dashboards !== undefined) {
+
+                   _.each(this.dashboards, function(dashboard) {
+
+                       if ( _.isFunction(dashboard.destroy)) {
+                           dashboard.destroy();
+                       }
+                   });
+               }
+
+            },
+
             dispose: function () {
 
                 this.unbindEventListeners();
+
+                this.destroyDashBoards();
 
                 this.$el.empty();
 

@@ -815,7 +815,7 @@ define([
 
         _createRandomElement: function($CONTAINER, empty) {
 
-            var empty = (empty && typeof(empty) === "boolean")? empty : true,
+            var empty = (empty !== undefined && typeof(empty) === "boolean")? empty : true,
                 id = Math.random().toString().replace(".", "");
 
             if(empty) {

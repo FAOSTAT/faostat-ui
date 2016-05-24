@@ -1,19 +1,14 @@
 
 
+<template id='country_profile'>
 
-<div id="fs-browse-by-country-list-container" style="display:none">
-
-</div>
-
-<div id="fs-browse-by-country-profile" style="display:none">
-
- <!--  <div class="row">
+    <div class="row">
 
         <div class="col-xs-9 col-sm-8 col-md-9 clearfix">
-            <h1 class="truncate" id="fs-browse-by-country-profile-title"></h1>
+            <h1 class="truncate">{{country_name}}</h1>
         </div>
         <div class="col-xs-3 col-sm-4 col-md-3 clearfix">
-            &lt;!&ndash; TODO: use Common.getURI(ROUTE.DATA)&ndash;&gt;
+            <!-- TODO: use Common.getURI(ROUTE.DATA)-->
             <a type="button" class="btn btn-link pull-right fs-section-back waves-effect"
                id="fs-browse-by-country-profile-back">
                 <i class="hidden-xs material-icons left">undo</i>
@@ -39,7 +34,7 @@
 
     <br>
 
-    &lt;!&ndash; TODO: this should be the same height in md&ndash;&gt;
+    <!-- TODO: this should be the same height in md-->
     <div class="row">
         <div class="col-md-9">
             <div class="fs-map panel panel-default hoverable">
@@ -51,23 +46,10 @@
         <div class="col-md-3">
             <div class="panel panel-default hoverable">
                 <div class="panel-heading">
-                    <h4>Sections</h4>
+                    <h4>{{topics}}Topics</h4>
                 </div>
                 <div class="panel-body">
-                    <ul class="list-unstyled" data-role="sections">
-                        <li>
-                            Demographics
-                        </li>
-                        <li>
-                            Inputs
-                        </li>
-                        <li>
-                            Undernourishment
-                        </li>
-                        <li>
-                            Food Acess
-                        </li>
-                    </ul>
+                    <ul class="list-unstyled" data-role="sections"></ul>
                 </div>
             </div>
         </div>
@@ -76,6 +58,29 @@
     <br>
     <br>
 
-    <div id="fs-browse-by-country-profile-dashboard"></div>-->
+    <div id="fs-browse-by-country-profile-dashboards"></div>
 
-</div>
+</template>
+
+
+<template id='sections'>
+
+    {{#each sections}}
+        <li>
+            <h5>
+                <a data-dashboard-index='{{index}}' href="#">{{this.title}}</a>
+            </h5>
+        </li>
+    {{/each}}
+
+</template>
+
+
+<template id='dashboard'>
+
+    <div data-dashboard-index='{{index}}'>
+        <h3>{{title}}</h3>
+        <div class="row" data-role="dashboard">
+    </div>
+
+</template>

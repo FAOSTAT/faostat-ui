@@ -4,57 +4,39 @@ define(function () {
 
     'use strict';
 
+    var defaultFilter =  {
+        List5Codes: null,
+        List6Codes: null,
+        List7Codes: null,
+        decimal_places: 2,
+        decimal_separator: ".",
+        limit: -1,
+        thousand_separator: ",",
+        "null_values": null,
+        page_size: 0,
+        per_page: 0
+    };
+
     return {
 
-        "population": {
+        population: {
+
+            title: "Demographics",
+
             dashboard: {
 
                 //data base filter
-                defaultFilter: {
-                    List5Codes: null,
-                    List6Codes: null,
-                    List7Codes: null,
-                    decimal_places: 2,
-                    decimal_separator: ".",
-                    limit: -1,
-                    thousand_separator: ",",
-                    "null_values": null,
-                    page_size: 0,
-                    per_page: 0
-                },
-
-                // labels?
-                labels: {
-                    // labels to dinamically substitute the title and subtitle
-                    default: {}
-                },
-
+                defaultFilter: defaultFilter,
 
                 //bridge configuration
                 bridge: {
 
-                    type: "faostat",
+                    type: "faostat"
                     //requestType: 'data' // data, rankings
 
                 },
 
-                metadata: {},
-
                 items: [
-
-                    // FORCE SPACING
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Demographics</h2>'
-                            },
-                            model: {
-                                "test": "test"
-                            }
-                        }
-                    },
 
                     // DEMOGRAPHICS
                     {
@@ -147,19 +129,29 @@ define(function () {
                             template: {},
                             model: {}
                         }
-                    },
+                    }
+                ]
+            }
+        },
 
-                    // INPUTS
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Inputs</h2>'
-                            },
-                            model: {}
-                        }
-                    },
+        inputs: {
+
+            title: "Inputs",
+
+            dashboard: {
+
+                //data base filter
+                defaultFilter: defaultFilter,
+
+                //bridge configuration
+                bridge: {
+
+                    type: "faostat"
+                    //requestType: 'data' // data, rankings
+
+                },
+
+                items: [
 
                     {
                         type: 'chart',
@@ -269,21 +261,30 @@ define(function () {
                             ],
                             List4Codes: [2012]
                         }
-                    },
+                    }
+                ]
+            }
 
-                    // Undernourishment
+        },
 
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Undernourishment</h2>'
-                            },
-                            model: {}
-                        }
-                    },
+        undernourishment: {
 
+            title: "Undernourishment",
+
+            dashboard: {
+
+                //data base filter
+                defaultFilter: defaultFilter,
+
+                //bridge configuration
+                bridge: {
+
+                    type: "faostat"
+                    //requestType: 'data' // data, rankings
+
+                },
+
+                items: [
                     {
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
@@ -360,22 +361,31 @@ define(function () {
                             "List4Codes": ['_1'],
                             'order_by': 'year'
                         }
-                    },
+                    }
 
+                ]
 
-                    // FOOD AVAILABILITY
+            }
+        },
 
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Food Availability</h2>'
-                            },
-                            model: {}
-                        }
-                    },
+        food_availability: {
 
+            title: "Food Availability",
+
+            dashboard: {
+
+                //data base filter
+                defaultFilter: defaultFilter,
+
+                //bridge configuration
+                bridge: {
+
+                    type: "faostat"
+                    //requestType: 'data' // data, rankings
+
+                },
+
+                items: [
                     {
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
@@ -589,21 +599,29 @@ define(function () {
                             "List4Codes": ['_1'],
                             'order_by': 'year'
                         }
-                    },
+                    }
+                ]
+            }
+        },
 
+        food_access: {
 
-                    // FOOD ACCESS
+            title: "Food Access",
 
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Food Access</h2>'
-                            },
-                            model: {}
-                        }
-                    },
+            dashboard: {
+
+                //data base filter
+                defaultFilter: defaultFilter,
+
+                //bridge configuration
+                bridge: {
+
+                    type: "faostat"
+                    //requestType: 'data' // data, rankings
+
+                },
+
+                items: [
 
                     {
                         type: 'chart',
@@ -770,207 +788,30 @@ define(function () {
                             "List4Codes": ['_1'],
                             'order_by': 'year'
                         }
-                    },
+                    }
 
+                ]
+            }
+        },
 
-                    // ECONOMIC AND POLITICAL STABILITY
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Economic and political stability</h2>'
-                            },
-                            model: {
-                                "test": "test"
-                            }
-                        }
-                    },
+        food_utilization: {
 
-                    {
-                        type: 'chart',
-                        class: "col-xs-12 col-md-6",
+            title: "Food Utilization",
 
-                        // labels?
-                        labels: {
-                            // template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Per capita food production variability (I$ per person constant 2004-06)",
-                                    fr: "",
-                                    es: ""
-                                },
-                                subtitle: ""
-                            }
-                        },
-                        config: {
-                            adapter: {
-                                adapterType: 'faostat',
-                                type: "standard",
-                                xDimensions: 'year',
-                                yDimensions: 'unit',
-                                valueDimensions: 'value',
-                                seriesDimensions: ['area', 'item']
-                            },
-                            template: {
-                                // height: '100px'
-                            }
-                        },
-                        allowedFilter: ['area', 'year'],
-                        filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21030],
-                            "List4Codes": ['_1'],
-                            'order_by': 'year'
-                        }
-                    },
+            dashboard: {
 
-                    {
-                        type: 'chart',
-                        class: "col-xs-12 col-md-6",
+                //data base filter
+                defaultFilter: defaultFilter,
 
-                        // labels?
-                        labels: {
-                            // template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Value of food imports over total merchandise exports (%) (3-year average)",
-                                    fr: "",
-                                    es: ""
-                                },
-                                subtitle: ""
-                            }
-                        },
-                        config: {
-                            adapter: {
-                                adapterType: 'faostat',
-                                type: "standard",
-                                xDimensions: 'year',
-                                yDimensions: 'unit',
-                                valueDimensions: 'value',
-                                seriesDimensions: ['area', 'item']
-                            },
-                            template: {
-                                // height: '100px'
-                            }
-                        },
-                        allowedFilter: ['area', 'year'],
-                        filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21033],
-                            "List4Codes": ['_1'],
-                            'order_by': 'year'
-                        }
-                    },
+                //bridge configuration
+                bridge: {
 
+                    type: "faostat"
+                    //requestType: 'data' // data, rankings
 
-                    // FORCE SPACING
-                    {
-                        type: 'custom',
-                        class: 'clearfix',
-                        config: {
-                            template: {},
-                            model: {}
-                        }
-                    },
+                },
 
-                    {
-                        type: 'chart',
-                        class: "col-xs-12 col-md-6",
-
-                        // labels?
-                        labels: {
-                            // template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Per capita food supply variability (kcal/capita/day)",
-                                    fr: "",
-                                    es: ""
-                                },
-                                subtitle: ""
-                            }
-                        },
-                        config: {
-                            adapter: {
-                                adapterType: 'faostat',
-                                type: "standard",
-                                xDimensions: 'year',
-                                yDimensions: 'unit',
-                                valueDimensions: 'value',
-                                seriesDimensions: ['area', 'item']
-                            },
-                            template: {
-                                // height: '100px'
-                            }
-                        },
-                        allowedFilter: ['area', 'year'],
-                        filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21031],
-                            "List4Codes": ['_1'],
-                            'order_by': 'year'
-                        }
-                    },
-
-                    {
-                        type: 'chart',
-                        class: "col-xs-12 col-md-6",
-
-                        // labels?
-                        labels: {
-                            // template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Political stability and absence of violence/terrorism (index)",
-                                    fr: "",
-                                    es: ""
-                                },
-                                subtitle: ""
-                            }
-                        },
-                        config: {
-                            adapter: {
-                                adapterType: 'faostat',
-                                type: "standard",
-                                xDimensions: 'year',
-                                yDimensions: 'unit',
-                                valueDimensions: 'value',
-                                seriesDimensions: ['area', 'item']
-                            },
-                            template: {
-                                // height: '100px'
-                            }
-                        },
-                        allowedFilter: ['area', 'year'],
-                        filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21032],
-                            "List4Codes": ['_1'],
-                            'order_by': 'year'
-                        }
-                    },
-
-
-
-
-
-                    // FOOD UTILIZATION
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Food utilization</h2>'
-                            },
-                            model: {
-                                "test": "test"
-                            }
-                        }
-                    },
+                items: [
 
                     {
                         type: 'chart',
@@ -1048,49 +889,30 @@ define(function () {
                             "List4Codes": ['_1'],
                             'order_by': 'year'
                         }
-                    },
+                    }
 
+                ]
+            }
+        },
 
+        land: {
 
-                    // DIETARY ENERGY SUPPLY
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Dietary energy supply</h2>'
-                            },
-                            model: {}
-                        }
-                    },
+            title: "Land",
 
+            dashboard: {
 
-                    // CROP PRODUCTION
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Crop Production</h2>'
-                            },
-                            model: {}
-                        }
-                    },
+                //data base filter
+                defaultFilter: defaultFilter,
 
+                //bridge configuration
+                bridge: {
 
-                    // LAND
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Land</h2>'
-                            },
-                            model: {
-                                "test": "test"
-                            }
-                        }
-                    },
+                    type: "faostat"
+                    //requestType: 'data' // data, rankings
+
+                },
+
+                items: [
 
                     {
                         type: 'chart',
@@ -1286,22 +1108,220 @@ define(function () {
                             List4Codes: ['_1'],
                             "order_by": 'year'
                         }
-                    },
+                    }
 
+                ]
+            }
+        },
 
-                    // Production
+        economic_and_political_stability: {
+
+            title: "Economic and political stability",
+
+            dashboard: {
+
+                //data base filter
+                defaultFilter: defaultFilter,
+
+                //bridge configuration
+                bridge: {
+
+                    type: "faostat"
+                    //requestType: 'data' // data, rankings
+
+                },
+
+                items: [
+
                     {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
                             template: {
-                                html: '<h2>{{production}}</h2>'
-                            },
-                            model: {
-                                "production": "Production"
+                                title: {
+                                    en: "Per capita food production variability (I$ per person constant 2004-06)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
                             }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21030],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
                         }
                     },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Value of food imports over total merchandise exports (%) (3-year average)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21033],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+
+                    // FORCE SPACING
+                    {
+                        type: 'custom',
+                        class: 'clearfix',
+                        config: {
+                            template: {},
+                            model: {}
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Per capita food supply variability (kcal/capita/day)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21031],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    },
+
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Political stability and absence of violence/terrorism (index)",
+                                    fr: "",
+                                    es: ""
+                                },
+                                subtitle: ""
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "standard",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                // height: '100px'
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            "domain_codes": ["FS"],
+                            "List2Codes": [6120],
+                            "List3Codes": [21032],
+                            "List4Codes": ['_1'],
+                            'order_by': 'year'
+                        }
+                    }
+
+                ]
+            }
+        },
+
+        production: {
+
+            title: "Production",
+
+            dashboard: {
+
+                //data base filter
+                defaultFilter: defaultFilter,
+
+                //bridge configuration
+                bridge: {
+
+                    type: "faostat"
+                    //requestType: 'data' // data, rankings
+
+                },
+
+                items: [
 
                     {
                         type: 'chart',
@@ -1508,23 +1528,30 @@ define(function () {
                             order_by: 'year, item',
                             limit: -1
                         }
-                    },
+                    }
 
+                ]
+            }
+        },
 
-                    // Emissions
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>{{emissions}}</h2>'
-                            },
-                            model: {
-                                "emissions": "Emissions"
-                            }
-                        }
-                    },
+        emissions: {
 
+            title: "Emissions",
+
+            dashboard: {
+
+                //data base filter
+                defaultFilter: defaultFilter,
+
+                //bridge configuration
+                bridge: {
+
+                    type: "faostat"
+                    //requestType: 'data' // data, rankings
+
+                },
+
+                items: [
 
                     {
                         type: 'chart',
@@ -1659,12 +1686,57 @@ define(function () {
                             "limit": '-1'
                         }
                     }
+
                 ]
             }
-
         },
 
-        "land": {
-        }
-    }
+       /* a: {
+
+            title: "",
+
+            dashboard: {
+
+                //data base filter
+                defaultFilter: defaultFilter,
+
+                //bridge configuration
+                bridge: {
+
+                    type: "faostat"
+                    //requestType: 'data' // data, rankings
+
+                },
+
+                items: [
+
+                    // DIETARY ENERGY SUPPLY
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>Dietary energy supply</h2>'
+                            },
+                            model: {}
+                        }
+                    },
+
+
+                    // CROP PRODUCTION
+                    {
+                        type: 'custom',
+                        class: 'col-xs-12',
+                        config: {
+                            template: {
+                                html: '<h2>Crop Production</h2>'
+                            },
+                            model: {}
+                        }
+                    }
+                ]
+            }
+        }*/
+
+    };
 });
