@@ -667,7 +667,8 @@ define([
                     self.$BULK_CARET.html(t({data: data}));
 
                 }else {
-                    self.$BULK_CARET.html('<li><a>'+ i18nLabels.no_data_available +'</a></li>');
+                   // self.$BULK_CARET.html('<li><a>'+ i18nLabels.no_data_available +'</a></li>');
+                   self.$BULK_CARET.html('<li><a>-</a></li>');
                 }
 
                 // track on click google analytics
@@ -734,7 +735,7 @@ define([
 
                 m.getDescription().then(function(m) {
 
-                    var text = m !== undefined? m.text: i18nLabels.no_data_available;
+                    var text = m !== undefined? m.text: '-'; //i18nLabels.no_data_available;
 
                     new TextWrapper().render({
                         container: $container,
@@ -798,7 +799,7 @@ define([
 
                 m.getContacts().then(function(m) {
 
-                    var text = m !== undefined? m.text: i18nLabels.no_data_available;
+                    var text = m !== undefined? m.text: '-'; //i18nLabels.no_data_available;
 
                     new TextWrapper().render({
                         container: $container,
