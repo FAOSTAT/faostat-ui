@@ -83,6 +83,8 @@ define({
     show_more: 'show more',
     show_less: 'show less',
 
-    filter_domains: 'filter domains'
+    filter_domains: 'filter domains',
+
+    search: 'Buscar'
 
 });

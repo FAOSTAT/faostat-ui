@@ -71,6 +71,7 @@ define([
         },
 
         getTemplateData: function () {
+            log.info(i18nLabels)
             return i18nLabels;
         },
 
