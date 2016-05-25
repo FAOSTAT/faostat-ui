@@ -222,8 +222,10 @@ define([
             // clean old filters
             this.o.filters = {};
 
+            var $CONTAINER = this._createRandomElement(this.$FILTERS);
+
             // loading filters by domain
-            amplify.publish(E.LOADING_SHOW, { container: this.$FILTERS});
+            amplify.publish(E.LOADING_SHOW, { container: $CONTAINER});
 
             // parse the dimensions to create dinamically the dropdowns needed
             this.FAOSTATAPIClient.dimensions({
@@ -233,7 +235,7 @@ define([
             }).then(_.bind(this._preloadDomainDimensions, this))
                 .then(_.bind(function(json) {
 
-                    amplify.publish(E.LOADING_HIDE, { container: this.$FILTERS});
+                    amplify.publish(E.LOADING_HIDE, { container: $CONTAINER});
 
                     _.each(json, _.bind(function(v) {
 
@@ -242,7 +244,7 @@ define([
                             var id = v.metadata.parameters.id;
 
                             // TODO: to be changed
-                            v.container = this.createFilterContainer(id);
+                            v.container = this.createFilterContainer($CONTAINER, id);
 
                             // TODO: get label from metadata
                             v.title = i18nLabels[id.toLowerCase()] || id;
@@ -312,11 +314,11 @@ define([
 
         },
 
-        createFilterContainer: function (id) {
+        createFilterContainer: function ($CONTAINER, id) {
 
-            var template = Handlebars.compile(templateFilterContainer);
-            this.$FILTERS.append(template({id: id}));
-            return this.$FILTERS.find('[data-role="filter-'+ id +'"]');
+            var t = Handlebars.compile(templateFilterContainer);
+            $CONTAINER.append(t({id: id}));
+            return $CONTAINER.find('[data-role="filter-'+ id +'"]');
 
         },
 
@@ -424,6 +426,21 @@ define([
         getGroupName: function() {
 
             return this.o.groups.$DD.select2('data').text;
+
+        },
+
+        _createRandomElement: function($CONTAINER, empty) {
+
+            var empty = (empty !== undefined && typeof(empty) === "boolean")? empty : true,
+                id = Math.random().toString().replace(".", "");
+
+            if(empty) {
+                $CONTAINER.empty();
+            }
+
+            $CONTAINER.append("<div id='"+ id +"'>");
+
+            return $CONTAINER.find('#' + id);
 
         },
 
