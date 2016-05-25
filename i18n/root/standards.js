@@ -5,7 +5,5 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
         
-        filter_results: 'Filter Table'
-        
     });
 });
