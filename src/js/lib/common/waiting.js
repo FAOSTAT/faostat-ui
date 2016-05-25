@@ -35,7 +35,7 @@ define([
         waiting.find("[data-role='text']").empty();
 
         if (data && data.hasOwnProperty('text')) {
-            waiting.find("[data-role='text']").html(data.text);
+           // waiting.find("[data-role='text']").html(data.text);
         }
 
         waiting.modal('show');
