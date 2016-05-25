@@ -6,7 +6,7 @@ define([
     'config/Config',
     'config/Events',
     'config/Routes',
-    'i18n!nls/common',
+    'i18n!nls/download',
     'text!lib/groups/templates/templates.hbs',
     'handlebars',
     'faostatapiclient',
@@ -60,6 +60,7 @@ define([
         /* Load main structure. */
         var t = Handlebars.compile($(templates).filter("#template").html());
         this.$CONTAINER.html(t({
+            search_for_a_domain: i18nLabels.search_for_a_domain,
             no_data_available: i18nLabels.no_data_available,
             domains: i18nLabels.domains,
             filter_domains: i18nLabels.filter_domains

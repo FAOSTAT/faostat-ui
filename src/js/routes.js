@@ -21,7 +21,7 @@ define(['config/Routes'], function (ROUTE) {
         match(':lang/country/:code', 'browse#show_browse_by_country', {name: ROUTE.BROWSE_BY_COUNTRY_CODE});
 
         //match(':lang/browse/rankings', 'browse#show_browse_rankings', {name: 'browse_rankings'});
-        match(':lang/browse/rankings/:code', 'browse#show_browse_rankings', {name: ROUTE.BROWSE_RANKINGS_CODE});
+        match(':lang/rankings/:code', 'browse#show_browse_rankings', {name: ROUTE.BROWSE_RANKINGS_CODE});
 
         match(':lang/compare', 'compare#show', {name: ROUTE.COMPARE});
 

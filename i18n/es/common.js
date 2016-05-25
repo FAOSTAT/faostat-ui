@@ -85,6 +85,10 @@ define({
 
     filter_domains: 'filter domains',
 
-    search: 'Buscar'
+    search: 'Buscar',
+
+    data: 'datos',
+
+    topics: 'topics'
 
 });

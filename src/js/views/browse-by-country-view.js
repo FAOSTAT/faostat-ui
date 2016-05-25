@@ -25,7 +25,7 @@ define([
 ], function (Require, $, log, View, A, C, ROUTE, E, CM,
              template, templateCountryList, templateCountryProfile,
              i18nLabels, Handlebars, Common, FAOSTATClientAPI,
-            // List,
+             // List,
              Dashboard, ViewUtils) {
 
     'use strict';
@@ -99,10 +99,10 @@ define([
                 this.$COUNTRY_LIST_CONTAINER = this.$el.find(s.COUNTRY_LIST_CONTAINER);
                 //this.$COUNTRY_LIST = this.$el.find(s.COUNTRY_LIST);
                 this.$COUNTRY_PROFILE = this.$el.find(s.COUNTRY_PROFILE);
-/*                this.$COUNTRY_PROFILE_TITLE = this.$el.find(s.COUNTRY_PROFILE_TITLE);
-                this.$COUNTRY_PROFILE_DASHBOARD = this.$el.find(s.COUNTRY_PROFILE_DASHBOARD);
-                this.$COUNTRY_PROFILE_BACK = this.$el.find(s.COUNTRY_PROFILE_BACK);
-                this.$COUNTRY_PROFILE_MAP = this.$el.find(s.COUNTRY_PROFILE_MAP);*/
+                /*                this.$COUNTRY_PROFILE_TITLE = this.$el.find(s.COUNTRY_PROFILE_TITLE);
+                 this.$COUNTRY_PROFILE_DASHBOARD = this.$el.find(s.COUNTRY_PROFILE_DASHBOARD);
+                 this.$COUNTRY_PROFILE_BACK = this.$el.find(s.COUNTRY_PROFILE_BACK);
+                 this.$COUNTRY_PROFILE_MAP = this.$el.find(s.COUNTRY_PROFILE_MAP);*/
 
             },
 
@@ -151,42 +151,46 @@ define([
 
                 //if (this.$COUNTRY_LIST_CONTAINER.find('.' + this.o.countrySearchFilters).length <= 0) {
 
-                    var countries = this.cache.countries.data,
-                        t = Handlebars.compile(templateCountryList),
-                        d = {};
+                var countries = this.cache.countries.data,
+                    t = Handlebars.compile(templateCountryList),
+                    d = {};
 
-                    // format data
-                    _.each(countries, function(c) {
-                        var letter = c.label[0];
-                        d[letter] = d[letter] || { data: []};
-                        c.link = '#' + Common.getURI(ROUTE.BROWSE_BY_COUNTRY_CODE, [c.code]);
-                        d[letter].data.push(c);
-                    });
+                // format data
+                _.each(countries, function(c) {
+                    var letter = c.label[0];
+                    d[letter] = d[letter] || { data: []};
+                    c.link = '#' + Common.getURI(ROUTE.BROWSE_BY_COUNTRY_CODE, [c.code]);
+                    d[letter].data.push(c);
+                });
 
-                    this.$COUNTRY_LIST_CONTAINER.append(t(d));
-                
+                // labels
+                d.country_profiles = i18nLabels.country_profiles;
+                d.country_list = i18nLabels.country_list;
 
-                    /* Search **/
-                    /*this.$SEARCH = this.$COUNTRY_LIST_CONTAINER.find(s.SEARCH);
+                this.$COUNTRY_LIST_CONTAINER.append(t(d));
 
-                    // focus on search
-                    this.$SEARCH.focus();
 
-                    this.$SEARCH.instaFilta({
-                        //markMatches: true,
-                        //scope: '.country-list-container',
-                        beginsWith: true,
-                        typeDelay: 200,
-                        onFilterComplete: function(matchedItems) {
+                /* Search **/
+                /*this.$SEARCH = this.$COUNTRY_LIST_CONTAINER.find(s.SEARCH);
 
-                            log.info(matchedItems)
+                 // focus on search
+                 this.$SEARCH.focus();
 
-                            // show/hide no data div
-                            //if (matchedItems) {
-                               // matchedItems.length > 0 ? self.$NO_DATA.hide() : self.$NO_DATA.show();
-                            //}
-                        }
-                    });*/
+                 this.$SEARCH.instaFilta({
+                 //markMatches: true,
+                 //scope: '.country-list-container',
+                 beginsWith: true,
+                 typeDelay: 200,
+                 onFilterComplete: function(matchedItems) {
+
+                 log.info(matchedItems)
+
+                 // show/hide no data div
+                 //if (matchedItems) {
+                 // matchedItems.length > 0 ? self.$NO_DATA.hide() : self.$NO_DATA.show();
+                 //}
+                 }
+                 });*/
 
                 //}
             },
@@ -206,9 +210,12 @@ define([
                 this.$COUNTRY_PROFILE.show();
 
                 this.$COUNTRY_PROFILE.html(t({
+                    // labels
                     country_name: countryName,
                     sections: i18nLabels.sections || "Sections",
-                    back_to_country_list: i18nLabels.back_to_country_list
+                    back_to_country_list: i18nLabels.back_to_country_list,
+                    topics: i18nLabels.topics,
+                    country_profile: i18nLabels.country_profile
                 }));
 
                 this.$COUNTRY_PROFILE_DASHBOARDS = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_DASHBOARDS);
@@ -240,38 +247,38 @@ define([
                     // quick fix for view that should be splitted by topic
                     /*view = view.population;
 
-                    var dashboard = view.dashboard || null;
+                     var dashboard = view.dashboard || null;
 
-                    // adding default country
-                    dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
+                     // adding default country
+                     dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
 
-                    // render structure (structure i.e. change view on click selection)
+                     // render structure (structure i.e. change view on click selection)
 
-                    // render dashboard
-                    if (dashboard !== null) {
+                     // render dashboard
+                     if (dashboard !== null) {
 
-                        this.renderDashboard($.extend(true, {}, view.dashboard, {
-                            container: this.$COUNTRY_PROFILE_DASHBOARD,
-                            layout: 'fluid',
-                            lang: lang}));
+                     this.renderDashboard($.extend(true, {}, view.dashboard, {
+                     container: this.$COUNTRY_PROFILE_DASHBOARD,
+                     layout: 'fluid',
+                     lang: lang}));
 
-                    }else{
-                        log.error("View is not defined, handle exception");
-                    }*/
+                     }else{
+                     log.error("View is not defined, handle exception");
+                     }*/
 
 
                     this.renderCountryProfileSections(views);
 
 
-                   //setTimeout(_.bind(function () {
-                        _.each(views, _.bind(function(view, key) {
+                    //setTimeout(_.bind(function () {
+                    _.each(views, _.bind(function(view, key) {
 
-                            setTimeout(_.bind(function () {
-                                this.renderCountryProfileDashboard(view, key);
-                            },this), 1000);
+                        setTimeout(_.bind(function () {
+                            this.renderCountryProfileDashboard(view, key);
+                        },this), 1000);
 
-                        }, this));
-                  //},this), 1000);
+                    }, this));
+                    //},this), 1000);
 
 
                 }, this));
@@ -294,8 +301,10 @@ define([
 
                 }, this));
 
+
+
                 this.$COUNTRY_PROFILE_SECTIONS.html(t({
-                    sections: sections
+                    sections: sections,
                 }));
 
 
@@ -352,68 +361,68 @@ define([
 
             OLDrenderCountryProfile: function () {
 
-              /*  var html = $(templateCountryProfile).filter('#country_profile').html(),
-                    t = Handlebars.compile(html),
-                    countryName = this.getCountryName(),
-                    lang = this.o.lang,
-                    basePath = CM.viewsBasePath,
-                    code = this.o.code;
+                /*  var html = $(templateCountryProfile).filter('#country_profile').html(),
+                 t = Handlebars.compile(html),
+                 countryName = this.getCountryName(),
+                 lang = this.o.lang,
+                 basePath = CM.viewsBasePath,
+                 code = this.o.code;
 
-                this.$COUNTRY_PROFILE.empty();
-                this.$COUNTRY_LIST_CONTAINER.hide();
-                this.$COUNTRY_PROFILE.show();
+                 this.$COUNTRY_PROFILE.empty();
+                 this.$COUNTRY_LIST_CONTAINER.hide();
+                 this.$COUNTRY_PROFILE.show();
 
-                alert()
+                 alert()
 
-                this.$COUNTRY_PROFILE.html(t({
-                    country_name: countryName
-                }));
+                 this.$COUNTRY_PROFILE.html(t({
+                 country_name: countryName
+                 }));
 
-                alert()
+                 alert()
 
-                this.$COUNTRY_PROFILE_TITLE = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_TITLE);
-                this.$COUNTRY_PROFILE_DASHBOARD = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_DASHBOARD);
-                this.$COUNTRY_PROFILE_BACK = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_BACK);
-                this.$COUNTRY_PROFILE_MAP = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_MAP);
+                 this.$COUNTRY_PROFILE_TITLE = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_TITLE);
+                 this.$COUNTRY_PROFILE_DASHBOARD = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_DASHBOARD);
+                 this.$COUNTRY_PROFILE_BACK = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_BACK);
+                 this.$COUNTRY_PROFILE_MAP = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_MAP);
 
-                alert()
-
-
-                this.$COUNTRY_PROFILE_DASHBOARD.empty();
-
-                //this.$COUNTRY_PROFILE_BACK.focus();
-                this.$COUNTRY_PROFILE_TITLE.html(countryName);
-
-                // initialize map
-                this.initializeMap(code);
-
-                // get and render the right view
-                Require([basePath + "country_profile"], _.bind(function(view) {
-
-                    // quick fix for view that should be splitted by topic
-                    view = view.population;
-
-                    var dashboard = view.dashboard || null;
-
-                    // adding default country
-                    dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
-
-                    // render structure (structure i.e. change view on click selection)
-
-                    // render dashboard
-                    if (dashboard !== null) {
-
-                        this.renderDashboard($.extend(true, {}, view.dashboard, {
-                            container: this.$COUNTRY_PROFILE_DASHBOARD,
-                            layout: 'fluid',
-                            lang: lang}));
-
-                    }else{
-                        log.error("View is not defined, handle exception");
-                    }
+                 alert()
 
 
-                }, this));*/
+                 this.$COUNTRY_PROFILE_DASHBOARD.empty();
+
+                 //this.$COUNTRY_PROFILE_BACK.focus();
+                 this.$COUNTRY_PROFILE_TITLE.html(countryName);
+
+                 // initialize map
+                 this.initializeMap(code);
+
+                 // get and render the right view
+                 Require([basePath + "country_profile"], _.bind(function(view) {
+
+                 // quick fix for view that should be splitted by topic
+                 view = view.population;
+
+                 var dashboard = view.dashboard || null;
+
+                 // adding default country
+                 dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
+
+                 // render structure (structure i.e. change view on click selection)
+
+                 // render dashboard
+                 if (dashboard !== null) {
+
+                 this.renderDashboard($.extend(true, {}, view.dashboard, {
+                 container: this.$COUNTRY_PROFILE_DASHBOARD,
+                 layout: 'fluid',
+                 lang: lang}));
+
+                 }else{
+                 log.error("View is not defined, handle exception");
+                 }
+
+
+                 }, this));*/
 
             },
 
@@ -494,7 +503,7 @@ define([
             renderDashboard: function(config) {
 
                 var dashboard = new Dashboard();
-                               // setting default filter options (i.e. language and datasouce)
+                // setting default filter options (i.e. language and datasouce)
                 config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
                 _.each(config.items, _.bind(function(item) {
                     item.config = ViewUtils.defaultItemOptions(item, CM.view);
@@ -555,15 +564,15 @@ define([
 
             destroyDashBoards: function () {
 
-               if (this.dashboards !== undefined) {
+                if (this.dashboards !== undefined) {
 
-                   _.each(this.dashboards, function(dashboard) {
+                    _.each(this.dashboards, function(dashboard) {
 
-                       if ( _.isFunction(dashboard.destroy)) {
-                           dashboard.destroy();
-                       }
-                   });
-               }
+                        if ( _.isFunction(dashboard.destroy)) {
+                            dashboard.destroy();
+                        }
+                    });
+                }
 
             },
 

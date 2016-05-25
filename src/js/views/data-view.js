@@ -50,7 +50,9 @@ define([
         },
 
         getTemplateData: function () {
-            return i18nLabels;
+            return {
+                data: i18nLabels.data
+            };
         },
 
         attach: function () {

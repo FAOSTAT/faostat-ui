@@ -25,7 +25,7 @@
                 <li role="presentation" class="active">
                     <a href="#country_list" data-section="country_list" role="tab" data-toggle="tab"
                        aria-expanded="true">
-                        Country Profile
+                        {{country_profile}}
                     </a>
                 </li>
             </ul>
@@ -46,7 +46,7 @@
         <div class="col-md-3">
             <div class="panel panel-default hoverable">
                 <div class="panel-heading">
-                    <h4>{{topics}}Topics</h4>
+                    <h4 class="text-capitalize">{{topics}}</h4>
                 </div>
                 <div class="panel-body">
                     <ul class="list-unstyled" data-role="sections"></ul>
@@ -67,7 +67,7 @@
 
     {{#each sections}}
         <li>
-            <h5>
+            <h5 class="text-capitalize">
                 <a data-dashboard-index='{{index}}' href="#">{{this.title}}</a>
             </h5>
         </li>
@@ -79,7 +79,7 @@
 <template id='dashboard'>
 
     <div data-dashboard-index='{{index}}'>
-        <h3>{{title}}</h3>
+        <h3 class="text-capitalize">{{title}}</h3>
         <div class="row" data-role="dashboard">
     </div>
 
