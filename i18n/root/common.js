@@ -88,6 +88,10 @@ define({
 
     data: 'data',
 
-    topics: 'topics'
+    topics: 'topics',
+    compare_data: 'Compare Data',
+    mes: 'Methods and Standards',
+
+    search_placeholder: 'Search an Indicator or Commodity'
 
 });

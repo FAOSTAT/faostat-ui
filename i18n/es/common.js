@@ -89,6 +89,12 @@ define({
 
     data: 'datos',
 
-    topics: 'topics'
+    topics: 'topics',
+    compare_data: 'Comparar Datos',
+    mes: 'Métodos y Normas',
+
+    search_placeholder: 'Search an Indicator or Commodity'
+
+
 
 });

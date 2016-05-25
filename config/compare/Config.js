@@ -42,7 +42,7 @@ define([
         },
 
         domains: {
-            blacklist: [
+           /* blacklist: [
                 //'FS', // it doesn't have yearly data
                 'HS', // it doesn't have yearly data,
                 'EA', // ODA
@@ -50,7 +50,25 @@ define([
                 'TM', // trade matrix
                 'HS',
                 'PM',
-                'GY' // Synthetic Fertilizers
+                'GY', // Synthetic Fertilizers
+                'PM'
+            ],*/
+            whitelist: [
+                'QC', 'QD', 'QA', 'QL', 'QL', 'QI', 'QV',
+                'TP', 'TA', 'TI',
+                'FBS', 'BC', 'BL', 'CC', 'CL',
+                'FS',
+                'PP', 'PI', 'PA', 'CP', 'PD',
+                'RA', 'RV', 'RP', 'RT', 'RL', 'OE',
+                'OA',
+                'CS', 'RM', 'RY', 'IC', 'EA',
+                'MK', 'EC', 'EE', 'EF', 'EL', 'EK', 'EP', 'ES', 'EW',
+                'GT', 'GE', 'GM', 'GR', 'GY', 'GU', 'GP', 'GA', 'GV', 'GH', 'GB', 'GN',
+                'GL', 'GF', 'GC', 'GG', 'GI',
+                'FO',
+                'AF', 'AE',
+                'FA'
+
             ]
         },
 
