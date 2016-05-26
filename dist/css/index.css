@@ -8077,7 +8077,7 @@ div#google_search input#search-submit {
 
 /* Third parties */
 .typeahead, .tt-query, .tt-hint {
-  width: 230px;
+  width: 225px;
   /*height: 30px;*/
   padding: 13px 10px 14px 10px;
   background-color: #f8f8f8;
