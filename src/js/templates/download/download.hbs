@@ -38,7 +38,7 @@
            id="fs-browse-by-country-profile-back">
             <i class="hidden-xs material-icons left">undo</i>
             <i class="visible-xs material-icons">undo</i>
-            <span class="hidden-xs">Back to domains' list</span>
+            <span class="hidden-xs">{{back_to_domains_list}}</span>
         </a>
     </div>
 </div>
@@ -65,21 +65,22 @@
             -->
             <li role='presentation'>
                 <a href='#interactive_download' data-section='interactive' role='tab' data-toggle='tab'>
-                    <!--{{interactive_download}}-->
-                    Download Data
+                    {{download_data}}
                 </a>
             </li>
             <li role='presentation'>
                 <a href='#browse' data-section='browse_by_domain_code' role='tab' data-toggle='tab'>
-                    Visualize Data
+                    {{visualize_data}}
                 </a>
             </li>
             <li role='presentation'>
-                <a href='#metadata' data-section='metadata' role='tab' data-toggle='tab'>{{metadata}}</a>
+                <a href='#metadata' data-section='metadata' role='tab' data-toggle='tab'>
+                    {{metadata}}
+                </a>
             </li>
             <li role='presentation'>
                 <a style='display:none' href='#report' data-section='report' role='tab' data-toggle='tab'>
-                    <span data-role="domain-title"></span> {{report}}
+                    <span data-role="domain-title"></span>
                 </a>
             </li>
         </ul>
@@ -128,7 +129,9 @@
             <div class="panel-footer amber lighten-4">
 
                 <div>
-                    <h5><i class="material-icons left">file_download</i>Bulk Downloads</h5>
+                    <h5>
+                        <i class="material-icons left">file_download</i>{{bulk_downloads}}
+                    </h5>
                     <ul class="list-unstyled list-download" data-role="bulk-downloads-caret"></ul>
                 </div>
             </div>
@@ -137,12 +140,12 @@
 
                 <!-- Last Update -->
                 <div data-role="last-update">
-                    <p class="label label-default label-aligned">{{last_update}}Last update</p>
+                    <p class="label label-default label-aligned">{{last_update}}</p>
                     <p data-role="date"></p>
                 </div>
 
                 <!-- Contacts -->
-<!--                <div data-role="contact-name">
+                <!--                <div data-role="contact-name">
                     <p class="label label-default label-aligned">{{contacts}}Contacts</p>
 
                     <p data-role="text"></p>
@@ -158,23 +161,24 @@
 
                 <!-- Email -->
                 <div data-role="contact-email" style="display:none">
-                    <p class="label label-default label-aligned">{{contacts_email}}Contacts Email</p>
+                    <p class="label label-default label-aligned">{{contacts_email}}</p>
 
                     <p data-role="text"></p>
                 </div>
 
-                <p class="label label-default label-aligned">{{related_documents}}</p>
+                <div data-role="related-documents">
+                    <p class="label label-default label-aligned">{{related_documents}}</p>
 
-                <!--TODO: remove when data are not available -->
-                <div data-role="fs-download-related-documents"></div>
+                    <!--TODO: remove when data are not available -->
+                    <div data-role="fs-download-related-documents"></div>
+                </div>
 
                 <a class="btn btn-link btn-block waves-effect" target='_blank' data-role="fs-download-metadata-button">
-                    <i class="material-icons left">info_outline</i>Full {{metadata}}
+                    <i class="material-icons left">info_outline</i>{{full_metadata}}
                 </a>
 
             </div>
         </div>
-
     </div>
 
 </div>
@@ -190,11 +194,11 @@
                 <div class="panel-heading clearfix">
                     <div class="pull-right">
                         <a class="btn-floating waves-effect waves-light btn-default disabled"
-                           data-role="export"
-                        ><i class="material-icons">file_download</i>
+                           data-role="export">
+                            <i class="material-icons">file_download</i>
                         </a>
                     </div>
-                    <h4>Show Data</h4>
+                    <h4>{{show_data}}</h4>
                 </div>
 
                 <div class="panel-body fs-output-preview">
@@ -202,12 +206,12 @@
                     <!-- message preview -->
                     <div data-role="message">
                         <h3 class="text-center">
-                            Where is the data?
+                            {{where_is_the_data}}
                         </h3>
 
                         <h5 class="text-center fs-output-preview-message">
                             <span class="fs-icojam-icon icojam_rotate_4"></span><br>
-                            Please make a selection above and press <i>Show Data</i>
+                            {{{show_data_info_message}}}
                         </h5>
                     </div>
 
