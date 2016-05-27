@@ -14,6 +14,10 @@ define([
         // default Domain Code used to retrieve the country lists
         countriesDomainCode: 'QC',
         countriesDimensionID: 'countries',
+        countriesBlacklist: [
+            228,
+        ],
+        
 
         map: {
             leaflet: {
