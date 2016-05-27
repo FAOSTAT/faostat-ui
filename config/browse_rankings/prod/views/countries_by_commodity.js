@@ -27,7 +27,7 @@ define(function () {
                         "dimension_id": "items",
                         "defaultCodes": ["15"],
                         "filter": {
-                        }
+}
                     }
                 },
                 {
@@ -40,7 +40,9 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "filter": {}
+                        "filter": {
+                            "blacklist": ["2014"]
+                        }
                     }
                 }
             ]

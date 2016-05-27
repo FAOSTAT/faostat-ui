@@ -40,7 +40,9 @@ define(function () {
                     },
                     "config": {
                         "dimension_id": "year",
-                        "filter": {}
+                        "filter": {
+                            "blacklist": ["2014"]
+                        }
                     }
                 }
             ]
