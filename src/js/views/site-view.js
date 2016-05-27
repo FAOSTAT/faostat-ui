@@ -22,6 +22,7 @@ define([
     'lib/common/modal',
     'swal',
     'jquery.visible',
+    'jquery.lazyload'
 ], function ($, log, C, E, ROUTES,
              //State,
              View,
@@ -158,6 +159,7 @@ define([
 
             this.initMenu();
             this.initSearchBox();
+            this.initLazyLoading();
 
             // init breadcrumb (N.B. not used)
             this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
@@ -192,6 +194,20 @@ define([
                     }
                 }
             });
+
+        },
+
+        initLazyLoading: function() {
+
+            var self = this;
+
+            // workaround for lazy bottom images.
+            // they are loaded delayed to avoid to be loaded on startup
+            setTimeout(function() {
+                self.$el.find("img.lazy-bottom").lazyload({
+                    threshold: 800
+                });
+            }, 2000);
 
         },
 
