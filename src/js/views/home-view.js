@@ -98,7 +98,7 @@ define([
                 View.prototype.attach.call(this, arguments);
 
                 this.$el.find("img.lazy").lazyload({
-                    threshold: 100,
+                    threshold: 50,
                     effect : "fadeIn"
                 });
 
