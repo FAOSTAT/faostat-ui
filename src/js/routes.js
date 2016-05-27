@@ -17,11 +17,11 @@ define(['config/Routes'], function (ROUTE) {
         //match(':lang/browse/domain', 'browse#show_browse_by_domain', {name: 'browse_by_domain'});
         //match(':lang/browse/domain/:code', 'browse#show_browse_by_domain', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
 
-        match(':lang/country', 'browse#show_browse_by_country', {name: ROUTE.BROWSE_BY_COUNTRY});
-        match(':lang/country/:code', 'browse#show_browse_by_country', {name: ROUTE.BROWSE_BY_COUNTRY_CODE});
+        match(':lang/country', 'browse-by-country#show', {name: ROUTE.BROWSE_BY_COUNTRY});
+        match(':lang/country/:code', 'browse-by-country#show', {name: ROUTE.BROWSE_BY_COUNTRY_CODE});
 
         //match(':lang/browse/rankings', 'browse#show_browse_rankings', {name: 'browse_rankings'});
-        match(':lang/rankings/:code', 'browse#show_browse_rankings', {name: ROUTE.BROWSE_RANKINGS_CODE});
+        match(':lang/rankings/:code', 'browse-rankings#show', {name: ROUTE.BROWSE_RANKINGS_CODE});
 
         match(':lang/compare', 'compare#show', {name: ROUTE.COMPARE});
 
