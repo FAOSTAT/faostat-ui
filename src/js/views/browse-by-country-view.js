@@ -82,7 +82,7 @@ define([
                 View.prototype.attach.call(this, arguments);
 
                 //update State. needed?
-                amplify.publish(E.STATE_CHANGE, {browse: 'browse'});
+                amplify.publish(E.STATE_CHANGE, {browse_by_country: 'browse_by_country'});
 
                 this.initVariables();
 
@@ -215,7 +215,8 @@ define([
                     sections: i18nLabels.sections || "Sections",
                     back_to_country_list: i18nLabels.back_to_country_list,
                     topics: i18nLabels.topics,
-                    country_profile: i18nLabels.country_profile
+                    country_profile: i18nLabels.country_profile,
+                    map_disclaimer: i18nLabels.map_disclaimer
                 }));
 
                 this.$COUNTRY_PROFILE_DASHBOARDS = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_DASHBOARDS);

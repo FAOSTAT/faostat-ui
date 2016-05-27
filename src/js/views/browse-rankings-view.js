@@ -6,6 +6,7 @@ define([
     'views/base/view',
     'config/Analytics',
     'config/Config',
+    'config/Routes',
     'config/Events',
     'config/browse_rankings/Config',
     'config/browse_rankings/Events',
@@ -19,7 +20,7 @@ define([
     'fx-ds/start',
     'lib/view/view-utils',
     'amplify'
-], function ($, log, Require, View, A, C, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils) {
+], function ($, log, Require, View, A, C, ROUTES, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils) {
 
     'use strict';
 
@@ -260,7 +261,7 @@ define([
 
             changeState: function() {
 
-                Common.changeURL(this.o.section + '_code', [this.o.code], false);
+                Common.changeURL(ROUTES.BROWSE_RANKINGS_CODE, [this.o.code]);
 
             },
 
