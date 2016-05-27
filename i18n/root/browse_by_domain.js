@@ -1,5 +1,5 @@
 /*global define*/
-define(['jquery', 'i18n!nls/browse'], function ($, I18N) {
+define(['jquery', 'i18n!nls/common'], function ($, I18N) {
 
     'use strict';
 
