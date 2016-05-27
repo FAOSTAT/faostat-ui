@@ -26,7 +26,8 @@ define([
     'amplify',
     'bootstrap',
     'twitter',
-    'swiper'
+    'swiper',
+    'jquery.lazyload'
 ], function ($, log,
              View,
              Common,
@@ -95,6 +96,10 @@ define([
             attach: function () {
 
                 View.prototype.attach.call(this, arguments);
+
+                this.$el.find("img.lazy").lazyload({
+                    threshold: 100
+                });
 
                 //update State
                 amplify.publish(E.STATE_CHANGE, {home: 'home'});
