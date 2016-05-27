@@ -79,7 +79,7 @@ define([
                 View.prototype.attach.call(this, arguments);
 
                 //update State. needed?
-                amplify.publish(E.STATE_CHANGE, {browse: 'browse'});
+                amplify.publish(E.STATE_CHANGE, {browse_rankings: 'browse_rankings'});
 
                 this.initVariables();
 
