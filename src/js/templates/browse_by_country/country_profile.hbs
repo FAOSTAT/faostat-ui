@@ -52,9 +52,10 @@
                 <div class="panel-heading">
                     <h4 class="text-capitalize">{{topics}}</h4>
                 </div>
-                <div class="panel-body">
+                <div class="list-unstyled" data-role="sections"></div>
+               <!-- <div class="panel-body">
                     <ul class="list-unstyled" data-role="sections"></ul>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
@@ -70,11 +71,13 @@
 <template id='sections'>
 
     {{#each sections}}
-        <li style="padding:3px 0 3px 0;border-bottom: 1px solid #ddd;">
+        <!--<li style="padding:3px 0 3px 0;border-bottom: 1px solid #ddd;">-->
+         <div class="panel-footer">
             <h5 class="text-capitalize">
                 <a data-dashboard-index='{{index}}' href="#">{{this.title}}</a>
             </h5>
-        </li>
+         </div>
+        <!--</li>-->
     {{/each}}
 
 </template>
@@ -84,7 +87,7 @@
 
     <div data-dashboard-index='{{index}}'>
         <h3 class="text-capitalize">{{title}}</h3>
-        <div class="row" data-role="dashboard">
+        <div class="row" data-role="dashboard"></div>
     </div>
 
 </template>

@@ -74,7 +74,7 @@ define([
             },
 
             getTemplateData: function () {
-                return i18nLabels;
+                return {};
             },
 
             attach: function () {
@@ -118,6 +118,7 @@ define([
                     lang: Common.getLocale(),
                     datasource: C.DATASOURCE,
                     domain_code: CM.countriesDomainCode,
+                    blacklist: CM.countriesBlacklist,
                     id: CM.countriesDimensionID,
 
                     // TODO: Add default on CLIENT API!
@@ -164,10 +165,13 @@ define([
                 });
 
                 // labels
-                d.country_profiles = i18nLabels.country_profiles;
-                d.country_list = i18nLabels.country_list;
 
-                this.$COUNTRY_LIST_CONTAINER.append(t(d));
+                this.$COUNTRY_LIST_CONTAINER.append(t({
+                    // labels
+                        country_profiles: i18nLabels.country_profiles,
+                        country_list: i18nLabels.country_list,
+                        data: d
+                    }));
 
 
                 /* Search **/
