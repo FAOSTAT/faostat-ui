@@ -118,7 +118,8 @@ require([
                     outdatedbrowser: '{FENIX_CDN}/js/outdatedbrowser/1.1.1/outdatedbrowser.min',
                     swiper:  '{FENIX_CDN}/js/swiper/3.3.1/dist/js/swiper.min',
                     waves: '{FENIX_CDN}/js/node-waves/0.7.5/waves.min',
-                    modernizr:  '{FENIX_CDN}/js/modernizr/3.3.1/modernizr-custom',
+                    modernizr: '{FENIX_CDN}/js/modernizr/3.3.1/modernizr-custom',
+                    'jquery.lazyload': '{FENIX_CDN}/js/jquery.lazyload/1.9.7/jquery.lazyload.min',
 
                     typeahead: '{FENIX_CDN}/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
                     bloodhound: '{FENIX_CDN}/js/bloodhound/0.11.1/bloodhound.min',
@@ -182,8 +183,11 @@ require([
                 },
 
                 shim: {
-                    Modernizr: {
+                    modernizr: {
                         exports: 'Modernizr'
+                    },
+                    'jquery.lazyload': {
+                        deps: ["jquery"]
                     },
                     waves: {
                         deps: ["jquery"]
