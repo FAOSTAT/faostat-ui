@@ -6,14 +6,14 @@ define([
     'config/Config',
     'config/Events',
     'text!templates/browse/browse.hbs',
-    'i18n!nls/browse',
+    //'i18n!nls/browse',
     'handlebars',
     // TODO the views probably can be loaded at runtime?
     'views/browse-by-domain-view',
     'views/browse-by-country-view',
     'views/browse-rankings-view',
     'amplify'
-], function ($, View, A, C, E, template, i18nLabels, Handlebars, DomainView, CountryView, RankingsView) {
+], function ($, View, A, C, E, template, Handlebars, DomainView, CountryView, RankingsView) {
 
     'use strict';
 
@@ -43,7 +43,7 @@ define([
         },
 
         getTemplateData: function () {
-            return i18nLabels;
+            return {};
         },
 
         attach: function () {

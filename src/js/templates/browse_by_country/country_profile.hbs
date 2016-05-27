@@ -13,7 +13,7 @@
                id="fs-browse-by-country-profile-back">
                 <i class="hidden-xs material-icons left">undo</i>
                 <i class="visible-xs material-icons">undo</i>
-                <span class="hidden-xs"> {{back_to_country_list}}</span>
+                <span class="hidden-xs">{{back_to_country_list}}</span>
             </a>
         </div>
     </div>
@@ -28,6 +28,7 @@
                         {{country_profile}}
                     </a>
                 </li>
+
             </ul>
         </div>
     </div>
@@ -39,7 +40,10 @@
         <div class="col-md-9">
             <div class="fs-map panel panel-default hoverable">
                 <div class="panel-body">
-                    <div style="height: 350px;" id="fs-browse-by-country-profile-map"></div>
+                    <div style="height: 444px;" id="fs-browse-by-country-profile-map"></div>
+                </div>
+                <div class="panel-footer">
+                    <p><i>{{{map_disclaimer}}}</i></p>
                 </div>
             </div>
         </div>
@@ -66,7 +70,7 @@
 <template id='sections'>
 
     {{#each sections}}
-        <li>
+        <li style="padding:3px 0 3px 0;border-bottom: 1px solid #ddd;">
             <h5 class="text-capitalize">
                 <a data-dashboard-index='{{index}}' href="#">{{this.title}}</a>
             </h5>

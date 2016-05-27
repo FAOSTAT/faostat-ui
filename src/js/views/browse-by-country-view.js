@@ -359,73 +359,6 @@ define([
 
             },
 
-            OLDrenderCountryProfile: function () {
-
-                /*  var html = $(templateCountryProfile).filter('#country_profile').html(),
-                 t = Handlebars.compile(html),
-                 countryName = this.getCountryName(),
-                 lang = this.o.lang,
-                 basePath = CM.viewsBasePath,
-                 code = this.o.code;
-
-                 this.$COUNTRY_PROFILE.empty();
-                 this.$COUNTRY_LIST_CONTAINER.hide();
-                 this.$COUNTRY_PROFILE.show();
-
-                 alert()
-
-                 this.$COUNTRY_PROFILE.html(t({
-                 country_name: countryName
-                 }));
-
-                 alert()
-
-                 this.$COUNTRY_PROFILE_TITLE = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_TITLE);
-                 this.$COUNTRY_PROFILE_DASHBOARD = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_DASHBOARD);
-                 this.$COUNTRY_PROFILE_BACK = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_BACK);
-                 this.$COUNTRY_PROFILE_MAP = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_MAP);
-
-                 alert()
-
-
-                 this.$COUNTRY_PROFILE_DASHBOARD.empty();
-
-                 //this.$COUNTRY_PROFILE_BACK.focus();
-                 this.$COUNTRY_PROFILE_TITLE.html(countryName);
-
-                 // initialize map
-                 this.initializeMap(code);
-
-                 // get and render the right view
-                 Require([basePath + "country_profile"], _.bind(function(view) {
-
-                 // quick fix for view that should be splitted by topic
-                 view = view.population;
-
-                 var dashboard = view.dashboard || null;
-
-                 // adding default country
-                 dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
-
-                 // render structure (structure i.e. change view on click selection)
-
-                 // render dashboard
-                 if (dashboard !== null) {
-
-                 this.renderDashboard($.extend(true, {}, view.dashboard, {
-                 container: this.$COUNTRY_PROFILE_DASHBOARD,
-                 layout: 'fluid',
-                 lang: lang}));
-
-                 }else{
-                 log.error("View is not defined, handle exception");
-                 }
-
-
-                 }, this));*/
-
-            },
-
             initializeMap: function(code) {
 
                 this.$COUNTRY_PROFILE_MAP.empty();
@@ -433,7 +366,6 @@ define([
                 //if ( this.fenixMap === undefined) {
                 this.m = new FM.Map(this.$COUNTRY_PROFILE_MAP, CM.map.fenix_ui_map, CM.map.leaflet);
                 this.m.createMap();
-                //}
 
                 var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -449,15 +381,35 @@ define([
                     //opacity: 0.4
                 });
 
+                var MapQuestOpen_Aerial = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.{ext}', {
+                    type: 'sat',
+                    ext: 'jpg',
+                    attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency',
+                    subdomains: '1234'
+                });
 
-                // added dirty baselyaer
+                // https: also suppported.
+                var Esri_OceanBasemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
+                    maxZoom: 13
+                });
+
+                // https: also suppported.
+                var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+                    maxZoom: 16
+                });
+
+
+                // added dirty baselayer
+                //this.m.map.addLayer(Esri_WorldGrayCanvas);
                 this.m.map.addLayer(Esri_WorldPhysical);
 
                 var boundary = {
                     layers: 'fenix:gaul0_line_3857',
                     layertitle: 'Country Boundaries',
                     urlWMS: 'http://fenix.fao.org/geoserver',
-                    opacity: '0.2'
+                    opacity: '0.5'
                 };
 
                 this.m.addLayer(new FM.layer(boundary));
@@ -477,7 +429,7 @@ define([
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
                     subdomains: 'abcd',
                     maxZoom: 19,
-                    zIndex: 100000,
+                    zIndex: 1000,
                     opacity: 0.9
                 });
 
