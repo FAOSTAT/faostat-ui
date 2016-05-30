@@ -92,6 +92,7 @@ src/images/rss.png
 # Use from network if available
 NETWORK:
 index.html
+main.js
 *
 # index.html
 # /api/*
