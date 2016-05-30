@@ -1,7 +1,8 @@
 /*global define*/
 define([
+    'jquery',
     'config/browse_by_domain/Config'
-],function (C) {
+],function ($, C) {
 
     'use strict';
 
@@ -19,42 +20,36 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
                     //"title": "title",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-xs-7 col-md-5",
+                        "class": "col-xs-7 col-md-4",
                         "type": "dropDownList",
                         "multiple": false
                     },
                     "config": {
                         "dimension_id": "items",
-                        "defaultCodes": ["23101"],
+                        "defaultCodes": ["23161"],
                         "filter": {
-                            whitelist: ["23101"]
+                            whitelist: ["23161"]
                         }
                     }
                 },
                 {
                     // id to be applied on the getData request
-                    "id": "element",
+                    "id": "area",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List2Codes",
+                    "parameter": "List1Codes",
                     //"title": "title",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-xs-7 col-md-5",
+                        "class": "col-xs-7 col-md-4",
                         "type": "dropDownList",
-                        "multiple": false
+                        "multiple": true
                     },
                     "config": {
-                        "dimension_id": "element",
-                        "defaultCodes": ["6111"],
-                        "filter": {
-                            whitelist: ["6111"]
-                        }
+                        "dimension_id": "countries",
+                        "defaultCodes": ["2"],
+                        "filter": {}
                     }
                 },
                 {
@@ -62,14 +57,21 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-xs-3 col-md-2",
-                        "type": "dropDownList"
+                        "class": "col-lg-2",
+                        "type": "dropDownList-timerange"
                     },
                     "config": {
                         "dimension_id": "year",
-                        "filter": {}
+                        "defaultCodes": [2001],
+                        "filter": {
+                        }
                     }
-                }
+                },
+                $.extend(true, {}, C.filter.aggregation,{
+                    "componentType": {
+                        "class": "hidden"
+                    }
+                })
             ]
         },
 
@@ -95,7 +97,7 @@ define([
             //bridge configuration
             bridge: {
 
-                type: "faostat",
+                type: "faostat"
                 //requestType: 'data' // data, rankings
 
             },
@@ -115,9 +117,9 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Share of Government Expenditures on Agriculture (% of Total Outlays)",
-                                fr: "Share of Government Expenditures on Agriculture (% of Total Outlays)",
-                                es: "Share of Government Expenditures on Agriculture (% of Total Outlays)"
+                                en: "Share of Central Government Expenditures on Agriculture (% of Total Outlays)",
+                                fr: "Share of Central Government Expenditures on Agriculture (% of Total Outlays)",
+                                es: "Share of Central Government Expenditures on Agriculture (% of Total Outlays)",
                             },
                             subtitle: "{{year}}"
                         }
@@ -127,7 +129,7 @@ define([
                     config: {
                         template: {}
                     },
-                    allowedFilter: ['item', 'year'],
+                    allowedFilter: ['item', 'element', 'year'],
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
