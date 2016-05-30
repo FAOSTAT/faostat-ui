@@ -2,56 +2,92 @@ CACHE MANIFEST
 # cache version
 # v0.1 30-05-2016
 
-http://fenixrepo.fao.org/cdn/faostat/js/requirejs/2.1.15/require.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/jquery/2.2.3/jquery.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/bootstrap/3.3.4/js/bootstrap.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/underscore/1.7.0/underscore.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/underscore.string/3.2.2/underscore.string.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/backbone/1.1.2/backbone.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/handlebars/4.0.5/handlebars.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/chaplin/1.1.1/chaplin.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/requirejs/plugins/domready/2.0.1/domReady.js
-http://fenixrepo.fao.org/cdn/faostat/js/requirejs/plugins/i18n/2.0.4/i18n.js
-http://fenixrepo.fao.org/cdn/faostat/js/requirejs/plugins/text/2.0.12/text.js
-http://fenixrepo.fao.org/cdn/faostat/js/rsvp/3.0.17/rsvp.js
-http://fenixrepo.fao.org/cdn/faostat/js/amplify/1.1.2/amplify.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/select2/3.5.4/select2.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/loglevel/1.4.0/loglevel.js
-http://fenixrepo.fao.org/cdn/faostat/js/moment/2.9.0/moment-with-locales.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/outdatedbrowser/1.1.1/outdatedbrowser.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/swiper/3.3.1/dist/js/swiper.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/node-waves/0.7.5/waves.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/modernizr/3.3.1/modernizr-custom.js
-http://fenixrepo.fao.org/cdn/faostat/js/jquery.lazyload/1.9.7/jquery.lazyload.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom.js
-http://fenixrepo.fao.org/cdn/faostat/js/bloodhound/0.11.1/bloodhound.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/bootpag/1.0.7/jquery.bootpag.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/instafilta/1.4.4/instafilta.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/q/1.1.2/q.js
-http://fenixrepo.fao.org/cdn/faostat/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min.js
-http://fenixrepo.fao.org/cdn/faostat/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/js/ion-rangeSlider/ion.rangeSlider.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/jquery.visible/1.2.0/jquery.visible.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/sweet-alert/0.5.0/sweet-alert.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/numeral/1.5.3/min/numeral.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/FileSaver/1.1.2/FileSaver.min.js
-http://fenixrepo.fao.org/cdn/faostat/js/blob/1.0/Blob.js
-http://fenixrepo.fao.org/cdn/faostat/js/tableExport.jquery.plugin/1.0/tableExport.min.js
+//fenixrepo.fao.org/cdn/faostat/js/requirejs/2.1.15/require.min.js
+//fenixrepo.fao.org/cdn/faostat/js/jquery/2.2.3/jquery.min.js
+//fenixrepo.fao.org/cdn/faostat/js/bootstrap/3.3.4/js/bootstrap.min.js
+//fenixrepo.fao.org/cdn/faostat/js/underscore/1.7.0/underscore.min.js
+//fenixrepo.fao.org/cdn/faostat/js/underscore.string/3.2.2/underscore.string.min.js
+//fenixrepo.fao.org/cdn/faostat/js/backbone/1.1.2/backbone.min.js
+//fenixrepo.fao.org/cdn/faostat/js/handlebars/4.0.5/handlebars.min.js
+//fenixrepo.fao.org/cdn/faostat/js/chaplin/1.1.1/chaplin.min.js
+//fenixrepo.fao.org/cdn/faostat/js/requirejs/plugins/domready/2.0.1/domReady.js
+//fenixrepo.fao.org/cdn/faostat/js/requirejs/plugins/i18n/2.0.4/i18n.js
+//fenixrepo.fao.org/cdn/faostat/js/requirejs/plugins/text/2.0.12/text.js
+//fenixrepo.fao.org/cdn/faostat/js/rsvp/3.0.17/rsvp.js
+//fenixrepo.fao.org/cdn/faostat/js/amplify/1.1.2/amplify.min.js
+//fenixrepo.fao.org/cdn/faostat/js/select2/3.5.4/select2.min.js
+//fenixrepo.fao.org/cdn/faostat/js/loglevel/1.4.0/loglevel.js
+//fenixrepo.fao.org/cdn/faostat/js/moment/2.9.0/moment-with-locales.min.js
+//fenixrepo.fao.org/cdn/faostat/js/outdatedbrowser/1.1.1/outdatedbrowser.min.js
+//fenixrepo.fao.org/cdn/faostat/js/swiper/3.3.1/dist/js/swiper.min.js
+//fenixrepo.fao.org/cdn/faostat/js/node-waves/0.7.5/waves.min.js
+//fenixrepo.fao.org/cdn/faostat/js/modernizr/3.3.1/modernizr-custom.js
+//fenixrepo.fao.org/cdn/faostat/js/jquery.lazyload/1.9.7/jquery.lazyload.min.js
+//fenixrepo.fao.org/cdn/faostat/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom.js
+//fenixrepo.fao.org/cdn/faostat/js/bloodhound/0.11.1/bloodhound.min.js
+//fenixrepo.fao.org/cdn/faostat/js/bootpag/1.0.7/jquery.bootpag.min.js
+//fenixrepo.fao.org/cdn/faostat/js/instafilta/1.4.4/instafilta.min.js
+//fenixrepo.fao.org/cdn/faostat/js/q/1.1.2/q.js
+//fenixrepo.fao.org/cdn/faostat/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min.js
+//fenixrepo.fao.org/cdn/faostat/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min.js
+//fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/js/ion-rangeSlider/ion.rangeSlider.min.js
+//fenixrepo.fao.org/cdn/faostat/js/jquery.visible/1.2.0/jquery.visible.min.js
+//fenixrepo.fao.org/cdn/faostat/js/sweet-alert/0.5.0/sweet-alert.min.js
+//fenixrepo.fao.org/cdn/faostat/js/numeral/1.5.3/min/numeral.min.js
+//fenixrepo.fao.org/cdn/faostat/js/FileSaver/1.1.2/FileSaver.min.js
+//fenixrepo.fao.org/cdn/faostat/js/blob/1.0/Blob.js
+//fenixrepo.fao.org/cdn/faostat/js/tableExport.jquery.plugin/1.0/tableExport.min.js
+//fenixrepo.fao.org/cdn/faostat/js/bootstrap-table/1.9.1/bootstrap-table.min.js
+//fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.0/dist/jstree.min.js
 
+# fenix-ui-map
+//fenixrepo.fao.org/cdn/faostat/js/FENIX/utils/import-dependencies-1.0.js
+//fenixrepo.fao.org/cdn/faostat/js/leaflet/0.7.7/leaflet.js
+//fenixrepo.fao.org/cdn/faostat/js/jquery.powertip/1.2.0/jquery.powertip.min.js
+//fenixrepo.fao.org/cdn/faostat/js/jquery/1.0.9/jquery.i18n.properties-min.js
+//fenixrepo.fao.org/cdn/faostat/js/jquery.hoverIntent/1.8.0/jquery.hoverIntent.min.js
 
-# boostrap bplugins
-http://fenixrepo.fao.org/cdn/faostat/js/bootstrap-table/1.9.1/bootstrap-table.min.js
+# charts
+//fenixrepo.fao.org/cdn/faostat/js/highcharts/4.2.5/js/highcharts.js
+//fenixrepo.fao.org/cdn/faostat/js/highstock/2.1.9/js/highstock.js
+//fenixrepo.fao.org/cdn/faostat/js/highcharts/4.2.5/js/modules/exporting.js
+//fenixrepo.fao.org/cdn/faostat/js/highcharts/4.0.4/js/modules/exporting.js
 
 # Google Analytics
-http://fenixrepo.fao.org/cdn/faostat/js/googleanalytics/0.3.7/analytics.js
+//fenixrepo.fao.org/cdn/faostat/js/googleanalytics/0.3.7/analytics.js
+
+# CSS
+//fenixrepo.fao.org/cdn/faostat/js/bootstrap/3.3.6/css/bootstrap.min.css
+//fenixrepo.fao.org/cdn/faostat/js/bootstrap-table/1.9.1/bootstrap-table.min.css
+//fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.0/dist/themes/default/style.min.css
+//fenixrepo.fao.org/cdn/faostat/js/sweet-alert/0.5.0/sweet-alert.min.css
+//fenixrepo.fao.org/cdn/faostat/js/select2/3.5.4/select2.css
+//fenixrepo.fao.org/cdn/faostat/js/jquery-ui/1.9.2/smoothness/jquery-ui.custom.min.css
+//fenixrepo.fao.org/cdn/faostat/js/outdatedbrowser/1.1.1/outdatedbrowser.min.css
+//fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/normalize.css
+//fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/ion.rangeSlider.css
+//fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/ion.rangeSlider.skinHTML5.css
+//fenixrepo.fao.org/cdn/faostat/js/swiper/3.3.1/dist/css/swiper.min.css
+//fenixrepo.fao.org/cdn/faostat/js/jbpivot/0.1.0/jbPivot.css
+//fenixrepo.fao.org/cdn/faostat/js/leaflet/0.7.7/leaflet.css
+//fenixrepo.fao.org/cdn/faostat/js/node-waves/0.7.5/waves.min.css
+../../submodules/fenix-ui-map/dist/fenix-ui-map.min.css
+//fast.fonts.com/cssapi/0ad75cee-12a6-49a0-a922-c4ecad41ec44.css
+//fonts.googleapis.com/icon?family=Material+Icons
 
 # Images
-http://www.google.com/cse/static/en/google_custom_search_watermark.gif
+//www.google.com/cse/static/en/google_custom_search_watermark.gif
 # src/images/faostat-logo-blue-capital-only-text.svg
 src/images/faostat-logo-blue-capital-only-text.svg
-src/images/homepage/img-2.jpg
-src/images/homepage/img-3.jpg
-src/images/homepage/img-4.jpg
+src/images/FAO_logo_Black_2lines_en.svg
+
+# Bottom Icons
+src/images/twitter.png
+src/images/youtube.png
+src/images/flickr_23.png
+src/images/rss.png
+
+
 
 # Use from network if available
 NETWORK:
