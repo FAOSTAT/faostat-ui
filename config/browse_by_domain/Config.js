@@ -47,7 +47,7 @@ define([
                 // TODO: check data parameter
                 "parameter": "operator",
                 "componentType": {
-                    "class": "col-xs-3 col-md-2",
+                    "class": "col-xs-4 col-sm-4 col-md-2",
                     "type": "dropDownList"
                 },
                 "config": {
