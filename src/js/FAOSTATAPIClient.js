@@ -7,8 +7,9 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            base_url: 'http://fenix.fao.org/faostat/api/v1/'
-            //base_url: '@@url_api'
+            base_url: 'http://fenix.fao.org/faostat/api/v1/',
+           // base_url: '@@url_api',
+            mode: '@@mode'
         };
 
         /* Extend default configuration. */
@@ -1890,6 +1891,11 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
     /* used to get a key/value */
     RESTClient.prototype.store = function(key, value) {
+
+        /* if mode = 'dev' */
+        if(this.CONFIG.hasOwnProperty('mode') && this.CONFIG.mode == 'dev') {
+            return undefined;
+        }
 
         var expireStoreTime = 300000;
         // 300000 (5 minutes)
