@@ -8187,6 +8187,10 @@ div#google_search input#search-submit {
   background: none;
   background-color: #e3eef7; }
 
+.highcharts-contextmenu hr {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
 /* Pages */
 .fs-browse-view-padding {
   margin-top: 30px; }
