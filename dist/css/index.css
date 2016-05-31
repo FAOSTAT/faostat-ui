@@ -7874,6 +7874,9 @@ div#google_search input#search-submit {
           background-color: white;
           color: #ec6e00; } }
 
+.navbar-default .navbar-toggle {
+  border-color: transparent; }
+
 .nav-tabs > li {
   padding: 0px 0px 0px 0px;
   margin-bottom: 0; }
