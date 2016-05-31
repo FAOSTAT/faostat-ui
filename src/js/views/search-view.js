@@ -124,6 +124,7 @@ define([
                 v = $.extend(true, {}, v, self.getDomain(v.DomainCode));
 
                 // i18n
+                v.type = i18nLabels[v.id];
                 v.domain_label = i18nLabels.domain;
                 v.group_label = i18nLabels.group;
                 v.go_to_download = i18nLabels.go_to_download;

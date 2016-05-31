@@ -6,7 +6,8 @@
             <h4>
                 {{this.Label}}
                 <!-- TODO: id should be translated and take from the db as typeLabel -->
-                <small>({{this.id}})</small>
+                {{#if this.type}}<small>({{this.type}})</small>{{/if}}
+
             </h4>
             <div>
 <!--                <h5>
