@@ -208,7 +208,6 @@ div#google_search input#search-submit {
 
     }
 
-
     ul li {
       //border-right: 1px solid #D2D0D0;
       border-left: 1px solid #D2D0D0;
@@ -242,22 +241,25 @@ div#google_search input#search-submit {
       }
 
 
-      &.active{
+    }
 
-        >a{
+  }
+
+  ul li {
+
+    &.active{
+
+      >a{
+        background-color: white;
+        color: #ec6e00;
+
+        &:hover, &:focus{
           background-color: white;
           color: #ec6e00;
-
-          &:hover, &:focus{
-            background-color: white;
-            color: #ec6e00;
-
-          }
 
         }
 
       }
-
 
     }
 

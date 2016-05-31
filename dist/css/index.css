@@ -7866,13 +7866,13 @@ div#google_search input#search-submit {
           color: #003b45; }
         .faostat_ui_menu .navbar-default ul li a:hover {
           background-color: white;
-          text-decoration: none; }
-      .faostat_ui_menu .navbar-default ul li.active > a {
-        background-color: white;
-        color: #ec6e00; }
-        .faostat_ui_menu .navbar-default ul li.active > a:hover, .faostat_ui_menu .navbar-default ul li.active > a:focus {
-          background-color: white;
-          color: #ec6e00; } }
+          text-decoration: none; } }
+.faostat_ui_menu .navbar-default ul li.active > a {
+  background-color: white;
+  color: #ec6e00; }
+  .faostat_ui_menu .navbar-default ul li.active > a:hover, .faostat_ui_menu .navbar-default ul li.active > a:focus {
+    background-color: white;
+    color: #ec6e00; }
 
 .navbar-default .navbar-toggle {
   border-color: transparent; }
