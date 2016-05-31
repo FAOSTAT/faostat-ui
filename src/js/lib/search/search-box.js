@@ -82,7 +82,18 @@ define([
                         lang: self.o.lang,
                         q: obj.url
                     }).then(function(d) {
-                        onSuccess(d.data);
+
+                        var r = [];
+
+                        _.each(d.data, function(v) {
+                            log.info(v);
+                            r.push({
+                                label: v.label,
+                                type: i18nLabels[v.id]
+                            });
+                        });
+
+                        onSuccess(r);
                         //return d.data;
                     }).fail(function(e) {
                         onError(e);
@@ -119,7 +130,7 @@ define([
                 limit: 100,
                 templates: {
                     empty: '<p class="text-capitalize" style="padding:5px 0 0 5px;font-size:12px;">' + i18nLabels.no_data_available + '</p>',
-                    suggestion: Handlebars.compile('<p>{{label}} <small>({{id}})</small></p>')
+                    suggestion: Handlebars.compile('<p>{{label}} {{#if type}}<small>({{type}})</small>{{/if}}</p>')
                 }
             }).on('typeahead:selected', function (e, d) {
                 log.info(e, d);
