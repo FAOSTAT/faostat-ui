@@ -1384,8 +1384,7 @@ define(function () {
                         }
                     },
 
-
-                    {
+                    /*{
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
@@ -1511,24 +1510,11 @@ define(function () {
                                 2051,
                                 2054,
                                 2057],
-                            /* List4Codes: [
-                             2003,
-                             2004,
-                             2005,
-                             2006,
-                             2007,
-                             2008,
-                             2009,
-                             2010,
-                             2011,
-                             2012,
-                             2013
-                             ]*/
                             List4Codes: ['_1'],
                             order_by: 'year, item',
                             limit: -1
                         }
-                    }
+                    }*/
 
                 ]
             }
