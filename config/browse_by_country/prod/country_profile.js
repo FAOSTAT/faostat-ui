@@ -1384,6 +1384,60 @@ define(function () {
                         }
                     },
 
+
+                    {
+                        type: 'table',
+                        class: "col-md-6",
+
+                        //bridge configuration
+                        bridge: {
+
+                            type: "faostat",
+                            requestType: 'rankings' // data, rankings
+
+                        },
+
+                        // labels
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Top 10 commodities production",
+                                    fr: "Top 10 commodities production",
+                                    es: "Top 10 commodities production"
+                                },
+                                subtitle: "2014"
+                            }
+                        },
+
+                        config: {
+
+                            adapter: {
+                                columns: ['item', 'year', 'value', 'unit', 'flags'],
+                                showCodes: false
+                            },
+                            template: {
+                                tableOptions: {
+                                    'data-search': false,
+                                    'data-show-header': false
+                                }
+                            }
+                        },
+                        allowedFilter: ['area', 'year', 'item', 'aggregation'],
+                        deniedTemplateFilter: [],
+                        filter: {
+                            domain_codes: ['QA', 'QC', 'QD', 'QL', 'QP'],
+                            List2Codes: ["5510"],
+                            List3Codes: ["_1"],
+                            List4Codes: [2014],
+                            limit: "10",
+                            decimal_places:2,
+                            "null_values": false,
+                            filter_list: "1",
+                            rank_type: 'DESC'
+                        }
+                    },
+
                     /*{
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
