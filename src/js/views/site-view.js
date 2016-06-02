@@ -38,7 +38,7 @@ define([
         TERRITORIAL_NOTES: '#territorial-notes',
         FEEDBACK_SYSTEM: '#feedback-system',
         LANGUAGE: '#fs-language',
-        SEARCH: '#fs-search',
+        SEARCH: '[data-role="fs-search"]',
 
         TOP_MENU_CONTAINER: '#top-menu-container',
         BREADCRUMB_CONTAINER: "#breadcrumb-container",
