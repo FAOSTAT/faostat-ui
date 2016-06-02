@@ -99,7 +99,7 @@
 
     <div class="col-md-12 clearfix hidden-xs">
 
-        <a href="{{url_home}}">
+        <a href="{{URL_HOME}}">
             <img src="src/images/faostat-logo-blue-capital-only-text.svg" width="108px" height="20px" alt="Faostat" class="img-responsive faostat-header-logo pull-left">
         </a>
 
@@ -156,10 +156,11 @@
         <div class="col-sm-3">
             <h4>{{menu}}</h4>
             <ul class="list-unstyled">
-                <li><a href="#{{locale}}/data">{{data}}</a></li>
-                <li><a href="#{{locale}}/compare">{{compare}}</a></li>
-                <li><a href="#{{locale}}/standards/methodologies">{{mes}}</a></li>
-                <li><a href="#{{locale}}/faq">{{frequently_asked_questions}} ({{faqs}})</a></li>
+                <!-- TODO: ADD routing with Common.getURI-->
+                <li><a class="text-capitalize" href="{{URL_DATA}}">{{data}}</a></li>
+                <li><a class="text-capitalize" href="{{URL_COMPARE}}">{{compare}}</a></li>
+                <li><a class="text-capitalize" href="{{URL_MES}}">{{mes}}</a></li>
+                <li><a class="text-capitalize" href="{{URL_FAQ}}">{{frequently_asked_questions}} ({{faqs}})</a></li>
             </ul>
         </div>
         <div class="col-sm-3">
