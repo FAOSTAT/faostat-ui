@@ -18,7 +18,6 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
         // featured links
         faostat_database_download: 'Download FAOSTAT Database (Zip)',
-        country_profiles: 'Country Profiles',
 
         // partners
         partners: 'Partners',

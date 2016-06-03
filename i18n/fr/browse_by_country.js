@@ -6,9 +6,7 @@ define(['jquery', 'i18n!nls/common'], function ($, I18N) {
     return $.extend(true, {}, I18N, {
 
         back_to_country_list: "Back to countries' list",
-        country_list: "Country List",
-        country_profiles: "Country Profiles",
-        country_profile: "Country Profile"
+        country_list: "Country List"
 
     });
 
