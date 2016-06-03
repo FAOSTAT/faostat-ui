@@ -168,7 +168,7 @@ define([
 
                 this.$COUNTRY_LIST_CONTAINER.append(t({
                     // labels
-                        country_profiles: i18nLabels.country_profiles,
+                        country_indicators: i18nLabels.country_indicators,
                         country_list: i18nLabels.country_list,
                         data: d
                     }));
@@ -219,7 +219,7 @@ define([
                     sections: i18nLabels.sections || "Sections",
                     back_to_country_list: i18nLabels.back_to_country_list,
                     topics: i18nLabels.topics,
-                    country_profile: i18nLabels.country_profile,
+                    //country_indicators: i18nLabels.country_indicators,
                     map_disclaimer: i18nLabels.map_disclaimer
                 }));
 
