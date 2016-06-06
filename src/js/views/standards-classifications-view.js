@@ -150,7 +150,7 @@ define([
             this.o.code = code;
             this.o.label = label;
 
-            amplify.publish(E.LOADING_HIDE, {container: this.$output});
+            amplify.publish(E.LOADING_SHOW, {container: this.$output});
 
             // get classification
             this.FAOSTATAPIClient[this.o.requestType]({
@@ -166,6 +166,8 @@ define([
         },
 
         showTable: function(model) {
+
+            amplify.publish(E.LOADING_HIDE, {container: this.$output});
 
             var t = Handlebars.compile(templateOutput),
                 data = $.extend(true, {}, i18nLabels),
