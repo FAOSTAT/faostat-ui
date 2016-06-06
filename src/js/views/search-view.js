@@ -48,7 +48,8 @@ define([
         PAGINATION: "#pagination",
 
         // download button for each result container
-        DOWNLOAD_BUTTON: "[data-role='download']"
+        DOWNLOAD_BUTTON: "[data-role='download']",
+        DOWNLOAD_LINK: "[data-role='download-link']"
 
     },
     SearchView = View.extend({
@@ -226,12 +227,18 @@ define([
                     // bind export data selection
                     self.bindExportDataSelection();
 
+                    // binding download link
+                    self.bindDownloadLink();
+
                 });
 
                 self.$SEARCH_RESULTS.html(self.getPage(results, page, pageSize));
 
                 // bind export data selection
                 self.bindExportDataSelection();
+
+                // binding download link
+                self.bindDownloadLink();
             }
 
         },
@@ -249,6 +256,25 @@ define([
 
         },
 
+        bindDownloadLink: function() {
+
+            var self = this;
+
+            log.info(this.$el.find(s.DOWNLOAD_LINK));
+
+            this.$el.find(s.DOWNLOAD_LINK).off('click');
+            this.$el.find(s.DOWNLOAD_LINK).on('click', function(e) {
+
+                e.preventDefault();
+
+                amplify.store('search.selection', {
+                    item: 23
+                });
+
+            });
+
+        },
+
         bindExportDataSelection: function() {
 
             var self = this;
@@ -260,6 +286,7 @@ define([
                 self.exportData($(this).data('index'));
 
             });
+
         },
 
         exportData: function(index) {
