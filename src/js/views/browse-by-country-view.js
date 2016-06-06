@@ -247,31 +247,6 @@ define([
                 // get and render the right view
                 Require([basePath + "country_profile"], _.bind(function(views) {
 
-                    // for each key create a dashboard
-
-                    // quick fix for view that should be splitted by topic
-                    /*view = view.population;
-
-                     var dashboard = view.dashboard || null;
-
-                     // adding default country
-                     dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
-
-                     // render structure (structure i.e. change view on click selection)
-
-                     // render dashboard
-                     if (dashboard !== null) {
-
-                     this.renderDashboard($.extend(true, {}, view.dashboard, {
-                     container: this.$COUNTRY_PROFILE_DASHBOARD,
-                     layout: 'fluid',
-                     lang: lang}));
-
-                     }else{
-                     log.error("View is not defined, handle exception");
-                     }*/
-
-
                     this.renderCountryProfileSections(views);
 
 
@@ -309,7 +284,7 @@ define([
 
 
                 this.$COUNTRY_PROFILE_SECTIONS.html(t({
-                    sections: sections,
+                    sections: sections
                 }));
 
 

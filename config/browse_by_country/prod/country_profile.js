@@ -1,6 +1,8 @@
 /*global define*/
-
-define(function () {
+define([
+    'jquery',
+    'i18n!nls/browse_by_country'
+], function ($, i18n) {
 
     'use strict';
 
@@ -21,7 +23,7 @@ define(function () {
 
         population: {
 
-            title: "Demographics",
+            title: i18n.demographics,
 
             dashboard: {
 
@@ -136,7 +138,7 @@ define(function () {
 
         inputs: {
 
-            title: "Inputs",
+            title: i18n.inputs,
 
             dashboard: {
 
@@ -269,7 +271,7 @@ define(function () {
 
         undernourishment: {
 
-            title: "Undernourishment",
+            title: i18n.undernourishment,
 
             dashboard: {
 
@@ -370,7 +372,7 @@ define(function () {
 
         food_availability: {
 
-            title: "Food Availability",
+            title: i18n.food_availability,
 
             dashboard: {
 
@@ -606,7 +608,7 @@ define(function () {
 
         food_access: {
 
-            title: "Food Access",
+            title: i18n.food_access,
 
             dashboard: {
 
@@ -796,7 +798,7 @@ define(function () {
 
         food_utilization: {
 
-            title: "Food Utilization",
+            title: i18n.food_utilization,
 
             dashboard: {
 
@@ -897,7 +899,7 @@ define(function () {
 
         land: {
 
-            title: "Land",
+            title: i18n.land,
 
             dashboard: {
 
@@ -1116,7 +1118,7 @@ define(function () {
 
         economic_and_political_stability: {
 
-            title: "Economic and political stability",
+            title: i18n.economic_and_political_stability,
 
             dashboard: {
 
@@ -1306,7 +1308,7 @@ define(function () {
 
         production: {
 
-            title: "Production",
+            title: i18n.production,
 
             dashboard: {
 
@@ -1576,7 +1578,7 @@ define(function () {
 
         emissions: {
 
-            title: "Emissions",
+            title: i18n.emissions,
 
             dashboard: {
 
