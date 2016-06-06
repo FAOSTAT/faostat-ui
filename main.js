@@ -327,6 +327,9 @@ require([
         // modernizr
         //ModernizrFixes();
 
+        // clear amplify
+        forceAmplifyStorageClear();
+
         // starting the Application
         var app = new Application({
             routes: routes,
@@ -348,5 +351,16 @@ require([
         }
 
     }
+
+    // TODO: move to an external file
+    function forceAmplifyStorageClear() {
+
+        $.each(amplify.store(), function (storeKey) {
+            // Delete the current key from Amplify storage
+            amplify.store(storeKey, null);
+        });
+
+    }
+
 
 });

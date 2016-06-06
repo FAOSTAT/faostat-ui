@@ -354,7 +354,8 @@ define([
             swal({
                 title: data.title,
                 type: 'info',
-                text: data.text
+                text: data.text,
+                html: true
             });
 
         },
@@ -364,7 +365,8 @@ define([
             swal({
                 title: data.title,
                 type: 'warning',
-                text: data.text
+                text: data.text,
+                html: true
             });
 
         },
