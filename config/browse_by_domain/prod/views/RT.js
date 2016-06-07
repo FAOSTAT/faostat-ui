@@ -5,32 +5,47 @@ define([
 
     'use strict';
 
+    var i18n = C.i18n || {};
+
     return {
 
-        filter: {
+
+        "filter": {
 
             defaultFilter: {
                 "domain_code": ["RT"],
-                // this force all the filters to avoid the "lists" codes
                 "show_lists": false
             },
 
             items: [
                 {
-                    // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
                     "parameter": "List3Codes",
+                    //"title": "title",
                     "componentType": {
-                        "class": "col-md-2",
-                        "type": "dropDownList",
-                        "multiple": false
+                        "class": "col-md-4",
+                        "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "items",
-                        "defaultCodes": ["1357"],
+                        "dimension_id": "item",
+                        "defaultCodes": [],
                         "filter": {
-                            whitelist: [1357]
+                        }
+                    }
+                },
+                {
+                    "id": "element",
+                    "type": "codelist",
+                    "parameter": "List2Codes",
+                    "componentType": {
+                        "class": "col-md-4",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "dimension_id": "element",
+                        "defaultCodes": [],
+                        "filter": {
                         }
                     }
                 },
@@ -39,30 +54,14 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-md-3",
-                        "type": "dropDownList",
-                        "multiple": false
+                        "class": "col-md-4",
+                        "type": "dropDownList"
+                        //"multiple": true
                     },
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
-                        "filter": {}
-                    }
-                },
-                {
-                    "id": "element",
-                    "type": "codelist",
-                    "parameter": "List2Codes",
-                    "componentType": {
-                        "class": "col-md-3",
-                        "type": "dropDownList",
-                        "multiple": false
-                    },
-                    "config": {
-                        "dimension_id": "element",
-                        "defaultCodes": ["2620"],
                         "filter": {
-                            whitelist: [2620, 2920]
                         }
                     }
                 },
@@ -75,12 +74,13 @@ define([
                         "type": "dropDownList-timerange"
                     },
                     "config": {
-                        "dimension_id": "year",
-                        "defaultCodes": ['1994'],
+                        "dimension_id": "years",
+                        "defaultCodes": ['1990'],
                         "filter": {
                         }
                     }
-                }
+                },
+                C.filter.aggregation
             ]
         },
 
@@ -92,21 +92,19 @@ define([
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
                 limit: -1,
+                decimal_places: 2,
                 thousand_separator: ",",
                 "null_values": null,
-                // TODO: remove it the page_size!!!
                 page_size: 0,
-                per_page: 0,
                 page_number: 0
             },
 
-            // labels
+            // labels?
             labels: {
                 // labels to dinamically substitute the title and subtitle
-                default: {}
+                default: {
+                }
             },
 
             //bridge configuration
@@ -121,21 +119,58 @@ define([
 
             items: [
                 {
+                    type: 'map',
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // labels to dinamically substitute the title and subtitle
+                        default: {},
+                        template: {
+                            title: {
+                                en: "{{item}}, {{element}} by country",
+                                fr: "{{item}}, {{element}} by country",
+                                es: "{{item}}, {{element}} by country"
+                            },
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                        }
+                    },
+
+                    //height:'250px',
+                    config: {
+                        layer: {
+                            colorramp: "YlOrRd",
+                            intervals: 7
+                        },
+                        template: {
+
+                        }
+                    },
+                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List1Codes: ["5000>", "351"],
+                        "group_by": 'year',
+                        "order_by": 'area'
+                    }
+                },
+                {
                     type: 'chart',
                     class: "col-xs-12",
 
                     // labels?
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "{{area}} {{element}} - {{item}}",
-                                fr: "{{area}} {{element}} - {{item}}",
-                                es: "{{area}} {{element}} - {{item}}"
+                                en: "{{area}}, {{item}} {{element}}",
+                                fr: "{{area}}, {{item}} {{element}}",
+                                es: "{{area}}, {{item}} {{element}}"
                             },
                             subtitle: "{{year}}"
                         }
                     },
+
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -149,7 +184,136 @@ define([
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item', 'element'],
-                    filter: {}
+                    filter: {
+                        List1Codes: ["5000"]
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    labels: {
+                        template: {
+                            title: {
+                                en: "{{item}}, {{element}} by continent",
+                                fr: "{{item}}, {{element}} par continent",
+                                es: "{{item}}, {{element}} por continente"
+                            },
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area']
+                        },
+                        template: {
+                            height: '250px'
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation', 'element'],
+                    filter: {
+                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        "group_by": 'year',
+                        "order_by": 'area'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    labels: {
+                        template: {
+                            title: {
+                                en: "{{area}} {{element}} by pesticide",
+                                fr: "{{area}} {{element}} by pesticide",
+                                es: "{{area}} {{element}} by pesticide"
+                            },
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['item']
+                        },
+                        template: {
+                            //height: '250px'
+                        },
+                        creator: {
+                            /* chartObj: {
+                             legend: {
+                             layout: 'vertical',
+                             align: 'right',
+                             verticalAlign: 'middle',
+                             }
+                             }*/
+                        }
+                    },
+                    allowedFilter: ['area', 'year', 'aggregation', 'element'],
+                    filter: {
+                        List3Codes: ["_1"],
+                        "group_by": 'year',
+                        "order_by": 'item'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "{{item}}, {{element}}",
+                                fr: "{{item}}, {{element}}",
+                                es: "{{item}}, {{element}}"
+                            },
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['area'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['item', 'element']
+                        },
+                        template: {
+                            height:'250px'
+                            // default labels to be applied
+                        },
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['year', 'item', 'aggregation', 'element'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List1Codes: ["5000>"],
+                        "group_by": 'year',
+                        "order_by": 'value DESC',
+                        "limit": '10'
+                    }
                 }
             ]
         }

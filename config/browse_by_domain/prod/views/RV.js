@@ -35,7 +35,21 @@ define([
                     }
                 },
                 {
-                    // id to be applied on the getData request
+                    "id": "element",
+                    "type": "codelist",
+                    "parameter": "List2Codes",
+                    "componentType": {
+                        "class": "col-md-4",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "dimension_id": "element",
+                        "defaultCodes": [],
+                        "filter": {
+                        }
+                    }
+                },
+                {
                     "id": "area",
                     "type": "codelist",
                     "parameter": "List1Codes",
@@ -47,21 +61,6 @@ define([
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
-                        "filter": {
-                        }
-                    }
-                },
-                {
-                    "id": "element",
-                    "type": "codelist",
-                    "parameter": "List2Codes",
-                    "componentType": {
-                        "class": "col-md-4",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "dimension_id": "element",
-                        "defaultCodes": [],
                         "filter": {
                         }
                     }
