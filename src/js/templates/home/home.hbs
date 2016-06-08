@@ -9,7 +9,7 @@
 <!--</div>-->
 
 <!-- Swiper -->
-<div class="swiper-container fs-home-swiper">
+<!-- <div class="swiper-container fs-home-swiper">
 
     <div class="swiper-wrapper">
 
@@ -24,7 +24,7 @@
         <div class="swiper-slide">
             <div class="title">
                 <h1 data-swiper-parallax="-100">FAO and Nobel laureates to tackle the twin problems of hunger and violence</h1>
-                <h2 class="hidden-xs" data-swiper-parallax="-500">Agriculture can drive post-conflict recovery – New alliance will strengthen agency's role in peacebuilding</h2>
+                <h2 class="hidden-xs" data-swiper-parallax="-500">Agriculture can drive post-conflict recovery â New alliance will strengthen agency's role in peacebuilding</h2>
                 <div class="white-stripe"></div>
             </div>
             <div class="parallax-bg" style="background-image:url(src/images/homepage/img-3.jpg)"></div>
@@ -48,9 +48,7 @@
             <div class="parallax-bg" style="background-image:url(src/images/homepage/img-5.jpg)"></div>
         </div>
     </div>
-    <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
-    <!-- Add Navigation -->
     <div class="swiper-button-prev">
         <a class="btn-floating waves-effect waves-light btn-default hoverable">
             <i class="material-icons">chevron_left</i>
@@ -62,6 +60,7 @@
         </a>
     </div>
 </div>
+-->
 
 <div class="row home-content">
 
@@ -164,15 +163,47 @@
 
                     <!-- Content -->
                     <div class="card-content">
-                        <h3>Make #NotWasting a way of life</h3>
+                        <h3>{{country_indicators}}</h3>
 
-                        <p>Each year one third of global food production for human consumption never ﬁnds its way onto
+                        <p>Each year one third of global food production for human consumption never ï¬nds its way onto
                             plates and is lost or wasted. Cutting food loss and waste reduces poverty and hunger and
-                            ﬁghts climate change. Make #NotWasting Your Way of Life.</p>
+                            ï¬ghts climate change. Make #NotWasting Your Way of Life.</p>
 
                     </div>
 
                 </div>
+            </div>
+
+        </div>
+
+        <div class="hidden-xs"><br><br></div>
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="elegant-card z-depth-1 hoverable">
+
+                    <!-- Image wrapper -->
+                    <div class="card-up view overlay hm-white-slight">
+                        <a><img data-original="src/images/homepage/pocket.jpg" class="lazy img-responsive"></a>
+                    </div>
+
+                    <!-- Button -->
+                    <a target='_blank' href='http://www.fao.org/3/a-i4691e.pdf?utm_campaign=faostatistics&utm_source=twitter&utm_medium=social%20media' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </a>
+                    <!-- Content -->
+                    <div class="card-content">
+                        <h3>{{rankings}}</h3>
+
+                        <p>{{{info_box_text}}}</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+
             </div>
 
         </div>
@@ -196,7 +227,7 @@
                     <!-- Content -->
                     <div class="card-content">
                         <h3>Food security in the 2030 Agenda for Sustainable Development</h3>
-                        <p>Adopted by the UN’s 193 Member States on 25 September 2015, the Sustainable Development Goals are new global goals that will succeed the Millennium Development Goals in 2016. The SDGs will shape national development policies for the next 15 years. Food and agriculture is at the heart of the 17 SDGs, beginning with SDG1, End poverty, and SDG2, End hunger. Food security and its link to natural resources and rural development features in virtually every goal of the 2030 Agenda.  </p>
+                        <p>Adopted by the UNâs 193 Member States on 25 September 2015, the Sustainable Development Goals are new global goals that will succeed the Millennium Development Goals in 2016. The SDGs will shape national development policies for the next 15 years. Food and agriculture is at the heart of the 17 SDGs, beginning with SDG1, End poverty, and SDG2, End hunger. Food security and its link to natural resources and rural development features in virtually every goal of the 2030 Agenda.  </p>
                     </div>
 
                 </div>
@@ -211,15 +242,36 @@
     <!-- right side -->
     <div class="col-md-4">
 
-        <div class="panel panel-default hoverable">
-
-            <div class="panel-heading">
-                <h4>{{featured_links}}</h4>
+        <div class="elegant-card z-depth-1 hoverable">
+            <!-- Image wrapper -->
+            <div class="card-up view overlay hm-white-slight">
+                <a><img src="src/images/homepage/stats-b.png" class="img-responsive"></a>
             </div>
 
-            <div class="panel-body grey lighten-5">
 
-                <!-- Featured Links -->
+            <!-- Button -->
+            <a target='_bnlak' href='http://www.fao.org/resources/infographics/en/' class="btn-floating btn-primary btn-large waves-effect waves-light">
+                <i class="material-icons">keyboard_arrow_right</i>
+            </a>
+
+            <!-- Content -->
+            <div class="card-content">
+                <h3>{{faostat_database_download}}</h3>
+
+                <!--<p>Each year one third of global food production for human consumption never ï¬nds its way onto-->
+                    <!--plates and is lost or wasted. Cutting food loss and waste reduces poverty and hunger and-->
+                    <!--ï¬ghts climate change. Make #NotWasting Your Way of Life.</p>-->
+
+            </div>
+
+        </div>
+
+
+        <!--
+        <div class="panel panel-default hoverable">
+
+            <!--  <div class="panel-body grey lighten-5">
+
                 <a href="{{URL_FAOSTAT_DATABASE_ZIP}}" class="btn btn-primary btn-block" target='_blank' data-role="fs-download-metadata-button">
                     <i class="material-icons left">file_download</i>{{faostat_database_download}}
                 </a>
@@ -234,7 +286,45 @@
 
             </div>
 
-            <div class="panel-footer">
+            -->
+        <!--
+                    <div class="panel-body">
+
+
+
+
+                    </div>
+
+
+
+
+                </div>
+        -->
+                <div class="panel panel-default hoverable">
+
+                    <!--<div class="panel-heading">-->
+                <!--<h4>{{featured_links}}</h4>-->
+            <!--</div>-->
+
+           <!--  <div class="panel-body grey lighten-5">
+
+                <a href="{{URL_FAOSTAT_DATABASE_ZIP}}" class="btn btn-primary btn-block" target='_blank' data-role="fs-download-metadata-button">
+                    <i class="material-icons left">file_download</i>{{faostat_database_download}}
+                </a>
+
+                <a href="{{URL_BROWSE_BY_COUNTRY}}" class="btn btn-link btn-block">
+                    <i class="material-icons left">flag</i>{{country_indicators}}
+                </a>
+
+                <a href="{{URL_BROWSE_RANKINGS}}" class="btn btn-link btn-block">
+                    <i class="material-icons left">trending_up</i>{{rankings}}
+                </a>
+
+            </div>
+
+            -->
+
+            <div class="panel-body">
 
                 <!-- Twitter -->
 
@@ -246,12 +336,24 @@
                      height="350"
                      href="https://twitter.com/FAOstatistics"
                      data-widget-id="{widget_id}"
-                >
+                        >
                     <!--data-widget-id="700247798168551424">-->
                     <!--Tweets by @FAOstatistics-->
                 </div>
             </div>
-            <div class="panel-footer">
+
+
+
+
+        </div>
+
+        <div class="hidden-xs"><br></div>
+
+
+        <div class="panel panel-default hoverable">
+
+
+            <div class="panel-body" style="background-color: #D5E4EB;">
                 <!--<p class="label label-default label-aligned">Contacts</p>-->
                 <img src="src/images/faostat-logo-blue-capital-only-text.svg" width="108px" height="20px" alt="Faostat" class="faostat-header-logo">
 
@@ -274,6 +376,7 @@
             </div>
 
         </div>
+
 
     </div>
 
