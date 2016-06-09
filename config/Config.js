@@ -23,9 +23,9 @@ define([
             "GOOGLE_ANALYTICS_ID": "UA-68486942-1",
 
             // URLs
-            "URL_PDF_BASEPATH": "http://faostat3.fao.org/modules/faostat-download-js/PDF/",
+            //"URL_PDF_BASEPATH": "http://faostat3.fao.org/modules/faostat-download-js/PDF/",
             "URL_FEEDBACK_SYSTEM": "http://fenixapps.fao.org/feedbacksystem/",
-            "URL_COUNTRY_PROFILES": "http://faostat.fao.org/CountryProfiles/Country_Profile/default.aspx",
+            //"URL_COUNTRY_PROFILES": "http://faostat.fao.org/CountryProfiles/Country_Profile/default.aspx",
             "URL_FAOSTAT_DATABASE_ZIP": "http://faostat3.fao.org/ftp-faostat/FAOSTAT.zip",
             "URL_BULK_DOWNLOADS_BASEPATH": "http://faostat3.fao.org/faostat-bulkdownloads/",
             "URL_FAOSTAT_DOCUMENTS_BASEPATH": 'http://faostat3.fao.org/faostat-documents/',
@@ -58,6 +58,21 @@ define([
 
     }
 
+    // Internal
+    if (_s.contains(href, "/internal/")) {
+
+        return $.extend(true, {}, DEFAULT, {
+
+            // Configuration
+            "DATASOURCE": "test",
+            "GOOGLE_ANALYTICS_ID": "UA-68486942-4",
+            "URL_BULK_DOWNLOADS_BASEPATH": "http://168.202.3.183:8080/bulkdownloadFile/zip_files/",
+            "URL_FAOSTAT_DOCUMENTS_BASEPATH": "http://168.202.3.183:8080/FAOSTATFiles/"
+
+        });
+
+    }
+
     // Dev localhost
     // TODO: remove hardcoded local IP
     if (_s.contains(host, "localhost") || _s.contains(host, "168.202")) {
@@ -65,10 +80,12 @@ define([
         return $.extend(true, {}, DEFAULT, {
 
             // Configuration
-            //"DATASOURCE": "test",
-            "DATASOURCE": "production",
+            "DATASOURCE": "test",
+            //"DATASOURCE": "production",
             "GOOGLE_ANALYTICS_ID": "UA-68486942-2",
-            "LOGLEVEL": "trace"
+            "LOGLEVEL": "trace",
+            "URL_BULK_DOWNLOADS_BASEPATH": "http://168.202.3.183:8080/bulkdownloadFile/zip_files/",
+            "URL_FAOSTAT_DOCUMENTS_BASEPATH": "http://168.202.3.183:8080/FAOSTATFiles/"
 
         });
     }
@@ -93,11 +110,6 @@ define([
 
         if (_s.contains(href, "/latest/")) {
             o.DATASOURCE = "production";
-            //o.DATASOURCE = "test";
-        }
-
-        if (_s.contains(href, "/internal/")) {
-            o.DATASOURCE = "test";
         }
 
         // temporary versionin
