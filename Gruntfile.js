@@ -44,6 +44,15 @@ module.exports = function(grunt) {
                     }
                 }
             },
+            internal: {
+                options: {
+                    variables: {
+                        'dest': 'internal',
+                        'url_api': 'http://fenix.fao.org/faostat/demo/api/v1/',
+                        'mode': 'internal'
+                    }
+                }
+            },
             prod: {
                 options: {
                     variables: {
@@ -148,11 +157,17 @@ module.exports = function(grunt) {
         'replace:dist',
         'compress:faostat',
 
+        // internal
+        'config:internal',
+        'copy:faostat',
+        'replace:dist',
+        'compress:faostat',
+
         // prod
         'config:prod',
         'copy:faostat',
         'replace:dist',
-        'compress:faostat',
+        'compress:faostat'
 
 
         //'rename:war'
