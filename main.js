@@ -318,6 +318,8 @@ require([
         //amplify.store( 'locale', requirejs.s.contexts._.config.locale);
         //amplify.store( 'lang', requirejs.s.contexts._.config.locale);
 
+        $('body').addClass(Common.getLocale());
+
         // init Wave effect applaied on buttons
         Waves.init();
 
