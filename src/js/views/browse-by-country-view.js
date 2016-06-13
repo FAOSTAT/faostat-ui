@@ -388,7 +388,7 @@ define([
                 var boundary = {
                     layers: 'fenix:gaul0_line_3857',
                     layertitle: 'Country Boundaries',
-                    urlWMS: 'http://fenix.fao.org/geoserver',
+                    //urlWMS: 'http://fenix.fao.org/geoserver',
                     opacity: '0.5'
                 };
 
@@ -397,7 +397,7 @@ define([
                 var highlight = new FM.layer({
                     layers: 'gaul0_faostat_3857',
                     layertitle: '',
-                    urlWMS: 'http://fenix.fao.org/geoserver',
+                    //urlWMS: 'http://fenix.fao.org/geoserver',
                     style: 'highlight_polygon',
                     cql_filter: "faost_code IN ('" + code +"')",
                     hideLayerInControllerList: true,
