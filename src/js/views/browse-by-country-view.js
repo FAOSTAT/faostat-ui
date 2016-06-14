@@ -1,4 +1,4 @@
-/*global define, _:false, console, amplify, FM, L*/
+/*global define, _:false, console, amplify, FM, L, FMCONFIG*/
 define([
     'require',
     'jquery',
@@ -21,7 +21,10 @@ define([
     'lib/view/view-utils',
     'fenix-ui-map',
     'amplify',
-    'instafilta'
+    'instafilta',
+    // TODO: this should be removed and loaded by default on the map
+    // workaround for urlWMS in the layer definition
+    'fenix-ui-map-config'
 ], function (Require, $, log, View, A, C, ROUTE, E, CM,
              template, templateCountryList, templateCountryProfile,
              i18nLabels, Handlebars, Common, FAOSTATClientAPI,
@@ -249,17 +252,15 @@ define([
 
                     this.renderCountryProfileSections(views);
 
-
-                    //setTimeout(_.bind(function () {
+                    // workaround to load the views
+                    var index=0;
                     _.each(views, _.bind(function(view, key) {
 
                         setTimeout(_.bind(function () {
                             this.renderCountryProfileDashboard(view, key);
-                        },this), 1000);
+                        },this), 1000 + (index++ * 300));
 
                     }, this));
-                    //},this), 1000);
-
 
                 }, this));
 
@@ -388,7 +389,7 @@ define([
                 var boundary = {
                     layers: 'fenix:gaul0_line_3857',
                     layertitle: 'Country Boundaries',
-                    //urlWMS: 'http://fenix.fao.org/geoserver',
+                    urlWMS: FMCONFIG.BASEURL_MAPS,
                     opacity: '0.5'
                 };
 
@@ -397,7 +398,7 @@ define([
                 var highlight = new FM.layer({
                     layers: 'gaul0_faostat_3857',
                     layertitle: '',
-                    //urlWMS: 'http://fenix.fao.org/geoserver',
+                    urlWMS: FMCONFIG.BASEURL_MAPS,
                     style: 'highlight_polygon',
                     cql_filter: "faost_code IN ('" + code +"')",
                     hideLayerInControllerList: true,
