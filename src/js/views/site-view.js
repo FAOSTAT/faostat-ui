@@ -63,12 +63,7 @@ define([
             // add lang
             return $.extend(true,
                 {
-                    locale: Common.getLocale(),
-                    URL_HOME: '#' + Common.getURI(ROUTES.HOME),
-                    URL_DATA: '#' + Common.getURI(ROUTES.DATA),
-                    URL_COMPARE: '#' + Common.getURI(ROUTES.COMPARE),
-                    URL_MES: '#' + Common.getURI(ROUTES.METHODOLOGIES),
-                    URL_FAQ: '#' + Common.getURI(ROUTES.FAQ)
+                    locale: Common.getLocale()
                 },
                 C,
                 i18nLabels);

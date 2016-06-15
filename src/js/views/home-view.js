@@ -86,7 +86,8 @@ define([
                     URL_RELEASE_CALENDAR: C.URL_RELEASE_CALENDAR,
                     EMAIL_FAO_STATISTICS: C.EMAIL_FAO_STATISTICS,
                     TELEPHONE_FAO_STATISTICS: C.TELEPHONE_FAO_STATISTICS,
-                    URL_DATA: '#' + Common.getURI(ROUTE.DATA)
+                    URL_DATA: '#' + Common.getURI(ROUTE.DATA),
+                    locale: Common.getLocale()
                 });
 
                 return d;
@@ -437,7 +438,7 @@ define([
                         "700247798168551424",
                         document.getElementById(s.TWITTER),
                         {
-                            height: 400,
+                            height: 550,
                             screenName: "FAOStatistics"
                         }
                     );

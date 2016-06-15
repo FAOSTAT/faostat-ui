@@ -49,7 +49,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         procurement: "المشتريات",
         governing_bodies: "الأجهزة الرئاسية",
         office_inspector_general: "مكتب المفتش العام",
-        evaluation: "Evaluation",
+        evaluation: "التقييم",
         legal_and_ethics_office: "مكتب الشؤون القانونية والأخلاقية",
         agriculture_and_consumer_protection: "الزراعة وحماية المستهلك",
         economic_and_social_development: "التنمية الاقتصادية والاجتماعية",
