@@ -189,7 +189,8 @@ define([
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
+                            seriesDimensions: ['area', 'item', 'element'],
+                            decimalPlaces: 2
                         },
                         template: {},
                         creator: {}
@@ -222,7 +223,8 @@ define([
                             xDimensions: null,
                             yDimensions: null,
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['area'],
+                            decimalPlaces: 2
                         },
                         template: {
                             height: '250px'
@@ -259,7 +261,8 @@ define([
                             xDimensions: null,
                             yDimensions: null,
                             valueDimensions: 'value',
-                            seriesDimensions: ['item']
+                            seriesDimensions: ['item'],
+                            decimalPlaces: 2
                         },
                         template: {
                             height: '250px'
@@ -306,7 +309,8 @@ define([
                             xDimensions: ['element'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['area'],
+                            decimalPlaces: 2
                         },
                         template: {
                             height:'250px'

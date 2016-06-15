@@ -100,7 +100,8 @@ define([
             chart: {
                 adapter: {
                     adapterType: 'faostat',
-                    modelType: 'faostat'
+                    modelType: 'faostat',
+                    //decimalPlaces: 2
                 },
                 creator: {
                     chartObj: HighchartsTemplate
