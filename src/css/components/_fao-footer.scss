@@ -9,6 +9,49 @@ footer.fao-footer{
 
   li{
     margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  h4{
+    color: white;
+    font-size: 14px;
+  }
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:focus,
+  a:active{
+    color: white;
+  }
+
+  .device-image {
+    padding-right: 10px;
+  }
+
+  .apple-device {
+    margin-bottom: 5px;
+  }
+
+  .social-holder{
+    display: inline-block;
+    padding: 3px 3px;
+  }
+
+}
+
+
+// FAO Like Footer
+/*
+footer.fao-footer{
+  background-color: $custom-color6;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: white;
+
+
+  li{
+    margin-bottom: 10px;
   }
 
   h4{
@@ -40,9 +83,9 @@ footer.fao-footer{
 
 
 
-/*//////////////////////////////////////////// Navbar Media queries */
+///////////////////////////////////////////// Navbar Media queries
 
-/* Ipad */
+// Ipad
 @media (min-width: 768px) and (max-width: 990px) {
 
   footer.fao-footer {
@@ -61,7 +104,7 @@ footer.fao-footer{
 
 }
 
-/* Iphone */
+// Iphone
 
 @media (max-width: 767px) {
 
@@ -85,6 +128,5 @@ footer.fao-footer{
   }
 
 
-  /* End of the iPhone media query*/
-
 }
+*/

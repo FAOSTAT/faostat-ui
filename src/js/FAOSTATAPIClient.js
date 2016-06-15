@@ -7,9 +7,13 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            base_url: 'http://fenix.fao.org/faostat/api/v1/',
-           // base_url: '@@url_api',
-            mode: '@@mode'
+            //base_url: 'http://fenix.fao.org/faostat/api/v1/',
+            //base_url: 'http://fenix.fao.org:18100/api/v1/',
+            base_url: 'http://fenixservices.fao.org/faostat/api/v1/',
+            //base_url: 'http://localhost:8081/api/v1/',
+            //base_url: '@@url_api',
+            //mode: '@@mode'
+            mode: 'dev'
         };
 
         /* Extend default configuration. */
@@ -1892,12 +1896,15 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
     /* used to get a key/value */
     RESTClient.prototype.store = function(key, value) {
 
+        return undefined;
+
         /* if mode = 'dev' */
         if(this.CONFIG.hasOwnProperty('mode') && this.CONFIG.mode == 'dev') {
             return undefined;
         }
 
         var expireStoreTime = 300000;
+        // 150000 (2,5 minutes)
         // 300000 (5 minutes)
         // 600000 (10 minutes)
         // 1200000 (20 minutes)
@@ -1906,7 +1913,9 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
         if (value !== undefined) {
             log.info("Stored", key);
-            return amplify.store(key, value, expireStoreTime);
+            return amplify.store(key, value, {
+                expires: expireStoreTime
+            });
         }else {
             log.info("Get Stored", key);
             return amplify.store(key);
