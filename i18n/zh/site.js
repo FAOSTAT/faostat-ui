@@ -31,14 +31,17 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         fao_label: 'Food and Agriculture Organization of the United Nations',
         ess_label: 'Statistics Division',
 
-        about_fao: "About FAO",
-        in_action: "In Action",
-        countries: "Countries",
-        themes: "Themes",
-        media: "Media",
-        publications: "Publications",
-        statistics: "Statistics",
-        partnerships: "Partnerships",
+        // TODO: taken from here http://www.fao.org/fsnforum/zh
+        // probably statistics is wrong in the link.
+        // the one translated here is taken from the selected "statistics" in http://www.fao.org/statistics/zh/
+        about_fao: "关于粮农组织",
+        in_action: "在行动",
+        countries: "国家",
+        themes: "主题",
+        media: "媒体",
+        publications: "出版物",
+        statistics: "统计资料",
+        partnerships: "伙伴关系",
         
         fao_departments_and_offices: "粮农组织各部及办公室",
         contact_us: "与联系我们",
