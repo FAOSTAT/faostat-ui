@@ -2706,6 +2706,11 @@ footer.container {
 .text-xs-center {
   text-align: center !important; }
 
+.faostat-title {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: -15px; }
+
 /* Eldorado */
 /* ELDORADO FONT STANDARD CONFIGURATION*/
 /* Eldorado  */
