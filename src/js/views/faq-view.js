@@ -45,7 +45,7 @@ define([
         },
 
         getTemplateData: function () {
-            return $.extend(true, {}, i18nLabels, {data: CM.faq[Common.getLocale()]});
+            return $.extend(true, {}, i18nLabels, {data: CM.faq[Common.getLocale()] || CM.faq['en'] });
         },
 
         attach: function () {
