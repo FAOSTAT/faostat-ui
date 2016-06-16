@@ -63,7 +63,8 @@ define([
             RELEASE_CALENDAR: "#fs_home_release_calendar",
             PARTNERS: "#fs_home_partners",
             COUNTRY_PROFILES: "#fs_home_country_profiles",
-            TWITTER: "fs_home_twitter"
+            TWITTER: "fs_home_twitter",
+            TERRITORIAL_NOTES: '#territorial_notes'
 
         },
         HomeView = View.extend({
@@ -144,6 +145,8 @@ define([
                 this.initDatabaseUpdates();
 
                 this.initTwitter();
+
+                this.initCountryTerritorialNotes();
 
                 //this.initDomains();
 
@@ -420,6 +423,22 @@ define([
 
                 });
 
+            },
+            
+            initCountryTerritorialNotes: function() {
+
+                // territorial notes
+                this.$el.find(s.TERRITORIAL_NOTES).on('click', function(e) {
+
+                    e.preventDefault();
+
+                    amplify.publish(E.NOTIFICATION_INFO, {
+                        title: i18nLabels.territorial_notes,
+                        text: i18nLabels.territorial_notes_info
+                    });
+                });
+                
+                
             },
 
             initReleaseCalendar: function() {

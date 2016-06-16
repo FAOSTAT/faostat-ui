@@ -7,6 +7,10 @@ define({
     follow_us: 'Follow Us On',
     follow_faostatistics: 'Follow @FAOstatistics',
 
+    territorial_notes: 'País / Territorio Notas',
+    territorial_notes_info: 'Existe una disputa de soberanía entre los Gobiernos de la Argentina y el Reino Unido de Gran Bretaña e Irlanda del Norte relativa a la soberanía de las Islas Malvinas (Falkland Islands).',
+
+
     "faostat_domains": "Dominios de FAOSTAT",
 
     "results": "Results",

@@ -34,8 +34,7 @@ define([
     'use strict';
 
     var s = {
-
-        TERRITORIAL_NOTES: '#territorial-notes',
+        
         FEEDBACK_SYSTEM: '#feedback-system',
         LANGUAGE: '#fs-language',
         SEARCH: '[data-role="fs-search"]',
@@ -138,18 +137,7 @@ define([
             });
 
             $('.scroll-top-wrapper').on('click', this.scrollToTop);
-
-            // territorial notes
-            this.$el.find(s.TERRITORIAL_NOTES).on('click', function(e) {
-
-                e.preventDefault();
-
-                amplify.publish(E.NOTIFICATION_INFO, {
-                    title: i18nLabels.territorial_notes,
-                    text: i18nLabels.territorial_notes_info
-                });
-            });
-
+            
             this.$SEACH_BOX = this.$el.find(s.SEARCH);
 
         },
