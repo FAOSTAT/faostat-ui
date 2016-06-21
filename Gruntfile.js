@@ -31,7 +31,8 @@ module.exports = function(grunt) {
                     variables: {
                         'dest': 'dev',
                         'url_api': 'http://fenix.fao.org/faostat/dev/api/v1/',
-                        'mode': 'dev'
+                        'mode': 'dev',
+                        'config_file': 'Config-all.js'
                     }
                 }
             },
@@ -40,7 +41,8 @@ module.exports = function(grunt) {
                     variables: {
                         'dest': 'demo',
                         'url_api': 'http://fenix.fao.org/faostat/demo/api/v1/',
-                        'mode': 'demo'
+                        'mode': 'demo',
+                        'config_file': 'Config-all.js'
                     }
                 }
             },
@@ -49,7 +51,8 @@ module.exports = function(grunt) {
                     variables: {
                         'dest': 'internal',
                         'url_api': 'http://fenix.fao.org/faostat/demo/api/v1/',
-                        'mode': 'internal'
+                        'mode': 'internal',
+                        'config_file': 'Config-all.js'
                     }
                 }
             },
@@ -57,8 +60,9 @@ module.exports = function(grunt) {
                 options: {
                     variables: {
                         'dest': 'prod',
-                        'url_api': 'http://fenix.fao.org/faostat/api/v1/',
-                        'mode': 'prod'
+                        'url_api': 'http://fenixservices.fao.org/faostat/api/v1/',
+                        'mode': 'prod',
+                        'config_file': 'Config-prod.js'
                     }
                 }
             }
@@ -67,6 +71,38 @@ module.exports = function(grunt) {
         clean: {
             dist: {
                 src: ['build/*']
+            },
+            'faostat-config': {
+                src: [
+                    'build/<%= grunt.config.get("dest") %>/faostat-ui/Config-all.js',
+                    'build/<%= grunt.config.get("dest") %>/faostat-ui/Config-prod.js'
+                ]
+            }
+        },
+
+        copy: {
+            faostat: {
+                files: [
+                    {
+                        src: [
+                            './*',
+                            'config/**',
+                            'dist/**',
+                            'i18n/**',
+                            'submodules/**',
+                            'src/**'
+                        ],
+                        dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
+                    }
+                ]
+            },
+            'faostat-config': {
+                files: [
+                    {
+                        src:'<%= grunt.config.get("config_file") %>',
+                        dest:'build/<%= grunt.config.get("dest") %>/faostat-ui/config/Config.js'
+                    }
+                ]
             }
         },
 
@@ -86,24 +122,6 @@ module.exports = function(grunt) {
                         dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
                     }
                     //dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/js/'}
-                ]
-            }
-        },
-
-        copy: {
-            faostat: {
-                files: [
-                    {
-                        src: [
-                            './*',
-                            'config/**',
-                            'dist/**',
-                            'i18n/**',
-                            'submodules/**',
-                            'src/**'
-                        ],
-                        dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
-                    }
                 ]
             }
         },
@@ -143,30 +161,40 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('zip', [
+
+        // clean dist
         'clean:dist',
 
         // dev
         'config:dev',
         'copy:faostat',
+        'copy:faostat-config',
         'replace:dist',
+        'clean:faostat-config',
         'compress:faostat',
 
         // demo
         'config:demo',
         'copy:faostat',
+        'copy:faostat-config',
         'replace:dist',
+        'clean:faostat-config',
         'compress:faostat',
 
         // internal
         'config:internal',
         'copy:faostat',
+        'copy:faostat-config',
         'replace:dist',
+        'clean:faostat-config',
         'compress:faostat',
 
         // prod
         'config:prod',
         'copy:faostat',
+        'copy:faostat-config',
         'replace:dist',
+        'clean:faostat-config',
         'compress:faostat'
 
 
