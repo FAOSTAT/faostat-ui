@@ -9,3 +9,4 @@ Web.config
 /node_modules/
 /resources/
 /build/
+Config*
