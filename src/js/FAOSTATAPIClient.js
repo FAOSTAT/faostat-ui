@@ -7,13 +7,10 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            //base_url: 'http://fenix.fao.org/faostat/api/v1/',
-            //base_url: 'http://fenix.fao.org:18100/api/v1/',
             base_url: 'http://fenixservices.fao.org/faostat/api/v1/',
-            //base_url: 'http://localhost:8081/api/v1/',
             //base_url: '@@url_api',
-            //mode: '@@mode'
-            mode: 'dev'
+            mode: '@@mode'
+            //mode: 'dev'
         };
 
         /* Extend default configuration. */
@@ -1896,7 +1893,7 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
     /* used to get a key/value */
     RESTClient.prototype.store = function(key, value) {
 
-        return undefined;
+        //return undefined;
 
         /* if mode = 'dev' */
         if(this.CONFIG.hasOwnProperty('mode') && this.CONFIG.mode == 'dev') {
