@@ -18,7 +18,7 @@ define([
         //requestType: 'data',
         requestType: 'databean',
         output_type: 'csv',
-        name: "FAOSTAT_Export_data"
+        name: "FAOSTAT_data"
 
     };
 
