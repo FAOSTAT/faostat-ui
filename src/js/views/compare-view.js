@@ -272,37 +272,31 @@ define([
         },
 
         _createTimeserieChart: function (models) {
-
-            var self = this;
-
             // create Chart
             var c = new ChartCreator();
-            $.when(c.init($.extend(true, {}, CM.chart, {model: models[0]}))).then(
+            c.init($.extend(true, {},
+                CM.chart,
+                {
+                    container: this.$CHART,
+                    //model: models[0],
+                    creator: {
+                        chartObj: HighchartsTemplate
+                    }
+                })
+            ).then(
                 function (creator) {
 
                     // add timeserie data
-                    for (var i = 1; i < models.length; i++) {
+                    for (var i = 0; i < models.length; i++) {
 
                         if (models[i].data.length > 0) {
                             creator.addTimeserieData($.extend(true, {}, CM.chart, {model: models[i]}));
                         }
 
                     }
-
-                    // render chart
-                    creator.createChart(
-                        $.extend(true, {},
-                            {
-                                creator: {
-                                    chartObj: HighchartsTemplate
-                                }
-                            },
-                            CM.chart,
-                            {
-                                container: self.$CHART
-                            }
-                        )
-                    );
+                    creator.render({
+                        useAdapterChartObj: true
+                    });
 
                 });
         },
