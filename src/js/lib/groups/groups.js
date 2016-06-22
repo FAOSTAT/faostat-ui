@@ -102,8 +102,10 @@ define([
         this._showGroupsAndDomains(data);
         this._showGroups(data);
 
+        // TODO: in theory should be applied that function on the filter item .val().replace(/\s+$/, '')
         this.$SEARCH.instaFilta({
             markMatches: true,
+            typeDelay: 250,
             onFilterComplete: function(matchedItems) {
 
                 // show/hide no data div
