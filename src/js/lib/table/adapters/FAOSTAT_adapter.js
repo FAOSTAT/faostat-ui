@@ -105,7 +105,7 @@ define([
                 decimal_places = this.o.adapter.decimal_places;
 
             // Prepare the value formatter.
-            numeral.language('faostat', {
+            numeral.language('default', {
                 delimiters: {
                     thousands: thousand,
                     decimal: decimal
@@ -113,11 +113,13 @@ define([
             });
             var formatter = '0' + thousand + '0' + decimal;
 
-            numeral.language('faostat');
+            numeral.language('default');
 
+            formatter += '[';
             for (var i = 0; i < decimal_places; i += 1) {
                 formatter += '0';
             }
+            formatter += ']';
 
             _.each(dsd, function (c) {
                 if ( c.type === "value" ) {
@@ -134,6 +136,7 @@ define([
 
                 if ( d[valueKey] !== undefined && d[valueKey] !== null && !isNaN(d[valueKey])) {
                     // TODO: check if parseFloat works in all cases
+                    //d[valueKey] = numeral(parseFloat(d[valueKey])).format(formatter);
                     d[valueKey] = numeral(parseFloat(d[valueKey])).format(formatter);
                 }else{
                     log.warn("Table.FAOSTAT_Adapter.formattedData;", d[valueKey], "not valid or already formatted.");
