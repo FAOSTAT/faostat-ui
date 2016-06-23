@@ -11,7 +11,7 @@ define([
     return {
 
         "DATASOURCE": "production",
-        "LOGLEVEL": "silent", // trace/debug/info/warn/error/silent
+        "LOGLEVEL": "trace", // trace/debug/info/warn/error/silent
 
         // Google Analytics ID
         "GOOGLE_ANALYTICS_ID": "",
