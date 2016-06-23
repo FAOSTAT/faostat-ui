@@ -23,7 +23,8 @@ define([
                 show_codes: false,
                 show_flags: true,
                 show_unit: true,
-                decimal_places: 2,
+                // decimal_places is an optional parameter. It rounds maximum 6 decimals
+                decimal_places: 6,
                 decimal_separator: '.',
                 thousand_separator: ''
             },
