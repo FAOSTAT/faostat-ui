@@ -26,6 +26,15 @@ module.exports = function(grunt) {
         },
 
         config: {
+            default: {
+                options: {
+                    variables: {
+                        'version': '0.1',
+                        'date_update': grunt.template.today(),
+
+                    }
+                }
+            },
             dev: {
                 options: {
                     variables: {
@@ -96,14 +105,14 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-            'faostat-config': {
+            /*'faostat-config': {
                 files: [
                     {
                         src:'<%= grunt.config.get("config_file") %>',
                         dest:'build/<%= grunt.config.get("dest") %>/faostat-ui/config/Config.js'
                     }
                 ]
-            }
+            }*/
         },
 
         replace: {
@@ -111,7 +120,8 @@ module.exports = function(grunt) {
                 options: {
                     variables: {
                         'url_api': '<%= grunt.config.get("url_api") %>',
-                        'mode': '<%= grunt.config.get("mode") %>'
+                        'mode': '<%= grunt.config.get("mode") %>',
+                        //'mode': '<%= grunt.config.get("mode") %>',
                     },
                     force: true
                 },
@@ -120,6 +130,22 @@ module.exports = function(grunt) {
                         expand: true,
                         src: ['src/js/FAOSTATAPIClient.js'],
                         dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
+                    }
+                    //dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/js/'}
+                ]
+            },
+            'faostat-config': {
+                options: {
+                    variables: {
+                        'date_update': '<%= grunt.config.get("date_update") %>',
+                        'version': '<%= grunt.config.get("version") %>'
+                    },
+                    force: true
+                },
+                files: [
+                    {
+                        src:'<%= grunt.config.get("config_file") %>',
+                        dest:'build/<%= grunt.config.get("dest") %>/faostat-ui/config/Config.js'
                     }
                     //dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/js/'}
                 ]
@@ -165,36 +191,40 @@ module.exports = function(grunt) {
         // clean dist
         'clean:dist',
 
+        // default configuration
+        'config:default',
+
         // dev
         'config:dev',
         'copy:faostat',
-        'copy:faostat-config',
+        //'copy:faostat-config',
         'replace:dist',
-        'clean:faostat-config',
+        'replace:faostat-config',
+        //'clean:faostat-config',
         'compress:faostat',
 
         // demo
         'config:demo',
         'copy:faostat',
-        'copy:faostat-config',
+        //'copy:faostat-config',
         'replace:dist',
-        'clean:faostat-config',
+        'replace:faostat-config',
         'compress:faostat',
 
         // internal
         'config:internal',
         'copy:faostat',
-        'copy:faostat-config',
+        //'copy:faostat-config',
         'replace:dist',
-        'clean:faostat-config',
+        'replace:faostat-config',
         'compress:faostat',
 
         // prod
         'config:prod',
         'copy:faostat',
-        'copy:faostat-config',
+        //'copy:faostat-config',
         'replace:dist',
-        'clean:faostat-config',
+        'replace:faostat-config',
         'compress:faostat'
 
 
