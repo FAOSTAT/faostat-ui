@@ -1,4 +1,18 @@
 // bootstrap table overrride
 // http://bootstrap-table.wenzhixin.net.cn/
 
-.}
+.bootstrap-table {
+
+  .page-pre {
+
+    display: none;
+
+  }
+
+  .page-last {
+
+    display: none;
+
+  }
+
+}
