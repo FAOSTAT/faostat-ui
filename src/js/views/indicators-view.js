@@ -71,9 +71,34 @@ define([
 
         initVariables: function () {
 
+            $.ajax({
+                url: "http://fenixservices.fao.org/faostat/api/v1/en/data/",
+                data: JSON.stringify(
+                    {"datasource":"production","domain_codes":["QC"],"filters":{"area":["2"],"item":["15"],"year":["2010"]}}
+                ),
+                contentType: "application/json",
+                type: 'POST',
+                success: function(result){
+                    log.info(result);
+                },
+                error: function(error) {
+                    log.error(error);
+                }
+            });
+
+
             var api = new FAOSTATApi();
 
-            /*api.data({
+           /* api.data({
+                "datasource":"production",
+                "domain_codes":["QC"],
+                "filters":{"area":["2"],
+                    "item":["15"],
+                    "year":["2010"]
+                }
+            })*/
+
+          /*  api.data({
                 domain_codes: ['QC'],
                 filters: {
                     area: ['5000>'],
