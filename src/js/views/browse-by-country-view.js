@@ -19,6 +19,9 @@ define([
     //'list',
     'fx-ds/start',
     'lib/view/view-utils',
+    //'aos',
+    //'holmes',
+    //'microlight',
     'fenix-ui-map',
     'amplify',
     'instafilta',
@@ -29,7 +32,11 @@ define([
              template, templateCountryList, templateCountryProfile,
              i18nLabels, Handlebars, Common, FAOSTATClientAPI,
              // List,
-             Dashboard, ViewUtils) {
+             Dashboard, ViewUtils
+            // ,AOS
+             //,holmes
+            // ,microlight
+) {
 
     'use strict';
 
@@ -200,6 +207,8 @@ define([
                  });*/
 
                 //}
+                
+
             },
 
 
@@ -258,6 +267,7 @@ define([
 
                         setTimeout(_.bind(function () {
                             this.renderCountryProfileDashboard(view, key);
+                            //AOS.init();
                         },this), 1000 + (index++ * 300));
 
                     }, this));
@@ -281,7 +291,6 @@ define([
                     });
 
                 }, this));
-
 
 
                 this.$COUNTRY_PROFILE_SECTIONS.html(t({
@@ -419,6 +428,22 @@ define([
                 // highlight country
                 // TODO: how to check for old countries (i.e. USSR) or new (i.e. south sudan)?
                 this.m.zoomTo('gaul0_faostat_3857', "faost_code", [code]);
+
+
+                /*var teaLayer = L.tileLayer.wms("http://fenix.fao.org:20200/geoserver/wms", {
+                    layers: 'earthstat:tea_area_3857',
+                    format: 'image/png',
+                    transparent: true
+                });
+
+                var riceLayer = L.tileLayer.wms("http://fenix.fao.org:20200/geoserver/wms", {
+                    layers: 'earthstat:rice_area_3857',
+                    format: 'image/png',
+                    transparent: true
+                });
+
+
+                this.m.map.addLayer(teaLayer);*/
 
 
             },
