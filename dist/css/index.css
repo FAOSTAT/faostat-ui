@@ -7622,6 +7622,11 @@ button_new_2:before {
   content: "\ec1d"; }
 
 /* Components */
+.bootstrap-table .page-pre {
+  display: none; }
+.bootstrap-table .page-last {
+  display: none; }
+
 /* Btn-round Fenix*/
 /** avoid dotted lines when clicking on button**/
 input[type="button"] {
