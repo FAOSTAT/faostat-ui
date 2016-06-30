@@ -6,10 +6,12 @@ define([
     'config/Analytics',
     'config/Events',
     'faostatapiclient',
+    'i18n!nls/common',
+    'fs-s-m/start',
     'FileSaver',
     'tableExport',
     'amplify'
-], function ($, log, _, A, E, API) {
+], function ($, log, _, A, E, API, i18nLabels) {
 
     'use strict';
 
@@ -77,6 +79,8 @@ define([
             }).fail(function (error) {
 
                 log.error("FAIL", error);
+                amplify.publish(E.WAITING_HIDE);
+                amplify.publish(E.NOTIFICATION_WARNING, {title: i18nLabels.error_export});
 
             });
 

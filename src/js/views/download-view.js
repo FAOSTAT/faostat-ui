@@ -68,6 +68,7 @@ define([
             // Related Documents
             RELATED_DOCUMENTS: '[data-role="fs-download-related-documents"]',
             METADATA_BUTTON: '[data-role="fs-download-metadata-button"]',
+            BULK_DOWNLOADS_PANEL: "[data-role='bulk-downloads-panel']",
             BULK_CARET: "[data-role='bulk-downloads-caret']",
 
             // Tree
@@ -148,8 +149,11 @@ define([
             this.$MAIN_CONTAINER_TITLE = this.$el.find(s.MAIN_CONTAINER_TITLE);
             this.$BROWSE = this.$el.find(s.BROWSE);
             this.$RELATED_DOCUMENTS = this.$el.find(s.RELATED_DOCUMENTS);
-            this.$BULK_SIDEBAR = this.$el.find(s.BULK_SIDEBAR);
+
+            //this.$BULK_SIDEBAR = this.$el.find(s.BULK_SIDEBAR);
             this.$BULK_CARET = this.$el.find(s.BULK_CARET);
+            this.$BULK_DOWNLOADS_PANEL = this.$el.find(s.BULK_DOWNLOADS_PANEL);
+
             this.$LAST_UPDATE_DATE = this.$el.find(s.LAST_UPDATE_DATE);
             this.$METADATA_BUTTON = this.$el.find(s.METADATA_BUTTON);
             this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
@@ -449,7 +453,8 @@ define([
                     container: this._createRandomElement(this.$INTERACTIVE_DOWNLOAD),
                     // to output the table outside the standard output area
                     output_container:  this.$OUTPUT_CONTAINER,
-                    code: code
+                    code: code,
+                    $BULK_DOWNLOADS_PANEL: this.$BULK_DOWNLOADS_PANEL
                 });
 
             }, this));
@@ -621,6 +626,7 @@ define([
 
         },
 
+        // TODO: not used
         _renderBulkDownloadsSidebar: function(code) {
 
             this.$BULK_SIDEBAR.empty();

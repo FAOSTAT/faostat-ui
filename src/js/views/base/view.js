@@ -2,14 +2,17 @@
 define([
   'handlebars',
   'chaplin',
+  'nprogress',
   'lib/view-helper' // Just load the view helpers, no return value
-], function(Handlebars, Chaplin) {
+], function(Handlebars, Chaplin, NProgress) {
 
   'use strict';
 
   var View = Chaplin.View.extend({
 
-    getTemplateFunction: function(){
+    getTemplateFunction: function() {
+
+      NProgress.done();
 
       // Template compilation
       // --------------------

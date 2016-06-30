@@ -20,7 +20,8 @@ define([
     'lib/search/search-box',
     'fs-m-v/start',
     'lib/common/modal',
-    'swal',
+    //'swal',
+    'bootstrap-notify',
     'jquery.visible',
     'jquery.lazyload'
 ], function ($, log, C, E, ROUTES,
@@ -28,8 +29,9 @@ define([
              View,
              //AuthManager,
              i18nLabels, template, FAOSTATMenu, Waiting, Loading, Common, GoogleAnalyticsManager, Export, SearchBox, MetadataViewer,
-             Modal,
-             swal) {
+             Modal
+            // swal
+) {
 
     'use strict';
 
@@ -49,6 +51,8 @@ define([
     SiteView = View.extend({
 
         container: 'body',
+
+        containerMethod: 'html',
 
         id: 'site-container',
 
@@ -334,22 +338,63 @@ define([
         // Notifications
         onNotificationInfo: function (data) {
 
-            swal({
+            /*swal({
                 title: data.title,
                 type: 'info',
                 text: data.text,
                 html: true
+            });*/
+
+            $.notify({
+                title: '<h3>' + data.title + '</h3>',
+                // options
+                message: (data.text)? data.text: ''
+            },{
+                // settings
+                type: 'info',
+                delay: 3000
             });
 
         },
 
         onNotificationWarning: function (data) {
 
-            swal({
+            /*swal({
                 title: data.title,
                 type: 'warning',
                 text: data.text,
                 html: true
+            });*/
+
+            $.notify({
+                title: '<h3>' + data.title + '</h3>',
+                // options
+                message: (data.text)? data.text: ''
+            },{
+                // settings
+                type: 'warning',
+                delay: 3000
+            });
+
+        },
+
+        onNotificationError: function (data) {
+
+            /*swal({
+             title: data.title,
+             type: 'warning',
+             text: data.text,
+             html: true
+             });*/
+
+            $.notify({
+                title: '<h3>' + data.title + '</h3>',
+                // options
+                message: (data.text)? data.text: ''
+            },{
+                // settings
+                type: 'danger',
+                delay: 3000
             });
 
         },

@@ -419,7 +419,7 @@ define([
                 }).fail(function(e) {
 
                     // TODO: Handle error
-                    log.error("Home.initChart; error", e);
+                    log.error("Home.initDatabaseUpdates; error", e);
                     amplify.publish(E.LOADING_HIDE, {container: self.$DATABASE_UPDATES});
                     amplify.publish(E.CONNECTION_PROBLEM, {});
 

@@ -1,16 +1,19 @@
 /*global define, amplify*/
-define(
-    ['chaplin',
+define([
+    'chaplin',
     'views/site-view',
     'config/Events',
+    'nprogress',
     'amplify'
-], function (Chaplin, SiteView, E) {
+], function (Chaplin, SiteView, E, NProgress) {
     'use strict';
 
     var Controller = Chaplin.Controller.extend({
 
         // Place your application-specific controller features here.
         beforeAction: function (params, options) {
+
+            NProgress.start();
 
             this.reuse('site', SiteView);
 
