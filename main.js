@@ -126,6 +126,10 @@ require([
                     bootpag: '{FENIX_CDN}/js/bootpag/1.0.7/jquery.bootpag.min',
                     instafilta: '{FENIX_CDN}/js/instafilta/1.4.4/instafilta.min',
 
+                    // aos
+                    nprogress: '{FENIX_CDN}/js/nprogress/0.2.0/nprogress',
+                    'bootstrap-notify': '{FENIX_CDN}/js/bootstrap-notify/3.1.5/bootstrap-notify.min',
+
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
 
                     q: '{FENIX_CDN}/js/q/1.1.2/q',
@@ -158,6 +162,13 @@ require([
                     'bootstrap-treeview': '{FENIX_CDN}/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
                     'bootstrap-tour': '{FENIX_CDN}/js/bootstrap-tour/0.10.3/build/js/bootstrap-tour.min',
 
+
+                    // aos
+                    aos: 'https://cdn.rawgit.com/michalsnik/aos/1.2.0/dist/aos',
+
+                    // holmes
+                    holmes: '//raw.githubusercontent.com/Haroenv/holmes/gh-pages/js/holmes',
+                    microlight: '//raw.githubusercontent.com/Haroenv/holmes/gh-pages/js/microlight',
 
                     // leaflet-image
                     //'leaflet-image': '//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image',
@@ -261,6 +272,9 @@ require([
                     },
                     instafilta: {
                         deps: ['jquery']
+                    },
+                    'bootstrap-notify': {
+                        deps: ['jquery']
                     }
                 }
             }
@@ -297,11 +311,13 @@ require([
         'globals/GoogleAnalyticsManager',
         'loglevel',
         'waves',
+        'nprogress',
         //'modernizr',
         'outdatedbrowser',
         'amplify',
-        'domReady!'
-    ], function ($, Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves) {
+    ], function ($, Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves, NProgress) {
+
+        NProgress.start();
 
         // outdatedBrowser. Has been moved here to avoid Google indexing it.
         $('body').append('<div id="outdated"><h6>Your browser is out of date!</h6><p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p> <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p></div>');
