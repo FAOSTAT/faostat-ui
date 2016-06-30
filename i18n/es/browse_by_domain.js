@@ -6,7 +6,8 @@ define(['jquery', 'i18n!nls/common'], function ($, I18N) {
     return $.extend(true, {}, I18N, {
         
         "tab_ghg_main": "Desde 1961 a la actualidad",
-        "projections": "Proyecciones"
+        "projections": "Proyecciones",
+        "missing_view": "There is no view available for this domain yet.<br>We apologize for any inconvenience."
 
     });
 

@@ -226,17 +226,18 @@ define([
 
                 var lang = this.o.lang,
                     basePath = c.basePath || CM.viewsBasePath,
-                    updatedRelatedViews = (c.updatedRelatedViews !== undefined)? c.updatedRelatedViews: true;
+                    updatedRelatedViews = (c.updatedRelatedViews !== undefined)? c.updatedRelatedViews: true,
+                    self = this;
 
                 this.$VIEW.empty();
 
                 // get and render the right view
-                Require([basePath + c.viewID], _.bind(function(view) {
+                Require([basePath + c.viewID], _.bind(function (view) {
 
                     var filter = view.filter || null,
                         dashboard = view.dashboard || null,
                         requestKey = ++this.o.requestKey,
-                        t  = Handlebars.compile(templateView);
+                        t = Handlebars.compile(templateView);
 
                     // extending view
                     view = $.extend(true, {}, c.config, view);
@@ -278,11 +279,18 @@ define([
                             requestKey: requestKey
                         }));
                     }
-                    else{
-                        log.error("View is not defined, handle exception");
+                    else {
+                        log.error("BrowseByDomainView.createView;View is not defined, handle exception");
                     }
 
-                }, this));
+                }, this),
+
+                    // Catch missing views
+                    function (e) {
+                    //display error to user
+                    log.error("BrowseByDomainView.createView; empty view", e);
+                    self.$VIEW.html("<h4 style='padding-top:35px;' class='text-center'>" + i18nLabels.missing_view + "</h4>");
+                });
 
             },
 
@@ -294,7 +302,7 @@ define([
                         this.filterBox.destroy();
                     }
                 }catch (e) {
-                    log.error(e);
+                    log.error("BrowseByDomainView.renderFilter; error", e);
                 }
 
                 this.filterBox = new FilterBox();
