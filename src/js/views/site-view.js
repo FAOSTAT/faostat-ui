@@ -4,6 +4,7 @@ define([
     'loglevel',
     'config/Config',
     'config/Events',
+    'config/Analytics',
     'config/Routes',
     //'globals/State',
     'views/base/view',
@@ -24,7 +25,7 @@ define([
     'bootstrap-notify',
     'jquery.visible',
     'jquery.lazyload'
-], function ($, log, C, E, ROUTES,
+], function ($, log, C, E, A, ROUTES,
              //State,
              View,
              //AuthManager,
@@ -40,6 +41,7 @@ define([
         FEEDBACK_SYSTEM: '#feedback-system',
         LANGUAGE: '#fs-language',
         SEARCH: '[data-role="fs-search"]',
+        GOOGLE_FORM: '[data-role="google-form"]',
 
         TOP_MENU_CONTAINER: '#top-menu-container',
         BREADCRUMB_CONTAINER: "#breadcrumb-container",
@@ -142,16 +144,19 @@ define([
             });
 
             $('.scroll-top-wrapper').on('click', this.scrollToTop);
-            
+
             this.$SEACH_BOX = this.$el.find(s.SEARCH);
 
         },
 
         initComponents: function () {
 
+            this.$GOOGLE_FORM = this.$el.find(s.GOOGLE_FORM);
+
             this.initMenu();
             this.initSearchBox();
             this.initLazyLoading();
+            this.initGoogleFormAnalytics();
 
             // init breadcrumb (N.B. not used)
             this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
@@ -200,6 +205,15 @@ define([
                     threshold: 800
                 });
             }, 2000);
+
+        },
+
+        initGoogleFormAnalytics: function () {
+
+            console.log(this.$GOOGLE_FORM)
+            this.$GOOGLE_FORM.on('click', function(e) {
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.select_google_form);
+            });
 
         },
 
@@ -434,6 +448,7 @@ define([
                     swal("Nice!", "You wrote: " + inputValue, "success");
                 });*/
         },
+
 
         changeLanguage: function(lang) {
 

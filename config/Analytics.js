@@ -10,6 +10,16 @@ define(function () {
         // centralized download export
         /* global interaction events */
 
+        site: {
+
+            // to track if the left side are used
+            select_google_form: {
+                category: 'google_form',
+                action: 'clicked'
+            }
+
+        },
+
         /* download section (both groups display that downlaod section */
         data: {
 

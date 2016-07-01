@@ -14,7 +14,7 @@ define([
         "LOGLEVEL": "trace", // trace/debug/info/warn/error/silent
 
         // Google Analytics ID
-        "GOOGLE_ANALYTICS_ID": "",
+        "GOOGLE_ANALYTICS_ID": "UA-68486942-2",
 
         // URLs
         "URL_FEEDBACK_SYSTEM": "http://fenixapps.fao.org/feedbacksystem/",
