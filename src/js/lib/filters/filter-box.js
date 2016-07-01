@@ -158,19 +158,23 @@ define([
             id: id
         }, filter.config.filter);
 
-        return this.FAOSTATAPIClient.codes(request).then(function(c) {
+        return this.FAOSTATAPIClient.codes(request)
+            .then(function(c) {
 
-            // TODO: use directly metadata/data returned by APIs?
-            var codes = [];
+                // TODO: use directly metadata/data returned by APIs?
+                var codes = [];
 
-            // process codes/defaults
-            _.each(c.data, function(d) {
-                codes.push($.extend({}, d, {selected: defaultCodes.indexOf(d.code) > -1 }));
+                // process codes/defaults
+                _.each(c.data, function(d) {
+                    codes.push($.extend({}, d, {selected: defaultCodes.indexOf(d.code) > -1 }));
+                });
+                filter.config.data = codes;
+                return filter;
+
+            }).fail(function(e) {
+                log.error("FilterBox._preloadCodes", e);
+                amplify.subscribe(E.CONNECTION_PROBLEM);
             });
-            filter.config.data = codes;
-            return filter;
-
-        });
 
     };
 

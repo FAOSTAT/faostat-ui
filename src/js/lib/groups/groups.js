@@ -90,6 +90,7 @@ define([
           .fail(function(e) {
             log.error("Groups.initVariables; error", e);
               amplify.publish(E.LOADING_HIDE, {container: self.$GROUPS});
+              amplify.publish(E.CONNECTION_PROBLEM);
         });
 
     };

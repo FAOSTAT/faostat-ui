@@ -101,6 +101,7 @@ define([
         },
 
         configurePage: function () {
+
             var self = this;
 
             amplify.publish(E.LOADING_SHOW, { container: this.$GROUPS});
@@ -112,6 +113,10 @@ define([
                 blacklist: CM.groups.blacklist || []
             }).then(function(json) {
                 self.createGroupFilter(json);
+            }).fail(function(e) {
+                log.error("CompareFilterBox.configurePage", e);
+                amplify.publish(E.LOADING_HIDE, { container: self.$GROUPS});
+                amplify.publish(E.CONNECTION_PROBLEM);
             });
 
         },

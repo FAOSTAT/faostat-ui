@@ -163,8 +163,8 @@ define([
                 action: F.GOOGLE_ANALYTICS.COMPARE.action.compare_data
             });*/
 
-            try {
-                this._retrieveData().then(function (models) {
+            this._retrieveData()
+                .then(function (models) {
 
                     self.$OUTPUT.show();
 
@@ -183,11 +183,12 @@ define([
                         forceInvisible: true
                     });
 
+                })
+                .fail(function(e) {
+                    log.error("Compare.compareData", e);
+                    amplify.publish(E.WAITING_HIDE);
+                    amplify.publish(E.CONNECTION_PROBLEM);
                 });
-            } catch (e) {
-                amplify.publish(E.WAITING_HIDE);
-                log.error(e);
-            }
         },
 
         _retrieveData: function () {

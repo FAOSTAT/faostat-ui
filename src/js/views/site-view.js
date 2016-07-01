@@ -90,6 +90,7 @@ define([
 
             amplify.subscribe(E.NOTIFICATION_INFO, this, this.onNotificationInfo);
             amplify.subscribe(E.NOTIFICATION_WARNING, this, this.onNotificationWarning);
+            amplify.subscribe(E.NOTIFICATION_ERROR, this, this.onNotificationError);
             amplify.subscribe(E.NOTIFICATION_ACCEPT, this, this.onNotificationAccept);
 
             amplify.subscribe(E.WAITING_SHOW, this, Waiting.showPleaseWait);
@@ -330,7 +331,6 @@ define([
         onMenuUpdate: function (s) {
 
             this.menu.select(s);
-
             this.menu.collapse();
             
         },
@@ -346,13 +346,17 @@ define([
             });*/
 
             $.notify({
-                title: '<h3>' + data.title + '</h3>',
-                // options
-                message: (data.text)? data.text: ''
+                title: '<h2>' + data.title + '</h2>',
+                message: (data.text)? '<h5>' + data.text + '</h5>': ''
             },{
                 // settings
                 type: 'info',
-                delay: 3000
+                delay: 5000,
+                offset: 15,
+                placement: {
+                    from: "top",
+                    align: "center"
+                }
             });
 
         },
@@ -367,13 +371,18 @@ define([
             });*/
 
             $.notify({
-                title: '<h3>' + data.title + '</h3>',
-                // options
-                message: (data.text)? data.text: ''
+                title: '<h2>' + data.title + '</h2>',
+                message: (data.text)? '<h5>' + data.text + '</h5>': ''
             },{
                 // settings
-                type: 'warning',
-                delay: 3000
+                // TODO: change to warning type, but alter the CSS default color that is too light
+                type: 'danger',
+                delay: 5000,
+                offset: 15,
+                placement: {
+                    from: "top",
+                    align: "center"
+                }
             });
 
         },
@@ -388,13 +397,17 @@ define([
              });*/
 
             $.notify({
-                title: '<h3>' + data.title + '</h3>',
-                // options
-                message: (data.text)? data.text: ''
+                title: '<h2>' + data.title + '</h2>',
+                message: (data.text)? '<h5>' + data.text + '</h5>': ''
             },{
                 // settings
                 type: 'danger',
-                delay: 3000
+                delay: 5000,
+                offset: 15,
+                placement: {
+                    from: "top",
+                    align: "center"
+                }
             });
 
         },

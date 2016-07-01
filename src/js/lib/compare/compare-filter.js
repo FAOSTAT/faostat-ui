@@ -9,11 +9,10 @@ define([
     'text!lib/compare/templates/dropdown.hbs',
     'i18n!nls/compare',
     'handlebars',
-    'faostatapiclient',
     'underscore',
     'select2',
     'amplify'
-], function ($, log, E, Common, templateFilter, templateDropDown, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
+], function ($, log, E, Common, templateFilter, templateDropDown, i18nLabels, Handlebars, _) {
 
     'use strict';
 

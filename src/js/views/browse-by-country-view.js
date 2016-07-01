@@ -122,6 +122,8 @@ define([
 
             configurePage: function () {
 
+                var self = this;
+
                 amplify.publish(E.LOADING_SHOW, {container: this.$el});
 
                 this.api.codes({
@@ -135,21 +137,27 @@ define([
                     subcodelists: null,
                     ord: null
 
-                }).then(_.bind(function (result) {
+                }).then(function (result) {
 
-                    amplify.publish(E.LOADING_HIDE, {container: this.$el});
+                    amplify.publish(E.LOADING_HIDE, {container: self.$el});
 
-                    this.cache.countries = result;
+                    self.cache.countries = result;
 
                     // render country list or directly country page
-                    if (this.o.code === null || this.o.code === undefined) {
-                        this.renderCountryList();
+                    if (self.o.code === null || self.o.code === undefined) {
+                        self.renderCountryList();
                     }
                     else {
-                        this.renderCountryProfile();
+                        self.renderCountryProfile();
                     }
 
-                }, this));
+                    })
+                .fail(function(e) {
+                    alert()
+                    log.error("BrowseByCountryView.configurePage", e);
+                    amplify.publish(E.LOADING_HIDE, {container: self.$el});
+                    amplify.publish(E.CONNECTION_PROBLEM);
+                });
 
             },
 
@@ -177,7 +185,7 @@ define([
                 // labels
 
                 this.$COUNTRY_LIST_CONTAINER.append(t({
-                    // labels
+                        // labels
                         country_indicators: i18nLabels.country_indicators,
                         country_list: i18nLabels.country_list,
                         data: d
