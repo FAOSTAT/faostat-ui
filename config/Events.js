@@ -12,6 +12,7 @@ define(function () {
 
         NOTIFICATION_INFO: 'fs.notification.info',
         NOTIFICATION_WARNING: 'fs.notification.warning',
+        NOTIFICATION_ERROR: 'fs.notification.error',
         NOTIFICATION_ACCEPT: 'fs.notification.accept',
 
         WAITING_SHOW : 'fs.waiting.show',
