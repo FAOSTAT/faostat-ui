@@ -12,12 +12,12 @@ define([
         "relatedViews" : [
             {
                 title: i18n.tab_ghg_main,
-                id: 'GY',
-                selected: true
+                id: 'GY'
             },
             {
                 title: i18n.projections,
-                id: 'GY-PROJ'
+                id: 'GY-PROJ',
+                selected: true
             }
         ],
 
@@ -60,17 +60,16 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
-                        "type": "dropDownList-timerange"
+                        "class": "col-md-2",
+                        "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "years",
-                        "defaultCodes": ['1990'],
+                        "dimension_id": "yearprojections",
+                        "defaultCodes": ['2030'],
                         "filter": {
                         }
                     }
-                },
-                C.filter.aggregation
+                }
             ]
         },
 
@@ -98,6 +97,7 @@ define([
                 default: {
                 }
             },
+
 
             //bridge configuration
             bridge: {
@@ -131,7 +131,7 @@ define([
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
+                    
                     //height:'250px',
                     config: {
                         layer: {
@@ -142,18 +142,18 @@ define([
 
                         }
                     },
-                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
+                    allowedFilter: ['item', 'year', 'element'],
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
-                        "group_by": 'year',
-                        "order_by": 'area'
+                        List1Codes: ["5000>", "351"]
+                        //"group_by": 'year',
+                        //"order_by": 'area'
                     }
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {
@@ -169,68 +169,79 @@ define([
                                 fr: "Émissions (CO2 équivalent), {{item}}",
                                 es: "Emisiones (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{year}}"
+                            subtitle: ""
                         }
                     },
 
                     config: {
                         adapter: {
                             adapterType: 'faostat',
-                            type: "timeserie",
-                            xDimensions: 'year',
+                            type: "standard",
+                            xDimensions: 'area',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
+                            seriesDimensions: ['year']
                         },
                         template: {},
-                        creator: {}
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
                     },
-                    allowedFilter: ['area', 'year', 'item'],
-                    deniedOnLoadFilter: ['area'],
+                    allowedFilter: ['item'],
                     filter: {
-                        List1Codes: ["5000", "5848", "5849"]
+                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        List4Codes: ["2030", "2050"]
+                        // TODO: baseline 2005-2006-2007
                     }
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-6",
 
+                    // labels?
                     labels: {
 
                         default: {
                             item: "Synthetic Nitrogen fertilizers"
                         },
 
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Emissions by continent, {{item}}",
-                                fr: "Émissions par continent, {{item}}",
-                                es: "Emisiones por continente, {{item}}"
+                                en: "Emissions (CO2 equivalent), {{item}}, {{area}}",
+                                fr: "Émissions (CO2 équivalent), {{item}}, {{area}}",
+                                es: "Emisiones (CO2 equivalente), {{item}}, {{area}}"
                             },
-                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                            subtitle: ""
                         }
                     },
 
                     config: {
                         adapter: {
                             adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
+                            type: "standard",
+                            xDimensions: 'area',
+                            yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['year']
                         },
-                        template: {
-                            height: '250px'
-                        },
-                        creator: {}
+                        template: {},
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
                     },
-                    allowedFilter: ['year', 'item', 'aggregation'],
+                    allowedFilter: ['area', 'item'],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        "group_by": 'year',
-                        "order_by": 'area'
+                        List4Codes: ["2030", "2050"]
+                        // TODO: baseline 2005-2006-2007
                     }
                 },
                 {
@@ -247,27 +258,24 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 emitters (CO2 equivalent), {{item}}",
-                                fr: "Principaux 10 émetteurs (CO2 équivalent), {{item}}",
-                                es: "Principales 10 emisores (CO2 equivalente), {{item}}"
+                                en: "Emissions by continent (CO2 equivalent), {{item}}",
+                                fr: "Émissions par continent (CO2 équivalent), {{item}}",
+                                es: "Emisiones por continente (CO2 equivalente), {{item}}"
                             },
-                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                            subtitle: "{{year}}"
                         }
                     },
 
                     config: {
                         adapter: {
                             adapterType: 'faostat',
-                            type: "standard",
-                            xDimensions: ['element'],
-                            yDimensions: 'unit',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
                             valueDimensions: 'value',
                             seriesDimensions: ['area']
                         },
-                        template: {
-                            height:'250px'
-                            // default labels to be applied
-                        },
+                        template: {},
                         creator: {
                             chartObj: {
                                 chart: {
@@ -276,13 +284,10 @@ define([
                             }
                         }
                     },
-                    allowedFilter: ['year', 'item', 'aggregation'],
-                    deniedTemplateFilter: [],
+                    allowedFilter: ['year', 'item'],
+                    deniedOnLoadFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        "group_by": 'year',
-                        "order_by": 'value DESC',
-                        "limit": '10'
+                        List1Codes: ["5100", "5200", "5300", "5400", "5500"]
                     }
                 }
             ]
