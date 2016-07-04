@@ -128,7 +128,10 @@ require([
 
                     // aos
                     nprogress: '{FENIX_CDN}/js/nprogress/0.2.0/nprogress',
-                    'bootstrap-notify': '{FENIX_CDN}/js/bootstrap-notify/3.1.5/bootstrap-notify.min',
+
+                    // notifications
+                    //'bootstrap-notify': '{FENIX_CDN}/js/bootstrap-notify/3.1.5/bootstrap-notify.min',
+                    'toastr': '{FENIX_CDN}/js/toastr/2.1.2/build/toastr.min',
 
                     'fx-common/config/auth_users' : '../../config/auth_users.json',
 
@@ -273,9 +276,9 @@ require([
                     instafilta: {
                         deps: ['jquery']
                     },
-                    'bootstrap-notify': {
+                    /*'bootstrap-notify': {
                         deps: ['jquery']
-                    }
+                    }*/
                 }
             }
         });
