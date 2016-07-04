@@ -16,7 +16,8 @@ define(['jquery', 'i18n!nls/common'], function ($, I18N) {
         land: "land",
         economic_and_political_stability: "economic and political stability",
         production: "production",
-        emissions: "emissions"
+        emissions: "emissions",
+        economy: "economy",
 
     });
 
