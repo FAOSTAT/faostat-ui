@@ -37,6 +37,7 @@ define({
 
     no_data_available: 'No data available.',
     no_data_available_for_current_selection: 'No data available for current selection',
+    please_make_another_selection: 'Please make another selection',
     loading: 'Loading',
     warning: 'Warning',
     export_data: 'Export Data',
