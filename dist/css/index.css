@@ -8159,6 +8159,16 @@ div#google_search input#search-submit {
 .scroll-top-wrapper i.fa {
   line-height: inherit; }
 
+#toast-container > div {
+  opacity: 0.9;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  filter: alpha(opacity=90); }
+
+.toast-top-center {
+  top: 25px;
+  right: 0;
+  width: 100%; }
+
 /* Third parties */
 .typeahead, .tt-query, .tt-hint {
   width: 225px;
