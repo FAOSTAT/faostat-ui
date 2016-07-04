@@ -8,6 +8,16 @@
     -webkit-column-width: 18em;
     -moz-column-gap: 2em;
     -webkit-column-gap: 2em;
+
+    column-width: 18em;
+    //column-count: 4;
+    column-gap: 2em;
+    //column-rule: 1px solid #ff0000;
+
+    li {
+      overflow: hidden;
+    }
+
   }
 
   .menu-category {
