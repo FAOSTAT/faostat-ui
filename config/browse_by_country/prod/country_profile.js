@@ -49,8 +49,8 @@ define([
                             template: {
                                 title: {
                                     en: "Rural and urban population",
-                                    fr: "Rural and urban population",
-                                    es: "Rural and urban population"
+                                    fr: "",
+                                    es: ""
                                 },
                                 subtitle: "1990 - 2015"
                             }
@@ -107,9 +107,9 @@ define([
                         labels: {
                             template: {
                                 title: {
-                                    en: "Rural and Urban Population",
-                                    fr: "Rural and Urban Population",
-                                    es: "Rural and Urban Population"
+                                    en: "Rural and urban population",
+                                    fr: "",
+                                    es: ""
                                 },
                                 "subtitle": "2015"
                             }
