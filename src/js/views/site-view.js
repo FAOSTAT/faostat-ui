@@ -23,7 +23,6 @@ define([
     'lib/common/modal',
     'toastr',
     //'swal',
-    'bootstrap-notify',
     'jquery.visible',
     'jquery.lazyload'
 ], function ($, log, C, E, A, ROUTES,
@@ -356,7 +355,7 @@ define([
         initNotificationInitConfiguration: function () {
 
             toastr.options = {
-                "closeButton": false,
+                "closeButton": true,
                 "debug": false,
                 "newestOnTop": true,
                 "progressBar": false,
@@ -395,25 +394,6 @@ define([
 
         onNotificationAccept: function (data, callback) {
 
-            // TODO: implement it
-/*            swal({
-                    title: "An input!",
-                    text: "Write something interesting:",
-                    type: "input",
-                    showCancelButton: true,
-                    closeOnConfirm: false,
-                    animation: "slide-from-top",
-                    inputPlaceholder: "Write something"
-                },
-                function(inputValue){
-                    if (inputValue === false)
-                        return false;
-                    if (inputValue === "") {
-                        swal.showInputError("You need to write something!");
-                        return false;
-                    }
-                    swal("Nice!", "You wrote: " + inputValue, "success");
-                });*/
         },
 
 
