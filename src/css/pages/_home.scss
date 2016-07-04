@@ -102,7 +102,7 @@
    bottom: 0;
    left: 0;
    width: 100%;
-   
+
    .white-stripe{
       position: absolute;
       top: 0;
@@ -183,16 +183,17 @@
    }
 }
 
+// The pagination goes in contrast with links apparently
 .swiper-pagination-bullet-active{
    background-color: $material-default;
 }
 
-
+/*
 .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
    top: 10px;
    left: auto;
    right: 15px;
-}
+}*/
 
 .feature-bar{
    margin-top: 20px;
