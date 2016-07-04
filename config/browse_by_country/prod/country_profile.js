@@ -10,7 +10,6 @@ define([
         List5Codes: null,
         List6Codes: null,
         List7Codes: null,
-        decimal_places: 2,
         decimal_separator: ".",
         limit: -1,
         thousand_separator: ",",
@@ -40,7 +39,7 @@ define([
 
                 items: [
 
-                    // DEMOGRAPHICS
+                    // DEMOGRAPHICS pg.4
                     {
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
@@ -50,8 +49,8 @@ define([
                             template: {
                                 title: {
                                     en: "Rural and urban population",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Rural and urban population",
+                                    es: "Rural and urban population"
                                 },
                                 subtitle: "1990 - 2015"
                             }
@@ -67,13 +66,31 @@ define([
                                 seriesDimensions: ['area', 'item', 'element']
                             },
                             template: {
-                                // height: '200px'
+                                height: '300px'
+                            },
+                            creator: {
+                                chartObj: {
+                                    chart: {
+                                        type: 'area'
+                                    },
+                                    plotOptions: {
+                                        area: {
+                                            stacking: 'normal'
+                                        },
+                                        series: {
+                                            marker: {
+                                                enabled: false
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         },
                         allowedFilter: ['area', 'year', 'item', 'aggregation'],
                         filter: {
                             domain_codes: ["OA"],
                             List2Codes: [
+                                //511,
                                 551,
                                 561
                             ],
@@ -108,7 +125,7 @@ define([
                                 seriesDimensions: ['element', 'year']
                             },
                             template: {
-                                //height: '200px'
+                                height: '300px'
                             },
                             creator: {}
                         },
@@ -191,6 +208,11 @@ define([
                                     plotOptions: {
                                         area: {
                                             stacking: 'normal'
+                                        },
+                                        series: {
+                                            marker: {
+                                                enabled: false
+                                            }
                                         }
                                     }
                                 }
@@ -942,30 +964,16 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             },
                             creator: {
-                                /* chartObj: {
-                                 chart: {
-                                 type: 'column'
-                                 },
-                                 plotOptions: {
-                                 column: {
-                                 stacking: 'normal'
-                                 }
-                                 }
-                                 }*/
                             }
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
                             domain_codes: ['RL'],
                             List2Codes: [5110],
-                            List3Codes: [
-                                6621,
-                                6650,
-                                6655
-                            ],
+                            List3Codes: [6621, 6650, 6655, 6661, 6670],
                             List4Codes: ['_1'],
                             "order_by": 'year'
                         }
@@ -999,9 +1007,10 @@ define([
                                 seriesDimensions: ['item']
                             },
                             template: {
-                                //height: '250px'
+                                height: '300px'
                             },
-                            creator: {}
+                            creator: {
+                            }
                         },
                         allowedFilter: ['area', 'year', 'item', 'aggregation'],
                         filter: {
@@ -1069,48 +1078,6 @@ define([
                             order_by: 'value DESC'
                         }
                     },
-
-
-                    {
-                        type: 'chart',
-                        class: "col-xs-12 col-md-6",
-
-                        // labels?
-                        labels: {
-                            // template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Land Use",
-                                    fr: "Land Use",
-                                    es: "Land Use"
-                                },
-                                subtitle: "2012"
-                            }
-                        },
-                        config: {
-                            adapter: {
-                                adapterType: 'faostat',
-                                type: "timeserie",
-                                xDimensions: 'year',
-                                yDimensions: 'unit',
-                                valueDimensions: 'value',
-                                seriesDimensions: ['item']
-                            },
-                            template: {
-                                // height: '100px'
-                            },
-                            creator: {
-                            }
-                        },
-                        allowedFilter: ['area', 'year'],
-                        filter: {
-                            domain_codes: ['RL'],
-                            List2Codes: [5110],
-                            List3Codes: [6621, 6650, 6655, 6661, 6670],
-                            List4Codes: ['_1'],
-                            "order_by": 'year'
-                        }
-                    }
 
                 ]
             }
@@ -1379,7 +1346,6 @@ define([
                             List3Codes: ["_1"],
                             List4Codes: [2014],
                             limit: "10",
-                            decimal_places:2,
                             "null_values": false,
                             filter_list: "1",
                             rank_type: 'DESC'
@@ -1433,7 +1399,6 @@ define([
                             List3Codes: ["_1"],
                             List4Codes: [2014],
                             limit: "10",
-                            decimal_places:2,
                             "null_values": false,
                             filter_list: "1",
                             rank_type: 'DESC'
@@ -1621,7 +1586,7 @@ define([
                                 seriesDimensions: ['item', 'element']
                             },
                             template: {
-                                // height:'350px'
+                                height:'300px'
                                 // default labels to be applied
                             },
                             creator: {}
@@ -1687,7 +1652,7 @@ define([
                                 seriesDimensions: ['item']
                             },
                             template: {
-                                // height:'350px'
+                                height:'300px'
                                 // default labels to be applied
                             },
                             creator: {}

@@ -62,12 +62,109 @@ define(function () {
         },
         colors: [ //Colori delle charts
 
-            '#0D6CAC',
+           /* '#0D6CAC',
             '#D5E4EB',
             '#356B76',
             '#5895BE',
             '#e19a0e',
-            '#bf4343'
+            '#bf4343'*/
+
+            /*'#332288',
+            '#88CCEE',
+            '#44AA99',
+            '#117733',
+            '#999933',
+            '#DDCC77',
+            '#CC6677',
+            '#882255',
+            '#AA4499'*/
+
+           /* '#5cbae6',
+            '#b6d957',
+            '#fac364',
+            '#8cd3ff',
+            '#d998cb',
+            '#f2d249',
+            '#93b9c6',
+            '#ccc5a8',
+            '#52bacc',
+            '#dbdb46',
+            '#98aafb',*/
+
+            //http://there4.io/2012/05/02/google-chart-color-list/
+            // Google Charts Palette (original)
+            /*'#3366CC',
+            '#DC3912',
+            '#FF9900',
+            '#109618',
+            '#990099',
+            '#3B3EAC',
+            '#0099C6',
+            '#DD4477',
+            '#66AA00',
+            '#B82E2E',
+            '#316395',
+            '#994499',
+            '#22AA99',
+            '#AAAA11',
+            '#6633CC',
+            '#E67300',
+            '#8B0707',
+            '#329262',
+            '#5574A6',
+            '#3B3EAC',*/
+
+            // Google Charts Palette (Modified)
+            // https://material.google.com/style/color.html#color-color-palette
+            // modified chaning the color to the "700" one
+            '#1976D2', //'#3366CC',
+            '#D32F2F', //'#DC3912',
+            '#FFA000', //'#FF9900',
+            '#388E3C', //'#109618',
+            '#5E35B1', // used 600 //'#512DA8' (700), //'#990099',
+            '#303F9F', //'#3B3EAC',
+            '#0099C6',
+            '#DD4477',
+            '#66AA00',
+            '#B82E2E',
+            '#316395',
+            '#994499',
+            '#22AA99',
+            '#AAAA11',
+            '#6633CC',
+            '#E67300',
+            '#8B0707',
+            '#329262',
+            '#5574A6',
+            '#3B3EAC',
+
+
+            // Google Charts Palette (Modified)
+            // https://material.google.com/style/color.html#color-color-palette
+            // modified chaning the color to the "500" one
+            /*'#2196F3', //'#3366CC',
+            '#F44336', //'#DC3912',
+            '#FFC107', //'#FF9900',
+            '#4CAF50', //'#109618',
+            '#673AB7', //'#990099',
+            '#3F51B5', //'#3B3EAC',
+            '#0099C6',
+            '#DD4477',
+            '#66AA00',
+            '#B82E2E',
+            '#316395',
+            '#994499',
+            '#22AA99',
+            '#AAAA11',
+            '#6633CC',
+            '#E67300',
+            '#8B0707',
+            '#329262',
+            '#5574A6',
+            '#3B3EAC',*/
+
+
+
         ],
         credits: {
             enabled: false //Attiva o disattiva il link di HighCharts dalla chart
@@ -92,7 +189,7 @@ define(function () {
             }*/
         },
         navigation: { //Modifica lo stile dei bottoni e spesso del solo bottone dell'esportazione (lo sfondo)
-            buttonOptions: {
+            /*buttonOptions: {
                 theme: {
                     'zIndex': '3',
                     'stroke-width': 1, // Peso stroke del bottone
@@ -109,25 +206,43 @@ define(function () {
                         }
                     }
                 }
-              // y: -22
-            }
-/*            buttonOptions: {
-                theme: {
-                    'stroke-width': 1, // Peso stroke del bottone
-                    stroke: '#666666', // Colore stroke del bottone
-                    r: 0, // Smusso stroke del bottone,
-                    states: {
-                        hover: {
-                            stroke: '#666666', // Press stroke del bottone
-                            fill: '#e6e6e6' // Rollover del bottone
-                        },
-                        select: {
-                            stroke: '#666666', // Press stroke del bottone
-                            fill: '#e6e6e6' // Press Fill del bottone
-                        }
-                    }
-                }
+
             }*/
+            menuStyle: {
+                border: '1px solid #A0A0A0',
+                background: '#FFFFFF',
+                padding: '5px 0'
+            },
+            menuItemStyle: {
+                padding: '0 10px',
+                background: null,
+                color: '#303030',
+                fontSize: '11px'
+            },
+            menuItemHoverStyle: {
+                background: '#4572A5',
+                color: '#FFFFFF'
+            },
+
+            buttonOptions: {
+                symbolFill: '#E0E0E0',
+                symbolSize: 14,
+                symbolStroke: '#666',
+                symbolStrokeWidth: 3,
+                symbolX: 12.5,
+                symbolY: 10.5,
+                align: 'right',
+                buttonSpacing: 3,
+                height: 22,
+                // text: null,
+                theme: {
+                    fill: 'white', // capture hover
+                    stroke: 'none'
+                },
+                verticalAlign: 'top',
+                width: 24
+            }
+
         },
         legend: { //Modifica style della legenda
             enabled: true, //Attiva la legenda
