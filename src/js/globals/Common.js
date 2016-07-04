@@ -2,9 +2,10 @@
 define(['chaplin',
         'config/Events',
         'loglevel',
+        'nprogress',
         'amplify'
     ],
-    function (Chaplin, E, log) {
+    function (Chaplin, E, log, NProgress) {
 
     'use strict';
 
@@ -19,6 +20,8 @@ define(['chaplin',
     }
 
     Common.prototype.changeURL = function (name, options, reload) {
+
+        NProgress.start();
 
         var reload = reload || false;
 
