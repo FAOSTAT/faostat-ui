@@ -8628,11 +8628,12 @@ div#google_search input#search-submit {
 .swiper-pagination-bullet-active {
   background-color: #2bbbad; }
 
-.swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
-  top: 10px;
-  left: auto;
-  right: 15px; }
-
+/*
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+   top: 10px;
+   left: auto;
+   right: 15px;
+}*/
 .feature-bar {
   margin-top: 20px; }
   .feature-bar a.feature-panel {
