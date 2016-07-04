@@ -8323,7 +8323,9 @@ div#google_search input#search-submit {
   -moz-column-width: 20em;
   -webkit-column-width: 20em;
   -moz-column-gap: 2em;
-  -webkit-column-gap: 2em; }
+  -webkit-column-gap: 2em;
+  column-width: 20em;
+  column-gap: 2em; }
 .domain-list-container .menu-category {
   display: inline-block;
   margin: 0.25rem;
@@ -8686,7 +8688,11 @@ div#google_search input#search-submit {
   -moz-column-width: 18em;
   -webkit-column-width: 18em;
   -moz-column-gap: 2em;
-  -webkit-column-gap: 2em; }
+  -webkit-column-gap: 2em;
+  column-width: 18em;
+  column-gap: 2em; }
+  .country-list-container .row-mason li {
+    overflow: hidden; }
 .country-list-container .menu-category {
   display: inline-block;
   margin: 0rem;
