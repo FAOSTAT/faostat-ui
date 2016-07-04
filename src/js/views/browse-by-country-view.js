@@ -153,7 +153,6 @@ define([
 
                     })
                 .fail(function(e) {
-                    alert()
                     log.error("BrowseByCountryView.configurePage", e);
                     amplify.publish(E.LOADING_HIDE, {container: self.$el});
                     amplify.publish(E.CONNECTION_PROBLEM);

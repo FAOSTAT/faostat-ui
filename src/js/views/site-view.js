@@ -21,6 +21,7 @@ define([
     'lib/search/search-box',
     'fs-m-v/start',
     'lib/common/modal',
+    'toastr',
     //'swal',
     'bootstrap-notify',
     'jquery.visible',
@@ -30,7 +31,8 @@ define([
              View,
              //AuthManager,
              i18nLabels, template, FAOSTATMenu, Waiting, Loading, Common, GoogleAnalyticsManager, Export, SearchBox, MetadataViewer,
-             Modal
+             Modal,
+             toastr
             // swal
 ) {
 
@@ -157,6 +159,7 @@ define([
             this.initSearchBox();
             this.initLazyLoading();
             this.initGoogleFormAnalytics();
+            this.initNotificationInitConfiguration();
 
             // init breadcrumb (N.B. not used)
             this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
@@ -350,79 +353,43 @@ define([
         },
 
         // Notifications
+        initNotificationInitConfiguration: function () {
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+        },
+
         onNotificationInfo: function (data) {
 
-            /*swal({
-                title: data.title,
-                type: 'info',
-                text: data.text,
-                html: true
-            });*/
-
-            $.notify({
-                title: '<h2>' + data.title + '</h2>',
-                message: (data.text)? '<h5>' + data.text + '</h5>': ''
-            },{
-                // settings
-                type: 'info',
-                delay: 5000,
-                offset: 15,
-                placement: {
-                    from: "top",
-                    align: "center"
-                }
-            });
+            toastr.info( '<h4>' + data.title + '</h4>', (data.text)? '<h5>' + data.text + '</h5>': '');
 
         },
 
         onNotificationWarning: function (data) {
 
-            /*swal({
-                title: data.title,
-                type: 'warning',
-                text: data.text,
-                html: true
-            });*/
-
-            $.notify({
-                title: '<h2>' + data.title + '</h2>',
-                message: (data.text)? '<h5>' + data.text + '</h5>': ''
-            },{
-                // settings
-                // TODO: change to warning type, but alter the CSS default color that is too light
-                type: 'danger',
-                delay: 5000,
-                offset: 15,
-                placement: {
-                    from: "top",
-                    align: "center"
-                }
-            });
+            toastr.warning( '<h4>' + data.title + '</h4>', (data.text)? '<h5>' + data.text + '</h5>': '');
 
         },
 
         onNotificationError: function (data) {
 
-            /*swal({
-             title: data.title,
-             type: 'warning',
-             text: data.text,
-             html: true
-             });*/
-
-            $.notify({
-                title: '<h2>' + data.title + '</h2>',
-                message: (data.text)? '<h5>' + data.text + '</h5>': ''
-            },{
-                // settings
-                type: 'danger',
-                delay: 5000,
-                offset: 15,
-                placement: {
-                    from: "top",
-                    align: "center"
-                }
-            });
+            toastr.error( '<h4>' + data.title + '</h4>', (data.text)? '<h5>' + data.text + '</h5>': '');
 
         },
 

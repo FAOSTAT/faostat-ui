@@ -1,0 +1,11 @@
+#toast-container > div {
+  opacity: 0.9;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  filter: alpha(opacity=90);
+}
+
+.toast-top-center {
+  top: 25px;
+  right: 0;
+  width: 100%;
+}
