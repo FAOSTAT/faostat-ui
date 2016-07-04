@@ -182,8 +182,8 @@ define([
                             template: {
                                 title: {
                                     en: "Fertilizers consumption in nutrients",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Fertilizers consumption in nutrients",
+                                    es: "Fertilizers consumption in nutrients",
                                 },
                                 subtitle: "2000 - 2012"
                             }
@@ -242,8 +242,8 @@ define([
                             template: {
                                 title: {
                                     en: "Fertilizers consumption in nutrients",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Fertilizers consumption in nutrients",
+                                    es: "Fertilizers consumption in nutrients",
                                 },
                                 subtitle: "2012"
                             }
@@ -319,8 +319,8 @@ define([
                             template: {
                                 title: {
                                     en: "Number of people undernourished (millions) (3-year average)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Number of people undernourished (millions) (3-year average)",
+                                    es: "Number of people undernourished (millions) (3-year average)",
                                 },
                                 subtitle: ""
                             }
@@ -358,8 +358,8 @@ define([
                             template: {
                                 title: {
                                     en: "Prevalence of undernourishment (%) (3-year average)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Prevalence of undernourishment (%) (3-year average)",
+                                    es: "Prevalence of undernourishment (%) (3-year average)",
                                 },
                                 subtitle: ""
                             }
@@ -420,8 +420,8 @@ define([
                             template: {
                                 title: {
                                     en: "Average protein supply (g/capita/day) (3-year average)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Average protein supply (g/capita/day) (3-year average)",
+                                    es: "Average protein supply (g/capita/day) (3-year average)",
                                 },
                                 subtitle: ""
                             }
@@ -459,8 +459,8 @@ define([
                             template: {
                                 title: {
                                     en: "Average supply of protein of animal origin (g/capita/day) (3-year average)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Average supply of protein of animal origin (g/capita/day) (3-year average)",
+                                    es: "Average supply of protein of animal origin (g/capita/day) (3-year average)",
                                 },
                                 subtitle: ""
                             }
@@ -508,8 +508,8 @@ define([
                             template: {
                                 title: {
                                     en: "Share of dietary energy supply derived from cereals, roots and tubers (%) (3-year average)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Share of dietary energy supply derived from cereals, roots and tubers (%) (3-year average)",
+                                    es: "Share of dietary energy supply derived from cereals, roots and tubers (%) (3-year average)",
                                 },
                                 subtitle: ""
                             }
@@ -696,8 +696,8 @@ define([
                             template: {
                                 title: {
                                     en: "Domestic food price index (index)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Domestic food price index (index)",
+                                    es: "Domestic food price index (index)",
                                 },
                                 subtitle: ""
                             }
@@ -705,7 +705,7 @@ define([
                         config: {
                             adapter: {
                                 adapterType: 'faostat',
-                                type: "standard",
+                                type: "timeserie",
                                 xDimensions: 'year',
                                 yDimensions: 'unit',
                                 valueDimensions: 'value',
@@ -746,8 +746,8 @@ define([
                             template: {
                                 title: {
                                     en: "Gross domestic product per capita, PPP (constant 2011 international $)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Gross domestic product per capita, PPP (constant 2011 international $)",
+                                    es: "Gross domestic product per capita, PPP (constant 2011 international $)",
                                 },
                                 subtitle: ""
                             }
@@ -755,7 +755,7 @@ define([
                         config: {
                             adapter: {
                                 adapterType: 'faostat',
-                                type: "standard",
+                                type: "timeserie",
                                 xDimensions: 'year',
                                 yDimensions: 'unit',
                                 valueDimensions: 'value',
@@ -794,7 +794,7 @@ define([
                         config: {
                             adapter: {
                                 adapterType: 'faostat',
-                                type: "standard",
+                                type: "timeserie",
                                 xDimensions: 'year',
                                 yDimensions: 'unit',
                                 valueDimensions: 'value',
@@ -856,7 +856,7 @@ define([
                         config: {
                             adapter: {
                                 adapterType: 'faostat',
-                                type: "standard",
+                                type: "timeserie",
                                 xDimensions: 'year',
                                 yDimensions: 'unit',
                                 valueDimensions: 'value',
@@ -864,6 +864,13 @@ define([
                             },
                             template: {
                                 // height: '100px'
+                            },
+                            creator: {
+                                /*chartObj: {
+                                    chart: {
+                                        type: "column"
+                                    }
+                                }*/
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -919,6 +926,7 @@ define([
             }
         },
 
+        // pg.36
         land: {
 
             title: i18n.land,
@@ -938,7 +946,7 @@ define([
 
                 items: [
 
-                    {
+                    /*{
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
@@ -947,9 +955,9 @@ define([
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
-                                    en: "Composition of agricultural area {{area}}",
-                                    fr: "Composition de la surface agricole {{area}}",
-                                    es: "Composición del área agrícola {{area}}"
+                                    en: "Land Use",
+                                    fr: "Land Use",
+                                    es: "Land Use"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -967,13 +975,96 @@ define([
                                 height: '300px'
                             },
                             creator: {
+                                chartObj: {
+                                    chart: {
+                                       // type: 'column',
+                                        type: 'bar',
+                                       // inverted: true
+                                    },
+                                    plotOptions: {
+                                        column: {
+                                            stacking: 'normal'
+
+                                        },
+                                        bar: {
+                                            stacking: 'normal'
+
+                                        },
+                                        area: {
+                                            stacking: 'normal'
+
+                                        },
+                                        series: {
+                                            marker: {
+                                                enabled: false
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
                             domain_codes: ['RL'],
                             List2Codes: [5110],
-                            List3Codes: [6621, 6650, 6655, 6661, 6670],
+                            List3Codes: [6610, 6661, 6670],
+                            List4Codes: ['_1'],
+                            "order_by": 'year'
+                        }
+                    },
+*/
+                    {
+                        type: 'chart',
+                        class: "col-xs-12 col-md-6",
+
+                        // labels?
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Land Use",
+                                    fr: "Land Use",
+                                    es: "Land Use"
+                                },
+                                subtitle: "{{year}}"
+                            }
+                        },
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "timeserie",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item']
+                            },
+                            template: {
+                                height: '300px'
+                            },
+                            creator: {
+                                chartObj: {
+                                    chart: {
+                                        type: 'area'
+                                    },
+                                    plotOptions: {
+                                        area: {
+                                            stacking: 'normal',
+
+                                        },
+                                        series: {
+                                            marker: {
+                                                enabled: false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        allowedFilter: ['area', 'year'],
+                        filter: {
+                            domain_codes: ['RL'],
+                            List2Codes: [5110],
+                            List3Codes: [6610, 6661, 6670],
                             List4Codes: ['_1'],
                             "order_by": 'year'
                         }
@@ -988,39 +1079,51 @@ define([
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
-                                    en: "Land Use",
-                                    fr: "Utilizo de la Tierra",
-                                    es: "Utilisation des terres"
+                                    en: "Agricultural Area",
+                                    fr: "Agricultural Area",
+                                    es: "Agricultural Area"
                                 },
-                                subtitle: "2012"
+                                subtitle: "{{year}}"
                             }
-
                         },
-
                         config: {
                             adapter: {
                                 adapterType: 'faostat',
-                                type: "pie",
-                                xDimensions: null,
-                                yDimensions: null,
+                                type: "timeserie",
+                                xDimensions: 'year',
+                                yDimensions: 'unit',
                                 valueDimensions: 'value',
-                                seriesDimensions: ['item']
+                                seriesDimensions: ['area', 'item']
                             },
                             template: {
                                 height: '300px'
                             },
                             creator: {
+                                chartObj: {
+                                    chart: {
+                                        type: 'area'
+                                    },
+                                    plotOptions: {
+                                        area: {
+                                            stacking: 'normal'
+                                        },
+                                        series: {
+                                            marker: {
+                                                enabled: false
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         },
-                        allowedFilter: ['area', 'year', 'item', 'aggregation'],
+                        allowedFilter: ['area', 'year'],
                         filter: {
-                            domain_codes: ["RL"],
+                            domain_codes: ['RL'],
                             List2Codes: [5110],
-                            List3Codes: [6621, 6650, 6655, 6661, 6670],
-                            List4Codes: [2012],
-                            //List4Codes: ['_1'],
-                            order_by: 'year DESC, item ASC'
-                            // limit: 5
+                            //List3Codes: [ 6610, 6661, 6670],
+                            List3Codes: [6621, 6650, 6655],
+                            List4Codes: ['_1'],
+                            "order_by": 'year'
                         }
                     },
 
@@ -1034,8 +1137,7 @@ define([
                         }
                     },
 
-
-                    {
+                  /*  {
                         type: 'table',
                         class: "col-xs-12 col-md-6",
 
@@ -1077,7 +1179,7 @@ define([
                             List4Codes: [2012],
                             order_by: 'value DESC'
                         }
-                    },
+                    },*/
 
                 ]
             }
@@ -1405,6 +1507,63 @@ define([
                         }
                     },
 
+
+                    {
+                        type: 'chart',
+                        class: "col-md-12",
+
+                        //bridge configuration
+                        bridge: {
+
+                            type: "faostat"
+
+                        },
+
+                        // labels
+                        labels: {
+                            // template to be applied to the config.template for the custom object
+                            template: {
+                                title: {
+                                    en: "Cereals, total production",
+                                    fr: "Cereals, total production",
+                                    es: "Cereals, total production"
+                                }
+                            }
+                        },
+
+                        config: {
+                            adapter: {
+                                adapterType: 'faostat',
+                                type: "timeserie",
+                                xDimensions: ['year'],
+                                yDimensions: 'unit',
+                                valueDimensions: 'value',
+                                seriesDimensions: ['area', 'item', 'element']
+                            },
+                            template: {
+                                height:'300px'
+                                // default labels to be applied
+                            },
+                            creator: {
+                                chartObj: {}
+                            }
+                        },
+                        allowedFilter: ['area', 'year', 'item', 'aggregation'],
+                        deniedTemplateFilter: [],
+                        filter: {
+                            domain_codes: ['QC'],
+                            List2Codes: [
+                                2312,
+                                2413,
+                                2510
+                            ],
+                            List3Codes: [1717],
+                            List4Codes: ["_1"],
+                            "null_values": false,
+                            "order_by": 'year',
+                        }
+                    },
+
                     /*{
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
@@ -1573,17 +1732,17 @@ define([
                                     fr: "Emissions",
                                     es: "Emissions"
                                 },
-                                subtitle: "1990 - 2012"
+                                subtitle: "1990 - 2014"
                             }
                         },
                         config: {
                             adapter: {
                                 adapterType: 'faostat',
                                 type: "timeserie",
-                                xDimensions: 'year',
-                                yDimensions: null,
+                                xDimensions: ['year'],
+                                yDimensions: 'unit',
                                 valueDimensions: 'value',
-                                seriesDimensions: ['item', 'element']
+                                seriesDimensions: ['area', 'item', 'element']
                             },
                             template: {
                                 height:'300px'
@@ -1593,9 +1752,9 @@ define([
                         },
                         allowedFilter: ['area'],
                         filter: {
-                            domain_codes: ["GL", "GT"],
-                            List2Codes: [7231, 7217],
-                            List3Codes: [1711, 1707],
+                            domain_codes: ["GT"],
+                            List2Codes: [7231],
+                            List3Codes: [1711],
                             List4Codes: [
                                 1990,
                                 1991,
@@ -1619,7 +1778,9 @@ define([
                                 2009,
                                 2010,
                                 2011,
-                                2012
+                                2012,
+                                2013,
+                                2014
                             ],
                             "order_by": 'year',
                             "limit": '-1'
@@ -1639,7 +1800,7 @@ define([
                                     fr: "Émissions par secteur",
                                     es: "Emissions por sector"
                                 },
-                                subtitle: "1990 - 2012"
+                                subtitle: "1990 - 2014"
                             }
                         },
                         config: {
@@ -1685,7 +1846,9 @@ define([
                                 2009,
                                 2010,
                                 2011,
-                                2012
+                                2012,
+                                2013,
+                                2014
                             ],
                             "group_by": 'year',
                             "order_by": 'area',
