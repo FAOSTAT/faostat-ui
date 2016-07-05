@@ -71,7 +71,7 @@ CACHE MANIFEST
 //fenixrepo.fao.org/cdn/faostat/js/jbpivot/0.1.0/jbPivot.css
 //fenixrepo.fao.org/cdn/faostat/js/leaflet/0.7.7/leaflet.css
 //fenixrepo.fao.org/cdn/faostat/js/node-waves/0.7.5/waves.min.css
-../../submodules/fenix-ui-map/dist/fenix-ui-map.min.css
+# ./submodules/fenix-ui-map/dist/fenix-ui-map.min.css
 //fast.fonts.com/cssapi/0ad75cee-12a6-49a0-a922-c4ecad41ec44.css
 //fonts.googleapis.com/icon?family=Material+Icons
 

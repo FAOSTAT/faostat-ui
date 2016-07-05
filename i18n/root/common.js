@@ -103,6 +103,8 @@ define({
     country_indicators: 'Country Indicators',
 
     error_export: "Aw, Snap!. <br> Something went wrong during the download of the data.",
-    error_preview: "Aw, Snap!. <br> Something went wrong during the fetch of the data."
+    error_preview: "Aw, Snap!. <br> Something went wrong during the fetch of the data.",
+
+    help_us_improve_this_site: "Help us improve this site"
 
 });
