@@ -7,7 +7,6 @@ define([
     'config/Events',
     'faostatapiclient',
     'i18n!nls/common',
-    'fs-s-m/start',
     'FileSaver',
     'tableExport',
     'amplify'
