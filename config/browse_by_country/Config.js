@@ -23,7 +23,8 @@ define([
             leaflet: {
                 zoomControl: false,
                 attributionControl: true,
-                scrollWheelZoom: false,
+                scrollWheelZoom: true,
+                touchZoom: true,
                 minZoom: 1
             },
             fenix_ui_map: {
@@ -59,7 +60,8 @@ define([
                 leaflet: {
                     zoomControl: false,
                     attributionControl: false,
-                    scrollWheelZoom: false,
+                    scrollWheelZoom: true,
+                    touchZoom: true,
                     minZoom: 1
                 },
                 adapter: {

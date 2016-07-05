@@ -225,7 +225,7 @@ define(function () {
 
             buttonOptions: {
                 //x: 0,
-                //y: -5,
+                //y: -10,
                 symbolFill: '#E0E0E0',
                 symbolSize: 14,
                 symbolStroke: '#666',
@@ -306,6 +306,7 @@ define(function () {
                 showInLegend: true
             },
             series: {
+                fillOpacity: 0.65,
                 allowPointSelect: true, //Permette di selezionare i punti della chart
                 animation: { // Configura l'animazione di entrata
                     duration: 1000,
