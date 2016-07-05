@@ -30,13 +30,12 @@ define(function () {
             zoomType: 'xy', //Attiva lo zoom e stabilisce in quale dimensione
             //selectionMarkerFill: 'rgba(0,0,0,0.25)',//Colore di fonfo della selezione per lo zoom (trasparente per far vedere sotto)
 
-
             resetZoomButton: {
                 position: {
                     align: 'right', //Allineamento zoom orizzontale
                     //verticalAlign:'middle' //Allineamento zoom verticale
-                    x: -10 //Posizione del pulsante rispetto all'allineamento (valori positivi > destra) e al PLOT
-
+                    x: -30, //Posizione del pulsante rispetto all'allineamento (valori positivi > destra) e al PLOT
+                    y: 0
                 },
                 theme: {
                     fill: '#FFFFFF', //Colore di background pulsante reset zoom
@@ -225,6 +224,8 @@ define(function () {
             },
 
             buttonOptions: {
+                //x: 0,
+                //y: -5,
                 symbolFill: '#E0E0E0',
                 symbolSize: 14,
                 symbolStroke: '#666',
@@ -237,7 +238,7 @@ define(function () {
                 // text: null,
                 theme: {
                     fill: 'white', // capture hover
-                    stroke: 'none'
+                    stroke: 'none',
                 },
                 verticalAlign: 'top',
                 width: 24

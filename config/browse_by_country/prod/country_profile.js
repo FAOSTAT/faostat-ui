@@ -183,7 +183,7 @@ define([
                                 title: {
                                     en: "Fertilizers consumption in nutrients",
                                     fr: "Fertilizers consumption in nutrients",
-                                    es: "Fertilizers consumption in nutrients",
+                                    es: "Fertilizers consumption in nutrients"
                                 },
                                 subtitle: "2000 - 2012"
                             }

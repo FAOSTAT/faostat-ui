@@ -7,7 +7,7 @@ define([
 
     return {
 
-        "filter": {
+        filter: {
 
             defaultFilter: {
                 "domain_code": ["QP"],
@@ -19,11 +19,14 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
+                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
+                    //"title": "title",
                     "componentType": {
-                        "class": "col-lg-3",
+                        // <!-- TODO: add a class instead of bootstrap -->
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
-                        //"multiple": true
+                        "multiple": false
                     },
                     "config": {
                         "dimension_id": "item",
@@ -37,9 +40,9 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
-                        //"multiple": true
+                        "multiple": false
                     },
                     "config": {
                         "dimension_id": "area",
@@ -53,7 +56,7 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
@@ -91,9 +94,24 @@ define([
             labels: {
                 // labels to dinamically substitute the title and subtitle
                 default: {
+                    /*aggregation: {
+                     en: "Average",
+                     fr: "Moyenne",
+                     es: "Promedio"
+                     },
+                     year: "1993 - 2013",
+                     area: {
+                     "en": "Afghanistan",
+                     "fr": "Afghanistan",
+                     "es": "Afghanistan"
+                     },
+                     item: {
+                     "en": "Rice, milled",
+                     "fr": "Rice, milled",
+                     "es": "Rice, milled"
+                     }*/
                 }
             },
-
 
             //bridge configuration
             bridge: {
@@ -108,7 +126,7 @@ define([
             items: [
                 {
                     type: 'map',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -125,12 +143,12 @@ define([
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-                    
+
                     //height:'250px',
                     config: {
                         template: {}
                     },
-                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
+                    allowedFilter: ['item', 'year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
@@ -144,11 +162,10 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Production of {{item}} in {{area}}",
@@ -168,7 +185,10 @@ define([
                             valueDimensions: 'value',
                             seriesDimensions: ['area', 'item', 'element']
                         },
-                        template: {},
+                        template: {
+                            // height:'350px'
+                            // default labels to be applied
+                        },
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item'],
@@ -180,7 +200,6 @@ define([
 
                     // labels?
                     labels: {
-                        // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Production share of {{item}} by region",
@@ -260,9 +279,9 @@ define([
                         "order_by": 'value DESC',
                         "limit": '10'
                     }
-                },
+                }
             ]
         }
 
-    }
+    };
 });

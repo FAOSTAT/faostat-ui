@@ -29,7 +29,8 @@ define([
              //State,
              View,
              //AuthManager,
-             i18nLabels, template, FAOSTATMenu, Waiting, Loading, Common, GoogleAnalyticsManager, Export, SearchBox, MetadataViewer,
+             i18nLabels, template, FAOSTATMenu, Waiting, Loading, Common, GoogleAnalyticsManager, Export, SearchBox, 
+             MetadataViewer,
              Modal,
              toastr
             // swal
