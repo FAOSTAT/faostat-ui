@@ -1,9 +1,10 @@
 /*global define*/
 define([
     'jquery',
+    'globals/Common',
     'config/submodules/fx-chart/highcharts_template',
     'i18n!nls/browse_by_domain'
-], function ($, HighchartsTemplate, i18n) {
+], function ($, C, HighchartsTemplate, i18n) {
 
     'use strict';
 
@@ -88,7 +89,8 @@ define([
                 },
                 adapter: {
                     adapterType: 'faostat',
-                    modelType: 'faostat'
+                    modelType: 'faostat',
+                    lang: C.getLocale()
                 },
                 template: {
                     class: '',
