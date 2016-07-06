@@ -133,8 +133,12 @@ var config = {
                     'highcharts':  CDN + '/js/highcharts/4.2.5/js/highcharts',
                     'highstock':  CDN + '/js/highstock/2.1.9/js/highstock',
 
+                    'highcharts-more': CDN + '/js/highcharts/4.2.5/js/highcharts-more',
                     // highcharts plugins TODO: switch to CDN if they are going to be used
+                    'highcharts-treemap': CDN + '/js/highcharts/4.2.5/js/modules/treemap',
+                    'highcharts-heatmap': CDN + '/js/highcharts/4.2.5/js/modules/heatmap',
                     'highcharts-export': CDN + '/js/highcharts/4.2.5/js/modules/exporting',
+                    
                     //'highcharts-export': '{FENIX_CDN}/js/highcharts/4.0.4/js/modules/exporting',
                     'highcharts-export-csv': 'http://highslide-software.github.io/export-csv/export-csv',
 
@@ -350,6 +354,15 @@ var config = {
                     },
                     "highcharts-export-csv": {
                         "deps": ["highcharts", "highcharts-export" ]
+                    },
+                    "highcharts-treemap": {
+                        "deps": ["highcharts", "highcharts-heatmap"]
+                    },
+                    "highcharts-heatmap": {
+                        "deps": ["highcharts"]
+                    },
+                    "highcharts-more": {
+                        "deps": ["highcharts"]
                     },
                 }
             }
