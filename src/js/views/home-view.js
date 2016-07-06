@@ -435,7 +435,7 @@ define([
 
             bindEventListeners: function () {
 
-                this.$FAOSTAT_BULK_ZIP.on('click', function() {
+                this.$FAOSTAT_BULK_ZIP.on('click', function(e) {
                     amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.faostat_bulk_downloads_zip);
                 });
 

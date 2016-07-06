@@ -1,17 +1,19 @@
 /*global define*/
 define([
     'jquery',
+    'require',
     'loglevel',
     'handlebars',
     'i18n!nls/common',
-    'text!lib/common/templates/modal.hbs',
-    'views/standards-glossary-view'
+    'text!lib/common/templates/modal.hbs'
+    //'views/standards-glossary-view'
 ], function ($,
+             Require,
              log,
              Handlebars,
              i18nLabels,
-             templates,
-             GlossaryView) {
+             templates) {
+             //GlossaryView) {
 
     'use strict';
     
@@ -44,26 +46,35 @@ define([
 
     Modal.prototype.glossary = function () {
 
-        // TODO: in theory could be a singleton
-        var $MODAL = this._initModal({
-                title:  i18nLabels.glossary
-            }),
-            $CONTAINER = $MODAL.find(s.CONTAINER),
-            view_glossary = new GlossaryView({
-                table: {
-                    height: 300
-                }
+        var self = this;
+
+
+        Require('views/standards-glossary-view', function(GlossaryView) {
+
+            // TODO: in theory could be a singleton
+            var $MODAL = self._initModal({
+                    title: i18nLabels.glossary
+                }),
+                $CONTAINER = $MODAL.find(s.CONTAINER),
+
+            // TODO: view_glossary could be global instead of being
+                view_glossary = new GlossaryView({
+                    table: {
+                        height: 300
+                    }
+                });
+
+            $CONTAINER.html(view_glossary.$el);
+
+            // show modal
+            $MODAL.modal('show');
+
+            // destroy event listener on the modal and dispose the view
+            $MODAL.on('hidden.bs.modal', function () {
+                $MODAL.off('hidden.bs.modal');
+                view_glossary.dispose();
             });
 
-        $CONTAINER.html(view_glossary.$el);
-
-        // show modal
-        $MODAL.modal('show');
-
-        // destroy event listener on the modal and dispose the view
-        $MODAL.on('hidden.bs.modal', function () {
-            $MODAL.off('hidden.bs.modal');
-            view_glossary.dispose();
         });
 
     };

@@ -159,7 +159,48 @@ define([
                         "group_by": 'year',
                         "order_by": 'reporterarea'
                     }
-                }
+                },
+               /* {
+                    type: 'chart',
+                    class: "col-xs-12 col-md-12",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Most produced commodities, {{area}}",
+                                fr: "Produits plus fabriqués, {{area}}",
+                                es: "Productos más producidos, {{area}}"
+                            },
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "treemap",
+                            // xDimensions: ['area'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['partnerarea']
+                        },
+                        template: {
+                            height:'350px'
+                            // default labels to be applied
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['item', 'year', 'element', 'aggregation', 'reporterarea'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List2Codes: ["5000>"],
+                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
+                        "group_by": 'year',
+                        "order_by": 'reporterarea'
+                    }
+                }*/
             ]
         }
 

@@ -13,11 +13,11 @@
     <!-- left side -->
     <div class="col-md-8">
 
-        <div class="row">
+     <!--   <div class="row">
 
             <div class="col-md-12">
 
-                <!-- Swiper -->
+                 &lt;!&ndash;Swiper &ndash;&gt;
                 <div class="swiper-container fs-home-swiper">
 
                     <div class="swiper-wrapper">
@@ -37,7 +37,7 @@
                                 <h1 data-swiper-parallax="-100">
                                     Food security in the 2030 Agenda for Sustainable Development
                                 </h1>
-                                <!-- http://www.fao.org/sustainable-development-goals/home/en/ -->
+                                &lt;!&ndash; http://www.fao.org/sustainable-development-goals/home/en/ &ndash;&gt;
                                 <h2 class="hidden-xs" data-swiper-parallax="-500">
                                     Adopted by the UN’s 193 Member States in 2015, the Sustainable Development Goals (SDGs) are new global goals that succeeded the Millennium Development Goals in 2016. The SDGs will shape national development policies for the next 15 years. Food and agriculture is at the heart of the 17 SDGs, beginning with SDG1 - End poverty and SDG2 - End hunger.                                </h2>
                                 <div class="white-stripe"></div>
@@ -46,10 +46,10 @@
                         </div>
                         <div class="swiper-slide">
                             <div class="title">
-                                <!-- EN: http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/
+                                &lt;!&ndash; EN: http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/
                                     FR: http://www.fao.org/economic/ess/ess-publications/lannuaire-statistique/fr/
                                     SP: http://www.fao.org/economic/ess/ess-publications/anuario-estadistico/es/
-                                    -->
+                                    &ndash;&gt;
                                 <h1 data-swiper-parallax="-100">FAO statistical yearbooks</h1>
                                 <h2 class="hidden-xs" data-swiper-parallax="-500">
                                     FAO statistical yearbooks provide thematic and regional data and analysis. They provide an overview of key indicators, data visualizations and country-level tables.
@@ -76,11 +76,11 @@
 
         </div>
 
-        <div class="hidden-xs"><br><br></div>
+        <div class="hidden-xs"><br><br></div>-->
 
         <div class="row">
 
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="elegant-card z-depth-1 hoverable">
                     <!-- Image wrapper -->
                     <div class="card-up view overlay hm-white-slight">
@@ -96,12 +96,16 @@
                     <div class="card-content">
                         <h3>Food and agriculture data</h3>
                         <p>FAOSTAT provides free access to food and agriculture data for 245 countries and 35 regional areas from 1961 to the most recent year available.</p>
-                        <p>Enhanced features include browsing and analysis of data, an advanced interactive data download, and enhanced data exchange through web services.</p>
+                        <!--<p>Enhanced features include browsing and analysis of data, an advanced interactive data download, and enhanced data exchange through web services.</p>-->
                     </div>
 
                 </div>
             </div>
+        </div>
 
+        <div class="hidden-xs"><br><br></div>
+
+        <div class="row">
             <div class="col-sm-6">
                 <div class="elegant-card z-depth-1 hoverable">
                     <!-- Image wrapper -->
@@ -130,6 +134,26 @@
 
                     </div>
 
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="elegant-card z-depth-1 hoverable">
+                    <!-- Image wrapper -->
+                    <div class="card-up view overlay hm-white-slight">
+                        <a><img data-original="src/images/homepage/info-1.jpg" class="lazy img-responsive"></a>
+                    </div>
+
+                    <!-- Button -->
+                    <a href='{{URL_BROWSE_BY_COUNTRY}}' class="btn-floating btn-primary btn-large waves-effect waves-light">
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </a>
+
+                    <!-- Content -->
+                    <div class="card-content">
+                        <h3>{{country_indicators}}</h3>
+                        <p>Country indicators provide an overview of key indicators and charts by country.</p>
+                    </div>
                 </div>
             </div>
 
@@ -234,24 +258,41 @@
     <div class="col-md-4">
 
         <div class="elegant-card z-depth-1 hoverable">
-            <!-- Image wrapper -->
-            <div class="card-up view overlay hm-white-slight">
+            <div class="card-up view overlay hm-white-slight" style='height:75px;'>
                 <a><img src="src/images/homepage/stats-b.png" class="img-responsive"></a>
             </div>
-
-
-            <!-- Button -->
-            <a target='_bnlak' data-role="bulk_download" href='{{URL_FAOSTAT_DATABASE_ZIP}}' class="btn-floating btn-primary btn-large waves-effect waves-light">
-                <i class="material-icons">keyboard_arrow_right</i>
+            <a target='_bnlak' data-role="bulk_download" href='{{URL_FAOSTAT_DATABASE_ZIP}}' class="btn-floating btn-default btn-large waves-effect waves-light">
+                <i class="material-icons">file_download</i>
             </a>
 
-            <!-- Content -->
-            <div class="card-content">
-                <h3>{{faostat_database_download}}</h3>
-                <p>Updated on 23/06/2016 (772 MB)</p>
+            <div class="card-content clearfix">
+
+                <h4 class="pull-right">{{faostat_database_download}}</h4>
+                <small class="pull-right">Updated on 23/06/2016 (772 MB)</small>
             </div>
 
         </div>
+
+<!--        <div class="panel panel-default hoverable">
+
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-xs-4 col-sm-3">
+                        <a data-role="bulk_download" href='{{URL_FAOSTAT_DATABASE_ZIP}}' class="btn-floating waves-effect waves-light btn-default" data-role="export">
+                            <i class="material-icons">file_download</i>
+                        </a>
+                    </div>
+                    <div class="col-xs-8 col-sm-9">
+                        <div class="pull-right clearfix">
+                            <h4>{{faostat_database_download}}</h4>
+                            <small>Updated on 23/06/2016 (772 MB)</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>-->
 
 
         <div class="hidden-xs"><br></div>
