@@ -1,10 +1,5 @@
 /*global define, document*/
-define([
-    'jquery',
-    'loglevel',
-    'underscore.string',
-    'amplify'
-], function ($, log, _s) {
+define(function () {
 
     'use strict';
 
