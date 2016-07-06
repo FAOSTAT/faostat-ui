@@ -7,15 +7,9 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
         /* Store configuration. */
         this.CONFIG = {
-            //base_url: 'http://fenix.fao.org/faostat/demo/api/v1/',
-            //base_url: 'http://localhost:8081/api/v1/',
-            //base_url: 'http://fenix.fao.org:18100/api/v1/',
             base_url: 'http://fenixservices.fao.org/faostat/api/v1/',
-            //base_url: 'http://fenix.fao.org:18600/api/v1/',
-            //base_url: 'http://hqlprfenixapp2.hq.un.fao.org:10600/api/v1/',
             //base_url: '@@url_api',
             mode: '@@mode'
-            //mode: 'dev'
         };
 
         /* Extend default configuration. */

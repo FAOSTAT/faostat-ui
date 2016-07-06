@@ -16,6 +16,11 @@ define(function () {
             select_google_form: {
                 category: 'google_form',
                 action: 'clicked'
+            },
+
+            faostat_bulk_downloads_zip: {
+                category: 'faostat_full_bulk_downloads_zip',
+                action: 'downloaded'
             }
 
         },
