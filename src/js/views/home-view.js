@@ -426,6 +426,7 @@ define([
                         document.getElementById(s.TWITTER),
                         {
                             height: 550,
+                            width: '100%',
                             screenName: "FAOStatistics"
                         }
                     );

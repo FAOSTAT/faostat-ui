@@ -671,7 +671,7 @@ i.left {
 
 .elegant-card .card-content {
   padding: 2em;
-  color: #666;
+  color: #333333;
   background-color: white; }
 
 .elegant-card .card-content h5 {
@@ -711,7 +711,7 @@ i.left {
 
 .elegant-card .card-details,
 .elegant-card .card-details a {
-  color: #666666; }
+  color: #333333; }
 
 @media only screen and (max-width: 500px) {
   .elegant-card .card-up {
@@ -8093,6 +8093,41 @@ div#google_search input#search-submit {
 
 .leaflet-control {
   opacity: 0.9; }
+
+/* zoom control */
+/* to keep */
+.leaflet-control-zoom-in {
+  font: bold 0 'Lucida Console', Monaco, monospace;
+  width: 31px !important;
+  height: 30px !important;
+  background-image: url(images/fenix-map-sprite.png);
+  background-position: -120px 0 !important; }
+
+.leaflet-control-zoom-in:hover {
+  background-position: -120px -30px !important; }
+
+/* to keep */
+.leaflet-control-zoom-out {
+  font: bold 0 'Lucida Console', Monaco, monospace;
+  width: 31px !important;
+  height: 30px !important;
+  background-image: url(images/fenix-map-sprite.png);
+  background-position: -150px 0 !important; }
+
+.leaflet-control-zoom-out:hover {
+  background-position: -150px -30px !important; }
+
+/* to keep */
+.leaflet-control-zoom-reset {
+  font: bold 0 'Lucida Console', Monaco, monospace;
+  width: 31px !important;
+  height: 30px !important;
+  background-image: url(images/fenix-map-sprite.png);
+  background-position: -210px 0 !important; }
+
+.leaflet-control-zoom-reset:hover {
+  cursor: pointer;
+  background-position: -210px -30px !important; }
 
 /* Range Slider */
 .irs-bar, .irs-bar-edge, .irs-line {

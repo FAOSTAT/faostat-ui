@@ -434,7 +434,9 @@ i.left {
 }
 .elegant-card .card-content {
   padding: 2em;
-  color: #666;
+  color: $fenix-text;
+  //color: #292F33;
+  //color: #666;
   background-color: #fff
 }
 .elegant-card .card-content h5 {
@@ -479,7 +481,9 @@ i.left {
 }
 .elegant-card .card-details,
 .elegant-card .card-details a {
-  color: #666
+  color: $fenix-text;
+  //color: #292F33;
+  //color: #666
 }
 @media only screen and (max-width: 500px) {
   .elegant-card .card-up {
