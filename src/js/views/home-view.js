@@ -4,6 +4,7 @@ define([
     'loglevel',
     'views/base/view',
     'globals/Common',
+    'config/Analytics',
     'config/Routes',
     'config/Config',
     'config/Events',
@@ -31,7 +32,7 @@ define([
 ], function ($, log,
              View,
              Common,
-             ROUTE, C, E, CM,
+             A, ROUTE, C, E, CM,
              template,
              // templateNews,
              templateDomains,
@@ -65,7 +66,8 @@ define([
             PARTNERS: "#fs_home_partners",
             COUNTRY_PROFILES: "#fs_home_country_profiles",
             TWITTER: "fs_home_twitter",
-            TERRITORIAL_NOTES: '#territorial_notes'
+            TERRITORIAL_NOTES: '#territorial_notes',
+            FAOSTAT_BULK_ZIP: '[data-role="bulk_download"]'
 
         },
         HomeView = View.extend({
@@ -121,8 +123,9 @@ define([
                 this.$WHATS_NEW = this.$el.find(s.WHATS_NEW);
                 this.$COMING_UP = this.$el.find(s.COMING_UP);
                 this.$DATABASE_UPDATES = this.$el.find(s.DATABASE_UPDATES);
+                this.$FAOSTAT_BULK_ZIP = this.$el.find(s.FAOSTAT_BULK_ZIP);
 
-                this.$INFO = this.$el.find(s.INFO);
+/*                this.$INFO = this.$el.find(s.INFO);
                 this.$FAO_LINKS = this.$el.find(s.FAO_LINKS);
                 this.$PARTNERS = this.$el.find(s.PARTNERS);
                 this.$RELEASE_CALENDAR = this.$el.find(s.RELEASE_CALENDAR);
@@ -130,7 +133,7 @@ define([
                 this.$CHART1 = this.$el.find(s.CHART + "1");
                 this.$CHART2 = this.$el.find(s.CHART + "2");
                 this.$CHART3 = this.$el.find(s.CHART + "3");
-                this.$CHART4 = this.$el.find(s.CHART + "4");
+                this.$CHART4 = this.$el.find(s.CHART + "4");*/
 
                 this.api = new API();
 
@@ -147,7 +150,9 @@ define([
 
                 this.initTwitter();
 
-                this.initCountryTerritorialNotes();
+                //this.initBulkDownload();
+
+                //this.initCountryTerritorialNotes();
 
                 //this.initDomains();
 
@@ -194,26 +199,6 @@ define([
                         .value();
 
                     var v = _.chain(json.data).pluck('group_code').unique().value();
-
-
-                    // TODO: how to handle the browse blacklist/whitelist?
-                    // TODO: should come from the DB?
-                    /*_.each(json.data, function(d) {
-
-                     var v = {
-                     code: d.GroupCode,
-                     label: d.GroupName
-                     };
-
-                     // for now implemented just the whitelist from config file
-                     if ( browseWhiteList.indexOf(d.GroupCode) > -1) {
-                     v.addBrowse = true;
-                     }
-                     log.info(v)
-                     groups.push(v);
-
-                     });*/
-
 
                     var t = Handlebars.compile(templateDomains);
                     //self.$DOMAINS.hide().html(t(json)).slideDown(1000);
@@ -427,26 +412,6 @@ define([
                 });
 
             },
-            
-            initCountryTerritorialNotes: function() {
-
-                // territorial notes
-                this.$el.find(s.TERRITORIAL_NOTES).on('click', function(e) {
-
-                    e.preventDefault();
-
-                    amplify.publish(E.NOTIFICATION_INFO, {
-                        title: i18nLabels.territorial_notes,
-                        text: i18nLabels.territorial_notes_info
-                    });
-                });
-                
-                
-            },
-
-            initReleaseCalendar: function() {
-
-            },
 
             initTwitter: function() {
 
@@ -470,9 +435,34 @@ define([
 
             bindEventListeners: function () {
 
+                this.$FAOSTAT_BULK_ZIP.on('click', function() {
+                    amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.faostat_bulk_downloads_zip);
+                });
+
+
+                // territorial notes
+                /*this.$TERRITORIAL_NOTES.on('click', function(e) {
+
+                    e.preventDefault();
+
+                    amplify.publish(E.NOTIFICATION_INFO, {
+                        title: i18nLabels.territorial_notes,
+                        text: i18nLabels.territorial_notes_info
+                    });
+                });*/
+
             },
 
             unbindEventListeners: function () {
+
+                if (this.$FAOSTAT_BULK_ZIP) {
+                    this.$FAOSTAT_BULK_ZIP.off('click');
+                }
+
+                if (this.$DATABASE_UPDATES) {
+                    this.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).off();
+                }
+                //this.$TERRITORIAL_NOTES.off('click');
 
             },
 

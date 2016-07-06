@@ -1,4 +1,4 @@
-/*global define, amplify, document, window, escape */
+/*global define, amplify, document, window, escape, setTimeout */
 define([
     'jquery',
     'loglevel',
@@ -6,9 +6,7 @@ define([
     'config/Events',
     'config/Analytics',
     'config/Routes',
-    //'globals/State',
     'views/base/view',
-    //'globals/AuthManager',
     'i18n!nls/site',
     'text!templates/site.hbs',
     'FAOSTAT_UI_MENU',
@@ -22,18 +20,26 @@ define([
     'fs-m-v/start',
     'lib/common/modal',
     'toastr',
-    //'swal',
     'jquery.visible',
     'jquery.lazyload'
-], function ($, log, C, E, A, ROUTES,
-             //State,
+], function ($,
+             log,
+             C,
+             E,
+             A,
+             ROUTES,
              View,
-             //AuthManager,
-             i18nLabels, template, FAOSTATMenu, Waiting, Loading, Common, GoogleAnalyticsManager, Export, SearchBox, 
+             i18nLabels,
+             template,
+             FAOSTATMenu,
+             Waiting,
+             Loading,
+             Common,
+             GoogleAnalyticsManager,
+             Export, SearchBox,
              MetadataViewer,
              Modal,
              toastr
-            // swal
 ) {
 
     'use strict';
@@ -83,6 +89,7 @@ define([
             this.initComponents();
 
             this.bindEventListeners();
+
         },
 
         bindEventListeners: function () {
@@ -122,8 +129,6 @@ define([
 
             // publishing GA Events
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
-            //amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {});
-
 
             /* Switch Language */
             this.$el.find(s.LANGUAGE).find('a').on('click', function(e) {
@@ -162,7 +167,7 @@ define([
             this.initNotificationInitConfiguration();
 
             // init breadcrumb (N.B. not used)
-            this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
+            //this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
 
         },
 
@@ -173,7 +178,6 @@ define([
             // TODO: fix menu language and check how is it taken
             this.menu.init({
                 lang: Common.getLocale(),
-                //prefix: 'faostat_download_',
                 datasource: C.DATASOURCE
             });
 
@@ -189,7 +193,6 @@ define([
 
                         // route to search page
                         Common.changeURL(ROUTES.SEARCH_QUERY, [encodeURIComponent(q)], true);
-                        //Common.changeURL(ROUTES.SEARCH_QUERY, [encodeURI(q)], true);
 
                     }
                 }
@@ -212,9 +215,8 @@ define([
         },
 
         initGoogleFormAnalytics: function () {
-
-            console.log(this.$GOOGLE_FORM)
-            this.$GOOGLE_FORM.on('click', function(e) {
+            
+            this.$GOOGLE_FORM.on('click', function() {
                 amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.select_google_form);
             });
 
@@ -230,15 +232,17 @@ define([
 
         },
 
-        scrollTo: function(o) {
+        scrollTo: function(config) {
 
-            var o = o || {},
+            var o = config || {},
                 $container =  $(o.container),
                 paddingTop = o.paddingTop || 15,
                 animate = o.animate || true,
                 animateTime = o.animateTime || 800,
                 force = o.force || false,
-                forceInvisible =  o.forceInvisible || false;
+                forceInvisible =  o.forceInvisible || false,
+                scrollPos;
+
 
             if (o && $container) {
 
@@ -248,7 +252,7 @@ define([
                     // if is not hidden ($container.is(':visible'))
                     if ($container.is(':visible') || forceInvisible) {
 
-                        var scrollPos = $(o.container).offset().top + (-paddingTop);
+                        scrollPos = $(o.container).offset().top + (-paddingTop);
 
                         if (animate) {
                             //$(o.container).animate({"height": "47px", "padding-top": "25px"}, {duration: 10, easing: 'easeOutBounce'});
@@ -396,7 +400,6 @@ define([
         onNotificationAccept: function (data, callback) {
 
         },
-
 
         changeLanguage: function(lang) {
 
