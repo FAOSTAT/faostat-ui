@@ -23,6 +23,7 @@ define([
         population: {
 
             title: i18n.demographics,
+            icon: 'O',
 
             dashboard: {
 
@@ -156,6 +157,7 @@ define([
         inputs: {
 
             title: i18n.inputs,
+            icon: 'R',
 
             dashboard: {
 
@@ -294,6 +296,7 @@ define([
         undernourishment: {
 
             title: i18n.undernourishment,
+            icon: 'D',
 
             dashboard: {
 
@@ -395,6 +398,7 @@ define([
         food_availability: {
 
             title: i18n.food_availability,
+            icon: 'D',
 
             dashboard: {
 
@@ -631,6 +635,7 @@ define([
         food_access: {
 
             title: i18n.food_access,
+            icon: 'D',
 
             dashboard: {
 
@@ -821,6 +826,7 @@ define([
         food_utilization: {
 
             title: i18n.food_utilization,
+            icon: 'D',
 
             dashboard: {
 
@@ -930,6 +936,7 @@ define([
         land: {
 
             title: i18n.land,
+            icon: 'R',
 
             dashboard: {
 
@@ -1188,6 +1195,7 @@ define([
         economic_and_political_stability: {
 
             title: i18n.economic_and_political_stability,
+            icon: 'D',
 
             dashboard: {
 
@@ -1378,6 +1386,7 @@ define([
         production: {
 
             title: i18n.production,
+            icon: 'Q',
 
             dashboard: {
 
@@ -1703,6 +1712,7 @@ define([
         emissions: {
 
             title: i18n.emissions,
+            icon: 'G1',
 
             dashboard: {
 
@@ -1728,9 +1738,9 @@ define([
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
-                                    en: "Emissions",
-                                    fr: "Emissions",
-                                    es: "Emissions"
+                                    en: "Emissions (CO2 equivalent), Agriculture total + (Total)",
+                                    fr: "Emissions (CO2 equivalent), Agriculture total + (Total)",
+                                    es: "Emissions (CO2 equivalent), Agriculture total + (Total)"
                                 },
                                 subtitle: "1990 - 2014"
                             }
@@ -1796,9 +1806,9 @@ define([
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
-                                    en: "Emissions by sector",
-                                    fr: "Émissions par secteur",
-                                    es: "Emissions por sector"
+                                    en: "Emissions by sector (CO2 equivalent)",
+                                    fr: "Émissions par secteur (CO2 équivalent)",
+                                    es: "Emissions por sector (CO2 equivalente)"
                                 },
                                 subtitle: "1990 - 2014"
                             }
@@ -1855,7 +1865,7 @@ define([
                             "operator": 'AVG',
                             "limit": '-1'
                         }
-                    }
+                    },
 
                 ]
             }
