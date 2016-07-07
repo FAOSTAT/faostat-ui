@@ -16,10 +16,10 @@ define([
     'i18n!nls/home',
     'handlebars',
     'faostatapiclient',
-   // 'fx-c-c/start',
+    //'fx-c-c/start',
     //'config/browse_by_domain/Config',
-    /*'config/home/sample/chartModel',
-     'config/home/sample/whatsNew',
+    //'config/home/sample/chartModel',
+     /*'config/home/sample/whatsNew',
      'config/home/sample/comingUp',
      'config/home/sample/databaseUpdates',*/
     'moment',
@@ -40,8 +40,8 @@ define([
              i18nLabels, Handlebars, API,
              //ChartCreator,
              //BrowseByDomainConfig,
-             /* ChartModel,
-              WhatsNew,
+             // ChartModel,
+              /*WhatsNew,
               ComingUp,
               DatabaseUpdates,*/
              moment,
@@ -124,6 +124,8 @@ define([
                 this.$COMING_UP = this.$el.find(s.COMING_UP);
                 this.$DATABASE_UPDATES = this.$el.find(s.DATABASE_UPDATES);
                 this.$FAOSTAT_BULK_ZIP = this.$el.find(s.FAOSTAT_BULK_ZIP);
+
+                this.$CHART1 = this.$el.find(s.CHART + "1");
 
 /*                this.$INFO = this.$el.find(s.INFO);
                 this.$FAO_LINKS = this.$el.find(s.FAO_LINKS);
@@ -266,14 +268,33 @@ define([
 
                     amplify.publish(E.LOADING_HIDE, {container: self.$CHART1});
 
-                    c.init($.extend(true, {}, CM.chart, {model: d})).then(function (c) {
-
-                        c.render($.extend(true, {}, CM.chart, {container: self.$CHART1}));
-                        c.render($.extend(true, {}, CM.chart, {container: self.$CHART2}));
-                        c.render($.extend(true, {}, CM.chart, {container: self.$CHART3}));
-                        c.render($.extend(true, {}, CM.chart, {container: self.$CHART4}));
-
+                    c.init(
+                        $.extend(true,
+                            {},
+                            CM.chart,
+                        {
+                            container: self.$CHART1,
+                            model: d
+                        }
+                    )
+                    ).then(function(creator) {
+                        creator.render();
+                        //creator.render(Utils.lineChartOptions(o));
+                        //creator.render(Utils.columnChartOptions(o));
+                        //creator.render(Utils.barChartOptions(o));
                     });
+
+
+
+/*
+                    c.init($.extend(true, {}, CM.chart, {model: d}, {container: self.$CHART1})).then(function (c) {
+
+                        c.render();
+                        // c.render($.extend(true, {}, CM.chart, {container: self.$CHART2}));
+                        // c.render($.extend(true, {}, CM.chart, {container: self.$CHART3}));
+                        // c.render($.extend(true, {}, CM.chart, {container: self.$CHART4}));
+
+                    });*/
 
 
                 }).fail(function(e) {
