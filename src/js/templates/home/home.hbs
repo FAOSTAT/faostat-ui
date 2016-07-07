@@ -263,7 +263,7 @@
                     </a>
                     <!-- Content -->
                     <div class="card-content">
-                        <h3>{{rankings}}</h3>
+                        <h3 class="text-capitalized">{{rankings}}</h3>
                     </div>
 
                 </div>
@@ -325,10 +325,7 @@
 
         <div class="elegant-card-horizontal z-depth-1 hoverable">
 
-
-
-            <div class="card-content clearfix">
-
+            <div style='cursor:pointer;' class="card-content clearfix" data-role="bulk_download" data-url='{{URL_FAOSTAT_DATABASE_ZIP}}'>
 
                 <div class="card-horiz-right-image pull-right">
                     <i class="material-icons">file_download</i>

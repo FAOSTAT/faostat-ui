@@ -446,7 +446,7 @@ define([
                         "700247798168551424",
                         document.getElementById(s.TWITTER),
                         {
-                            height: 550,
+                            height: 905,
                             width: '100%',
                             screenName: "FAOStatistics"
                         }
@@ -457,8 +457,12 @@ define([
 
             bindEventListeners: function () {
 
-                this.$FAOSTAT_BULK_ZIP.on('click', function(e) {
+                this.$FAOSTAT_BULK_ZIP.on('click', function() {
+
                     amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.faostat_bulk_downloads_zip);
+
+                    window.open($(this).data('url'));
+
                 });
 
 

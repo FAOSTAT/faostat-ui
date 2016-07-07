@@ -672,7 +672,7 @@ i.left {
 .elegant-card .card-content {
   padding: 2em;
   color: #333333;
-  background-color: #fff; }
+  background-color: white; }
 
 .elegant-card .card-content h5 {
   margin-bottom: 5px; }
@@ -697,7 +697,7 @@ i.left {
   margin-right: 5px; }
 
 .elegant-card .card-footer ul a {
-  color: #fff; }
+  color: white; }
 
 .elegant-card .card-label {
   margin-bottom: -27px;
@@ -2698,7 +2698,7 @@ footer.container {
   color: #337ab7; }
 
 .label-danger {
-  color: #E00000; }
+  color: #e00000; }
 
 .label {
   background-color: transparent; }
@@ -7932,7 +7932,7 @@ div#google_search input#search-submit {
     /* IE10+ */
     background: linear-gradient(to bottom, white 0%, #efefef 84%);
     /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 );
     /* IE6-8 */ }
     .faostat_ui_menu .navbar-default .navbar-brand {
       color: white;
@@ -8197,7 +8197,7 @@ div#google_search input#search-submit {
   height: 48px;
   line-height: 48px;
   right: 30px;
-  bottom: 30px;
+  bottom: 95px;
   padding-top: 2px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -8476,7 +8476,7 @@ div#google_search input#search-submit {
     display: inline-block;
     margin: 3px 0;
     cursor: pointer;
-    border: 1px solid #D2D0D0;
+    border: 1px solid #d2d0d0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
@@ -8533,10 +8533,10 @@ div#google_search input#search-submit {
 
 .pivot .collapse_button {
   background-color: transparent;
-  border: 1px solid #D2D0D0;
+  border: 1px solid #d2d0d0;
   font-family: "FrutigerLTW02-45Light", Arial, Helvetica, Verdana, sans-serif;
   font-weight: normal;
-  color: #D2D0D0; }
+  color: #d2d0d0; }
 
 [data-role="output-area"] {
   margin-top: 50px; }
@@ -8737,7 +8737,7 @@ div#google_search input#search-submit {
   left: -10px; }
 
 .swiper-pagination-bullet-active {
-  background-color: #2BBBAD; }
+  background-color: #2bbbad; }
 
 /*
 .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
@@ -8818,5 +8818,3 @@ div#google_search input#search-submit {
 
 /* Menu and some Header stuff TODO: remove the header related css from here */
 /* Modules. */
-
-/*# sourceMappingURL=index.css.map */
