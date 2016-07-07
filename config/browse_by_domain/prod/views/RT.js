@@ -46,6 +46,10 @@ define([
                         "dimension_id": "element",
                         "defaultCodes": [],
                         "filter": {
+                            whitelist: [
+                                2620,
+                                2920
+                            ]
                         }
                     }
                 },
@@ -222,50 +226,6 @@ define([
                         List1Codes: ["5100", "5200", "5300", "5400", "5500"],
                         "group_by": 'year',
                         "order_by": 'area'
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-xs-12",
-
-                    labels: {
-                        template: {
-                            title: {
-                                en: "{{area}} {{element}} by pesticide",
-                                fr: "{{area}} {{element}} by pesticide",
-                                es: "{{area}} {{element}} by pesticide"
-                            },
-                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
-                            valueDimensions: 'value',
-                            seriesDimensions: ['item']
-                        },
-                        template: {
-                            //height: '250px'
-                        },
-                        creator: {
-                            /* chartObj: {
-                             legend: {
-                             layout: 'vertical',
-                             align: 'right',
-                             verticalAlign: 'middle',
-                             }
-                             }*/
-                        }
-                    },
-                    allowedFilter: ['area', 'year', 'aggregation', 'element'],
-                    filter: {
-                        List3Codes: ["_1"],
-                        "group_by": 'year',
-                        "order_by": 'item'
                     }
                 },
                 {
