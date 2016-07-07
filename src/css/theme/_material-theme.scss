@@ -498,8 +498,16 @@ i.left {
 
 //////////////
 
-
+// this is custom for the homepage at the moment
 .elegant-card-horizontal{
+
+  margin: .5rem 0 1rem;
+  position: relative;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+
 
   h4{
     font-size: 24px;
