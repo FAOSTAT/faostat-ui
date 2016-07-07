@@ -117,6 +117,21 @@
   // TODO: check better height
   max-height:700px;
   //text-overflow: ellipsis;
+
+
+  // TODO: do it nicer? probably directly with the table functionality
+  /*.fixed-table-container {
+
+    border: 0px;
+
+  }
+
+  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+
+    border-left: 0px;
+
+  }*/
+
 }
 
 .pagination{

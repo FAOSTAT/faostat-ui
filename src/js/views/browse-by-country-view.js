@@ -336,6 +336,7 @@ define([
 
                     $container.html(t({
                         title: title,
+                        icon: view.icon,
                         index: key
                     }));
 
