@@ -7889,9 +7889,9 @@ div#google_search input#search-submit {
 .language-menu {
   margin-top: 15px; }
   .language-menu a.active {
-    color: black !important; }
+    color: #333333 !important; }
   .language-menu li.disabled {
-    color: #f1f1f1 !important; }
+    color: #dddddd !important; }
 
 .faostat_ui_menu .navbar-default .home-h-ico {
   display: none; }
