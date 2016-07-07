@@ -496,3 +496,40 @@ i.left {
 
 
 
+//////////////
+
+
+.elegant-card-horizontal{
+
+  h4{
+    font-size: 24px;
+  }
+
+  .card-horiz-left-text-up{
+    padding: 2em;
+    width: calc(100% - 110px);
+  }
+
+  .card-horiz-left-text-bottom{
+    padding: 8px 2em;
+    width: calc(100% - 110px);
+    border-top: 1px solid $fenix-light-hr;
+  }
+
+  .card-horiz-right-image{
+    width: 110px;
+    height: 160px;
+
+    background-color: $custom-color6;
+    text-align: center;
+    color: white;
+
+
+    .material-icons{
+      font-size: 50px;
+      line-height: 160px;
+    }
+  }
+
+
+}

@@ -1,6 +1,32 @@
 /* Homepage */
 
 
+.faostat-intro{
+
+   background-color:#f9f9f9;
+   background-image: url(../../src/images/homepage/home-intro.jpg);
+   background-size: cover;
+   color: white;
+   text-align: center;
+
+
+   &.jumbotron{
+      @include fx-no-border-radius;
+   }
+
+   h2{
+      margin-bottom: 25px;
+
+   }
+
+   p{
+      font-size: 18px;
+      margin-bottom: 30px;
+
+   }
+
+}
+
 
 
 .home-content{
