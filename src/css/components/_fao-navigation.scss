@@ -118,7 +118,7 @@ div#google_search input#search-submit {
 
     &.active {
 
-      color: black !important;
+      color: $fenix-text !important;
 
     }
 
@@ -128,7 +128,7 @@ div#google_search input#search-submit {
 
     &.disabled {
 
-      color: #f1f1f1 !important;
+      color: #dddddd !important;
 
     }
 
@@ -143,7 +143,6 @@ div#google_search input#search-submit {
   .home-ico, .home-h-ico{
 
   }
-
 
   .home-h-ico{
     display: none;
