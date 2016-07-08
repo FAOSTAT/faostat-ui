@@ -4,8 +4,9 @@ define([
     'views/site-view',
     'config/Events',
     'nprogress',
+    'globals/Common',
     'amplify'
-], function (Chaplin, SiteView, E, NProgress) {
+], function (Chaplin, SiteView, E, NProgress, Common) {
     'use strict';
 
     var Controller = Chaplin.Controller.extend({
@@ -21,6 +22,8 @@ define([
 
             // TODO: check if it is always worth to set it here
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW, {});
+
+            Common.updatePageTitle();
 
         }
 

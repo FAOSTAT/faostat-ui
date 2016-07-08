@@ -3,9 +3,10 @@ define(['chaplin',
         'config/Events',
         'loglevel',
         'nprogress',
+        'underscore.string',
         'amplify'
     ],
-    function (Chaplin, E, log, NProgress) {
+    function (Chaplin, E, log, NProgress, _s) {
 
     'use strict';
 
@@ -83,6 +84,7 @@ define(['chaplin',
         //return (this.lang !== DEFAULT_LANGUAGE)? this.lang: undefined;
         //return (amplify.store('locale') !== DEFAULT_LANGUAGE)? amplify.store('locale'): undefined;
     };
+
     // TODO: Handle better the change of language
     Common.prototype.changeURLLanguage = function(lang) {
         var uri = window.location.href;
@@ -105,6 +107,23 @@ define(['chaplin',
 
         }
         return uri;
+    };
+
+    Common.prototype.updatePageTitle = function() {
+
+        /*var hash = window.location.hash,
+            locale = this.getLocale(),
+            title = _s.replaceAll(hash, "#" + locale, ''),
+            title = _s.replaceAll(title, '/', ' '),
+            title = _s.humanize(title);
+
+
+        if ( !_s.contains(title, 'home')) {
+            document.title = 'FAOSTAT - ' + title;
+        }else {
+            document.title = 'FAOSTAT';
+        }*/
+
     };
 
     return new Common();

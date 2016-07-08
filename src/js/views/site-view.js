@@ -154,6 +154,9 @@ define([
 
             this.$SEACH_BOX = this.$el.find(s.SEARCH);
 
+            // tooltip
+            $('[data-toggle="tooltip"]').tooltip()
+
         },
 
         initComponents: function () {
