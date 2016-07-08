@@ -84,6 +84,28 @@
 
 <template id='dashboard'>
 
+    <!--<div data-dashboard-index='{{index}}' aos="fade-down" aos-offset="300" aos-easing="ease-in-sine">-->
+    <div data-dashboard-index='{{index}}'>
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="fs-data-group-title text-capitalize">
+                    <span style="font-size:24px" data-role="go_to_download" class="domain-icon icojam_{{icon}}"></span>
+                    {{title}}
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row" data-role="dashboard"></div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+</template>
+
+<template id='dashboard-description'>
 
     <!--<div data-dashboard-index='{{index}}' aos="fade-down" aos-offset="300" aos-easing="ease-in-sine">-->
     <div data-dashboard-index='{{index}}'>
@@ -96,16 +118,14 @@
             </div>
         </div>
         <div class="row">
-<!--            <div class="col-md-3">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <!-- TODO: add also go to download sections-->
-            <!--</div>-->
-            <div class="col-md-12">
+            <div class="col-md-3">
+                <p class="text-justify">{{{description}}}</p>
+                <!-- TODO: add also go to download sections -->
+            </div>
+            <div class="col-md-9">
                 <div class="row" data-role="dashboard"></div>
             </div>
         </div>
-<!--        <h3 class="text-capitalize">{{title}}</h3>
-        <div class="row" data-role="dashboard"></div>-->
     </div>
 
     <br>

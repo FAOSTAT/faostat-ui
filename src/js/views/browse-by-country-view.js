@@ -337,6 +337,7 @@ define([
                     $container.html(t({
                         title: title,
                         icon: view.icon,
+                        description: (view.description)? view.description[Common.getLocale()] || view.description["en"] : null,
                         index: key
                     }));
 

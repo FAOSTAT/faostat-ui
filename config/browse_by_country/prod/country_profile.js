@@ -24,6 +24,9 @@ define([
 
             title: i18n.demographics,
             icon: 'O',
+            description: {
+                "en": "A combination of declining mortality rates, prolonged life expectancy and younger populations in regions with high fertility contributes to population growth in the world. While growth rates have been slowing since the late 1960s, the world's population has nevertheless doubled since then, to have 7 billion people. Population growth is generally highest where income levels are low. This is especially true in cities. Since 2008, there have been more people living in cities tha in rural areas."
+            },
 
             dashboard: {
 
@@ -158,6 +161,9 @@ define([
 
             title: i18n.inputs,
             icon: 'R',
+            description: {
+                "en": "Adeguate access to inputs, including land, pesticides and fertilizers, is vital for agricultural production and growth. Throughout Asia and in parts of latin America, expanding seed and fertilizer use has been accompanied by investments in irrigation, rural roads, marketing infrastructure and finalncial services, paving the way of fynamic commercial input markets. In other regions, such as sub-Saharan Africa, the uptake of agricultural inputs is relatively low because it is often cheaper to expand cropland to have higher production."
+            },
 
             dashboard: {
 
