@@ -20,7 +20,7 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-sm-4",
+                        "class": "col-xs-12 col-sm-4 col-md-4",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -35,7 +35,7 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-sm-4",
+                        "class": "col-xs-12 col-sm-4 col-md-4",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -50,7 +50,7 @@ define([
                     "type": "codelist",
                     "parameter": "List3Codes",
                     "componentType": {
-                        "class": "col-sm-4",
+                        "class": "col-xs-12 col-sm-4 col-md-4",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -65,12 +65,12 @@ define([
                     "type": "codelist",
                     "parameter": "List5Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1992'],
+                        "defaultCodes": ['1993'],
                         "filter": {
                         }
                     }

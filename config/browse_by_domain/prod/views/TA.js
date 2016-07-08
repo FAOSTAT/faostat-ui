@@ -18,11 +18,10 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
                     //"title": "title",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -38,8 +37,7 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                         //"multiple": true
                     },
@@ -55,12 +53,12 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1992'],
+                        "defaultCodes": ['1993'],
                         "filter": {
                         }
                     }
@@ -289,10 +287,10 @@ define([
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['element'],
+                            xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
                             height:'250px'
@@ -336,10 +334,10 @@ define([
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['element'],
+                            xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
                             height:'250px'

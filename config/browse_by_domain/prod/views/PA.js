@@ -20,7 +20,7 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-md-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -34,7 +34,7 @@ define([
                     "type": "codelist",
                     "parameter": "List3Codes",
                     "componentType": {
-                        "class": "col-md-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -48,11 +48,11 @@ define([
                     "type": "codelist",
                     "parameter": "List2Codes",
                     "componentType": {
-                        "class": "col-md-4",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "elements",
+                        "dimension_id": "element",
                         "defaultCodes": ["5530"],
                         "filter": {
                             whitelist: [5530]
@@ -97,7 +97,7 @@ define([
             items: [
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {

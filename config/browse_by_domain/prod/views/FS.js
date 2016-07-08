@@ -79,7 +79,7 @@ define(function () {
             items: [
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -124,7 +124,7 @@ define(function () {
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -169,7 +169,7 @@ define(function () {
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -214,7 +214,7 @@ define(function () {
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {

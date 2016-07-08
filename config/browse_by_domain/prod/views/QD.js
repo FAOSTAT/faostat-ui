@@ -24,7 +24,7 @@ define([
                     //"title": "title",
                     "componentType": {
                         // <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -40,7 +40,7 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -56,7 +56,7 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
@@ -93,24 +93,7 @@ define([
             // labels?
             labels: {
                 // labels to dinamically substitute the title and subtitle
-                default: {
-                    /*aggregation: {
-                     en: "Average",
-                     fr: "Moyenne",
-                     es: "Promedio"
-                     },
-                     year: "1993 - 2013",
-                     area: {
-                     "en": "Afghanistan",
-                     "fr": "Afghanistan",
-                     "es": "Afghanistan"
-                     },
-                     item: {
-                     "en": "Rice, milled",
-                     "fr": "Rice, milled",
-                     "es": "Rice, milled"
-                     }*/
-                }
+                default: {}
             },
 
             //bridge configuration
@@ -126,7 +109,7 @@ define([
             items: [
                 {
                     type: 'map',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -162,7 +145,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -198,7 +181,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -238,7 +221,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {
@@ -285,7 +268,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {

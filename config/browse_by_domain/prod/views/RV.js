@@ -24,7 +24,7 @@ define([
                     "parameter": "List3Codes",
                     //"title": "title",
                     "componentType": {
-                        "class": "col-md-4",
+                        "class": "col-xs-6 col-sm-6 col-md-4",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -39,7 +39,7 @@ define([
                     "type": "codelist",
                     "parameter": "List2Codes",
                     "componentType": {
-                        "class": "col-md-4",
+                        "class": "col-xs-6 col-sm-6 col-md-4",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -54,7 +54,7 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-md-4",
+                        "class": "col-xs-6 col-sm-6 col-md-4",
                         "type": "dropDownList"
                         //"multiple": true
                     },
@@ -70,7 +70,7 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-md-2",
+                        "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
@@ -121,7 +121,7 @@ define([
             items: [
                 {
                     type: 'map',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -157,7 +157,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -192,7 +192,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     labels: {
                         template: {
@@ -228,7 +228,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     labels: {
                         template: {
@@ -272,7 +272,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {

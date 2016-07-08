@@ -20,7 +20,7 @@ define([
                     "type": "codelist",
                     "parameter": "List3Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -36,7 +36,7 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -53,7 +53,7 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
@@ -106,7 +106,7 @@ define([
             items: [
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -141,7 +141,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     labels: {
                         template: {
@@ -178,7 +178,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     labels: {
                         template: {
@@ -215,18 +215,18 @@ define([
                 },
 
                 // FORCE SPACING
-                {
+/*                {
                     type: 'custom',
                     class: 'clearfix',
                     config: {
                         template: {},
                         model: {}
                     }
-                },
+                },*/
 
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {
@@ -245,10 +245,10 @@ define([
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['element'],
+                            xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
                             height: '250px'
@@ -275,7 +275,7 @@ define([
 
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {
@@ -294,10 +294,10 @@ define([
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['element'],
+                            xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
                             height: '250px'
@@ -323,19 +323,19 @@ define([
                 },
 
                 // FORCE SPACING
-                {
+/*                {
                     type: 'custom',
                     class: 'clearfix',
                     config: {
                         template: {},
                         model: {}
                     }
-                },
+                },*/
 
 
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {
@@ -357,7 +357,7 @@ define([
                             xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'element']
+                            seriesDimensions: ['element']
                         },
                         template: {
                             height: '250px'
@@ -386,7 +386,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {

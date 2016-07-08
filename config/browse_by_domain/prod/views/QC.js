@@ -46,7 +46,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "area",
-                        "defaultCodes": ["5000"],
+                        "defaultCodes": ["2"],
                         "filter": {}
                     }
                 },
@@ -93,22 +93,6 @@ define([
             labels: {
                 // labels to dinamically substitute the title and subtitle
                 default: {
-                    /*aggregation: {
-                     en: "Average",
-                     fr: "Moyenne",
-                     es: "Promedio"
-                     },
-                     year: "1993 - 2013",
-                     area: {
-                     "en": "Afghanistan",
-                     "fr": "Afghanistan",
-                     "es": "Afghanistan"
-                     },
-                     item: {
-                     "en": "Rice, milled",
-                     "fr": "Rice, milled",
-                     "es": "Rice, milled"
-                     }*/
                 }
             },
 
@@ -125,7 +109,7 @@ define([
             items: [
                 {
                     type: 'map',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -142,8 +126,6 @@ define([
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-                    
-                    //height:'250px',
                     config: {
                         template: {}
                     },
@@ -154,16 +136,13 @@ define([
                         List1Codes: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
-                    },
-/*                    bridge: {
-                        requestType: 'rankings' // data, rankings
-                    }*/
+                    }
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // temp[template to be applied to the config.template for the custom object
                         template: {
@@ -198,9 +177,9 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // temp[late to be applied to the config.template for the custom object
                         template: {
@@ -238,16 +217,16 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12 col-sm-6",
+                    class: "col-sm-6",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Production of {{item}} top 10 producers",
-                                fr: "Production du {{item}} top 5 des producteurs",
-                                es: "Producción de {{item}} 5 principales productores"
+                                fr: "Production du {{item}} top 10 des producteurs",
+                                es: "Producción de {{item}} 10 principales productores"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -285,9 +264,9 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12 col-sm-6",
+                    class: "col-sm-6",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {

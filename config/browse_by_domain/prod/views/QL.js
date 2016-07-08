@@ -7,10 +7,11 @@ define([
 
     return {
 
-        "filter": {
+        filter: {
 
             defaultFilter: {
-                "domain_code": ["QP"],
+                "domain_code": ["QL"],
+                // this force all the filters to avoid the "lists" codes
                 "show_lists": false
             },
 
@@ -19,17 +20,19 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
+                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
+                    //"title": "title",
                     "componentType": {
-                        "class": "col-lg-3",
+                        // <!-- TODO: add a class instead of bootstrap -->
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
-                        //"multiple": true
+                        "multiple": false
                     },
                     "config": {
-                        "dimension_id": "item",
-                        "defaultCodes": ["983"],
-                        "filter": {
-                        }
+                        "dimension_id": "items",
+                        "defaultCodes": ["1765"],
+                        "filter": {}
                     }
                 },
                 {
@@ -37,15 +40,14 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
-                        //"multiple": true
+                        "multiple": false
                     },
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
                 {
@@ -53,7 +55,7 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
@@ -71,7 +73,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['QP'],
+                domain_codes: ['QL'],
                 List2Codes: ["2510"],
                 List5Codes: null,
                 List6Codes: null,
@@ -87,13 +89,11 @@ define([
                 page_number: 0
             },
 
-            // labels?
+            // labels
             labels: {
                 // labels to dinamically substitute the title and subtitle
-                default: {
-                }
+                default: {}
             },
-
 
             //bridge configuration
             bridge: {
@@ -108,7 +108,7 @@ define([
             items: [
                 {
                     type: 'map',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -118,67 +118,30 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production of {{item}} by country",
-                                fr: "Quantités de {{item}} par pays",
-                                es: "Cantidades de {{item}} por país"
+                                "en": "Production of {{item}} in {{area}}",
+                                "fr": "Production of {{item}} in {{area}}",
+                                "es": "Production of {{item}} in {{area}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-                    
-                    //height:'250px',
                     config: {
                         template: {}
                     },
-                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
+                    allowedFilter: ['item', 'year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                         List1Codes: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
-                    },
-                    /*                    bridge: {
-                     requestType: 'rankings' // data, rankings
-                     }*/
+                    }
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
-                    // labels?
-                    labels: {
-                        // temp[template to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Production of {{item}} in {{area}}",
-                                fr: "Production de {{item}} dans le {{area}}",
-                                es: "Producción de {{item}} en {{area}}"
-                            },
-                            subtitle: "{{year}}"
-                        }
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "timeserie",
-                            xDimensions: 'year',
-                            yDimensions: 'unit',
-                            valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
-                        },
-                        template: {},
-                        creator: {}
-                    },
-                    allowedFilter: ['area', 'year', 'item'],
-                    filter: {}
-                },
-                {
-                    type: 'chart',
-                    class: "col-md-6",
-
-                    // labels?
+                    // labels
                     labels: {
                         // temp[late to be applied to the config.template for the custom object
                         template: {
@@ -216,16 +179,16 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-md-6",
+                    class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Production of {{item}} top 10 producers",
-                                fr: "Production of {{item}} top 10 producers",
-                                es: "Production of {{item}} top 10 producers"
+                                fr: "Production du {{item}} top 10 des producteurs",
+                                es: "Producción de {{item}} 10 principales productores"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

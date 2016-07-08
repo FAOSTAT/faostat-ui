@@ -22,7 +22,7 @@ define([
                     "parameter": "List3Codes",
                     //"title": "title",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -39,7 +39,7 @@ define([
                     "parameter": "List1Codes",
                     "componentType": {
                         <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                         //"multiple": true
                     },
@@ -55,7 +55,7 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
@@ -110,7 +110,7 @@ define([
             items: [
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -151,7 +151,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -192,7 +192,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {
@@ -211,10 +211,10 @@ define([
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['element'],
+                            xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
                             height:'250px'
@@ -240,7 +240,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-6",
+                    class: "col-md-6",
 
                     // labels?
                     labels: {
@@ -259,10 +259,10 @@ define([
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['element'],
+                            xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
                             height:'250px'

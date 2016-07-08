@@ -44,7 +44,7 @@ define([
                     "componentType": {
                         "class": "col-xs-7 col-md-4",
                         "type": "dropDownList",
-                        "multiple": true
+                        //"multiple": true
                     },
                     "config": {
                         "dimension_id": "countries",
@@ -80,7 +80,7 @@ define([
             //data base filter
             defaultFilter: {
                 domain_codes: ['IG'],
-                List2Codes: [6111],
+                //List2Codes: [6111],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -89,7 +89,7 @@ define([
                 limit: -1,
                 thousand_separator: ",",
                 "null_values": null,
-                // TODO: remove it the page_size!!!
+                // TODO: remove it the page_size!
                 page_size: 0,
                 per_page: 0,
                 page_number: 0
@@ -107,7 +107,7 @@ define([
             items: [
                 {
                     type: 'map',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -141,7 +141,50 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
+
+                    // labels?
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Agriculture orientation index (AOI) of selected country",
+                                fr: "Agriculture orientation index (AOI) of selected country",
+                                es: "Agriculture orientation index (AOI) of selected country"
+                            },
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['area'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['item','element'],
+                            decimalPlaces: 2
+                        },
+                        template: {},
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['item', 'year', 'area'],
+                    deniedTemplateFilter: [],
+                    filter: {
+                        List2Codes: ["6112"],
+                        order_by: 'value DESC'
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-md-12",
 
                     // labels?
                     labels: {

@@ -7,10 +7,11 @@ define([
 
     return {
 
-        "filter": {
+        filter: {
 
             defaultFilter: {
                 "domain_code": ["QA"],
+                // this force all the filters to avoid the "lists" codes
                 "show_lists": false
             },
 
@@ -19,17 +20,19 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
+                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
+                    //"title": "title",
                     "componentType": {
-                        "class": "col-lg-3",
+                        // <!-- TODO: add a class instead of bootstrap -->
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
-                        //"multiple": true
+                        "multiple": false
                     },
                     "config": {
-                        "dimension_id": "item",
+                        "dimension_id": "items",
                         "defaultCodes": ["1057"],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
                 {
@@ -37,15 +40,14 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
-                        //"multiple": true
+                        "multiple": false
                     },
                     "config": {
                         "dimension_id": "area",
-                        "defaultCodes": ["5000"],
-                        "filter": {
-                        }
+                        "defaultCodes": ["2"],
+                        "filter": {}
                     }
                 },
                 {
@@ -53,12 +55,12 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1993'],
+                        "defaultCodes": ['1994'],
                         "filter": {
                         }
                     }
@@ -87,13 +89,12 @@ define([
                 page_number: 0
             },
 
-            // labels?
+            // labels
             labels: {
                 // labels to dinamically substitute the title and subtitle
                 default: {
                 }
             },
-
 
             //bridge configuration
             bridge: {
@@ -108,7 +109,7 @@ define([
             items: [
                 {
                     type: 'map',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels?
                     labels: {
@@ -125,28 +126,23 @@ define([
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-                    
-                    //height:'250px',
                     config: {
                         template: {}
                     },
-                    allowedFilter: ['item', 'year', 'element', 'aggregation'],
+                    allowedFilter: ['item', 'year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                         List1Codes: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
-                    },
-/*                    bridge: {
-                        requestType: 'rankings' // data, rankings
-                    }*/
+                    }
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // temp[template to be applied to the config.template for the custom object
                         template: {
@@ -158,7 +154,7 @@ define([
                             subtitle: "{{year}}"
                         }
                     },
-                    
+
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -168,7 +164,10 @@ define([
                             valueDimensions: 'value',
                             seriesDimensions: ['area', 'item', 'element']
                         },
-                        template: {},
+                        template: {
+                            // height:'350px'
+                            // default labels to be applied
+                        },
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item'],
@@ -178,7 +177,7 @@ define([
                     type: 'chart',
                     class: "col-md-6",
 
-                    // labels?
+                    // labels
                     labels: {
                         // temp[late to be applied to the config.template for the custom object
                         template: {
@@ -208,7 +207,6 @@ define([
                     },
                     allowedFilter: ['year', 'item', 'aggregation'],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
                         List1Codes: ["5100", "5200", "5300", "5400", "5500"],
                         "group_by": 'year, item',
                         "order_by": 'area'
@@ -218,7 +216,7 @@ define([
                     type: 'chart',
                     class: "col-md-6",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {

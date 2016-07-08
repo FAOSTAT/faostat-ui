@@ -20,7 +20,7 @@ define([
                     "type": "codelist",
                     "parameter": "List3Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -36,7 +36,7 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -52,7 +52,7 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
@@ -103,7 +103,7 @@ define([
             items: [
                 {
                     type: 'chart',
-                    class: "col-xs-12 col-md-6",
+                    class: "col-md-6",
 
                     labels: {
                         template: {
@@ -136,7 +136,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12 col-md-6",
+                    class: "col-md-6",
 
                     labels: {
                         template: {
@@ -169,7 +169,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12 col-md-6",
+                    class: "col-md-6",
 
                     labels: {
                         template: {
@@ -202,7 +202,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12 col-md-6",
+                    class: "col-md-6",
 
                     labels: {
                         template: {
