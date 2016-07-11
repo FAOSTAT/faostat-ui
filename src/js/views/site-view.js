@@ -54,7 +54,9 @@ define([
         TOP_MENU_CONTAINER: '#top-menu-container',
         BREADCRUMB_CONTAINER: "#breadcrumb-container",
         FOOTER_MENU_CONTAINER: "#footer-menu-container",
-        LANG: "#footer-menu-container"
+        LANG: "#footer-menu-container",
+
+        JIRA_COLLECTOR: "#jiraFaostatCollector"
 
     }, 
         
@@ -155,18 +157,20 @@ define([
             this.$SEACH_BOX = this.$el.find(s.SEARCH);
 
             // tooltip
-            $('[data-toggle="tooltip"]').tooltip()
+            $('[data-toggle="tooltip"]').tooltip();
 
         },
 
         initComponents: function () {
 
             this.$GOOGLE_FORM = this.$el.find(s.GOOGLE_FORM);
+            this.$JIRA_COLLECTOR = this.$el.find(s.JIRA_COLLECTOR);
 
             this.initMenu();
             this.initSearchBox();
             this.initLazyLoading();
             this.initGoogleFormAnalytics();
+            this.initJIRACollector();
             this.initNotificationInitConfiguration();
 
             // init breadcrumb (N.B. not used)
@@ -222,6 +226,31 @@ define([
             this.$GOOGLE_FORM.on('click', function() {
                 amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.select_google_form);
             });
+
+        },
+        
+        initJIRACollector: function () {
+
+            $.browser = 'msie';
+
+           if (C.hasOwnProperty("JIRA_COLLECTOR") &&
+               C.JIRA_COLLECTOR.hasOwnProperty("ENABLED") &&
+               C.JIRA_COLLECTOR.ENABLED) {
+
+               // load JIRA snippet
+               $.ajax({
+                   url: C.JIRA_COLLECTOR.URL,
+                   type: "get",
+                   cache: true,
+                   dataType: "script"
+               });
+
+               this.$JIRA_COLLECTOR.show();
+               this.$JIRA_COLLECTOR.on('click', function() {
+                   amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.select_jira_collector);
+               });
+
+           }
 
         },
 

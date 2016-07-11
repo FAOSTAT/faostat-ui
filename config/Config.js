@@ -1,7 +1,8 @@
 /*global define, document*/
-define(function () {
+define(['jquery'], function ($) {
 
     'use strict';
+    
 
     return {
 
@@ -17,6 +18,11 @@ define(function () {
         "URL_BULK_DOWNLOADS_BASEPATH": "http://fenix.fao.org/faostat/bulkdownloads/",
         "URL_FAOSTAT_DOCUMENTS_BASEPATH": 'http://fenix.fao.org/faostat/documents/',
         "URL_RELEASE_CALENDAR": 'http://fenix.fao.org/faostat/releasecalendar/Default.aspx',
+
+        "JIRA_COLLECTOR": {
+            "ENABLED": true,
+            "URL": "https://jira.fao.org/ciok/s/en_US-8e74xy/787/3/1.1.2/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?collectorId=13a16039"
+        },
 
         // EMAIL and TELEPHONE
         "EMAIL_FAO_STATISTICS": "FAO-statistics@fao.org",
