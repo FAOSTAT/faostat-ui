@@ -242,18 +242,33 @@ define([
 
                     amplify.publish(E.LOADING_HIDE, { container: $CONTAINER});
 
-                    _.each(json, _.bind(function(v) {
+                    log.info("-----------json" ,json);
+                    log.info("-----------this.DIMENSION_PARAMETER_MAPPIN" ,this.DIMENSION_PARAMETER_MAPPING);
+
+                    var index = 0;
+                    _.each(this.DIMENSION_PARAMETER_MAPPING, _.bind(function(parameter, id) {
+                    // _.each(json, _.bind(function(v) {
+
+                        log.info("-----------id" , id, parameter, $CONTAINER.length)
 
                         try {
 
-                            var id = v.metadata.parameters.id;
+                            var v = json[index];
+
+                            log.info("-----------id" , id, parameter, $CONTAINER.length, json[id])
+
+                            //var id = v.metadata.parameters.id;
+
+                            log.info("-----------" ,v.metadata.parameters, id);
 
                             // TODO: to be changed
                             v.container = this.createFilterContainer($CONTAINER, id);
 
                             // TODO: get label from metadata
                             v.title = i18nLabels[id.toLowerCase()] || id;
-                            v.parameter = this.DIMENSION_PARAMETER_MAPPING[id];
+                            //v.parameter = this.DIMENSION_PARAMETER_MAPPING[id];
+                            v.parameter = parameter;
+                            v.id = id;
 
                             v.ddOptions = {
                                 multiple: true,
@@ -266,8 +281,11 @@ define([
                             // v.placeholder = i18nLabels.please_select_an_option;
                             v.placeholder = " ";
 
+
                             this.o.filters[id] = {};
                             this.o.filters[id].filter = new Filter(v);
+
+                            index += 1;
 
                         }catch(e) {
                             log.error(e);

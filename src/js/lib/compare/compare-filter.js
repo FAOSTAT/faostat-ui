@@ -31,6 +31,7 @@ define([
     }
 
     function CompareFilter(options) {
+
         this.o = options || {};
 
         // init lang
@@ -111,7 +112,8 @@ define([
 
     CompareFilter.prototype.getFilterVisible = function () {
         var f = {
-            id: this.o.metadata.parameters.id,
+            //id: this.o.metadata.parameters.id,
+            id: this.o.id,
             parameter: this.o.parameter,
             codes: this.$DD.val() || []
         };
@@ -125,11 +127,12 @@ define([
 
             amplify.publish(E.NOTIFICATION_WARNING, {
                 title: i18nLabels.warning,
-                text: 'Select at least one ' + i18nLabels[this.o.metadata.parameters.id] || this.o.metadata.parameters.id
+                //text: 'Select at least one ' + i18nLabels[this.o.metadata.parameters.id] || this.o.metadata.parameters.id
+                text: 'Select at least one ' + i18nLabels[this.o.id] || this.o.id
             });
 
-            log.error('Select at least one ' + this.o.metadata.parameters.id);
-            throw new Exception('Select at least one ' + this.o.metadata.parameters.id);
+            log.error('Select at least one ' + this.o.id);
+            throw new Exception('Select at least one ' + this.o.id);
         }
 
         // TODO: if nothing is selected set an alert?
@@ -140,7 +143,8 @@ define([
     CompareFilter.prototype.getFilterInvisible = function () {
 
         var f = {
-            id: this.o.metadata.parameters.id,
+           // id: this.o.metadata.parameters.id,
+            id: this.o.id,
             parameter: this.o.parameter,
             codes: []
         };
