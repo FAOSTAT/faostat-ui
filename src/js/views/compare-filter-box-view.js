@@ -242,10 +242,11 @@ define([
 
                     amplify.publish(E.LOADING_HIDE, { container: $CONTAINER});
 
-                    log.info("-----------json" ,json);
-                    log.info("-----------this.DIMENSION_PARAMETER_MAPPIN" ,this.DIMENSION_PARAMETER_MAPPING);
+                    //log.info("-----------json" ,json);
+                    //log.info("-----------this.DIMENSION_PARAMETER_MAPPIN" ,this.DIMENSION_PARAMETER_MAPPING);
 
-                    var index = 0;
+                    var indexRequest = 0;
+
                     _.each(this.DIMENSION_PARAMETER_MAPPING, _.bind(function(parameter, id) {
                     // _.each(json, _.bind(function(v) {
 
@@ -253,13 +254,13 @@ define([
 
                         try {
 
-                            var v = json[index];
+                            var v = json[indexRequest];
 
-                            log.info("-----------id" , id, parameter, $CONTAINER.length, json[id])
+                            //log.info("-----------id" , id, parameter, $CONTAINER.length, json[id])
 
                             //var id = v.metadata.parameters.id;
 
-                            log.info("-----------" ,v.metadata.parameters, id);
+                            //log.info("-----------" ,v.metadata.parameters, id);
 
                             // TODO: to be changed
                             v.container = this.createFilterContainer($CONTAINER, id);
@@ -285,7 +286,7 @@ define([
                             this.o.filters[id] = {};
                             this.o.filters[id].filter = new Filter(v);
 
-                            index += 1;
+                            indexRequest += 1;
 
                         }catch(e) {
                             log.error(e);
