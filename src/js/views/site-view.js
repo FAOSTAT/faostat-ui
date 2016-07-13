@@ -56,7 +56,8 @@ define([
         FOOTER_MENU_CONTAINER: "#footer-menu-container",
         LANG: "#footer-menu-container",
 
-        JIRA_COLLECTOR: "#jiraFaostatCollector"
+        JIRA_COLLECTOR: "#jiraFaostatCollector",
+        JIRA_LOGIN: "#jiraLogin"
 
     }, 
         
@@ -159,23 +160,50 @@ define([
             // tooltip
             $('[data-toggle="tooltip"]').tooltip();
 
+            // disclaimer
+            amplify.publish(E.NOTIFICATION_INFO, {
+                title: "Disclaimer",
+                text: "Please note that this is a beta version of the FAOSTAT website which is still undergoing final testing before its official release. The website, its software and all content found on it are provided on an “as is” and “as available” basis. FAO does not give any warranties, whether express or implied, as to the suitability or usability of the website, its software or any of its content. Under no circumstances shall FAO, or its affiliates, or any of their respective agents, employees, information providers or content providers be responsible or liable to any user or anyone else for any inaccuracy, error, omission, interruption, deletion, defect, alteration of or use of any content herein, or for its timeliness or completeness, nor shall they be liable for any failure of performance, computer virus or communication line failure, regardless of cause, or for damages of any kind arising out of use, reference to, or reliance on any information contained within the website. <br> Should you encounter any bugs, glitches, lack of functionality or other problems on the website, please let us know. Your help is greatly appreciated",
+                options: {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-bottom-full-width",
+                    "preventDuplicates": true,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "null",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut",
+                    "closeMethod": 'fadeOut',
+                    "closeDuration": 300,
+                    "closeEasing": 'swing'
+                }
+
+            });
+
         },
 
         initComponents: function () {
 
             this.$GOOGLE_FORM = this.$el.find(s.GOOGLE_FORM);
             this.$JIRA_COLLECTOR = this.$el.find(s.JIRA_COLLECTOR);
+            this.$JIRA_LOGIN = this.$el.find(s.JIRA_LOGIN);
 
             this.initMenu();
             this.initSearchBox();
             this.initLazyLoading();
             this.initGoogleFormAnalytics();
-            this.initJIRACollector();
+           // this.initJIRACollector();
             this.initNotificationInitConfiguration();
 
             // init breadcrumb (N.B. not used)
             //this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
-
         },
 
         initMenu: function() {
@@ -228,8 +256,27 @@ define([
             });
 
         },
-        
+
+        // JIRA Collector workaround
         initJIRACollector: function () {
+
+            var allCookies = document.cookie;
+
+            log.info(allCookies);
+
+            // Get all the cookies pairs in an array
+            var cookiearray = allCookies.split(';');
+
+            // Now take key value pair out of this array
+            for(var i=0; i<cookiearray.length; i++){
+                var name = cookiearray[i].split('=')[0];
+                var value = cookiearray[i].split('=')[1];
+                log.info("Key is : " + name + " and Value is : " + value);
+            }
+
+            log.info("SiteView.initJIRACollector; init");
+
+            var self = this;
 
             $.browser = 'msie';
 
@@ -238,19 +285,79 @@ define([
                C.JIRA_COLLECTOR.ENABLED) {
 
                // load JIRA snippet
-               $.ajax({
-                   url: C.JIRA_COLLECTOR.URL,
-                   type: "get",
-                   cache: true,
-                   dataType: "script"
-               });
-
                this.$JIRA_COLLECTOR.show();
-               this.$JIRA_COLLECTOR.on('click', function() {
-                   amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.select_jira_collector);
-               });
+
+               this.jiraLoadSnippet();
+
+               this.jiraEnableClick();
 
            }
+
+        },
+
+        jiraEnableClick: function() {
+
+            log.info("SiteView.jiraEnableClick; enable click;");
+
+            var self = this;
+
+            this.$JIRA_COLLECTOR.off();
+            this.$JIRA_COLLECTOR.on('click', function() {
+
+                if ($('#atlwdg-container').length > 0) {
+
+                    // rendered jira
+
+                }
+                else {
+
+                    self.jiraLogin();
+
+                }
+
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.select_jira_collector);
+
+            });
+
+
+        },
+
+        jiraLoadSnippet: function() {
+
+            log.info("SiteView.jiraLoadSnippet; load snippet");
+
+
+            $.ajax({
+                url: C.JIRA_COLLECTOR.URL,
+                type: "get",
+                cache: true,
+                dataType: "script"
+            });
+
+        },
+
+        jiraLogin: function() {
+
+            log.info("SiteView.jiraLogin; load modal");
+
+            var self = this;
+
+            this.$JIRA_LOGIN.off();
+            this.$JIRA_LOGIN.on('hidden.bs.modal', function () {
+
+                self.$JIRA_COLLECTOR.off();
+
+                setTimeout(function() {
+
+                    self.jiraLoadSnippet();
+
+                    self.jiraEnableClick();
+
+                }, 3000);
+
+            });
+
+            this.$JIRA_LOGIN.modal('show');
 
         },
 
@@ -413,17 +520,35 @@ define([
 
         onNotificationInfo: function (data) {
 
+            this.initNotificationInitConfiguration();
+
+            if (data.hasOwnProperty('options')) {
+                toastr.options = data.options;
+            }
+
             toastr.info( '<h4>' + data.title + '</h4>', (data.text)? '<h5>' + data.text + '</h5>': '');
 
         },
 
         onNotificationWarning: function (data) {
 
+            this.initNotificationInitConfiguration();
+
+            if (data.hasOwnProperty('options')) {
+                toastr.options = data.options;
+            }
+
             toastr.warning( '<h4>' + data.title + '</h4>', (data.text)? '<h5>' + data.text + '</h5>': '');
 
         },
 
         onNotificationError: function (data) {
+
+            this.initNotificationInitConfiguration();
+
+            if (data.hasOwnProperty('options')) {
+                toastr.options = data.options;
+            }
 
             toastr.error( '<h4>' + data.title + '</h4>', (data.text)? '<h5>' + data.text + '</h5>': '');
 
