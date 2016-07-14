@@ -3,6 +3,10 @@ define(['moment'],function (moment) {
 
     'use strict';
 
+    // Export Client 
+    // http://www.highcharts.com/plugin-registry/single/37/highcharts-export-clientside
+    // http://jsfiddle.net/pscjzhe4/1/
+
     return {
 
         //Line chart
