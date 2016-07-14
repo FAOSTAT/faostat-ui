@@ -1,5 +1,5 @@
 /*global define*/
-define(function () {
+define(['moment'],function (moment) {
 
     'use strict';
 
@@ -7,7 +7,13 @@ define(function () {
 
         //Line chart
         chart: {
-            events: {},
+            events: {
+                // water mark
+                /*    load: function() {
+                    this.renderer.image('data:image/png;base64,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', 80, 40, 143, 57)
+                        .add();
+                }*/
+            },
 
             type: 'line', //Tipo di grafico:  area, areaspline, boxplot, bubble, column, line, pie, scatter, spline
 
@@ -162,13 +168,30 @@ define(function () {
             '#5574A6',
             '#3B3EAC',*/
 
-
-
         ],
         credits: {
             enabled: false //Attiva o disattiva il link di HighCharts dalla chart
         },
         exporting: {
+            enabled: true,
+            chartOptions:{
+                title: {
+                    enabled: true
+                },
+                subtitle: {
+                    enabled: true
+                },
+                legend:{
+                    enabled:true
+                },
+                credits: {
+                    enabled: true,
+                    text: "Source: FAOSTAT ("  + moment(new Date()).format("MMM DD, YYYY") + ")",
+                    style: {
+                        fontSize: '7px'
+                    }
+                }
+            }
            /* buttons: {
                 contextButton: {
                     menuItems: [{

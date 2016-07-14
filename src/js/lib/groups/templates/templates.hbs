@@ -36,6 +36,20 @@
     </div>
 </script>
 
+<script type='text/x-handlebars-template' id='domains'>
+
+</script>
+
+<script type='text/x-handlebars-template' id='groups-list'>
+    <p class="label label-default label-aligned">Groups List</p>
+    <br>
+    <ul class="list-unstyled groups-list">
+        {{#each this}}
+            <li><h5><a data-section="{{this.group_code}}" href="#">{{this.group_name}}</a></h5></li>
+        {{/each}}
+    </ul>
+</script>
+
 <script type='text/x-handlebars-template' id='groups'>
 
     <div class="menu row-mason">
@@ -72,119 +86,61 @@
 
     </div>
 
-
-
-    <!--<div class="row">-->
-        <!--<div class="row-height">-->
-
-            <!--<div class="col-md-6 col-md-height">-->
-
-                <!--<h4>-->
-                       <!--<span style="cursor: pointer;" data-code="Q" data-role="go_to_download"-->
-                             <!--class="domain-icon icojam_Q">-->
-                       <!--</span>-->
-                    <!--<a style="color: #333333;" href="#en/data/Q" class="truncate">-->
-                        <!--Production-->
-                    <!--</a>-->
-                <!--</h4>-->
-
-                <!--<ul class="list-unstyled">-->
-
-                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
-                        <!--<span style="display:none">Production</span></a></li>-->
-                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
-                        <!--<span style="display:none">Production</span></a></li>-->
-                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
-                        <!--<span style="display:none">Production</span></a></li>-->
-                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
-                        <!--<span style="display:none">Production</span></a></li>-->
-                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
-                        <!--<span style="display:none">Production</span></a></li>-->
-                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
-                        <!--<span style="display:none">Production</span></a></li>-->
-
-                <!--</ul>-->
-
-
-            <!--</div>-->
-
-            <!--<div class="col-md-6 col-md-height">-->
-
-                <!--<h4>-->
-                       <!--<span style="cursor: pointer;" data-code="Q" data-role="go_to_download"-->
-                             <!--class="domain-icon icojam_Q">-->
-                       <!--</span>-->
-                    <!--<a style="color: #333333;" href="#en/data/Q" class="truncate">-->
-                        <!--Production-->
-                    <!--</a>-->
-                <!--</h4>-->
-
-                <!--<ul class="list-unstyled">-->
-
-                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
-                        <!--<span style="display:none">Production</span></a></li>-->
-                    <!--<li><a style="padding-left:30px;padding-top:5px;" class="instafilta-target" href="#en/data/QC">Crops-->
-                        <!--<span style="display:none">Production</span></a></li>-->
-
-
-                <!--</ul>-->
-
-
-            <!--</div>-->
-
-
-        <!--</div>-->
-    <!--</div>-->
-
-    <!--{{#each this}}-->
-
-        <!--<div class="instafilta-section" data-section="{{this.group_code}}">-->
-            <!--<div class="row">-->
-                <!--<div class="col-md-12">-->
-                    <!--<h4>-->
-                       <!--<span style="cursor: pointer;"-->
-                             <!--data-code="{{this.group_code}}"-->
-                             <!--data-role="go_to_download"-->
-                             <!--class="domain-icon icojam_{{this.group_code}}">-->
-                       <!--</span>-->
-                        <!--<a style="color: #333333;" href="{{this.link}}" class="truncate">-->
-                            <!--{{this.title}}-->
-                        <!--</a>-->
-                    <!--</h4>-->
-                <!--</div>-->
-
-                <!--<div class="row">-->
-                    <!--{{#each this.data}}-->
-                        <!--<a style="padding-left:30px;padding-top:5px;" class="col-md-4 instafilta-target"-->
-                           <!--href="{{this.link}}">{{this.domain_name}}-->
-                            <!--<span style="display:none">{{../title}}</span>-->
-                        <!--</a>-->
-                    <!--{{/each}}-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<hr>-->
-
-            <!--<div class="clearfix"></div>-->
-
-        <!--</div>-->
-
-    <!--{{/each}}-->
-
 </script>
 
-<script type='text/x-handlebars-template' id='domains'>
 
-</script>
+<script type='text/x-handlebars-template' id='groups-card'>
 
-<script type='text/x-handlebars-template' id='groups-list'>
-    <p class="label label-default label-aligned">Groups List</p>
     <br>
-    <ul class="list-unstyled groups-list">
+    <br>
+
+    <div class="menu row-mason">
+
         {{#each this}}
-            <li><h5><a data-section="{{this.group_code}}" href="#">{{this.group_name}}</a></h5></li>
+
+            <div class="menu-category instafilta-section" data-section="{{this.group_code}}">
+
+                <div class="elegant-card z-depth-1 hoverable">
+
+                    <!-- Button -->
+                    <a target="_blank" class="btn-floating btn-primary btn-large waves-effect waves-light">
+                        <i style="font-size:30px;" class="icojam_{{this.group_code}}"></i>
+                    </a>
+
+                    <!-- Content -->
+                    <div class="card-content">
+                        <h3 class="truncate">{{this.title}}</h3>
+
+                        <!--                        <div class="swiper-container-updates">
+                                                    <div class="swiper-wrapper">
+                                                        <div class="swiper-slide">-->
+                        <ul class="list-unstyled" style="height:100px; overflow-y:auto;">
+                            {{#each this.data}}
+                                <li class="domain-list">
+                                    <a class="instafilta-target"
+                                       href="{{this.link}}">{{this.domain_name}}
+                                        <span style="display:none">{{../title}}</span>
+                                    </a>
+                                </li>
+                            {{/each}}
+
+                        </ul>
+                        <!--                              </div>
+                                                  </div>
+                                                  <div class="swiper-scrollbar"></div>
+                                              </div>-->
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
         {{/each}}
-    </ul>
+
+    </div>
+
 </script>
 
 
