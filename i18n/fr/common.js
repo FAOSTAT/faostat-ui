@@ -22,6 +22,7 @@ define({
     "item": "Item",
     "items": "Items",
     "element": "Element",
+    "elements": "Elements",
     "regions": "Regions",
     "area": "Area",
     "year": "Year",
