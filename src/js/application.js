@@ -33,7 +33,7 @@ define([
         bindEventListeners: function () {
 
             Chaplin.mediator.subscribe(E.NOT_AUTHORIZED, function () {
-                Chaplin.utils.redirectTo({url:  C.SECURITY_NOT_AUTHORIZED_REDIRECTION_LINK});
+                //Chaplin.utils.redirectTo({url: C.SECURITY_NOT_AUTHORIZED_REDIRECTION_LINK});
             });
 
         }
