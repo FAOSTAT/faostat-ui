@@ -73,7 +73,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1970'],
+                        //"defaultCodes": ['1990'],
                         "filter": {
                         }
                     }
@@ -181,6 +181,43 @@ define([
                     //deniedOnLoadFilter: ['area'],
                     filter: {
                         List2Codes: ["6112"],
+                        List3Codes: ["22030"],
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-xs-12",
+
+                    // labels
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "{{item}}, Value US$ in {{area}}",
+                                fr: "{{item}}, Value US$ in {{area}}",
+                                es: "{{item}}, Value US$ in {{area}}",
+                            },
+                            subtitle: "{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "timeserie",
+                            xDimensions: 'year',
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['area', 'item', 'element'],
+                            decimalPlaces: 3
+                        },
+                        template: {},
+                        creator: {}
+                    },
+                    allowedFilter: ['year', 'area', 'item'],
+                    //deniedOnLoadFilter: ['area'],
+                    filter: {
+                        List2Codes: ["6110"],
                         List3Codes: ["22030"],
                     }
                 },
