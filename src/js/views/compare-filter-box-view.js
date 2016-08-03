@@ -236,7 +236,8 @@ define([
             this.FAOSTATAPIClient.dimensions({
                 datasource: C.DATASOURCE,
                 lang: this.o.lang,
-                domain_code: this.domainCode
+                domain_code: this.domainCode,
+                full: true
             }).then(_.bind(this._preloadDomainDimensions, this))
                 .then(_.bind(function(json) {
 

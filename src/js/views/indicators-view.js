@@ -71,7 +71,7 @@ define([
 
         initVariables: function () {
 
-            $.ajax({
+            /*$.ajax({
                 url: "http://fenixservices.fao.org/faostat/api/v1/en/data/",
                 data: JSON.stringify(
                     {"datasource":"production","domain_codes":["QC"],"filters":{"area":["2"],"item":["15"],"year":["2010"]}}
@@ -84,8 +84,82 @@ define([
                 error: function(error) {
                     log.error(error);
                 }
+            });*/
+
+            $.ajax({
+                url: "http://localhost:8081/faostat-api/v1/en/data/CS",
+                contentType: "application/json",
+                data: {
+                    datasource: "test",
+                    area: [2],
+                    year: [2010]},
+                success: function(result){
+                    log.info(result);
+                },
+                error: function(error) {
+                    log.error(error);
+                }
             });
 
+            $.ajax({
+                url: "http://localhost:8081/faostat-api/v1/en/data/CS",
+                contentType: "application/json",
+                data: {
+                    datasource: "test",
+                    area: [2, 3],
+                    year: [2010]
+                },
+                success: function(result){
+                    log.info(result);
+                },
+                error: function(error) {
+                    log.error(error);
+                }
+            });
+
+            $.ajax({
+                url: "http://localhost:8081/faostat-api/v1/en/data/CS",
+                contentType: "application/json",
+                data: {
+                    datasource:"test"
+                },
+                success: function(result){
+                    log.info(result);
+                },
+                error: function(error) {
+                    log.error(error);
+                }
+            });
+
+            $.ajax({
+                url: "http://localhost:8081/faostat-api/v1/en/data/QC",
+                contentType: "application/json",
+                data: {
+                    datasource:"test",
+                    area: ["5100>"],
+                },
+                success: function(result){
+                    log.info(result);
+                },
+                error: function(error) {
+                    log.error(error);
+                }
+            });
+
+            $.ajax({
+                url: "http://localhost:8081/faostat-api/v1/en/data/TP",
+                contentType: "application/json",
+                data: {
+                    datasource:"test",
+                    year: ["2010"],
+                },
+                success: function(result){
+                    log.info(result);
+                },
+                error: function(error) {
+                    log.error(error);
+                }
+            });
 
             var api = new FAOSTATApi();
 
