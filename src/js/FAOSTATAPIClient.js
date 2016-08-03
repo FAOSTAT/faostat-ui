@@ -8,7 +8,6 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
         /* Store configuration. */
         this.CONFIG = {
             base_url: 'http://fenixservices.fao.org/faostat/api/v1/',
-            //base_url: '@@url_api',
             mode: '@@mode'
         };
 
@@ -92,7 +91,7 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
         config = this.apply_data_defaults(config);
         if (this.is_valid_data(config)) {
             var url = this.CONFIG.base_url +  config.lang + '/data/',
-                data = {"datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domain_codes": config.domain_codes, "decimal_places": config.decimal_places, "filters": config.filters, "null_values": config.null_values, "group_by": config.group_by, "order_by": config.order_by, "operator": config.operator, "page_size": config.page_size, "limit": config.limit, "page_number": config.page_number, "show_codes": config.show_codes, "show_flags": config.show_flags, "show_unit": config.show_unit},
+                data = {"datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "pivot": config.pivot, "domain_codes": config.domain_codes, "decimal_places": config.decimal_places, "filters": config.filters, "null_values": config.null_values, "group_by": config.group_by, "order_by": config.order_by, "operator": config.operator, "page_size": config.page_size, "limit": config.limit, "page_number": config.page_number, "show_codes": config.show_codes, "show_flags": config.show_flags, "show_unit": config.show_unit},
                 self = this;
 
             var key = JSON.stringify($.extend({url: url}, data));
@@ -156,7 +155,7 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
         if (this.is_valid_databean(config)) {
             var url = this.CONFIG.base_url +  config.lang + '/data/bean/',
                 data = {
-                    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "domain_codes": config.domain_codes, "decimal_places": config.decimal_places, "List1Codes": config.List1Codes, "List2Codes": config.List2Codes, "List3Codes": config.List3Codes, "List4Codes": config.List4Codes, "List5Codes": config.List5Codes, "List6Codes": config.List6Codes, "List7Codes": config.List7Codes, "List1AltCodes": config.List1AltCodes, "List2AltCodes": config.List2AltCodes, "List3AltCodes": config.List3AltCodes, "List4AltCodes": config.List4AltCodes, "List5AltCodes": config.List5AltCodes, "List6AltCodes": config.List6AltCodes, "List7AltCodes": config.List7AltCodes, "null_values": config.null_values, "group_by": config.group_by, "order_by": config.order_by, "operator": config.operator, "page_size": config.page_size, "limit": config.limit, "page_number": config.page_number, "show_codes": config.show_codes, "show_flags": config.show_flags, "show_unit": config.show_unit
+                    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "pivot": config.pivot, "domain_codes": config.domain_codes, "decimal_places": config.decimal_places, "List1Codes": config.List1Codes, "List2Codes": config.List2Codes, "List3Codes": config.List3Codes, "List4Codes": config.List4Codes, "List5Codes": config.List5Codes, "List6Codes": config.List6Codes, "List7Codes": config.List7Codes, "List1AltCodes": config.List1AltCodes, "List2AltCodes": config.List2AltCodes, "List3AltCodes": config.List3AltCodes, "List4AltCodes": config.List4AltCodes, "List5AltCodes": config.List5AltCodes, "List6AltCodes": config.List6AltCodes, "List7AltCodes": config.List7AltCodes, "null_values": config.null_values, "group_by": config.group_by, "order_by": config.order_by, "operator": config.operator, "page_size": config.page_size, "limit": config.limit, "page_number": config.page_number, "show_codes": config.show_codes, "show_flags": config.show_flags, "show_unit": config.show_unit
                 },
                 self = this;
 
@@ -188,7 +187,7 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
     };
 
     RESTClient.prototype.is_valid_databean = function(config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"], i;
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "pivot", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -199,9 +198,79 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
     RESTClient.prototype.apply_databean_defaults = function(config) {
         var i,
-            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"],
+            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "pivot", "domain_codes", "decimal_places", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"],
             defaults = {
-                "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en", "decimal_places": "2", "List1AltCodes": "", "List2AltCodes": "", "List3AltCodes": "", "List4AltCodes": "", "List5AltCodes": "", "List6AltCodes": "", "List7AltCodes": "", "null_values": "false", "group_by": "", "order_by": "", "operator": "", "page_size": "100", "limit": "-1", "page_number": "1", "show_codes": "1", "show_flags": "1", "show_unit": "1"
+                "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en", "pivot": "false", "decimal_places": "2", "List1AltCodes": "", "List2AltCodes": "", "List3AltCodes": "", "List4AltCodes": "", "List5AltCodes": "", "List6AltCodes": "", "List7AltCodes": "", "null_values": "false", "group_by": "", "order_by": "", "operator": "", "page_size": "100", "limit": "-1", "page_number": "1", "show_codes": "1", "show_flags": "1", "show_unit": "1"
+            },
+            key;
+        for (i = 0; i < Object.keys(defaults).length; i += 1) {
+            if (defaults[Object.keys(defaults)[i]] === '[]') {
+                defaults[Object.keys(defaults)[i]] = [];
+            }
+        }
+        for (i = 0; i < parameters.length; i += 1) {
+            key =  parameters[i];
+            try {
+                config[key] = config[key] !== undefined ? config[key] : defaults[key];
+            } catch (ignore) {
+                // No default value available for this parameter.
+            }
+        }
+        return config;
+    };
+
+    RESTClient.prototype.data_get = function(config) {
+        config = $.extend(true, {}, this.CONFIG, config || {});
+        config = this.apply_data_get_defaults(config);
+        if (this.is_valid_data_get(config)) {
+            var url = this.CONFIG.base_url +  config.lang + '/data/' + config.domain + '/',
+                data = {
+                    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key, "pivot": config.pivot, "domain_codes": config.domain_codes, "decimal_places": config.decimal_places, "null_values": config.null_values, "group_by": config.group_by, "order_by": config.order_by, "operator": config.operator, "page_size": config.page_size, "limit": config.limit, "page_number": config.page_number, "show_codes": config.show_codes, "show_flags": config.show_flags, "show_unit": config.show_unit
+                },
+                self = this;
+
+            var key = JSON.stringify($.extend({url: url}, data));
+            var v = this.store(key);
+
+            if ( v === undefined) {
+                return Q($.ajax({
+                    url: url,
+                    // TODO: this should be an option in the schema
+                    traditional: true,
+                    data: data,
+                    type: 'GET'
+                })).then(function (d) {
+                    // TODO: this should be at the schema level for each request and not a global one
+                    try {
+                        self.store(key, d);
+                    }catch(e) {
+                        // catching for quota exceed
+                    }
+                    return d;
+                });
+            }else {
+                return Q.when(v);
+            }
+
+        }
+        throw 400;
+    };
+
+    RESTClient.prototype.is_valid_data_get = function(config) {
+        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "pivot", "domain_codes", "decimal_places", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"], i;
+        for (i = 0; i < parameters.length; i += 1) {
+            if (config[parameters[i]] === undefined) {
+                throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
+            }
+        }
+        return true;
+    };
+
+    RESTClient.prototype.apply_data_get_defaults = function(config) {
+        var i,
+            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "pivot", "domain_codes", "decimal_places", "null_values", "group_by", "order_by", "operator", "page_size", "limit", "page_number", "show_codes", "show_flags", "show_unit"],
+            defaults = {
+                "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en", "pivot": "false", "decimal_places": "2", "null_values": "false", "group_by": "", "order_by": "", "operator": "", "page_size": "100", "limit": "-1", "page_number": "1", "show_codes": "1", "show_flags": "1", "show_unit": "1"
             },
             key;
         for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -1136,7 +1205,7 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
         if (this.is_valid_dimensions(config)) {
             var url = this.CONFIG.base_url +  config.lang + '/dimensions/' + config.domain_code + '/',
                 data = {
-                    "datasource": config.datasource, "output_type": config.output_type, "report_code": config.report_code, "api_key": config.api_key, "client_key": config.client_key
+                    "datasource": config.datasource, "output_type": config.output_type, "report_code": config.report_code, "api_key": config.api_key, "client_key": config.client_key, "full": config.full
                 },
                 self = this;
 
@@ -1168,7 +1237,7 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
     };
 
     RESTClient.prototype.is_valid_dimensions = function(config) {
-        var parameters = ["datasource", "output_type", "report_code", "api_key", "client_key", "lang", "domain_code"], i;
+        var parameters = ["datasource", "output_type", "report_code", "api_key", "client_key", "lang", "domain_code", "full"], i;
         for (i = 0; i < parameters.length; i += 1) {
             if (config[parameters[i]] === undefined) {
                 throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
@@ -1179,9 +1248,9 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
     RESTClient.prototype.apply_dimensions_defaults = function(config) {
         var i,
-            parameters = ["datasource", "output_type", "report_code", "api_key", "client_key", "lang", "domain_code"],
+            parameters = ["datasource", "output_type", "report_code", "api_key", "client_key", "lang", "domain_code", "full"],
             defaults = {
-                "datasource": "production", "output_type": "objects", "report_code": "download", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
+                "datasource": "production", "output_type": "objects", "report_code": "download", "api_key": "n.a.", "client_key": "n.a.", "lang": "en", "full": "false"
             },
             key;
         for (i = 0; i < Object.keys(defaults).length; i += 1) {
