@@ -24,7 +24,7 @@ define([
                 min: 1961,
                 max: 2050,
                 from: 1961,
-                to: 2013,
+                to: 2014,
                 //grid: true,
                 grid_num: 10,
                 step: 1,
