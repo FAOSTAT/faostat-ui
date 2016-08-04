@@ -67,7 +67,9 @@ define([
             COUNTRY_PROFILES: "#fs_home_country_profiles",
             TWITTER: "fs_home_twitter",
             TERRITORIAL_NOTES: '#territorial_notes',
-            FAOSTAT_BULK_ZIP: '[data-role="bulk_download"]'
+            FAOSTAT_BULK_ZIP: '[data-role="bulk_download"]',
+            FAOSTAT_BULK_DATE: '[data-role="bulk_download_date"]',
+            FAOSTAT_BULK_SIZE: '[data-role="bulk_download_size"]'
 
         },
         HomeView = View.extend({
@@ -124,8 +126,10 @@ define([
                 this.$COMING_UP = this.$el.find(s.COMING_UP);
                 this.$DATABASE_UPDATES = this.$el.find(s.DATABASE_UPDATES);
                 this.$FAOSTAT_BULK_ZIP = this.$el.find(s.FAOSTAT_BULK_ZIP);
+                this.$FAOSTAT_BULK_DATE = this.$el.find(s.FAOSTAT_BULK_DATE);
+                this.$FAOSTAT_BULK_SIZE = this.$el.find(s.FAOSTAT_BULK_SIZE);
 
-                this.$CHART1 = this.$el.find(s.CHART + "1");
+               // this.$CHART1 = this.$el.find(s.CHART + "1");
 
 /*                this.$INFO = this.$el.find(s.INFO);
                 this.$FAO_LINKS = this.$el.find(s.FAO_LINKS);
@@ -152,7 +156,7 @@ define([
 
                 this.initTwitter();
 
-                //this.initBulkDownload();
+                this.initBulkDownload();
 
                 //this.initCountryTerritorialNotes();
 
@@ -446,13 +450,49 @@ define([
                         "700247798168551424",
                         document.getElementById(s.TWITTER),
                         {
-                            height: 905,
+                            height: 830,
                             width: '100%',
                             screenName: "FAOStatistics"
                         }
                     );
 
                 }, 1000);
+            },
+
+            initBulkDownload: function() {
+
+                log.info("Home.initBulkDownload;");
+
+                var self = this;
+
+                this.api.bulkdownloads({
+                    datasource: C.DATASOURCE,
+                    lang: this.o.lang,
+                    domain_code: '0'
+                }).then(function(d) {
+
+                    log.info("Home.initBulkDownload;", d);
+
+                    var data = d.data[0],
+                        size = Math.round(data.FileSize * 0.001),
+                        mu = "MB", //data.FileSizeUnit,
+                        m = moment(data.CreatedDate),
+                        date =  m.format("MMMM DD, YYYY"),
+                        url = data.URL;
+
+                    self.$FAOSTAT_BULK_SIZE.html(size + " " + mu);
+                    self.$FAOSTAT_BULK_DATE.html(date);
+                    self.$FAOSTAT_BULK_ZIP.data('url', url);
+
+                }).fail(function(e) {
+
+                    // TODO: Handle error
+                    //log.error("Home.initBulkDownload; error", e);
+
+                   // amplify.publish(E.CONNECTION_PROBLEM, {});
+
+                });
+
             },
 
             bindEventListeners: function () {

@@ -1,6 +1,7 @@
 CACHE MANIFEST
 # cache version
-# v0.1 30-05-2016
+# v0.1
+# 30-05-2016
 
 //fenixrepo.fao.org/cdn/faostat/js/requirejs/2.1.15/require.min.js
 //fenixrepo.fao.org/cdn/faostat/js/jquery/2.2.3/jquery.min.js
@@ -76,7 +77,7 @@ CACHE MANIFEST
 //fonts.googleapis.com/icon?family=Material+Icons
 
 # Images
-//www.google.com/cse/static/en/google_custom_search_watermark.gif
+#//www.google.com/cse/static/en/google_custom_search_watermark.gif
 # src/images/faostat-logo-blue-capital-only-text.svg
 src/images/faostat-logo-blue-capital-only-text.svg
 src/images/FAO_logo_Black_2lines_en.svg

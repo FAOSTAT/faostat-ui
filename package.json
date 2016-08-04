@@ -1,6 +1,6 @@
 {
   "name": "faostat-ui",
-  "version": "0.0.1",
+  "version": "0.1",
   "description": "",
   "main": "main.js",
   "scripts": {

@@ -6,7 +6,7 @@
     <div>
         <h2>Food and agriculture data</h2>
         <p>FAOSTAT provides free access to food and agriculture data for 245 countries and 35 regional areas from 1961 to the most recent year available.</p>
-            <a href='{{URL_DATA}}' class="btn btn-lg btn-primary waves-effect truncate">
+        <a href='{{URL_DATA}}' class="btn btn-lg btn-primary waves-effect truncate">
                 Explore the data
             </a>
     </div>
@@ -111,6 +111,31 @@
 
             <div class="col-sm-6">
                 <div class="elegant-card z-depth-1 hoverable">
+
+                    <div class="card-up view overlay hm-white-slight">
+                        <a><img data-original="src/images/homepage/pocket.jpg" class="lazy img-responsive"></a>
+                    </div>
+
+                    <a target='_blank' href=' http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </a>
+                    <div class="card-content">
+                        <h3>FAO statistical yearbooks</h3>
+                        <p>The FAO Statistical Yearbook provides a selection of indicators on food and agriculture by country.</p>
+                        <p>The first part of the book includes thematic spreads with data visualizations (graphs, charts, and maps) with basic text. The second part has country-level tables for a selected number of indicators.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="hidden-xs"><br><br></div>
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="elegant-card z-depth-1 hoverable">
                     <!-- Image wrapper -->
                     <div class="card-up view overlay hm-white-slight">
                         <a><img data-original="src/images/homepage/info-map.jpg" class="lazy img-responsive"></a>
@@ -129,11 +154,6 @@
                 </div>
             </div>
 
-        </div>
-
-        <div class="hidden-xs"><br><br></div>
-
-        <div class="row">
 
             <div class="col-sm-6">
                 <div class="elegant-card z-depth-1 hoverable">
@@ -150,28 +170,11 @@
                     <!-- Content -->
                     <div class="card-content">
                         <h3 class="text-capitalized">{{rankings}}</h3>
+                        <p>Rankings indicators provide an overview of key indicators and charts by commodity.</p>
                     </div>
 
                 </div>
             </div>
-
-            <div class="col-sm-6">
-                 <div class="elegant-card z-depth-1 hoverable">
-
-                     <div class="card-up view overlay hm-white-slight">
-                         <a><img data-original="src/images/homepage/pocket.jpg" class="lazy img-responsive"></a>
-                     </div>
-
-                     <a target='_blank' href=' http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
-                         <i class="material-icons">keyboard_arrow_right</i>
-                     </a>
-                     <div class="card-content">
-                         <h3>FAO statistical yearbooks</h3>
-                         <p>FAO statistical yearbooks provide thematic and regional data and analysis. They provide an overview of key indicators, data visualizations and country-level tables.</p>
-                     </div>
-
-                 </div>
-             </div>
 
         </div>
 
@@ -192,7 +195,7 @@
                     </a>
                     <div class="card-content">
                         <h3>Food security in the 2030 Agenda for Sustainable Development</h3>
-                        <p>Adopted by the UNâs 193 Member States on 25 September 2015, the Sustainable Development Goals are new global goals that will succeed the Millennium Development Goals in 2016. The SDGs will shape national development policies for the next 15 years. Food and agriculture is at the heart of the 17 SDGs, beginning with SDG1, End poverty, and SDG2, End hunger. Food security and its link to natural resources and rural development features in virtually every goal of the 2030 Agenda.  </p>
+                        <p>The 2030 Agenda for Sustainable Development, including the 17 Sustainable Development Goals (SDGs), are new global objectives that succeeded the Millennium Development Goals on 1 January 2016. The SDGs will shape national development plans over the next 15 years. From ending poverty and hunger to responding to climate change and sustaining our natural resources, food and agriculture lies at the heart of the 2030 Agenda.</p>
                     </div>
 
                 </div>
@@ -209,7 +212,7 @@
 
         <div class="elegant-card-horizontal z-depth-1 hoverable">
 
-            <div style='cursor:pointer;' class="card-content clearfix" data-role="bulk_download" data-url='{{URL_FAOSTAT_DATABASE_ZIP}}'>
+            <div style='cursor:pointer;' class="card-content clearfix" data-role="bulk_download" data-url=''>
 
                 <div class="card-horiz-right-image pull-right">
                     <i class="material-icons">file_download</i>
@@ -218,11 +221,12 @@
                 <div class="card-horiz-left-text-up pull-left">
                     <h4 class="truncate">Bulk Download</h4>
                     <div class="clearfix">
-                        <span class="pull-left">All FAOSTAT Data</span><span class="pull-right visible-xs visible-sm hidden-md visible-lg">772 MB</span>
+                        <span class="pull-left">All FAOSTAT Data</span>
+                        <span class="pull-right visible-xs visible-sm hidden-md visible-lg" data-role="bulk_download_size"></span>
                     </div>
                 </div>
                 <div class="card-horiz-left-text-bottom pull-left">
-                    <span class="truncate">Updated on 23/06/2016</span>
+                    <span class="truncate">Updated on <span data-role="bulk_download_date"></span></span>
 
                 </div>
 
@@ -286,7 +290,7 @@
 
                 <address>
                     <strong>Info</strong><br>
-                    <a href="mailto:>FAO-statistics@fao.org">FAO-statistics@fao.org</a>
+                    <a href="mailto:FAO-statistics@fao.org">FAO-statistics@fao.org</a>
                 </address>
 
             </div>

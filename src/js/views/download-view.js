@@ -1,4 +1,4 @@
-/*global define, _:false, $, console, amplify, Q*/
+/*global define, _:false, $, console, amplify, numeral*/
 define([
     'require',
     'jquery',
@@ -27,6 +27,7 @@ define([
     'handlebars',
     'faostatapiclient',
     'lib/common/text-wrapper',
+    'numeral',
     'amplify'
 ], function (Require,
              $, log, View, A, C, E, Common, ROUTE,
@@ -654,19 +655,51 @@ define([
                 datasource: C.DATASOURCE,
                 lang: this.o.lang,
                 domain_code: code
-            }).then(function (json) {
+            }).then(function (d) {
 
-                var data = json.data,
+                log.info("DownloadView._renderBulkDownloadCaret;", d);
+
+                var data = d.data,
                     // TODO: load it with an external template
-                    template = "{{#each data}}<li><a target='_blank' data-filename='{{this.FileName}}' href='{{this.url}}'>{{this.FileContent}}</a></li>{{/each}}",
+                    template = "{{#each data}}<li class='clearfix'>" +
+                        "<a target='_blank' data-filename='{{this.FileName}}' href='{{this.URL}}'>{{this.FileContent}}</a>" +
+                        "<small class='pull-right'>{{this.Size}}</small>" +
+                        "</li>{{/each}}",
                     t = Handlebars.compile(template);
 
+                // TODO: refactor the code
                 if(data.length > 0) {
 
                     _.each(data, function(d) {
 
-                        d.url = C.URL_BULK_DOWNLOADS_BASEPATH + d.FileName;
                         d.FileContent = _s.capitalize(_s.replaceAll(d.FileContent, '_', ' '));
+
+                        var thousand =',';
+                        var decimal ='.';
+                        var decimal_places = 2;
+                        var value = parseFloat(d.FileSize);
+                        var unit = "KB";
+
+                        if ( value > 1000) {
+                            value = value * 0.001;
+                            unit = "MB";
+                        }
+
+                        numeral.language('bulk_downloads', {
+                            delimiters: {
+                                thousands: thousand,
+                                decimal: decimal
+                            }
+                        });
+                        var formatter = '0' + thousand + '0' + decimal;
+                        formatter += '[';
+                        for (var i = 0; i < decimal_places; i += 1) {
+                            formatter += '0';
+                        }
+                        formatter += ']';
+
+                        numeral.language('bulk_downloads');
+                        d.Size = numeral(value).format(formatter) + " " + unit;
 
                     });
 

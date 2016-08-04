@@ -86,6 +86,19 @@ define([
                 }
             });*/
 
+            var api =  new FAOSTATApi();
+
+            api.data_get({
+                domain: 'QC',
+                datasource: "test",
+                area: [2],
+                year: [2010]
+            }).then(function(d) {
+
+                log.info(d)
+
+            });
+
             $.ajax({
                 url: "http://localhost:8081/faostat-api/v1/en/data/CS",
                 contentType: "application/json",

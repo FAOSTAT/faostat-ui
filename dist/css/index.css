@@ -7648,7 +7648,7 @@ button_new_2:before {
   content: "\ec1d"; }
 
 /* Components */
-.bootstrap-table .page-pre {
+.bootstrap-table .page-first {
   display: none; }
 .bootstrap-table .page-last {
   display: none; }
@@ -8620,7 +8620,8 @@ div#google_search input#search-submit {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;
-    border-radius: 0; }
+    border-radius: 0;
+    padding-top: 24px; }
   .faostat-intro h2 {
     margin-bottom: 25px; }
   .faostat-intro p {

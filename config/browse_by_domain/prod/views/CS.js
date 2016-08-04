@@ -217,8 +217,7 @@ define([
                     allowedFilter: ['year', 'area', 'item'],
                     //deniedOnLoadFilter: ['area'],
                     filter: {
-                        List2Codes: ["6110"],
-                        List3Codes: ["22030"],
+                        List2Codes: ["6110"]
                     }
                 },
                 {
