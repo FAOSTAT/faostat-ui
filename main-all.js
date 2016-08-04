@@ -93,21 +93,20 @@ var config = {
                     // TODO: move to CDN
                     /* FAOSTAT API's client. */
                     faostatapiclient: 'FAOSTATAPIClient',
-                    list: '//fenixrepo.fao.org/cdn/js/list/1.1.1/list.min',
+                    //list: '//fenixrepo.fao.org/cdn/js/list/1.1.1/list.min',
                     //list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min',
 
                     // boostrap bplugins
                     'bootstrap-table': CDN + '/js/bootstrap-table/1.9.1/bootstrap-table.min',
-                    'bootstrap-treeview': CDN + '/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
-                    'bootstrap-tour': CDN + '/js/bootstrap-tour/0.10.3/build/js/bootstrap-tour.min',
-
+                    //'bootstrap-treeview': CDN + '/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
+                    //'bootstrap-tour': CDN + '/js/bootstrap-tour/0.10.3/build/js/bootstrap-tour.min',
 
                     // aos
-                    aos: 'https://cdn.rawgit.com/michalsnik/aos/1.2.0/dist/aos',
+                    //aos: 'https://cdn.rawgit.com/michalsnik/aos/1.2.0/dist/aos',
 
                     // holmes
-                    holmes: '//raw.githubusercontent.com/Haroenv/holmes/gh-pages/js/holmes',
-                    microlight: '//raw.githubusercontent.com/Haroenv/holmes/gh-pages/js/microlight',
+                    //holmes: '//raw.githubusercontent.com/Haroenv/holmes/gh-pages/js/holmes',
+                    //microlight: '//raw.githubusercontent.com/Haroenv/holmes/gh-pages/js/microlight',
 
                     // Maps
                     // Leaflet

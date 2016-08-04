@@ -1,6 +1,6 @@
 CACHE MANIFEST
 # cache version
-# v0.1
+# v0.2
 # 30-05-2016
 
 //fenixrepo.fao.org/cdn/faostat/js/requirejs/2.1.15/require.min.js
@@ -33,13 +33,14 @@ CACHE MANIFEST
 //fenixrepo.fao.org/cdn/faostat/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min.js
 //fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/js/ion-rangeSlider/ion.rangeSlider.min.js
 //fenixrepo.fao.org/cdn/faostat/js/jquery.visible/1.2.0/jquery.visible.min.js
-//fenixrepo.fao.org/cdn/faostat/js/sweet-alert/0.5.0/sweet-alert.min.js
 //fenixrepo.fao.org/cdn/faostat/js/numeral/1.5.3/min/numeral.min.js
 //fenixrepo.fao.org/cdn/faostat/js/FileSaver/1.1.2/FileSaver.min.js
 //fenixrepo.fao.org/cdn/faostat/js/blob/1.0/Blob.js
 //fenixrepo.fao.org/cdn/faostat/js/tableExport.jquery.plugin/1.0/tableExport.min.js
 //fenixrepo.fao.org/cdn/faostat/js/bootstrap-table/1.9.1/bootstrap-table.min.js
 //fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.0/dist/jstree.min.js
+//fenixrepo.fao.org/cdn/faostat/js/nprogress/0.2.0/nprogress.js
+//fenixrepo.fao.org/cdn/faostat/js/toastr/2.1.2/build/toastr.min.js
 
 # fenix-ui-map
 //fenixrepo.fao.org/cdn/faostat/js/FENIX/utils/import-dependencies-1.0.js
@@ -52,7 +53,6 @@ CACHE MANIFEST
 //fenixrepo.fao.org/cdn/faostat/js/highcharts/4.2.5/js/highcharts.js
 //fenixrepo.fao.org/cdn/faostat/js/highstock/2.1.9/js/highstock.js
 //fenixrepo.fao.org/cdn/faostat/js/highcharts/4.2.5/js/modules/exporting.js
-//fenixrepo.fao.org/cdn/faostat/js/highcharts/4.0.4/js/modules/exporting.js
 
 # Google Analytics
 //fenixrepo.fao.org/cdn/faostat/js/googleanalytics/0.3.7/analytics.js
@@ -61,7 +61,6 @@ CACHE MANIFEST
 //fenixrepo.fao.org/cdn/faostat/js/bootstrap/3.3.6/css/bootstrap.min.css
 //fenixrepo.fao.org/cdn/faostat/js/bootstrap-table/1.9.1/bootstrap-table.min.css
 //fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.0/dist/themes/default/style.min.css
-//fenixrepo.fao.org/cdn/faostat/js/sweet-alert/0.5.0/sweet-alert.min.css
 //fenixrepo.fao.org/cdn/faostat/js/select2/3.5.4/select2.css
 //fenixrepo.fao.org/cdn/faostat/js/jquery-ui/1.9.2/smoothness/jquery-ui.custom.min.css
 //fenixrepo.fao.org/cdn/faostat/js/outdatedbrowser/1.1.1/outdatedbrowser.min.css
@@ -72,9 +71,15 @@ CACHE MANIFEST
 //fenixrepo.fao.org/cdn/faostat/js/jbpivot/0.1.0/jbPivot.css
 //fenixrepo.fao.org/cdn/faostat/js/leaflet/0.7.7/leaflet.css
 //fenixrepo.fao.org/cdn/faostat/js/node-waves/0.7.5/waves.min.css
+//fenixrepo.fao.org/cdn/faostat/js/nprogress/0.2.0/nprogress.css
+//fenixrepo.fao.org/cdn/faostat/js/toastr/2.1.2/build/toastr.min.css
 # ./submodules/fenix-ui-map/dist/fenix-ui-map.min.css
 //fast.fonts.com/cssapi/0ad75cee-12a6-49a0-a922-c4ecad41ec44.css
 //fonts.googleapis.com/icon?family=Material+Icons
+
+# woff (dangerous?)
+#//fast.fonts.com/dv2/3/59d9a83f-4045-4d43-af46-655f845461ee.woff?d44f19a684109620e484147caf90e818891532d74607d3fe1602d4c9bcc5795e82f225f3c98844302bad03a5390250ec007d5d5ad47c0d474401&projectId=0ad75cee-12a6-49a0-a922-c4ecad41ec44
+//fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/eldorado/eldorado_stroke.woff
 
 # Images
 #//www.google.com/cse/static/en/google_custom_search_watermark.gif
@@ -88,19 +93,17 @@ src/images/youtube.png
 src/images/flickr_23.png
 src/images/rss.png
 
-
-
 # Use from network if available
 NETWORK:
 index.html
-main.js
+main-all.js
 *
-# index.html
+#index.html
 # /api/*
-# /src/js/*
-# /submodules/*
-# /dist/*
-# /config/*
+#src/js/*
+#submodules/*
+#dist/*
+#config/*
 
 # Additional resources to cache
 #CACHE:
