@@ -14,10 +14,10 @@ define(['jquery'], function ($) {
 
         // URLs
         "URL_FEEDBACK_SYSTEM": "http://fenixapps.fao.org/feedbacksystem/",
-        "URL_FAOSTAT_DATABASE_ZIP": "http://fenix.fao.org/faostat/ftp/FAOSTAT.zip",
-        "URL_BULK_DOWNLOADS_BASEPATH": "http://fenix.fao.org/faostat/bulkdownloads/",
-        "URL_FAOSTAT_DOCUMENTS_BASEPATH": 'http://fenix.fao.org/faostat/documents/',
-        "URL_RELEASE_CALENDAR": 'http://fenix.fao.org/faostat/releasecalendar/Default.aspx',
+        //"URL_FAOSTAT_DATABASE_ZIP": "http://fenix.fao.org/faostat/ftp/FAOSTAT.zip",
+        //"URL_BULK_DOWNLOADS_BASEPATH": "http://fenix.fao.org/faostat/bulkdownloads/",
+        "URL_FAOSTAT_DOCUMENTS_BASEPATH": 'http://fenixservices.fao.org/faostat/static/documents/',
+        "URL_RELEASE_CALENDAR": 'http://fenixservices.fao.org/faostat/static/releasecalendar/Default.aspx',
 
         "JIRA_COLLECTOR": {
             "ENABLED": true,
