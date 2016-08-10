@@ -13,6 +13,7 @@ define([
     'i18n!nls/indicators',
     'fs-r-t/start',
     'faostatapiclient',
+    'q',
     'amplify'
 ], function ($,
              log,
@@ -24,7 +25,8 @@ define([
              template,
              i18nLabels,
              ReportTable,
-             FAOSTATApi
+             FAOSTATApi,
+             Q
              ) {
 
     'use strict';
@@ -48,6 +50,14 @@ define([
             this.o = $.extend(true, {}, options);
         },
 
+        test: function() {
+
+            return Q.fcall(function () {
+                return 10;
+            });
+
+        },
+
         getTemplateData: function () {
             return $.extend(this, {}, i18nLabels, {data: CM.data});
         },
@@ -66,6 +76,17 @@ define([
             this.configurePage();
 
             this.bindEventListeners();
+
+            log.info("----------------");
+            var c = this.test();
+            log.info(c);
+            var d = c.then(function(v) {
+               log.info("1 ", v);
+               return 15;
+            }).done(function(v) {
+                log.info("2 ", v);
+                return 25;
+            });
 
         },
 
@@ -88,93 +109,116 @@ define([
 
             var api =  new FAOSTATApi();
 
-            api.data_get({
-                domain: 'QC',
-                datasource: "test",
-                area: [2],
-                year: [2010]
+            api.definitions({
+                datasource: "production"
             }).then(function(d) {
-
                 log.info(d)
 
             });
 
-            $.ajax({
-                url: "http://localhost:8081/faostat-api/v1/en/data/CS",
-                contentType: "application/json",
-                data: {
-                    datasource: "test",
-                    area: [2],
-                    year: [2010]},
-                success: function(result){
-                    log.info(result);
-                },
-                error: function(error) {
-                    log.error(error);
-                }
+            api.definitions({
+                datasource: "internal"
+            }).then(function(d) {
+                log.info(d)
+
             });
 
-            $.ajax({
-                url: "http://localhost:8081/faostat-api/v1/en/data/CS",
-                contentType: "application/json",
-                data: {
-                    datasource: "test",
-                    area: [2, 3],
-                    year: [2010]
-                },
-                success: function(result){
-                    log.info(result);
-                },
-                error: function(error) {
-                    log.error(error);
-                }
+            api.definitions_by_type({
+                datasource: "production",
+                type: "abbreviation"
+            }).then(function(d) {
+                log.info(d)
+
             });
 
-            $.ajax({
-                url: "http://localhost:8081/faostat-api/v1/en/data/CS",
-                contentType: "application/json",
-                data: {
-                    datasource:"test"
-                },
-                success: function(result){
-                    log.info(result);
-                },
-                error: function(error) {
-                    log.error(error);
-                }
-            });
 
-            $.ajax({
-                url: "http://localhost:8081/faostat-api/v1/en/data/QC",
-                contentType: "application/json",
-                data: {
-                    datasource:"test",
-                    area: ["5100>"],
-                },
-                success: function(result){
-                    log.info(result);
-                },
-                error: function(error) {
-                    log.error(error);
-                }
-            });
+            /*  api.data_get({
+                  domain: 'QC',
+                  datasource: "test",
+                  area: [2],
+                  year: [2010]
+              }).then(function(d) {
 
-            $.ajax({
-                url: "http://localhost:8081/faostat-api/v1/en/data/TP",
-                contentType: "application/json",
-                data: {
-                    datasource:"test",
-                    year: ["2010"],
-                },
-                success: function(result){
-                    log.info(result);
-                },
-                error: function(error) {
-                    log.error(error);
-                }
-            });
+                  log.info(d)
 
-            var api = new FAOSTATApi();
+              });
+
+              $.ajax({
+                  url: "http://localhost:8081/faostat-api/v1/en/data/CS",
+                  contentType: "application/json",
+                  data: {
+                      datasource: "test",
+                      area: [2],
+                      year: [2010]},
+                  success: function(result){
+                      log.info(result);
+                  },
+                  error: function(error) {
+                      log.error(error);
+                  }
+              });
+
+              $.ajax({
+                  url: "http://localhost:8081/faostat-api/v1/en/data/CS",
+                  contentType: "application/json",
+                  data: {
+                      datasource: "test",
+                      area: [2, 3],
+                      year: [2010]
+                  },
+                  success: function(result){
+                      log.info(result);
+                  },
+                  error: function(error) {
+                      log.error(error);
+                  }
+              });
+
+              $.ajax({
+                  url: "http://localhost:8081/faostat-api/v1/en/data/CS",
+                  contentType: "application/json",
+                  data: {
+                      datasource:"test"
+                  },
+                  success: function(result){
+                      log.info(result);
+                  },
+                  error: function(error) {
+                      log.error(error);
+                  }
+              });
+
+              $.ajax({
+                  url: "http://localhost:8081/faostat-api/v1/en/data/QC",
+                  contentType: "application/json",
+                  data: {
+                      datasource:"test",
+                      area: ["5100>"],
+                  },
+                  success: function(result){
+                      log.info(result);
+                  },
+                  error: function(error) {
+                      log.error(error);
+                  }
+              });
+
+              $.ajax({
+                  url: "http://localhost:8081/faostat-api/v1/en/data/TP",
+                  contentType: "application/json",
+                  data: {
+                      datasource:"test",
+                      year: ["2010"],
+                  },
+                  success: function(result){
+                      log.info(result);
+                  },
+                  error: function(error) {
+                      log.error(error);
+                  }
+              });
+
+              var api = new FAOSTATApi();*/
 
            /* api.data({
                 "datasource":"production",

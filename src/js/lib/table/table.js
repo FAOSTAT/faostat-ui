@@ -39,7 +39,7 @@ define([
                 addPanel: true,
                 sortable: true,
 
-                //
+                // TODO: not used yet?
                 remote: {
                     enabled: true,
                     request: {}
