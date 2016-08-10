@@ -72,6 +72,7 @@ define({
     classifications: 'Classifications',
     glossary: 'Glossaire',
 
+    definitions: "Definitions",
     metadata: 'Métadonnée',
     bulk_downloads: 'Données Completes',
     interactive_download: 'Télécharger interactive',

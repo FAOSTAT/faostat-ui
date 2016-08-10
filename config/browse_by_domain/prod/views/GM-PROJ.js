@@ -44,7 +44,7 @@ define([
                     // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-md-3",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -60,7 +60,7 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-md-3",
                         "type": "dropDownList"
                         //"multiple": true
                     },
@@ -76,11 +76,11 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-md-2",
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "yearprojections",
+                        "dimension_id": "yearproj",
                         "defaultCodes": ['2030'],
                         "filter": {
                         }

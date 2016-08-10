@@ -1,0 +1,34 @@
+
+<template id='list'>
+
+            <h3>List</h3>
+
+            <ul class="list-unstyled">
+                {{#each data}}
+                    <li>
+                        <h5>
+                            <a data-role='definition' data-code='{{this.code}}' data-label='{{this.label}}' href="#">{{this.label}}</a>
+                        </h5>
+                    </li>
+                {{/each}}
+            </ul>
+
+</template>
+
+<template id='output'>
+
+    <br>
+    <hr>
+
+    <h3>{{this.label}}</h3>
+
+    <div data-role="table-toolbar">
+        <a class="btn-floating waves-effect waves-light btn-default"
+           data-role='export'>
+            <i class="material-icons">file_download</i>
+        </a>
+    </div>
+
+    <div data-role='table'></div>
+
+</template>

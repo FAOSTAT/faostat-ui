@@ -27,6 +27,7 @@ define({
     "area": "Area",
     "year": "Year",
     "years": "Years",
+    "yearproj": "Year Projections",
     "donor": "Donor",
     "recipientarea": "Recipient Area",
     "analyticalaggregates": "Aid Aggregates",
@@ -72,6 +73,7 @@ define({
     classifications: 'Classifications',
     glossary: 'Glossary',
 
+    definitions: "Definitions",
     metadata: 'Metadata',
     bulk_downloads: 'Bulk Downloads',
     interactive_download: 'Interactive Download',
@@ -106,6 +108,7 @@ define({
     error_export: "Aw, Snap!. <br> Something went wrong during the download of the data.",
     error_preview: "Aw, Snap!. <br> Something went wrong during the fetch of the data.",
 
-    help_us_improve_this_site: "Help us improve this site"
+    help_us_improve_this_site: "Help us improve this site",
+
 
 });

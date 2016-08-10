@@ -22,10 +22,13 @@ define(function ( ) {
         GLOSSARY: 'glossary',
         CLASSIFICATIONS: 'classifications',
 
-        DOWNLOAD_BULK: "bulk",
+        DEFINITIONS: 'definitions',
+        DEFINITIONS_BY_TYPE: 'definitions_by_type',
+
+       // DOWNLOAD_BULK: "bulk",
         DOWNLOAD_INTERACTIVE: "interactive",
         DOWNLOAD_METADATA: "metadata",
-        DOWNLOAD_ABOUT: "about",
+        //DOWNLOAD_ABOUT: "about",
         DOWNLOAD_REPORT: "report",
 
         SEARCHY: "search",

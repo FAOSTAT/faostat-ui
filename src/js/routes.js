@@ -32,6 +32,9 @@ define(['config/Routes'], function (ROUTE) {
         match(':lang/glossary', 'standards-glossary#show_glossary', {name: ROUTE.GLOSSARY});
         match(':lang/classifications', 'standards-classifications#show_classifications', {name: ROUTE.CLASSIFICATIONS});
 
+        match(':lang/definitions', 'definitions#show', {name: ROUTE.DEFINITIONS});
+        match(':lang/definitions/:code', 'definitions-by-type#show', {name: ROUTE.DEFINITIONS_BY_TYPE});
+
         match(':lang/indicators', 'indicators#show', {name: ROUTE.INDICATORS});
         //match(':lang/indicators/:code', 'indicators#show', {name: ROUTE.INDICATORS_CODE});
 
@@ -42,17 +45,15 @@ define(['config/Routes'], function (ROUTE) {
         match(':lang/status/configuration', 'configuration#show', {name: ROUTE.FAOSTAT_CONFIGURATION});
 
         match(':lang/data', 'data#show', {name: ROUTE.DATA});
-        match(':lang/data/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DOWNLOAD_BULK});
-        // match(':lang/data/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
-        match(':lang/data/:code/metadata', 'download-metadata#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
-        // match(':lang/data/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
-        match(':lang/data/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
-        match(':lang/data/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
-        match(':lang/data/:code/report', 'download-report#show_report', {name: ROUTE.DOWNLOAD_REPORT});
-        // match(':lang/data/browse/:code', 'download#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
-        match(':lang/data/:code/visualize', 'download-browse#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
-        // match(':lang/data/:code/browse', 'download#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
 
+        match(':lang/data/:code/metadata', 'download-metadata#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
+        match(':lang/data/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
+        match(':lang/data/:code/report', 'download-report#show_report', {name: ROUTE.DOWNLOAD_REPORT});
+        match(':lang/data/:code/visualize', 'download-browse#show_browse', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
+        //match(':lang/data/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
+        //match(':lang/data/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
+        //match(':lang/data/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DOWNLOAD_BULK});
+        // match(':lang/data/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
         match('protected', 'protected#show');
         match('about', 'about#show');
         match('*anything', '404#show');

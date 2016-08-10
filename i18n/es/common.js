@@ -72,6 +72,7 @@ define({
     classifications: 'Clasificaciones',
     glossary: 'Glosario',
 
+    definitions: "Definitions",
     metadata: 'Metadato',
     bulk_downloads: 'Todos Lost Datos',
     interactive_download: 'Interactive Download',

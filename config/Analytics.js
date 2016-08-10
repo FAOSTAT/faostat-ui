@@ -193,6 +193,20 @@ define(function () {
 
         },
 
+        /* definitions and standards section*/
+        definitions: {
+            selection: {
+                category: 'definitions',
+                action: 'selection',
+                label: '' //code
+            },
+            download: {
+                category: 'definitions',
+                action: 'download',
+                label: '' //code
+            }
+        },
+
         /* methodos and standards specific tracking */
         methodology: {
             selection: {

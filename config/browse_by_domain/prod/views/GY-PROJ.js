@@ -64,7 +64,7 @@ define([
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "yearprojections",
+                        "dimension_id": "yearproj",
                         "defaultCodes": ['2030'],
                         "filter": {
                         }

@@ -52,7 +52,7 @@ define([
 
             this.$TABLE = $table_content.find(s.TABLE);
 
-            log.info("Table._injectTemplate; o:", this.o);
+            log.info("Table._injectTemplate; o:", this.o, this.o.template.ajax);
 
 
             // http://bootstrap-table.wenzhixin.net.cn/documentation/
@@ -68,7 +68,7 @@ define([
             }else{
                 this.$TABLE.bootstrapTable({
                     data: this.o.model.data,
-                    locale: this.o.lang
+                    locale: this.o.lang_inje
                 });
             }
 
