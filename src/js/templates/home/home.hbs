@@ -1,92 +1,31 @@
 
-
 <br><br>
 
 <div class="jumbotron faostat-intro">
     <div>
         <h2>Food and agriculture data</h2>
         <p>FAOSTAT provides free access to food and agriculture data for 245 countries and 35 regional areas from 1961 to the most recent year available.</p>
-        <a href='{{URL_DATA}}' class="btn btn-lg btn-primary waves-effect truncate">
-                Explore the data
-            </a>
+        <a data-link='interanl' href='{{URL_DATA}}' class="btn btn-lg btn-primary waves-effect truncate">
+            Explore the data
+        </a>
     </div>
 </div>
 
-<!--<div class="hidden-xs"><br><br></div>-->
-
-<!--<div class="row">
-
-    <div class="col-md-12">
-
-        <div class="swiper-container fs-home-swiper">
-
-            <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                    <div class="title">
-                        <h1 data-swiper-parallax="-100">
-                            <a target="_blank" href="http://www.fao.org/hunger/en/">FAO hunger map</a>
-                        </h1>
-                        <h2 class="hidden-xs" data-swiper-parallax="-500">About 793 million people are undernourished globally, down 167 million over the last decade, and 216 million less than in 1990–92. The decline is more pronounced in developing regions, despite significant population growth. </h2>
-                        <div class="white-stripe"></div>
-                    </div>
-    &lt;!&ndash;                <div class="parallax-bg">
-                        <div id="fs_home_chart1"></div>
-                    </div>&ndash;&gt;
-                    <div class="parallax-bg" style="background-image:url(src/images/homepage/img-2.jpg)"></div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="title">
-                        <h1 data-swiper-parallax="-100">
-                            Food security in the 2030 Agenda for Sustainable Development
-                        </h1>
-                        <h2 class="hidden-xs" data-swiper-parallax="-500">
-                            Adopted by the UN’s 193 Member States in 2015, the Sustainable Development Goals (SDGs) are new global goals that succeeded the Millennium Development Goals in 2016. The SDGs will shape national development policies for the next 15 years. Food and agriculture is at the heart of the 17 SDGs, beginning with SDG1 - End poverty and SDG2 - End hunger.                                </h2>
-                        <div class="white-stripe"></div>
-                    </div>
-                    <div class="parallax-bg" style="background-image:url(src/images/homepage/img-3.jpg)"></div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="title">
-                        <h1 data-swiper-parallax="-100">FAO statistical yearbooks</h1>
-                        <h2 class="hidden-xs" data-swiper-parallax="-500">
-                            FAO statistical yearbooks provide thematic and regional data and analysis. They provide an overview of key indicators, data visualizations and country-level tables.
-                        </h2>
-                        <div class="white-stripe"></div>
-                    </div>
-                    <div class="parallax-bg" style="background-image:url(src/images/homepage/img-4.jpg)"></div>
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev">
-                <a class="btn-floating waves-effect waves-light btn-default hoverable">
-                    <i class="material-icons">chevron_left</i>
-                </a>
-            </div>
-            <div class="swiper-button-next">
-                <a class="btn-floating waves-effect waves-light btn-default hoverable">
-                    <i class="material-icons">chevron_right</i>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>-->
-
 <div class="row home-content">
 
-    <!-- left side -->
     <div class="col-md-8">
 
         <div class="row">
             <div class="col-sm-6">
                 <div class="elegant-card z-depth-1 hoverable">
+
                     <!-- Image wrapper -->
                     <div class="card-up view overlay hm-white-slight">
                         <a><img data-original="src/images/homepage/database.jpg" class="lazy img-responsive"></a>
                     </div>
 
                     <!-- Button -->
-                    <a href='{{URL_RELEASE_CALENDAR}}' target="_blank" class="btn-floating btn-primary btn-large waves-effect waves-light">
+                    <a data-link='external' href='{{URL_RELEASE_CALENDAR}}' target="_blank" class="btn-floating btn-primary btn-large waves-effect waves-light">
                         <i class="material-icons">event_note</i>
                     </a>
 
@@ -100,6 +39,7 @@
                                     <ul id="fs_home_database_updates" class="list-unstyled"></ul>
                                 </div>
                             </div>
+
                             <!-- Add Scroll Bar -->
                             <div class="swiper-scrollbar"></div>
                         </div>
@@ -116,7 +56,7 @@
                         <a><img data-original="src/images/homepage/pocket.jpg" class="lazy img-responsive"></a>
                     </div>
 
-                    <a target='_blank' href=' http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
+                    <a data-link='external' target='_blank' href=' http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
                         <i class="material-icons">keyboard_arrow_right</i>
                     </a>
                     <div class="card-content">
@@ -142,7 +82,7 @@
                     </div>
 
                     <!-- Button -->
-                    <a href='{{URL_BROWSE_BY_COUNTRY}}' class="btn-floating btn-primary btn-large waves-effect waves-light">
+                    <a data-link='interanl' href='{{URL_BROWSE_BY_COUNTRY}}' class="btn-floating btn-primary btn-large waves-effect waves-light">
                         <i class="material-icons">keyboard_arrow_right</i>
                     </a>
 
@@ -164,7 +104,7 @@
                     </div>
 
                     <!-- Button -->
-                    <a href="{{URL_BROWSE_RANKINGS}}"  class="btn-floating btn-primary  btn-large waves-effect waves-light">
+                    <a data-link='interanl' href="{{URL_BROWSE_RANKINGS}}"  class="btn-floating btn-primary  btn-large waves-effect waves-light">
                         <i class="material-icons">keyboard_arrow_right</i>
                     </a>
                     <!-- Content -->
@@ -178,10 +118,9 @@
 
         </div>
 
+        <div class="hidden-xs"><br><br></div>
 
-       <div class="hidden-xs"><br><br></div>
-
-      <div class="row">
+        <div class="row">
 
             <div class="col-sm-12">
                 <div class="elegant-card z-depth-1 hoverable">
@@ -190,7 +129,7 @@
                         <a><img data-original="src/images/homepage/sdgs-big.png" class="lazy img-responsive"></a>
                     </div>
 
-                    <a target='_blank' href='http://www.fao.org/sustainable-development-goals/{{locale}}/' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
+                    <a data-link='external' target='_blank' href='http://www.fao.org/sustainable-development-goals/{{locale}}/' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
                         <i class="material-icons">keyboard_arrow_right</i>
                     </a>
                     <div class="card-content">
@@ -235,24 +174,8 @@
         </div>
 
         <br>
+
         <div class="visible-xs"><br></div>
-
-        <!-- <div class="panel panel-default hoverable">
-
-            <div class="panel-heading">
-                <h4>{{related_links}}Related Links</h4>
-            </div>
-
-            <div class="panel-body">
-
-                <ul class="list-unstyled">
-                    <li><a id="territorial_notes" class="text-capitalize" href="#">{{territorial_notes}}</a></li>
-                </ul>
-
-            </div>
-
-        </div>
-        -->
 
         <div class="panel panel-default hoverable">
 
@@ -278,7 +201,7 @@
                 <img src="src/images/faostat-logo-blue-capital-only-text.svg" width="108px" height="20px" alt="Faostat" class="faostat-header-logo">
 
                 <address>
-                    <a href="http://www.fao.org/economic/ess/{{locale}}/" target="_blank">
+                    <a data-link='external' href="http://www.fao.org/economic/ess/{{locale}}/" target="_blank">
                         <strong>Statistics Division</strong>
                     </a>
                     <br>
@@ -290,7 +213,7 @@
 
                 <address>
                     <strong>Info</strong><br>
-                    <a href="mailto:FAO-statistics@fao.org">FAO-statistics@fao.org</a>
+                    <a data-link='external' href="mailto:FAO-statistics@fao.org">FAO-statistics@fao.org</a>
                 </address>
 
             </div>

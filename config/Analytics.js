@@ -320,6 +320,27 @@ define(function () {
                 }
             }
 
+        },
+
+        external_link: {
+            category: 'external_link',
+            action: 'selection',
+            label: '' //  e.g. 'all_fao_menu', 'development_goals', 'statistical_yearbook'
+        },
+
+        internal_link: {
+            category: 'internal_link',
+            action: 'selection',
+            label: '' //  e.g. 'country_indicators', 'rankings'
+        },
+
+        home: {
+            database_updates: {
+                category: 'database_updates',
+                action: 'selection',
+                label: '' // domain_code
+            },
+            // is it needed?
         }
 
     };

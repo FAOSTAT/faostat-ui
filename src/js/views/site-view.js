@@ -57,7 +57,9 @@ define([
         LANG: "#footer-menu-container",
 
         JIRA_COLLECTOR: "#jiraFaostatCollector",
-        JIRA_LOGIN: "#jiraLogin"
+        JIRA_LOGIN: "#jiraLogin",
+
+        EXTERNAL_LINK: '[data-link="external"]'
 
     }, 
         
@@ -199,6 +201,7 @@ define([
             this.initSearchBox();
             this.initLazyLoading();
             this.initGoogleFormAnalytics();
+            this.trackExternalLinks();
            // this.initJIRACollector();
             this.initNotificationInitConfiguration();
 
@@ -253,6 +256,23 @@ define([
             
             this.$GOOGLE_FORM.on('click', function() {
                 amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.select_google_form);
+            });
+
+        },
+
+        trackExternalLinks: function () {
+
+            this.$EXTERNAL_LINK = this.$el.find(s.EXTERNAL_LINK);
+            this.$EXTERNAL_LINK.off();
+            this.$EXTERNAL_LINK.on('click', function(e) {
+
+                var url = $(this).attr('href');
+
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+                    $.extend({}, true,
+                        A.external_link,
+                        { label: url }
+                    ));
             });
 
         },

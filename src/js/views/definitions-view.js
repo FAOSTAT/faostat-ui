@@ -124,7 +124,11 @@ define([
                 html = $(templateOutput).filter('#list').html(),
                 t = Handlebars.compile(html);
 
-            this.$definitions.html(t({data: data}));
+            this.$definitions.html(t({
+                    data: data,
+                    title: i18nLabels.list
+                })
+            );
 
             this.$definitions.find(s.DEFINITIONS_LIST).off();
             this.$definitions.find(s.DEFINITIONS_LIST).on('click', function(e) {
@@ -165,6 +169,10 @@ define([
                 self.$output.html(t({
                     label: label
                 }));
+
+                amplify.publish(E.SCROLL_TO_SELECTOR, {
+                    container: self.$output,
+                });
 
                 self.$table = self.$output.find(s.TABLE);
                 self.$export_data = self.$output.find(s.EXPORT_DATA);
@@ -234,6 +242,7 @@ define([
                 self._analyticsDefinitionDownload(code);
 
             });
+
         },
 
         createExportMatrix: function () {

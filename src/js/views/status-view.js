@@ -209,7 +209,7 @@ define([
                 // for each dimensions get sample codes
                 _.each(dimensions.data, function(dimension){
 
-                    log.info(dimension);
+                    //log.info("StatusView.getDataDomainSample.dimension;", dimension);
 
                     requestCodes.push(self.api.codes({
                         lang: lang,
@@ -224,8 +224,6 @@ define([
                 // get codes
                 Q.all(requestCodes).then(function(codes) {
 
-                    //log.info(codes)
-
                     var filters = {};
 
                     // for each code get a sample
@@ -234,6 +232,10 @@ define([
                         self.showDetails($domain_container, 'codes', code);
 
                         //log.info(code);
+                        //log.info(codes)
+                        if (  code.data.length <= 0 ) {
+                            log.warn("StatusView.getDataDomainSample.code.data.length;", code.data.length);
+                        }
 
                         var parameter = code.metadata.parameters.parameter;
                         var id = code.metadata.parameters.id;
@@ -243,7 +245,7 @@ define([
 
                     });
 
-                    log.info(filters);
+                    //log.info("StatusView.getDataDomainSample.filters;"), filters;
 
                     // get codes sample and get data
                     try {
@@ -256,7 +258,7 @@ define([
                             { filters: filters}
                         )).then(function (data) {
 
-                            log.info(domainName, domainCode, data.data.length);
+                            log.info("StatusView.getDataDomainSample.data;", domainName, domainCode, data.data.length);
                             //log.info(data);
 
                             self.showData($domain_container, data, domain);

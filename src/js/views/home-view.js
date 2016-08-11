@@ -69,7 +69,8 @@ define([
             TERRITORIAL_NOTES: '#territorial_notes',
             FAOSTAT_BULK_ZIP: '[data-role="bulk_download"]',
             FAOSTAT_BULK_DATE: '[data-role="bulk_download_date"]',
-            FAOSTAT_BULK_SIZE: '[data-role="bulk_download_size"]'
+            FAOSTAT_BULK_SIZE: '[data-role="bulk_download_size"]',
+            EXTERNAL_LINK: "[data-link='external']"
 
         },
         HomeView = View.extend({
@@ -128,6 +129,7 @@ define([
                 this.$FAOSTAT_BULK_ZIP = this.$el.find(s.FAOSTAT_BULK_ZIP);
                 this.$FAOSTAT_BULK_DATE = this.$el.find(s.FAOSTAT_BULK_DATE);
                 this.$FAOSTAT_BULK_SIZE = this.$el.find(s.FAOSTAT_BULK_SIZE);
+                this.$EXTERNAL_LINK = this.$el.find(s.EXTERNAL_LINK);
 
                // this.$CHART1 = this.$el.find(s.CHART + "1");
 
@@ -486,10 +488,7 @@ define([
 
                 }).fail(function(e) {
 
-                    // TODO: Handle error
-                    //log.error("Home.initBulkDownload; error", e);
-
-                   // amplify.publish(E.CONNECTION_PROBLEM, {});
+                    log.error("Home.initBulkDownload; error", e);
 
                 });
 
@@ -503,6 +502,19 @@ define([
 
                     window.open($(this).data('url'));
 
+                });
+
+                this.$EXTERNAL_LINK.off();
+                log.info(this.$EXTERNAL_LINK)
+                this.$EXTERNAL_LINK.on('click', function(e) {
+
+                    var url = $(this).attr('href');
+
+                    amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+                        $.extend({}, true,
+                            A.external_link,
+                            { label: url }
+                        ));
                 });
 
 

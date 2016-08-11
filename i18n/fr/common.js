@@ -35,6 +35,7 @@ define({
     countries: 'Countries',
     aggregation: 'Aggregation',
     yearprojections: 'Year',
+    reporterarea: "Report Area",
 
     no_data_available: 'No data available.',
     no_data_available_for_current_selection: 'No data available for current selection',
@@ -72,7 +73,7 @@ define({
     classifications: 'Classifications',
     glossary: 'Glossaire',
 
-    definitions: "Definitions",
+    definitions_and_Standards: "Definitions and standards",
     metadata: 'Métadonnée',
     bulk_downloads: 'Données Completes',
     interactive_download: 'Télécharger interactive',

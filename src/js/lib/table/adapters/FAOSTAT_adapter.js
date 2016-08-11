@@ -79,11 +79,8 @@ define([
 
             });
 
-
-            log.info("Filtered Columns:", filteredColumns);
-
             // order by index the filtered columns
-            filteredColumns = this.orderByIndex(filteredColumns);
+            //filteredColumns = this.orderByIndex(filteredColumns);
 
             log.info("Filtered Columns:", filteredColumns);
 
@@ -125,7 +122,7 @@ define([
                 if ( c.type === "value" ) {
                     valueKey = c.key;
                     // forcing alignment to right
-                    // DIRTY overridel of the dsd
+                    // DIRTY override of the dsd
                     c.align = "right";
                 }
             });
@@ -149,18 +146,20 @@ define([
             return data;
         };
 
+        // @Deprecated. this should not be used at the moment
         FAOSTAT_Adapter.prototype.orderByIndex = function (columns) {
 
             // TODO: alter index to integer for the sort. Fix APIs
             _.each(columns, function(column) {
                 column.index = parseInt(column.index);
             });
+
             return _.sortBy(columns, 'index');
 
         };
 
         FAOSTAT_Adapter.prototype.destroy = function () {
-            log.warn('TODO: FAOSTAT_Adapter destroy');
+            log.warn('TODO: FAOSTAT_Adapter.destroy');
         };
 
         return FAOSTAT_Adapter;
