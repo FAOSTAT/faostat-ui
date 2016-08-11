@@ -68,7 +68,7 @@ define([
             }else{
                 this.$TABLE.bootstrapTable({
                     data: this.o.model.data,
-                    locale: this.o.lang_inje
+                    locale: this.o.lang
                 });
             }
 

@@ -73,6 +73,10 @@ define([
                         filteredColumns.push(c);
                     }
                 }
+                else if ( c.type === "value" ) {
+                    c.align = "right";
+                    filteredColumns.push(c);
+                }
                 else {
                     filteredColumns.push(c);
                 }
@@ -80,10 +84,10 @@ define([
             });
 
             // order by index the filtered columns
-            //filteredColumns = this.orderByIndex(filteredColumns);
 
             log.info("Filtered Columns:", filteredColumns);
 
+            // filtered column are the one rendered by the custom template
             return filteredColumns;
 
         };
@@ -121,9 +125,6 @@ define([
             _.each(dsd, function (c) {
                 if ( c.type === "value" ) {
                     valueKey = c.key;
-                    // forcing alignment to right
-                    // DIRTY override of the dsd
-                    c.align = "right";
                 }
             });
 

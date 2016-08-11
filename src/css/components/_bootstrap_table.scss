@@ -3,16 +3,22 @@
 
 .bootstrap-table {
 
+  // workaround find the way to disable it programmatically
   .page-first {
 
     display: none;
 
   }
 
+  // workaround find the way to disable it programmatically
   .page-last {
 
     display: none;
 
+  }
+
+  th {
+    //color: #ddd
   }
 
 }

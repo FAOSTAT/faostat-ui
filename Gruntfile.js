@@ -59,7 +59,7 @@ module.exports = function(grunt) {
                 options: {
                     variables: {
                         'dest': 'internal',
-                        'url_api': 'http://fenix.fao.org/faostat/demo/api/v1/',
+                        'url_api': 'http://fenix.fao.org/faostat/internal/api/v1/',
                         'mode': 'internal',
                         'config_file': 'Config-all.js'
                     }
@@ -155,7 +155,7 @@ module.exports = function(grunt) {
         compress: {
             faostat: {
                 options: {
-                    archive: 'build/<%= grunt.config.get("dest") %>/faostat-ui.zip',
+                    archive: 'build/<%= grunt.config.get("dest") %>/faostat-ui-<%= grunt.config.get("mode") %>.zip',
                     mode: 'zip'
                 },
                 files: [{
@@ -204,12 +204,14 @@ module.exports = function(grunt) {
         'compress:faostat',
 
         // demo
+        /*
         'config:demo',
         'copy:faostat',
         //'copy:faostat-config',
         'replace:dist',
         'replace:faostat-config',
         'compress:faostat',
+        */
 
         // internal
         'config:internal',
