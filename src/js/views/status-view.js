@@ -134,7 +134,6 @@ define([
 
             });
 
-
         },
 
         configurePage: function () {
