@@ -194,7 +194,7 @@ module.exports = function(grunt) {
     grunt.registerTask('zip', 'Run all my build tasks.', function() {
 
         grunt.log.writeln('\n\n\n\n\n\n----------THINGS TO BE CHECKED--------\n');
-        grunt.log.writeln('1) Did you check in FAOSTATApi the @@url parameter?');
+        grunt.log.writeln('1) Did you check in FAOSTATAPIClient the @@url_api parameter?');
         grunt.log.writeln('2) Did you check the appcache?');
         grunt.log.writeln('3) Did you update the cache version?');
         grunt.log.writeln('\n--------------------------------------\n\n\n\n\n\n');
