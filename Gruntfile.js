@@ -106,13 +106,13 @@ module.exports = function(grunt) {
                 ]
             },
             /*'faostat-config': {
-                files: [
-                    {
-                        src:'<%= grunt.config.get("config_file") %>',
-                        dest:'build/<%= grunt.config.get("dest") %>/faostat-ui/config/Config.js'
-                    }
-                ]
-            }*/
+             files: [
+             {
+             src:'<%= grunt.config.get("config_file") %>',
+             dest:'build/<%= grunt.config.get("dest") %>/faostat-ui/config/Config.js'
+             }
+             ]
+             }*/
         },
 
         replace: {
@@ -174,6 +174,11 @@ module.exports = function(grunt) {
             }
         },
 
+        end: {
+            log: function() {
+                grunt.log("end")
+            }
+        }
 
         /*rename: {
          war: {
@@ -186,52 +191,90 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('zip', [
+    grunt.registerTask('zip', 'Run all my build tasks.', function() {
 
-        // clean dist
-        'clean:dist',
+        grunt.log.writeln('\n\n\n\n\n\n----------THINGS TO BE CHECKED--------\n');
+        grunt.log.writeln('1) Did you check in FAOSTATApi the @@url parameter?');
+        grunt.log.writeln('2) Did you check the appcache?');
+        grunt.log.writeln('3) Did you update the cache version?');
+        grunt.log.writeln('\n--------------------------------------\n\n\n\n\n\n');
 
-        // default configuration
-        'config:default',
+        // defaults
+        grunt.task.run('clean:dist');
+        grunt.task.run('config:default');
 
         // dev
-        'config:dev',
-        'copy:faostat',
-        //'copy:faostat-config',
-        'replace:dist',
-        'replace:faostat-config',
-        //'clean:faostat-config',
-        'compress:faostat',
+        grunt.task.run('config:dev');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('compress:faostat');
 
-        // demo
-        /*
-        'config:demo',
-        'copy:faostat',
-        //'copy:faostat-config',
-        'replace:dist',
-        'replace:faostat-config',
-        'compress:faostat',
-        */
 
         // internal
-        'config:internal',
-        'copy:faostat',
-        //'copy:faostat-config',
-        'replace:dist',
-        'replace:faostat-config',
-        'compress:faostat',
+        grunt.task.run('config:internal');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('compress:faostat');
 
         // prod
-        'config:prod',
-        'copy:faostat',
-        //'copy:faostat-config',
-        'replace:dist',
-        'replace:faostat-config',
-        'compress:faostat'
+        grunt.task.run('config:prod');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('compress:faostat');
 
 
-        //'rename:war'
-    ]);
+    });
+
+    // grunt.registerTask('zip', [
+    //
+    //     // clean dist
+    //     'clean:dist',
+    //
+    //     // default configuration
+    //     'config:default',
+    //
+    //     // dev
+    //     'config:dev',
+    //     'copy:faostat',
+    //     //'copy:faostat-config',
+    //     'replace:dist',
+    //     'replace:faostat-config',
+    //     //'clean:faostat-config',
+    //     'compress:faostat',
+    //
+    //     // demo
+    //     /*
+    //     'config:demo',
+    //     'copy:faostat',
+    //     //'copy:faostat-config',
+    //     'replace:dist',
+    //     'replace:faostat-config',
+    //     'compress:faostat',
+    //     */
+    //
+    //     // internal
+    //     'config:internal',
+    //     'copy:faostat',
+    //     //'copy:faostat-config',
+    //     'replace:dist',
+    //     'replace:faostat-config',
+    //     'compress:faostat',
+    //
+    //     // prod
+    //     'config:prod',
+    //     'copy:faostat',
+    //     //'copy:faostat-config',
+    //     'replace:dist',
+    //     'replace:faostat-config',
+    //     'compress:faostat',
+    //
+    //     'end:log'
+    //
+    //     //'rename:war'
+    // ]);
 
 };
 
