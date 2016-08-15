@@ -41,7 +41,7 @@ define([
 
         this.o = $.extend(true, {}, defaultOptions, options);
 
-       // log.info(this.o);
+        log.info("FilterBox.render; options", options);
 
         this.o.lang = Common.getLocale();
 
@@ -75,6 +75,9 @@ define([
             if (f.hasOwnProperty('config') && f.config.hasOwnProperty('filter')) {
                 f.config.filter = $.extend(true, {}, defaultFilter, f.config.filter);
             }
+
+            log.info("FilterBox.render; f.config.filter", f);
+
         }, this));
 
     };
@@ -128,6 +131,8 @@ define([
 
         _.each(filterItems, function(filter) {
 
+            log.info("FilterBox._preloadCodelists;", filter);
+
             var type = filter.type;
 
             switch(type) {
@@ -157,6 +162,10 @@ define([
             ord: null,
             id: id
         }, filter.config.filter);
+
+        log.info("FilterBox._preloadCodes; filter.config.filter", filter.config.filter);
+
+        log.info("FilterBox._preloadCodes; request", request);
 
         return this.FAOSTATAPIClient.codes(request)
             .then(function(c) {

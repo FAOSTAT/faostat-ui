@@ -378,7 +378,6 @@ var config = {
                 }
             }
 
-// TODO: handle the multilanguage in a proper way
 
 // Google Analytics
 window.GoogleAnalyticsObject = "__ga__";
@@ -389,11 +388,12 @@ window.__ga__ = {
 
 require.config(config);
 
+// TODO: handle the multilanguage in a proper way
 var getLocale = function ( url ) {
-    var href = url ? url : window.location.href;
-    var langString = href.substring(href.indexOf('#')+1, href.length -1);
+    var href = url ? url : window.location.href,
+        langString = href.substring(href.indexOf('#')+1, href.length -1);
     langString = langString.substring(0, langString.indexOf('/')).replace('/', '');
-    return (langString.length == 2)? langString.toLocaleLowerCase(): null;
+    return (langString.length == 2)? langString.toLocaleLowerCase() : null;
 };
 
 //var locale = getQueryString('locale') || 'en';

@@ -307,6 +307,8 @@ define([
 
                 this.filterBox = new FilterBox();
 
+                log.info("BrowseByDomain.renderFilter;", config);
+
                 // render filters
                 this.filterBox.render(config, false);
 
@@ -325,6 +327,8 @@ define([
                 _.each(config.items, _.bind(function(item) {
                     item.config = ViewUtils.defaultItemOptions(item, CM.view);
                 }, this));
+
+                log.info("BrowseByDomain.renderDashboard;", config);
 
                 config._name = 'by_domain';
                 this.dashboard.render(config);

@@ -7849,6 +7849,12 @@ div#google_search {
   right: 0;
   margin-left: 12px; }
 
+.ar div#google_search {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  margin-left: 12px; }
+
 div#google_search input.inputbox {
   background-position: 3px center !important;
   float: left;
