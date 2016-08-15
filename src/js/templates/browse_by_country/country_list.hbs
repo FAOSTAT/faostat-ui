@@ -1,50 +1,98 @@
 
-<div class="row">
-    <div class="col-xs-12">
+<template id='country_list_latin'>
+    <div class="row">
+        <div class="col-xs-12">
 
-        <h1 class="text-capitalize">{{country_indicators}}</h1>
+            <h1 class="text-capitalize">{{country_indicators}}</h1>
 
-        <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav nav-tabs" role="tablist">
 
-            <li role="presentation" class="active">
-                <a href="#country_list" data-section="country_list" role="tab" data-toggle="tab"
-                   aria-expanded="true">
-                    <span class="text-capitalize"></span>{{country_list}}
-                </a>
-            </li>
-        </ul>
+                <li role="presentation" class="active">
+                    <a href="#country_list" data-section="country_list" role="tab" data-toggle="tab"
+                       aria-expanded="true">
+                        <span class="text-capitalize"></span>{{country_list}}
+                    </a>
+                </li>
+            </ul>
 
-    </div>
-</div>
-
-<br>
-
-<!--<input data-role="search" type="text" class="form-control" placeholder="{{search_for_a_domain}}">-->
-
-
-<div class="country-list-container">
-
-    <div class="menu row-mason">
-
-        {{#each data}}
-
-            <div class="menu-category instafilta-section">
-
-                <h1>{{@key}}</h1>
-
-                <ul class="list-unstyled">
-
-                    {{#each this.data}}
-                        <li class="country-list">
-                            <a class="instafilta-target" href="{{this.link}}">{{i18n label}}</a>
-                        </li>
-                    {{/each}}
-
-                </ul>
-            </div>
-
-        {{/each}}
-
+        </div>
     </div>
 
-</div>
+    <br>
+
+    <!--<input data-role="search" type="text" class="form-control" placeholder="{{search_for_a_domain}}">-->
+
+    <div class="country-list-container">
+
+        <div class="menu row-mason">
+
+            {{#each data}}
+
+                <div class="menu-category instafilta-section">
+
+                    <h1>{{@key}}</h1>
+
+                    <ul class="list-unstyled">
+
+                        {{#each this.data}}
+                            <li class="country-list">
+                                <a class="instafilta-target" href="{{this.link}}">{{i18n label}}</a>
+                            </li>
+                        {{/each}}
+
+                    </ul>
+                </div>
+
+            {{/each}}
+
+        </div>
+
+    </div>
+</template>
+
+<template id='country_list_other'>
+    <div class="row">
+        <div class="col-xs-12">
+
+            <h1 class="text-capitalize">{{country_indicators}}</h1>
+
+            <ul class="nav nav-tabs" role="tablist">
+
+                <li role="presentation" class="active">
+                    <a href="#country_list" data-section="country_list" role="tab" data-toggle="tab"
+                       aria-expanded="true">
+                        <span class="text-capitalize"></span>{{country_list}}
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <br>
+
+    <div class="country-list-container">
+
+        <div class="menu row-mason">
+
+            {{#each data}}
+
+                <div class="menu-category instafilta-section">
+
+                    <ul class="list-unstyled">
+
+                        {{#each this.data}}
+                            <li class="country-list">
+                                <a class="instafilta-target" href="{{this.link}}">{{i18n label}}</a>
+                            </li>
+                        {{/each}}
+
+                    </ul>
+                </div>
+
+            {{/each}}
+
+        </div>
+
+    </div>
+</template>

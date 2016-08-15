@@ -1,86 +1,51 @@
 <!DOCTYPE html>
 <html manifest="faostat.appcache">
-<!--<html>-->
-    <head>
-
-        <title>FAOSTAT</title>
-
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
-        <meta name='format-detection' content='telephone=no'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-
-        <!-- TODO: description?-->
-        <meta name='description' content='FAOSTAT provides time-series and cross sectional data relating to food and agriculture for some 200 countries.'>
-
-        <link rel="shortcut icon" href="http://www.fao.org/fileadmin/templates/faoweb/images/icons/favicon.ico" type="image/x-icon; charset=binary">
-        <link rel="icon" href="http://www.fao.org/fileadmin/templates/faoweb/images/icons/favicon.ico" type="image/x-icon; charset=binary">
-
-        <!-- Authors. -->
-        <link rel='author' href='humans.txt'>
-
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href='//fenixrepo.fao.org/cdn/faostat/js/bootstrap/3.3.6/css/bootstrap.min.css'>
-
-        <!-- Bootstrap Arabic -->
-        <!--<link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">-->
-
-
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/bootstrap-table/1.9.1/bootstrap-table.min.css">
-        <!--<link rel="stylesheet" href="///fenixrepo.fao.org/cdn/faostat/js/boostrap-treeview/1.2.0/bootstrap-treeview.min.css">-->
-        <!--<link rel="stylesheet" href='//fenixrepo.fao.org/cdn/faostat/js/jstree/3.0.8/dist/themes/default/style.min.css'>-->
-        <!--<link rel="stylesheet" href='//fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.0/dist/themes/default/style.min.css'>-->
-        <link rel="stylesheet" href='//fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.0/dist/themes/default/style.min.css'>
-        <!--<link rel="stylesheet" href='//fenixrepo.fao.org/cdn/faostat/js/sweet-alert/0.5.0/sweet-alert.min.css'>-->
-        <link rel="stylesheet" href='//fenixrepo.fao.org/cdn/faostat/js/select2/3.5.4/select2.css'>
-        <!--<link rel="stylesheet" href="//fenixrepo.fao.org/cdn/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min.css"/>-->
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/jquery-ui/1.9.2/smoothness/jquery-ui.custom.min.css"/>
-        <!--<link rel="stylesheet" href="//fenixrepo.fao.org/cdn/js/jquery.rangeslider/5.7.0/css/classic-min.css">-->
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/outdatedbrowser/1.1.1/outdatedbrowser.min.css">
-
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/normalize.css">
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/ion.rangeSlider.css">
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/ion.rangeSlider.skinHTML5.css">
-
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/swiper/3.3.1/dist/css/swiper.min.css">
-
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/nprogress/0.2.0/nprogress.css">
-        <!--<link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/animate/3.5.1/animate.css">-->
-
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/toastr/2.1.2/build/toastr.min.css">
-
-
-        <!--<link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/1.2.0/dist/aos.css">-->
-
-        <!--<link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/bootstrap-tour/0.10.3/build/css/bootstrap-tour.min.css">-->
-
-        <!-- Pivot Table -->
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/jbpivot/0.1.0/jbPivot.css">
-
-        <!-- Fenix UI Map -->
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/leaflet/0.7.7/leaflet.css" />
-        <link rel="stylesheet" href="'../../submodules/fenix-ui-map/dist/fenix-ui-map.min.css" />
-
-        <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/node-waves/0.7.5/waves.min.css">
-
-        <!-- Frutiger Font -->
-        <link href="http://fast.fonts.com/cssapi/0ad75cee-12a6-49a0-a922-c4ecad41ec44.css" rel="stylesheet">
-
-        <!-- Material Design Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-        <!-- FAOSTAT CSS -->
-        <link href='dist/css/index.css' rel='stylesheet'>
-
-        <!-- RequireJS -->
-        <!--<script data-main='main' src='//fenixrepo.fao.org/cdn/faostat/js/requirejs/2.1.15/require.min.js'></script>-->
-        <script data-main='main-all' src='//fenixrepo.fao.org/cdn/faostat/js/requirejs/2.1.15/require.min.js'></script>
-
-    </head>
-
-        <!--<div style="position:absolute;top:50%;left:50%;" class="text-center"> <span class="loading loading-48"></span> </div>-->
-
-    </body>
-
+<head>
+    <title>FAOSTAT</title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+    <meta name='format-detection' content='telephone=no'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <meta name='description' content='FAOSTAT provides time-series and cross sectional data relating to food and agriculture for some 200 countries.'>
+    <link rel="shortcut icon" href="http://www.fao.org/fileadmin/templates/faoweb/images/icons/favicon.ico" type="image/x-icon; charset=binary">
+    <link rel="icon" href="http://www.fao.org/fileadmin/templates/faoweb/images/icons/favicon.ico" type="image/x-icon; charset=binary">
+    <link rel='author' href='humans.txt'>
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script type="text/javascript">
+        var getLocale = function ( url ) {
+            var href = url ? url : window.location.href,
+                    langString = href.substring(href.indexOf('#')+1, href.length -1);
+            langString = langString.substring(0, langString.indexOf('/')).replace('/', '');
+            return (langString.length == 2)? langString.toLocaleLowerCase() : 'en';
+        };
+        if (getLocale() === 'ar') {
+            var link = document.createElement( "link" );
+            link.href = "//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css";
+            link.type = "text/css";
+            link.rel = "stylesheet";
+            document.getElementsByTagName( "head" )[0].appendChild( link );
+        }
+    </script>
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/bootstrap-table/1.9.1/bootstrap-table.min.css">
+    <link rel="stylesheet" href='//fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.0/dist/themes/default/style.min.css'>
+    <link rel="stylesheet" href='//fenixrepo.fao.org/cdn/faostat/js/select2/3.5.4/select2.css'>
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/jquery-ui/1.9.2/smoothness/jquery-ui.custom.min.css"/>
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/outdatedbrowser/1.1.1/outdatedbrowser.min.css">
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/normalize.css">
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/ion.rangeSlider.css">
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/ion.rangeSlider.skinHTML5.css">
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/swiper/3.3.1/dist/css/swiper.min.css">
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/nprogress/0.2.0/nprogress.css">
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/toastr/2.1.2/build/toastr.min.css">
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/jbpivot/0.1.0/jbPivot.css">
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/leaflet/0.7.7/leaflet.css" />
+    <link rel="stylesheet" href="'../../submodules/fenix-ui-map/dist/fenix-ui-map.min.css" />
+    <link rel="stylesheet" href="//fenixrepo.fao.org/cdn/faostat/js/node-waves/0.7.5/waves.min.css">
+    <link href="http://fast.fonts.com/cssapi/0ad75cee-12a6-49a0-a922-c4ecad41ec44.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='dist/css/index.css' rel='stylesheet'>
+    <script data-main='main-all' src='//fenixrepo.fao.org/cdn/faostat/js/requirejs/2.1.15/require.min.js'></script>
+</head>
+</body>
 </html>

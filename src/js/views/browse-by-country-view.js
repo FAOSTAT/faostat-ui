@@ -29,7 +29,9 @@ define([
     // workaround for urlWMS in the layer definition
     'fenix-ui-map-config'
 ], function (Require, $, log, View, A, C, ROUTE, E, CM,
-             template, templateCountryList, templateCountryProfile,
+             template,
+             templateCountryList,
+             templateCountryProfile,
              i18nLabels, Handlebars, Common, FAOSTATClientAPI,
              // List,
              Dashboard, ViewUtils
@@ -162,7 +164,8 @@ define([
 
             renderCountryList: function () {
 
-                var self = this;
+                var self = this,
+                    templateFilter = (this.o.lang === 'en' || this.o.lang === 'es' || this.o.lang === 'fr')? '#country_list_latin': '#country_list_other';
 
                 this.$COUNTRY_PROFILE.hide();
                 this.$COUNTRY_LIST_CONTAINER.show();
@@ -170,7 +173,8 @@ define([
                 //if (this.$COUNTRY_LIST_CONTAINER.find('.' + this.o.countrySearchFilters).length <= 0) {
 
                 var countries = this.cache.countries.data,
-                    t = Handlebars.compile(templateCountryList),
+                    html = $(templateCountryList).filter(templateFilter).html(),
+                    t = Handlebars.compile(html),
                     d = {};
 
                 // format data
@@ -345,6 +349,7 @@ define([
 
                     // adding default country
                     dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
+                    //dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code, '3]});
 
 
                     this.renderDashboard($.extend(true, {}, dashboard, {
