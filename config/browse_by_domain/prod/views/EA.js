@@ -10,9 +10,7 @@ define(function () {
 
             defaultFilter: {
                 "domain_code": ["EA"],
-                "filter": {
-                    "show_lists": false
-                }
+                "show_lists": false
             },
 
             items: [
@@ -69,7 +67,7 @@ define(function () {
                         "type": "dropDownList"
                     },
                     "config": {
-                        "dimension_id": "analyticalaggregates",
+                        "dimension_id": "analyticalagg",
                         "defaultCodes": ["310"],
                         "filter": {}
                     }

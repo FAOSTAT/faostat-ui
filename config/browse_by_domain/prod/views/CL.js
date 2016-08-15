@@ -10,7 +10,8 @@ define([
         "filter": {
 
             defaultFilter: {
-                "domain_code": ["CL"]
+                "domain_code": ["CL"],
+                "show_lists": false
             },
 
             items: [

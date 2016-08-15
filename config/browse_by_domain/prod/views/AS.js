@@ -11,7 +11,8 @@ define([
         filter: {
 
             defaultFilter: {
-                "domain_code": ["AF"]
+                "domain_code": ["AF"],
+                "show_lists": false
             },
 
             items: [
