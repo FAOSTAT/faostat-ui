@@ -5,10 +5,7 @@ define([
 
     'use strict';
 
-    var i18n = C.i18n || {};
-
     return {
-
 
         "filter": {
 
