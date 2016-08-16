@@ -54,11 +54,8 @@ define([
                 "config": {
                     "defaultCodes": ["AVG"],
                     "data": [
-
-                        // TODO: multilingual?
-                        {"code": "AVG", "label": i18n.average, "selected": true},
-                        {"code": "SUM", "label": i18n.sum, "selected": false}
-
+                        {"code": "AVG", "label": i18n.average},
+                        {"code": "SUM", "label": i18n.sum}
                     ]
                 }
             }

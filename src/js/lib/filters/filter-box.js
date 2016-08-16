@@ -164,7 +164,6 @@ define([
         }, filter.config.filter);
 
         log.info("FilterBox._preloadCodes; filter.config.filter", filter.config.filter);
-
         log.info("FilterBox._preloadCodes; request", request);
 
         return this.FAOSTATAPIClient.codes(request)
@@ -187,17 +186,24 @@ define([
 
     };
 
-    FilterBox.prototype._preloadStaticCodes = function (config) {
+    FilterBox.prototype._preloadStaticCodes = function (filter) {
 
-        // TODO: add boolean "translatable"? in the json definition?
-        _.each(config.config.data, function(d) {
+        log.info("FilterBox._preloadStaticCodes; filter", filter);
+        var defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [];
+
+            // TODO: add boolean "translatable"? in the json definition?
+        _.each(filter.config.data, function(d) {
 
             // change labels if needed with i18nlabels.
             d.label = i18nLabels[d.label] || d.label;
 
+            // process codes/defaults
+            log.info("FilterBox._preloadStaticCodes; d", d, "selected", defaultCodes.indexOf(d.code) > -1);
+            d.selected = (defaultCodes.indexOf(d.code) > -1);
+
         });
 
-        return config;
+        return filter;
     };
 
     FilterBox.prototype.getFilters = function () {

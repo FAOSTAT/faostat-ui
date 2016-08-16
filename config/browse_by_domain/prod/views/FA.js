@@ -21,7 +21,7 @@ define([
                     "type": "codelist",
                     "parameter": "List3Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-3 col-md-3",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -37,7 +37,7 @@ define([
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-xs-6 col-sm-3 col-md-3",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -52,17 +52,24 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-xs-4 col-sm-2 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['2004'],
+                        "defaultCodes": ['2006'],
                         "filter": {
                         }
                     }
                 },
-                C.filter.aggregation
+                $.extend(true, {}, C.filter.aggregation, {
+                    "componentType": {
+                        "class": "col-xs-4 col-sm-2 col-md-2"
+                    },
+                    "config": {
+                        "defaultCodes": ["SUM"]
+                    }
+                })
             ]
         },
 
@@ -120,7 +127,6 @@ define([
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
                     //height:'250px',
                     config: {
                         adapter: {
@@ -147,8 +153,6 @@ define([
                      requestType: 'rankings' // data, rankings
                      }*/
                 },
-
-
                 {
                     type: 'chart',
                     class: "col-xs-12",
@@ -165,7 +169,6 @@ define([
                             subtitle: "{{year}}"
                         }
                     },
-
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -185,7 +188,6 @@ define([
                     filter: {
                     }
                 },
-
                 {
                     type: 'chart',
                     class: "col-xs-12",
@@ -203,7 +205,6 @@ define([
                         }
 
                     },
-
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -226,7 +227,6 @@ define([
                         "order_by": 'recipientarea'
                     }
                 },
-
                 {
                     type: 'chart',
                     class: "col-xs-6",
@@ -243,7 +243,6 @@ define([
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -274,7 +273,6 @@ define([
                         "limit": '10'
                     }
                 },
-
                 {
                     type: 'chart',
                     class: "col-xs-6",
@@ -291,7 +289,6 @@ define([
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
                     },
-
                     config: {
                         adapter: {
                             adapterType: 'faostat',

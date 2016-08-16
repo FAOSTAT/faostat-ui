@@ -77,11 +77,18 @@ define([
 
     Filter.prototype.renderFilter = function () {
         var template = Handlebars.compile(templateFilter);
-        var c = $.extend(true, {}, i18nLabels, {data: this.o.config.data}, this.o.componentType),
+
+        /*var c = $.extend(true, {}, i18nLabels, {data: this.o.config.data}, this.o.componentType),
+            // TODO: how to handle correctly the title?
+            title = this.o.title ||  this.o.config.dimension_id || this.o.id;
+        */
+        var c = $.extend(true, {}, {data: this.o.config.data}, this.o.componentType),
             // TODO: how to handle correctly the title?
             title = this.o.title ||  this.o.config.dimension_id || this.o.id;
 
         c.title = i18nLabels[title] || title;
+
+        log.info("Filter.renderFilter;", c);
 
         this.$CONTAINER.append(template(c));
 
