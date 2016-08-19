@@ -128,6 +128,16 @@ module.exports = function (grunt) {
                         dest: 'build/<%= grunt.config.get("mode") %>/index.html'
                     }
                 ]
+            },
+            'faostat-arabic-language': {
+                files: [
+                    {
+                        src: [
+                            'build_utils/index-ar.html'
+                        ],
+                        dest: 'build/<%= grunt.config.get("dest") %>/index.html'
+                    }
+                ]
             }
         },
 
@@ -171,20 +181,6 @@ module.exports = function (grunt) {
                 }]
             },
             'faostat-locale': {
-                options: {
-                    variables: {
-                        'locale': '<%= grunt.config.get("locale") %>',
-                    },
-                    force: true
-                },
-                files: [
-                    {
-                        src: '<%= grunt.config.get("locale_file") %>',
-                        dest: 'build/<%= grunt.config.get("dest") %>/main.js',
-                    }
-                ]
-            },
-            'faostat-arabic-language': {
                 options: {
                     variables: {
                         'locale': '<%= grunt.config.get("locale") %>',
@@ -377,7 +373,7 @@ module.exports = function (grunt) {
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
         grunt.task.run('replace:faostat-locale');
-        grunt.task.run('replace:faostat-arabic-language');
+        grunt.task.run('copy:faostat-arabic-language');
         grunt.task.run('replace:faostat-appcache');
 
         // internal

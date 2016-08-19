@@ -16,8 +16,6 @@ define([
 
     function GoogleAnalyticsManager() {
 
-        log.info("GoogleAnalyticsManager; init");
-
         // traking page
         ga('create', C.GOOGLE_ANALYTICS_ID, "auto");
         //ga('send', 'pageview');
