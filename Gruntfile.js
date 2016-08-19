@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     //grunt.loadNpmTasks('grunt-zip');
     grunt.loadNpmTasks('grunt-contrib-compress');
-    grunt.loadNpmTasks('grunt-contrib-rename');
+    //grunt.loadNpmTasks('grunt-contrib-rename');
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-config');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -27,51 +27,53 @@ module.exports = function(grunt) {
 
         config: {
             default: {
-                options: {
-                    variables: {
-                        'version': '0.1',
-                        'date_update': grunt.template.today(),
-
-                    }
-                }
+                options: {}
             },
             dev: {
                 options: {
                     variables: {
-                        'dest': 'dev',
+                        'dest': 'dev/<%= grunt.config.get("locale") %>/',
                         'url_api': 'http://fenix.fao.org/faostat/dev/api/v1/',
                         'mode': 'dev',
-                        'config_file': 'Config-all.js'
+                        'config_file': 'build_utils/Config-all.js',
+                        'locale_file': 'main.js',
+                        'appcache_file': 'faostat.appcache'
                     }
                 }
             },
             demo: {
                 options: {
                     variables: {
-                        'dest': 'demo',
+                        'dest': 'demo/<%= grunt.config.get("locale") %>/',
                         'url_api': 'http://fenix.fao.org/faostat/demo/api/v1/',
                         'mode': 'demo',
-                        'config_file': 'Config-all.js'
+                        'config_file': 'build_utils/Config-all.js',
+                        'locale_file': 'main.js',
+                        'appcache_file': 'faostat.appcache'
                     }
                 }
             },
             internal: {
                 options: {
                     variables: {
-                        'dest': 'internal',
+                        'dest': 'internal/<%= grunt.config.get("locale") %>/',
                         'url_api': 'http://fenix.fao.org/faostat/internal/api/v1/',
                         'mode': 'internal',
-                        'config_file': 'Config-all.js'
+                        'config_file': 'build_utils/Config-all.js',
+                        'locale_file': 'main.js',
+                        'appcache_file': 'faostat.appcache'
                     }
                 }
             },
             prod: {
                 options: {
                     variables: {
-                        'dest': 'prod',
+                        'dest': 'prod/<%= grunt.config.get("locale") %>/',
                         'url_api': 'http://fenixservices.fao.org/faostat/api/v1/',
                         'mode': 'prod',
-                        'config_file': 'Config-prod.js'
+                        'config_file': 'build_utils/Config-prod.js',
+                        'locale_file': 'main.js',
+                        'appcache_file': 'faostat.appcache'
                     }
                 }
             }
@@ -83,8 +85,8 @@ module.exports = function(grunt) {
             },
             'faostat-config': {
                 src: [
-                    'build/<%= grunt.config.get("dest") %>/faostat-ui/Config-all.js',
-                    'build/<%= grunt.config.get("dest") %>/faostat-ui/Config-prod.js'
+                    'build/<%= grunt.config.get("dest") %>/Config-all.js',
+                    'build/<%= grunt.config.get("dest") %>/Config-prod.js'
                 ]
             }
         },
@@ -94,34 +96,39 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src: [
-                            './*',
+                            //'./*',
+                            './index.html',
+                            './main.js',
+                            './faostat.appcache',
                             'config/**',
                             'dist/**',
                             'i18n/**',
                             'submodules/**',
                             'src/**'
                         ],
-                        dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
+                        dest: 'build/<%= grunt.config.get("dest") %>/'
                     }
                 ]
             },
-            /*'faostat-config': {
-             files: [
-             {
-             src:'<%= grunt.config.get("config_file") %>',
-             dest:'build/<%= grunt.config.get("dest") %>/faostat-ui/config/Config.js'
-             }
-             ]
-             }*/
+            redirect: {
+                files: [
+                    {
+                        src: [
+                            'build_utils/redirect.html'
+                        ],
+                        dest: 'build/<%= grunt.config.get("mode") %>/index.html'
+                    }
+                ]
+            }
         },
 
+        // TODO: here map the variables for the lang in the main-all-lang.js file
         replace: {
             dist: {
                 options: {
                     variables: {
                         'url_api': '<%= grunt.config.get("url_api") %>',
-                        'mode': '<%= grunt.config.get("mode") %>',
-                        //'mode': '<%= grunt.config.get("mode") %>',
+                        'mode': '<%= grunt.config.get("mode") %>'
                     },
                     force: true
                 },
@@ -129,39 +136,97 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         src: ['src/js/FAOSTATAPIClient.js'],
-                        dest: 'build/<%= grunt.config.get("dest") %>/faostat-ui/'
+                        dest: 'build/<%= grunt.config.get("dest") %>/'
                     }
                     //dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/js/'}
                 ]
             },
             'faostat-config': {
                 options: {
+                    patterns: [
+                        {
+                            match: 'version',
+                            replacement: '<%= pkg.version %>',
+                            expression: false   // simple variable lookup
+                        },
+                        {
+                            match: 'date_update',
+                            replacement: '<%= grunt.template.today() %>',
+                            expression: false   // simple variable lookup
+                        }
+                    ]
+                },
+                files: [{
+                    src: ['<%= grunt.config.get("config_file") %>'],
+                    dest: 'build/<%= grunt.config.get("dest") %>/config/Config.js'
+                }]
+            },
+            'faostat-locale': {
+                options: {
                     variables: {
-                        'date_update': '<%= grunt.config.get("date_update") %>',
-                        'version': '<%= grunt.config.get("version") %>'
+                        'locale': '<%= grunt.config.get("locale") %>',
                     },
                     force: true
                 },
                 files: [
                     {
-                        src:'<%= grunt.config.get("config_file") %>',
-                        dest:'build/<%= grunt.config.get("dest") %>/faostat-ui/config/Config.js'
+                        src:'<%= grunt.config.get("locale_file") %>',
+                        dest:'build/<%= grunt.config.get("dest") %>/main.js',
                     }
-                    //dest: 'dist/zip/<%= grunt.config.get("dest") %>/faostat-ui/src/js/'}
                 ]
+            },
+            'faostat-arabic-language': {
+                options: {
+                    variables: {
+                        'locale': '<%= grunt.config.get("locale") %>',
+                    },
+                    force: true
+                },
+                files: [
+                    {
+                        src:'<%= grunt.config.get("locale_file") %>',
+                        dest:'build/<%= grunt.config.get("dest") %>/main.js',
+                    }
+                ]
+            },
+            'faostat-appcache': {
+                options: {
+                    patterns: [
+                        {
+                            match: 'version',
+                            replacement: '<%= pkg.version %>',
+                            expression: false   // simple variable lookup
+                        },
+                        {
+                            match: 'date_update',
+                            replacement: '<%= grunt.template.today() %>',
+                            expression: false   // simple variable lookup
+                        }
+                    ]
+                },
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: ['<%= grunt.config.get("appcache_file") %>'],
+                    dest:'build/<%= grunt.config.get("dest") %>/'
+                }]
             }
         },
 
         compress: {
             faostat: {
                 options: {
-                    archive: 'build/<%= grunt.config.get("dest") %>/faostat-ui-<%= grunt.config.get("mode") %>.zip',
+                    archive: 'build/<%= grunt.config.get("mode") %>/faostat-ui-<%= grunt.config.get("mode") %>.zip',
                     mode: 'zip'
                 },
                 files: [{
                     expand: true,
-                    cwd: 'build/<%= grunt.config.get("dest") %>/faostat-ui/',
+                    cwd: 'build/<%= grunt.config.get("mode") %>/',
                     src: [
+                        './**'
+                    ]
+                }]
+                   /* src: [
                         './*',
                         'config/**',
                         // TODO: check if css is enough.
@@ -170,15 +235,9 @@ module.exports = function(grunt) {
                         'submodules/**',
                         'src/**'
                     ]
-                }]
+                }]*/
             }
         },
-
-        end: {
-            log: function() {
-                grunt.log("end")
-            }
-        }
 
         /*rename: {
          war: {
@@ -201,82 +260,150 @@ module.exports = function(grunt) {
 
         // defaults
         grunt.task.run('clean:dist');
-        grunt.task.run('config:default');
+
+        grunt.task.run('en');
+        grunt.task.run('fr');
+        grunt.task.run('es');
+        grunt.task.run('compress_dev');
+        grunt.task.run('compress_internal');
+        grunt.task.run('compress_prod');
+
+    });
+
+
+    grunt.registerTask('en', 'Building English', function() {
 
         // dev
+        grunt.config.set('locale', 'en');
         grunt.task.run('config:dev');
         grunt.task.run('copy:faostat');
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
-        grunt.task.run('compress:faostat');
-
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
 
         // internal
         grunt.task.run('config:internal');
         grunt.task.run('copy:faostat');
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
-        grunt.task.run('compress:faostat');
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
 
         // prod
         grunt.task.run('config:prod');
         grunt.task.run('copy:faostat');
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
-        grunt.task.run('compress:faostat');
-
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
 
     });
 
-    // grunt.registerTask('zip', [
-    //
-    //     // clean dist
-    //     'clean:dist',
-    //
-    //     // default configuration
-    //     'config:default',
-    //
-    //     // dev
-    //     'config:dev',
-    //     'copy:faostat',
-    //     //'copy:faostat-config',
-    //     'replace:dist',
-    //     'replace:faostat-config',
-    //     //'clean:faostat-config',
-    //     'compress:faostat',
-    //
-    //     // demo
-    //     /*
-    //     'config:demo',
-    //     'copy:faostat',
-    //     //'copy:faostat-config',
-    //     'replace:dist',
-    //     'replace:faostat-config',
-    //     'compress:faostat',
-    //     */
-    //
-    //     // internal
-    //     'config:internal',
-    //     'copy:faostat',
-    //     //'copy:faostat-config',
-    //     'replace:dist',
-    //     'replace:faostat-config',
-    //     'compress:faostat',
-    //
-    //     // prod
-    //     'config:prod',
-    //     'copy:faostat',
-    //     //'copy:faostat-config',
-    //     'replace:dist',
-    //     'replace:faostat-config',
-    //     'compress:faostat',
-    //
-    //     'end:log'
-    //
-    //     //'rename:war'
-    // ]);
+    grunt.registerTask('fr', 'Building French', function() {
 
+        // dev
+        grunt.config.set('locale', 'fr');
+        grunt.task.run('config:dev');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
+
+        // internal
+        grunt.task.run('config:internal');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
+
+        // prod
+        grunt.task.run('config:prod');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
+
+    });
+
+    grunt.registerTask('es', 'Building Spanish', function() {
+
+        // dev
+        grunt.config.set('locale', 'es');
+        grunt.task.run('config:dev');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
+
+        // internal
+        grunt.task.run('config:internal');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
+
+        // prod
+        grunt.task.run('config:prod');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
+
+    });
+
+    grunt.registerTask('ar', 'Building Arabic', function() {
+
+        // dev
+        grunt.config.set('locale', 'ar');
+        grunt.task.run('config:dev');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-arabic-index');
+        grunt.task.run('replace:faostat-appcache');
+
+        // internal
+        grunt.task.run('config:internal');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
+
+        // prod
+        grunt.task.run('config:prod');
+        grunt.task.run('copy:faostat');
+        grunt.task.run('replace:dist');
+        grunt.task.run('replace:faostat-config');
+        grunt.task.run('replace:faostat-locale');
+        grunt.task.run('replace:faostat-appcache');
+
+    });
+
+
+    grunt.registerTask('compress_dev', 'Compress all folders', function() {
+        grunt.task.run('config:dev');
+        grunt.task.run('copy:redirect');
+        grunt.task.run('compress:faostat');
+    });
+
+    grunt.registerTask('compress_internal', 'Compress all folders', function() {
+        grunt.task.run('config:internal');
+        grunt.task.run('copy:redirect');
+        grunt.task.run('compress:faostat');
+    });
+
+    grunt.registerTask('compress_prod', 'Compress all folders', function() {
+        grunt.task.run('config:prod');
+        grunt.task.run('copy:redirect');
+        grunt.task.run('compress:faostat');
+    });
 };
-
-
-//TODO: Task to get domains for browse and download

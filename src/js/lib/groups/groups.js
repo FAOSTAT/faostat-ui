@@ -5,6 +5,7 @@ define([
     'globals/Common',
     'config/Config',
     'config/Events',
+    'config/Analytics',
     'config/Routes',
     'i18n!nls/download',
     'text!lib/groups/templates/templates.hbs',
@@ -14,15 +15,18 @@ define([
     'underscore.string',
     'amplify',
     'instafilta'
-], function ($, log, Common, C, E, ROUTES, i18nLabels, templates, Handlebars, FAOSTATAPIClient, _, _s) {
+], function ($, log, Common, C, E, A, ROUTES, i18nLabels, templates, Handlebars, FAOSTATAPIClient, _, _s) {
 
     'use strict';
 
     var s = {
         GROUPS: "[data-role='groups']",
-        GROUPS_LIST: "[data-role='groups-list']",
         SEARCH: "[data-role='search']",
-        NO_DATA: "[data-role='no-data']"
+        NO_DATA: "[data-role='no-data']",
+        DOMAIN_LINK: "[data-link='domain']",
+
+        // currently not used
+        GROUPS_LIST: "[data-role='groups-list']"
     },
 
     defaultOptions = {
@@ -53,8 +57,6 @@ define([
 
         this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
-        // TODO: have a template?
-        //log.info(this.o.container);
         this.$CONTAINER = $(this.o.container);
 
         /* Load main structure. */
@@ -68,9 +70,11 @@ define([
 
         // init variable
         this.$GROUPS = this.$CONTAINER.find(s.GROUPS);
-        this.$GROUPS_LIST = this.$CONTAINER.find(s.GROUPS_LIST);
         this.$SEARCH = this.$CONTAINER.find(s.SEARCH);
         this.$NO_DATA = this.$CONTAINER.find(s.NO_DATA);
+
+        // currently not used
+        this.$GROUPS_LIST = this.$CONTAINER.find(s.GROUPS_LIST);
 
         // focus on search
         this.$SEARCH.focus();
@@ -113,6 +117,15 @@ define([
                 if (matchedItems) {
                     matchedItems.length > 0 ? self.$NO_DATA.hide() : self.$NO_DATA.show();
                 }
+
+                // tracking analytics searched label and matching
+                var label = self.$SEARCH.val(),
+                    matched = matchedItems.length > 0 ? true : false;
+
+                if( label.length > 2 ) {
+                    self._analyticsSearchDomain(label + " - " + matched)
+                }
+
             }
         });
 
@@ -121,7 +134,7 @@ define([
     };
 
     Groups.prototype._showGroups = function(data) {
-        
+
         var t = Handlebars.compile($(templates).filter('#groups-list').html());
         this.$GROUPS_LIST.html(t(this._getGroups(data)));
 
@@ -171,15 +184,11 @@ define([
             }
 
             // links
-            //d.link = '#' + Common.getURI(ROUTES.BROWSE_BY_DOMAIN_CODE, [d.domain_code]);
             d.link = '#' + Common.getURI(ROUTES.DOWNLOAD_INTERACTIVE, [d.domain_code]);
 
             json[id].data.push(d);
 
         });
-
-        // testing for groups
-        //var t = _.groupBy(data, 'group_name');
 
         return json;
     };
@@ -188,6 +197,19 @@ define([
 
         var self = this;
 
+        this.$GROUPS.find('a').on("click", function(e) {
+
+            var label;
+            try {
+                label = $(this).attr('href').replace(/^.*?(#|$)/, '');
+            }catch(e) {
+                log.warn("Groups._bindEventListeners; not has found in ", $(this).attr('href'), e);
+            }
+            self._analyticsDomainSelection(label);
+
+        });
+
+        // not used
         this.$GROUPS_LIST.find("a").on('click', function(e) {
 
             e.preventDefault();
@@ -208,9 +230,30 @@ define([
 
     };
 
+    Groups.prototype._analyticsDomainSelection = function (label) {
+
+        amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+             $.extend(true, {}, A.data_domain_list_page.select_a_domain, {
+                label: label
+            })
+        );
+
+    };
+
+    Groups.prototype._analyticsSearchDomain = function (label) {
+
+        amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+            $.extend(true, {}, A.data_domain_list_page.search_a_domain, {
+                label: label
+            })
+        );
+
+    };
+
     Groups.prototype._unbindEventListeners = function () {
 
         this.$GROUPS_LIST.find("a").off();
+
     };
     
     Groups.prototype.destroy = function () {

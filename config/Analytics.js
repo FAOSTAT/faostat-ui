@@ -31,20 +31,30 @@ define(function () {
         },
 
         /* download section (both groups display that downlaod section */
-        data: {
+        data_domain_list_page: {
 
-            // to track if the left side are used
+            select_a_domain: {
+                category: 'data_domain_list_page',
+                action: 'domain_selection',
+                label: '' //domain_code
+            },
+
+            search_a_domain: {
+                category: 'data_domain_list_page',
+                action: 'domain_search', //label searched
+                label: '' //label typed
+            }
+
+        },
+
+        data_domain_specific_page: {
+
+            // TODO: not used yet
+            // to track if the right side are used
             selection_metadata: {
                 category: 'data',
                 action: 'selection',
                 label: 'matadata'
-            },
-
-            // to track if the left side are used
-            selection_interactive_download: {
-                category: 'data',
-                action: 'selection',
-                label: 'interactive_download'
             },
 
             selection_back_to_domains: {
@@ -58,7 +68,6 @@ define(function () {
                 action: 'selection',
                 label: 'back_to_domains'
             }
-
         },
 
 

@@ -104,7 +104,7 @@ define([
 
             amplify.publish(E.LOADING_SHOW, {container: this.$definitions});
 
-            this.api.definitions({
+            this.api.definitions_types({
                 datasource: C.DATASOURCE,
                 lang: this.o.lang
             }).then(_.bind(self._showDefinitions, this))

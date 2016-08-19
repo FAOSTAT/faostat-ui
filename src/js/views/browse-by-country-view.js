@@ -165,7 +165,7 @@ define([
             renderCountryList: function () {
 
                 var self = this,
-                    templateFilter = (this.o.lang === 'en' || this.o.lang === 'es' || this.o.lang === 'fr')? '#country_list_latin': '#country_list_other';
+                    templateFilter = (this.o.lang === 'en' || this.o.lang === 'es' || this.o.lang === 'fr' || this.o.lang === 'ru')? '#country_list_latin': '#country_list_other';
 
                 this.$COUNTRY_PROFILE.hide();
                 this.$COUNTRY_LIST_CONTAINER.show();
@@ -186,7 +186,6 @@ define([
                 });
 
                 // labels
-
                 this.$COUNTRY_LIST_CONTAINER.append(t({
                         // labels
                         country_indicators: i18nLabels.country_indicators,

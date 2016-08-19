@@ -1,7 +1,7 @@
 CACHE MANIFEST
 # cache version
-# v0.2
-# 30-05-2016
+# @@version
+# @@date_update
 
 //fenixrepo.fao.org/cdn/faostat/js/requirejs/2.1.15/require.min.js
 //fenixrepo.fao.org/cdn/faostat/js/jquery/2.2.3/jquery.min.js
@@ -97,6 +97,7 @@ src/images/rss.png
 NETWORK:
 index.html
 main-all.js
+main.js
 *
 #index.html
 # /api/*

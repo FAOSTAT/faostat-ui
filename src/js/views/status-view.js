@@ -180,6 +180,8 @@ define([
 
         getDataDomainSample: function (domain) {
 
+            //log.info("StatusView.getDataDomainSample.domain;", domain);
+
             var self = this,
                 lang = this.o.lang,
                 datasource = C.DATASOURCE,
@@ -199,10 +201,11 @@ define([
                 domain_code: domainCode
             }).then(function(dimensions) {
 
+                log.info("StatusView.getDataDomainSample.dimensions;", dimensions);
+
                 self.showDetails($domain_container, 'dimensions', dimensions);
 
                 // TODO: show dimensions on $container
-                //log.info(dimensions);
                 var requestCodes = [];
 
                 // for each dimensions get sample codes
@@ -223,28 +226,31 @@ define([
                 // get codes
                 Q.all(requestCodes).then(function(codes) {
 
+                    log.info("StatusView.getDataDomainSample.codes;", codes);
+
                     var filters = {};
 
                     // for each code get a sample
-                    _.each(codes, function(code) {
+                    _.each(codes, function(code, index) {
+
+                        log.info("StatusView.getDataDomainSample.code;", code, index);
 
                         self.showDetails($domain_container, 'codes', code);
 
                         //log.info(code);
                         //log.info(codes)
-                        if (  code.data.length <= 0 ) {
+                        if ( code.data.length <= 0 ) {
                             log.warn("StatusView.getDataDomainSample.code.data.length;", code.data.length);
                         }
 
-                        var parameter = code.metadata.parameters.parameter;
-                        var id = code.metadata.parameters.id;
+                        //var parameter = code.metadata.parameters.parameter;
+                        //var id = code.metadata.parameters.id;
 
-                        filters[id] = _.chain(code.data).sample(10).pluck('code').value();
-
+                        //filters[id] = _.chain(code.data).sample(10).pluck('code').value();
 
                     });
 
-                    //log.info("StatusView.getDataDomainSample.filters;"), filters;
+                    log.info("StatusView.getDataDomainSample.filters;", filters);
 
                     // get codes sample and get data
                     try {
@@ -254,7 +260,7 @@ define([
                                 datasource: datasource,
                                 domain_codes: [domainCode]
                             },
-                            { filters: filters}
+                            { filters: filters }
                         )).then(function (data) {
 
                             log.info("StatusView.getDataDomainSample.data;", domainName, domainCode, data.data.length);

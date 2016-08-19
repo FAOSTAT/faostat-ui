@@ -51,7 +51,8 @@
     span {
       position: absolute;
       left: 0;
-      top: 50%;
+      //top: 50%;
+      top: 45%;
       @include fx-transfor-me(translateY(-50%));
     }
 

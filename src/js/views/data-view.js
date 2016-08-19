@@ -93,20 +93,9 @@ define([
 
         bindEventListeners: function () {
 
-            // subscribe group event listener
-            //amplify.subscribe();
-
         },
 
         changeState: function(options) {
-
-           /* var section = (options && options.hasOwnProperty('section'))? options.section: this.o.section,
-                id = (options && options.hasOwnProperty('id'))? options.id: this.o.selected.id,
-                force = (options && options.hasOwnProperty('force'))? options.force: false;
-
-            log.info('ChangeState: ', section, id, force);
-
-            Common.changeURL(section, [id], force);*/
 
         },
 

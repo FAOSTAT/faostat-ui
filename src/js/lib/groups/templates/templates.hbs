@@ -72,6 +72,8 @@
                     {{#each this.data}}
                         <li class="domain-list">
                             <a class="instafilta-target"
+                               data-link="domain"
+                               data-domain="{{this.domain_code}}"
                                href="{{this.link}}">{{this.domain_name}}
                                 <span style="display:none">{{../title}}</span>
                             </a>
