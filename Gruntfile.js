@@ -382,6 +382,7 @@ module.exports = function (grunt) {
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
         grunt.task.run('replace:faostat-locale');
+        //grunt.task.run('copy:faostat-arabic-language');
         grunt.task.run('replace:faostat-appcache');
 
         // prod
@@ -390,11 +391,11 @@ module.exports = function (grunt) {
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
         grunt.task.run('replace:faostat-locale');
+        //grunt.task.run('copy:faostat-arabic-language');
         grunt.task.run('replace:faostat-appcache');
 
     });
-
-
+    
     grunt.registerTask('compress_dev', 'Compress all folders', function () {
         grunt.task.run('config:dev');
         grunt.task.run('copy:redirect');
