@@ -172,7 +172,7 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: ["2413", "2510" ]
+                        List2Codes: ["2312", "2510" ]
                     }
                 },
                 {
