@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     //grunt.loadNpmTasks('grunt-zip');
@@ -13,15 +13,14 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         meta: {
-            banner:
-            '/* \n'+
-            ' * <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n'+
-            ' * \n'+
-            ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n'+
-            ' * License: <%= pkg.license %>\n'+
-            ' * Homepage: <%= pkg.homepage %>\n'+
-            ' * Source: <%= pkg.repository.url %>\n'+
-            ' * \n'+
+            banner: '/* \n' +
+            ' * <%= pkg.name %> v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+            ' * \n' +
+            ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+            ' * License: <%= pkg.license %>\n' +
+            ' * Homepage: <%= pkg.homepage %>\n' +
+            ' * Source: <%= pkg.repository.url %>\n' +
+            ' * \n' +
             ' */\n'
         },
 
@@ -104,7 +103,17 @@ module.exports = function(grunt) {
                             'dist/**',
                             'i18n/**',
                             'submodules/**',
-                            'src/**'
+                            'src/**',
+                            // TODO: check explicit to don't import
+                            '!**/tests/**',
+                            '!**/test/**',
+                            '!**/node_modeules/**',
+                            '!**/docs/**',
+                            '!**/faostat-ui-options-manager/**',
+                            '!**/faostat-ui-bulk-downloads/**',
+                            '!**/faostat-ui-welcome-page/**',
+                            '!**/fenix-ui-reports/**',
+                            '!**/json-editor-faostat-theme/**'
                         ],
                         dest: 'build/<%= grunt.config.get("dest") %>/'
                     }
@@ -170,8 +179,8 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        src:'<%= grunt.config.get("locale_file") %>',
-                        dest:'build/<%= grunt.config.get("dest") %>/main.js',
+                        src: '<%= grunt.config.get("locale_file") %>',
+                        dest: 'build/<%= grunt.config.get("dest") %>/main.js',
                     }
                 ]
             },
@@ -184,8 +193,8 @@ module.exports = function(grunt) {
                 },
                 files: [
                     {
-                        src:'<%= grunt.config.get("locale_file") %>',
-                        dest:'build/<%= grunt.config.get("dest") %>/main.js',
+                        src: '<%= grunt.config.get("locale_file") %>',
+                        dest: 'build/<%= grunt.config.get("dest") %>/main.js',
                     }
                 ]
             },
@@ -208,7 +217,7 @@ module.exports = function(grunt) {
                     expand: true,
                     flatten: true,
                     src: ['<%= grunt.config.get("appcache_file") %>'],
-                    dest:'build/<%= grunt.config.get("dest") %>/'
+                    dest: 'build/<%= grunt.config.get("dest") %>/'
                 }]
             }
         },
@@ -216,8 +225,8 @@ module.exports = function(grunt) {
         compress: {
             faostat: {
                 options: {
-                    archive: 'build/<%= grunt.config.get("mode") %>/faostat-ui-<%= grunt.config.get("mode") %>.zip',
-                    mode: 'zip'
+                    archive: 'build/<%= grunt.config.get("mode") %>/faostat-ui-<%= grunt.config.get("mode") %>.tar',
+                    mode: 'tar'
                 },
                 files: [{
                     expand: true,
@@ -226,16 +235,16 @@ module.exports = function(grunt) {
                         './**'
                     ]
                 }]
-                   /* src: [
-                        './*',
-                        'config/**',
-                        // TODO: check if css is enough.
-                        'dist/**',
-                        'i18n/**',
-                        'submodules/**',
-                        'src/**'
-                    ]
-                }]*/
+                /* src: [
+                 './*',
+                 'config/**',
+                 // TODO: check if css is enough.
+                 'dist/**',
+                 'i18n/**',
+                 'submodules/**',
+                 'src/**'
+                 ]
+                 }]*/
             }
         },
 
@@ -250,7 +259,7 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('zip', 'Run all my build tasks.', function() {
+    grunt.registerTask('build', 'Run all my build tasks.', function () {
 
         grunt.log.writeln('\n\n\n\n\n\n----------THINGS TO BE CHECKED--------\n');
         grunt.log.writeln('1) Did you check in FAOSTATAPIClient the @@url_api parameter?');
@@ -264,6 +273,7 @@ module.exports = function(grunt) {
         grunt.task.run('en');
         grunt.task.run('fr');
         grunt.task.run('es');
+        grunt.task.run('ar');
         grunt.task.run('compress_dev');
         grunt.task.run('compress_internal');
         grunt.task.run('compress_prod');
@@ -271,7 +281,7 @@ module.exports = function(grunt) {
     });
 
 
-    grunt.registerTask('en', 'Building English', function() {
+    grunt.registerTask('en', 'Building English', function () {
 
         // dev
         grunt.config.set('locale', 'en');
@@ -300,7 +310,7 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('fr', 'Building French', function() {
+    grunt.registerTask('fr', 'Building French', function () {
 
         // dev
         grunt.config.set('locale', 'fr');
@@ -329,7 +339,7 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('es', 'Building Spanish', function() {
+    grunt.registerTask('es', 'Building Spanish', function () {
 
         // dev
         grunt.config.set('locale', 'es');
@@ -358,7 +368,7 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.registerTask('ar', 'Building Arabic', function() {
+    grunt.registerTask('ar', 'Building Arabic', function () {
 
         // dev
         grunt.config.set('locale', 'ar');
@@ -367,7 +377,7 @@ module.exports = function(grunt) {
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
         grunt.task.run('replace:faostat-locale');
-        grunt.task.run('replace:faostat-arabic-index');
+        grunt.task.run('replace:faostat-arabic-language');
         grunt.task.run('replace:faostat-appcache');
 
         // internal
@@ -389,21 +399,22 @@ module.exports = function(grunt) {
     });
 
 
-    grunt.registerTask('compress_dev', 'Compress all folders', function() {
+    grunt.registerTask('compress_dev', 'Compress all folders', function () {
         grunt.task.run('config:dev');
         grunt.task.run('copy:redirect');
         grunt.task.run('compress:faostat');
     });
 
-    grunt.registerTask('compress_internal', 'Compress all folders', function() {
+    grunt.registerTask('compress_internal', 'Compress all folders', function () {
         grunt.task.run('config:internal');
         grunt.task.run('copy:redirect');
         grunt.task.run('compress:faostat');
     });
 
-    grunt.registerTask('compress_prod', 'Compress all folders', function() {
+    grunt.registerTask('compress_prod', 'Compress all folders', function () {
         grunt.task.run('config:prod');
         grunt.task.run('copy:redirect');
         grunt.task.run('compress:faostat');
     });
+
 };
