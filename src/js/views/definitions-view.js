@@ -13,7 +13,6 @@ define([
     'i18n!nls/definitions',
     'globals/Common',
     'faostatapiclient',
-    'lib/table/table',
     'lib/definition/definition',
     'handlebars',
     'underscore',
@@ -29,7 +28,6 @@ define([
              i18nLabels,
              Common,
              FAOSTATAPIClient,
-             Table,
              Definition,
              Handlebars,
              _
@@ -155,7 +153,9 @@ define([
             definition.render({
                container: this.$output,
                type: code,
-               label: label
+                table: {
+                    title: label
+                }
             });
         },
 
