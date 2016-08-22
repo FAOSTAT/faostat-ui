@@ -121,7 +121,7 @@ define([
 
         var label = label;
 
-        this._analyticsDefinitionDefinitionType(domain_code + ' - ' + type);
+        this._analyticsDefinitionDomainTypeSelection(domain_code + ' - ' + type);
 
         var definition = new Definition();
 
@@ -142,13 +142,13 @@ define([
 
         amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
             $.extend(this, {},
-                A.definitions.selection_domain_type,
+                A.definitions.selection_domain,
                 {label: label})
         );
 
     };
 
-    DefinitionDomain.prototype._analyticsDefinitionTypeSelection = function (label) {
+    DefinitionDomain.prototype._analyticsDefinitionDomainTypeSelection = function (label) {
 
         amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
             $.extend(this, {},

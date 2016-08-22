@@ -30,6 +30,10 @@ define([
 
     Modal.prototype._initModal = function (config) {
 
+        // remove old modal if still exists.
+        // TODO: this could be a memory leak because it is not removed the instance.
+        $(s.MODAL).remove();
+
         var c = config || {},
             title = c.title || "",
             html = $(templates).filter(s.MODAL).html(),
@@ -65,6 +69,8 @@ define([
 
     Modal.prototype.definitions_domain = function (obj) {
 
+        log.info("Modal.definitions_domain;", obj);
+
         var self = this,
             domain_code = obj.domain_code,
             label = obj.label;
@@ -81,6 +87,7 @@ define([
                 // TODO: view_glossary could be global instead of being
                 definitionDomain = new DefinitionDomain();
 
+            log.info(definitionDomain);
 
             definitionDomain.render({
                 container: $CONTAINER,
@@ -99,41 +106,6 @@ define([
             $MODAL.on('hidden.bs.modal', function () {
                 $MODAL.off('hidden.bs.modal');
                 definitionDomain.destroy();
-            });
-
-        });
-
-    };
-
-    Modal.prototype.glossary = function () {
-
-        var self = this;
-
-
-        Require(['views/standards-glossary-view'], function(GlossaryView) {
-
-            // TODO: in theory could be a singleton
-            var $MODAL = self._initModal({
-                    title: i18nLabels.glossary
-                }),
-                $CONTAINER = $MODAL.find(s.CONTAINER),
-
-            // TODO: view_glossary could be global instead of being
-                view_glossary = new GlossaryView({
-                    table: {
-                        height: 300
-                    }
-                });
-
-            $CONTAINER.html(view_glossary.$el);
-
-            // show modal
-            $MODAL.modal('show');
-
-            // destroy event listener on the modal and dispose the view
-            $MODAL.on('hidden.bs.modal', function () {
-                $MODAL.off('hidden.bs.modal');
-                view_glossary.dispose();
             });
 
         });
