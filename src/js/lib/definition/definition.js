@@ -182,10 +182,6 @@ define([
 
         this.$OUTPUT.html(t());
 
-        amplify.publish(E.SCROLL_TO_SELECTOR, {
-            container: self.$OUTPUT
-        });
-
         this.$TABLE = self.$OUTPUT.find(s.TABLE);
         this.$EXPORT_DATA = self.$OUTPUT.find(s.EXPORT_DATA);
         this.$TABLE_TOOLBAR = self.$OUTPUT.find(s.TABLE_TOOLBAR);
