@@ -26,11 +26,11 @@ define(['config/Routes'], function (ROUTE) {
         match('compare', 'compare#show', {name: ROUTE.COMPARE});
 
         //match('standards', 'standards#show');
-        match('methodologies', 'standards-methodology#show_methodologies', {name: ROUTE.METHODOLOGIES});
-        match('units', 'standards-units#show_units', {name: ROUTE.UNITS});
-        match('abbreviations', 'standards-abbreviations#show_abbreviations', {name: ROUTE.ABBREVIATIONS});
-        match('glossary', 'standards-glossary#show_glossary', {name: ROUTE.GLOSSARY});
-        match('classifications', 'standards-classifications#show_classifications', {name: ROUTE.CLASSIFICATIONS});
+        //match('methodologies', 'standards-methodology#show_methodologies', {name: ROUTE.METHODOLOGIES});
+        //match('units', 'standards-units#show_units', {name: ROUTE.UNITS});
+        //match('abbreviations', 'standards-abbreviations#show_abbreviations', {name: ROUTE.ABBREVIATIONS});
+        //match('glossary', 'standards-glossary#show_glossary', {name: ROUTE.GLOSSARY});
+       // match('classifications', 'standards-classifications#show_classifications', {name: ROUTE.CLASSIFICATIONS});
 
         match('definitions', 'definitions#show', {name: ROUTE.DEFINITIONS});
         match('definitions/:code', 'definitions-by-type#show', {name: ROUTE.DEFINITIONS_BY_TYPE});

@@ -75,16 +75,16 @@ define([
             // Tree
             TREE_CLOSE: '[data-role="fs-domains-tree-container-close"]',
 
-            // this is used to change the link to the interactive download
-            DOWNLOAD_INTERACTIVE_LINK: '[data-role="download-interactive-link"]',
-
             DESCRIPTION: '[data-role="description"]',
             CONTACTS: '[data-role="contact-name"]',
             BULK_SIDEBAR: '[data-role="fs-download-bulk-downloads-sidebar"]',
             LAST_UPDATE_DATE: '[data-role="last-update"]',
             ORGANIZATION: '[data-role="organization"]',
 
-            TREE_MODAL: '#fs-data-tree-domain-modal'
+            TREE_MODAL: '#fs-data-tree-domain-modal',
+
+            // Definitions and Standards
+            DEFINITIONS_BUTTON: '[data-role="fs-download-definitions-button"]',
 
     },
 
@@ -157,7 +157,8 @@ define([
 
             this.$LAST_UPDATE_DATE = this.$el.find(s.LAST_UPDATE_DATE);
             this.$METADATA_BUTTON = this.$el.find(s.METADATA_BUTTON);
-            this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
+            this.$DEFINITIONS_BUTTON = this.$el.find(s.DEFINITIONS_BUTTON);
+
             this.$DESCRIPTION = this.$el.find(s.DESCRIPTION);
             this.$CONTACTS = this.$el.find(s.CONTACTS);
             this.$ORGANIZATION = this.$el.find(s.ORGANIZATION);
@@ -591,6 +592,7 @@ define([
 
             });
 
+            this.$METADATA_BUTTON.off();
             this.$METADATA_BUTTON.on('click', function() {
 
                 if (self.o.hasOwnProperty("selected")) {
@@ -605,25 +607,39 @@ define([
 
             });
 
-            this.$DOWNLOAD_INTERACTIVE_LINK.on('click', function() {
+            this.$DEFINITIONS_BUTTON.off();
+            this.$DEFINITIONS_BUTTON.on('click', function() {
 
-                // TODO: replace it with an anchor
-                self.$el.find('[data-section="interactive"]').tab('show');
+               log.info(self.o.selected);
 
-/*                if (self.o.hasOwnProperty("selected")) {
-                    Common.changeURL(ROUTE.DOWNLOAD_INTERACTIVE, [self.o.selected.id], true);
+                if (self.o.hasOwnProperty("selected")) {
+                    // TODO: this.o.section should be always updated
+                    amplify.publish(E.DEFINITION_DOMAIN_SHOW, {
+                        domain_code: self.o.selected.id,
+                        label: self.o.selected.label
+                    });
+
                 }
                 else {
-                    log.error("Download.DownloadInteractiveLink; this.o.selected.code doesn't exists", self.o);
-                }*/
+                    log.error("Download.Definitions; this.o.selected.code doesn't exists", self.o);
+                }
 
             });
+
         },
 
         unbindEventListeners: function () {
 
             // unbind tabs listeners
             this.$el.find('a[data-toggle="tab"]').off('shown.bs.tab');
+
+            if (this.$METADATA_BUTTON) {
+                this.$METADATA_BUTTON.off();
+            }
+
+            if (this.$DEFINITIONS_BUTTON) {
+                this.$DEFINITIONS_BUTTON.off();
+            }
 
         },
 

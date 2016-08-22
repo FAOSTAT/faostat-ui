@@ -63,13 +63,16 @@ define([
             if (this.o.template.ajax !== undefined) {
                 this.$TABLE.bootstrapTable({
                     ajax: this.o.template.ajax,
-                    locale: this.o.lang
+                    locale: this.o.lang,
+                    height: this.o.template.height
                 });
             }else{
                 this.$TABLE.bootstrapTable({
                     data: this.o.model.data,
-                    locale: this.o.lang
+                    locale: this.o.lang,
+                    height: this.o.template.height
                 });
+
             }
 
         };
@@ -90,8 +93,11 @@ define([
         };
 
         Base_template.prototype.getTable = function () {
-            log.info(this.$TABLE);
             return this.$TABLE;
+        };
+
+        Base_template.prototype.refresh = function () {
+            this.$TABLE.bootstrapTable('refresh');
         };
 
         Base_template.prototype.destroy = function () {

@@ -47,6 +47,7 @@ define(function () {
         SCROLL_TO_SELECTOR: 'fs.scroll.selector.event',
 
         GLOSSARY_SHOW: 'fs.glossary.show.event',
+        DEFINITION_DOMAIN_SHOW: 'fs.definitions.domain.show.event',
         
         CONNECTION_PROBLEM: 'fs.connection.problem'
 

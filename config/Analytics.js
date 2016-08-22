@@ -204,13 +204,28 @@ define(function () {
 
         /* definitions and standards section*/
         definitions: {
-            selection: {
-                category: 'definitions',
+            selection_types: {
+                category: 'definitions_types',
                 action: 'selection',
                 label: '' //code
             },
-            download: {
-                category: 'definitions',
+            download_types: {
+                category: 'definitions_types',
+                action: 'download',
+                label: '' //code
+            },
+            selection_domain: {
+                category: 'definitions_domain',
+                action: 'selection_domain',
+                label: '' //code
+            },
+            selection_domain_type: {
+                category: 'definitions_domain',
+                action: 'selection_domain_type',
+                label: '' //code
+            },
+            download_domain: {
+                category: 'definitions_domain',
                 action: 'download',
                 label: '' //code
             }
