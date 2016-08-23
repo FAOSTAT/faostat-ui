@@ -1,7 +1,23 @@
 
 .definitions {
 
-  .row-mason {
+  ul {
+    -moz-column-count: 4;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 20px;
+    column-count: 4;
+    column-gap: 20px;
+
+    li {
+      overflow: hidden;
+      margin-bottom:5px;
+      margin-top:5px;
+    }
+
+  }
+
+/*  .row-mason {
     -moz-column-width: 18em;
     -webkit-column-width: 18em;
     -moz-column-gap: 2em;
@@ -12,10 +28,7 @@
     column-gap: 2em;
     //column-rule: 1px solid #ff0000;
 
-    li {
-      overflow: hidden;
-      margin-bottom:10px;
-    }
+
 
   }
 
