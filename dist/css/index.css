@@ -8244,12 +8244,12 @@ div#google_search input#search-submit {
   width: 100%; }
 
 .definitions-domain .row-mason {
-  -moz-column-count: 4;
-  -moz-column-gap: 20px;
-  -webkit-column-count: 4;
-  -webkit-column-gap: 20px;
-  column-count: 4;
-  column-gap: 20px; }
+  -moz-column-width: 18em;
+  -webkit-column-width: 18em;
+  -moz-column-gap: 2em;
+  -webkit-column-gap: 2em;
+  column-width: 18em;
+  column-gap: 2em; }
   .definitions-domain .row-mason li {
     overflow: hidden;
     margin-bottom: 5px;
