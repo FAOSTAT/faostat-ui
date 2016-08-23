@@ -2,12 +2,12 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div style="padding-top:15px;" class="definitions" data-role="list"></div>
+            <div class="definitions-domain" data-role="list"></div>
         </div>
     </div>
-   <div class="row" style="padding-top:25px;">
+   <div class="row">
         <div class="col-md-12">
-            <div data-role="output"></div>
+            <div class="definitions-domain-output" data-role="output"></div>
         </div>
     </div>
 
@@ -15,31 +15,16 @@
 
 <template id='list'>
 
-    <ul class="list-unstyled">
-
-        {{#each this}}
-
-                {{#each this}}
-                    <li class="truncate">
-                        <a data-role='definition' data-code='{{this.code}}' data-label='{{this.label}}' href="#">{{this.label}}</a>
-                    </li>
-                {{/each}}
-
-        {{/each}}
-    </ul>
-
-</template>
-
-<template id='list2'>
-
-    <ul class="list-unstyled">
-        {{#each data}}
-            <li>
-                <h5>
-                    <a data-role='definition' data-code='{{this.code}}' data-label='{{this.label}}' href="#">{{this.label}}</a>
-                </h5>
-            </li>
-        {{/each}}
-    </ul>
+    <div class="row-mason">
+        <ul class="list-unstyled">
+            {{#each this}}
+                    {{#each this}}
+                        <li class="truncate">
+                            <a data-role='definition' data-code='{{this.code}}' data-label='{{this.label}}' href="#">{{this.label}}</a>
+                        </li>
+                    {{/each}}
+            {{/each}}
+        </ul>
+    </div>
 
 </template>
