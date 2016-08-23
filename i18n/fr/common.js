@@ -16,9 +16,9 @@ define({
     "results": "Results",
 
     "group": "Group",
-    "groups": "Groups",
+    "groups": "Groupes",
     "domain": "Domain",
-    "domains": "Domains",
+    "domains": "Domaines",
     "item": "Item",
     "items": "Items",
     "element": "Element",
@@ -47,7 +47,7 @@ define({
     previous: "précédent",
     first: "premier",
     last: "dernier",
-    please_select_an_option: "Please select an option",
+    please_select_an_option: "Selectionné une option",
     filter_domain_tree: "Search for a FAOSTAT Domain",
 
     download_report: 'Download Report',
@@ -73,6 +73,7 @@ define({
     classifications: 'Classifications',
     glossary: 'Glossaire',
 
+    definitions_and_Standards: "Definitions and standards",
     definitions_and_Standards: "Definitions and standards",
     metadata: 'Métadonnée',
     bulk_downloads: 'Données Completes',
