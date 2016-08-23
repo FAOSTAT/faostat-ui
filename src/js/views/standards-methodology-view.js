@@ -26,7 +26,7 @@ define([
              template,
              templateOutput,
              i18nLabels,
-             FAOSTATAPIClient,
+             API,
              Handlebars,
              Tree
 ) {
@@ -90,8 +90,6 @@ define([
 
             this.o.lang = Common.getLocale();
 
-            this.FAOSTATAPIClient = new FAOSTATAPIClient();
-
             //this.$table = this.$el.find(s.TABLE);
             this.$tree = this.$el.find(s.TREE);
             this.$output = this.$el.find(s.OUTPUT);
@@ -106,10 +104,7 @@ define([
             amplify.publish(E.LOADING_SHOW, {container: this.$tree});
 
             // TODO: lang
-            this.FAOSTATAPIClient.methodologies({
-                    datasource: C.DATASOURCE,
-                    lang: this.o.lang
-                })
+            API.methodologies()
                 .then(_.bind(this.showMethodologies, this))
                 .fail(function(e) {
                     amplify.publish(E.LOADING_HIDE, {container: self.$tree});
@@ -139,10 +134,8 @@ define([
             this.tree = new Tree();
             this.tree.init({
                 // options: CM.tree.options || null,
-                datasource: C.DATASOURCE,
                 placeholder_id: this.$tree,
                 placeholder_search: this.$el.find(s.SEARCH_TREE),
-                lang: this.o.lang,
                 code: this.o.code,
                 custom: data,
                 callback: {
@@ -175,10 +168,8 @@ define([
             amplify.publish(E.LOADING_SHOW, {container: self.$output});
 
             // TODO: lang
-            this.FAOSTATAPIClient.methodology({
-                id: id,
-                datasource: C.DATASOURCE,
-                lang: this.o.lang
+            API.methodology({
+                id: id
             }).then(function(json) {
 
                 amplify.publish(E.LOADING_HIDE, {container: self.$output});

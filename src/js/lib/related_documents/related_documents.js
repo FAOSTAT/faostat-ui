@@ -2,7 +2,6 @@
 define([
     'jquery',
     'loglevel',
-    'globals/Common',
     'config/Config',
     'config/Events',
     'config/Analytics',
@@ -12,7 +11,7 @@ define([
     'faostatapiclient',
     'underscore',
     'amplify'
-], function ($, log, Common, C, E, A, templates, i18nLabels, Handlebars, FAOSTATAPIClient, _) {
+], function ($, log, C, E, A, templates, i18nLabels, Handlebars, API, _) {
 
     'use strict';
 
@@ -30,13 +29,9 @@ define([
 
     RelatedDocuments.prototype.render = function (options) {
 
-        log.info("RelatedDocuments.render", options);
+        //log.info("RelatedDocuments.render", options);
 
         this.o = $.extend(true, {}, defaultOptions, options);
-
-        this.o.lang = Common.getLocale();
-
-        this.api = new FAOSTATAPIClient();
 
         this._initVariables();
 
@@ -46,25 +41,15 @@ define([
 
     RelatedDocuments.prototype._initVariables = function () {
 
-        this.FAOSTATAPIClient = new FAOSTATAPIClient();
-
-        // TODO: have a template?
-        log.info(this.o.container);
         this.$CONTAINER = $(this.o.container);
-
-        log.info(this.$CONTAINER);
 
     };
 
     RelatedDocuments.prototype._configurePage = function() {
 
-        //amplify.publish(E.LOADING_SHOW, {container: this.$CONTAINER});
-
         /* Query DB for available files. */
-        this.api.documents({
-            datasource: C.DATASOURCE,
-            domain_code: this.o.code,
-            lang: Common.getLocale()
+        API.documents({
+            domain_code: this.o.code
         }).then(_.bind(this._show, this));
 
     };
@@ -72,7 +57,6 @@ define([
     RelatedDocuments.prototype._show = function(d) {
 
         var data = d.data,
-            self = this,
             documents = [];
 
         _.each(data, function(v) {
@@ -113,7 +97,7 @@ define([
 
     RelatedDocuments.prototype.destroy = function () {
 
-        log.info("RelatedDocuments.destroy;");
+        //log.info("RelatedDocuments.destroy;");
 
         // destroy all filters
         if (this.$CONTAINER !== undefined) {

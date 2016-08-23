@@ -27,8 +27,6 @@ define([
 
         this.o = $.extend(true, {}, defaultOptions, config);
 
-        this.api = new API();
-
         return this;
     }
 
@@ -44,7 +42,9 @@ define([
             r = $.extend(true, {}, request);
 
 
-        log.info("Export.exportData;", r, requestType, options, name);
+        log.info("Export.exportData;", request);
+        log.info("Export.exportData;", options);
+        log.info("Export.exportData;", r, requestType, options, name, request);
 
         if (!r.hasOwnProperty('output_type')) {
             r.output_type = this.o.output_type;
@@ -56,9 +56,9 @@ define([
         var start = new Date();
 
         // switch between the requestType to faostatAPI
-        if (typeof this.api[requestType] === 'function') {
+        if (typeof API[requestType] === 'function') {
 
-            this.api[requestType](r).then(function(data) {
+            API[requestType](r).then(function(data) {
 
                 //console.log("Csv", data);
                 //

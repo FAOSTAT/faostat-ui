@@ -13,7 +13,7 @@ define([
     'underscore',
     'underscore.string',
     'amplify'
-], function ($, log, Common, C, E, A, templates, Handlebars, FAOSTATAPIClient, Table, _, _s) {
+], function ($, log, Common, C, E, A, templates, Handlebars, API, Table, _, _s) {
 
     'use strict';
 
@@ -47,8 +47,6 @@ define([
         this.o.lang = Common.getLocale();
         this.o.cache = {};
 
-        this.api = new FAOSTATAPIClient();
-
         this._initVariables();
 
         this._configurePage();
@@ -56,8 +54,6 @@ define([
     };
 
     Definition.prototype._initVariables = function () {
-
-        this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
         this.$CONTAINER = $(this.o.container);
 
@@ -91,14 +87,11 @@ define([
     Definition.prototype._definition_by_type = function () {
 
         var self = this,
-            lang = this.o.lang,
             type = this.o.type;
 
         amplify.publish(E.LOADING_SHOW, {container: this.$OUTPUT});
 
-        this.api.definitions_by_type({
-            datasource: C.DATASOURCE,
-            lang: lang,
+        API.definitions_by_type({
             type: type
         }).then(function (model) {
 
@@ -138,9 +131,7 @@ define([
 
         amplify.publish(E.LOADING_SHOW, {container: this.$OUTPUT});
 
-        this.api.definitions_domain_by_type({
-            datasource: C.DATASOURCE,
-            lang: lang,
+        API.definitions_domain_by_type({
             domain_code: domain_code,
             type: type
         }).then(function (model) {

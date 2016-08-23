@@ -215,10 +215,7 @@ define([
             /* Initiate the menu. */
             this.menu = new FAOSTATMenu();
             // TODO: fix menu language and check how is it taken
-            this.menu.init({
-                lang: Common.getLocale(),
-                datasource: C.DATASOURCE
-            });
+            this.menu.init();
 
         },
 

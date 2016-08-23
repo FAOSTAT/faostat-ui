@@ -19,11 +19,10 @@ define([
     'lib/filters/filter-box',
     'fx-ds/start',
     'lib/view/view-utils',
-    'faostatapiclient',
     'underscore.string',
     'bootstrap',
     'amplify'
-], function (Require, $, log, View, A, C, ROUTE, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils, FAOSTATApi, _s) {
+], function (Require, $, log, View, A, C, ROUTE, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils, _s) {
 
     'use strict';
 
@@ -60,8 +59,6 @@ define([
                 this.o = $.extend(true, {}, defaultOptions, options);
 
                 this.o.lang = Common.getLocale();
-
-                this.api = new FAOSTATApi();
 
                 // setting the defualt code if missing
                 if (this.o.code === null || this.o.code === undefined) {
@@ -119,8 +116,6 @@ define([
                 this.tree.init({
                     placeholder_id: this.$TREE,
                     placeholder_search: this.$el.find(s.SEARCH_TREE),
-                    datasource: C.DATASOURCE,
-                    lang: this.o.lang,
                     code: this.o.code,
                     blacklist: CM.blacklist || [],
                     whitelist: CM.whitelist || [],

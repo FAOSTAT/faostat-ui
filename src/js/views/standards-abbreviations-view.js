@@ -24,7 +24,7 @@ define([
              Common,
              template,
              i18nLabels,
-             FAOSTATAPIClient,
+             API,
              Handlebars,
              Table
 ) {
@@ -84,8 +84,6 @@ define([
 
                 this.o.lang = Common.getLocale();
 
-                this.FAOSTATAPIClient = new FAOSTATAPIClient();
-
                 this.$table = this.$el.find(s.TABLE);
                 this.$export_data = this.$el.find(s.EXPORT_DATA);
                 this.$table_toolbar = this.$el.find(s.TABLE_TOOLBAR);
@@ -98,10 +96,7 @@ define([
 
                 amplify.publish(E.LOADING_SHOW, {container: this.$table});
 
-                this.FAOSTATAPIClient[this.o.requestType]({
-                    datasource: C.DATASOURCE,
-                    lang: this.o.lang
-                }).then(_.bind(this.showTable, this))
+                API[this.o.requestType]().then(_.bind(this.showTable, this))
                   .fail(function(e) {
                       amplify.publish(E.LOADING_HIDE, {container: self.$table});
                       amplify.publish(E.CONNECTION_PROBLEM, {});

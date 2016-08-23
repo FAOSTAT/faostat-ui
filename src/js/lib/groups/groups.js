@@ -15,7 +15,7 @@ define([
     'underscore.string',
     'amplify',
     'instafilta'
-], function ($, log, Common, C, E, A, ROUTES, i18nLabels, templates, Handlebars, FAOSTATAPIClient, _, _s) {
+], function ($, log, Common, C, E, A, ROUTES, i18nLabels, templates, Handlebars, API, _, _s) {
 
     'use strict';
 
@@ -45,8 +45,6 @@ define([
 
         this.o.lang = Common.getLocale();
 
-        this.api = new FAOSTATAPIClient();
-
         this._initVariables();
 
         this._configurePage();
@@ -54,8 +52,6 @@ define([
     };
 
     Groups.prototype._initVariables = function () {
-
-        this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
         this.$CONTAINER = $(this.o.container);
 
@@ -87,10 +83,7 @@ define([
 
         var self = this;
 
-        this.api.groupsanddomains({
-            datasource: C.DATASOURCE,
-            lang: this.o.lang
-        }).then(_.bind(this._show, this))
+        API.groupsanddomains().then(_.bind(this._show, this))
           .fail(function(e) {
             log.error("Groups.initVariables; error", e);
               amplify.publish(E.LOADING_HIDE, {container: self.$GROUPS});

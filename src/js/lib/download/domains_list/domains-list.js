@@ -8,7 +8,7 @@ define([
     'faostatapiclient',
     'handlebars',
     'underscore'
-], function ($, log, C, Common, template, FAOSTATAPIClient, Handlebars, _) {
+], function ($, log, C, Common, template, API, Handlebars, _) {
 
     'use strict';
 
@@ -29,8 +29,6 @@ define([
 
         this.o = $.extend(true, {}, defaultOptions, options);
 
-        this.api = new FAOSTATAPIClient();
-
         // store container variable
         this.$CONTAINER = $(this.o.container);
 
@@ -43,9 +41,7 @@ define([
         var self = this;
 
         /* Fetch domains by group code. */
-        this.api.domains({
-            datasource: C.DATASOURCE,
-            lang: Common.getLocale(),
+        API.domains({
             group_code: this.o.code
         }).then(function (response) {
 

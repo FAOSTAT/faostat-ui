@@ -13,7 +13,7 @@ define([
     'underscore',
     'underscore.string',
     'amplify'
-], function ($, log, Common, C, E, A, templates, Definition, Handlebars, FAOSTATAPIClient, _, _s) {
+], function ($, log, Common, C, E, A, templates, Definition, Handlebars, API, _, _s) {
 
     'use strict';
 
@@ -38,8 +38,6 @@ define([
 
         this.o.lang = Common.getLocale();
 
-        this.api = new FAOSTATAPIClient();
-
         this._initVariables();
 
         this._configurePage();
@@ -53,8 +51,6 @@ define([
     };
 
     DefinitionDomain.prototype._initVariables = function () {
-
-        this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
         this.$CONTAINER = $(this.o.container);
 
@@ -77,9 +73,7 @@ define([
 
     DefinitionDomain.prototype._definitions_domain = function () {
 
-        this.api.definitions_domain({
-            datasource: C.DATASOURCE,
-            lang: this.o.lang,
+        API.definitions_domain({
             domain_code: this.o.domain_code
         }).then(_.bind(this._showList, this));
 

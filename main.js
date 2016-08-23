@@ -87,7 +87,7 @@ var config = {
 
         // TODO: move to CDN
         /* FAOSTAT API's client. */
-        faostatapiclient: 'FAOSTATAPIClient',
+        faostatapiclient: 'FAOSTATAPIClient.min',
         //list: '//fenixrepo.fao.org/cdn/js/list/1.1.1/list.min',
         //list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min',
 
@@ -390,10 +390,11 @@ require([
     'loglevel',
     'waves',
     'nprogress',
+    'faostatapiclient',
     //'modernizr',
     'outdatedbrowser',
     'amplify'
-], function ($, Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves, NProgress) {
+], function ($, Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves, NProgress, API) {
 
     "use strict";
 
@@ -409,7 +410,8 @@ require([
     });
 
     // saving Locale
-    Common.setLocale(requirejs.s.contexts._.config.locale);
+    Common.setLocale(locale);
+    Common.setLocaleAPI(locale);
 
     $('body').addClass(Common.getLocale());
 
@@ -421,6 +423,13 @@ require([
 
     // clear amplify
     forceAmplifyStorageClear();
+
+    // config api
+    API.config({
+        base_url: C.URL_API,
+        datasource: C.DATASOURCE,
+        lang: Common.getLocaleAPI()
+    });
 
     // starting the Application
     var app = new Application({

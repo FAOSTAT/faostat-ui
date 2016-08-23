@@ -27,7 +27,7 @@ define([
              template,
              templateOutput,
              i18nLabels,
-             FAOSTATAPIClient,
+             API,
              Tree,
              Table,
              Handlebars)
@@ -94,8 +94,6 @@ define([
 
             this.o.lang = Common.getLocale();
 
-            this.FAOSTATAPIClient = new FAOSTATAPIClient();
-
             //this.$table = this.$el.find(s.TABLE);
             this.$tree = this.$el.find(s.TREE);
             this.$output = this.$el.find(s.OUTPUT);
@@ -107,10 +105,8 @@ define([
 
             this.tree = new Tree();
             this.tree.init({
-                datasource: C.DATASOURCE,
                 placeholder_id: this.$tree,
                 placeholder_search: this.$el.find(s.SEARCH_TREE),
-                lang: this.o.lang,
                 //code: 'QC',
                 callback: {
                     // Render Section
@@ -153,10 +149,8 @@ define([
             amplify.publish(E.LOADING_SHOW, {container: this.$output});
 
             // get classification
-            this.FAOSTATAPIClient[this.o.requestType]({
-                    domain_code: code,
-                    datasource: C.DATASOURCE,
-                    lang: this.o.lang
+            API[this.o.requestType]({
+                    domain_code: code
                 })
                 .then(_.bind(this.showTable, this))
                 .fail(function(e) {

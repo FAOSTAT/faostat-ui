@@ -76,13 +76,21 @@ define(['chaplin',
 
         Common.prototype.setLocale = function(lang) {
             this.lang = lang;
+            this.setLocaleAPI(lang);
             return this.lang;
         };
 
         Common.prototype.getLocale = function() {
             return this.lang;
-            //return (this.lang !== DEFAULT_LANGUAGE)? this.lang: undefined;
-            //return (amplify.store('locale') !== DEFAULT_LANGUAGE)? amplify.store('locale'): undefined;
+        };
+
+        Common.prototype.setLocaleAPI = function(lang) {
+            this.langAPI = (locale === 'en' || locale === 'fr' || locale === 'es')? locale : 'en';
+            return this.langAPI;
+        };
+
+        Common.prototype.getLocaleAPI = function() {
+            return this.langAPI;
         };
 
         // TODO: Handle better the change of language

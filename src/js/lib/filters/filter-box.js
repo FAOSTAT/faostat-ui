@@ -12,7 +12,7 @@ define([
     'q',
     'loglevel',
     'amplify'
-], function ($, Common, C, E, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q, log) {
+], function ($, Common, C, E, i18nLabels, Handlebars, API, _, Filter, Q, log) {
 
     'use strict';
 
@@ -55,8 +55,6 @@ define([
 
 
     FilterBox.prototype.initVariables = function () {
-
-        this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
         // TODO: have a template?
         //log.info(this.o.container);
@@ -154,8 +152,6 @@ define([
         var id = filter.config.dimension_id,
             defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [],
             request = $.extend({}, true, {
-            datasource: C.DATASOURCE,
-            lang: this.o.lang,
             subcodelists: null,
             show_lists: null,
             show_full_metadata: null,
@@ -166,7 +162,7 @@ define([
         log.info("FilterBox._preloadCodes; filter.config.filter", filter.config.filter);
         log.info("FilterBox._preloadCodes; request", request);
 
-        return this.FAOSTATAPIClient.codes(request)
+        return API.codes(request)
             .then(function(c) {
 
                 // TODO: use directly metadata/data returned by APIs?

@@ -44,7 +44,7 @@ define([
              _s,
             // DomainView,
              Handlebars,
-             FAOSTATApi,
+             API,
              TextWrapper
 ) {
 
@@ -105,10 +105,8 @@ define([
             log.info("DownloadView.initialize; options", options);
 
             this.o = $.extend(true, {}, defaultOptions, options);
-            this.o.lang = Common.getLocale();
 
-            // TODO: should not be here
-            this.api = new FAOSTATApi();
+            this.o.lang = Common.getLocale();
 
             // TODO: useful?
             this.options = $.extend(true, {}, options);
@@ -176,8 +174,6 @@ define([
             this.tree.init({
                 placeholder_id: this.$TREE,
                 placeholder_search: this.$el.find(s.SEARCH_TREE),
-                datasource: C.DATASOURCE,
-                lang: this.o.lang,
                 code: this.o.code,
                 callback: {
 
@@ -667,9 +663,7 @@ define([
 
             // TODO: this should be in a common functionality?
             /* Fetch available bulk downloads. */
-            this.api.bulkdownloads({
-                datasource: C.DATASOURCE,
-                lang: this.o.lang,
+            API.bulkdownloads({
                 domain_code: code
             }).then(function (d) {
 

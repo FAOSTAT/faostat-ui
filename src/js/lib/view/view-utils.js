@@ -26,8 +26,8 @@ define([
             {},
             config,
             {
-                lang: Common.getLocale(),
-                datasource: C.DATASOURCE
+                //lang: Common.getLocale(),
+                //datasource: C.DATASOURCE
             }
         );
 

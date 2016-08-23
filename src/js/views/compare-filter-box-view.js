@@ -21,7 +21,7 @@ define([
     //'lib/filter/filter',
     'q',
     'amplify'
-], function ($, log, View, Common, C, E, A, EC, CM, template, templateFilterContainer, i18nLabels, Handlebars, FAOSTATAPIClient, _, Filter, Q) {
+], function ($, log, View, Common, C, E, A, EC, CM, template, templateFilterContainer, i18nLabels, Handlebars, API, _, Filter, Q) {
 
     'use strict';
 
@@ -83,8 +83,6 @@ define([
             // init lang
             this.o.lang = Common.getLocale();
 
-            this.FAOSTATAPIClient = new FAOSTATAPIClient();
-
             this.$GROUPS = this.$el.find(s.GROUPS);
             this.$DOMAINS = this.$el.find(s.DOMAINS);
             this.$FILTERS = this.$el.find(s.FILTERS);
@@ -106,9 +104,7 @@ define([
 
             amplify.publish(E.LOADING_SHOW, { container: this.$GROUPS});
 
-            this.FAOSTATAPIClient.groups({
-                datasource: C.DATASOURCE,
-                lang: this.o.lang,
+            API.groups({
                 whitelist: CM.groups.whitelist || [],
                 blacklist: CM.groups.blacklist || []
             }).then(function(json) {
@@ -195,10 +191,8 @@ define([
             this.$DOMAINS.empty();
             amplify.publish(E.LOADING_SHOW, { container: this.$DOMAINS});
 
-            this.FAOSTATAPIClient.domains({
+            API.domains({
                 group_code: code,
-                datasource: C.DATASOURCE,
-                lang: this.o.lang,
                 whitelist: CM.domains.whitelist || [],
                 blacklist: CM.domains.blacklist || []
             }).then(function(json) {
@@ -233,9 +227,7 @@ define([
             amplify.publish(E.LOADING_SHOW, { container: $CONTAINER});
 
             // parse the dimensions to create dinamically the dropdowns needed
-            this.FAOSTATAPIClient.dimensions({
-                datasource: C.DATASOURCE,
-                lang: this.o.lang,
+            API.dimensions({
                 domain_code: this.domainCode,
                 full: true
             }).then(_.bind(this._preloadDomainDimensions, this))
@@ -317,10 +309,8 @@ define([
                 this.DIMENSION_PARAMETER_MAPPING[id] = c.parameter;
 
                 r.push(
-                    self.FAOSTATAPIClient.codes({
-                        datasource: C.DATASOURCE,
+                    API.codes({
                         id: id,
-                        lang: lang,
                         domain_code: domainCode,
                         domains: domainCode,
                         whitelist: [],

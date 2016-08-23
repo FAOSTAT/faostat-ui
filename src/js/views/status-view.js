@@ -26,7 +26,7 @@ define([
              templateAPI,
              i18nLabels,
              ReportTable,
-             FAOSTATApi,
+             API,
              Q,
              Handlebars
              ) {
@@ -83,8 +83,6 @@ define([
 
         initVariables: function () {
 
-            this.api = new FAOSTATApi();
-
             this.o.lang = Common.getLocale();
 
             this.$GROUPS = this.$el.find(s.GROUPS);
@@ -108,19 +106,13 @@ define([
 
             var self = this;
 
-            this.api.groups({
-                lang: this.o.lang,
-                datasource:  C.DATASOURCE
-            }).then(function(groups) {
+            API.groups().then(function(groups) {
 
                 self.showGroups(groups);
 
             });
 
-           this.api.groupsanddomains({
-                lang: this.o.lang,
-                datasource:  C.DATASOURCE
-            }).then(function(domains) {
+           this.api.groupsanddomains().then(function(domains) {
 
                self.showDomains(domains);
 
@@ -183,8 +175,6 @@ define([
             //log.info("StatusView.getDataDomainSample.domain;", domain);
 
             var self = this,
-                lang = this.o.lang,
-                datasource = C.DATASOURCE,
                 domainCode = domain.domain_code,
                 domainName = domain.domain_name,
                 html = $(templateAPI).filter('#domain-details').html(),
@@ -195,9 +185,7 @@ define([
             var $domain_container = this.$DOMAINS_DETAILS.find('[data-role="'+ domainCode +'"]');
 
             // get domain dimension
-            this.api.dimensions({
-                lang: lang,
-                datasource: datasource,
+            API.dimensions({
                 domain_code: domainCode
             }).then(function(dimensions) {
 
@@ -213,9 +201,7 @@ define([
 
                     //log.info("StatusView.getDataDomainSample.dimension;", dimension);
 
-                    requestCodes.push(self.api.codes({
-                        lang: lang,
-                        datasource: datasource,
+                    requestCodes.push(API.codes({
                         domain_code: domainCode,
                         id: dimension.id,
                         show_lists: true
@@ -254,10 +240,8 @@ define([
 
                     // get codes sample and get data
                     try {
-                        self.api.data($.extend(true, {},
+                        API.data($.extend(true, {},
                             {
-                                lang: lang,
-                                datasource: datasource,
                                 domain_codes: [domainCode]
                             },
                             { filters: filters }

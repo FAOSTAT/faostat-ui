@@ -35,7 +35,7 @@ define([
              _s,
              Handlebars,
              bootpag,
-             FAOSTATClientAPI,
+             API,
              SearchBox
 ){
 
@@ -72,7 +72,6 @@ define([
         },
 
         getTemplateData: function () {
-            log.info(i18nLabels)
             return i18nLabels;
         },
 
@@ -98,7 +97,6 @@ define([
 
             // init variables
             this.o.lang = Common.getLocale();
-            this.api = new FAOSTATClientAPI();
             this.cache = {};
 
             this.$SEARCH_BOX = this.$el.find(s.SEARCH_BOX);
@@ -293,8 +291,6 @@ define([
 
             var obj = this.results.data[index],
                 exportObj = {
-                    datasource: C.DATASOURCE,
-                    lang: Common.getLocale(),
                     domain_codes: [obj.DomainCode],
                     filters: {}
                 };
@@ -363,22 +359,14 @@ define([
 
             // TODO: use this API for caching the groups and domains? or the domainstree with 'search' parameter?
             // caching domains
-            this.api.groupsanddomains({
-                datasource: C.DATASOURCE,
-                lang: this.o.lang
-            }).then(function(d) {
+            API.groupsanddomains().then(function(d) {
 
                 // cachind the domains
                 self.cache.domains = d.data;
 
-                self.api.search({
-                    datasource: C.DATASOURCE,
-                    lang: self.o.lang,
+                API.search({
                     q: query
-
                 }).then(function(results) {
-
-                    log.info(results)
 
                     self.results = results;
 

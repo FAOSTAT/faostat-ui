@@ -32,7 +32,7 @@ define([
              template,
              templateCountryList,
              templateCountryProfile,
-             i18nLabels, Handlebars, Common, FAOSTATClientAPI,
+             i18nLabels, Handlebars, Common, API,
              // List,
              Dashboard, ViewUtils
             // ,AOS
@@ -78,8 +78,6 @@ define([
                 this.cache = {};
 
                 this.o.lang = Common.getLocale();
-
-                this.api = new FAOSTATClientAPI();
 
                 //this.changeState(ROUTE.BROWSE_BY_COUNTRY);
 
@@ -128,9 +126,7 @@ define([
 
                 amplify.publish(E.LOADING_SHOW, {container: this.$el});
 
-                this.api.codes({
-                    lang: Common.getLocale(),
-                    datasource: C.DATASOURCE,
+                API.codes({
                     domain_code: CM.countriesDomainCode,
                     blacklist: CM.countriesBlacklist,
                     id: CM.countriesDimensionID,

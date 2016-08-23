@@ -37,7 +37,8 @@ define([
              // templateNews,
              templateDomains,
              templateDatabaseUpdates,
-             i18nLabels, Handlebars, API,
+             i18nLabels, Handlebars,
+             API,
              //ChartCreator,
              //BrowseByDomainConfig,
              // ChartModel,
@@ -133,20 +134,7 @@ define([
 
                // this.$CHART1 = this.$el.find(s.CHART + "1");
 
-/*                this.$INFO = this.$el.find(s.INFO);
-                this.$FAO_LINKS = this.$el.find(s.FAO_LINKS);
-                this.$PARTNERS = this.$el.find(s.PARTNERS);
-                this.$RELEASE_CALENDAR = this.$el.find(s.RELEASE_CALENDAR);
-                this.$COUNTRY_PROFILES = this.$el.find(s.COUNTRY_PROFILES);
-                this.$CHART1 = this.$el.find(s.CHART + "1");
-                this.$CHART2 = this.$el.find(s.CHART + "2");
-                this.$CHART3 = this.$el.find(s.CHART + "3");
-                this.$CHART4 = this.$el.find(s.CHART + "4");*/
-
-                this.api = new API();
-
                 this.o = {};
-                this.o.lang = Common.getLocale();
 
             },
 
@@ -160,16 +148,9 @@ define([
 
                 this.initBulkDownload();
 
-                //this.initCountryTerritorialNotes();
-
                 //this.initDomains();
 
                 //this.initChart();
-
-                //this.initWhatsNew();
-
-                //this.initComingUp();
-
 
             },
 
@@ -189,16 +170,13 @@ define([
 
             },
 
-            initDomains: function () {
+     /*       initDomains: function () {
 
                 var self = this;
 
                 amplify.publish(E.LOADING_SHOW, {container: self.$DOMAINS});
 
-                this.api.groupsanddomains({
-                    dataosource: C.DATASOURCE,
-                    lang: this.o.lang
-                }).then(function(json) {
+                API.groupsanddomains().then(function(json) {
 
                     var groups = _.chain(json.data)
                         .uniq(function(d) {
@@ -258,7 +236,7 @@ define([
 
                 });
 
-            },
+            },*/
 
             initChart: function () {
 
@@ -267,10 +245,7 @@ define([
 
                 amplify.publish(E.LOADING_SHOW, {container: self.$CHART1});
 
-                this.api.databean($.extend(true, {}, ChartModel.filter, {
-                    lang: this.o.lang,
-                    datasource: C.DATASOURCE
-                })).then(function(d) {
+                API.databean($.extend(true, {}, ChartModel.filter, {})).then(function(d) {
 
                     amplify.publish(E.LOADING_HIDE, {container: self.$CHART1});
 
@@ -292,7 +267,7 @@ define([
 
 
 
-/*
+                /*
                     c.init($.extend(true, {}, CM.chart, {model: d}, {container: self.$CHART1})).then(function (c) {
 
                         c.render();
@@ -315,36 +290,6 @@ define([
 
             },
 
-            initWhatsNew: function () {
-
-                amplify.publish(E.LOADING_SHOW, {container: this.$WHATS_NEW});
-
-                amplify.publish(E.LOADING_HIDE, {container: this.$WHATS_NEW});
-
-                /* this.api.whatsNew({}).then(function() {
-
-                 }); */
-
-                var t = Handlebars.compile(templateNews);
-                this.$WHATS_NEW.append(t(WhatsNew));
-
-            },
-
-            initComingUp: function () {
-
-                amplify.publish(E.LOADING_SHOW, {container: this.$COMING_UP});
-
-                amplify.publish(E.LOADING_HIDE, {container: this.$COMING_UP});
-
-                /* this.api.comingUp({}).then(function() {
-
-                 }); */
-
-                var t = Handlebars.compile(templateNews);
-                this.$COMING_UP.append(t(ComingUp));
-
-            },
-
             initDatabaseUpdates: function () {
 
                 var self = this,
@@ -352,10 +297,7 @@ define([
 
                 amplify.publish(E.LOADING_SHOW, {container: self.$DATABASE_UPDATES});
 
-                this.api.groupsanddomains({
-                    lang: this.o.lang,
-                    datasource: C.DATASOURCE
-                }).then(function(d) {
+                API.groupsanddomains().then(function(d) {
 
                     var sortedDomains = [],
                         databaseUpdates = [];
@@ -365,7 +307,6 @@ define([
                         // clean date for firefox
                         //http://stackoverflow.com/questions/3257460/new-date-is-working-in-chrome-but-not-firefox
                         domain.date_update = _s.strLeft(_s.replaceAll(domain.date_update, '-', '/'), ".");
-
                         domain.date_update = new Date(domain.date_update);
                         sortedDomains.push(domain);
                     });
@@ -376,7 +317,7 @@ define([
                     });
 
                     // parse 10 first domains
-                    log.info("Home.initDatabaseUpdates; sortedDomains", sortedDomains);
+                    //log.info("Home.initDatabaseUpdates; sortedDomains", sortedDomains);
 
                     moment.locale(Common.getLocale());
 
@@ -399,25 +340,11 @@ define([
 
                     });
 
-                    log.info("Home.initDatabaseUpdates; databaseUpdates", databaseUpdates);
+                    //log.info("Home.initDatabaseUpdates; databaseUpdates", databaseUpdates);
 
                     self.$DATABASE_UPDATES.html(t(databaseUpdates));
 
-                    self.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).off('click');
-                    self.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
-
-                        e.preventDefault();
-
-                        var section = ROUTE.DOWNLOAD_ABOUT,
-                            code = this.getAttribute('data-code');
-
-                        log.info(this.getAttribute('data-code'));
-
-                        self.changeState({
-                            section:section,
-                            code: code
-                        });
-                    });
+                    // TODO: track in analytics the click on database updates
 
 
                     var swiper = new Swiper('.swiper-container-updates', {
@@ -463,17 +390,17 @@ define([
 
             initBulkDownload: function() {
 
-                log.info("Home.initBulkDownload;");
+                //log.info("Home.initBulkDownload;");
 
                 var self = this;
 
-                this.api.bulkdownloads({
-                    datasource: C.DATASOURCE,
-                    lang: this.o.lang,
+                API.bulkdownloads({
                     domain_code: '0'
                 }).then(function(d) {
 
-                    log.info("Home.initBulkDownload;", d);
+                    //log.info("Home.initBulkDownload;", d);
+
+                    moment.locale(Common.getLocale());
 
                     var data = d.data[0],
                         size = Math.round(data.FileSize * 0.001),
@@ -496,6 +423,7 @@ define([
 
             bindEventListeners: function () {
 
+                this.$FAOSTAT_BULK_ZIP.off();
                 this.$FAOSTAT_BULK_ZIP.on('click', function() {
 
                     amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.faostat_bulk_downloads_zip);
@@ -505,7 +433,6 @@ define([
                 });
 
                 this.$EXTERNAL_LINK.off();
-                log.info(this.$EXTERNAL_LINK)
                 this.$EXTERNAL_LINK.on('click', function(e) {
 
                     var url = $(this).attr('href');
@@ -516,18 +443,6 @@ define([
                             { label: url }
                         ));
                 });
-
-
-                // territorial notes
-                /*this.$TERRITORIAL_NOTES.on('click', function(e) {
-
-                    e.preventDefault();
-
-                    amplify.publish(E.NOTIFICATION_INFO, {
-                        title: i18nLabels.territorial_notes,
-                        text: i18nLabels.territorial_notes_info
-                    });
-                });*/
 
             },
 
@@ -540,18 +455,6 @@ define([
                 if (this.$DATABASE_UPDATES) {
                     this.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).off();
                 }
-                //this.$TERRITORIAL_NOTES.off('click');
-
-            },
-
-            changeState: function (data) {
-
-                var section = data.section,
-                    code = data.code;
-
-                log.info(section, code);
-
-                Common.changeURL(section, code? [code] : [], true);
 
             },
 

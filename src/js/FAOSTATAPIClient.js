@@ -3,18 +3,23 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
     'use strict';
 
-    function RESTClient(config) {
+    function RESTClient() {
+
+    };
+
+    RESTClient.prototype.config = function(c) {
 
         /* Store configuration. */
         this.CONFIG = {
-            base_url: 'http://fenixservices.fao.org/faostat/api/v1/',
-            mode: '@@mode'
+            base_url: 'http://fenixervices.fao.org/faostat/api/v1/',
+            mode: '@@mode',
+            lang: 'en'
         };
 
         /* Extend default configuration. */
-        this.CONFIG = $.extend(true, {}, this.CONFIG, config || {});
+        this.CONFIG = $.extend(true, {}, this.CONFIG, c || {});
 
-    }
+    };
 
     RESTClient.prototype.rankings = function(c) {
         var config = $.extend(true, {}, this.CONFIG, c || {});
@@ -551,76 +556,6 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
             parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "section"],
             defaults = {
                 "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en", "section": "download"
-            },
-            key;
-        for (i = 0; i < Object.keys(defaults).length; i += 1) {
-            if (defaults[Object.keys(defaults)[i]] === '[]') {
-                defaults[Object.keys(defaults)[i]] = [];
-            }
-        }
-        for (i = 0; i < parameters.length; i += 1) {
-            key =  parameters[i];
-            try {
-                config[key] = config[key] !== undefined ? config[key] : defaults[key];
-            } catch (ignore) {
-                // No default value available for this parameter.
-            }
-        }
-        return config;
-    };
-
-    RESTClient.prototype.methodology = function(c) {
-        var config = $.extend(true, {}, this.CONFIG, c || {});
-        config = this.apply_methodology_defaults(config);
-        if (this.is_valid_methodology(config)) {
-            var url = this.CONFIG.base_url +  config.lang + '/methodologies/' + config.id + '/',
-                data =  {
-                    "datasource": config.datasource, "output_type": config.output_type, "api_key": config.api_key, "client_key": config.client_key
-                },
-                self = this;
-
-            var key = JSON.stringify($.extend({url: url}, data));
-            var v = this.store(key);
-
-            if ( v === undefined) {
-                return Q($.ajax({
-                    url: url,
-                    // TODO: this should be an option in the schema
-                    traditional: true,
-                    data: data,
-                    type: 'GET'
-                })).then(function (d) {
-                    // TODO: this should be at the schema level for each request and not a global one
-                    try {
-                        self.store(key, d);
-                    }catch(e) {
-                        // catching for quota exceed
-                    }
-                    return d;
-                });
-            }else {
-                return Q.when(v);
-            }
-
-        }
-        throw 400;
-    };
-
-    RESTClient.prototype.is_valid_methodology = function(config) {
-        var parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "id"], i;
-        for (i = 0; i < parameters.length; i += 1) {
-            if (config[parameters[i]] === undefined) {
-                throw 'Parameter "' + parameters[i] + '" is undefined. Please check your request.';
-            }
-        }
-        return true;
-    };
-
-    RESTClient.prototype.apply_methodology_defaults = function(config) {
-        var i,
-            parameters = ["datasource", "output_type", "api_key", "client_key", "lang", "id"],
-            defaults = {
-                "datasource": "production", "output_type": "objects", "api_key": "n.a.", "client_key": "n.a.", "lang": "en"
             },
             key;
         for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -1575,6 +1510,6 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
     };
 
-    return RESTClient;
+    return new RESTClient;
 
 });

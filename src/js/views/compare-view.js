@@ -21,7 +21,7 @@ define([
     //'jquery.rangeSlider',
     'ion.rangeSlider',
     'amplify'
-], function ($, log, View, Common, A, C, E, EC, CM, HighchartsTemplate, template, i18nLabels, FAOSTATAPIClient, FilterBoxView, Q, ChartCreator, TableItem) {
+], function ($, log, View, Common, A, C, E, EC, CM, HighchartsTemplate, template, i18nLabels, API, FilterBoxView, Q, ChartCreator, TableItem) {
 
     'use strict';
 
@@ -84,8 +84,6 @@ define([
         initVariables: function () {
 
             this.o.lang = Common.getLocale();
-
-            this.FAOSTATAPIClient = new FAOSTATAPIClient();
 
             this.$FILTERS_CONTAINER = this.$el.find(s.FILTERS_CONTAINER);
             this.$ADD_FILTER = this.$el.find(s.ADD_FILTER);
@@ -241,9 +239,6 @@ define([
                 r.groupName = f.filterBox.getGroupName();
 
                 r = $.extend(true, {}, CM.getData, {
-                    datasource: C.DATASOURCE,
-                    lang: this.o.lang,
-
                     // TODO: get the years properly (from the domainSchema)
                     // filter the years accordingly to the domain
                     //List4Codes: years,
@@ -253,7 +248,7 @@ define([
                 }, r);
 
                 this.cachedRequest.push(r);
-                requests.push(this.FAOSTATAPIClient.databean(r));
+                requests.push(API.databean(r));
 
             }, this));
 

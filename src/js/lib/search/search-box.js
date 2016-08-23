@@ -13,7 +13,7 @@ define([
     'underscore.string',
     'faostatapiclient',
     'amplify'
-], function ($, log, C, E, Common, i18nLabels, typeahead, Bloodhound, Handlebars, _, _s, FAOSTATAPIClient) {
+], function ($, log, C, E, Common, i18nLabels, typeahead, Bloodhound, Handlebars, _, _s, API) {
 
     'use strict';
 
@@ -37,8 +37,6 @@ define([
         this.o = $.extend(this, {}, defaultOptions, options);
 
         this.o.lang = Common.getLocale();
-
-        this.api = new FAOSTATAPIClient();
 
         this.initVariables();
 
@@ -77,9 +75,7 @@ define([
 
                     log.info('SearchBox.initComponents; request', obj);
 
-                    self.api.suggestions({
-                        datasource: C.DATASOURCE,
-                        lang: self.o.lang,
+                    API.suggestions({
                         q: obj.url
                     }).then(function(d) {
 
