@@ -11,13 +11,13 @@ define([
 
         "relatedViews" : [
             {
-                title: i18n.tab_macro_indicators_value_usd,
-                id: 'MK',
-                selected: true
+                title: i18n.tab_ghg_main,
+                id: 'MK'
             },
             {
-                title: i18n.tab_macro_indicators_share,
-                id: 'MK-SHARE'
+                title: i18n.projections,
+                id: 'MK-SHARE',
+                selected: true
             }
         ],
 
@@ -40,9 +40,9 @@ define([
                     },
                     "config": {
                         "dimension_id": "item",
-                        "defaultCodes": ["22008"],
+                        "defaultCodes": ["22017"],
                         "filter": {
-                            blacklist: [22017, 22075]
+                            whitelist: ["22017", "22016", "22075", "22076"]
                         }
                     }
                 },
@@ -56,9 +56,9 @@ define([
                     },
                     "config": {
                         "dimension_id": "element",
-                        "defaultCodes": ["6110"],
+                        "defaultCodes": ["6103"],
                         "filter": {
-                            whitelist: [6110, 6108]
+                            whitelist: [6103, 6117]
                         }
                     }
                 },
@@ -73,8 +73,8 @@ define([
                         "multiple": false
                     },
                     "config": {
-                        "dimension_id": "area",
-                        "defaultCodes": ["5000"],
+                        "dimension_id": "countries",
+                        "defaultCodes": ["2"],
                         "filter": {
                         }
                     }
@@ -94,7 +94,14 @@ define([
                         }
                     }
                 },
-                C.filter.aggregation
+                $.extend({}, C.filter.aggregation, {
+                    "config": {
+                        "defaultCodes": ["AVG"],
+                        "data": [
+                            {"code": "AVG", "label": i18n.average}
+                        ]
+                    }
+                })
             ]
         },
 
@@ -107,7 +114,7 @@ define([
                 List6Codes: null,
                 List7Codes: null,
                 limit: -1,
-                decimal_places: 0,
+                decimal_places: 3,
                 thousand_separator: ",",
                 "null_values": null,
                 page_size: 0,
