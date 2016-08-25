@@ -19,6 +19,7 @@ define([
     //'list',
     'fx-ds/start',
     'lib/view/view-utils',
+    'lib/filters/filter-box',
     //'aos',
     //'holmes',
     //'microlight',
@@ -34,7 +35,8 @@ define([
              templateCountryProfile,
              i18nLabels, Handlebars, Common, API,
              // List,
-             Dashboard, ViewUtils
+             Dashboard, ViewUtils,
+             FilterBox
             // ,AOS
              //,holmes
             // ,microlight
@@ -54,7 +56,13 @@ define([
             COUNTRY_PROFILE_SECTIONS: '[data-role="sections"]',
             COUNTRY_PROFILE_DASHBOARDS: "#fs-browse-by-country-profile-dashboards",
             COUNTRY_PROFILE_BACK: "#fs-browse-by-country-profile-back",
-            COUNTRY_PROFILE_MAP: "#fs-browse-by-country-profile-map"
+            COUNTRY_PROFILE_MAP: "#fs-browse-by-country-profile-map",
+
+            // MODAL
+            COUNTRY_LIST_MODAL_BUTTON: '[data-role="select-country"]',
+            COUNTRY_LIST_MODAL: '#fs-country-indicators-list-modal',
+            COUNTRY_LIST_MODAL_CONTENT: '[data-role="country-list"]',
+            APPLY_CHANGES_MODAL: '[data-role="country-list-apply-changes"]'
 
         },
 
@@ -76,10 +84,11 @@ define([
 
                 this.o = $.extend(true, {}, o, options);
                 this.cache = {};
-
                 this.o.lang = Common.getLocale();
 
-                //this.changeState(ROUTE.BROWSE_BY_COUNTRY);
+                if( this.o.code !== undefined && this.o.code !== null){
+                    this.o.code = this.o.code.split(",");
+                }
 
             },
 
@@ -107,12 +116,7 @@ define([
             initVariables: function () {
 
                 this.$COUNTRY_LIST_CONTAINER = this.$el.find(s.COUNTRY_LIST_CONTAINER);
-                //this.$COUNTRY_LIST = this.$el.find(s.COUNTRY_LIST);
                 this.$COUNTRY_PROFILE = this.$el.find(s.COUNTRY_PROFILE);
-                /*                this.$COUNTRY_PROFILE_TITLE = this.$el.find(s.COUNTRY_PROFILE_TITLE);
-                 this.$COUNTRY_PROFILE_DASHBOARD = this.$el.find(s.COUNTRY_PROFILE_DASHBOARD);
-                 this.$COUNTRY_PROFILE_BACK = this.$el.find(s.COUNTRY_PROFILE_BACK);
-                 this.$COUNTRY_PROFILE_MAP = this.$el.find(s.COUNTRY_PROFILE_MAP);*/
 
             },
 
@@ -129,12 +133,7 @@ define([
                 API.codes({
                     domain_code: CM.countriesDomainCode,
                     blacklist: CM.countriesBlacklist,
-                    id: CM.countriesDimensionID,
-
-                    // TODO: Add default on CLIENT API!
-                    subcodelists: null,
-                    ord: null
-
+                    id: CM.countriesDimensionID
                 }).then(function (result) {
 
                     amplify.publish(E.LOADING_HIDE, {container: self.$el});
@@ -160,8 +159,7 @@ define([
 
             renderCountryList: function () {
 
-                var self = this,
-                    templateFilter = (this.o.lang === 'en' || this.o.lang === 'es' || this.o.lang === 'fr' || this.o.lang === 'ru')? '#country_list_latin': '#country_list_other';
+                var templateFilter = (this.o.lang === 'en' || this.o.lang === 'es' || this.o.lang === 'fr' || this.o.lang === 'ru')? '#country_list_latin': '#country_list_other';
 
                 this.$COUNTRY_PROFILE.hide();
                 this.$COUNTRY_LIST_CONTAINER.show();
@@ -226,7 +224,6 @@ define([
                     countryName = this.getCountryName(),
                     code = this.o.code;
 
-
                 this.$COUNTRY_PROFILE.empty();
                 this.$COUNTRY_LIST_CONTAINER.hide();
                 this.$COUNTRY_PROFILE.show();
@@ -238,29 +235,18 @@ define([
                     back_to_country_list: i18nLabels.back_to_country_list,
                     topics: i18nLabels.topics,
                     //country_indicators: i18nLabels.country_indicators,
-                    map_disclaimer: i18nLabels.map_disclaimer
+                    map_disclaimer: i18nLabels.map_disclaimer,
+                    url_back_country_list: Common.getURI(ROUTE.BROWSE_BY_COUNTRY)
                 }));
 
                 this.$COUNTRY_PROFILE_DASHBOARDS = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_DASHBOARDS);
-                this.$COUNTRY_PROFILE_BACK = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_BACK);
                 this.$COUNTRY_PROFILE_MAP = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_MAP);
                 this.$COUNTRY_PROFILE_SECTIONS = this.$COUNTRY_PROFILE.find(s.COUNTRY_PROFILE_SECTIONS);
 
                 // initialize map
                 this.initializeMap(code);
 
-                this.$COUNTRY_PROFILE_BACK.on('click', _.bind(function () {
-
-                    this.o.code = null;
-                    this.o.section = ROUTE.BROWSE_BY_COUNTRY;
-
-                    //this.renderCountryList();
-
-                    // routing
-                    this.changeState();
-
-                }, this));
-
+                log.info("------------", code);
 
                 // get and render the right view
                 Require([basePath + "country_profile"], _.bind(function(views) {
@@ -279,6 +265,92 @@ define([
                     }, this));
 
                 }, this));
+
+
+                // modal
+                this.bindModal();
+
+            },
+
+            bindModal: function() {
+
+                // modal
+                var self = this;
+                this.$COUNTRY_LIST_MODAL_BUTTON = this.$COUNTRY_PROFILE.find(s.COUNTRY_LIST_MODAL_BUTTON);
+
+                this.$COUNTRY_LIST_MODAL_BUTTON.off();
+                this.$COUNTRY_LIST_MODAL_BUTTON.on('click', function(e) {
+
+                    e.preventDefault();
+
+                    var defaultCodes = self.o.code;
+
+                    if (self.$COUNTRY_LIST_MODAL === undefined) {
+
+                        var html = $(templateCountryProfile).filter('#country-list-modal').html(),
+                            t = Handlebars.compile(html);
+
+                        self.$COUNTRY_PROFILE.append(t({}));
+
+                    }
+
+                    self.$COUNTRY_LIST_MODAL = self.$COUNTRY_PROFILE.find(s.COUNTRY_LIST_MODAL);
+
+                    self.$COUNTRY_LIST_MODAL.show();
+
+
+                    self.$COUNTRY_LIST_MODAL_CONTENT = self.$COUNTRY_LIST_MODAL.find(s.COUNTRY_LIST_MODAL_CONTENT);
+
+                    if ( self.countryListFilter !== undefined) {
+                        self.countryListFilter.destroy();
+                    }
+
+                    self.countryListFilter = new FilterBox(),
+                        config = {
+                            container: self.$COUNTRY_LIST_MODAL_CONTENT,
+                            filter: {
+                                items: [
+                                    {
+                                        "id": "countries",
+                                        "type": "codelist",
+                                        "title": "",
+                                        "componentType": {
+                                            "class": "col-m2-12",
+                                            "type": "dropDownList",
+                                            "multiple": true
+                                        },
+                                        "config": {
+                                            "dimension_id": "countries",
+                                            "defaultCodes": defaultCodes,
+                                            "filter": {
+                                                "domain_code": ["QC"],
+                                                "show_lists": false,
+                                                blacklist: CM.countriesBlacklist
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        };
+
+                    self.countryListFilter.render(config, false);
+
+
+                    self.$APPLY_CHANGES_MODAL = self.$COUNTRY_LIST_MODAL.find(s.APPLY_CHANGES_MODAL);
+
+                    self.$APPLY_CHANGES_MODAL.off();
+                    self.$APPLY_CHANGES_MODAL.on('click', function() {
+
+                        // waits the modal to hide
+                        self.$COUNTRY_LIST_MODAL.on('hidden.bs.modal', function(){
+                            self.o.code = self.countryListFilter.getFilters()[0].codes;
+                            self.changeState();
+                        });
+                        self.$COUNTRY_LIST_MODAL.modal('hide');
+
+                    });
+
+                });
 
             },
 
@@ -343,11 +415,13 @@ define([
                     var $dashboard = $container.find('[data-role="dashboard"]');
 
                     // adding default country
-                    dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code]});
+                    dashboard.defaultFilter = $.extend({}, dashboard.defaultFilter, {
+                        List1Codes: code}
+                        );
                     //dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code, '3]});
 
 
-                    this.renderDashboard($.extend(true, {}, dashboard, {
+                    this.renderDashboard($.extend({}, dashboard, {
                         container: $dashboard,
                         layout: 'fluid',
                         lang: lang}));
@@ -418,7 +492,7 @@ define([
                     layertitle: '',
                     urlWMS: FMCONFIG.BASEURL_MAPS,
                     style: 'highlight_polygon',
-                    cql_filter: "faost_code IN ('" + code +"')",
+                    cql_filter: "faost_code IN ('" + code.join("','") +"')",
                     hideLayerInControllerList: true,
                     lang: 'en'
                 });
@@ -436,7 +510,21 @@ define([
 
                 // highlight country
                 // TODO: how to check for old countries (i.e. USSR) or new (i.e. south sudan)?
-                this.m.zoomTo('gaul0_faostat_3857', "faost_code", [code]);
+                //this.m.zoomTo('gaul0_faostat_3857', "faost_code", code);
+
+/*
+                var wmsLayer = L.tileLayer.wms('http://fenix.fao.org:20900/geoserver/fenix/wms', {
+                    layers: 'fenix:gaul0_3857',
+                    format: 'application/json;type=utfgrid',
+                    style: 'polygon'
+                }).addTo(this.m.map);
+*/
+
+/*                var utfGrid = new L.UtfGrid('http://{s}.tiles.mapbox.com/v3/milkator.press_freedom/{z}/{x}/{y}.grid.json?callback={cb}', {
+                    resolution: 4,
+                    maxZoom: 5
+                });*/
+
 
 
                 /*var teaLayer = L.tileLayer.wms("http://fenix.fao.org:20200/geoserver/wms", {
@@ -459,11 +547,18 @@ define([
 
             getCountryName: function () {
 
-                var code = this.o.code.toString(),
-                    codes = this.cache.countries.data,
-                    c = _.where(codes, {code: code});
+                var code = this.o.code,
+                    codes = this.cache.countries.data;
 
-                return (c.length > 0) ? c[0].label : "";
+                var r = [];
+                _.each(code, function(c) {
+                    var v = _.where(codes, {code: c.toString()});
+                    if (v.length > 0) {
+                        r.push(v[0].label);
+                    }
+                });
+
+                return r.join(", ");
 
             },
 
@@ -480,6 +575,8 @@ define([
 
                 config._name = 'by_country';
                 dashboard.render(config);
+
+                log.info("------------", config)
 
                 // save dashboard for destroy
                 if (this.dashboards === undefined) {
@@ -520,8 +617,10 @@ define([
             // TODO: pass the right section instead of being implicit?
             changeState: function () {
 
+                var code = this.o.code ? this.o.code.join(",") : null;
+
                 // dirty fix or should be like that?
-                Common.changeURL((this.o.code)? ROUTE.BROWSE_BY_COUNTRY_CODE: ROUTE.BROWSE_BY_COUNTRY, (this.o.code) ? [this.o.code] : [], false);
+                Common.changeURL((code)? ROUTE.BROWSE_BY_COUNTRY_CODE: ROUTE.BROWSE_BY_COUNTRY, (code) ? [code] : [], false);
 
                 // dirty fix for invalidate size. TODO: remove it from here
                 if (this.m) {

@@ -208,15 +208,12 @@ define([
         try {
             if (this.o.filters) {
                 _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
-                    log.info(filterKey, this.o.filters);
                     f.push(this.o.filters[filterKey].getFilter());
                 }, this));
             }
         }catch (e) {
             log.error(e);
         }
-
-        //log.info("end getFilters");
 
         return f;
     };
@@ -227,7 +224,6 @@ define([
         if (this.o.filters) {
             _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
 
-                log.info(filterKey, this.o.filters)
                 this.o.filters[filterKey].destroy();
             }, this));
 

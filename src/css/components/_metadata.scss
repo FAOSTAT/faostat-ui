@@ -1,0 +1,38 @@
+
+.fs-metadata {
+
+  .fs-metadata-content {
+
+    font-size: 13px;
+
+    .fs-metadata-title {
+
+      color: #337ab7;
+
+    }
+
+    .fs-metadata-row {
+
+      margin-left: 5px;
+
+      .fs-metadata-code {
+
+        font-weight: bold;
+      }
+
+      .fs-metadata-description {
+
+      }
+
+    }
+
+  }
+
+}
+
+.fs-metadata-modal {
+
+  overflow-x: hidden;
+  max-height: calc(100vh - 250px);
+
+}

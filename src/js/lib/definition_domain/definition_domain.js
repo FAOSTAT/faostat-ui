@@ -6,6 +6,7 @@ define([
     'config/Config',
     'config/Events',
     'config/Analytics',
+    'i18n!nls/common',
     'text!lib/definition_domain/templates/templates.hbs',
     'lib/definition/definition',
     'handlebars',
@@ -13,13 +14,14 @@ define([
     'underscore',
     'underscore.string',
     'amplify'
-], function ($, log, Common, C, E, A, templates, Definition, Handlebars, API, _, _s) {
+], function ($, log, Common, C, E, A, i18nLabels, templates, Definition, Handlebars, API, _, _s) {
 
     'use strict';
 
     var s = {
             LIST: "[data-role='list']",
-            OUTPUT: "[data-role='output']"
+            OUTPUT: "[data-role='output']",
+            NO_LIST_AVAILABLE: "[data-role='no-list-avaiable']"
         },
 
         defaultOptions = {};
@@ -35,8 +37,6 @@ define([
         if (!this.o.hasOwnProperty('container')) {
             log.error('Definitions.render; Missing container option', this.o);
         }
-
-        this.o.lang = Common.getLocale();
 
         this._initVariables();
 
@@ -57,12 +57,14 @@ define([
         var html = $(templates).filter("#template").html(),
             t = Handlebars.compile(html);
 
-        this.$CONTAINER.html(t({}));
+        this.$CONTAINER.html(t({
+            no_data_available: i18nLabels.no_data_available
+        }));
 
         // init variables
         this.$LIST = this.$CONTAINER.find(s.LIST);
         this.$OUTPUT = this.$CONTAINER.find(s.OUTPUT);
-        this.$LIST_TOGGLE = this.$CONTAINER.find(s.LIST_TOGGLE);
+        this.$NO_LIST_AVAILABLE = this.$CONTAINER.find(s.NO_LIST_AVAILABLE);
     };
 
     DefinitionDomain.prototype._configurePage = function () {
@@ -73,9 +75,13 @@ define([
 
     DefinitionDomain.prototype._definitions_domain = function () {
 
+        amplify.publish(E.LOADING_SHOW, {container: this.$LIST});
+
         API.definitions_domain({
             domain_code: this.o.domain_code
-        }).then(_.bind(this._showList, this));
+        })
+            .then(_.bind(this._showList, this))
+            .fail(_.bind(this._showEmptyList, this));
 
     };
 
@@ -108,6 +114,16 @@ define([
             self._showDefinitions(domain_code, type, label);
 
         });
+
+    };
+
+    DefinitionDomain.prototype._showEmptyList = function(e) {
+
+        amplify.publish(E.LOADING_HIDE, {container: this.$LIST});
+
+        this.$NO_LIST_AVAILABLE.show();
+
+        log.error("DefinitionDomain._showEmptyList", e);
 
     };
 

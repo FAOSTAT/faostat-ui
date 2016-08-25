@@ -100,7 +100,8 @@ define([
                             ],
                             List3Codes: [3010],
                             List4Codes: [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015],
-                            order_by: 'year'
+                            order_by: 'year',
+
                         }
                     },
                     {
@@ -141,7 +142,10 @@ define([
                                 561
                             ],
                             List3Codes: [3010],
-                            List4Codes: [2015]
+                            List4Codes: [2015],
+                            "group_by": 'area',
+                            "order_by": 'item',
+                            "operator": "avg"
                         }
                     },
                     // FORCE SPACING
@@ -206,7 +210,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                //height: '100px'
+                                height: '300px'
                             },
                             creator: {
                                 chartObj: {
@@ -266,7 +270,7 @@ define([
                                 seriesDimensions: ['item', 'element']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             },
                             creator: {
                                 chartObj: {
@@ -344,7 +348,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -383,7 +387,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -446,7 +450,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -485,7 +489,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -534,7 +538,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -573,7 +577,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -622,7 +626,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -684,7 +688,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -723,7 +727,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -773,7 +777,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -812,7 +816,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -875,7 +879,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             },
                             creator: {
                                 /*chartObj: {
@@ -921,7 +925,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                height: '300px'
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -1244,7 +1248,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -1283,7 +1287,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -1333,7 +1337,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -1372,7 +1376,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                // height: '100px'
+                                
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -1498,7 +1502,7 @@ define([
                         config: {
 
                             adapter: {
-                                columns: ['item', 'year', 'value', 'unit', 'flags'],
+                                columns: ['area', 'item', 'year', 'value', 'unit', 'flags'],
                                 showCodes: false
                             },
                             template: {
@@ -1556,7 +1560,7 @@ define([
                                 seriesDimensions: ['area', 'item', 'element']
                             },
                             template: {
-                                height:'300px'
+                                height: '300px'
                                 // default labels to be applied
                             },
                             creator: {
@@ -1690,7 +1694,7 @@ define([
                                 seriesDimensions: ['item']
                             },
                             template: {
-                                // height:'350px'
+                                // height: '400px'
                                 // default labels to be applied
                             },
                             creator: {}
@@ -1761,7 +1765,7 @@ define([
                                 seriesDimensions: ['area', 'item', 'element']
                             },
                             template: {
-                                height:'300px'
+                                height: '300px'
                                 // default labels to be applied
                             },
                             creator: {}
@@ -1829,7 +1833,7 @@ define([
                                 seriesDimensions: ['item']
                             },
                             template: {
-                                height:'300px'
+                                height: '300px'
                                 // default labels to be applied
                             },
                             creator: {}
@@ -1866,8 +1870,8 @@ define([
                                 2013,
                                 2014
                             ],
-                            "group_by": 'year',
-                            "order_by": 'area',
+                            "group_by": 'year, area',
+                            "order_by": 'item',
                             "operator": 'AVG',
                             "limit": '-1'
                         }

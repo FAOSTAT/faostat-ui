@@ -26,7 +26,7 @@ define([
         labelSeparator: "; ",
 
         E: {
-            ON_FILTER_CHANGE: E.ON_FILTER_CHANGE
+            //ON_FILTER_CHANGE: E.ON_FILTER_CHANGE
         }
 
     };
@@ -39,6 +39,8 @@ define([
     Filter.prototype.init = function (options) {
 
         this.o = $.extend(true, {}, defaultOptions, options);
+
+        log.info("Filter.init;", this.o);
 
         // init lang
         this.o.lang = Common.getLocale();
@@ -246,10 +248,14 @@ define([
             this.$DD.change(function (e) {
 
                if ( self.validateSelection(self.$DD)) {
-                   amplify.publish(self.o.E.ON_FILTER_CHANGE, {requestKey: self.o.requestKey});
+                   if (self.o.E.hasOwnProperty('ON_FILTER_CHANGE')){
+                       amplify.publish(self.o.E.ON_FILTER_CHANGE, {requestKey: self.o.requestKey});
+                   }
                }
                else{
-                   amplify.publish(self.o.E.ON_FILTER_INVALID_SELECTION, {requestKey: self.o.requestKey});
+                   if (self.o.E.hasOwnProperty('ON_FILTER_INVALID_SELECTION')){
+                       amplify.publish(self.o.E.ON_FILTER_INVALID_SELECTION, {requestKey: self.o.requestKey});
+                   }
                }
 
             });
@@ -258,11 +264,15 @@ define([
         if (this.$DD_FROM_YEAR) {
             this.$DD_FROM_YEAR.change(function(e) {
                 if ( self.validateSelection(self.$DD_FROM_YEAR)) {
-                    amplify.publish(self.o.E.ON_FILTER_CHANGE, {requestKey: self.o.requestKey});
+                    if (self.o.E.hasOwnProperty('ON_FILTER_CHANGE')){
+                        amplify.publish(self.o.E.ON_FILTER_CHANGE, {requestKey: self.o.requestKey});
+                    }
                 }
                 // this should never happen
                 else{
-                    amplify.publish(self.o.E.ON_FILTER_INVALID_SELECTION, {requestKey: self.o.requestKey});
+                    if (self.o.E.hasOwnProperty('ON_FILTER_INVALID_SELECTION')){
+                        amplify.publish(self.o.E.ON_FILTER_INVALID_SELECTION, {requestKey: self.o.requestKey});
+                    }
                 }
             });
         }
@@ -270,10 +280,14 @@ define([
         if (this.$DD_TO_YEAR) {
             this.$DD_TO_YEAR.change(function (e) {
                 if ( self.validateSelection(self.$DD_TO_YEAR)) {
-                    amplify.publish(self.o.E.ON_FILTER_CHANGE, {requestKey: self.o.requestKey});
+                    if (self.o.E.hasOwnProperty('ON_FILTER_CHANGE')){
+                        amplify.publish(self.o.E.ON_FILTER_CHANGE, {requestKey: self.o.requestKey});
+                    }
                 }
                 else{
-                    amplify.publish(self.o.E.ON_FILTER_INVALID_SELECTION, {requestKey: self.o.requestKey});
+                    if (self.o.E.hasOwnProperty('ON_FILTER_INVALID_SELECTION')){
+                        amplify.publish(self.o.E.ON_FILTER_INVALID_SELECTION, {requestKey: self.o.requestKey});
+                    }
                 }
             });
         }

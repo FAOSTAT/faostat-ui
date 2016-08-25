@@ -578,6 +578,10 @@ define([
 
         changeLanguage: function(lang) {
 
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, $.extend(true, {}, A.site.change_language, {
+                action: lang
+            }));
+
             Common.changeURLLanguage(lang);
 
         }

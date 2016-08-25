@@ -17,7 +17,7 @@ define([
              C,
              E,
              template,
-             api
+             API
      ) {
 
     'use strict';
@@ -40,8 +40,9 @@ define([
 
         getTemplateData: function () {
             return $.extend({}, true, C, {
-                URL_API: new api().CONFIG.base_url,
-                API_MODE: new api().CONFIG.mode
+                URL_API: API.CONFIG.base_url,
+                API_MODE: API.CONFIG.mode
+
             });
         },
 

@@ -260,7 +260,6 @@ module.exports = function (grunt) {
 
         grunt.log.writeln('\n\n\n\n\n\n----------THINGS TO BE CHECKED--------\n');
         grunt.log.writeln('2) Did you check the appcache?');
-        grunt.log.writeln('3) Did you update the cache version?');
         grunt.log.writeln('\n--------------------------------------\n\n\n\n\n\n');
 
         // defaults

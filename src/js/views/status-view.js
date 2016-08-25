@@ -112,7 +112,7 @@ define([
 
             });
 
-           this.api.groupsanddomains().then(function(domains) {
+            API.groupsanddomains().then(function(domains) {
 
                self.showDomains(domains);
 

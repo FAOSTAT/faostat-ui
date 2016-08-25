@@ -6,6 +6,7 @@ define([
     'config/Config',
     'config/Events',
     'config/Analytics',
+    'i18n!nls/common',
     'text!lib/definition/templates/templates.hbs',
     'handlebars',
     'faostatapiclient',
@@ -13,7 +14,7 @@ define([
     'underscore',
     'underscore.string',
     'amplify'
-], function ($, log, Common, C, E, A, templates, Handlebars, API, Table, _, _s) {
+], function ($, log, Common, C, E, A, i18nLabels, templates, Handlebars, API, Table, _, _s) {
 
     'use strict';
 
@@ -22,7 +23,8 @@ define([
 
             TABLE: "[data-role='table']",
             EXPORT_DATA: "[data-role='export']",
-            TABLE_TOOLBAR: "[data-role='table-toolbar']"
+            TABLE_TOOLBAR: "[data-role='table-toolbar']",
+            NO_DEFINITION_AVAILABLE: "[data-role='no-definition-available']"
         },
 
         defaultOptions = {
@@ -61,11 +63,13 @@ define([
             t = Handlebars.compile(html);
 
         this.$CONTAINER.html(t({
-            label: this.o.label
+            label: this.o.label,
+            no_data_available: i18nLabels.no_data_available
         }));
 
         // init variables
         this.$OUTPUT = this.$CONTAINER.find(s.OUTPUT);
+        this.$NO_DEFINITION_AVAILABLE = this.$CONTAINER.find(s.NO_DEFINITION_AVAILABLE);
     };
 
     Definition.prototype._configurePage = function () {
@@ -95,8 +99,6 @@ define([
             type: type
         }).then(function (model) {
 
-            log.info("Definition._definition_by_type");
-
             // show table and output
             self._show(model);
 
@@ -116,7 +118,10 @@ define([
 
         })
         .fail(function (e) {
-            amplify.publish(E.LOADING_HIDE, {container: self.$OUTPUT});
+
+            self._showEmptyDefinition();
+            log.error("DefinitionDomain._definition_by_type", e);
+
         });
 
     };
@@ -136,8 +141,6 @@ define([
             type: type
         }).then(function (model) {
 
-            log.info("Definition._definition_by_type");
-
             // show table and output
             self._show(model);
 
@@ -156,9 +159,11 @@ define([
             });
 
         })
-            .fail(function (e) {
-                amplify.publish(E.LOADING_HIDE, {container: self.$OUTPUT});
-            });
+        .fail(function (e) {
+
+            self._showEmptyDefinition();
+            log.error("DefinitionDomain._definition_domain", e);
+        });
 
     };
 
@@ -172,6 +177,7 @@ define([
         amplify.publish(E.LOADING_HIDE, {container: self.$OUTPUT});
 
         this.$OUTPUT.html(t());
+        this.$OUTPUT.show();
 
         this.$TABLE = self.$OUTPUT.find(s.TABLE);
         this.$EXPORT_DATA = self.$OUTPUT.find(s.EXPORT_DATA);
@@ -183,10 +189,9 @@ define([
 
     Definition.prototype._showTable = function (model) {
 
-        log.info("Definition._showTable", model);
+        //log.info("Definition._showTable", model);
 
-        var table = new Table(),
-            self = this;
+        var table = new Table();
 
         // se
         model.metadata.dsd = [];
@@ -250,6 +255,15 @@ define([
         });
 
         return matrix;
+
+    };
+
+    Definition.prototype._showEmptyDefinition = function() {
+
+        amplify.publish(E.LOADING_HIDE, {container: this.$OUTPUT});
+
+        this.$OUTPUT.hide();
+        this.$NO_DEFINITION_AVAILABLE.show();
 
     };
 

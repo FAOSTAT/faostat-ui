@@ -26,6 +26,11 @@ define(function () {
             faostat_bulk_downloads_zip: {
                 category: 'faostat_full_bulk_downloads_zip',
                 action: 'downloaded'
+            },
+
+            change_language: {
+                category: 'change_language',
+                action: '' //language changed
             }
 
         },

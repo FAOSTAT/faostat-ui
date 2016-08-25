@@ -4,12 +4,15 @@
     <div class="row">
 
         <div class="col-xs-9 col-sm-8 col-md-9 clearfix">
+                <a style="display:none; margin-left: 0; margin-top: 15px;" data-toggle="modal" data-target="#fs-country-indicators-list-modal" class="pull-left btn-floating waves-effect waves-light btn-primary" data-role="select-country">
+                    <i class="material-icons">add</i>
+                </a>
             <h1 class="truncate">{{country_name}}</h1>
         </div>
         <div class="col-xs-3 col-sm-4 col-md-3 clearfix">
             <!-- TODO: use Common.getURI(ROUTE.DATA)-->
             <a type="button" class="btn btn-link pull-right fs-section-back waves-effect"
-               id="fs-browse-by-country-profile-back">
+               href="{{url_back_country_list}}">
                 <i class="hidden-xs material-icons left">undo</i>
                 <i class="visible-xs material-icons">undo</i>
                 <span class="hidden-xs">{{back_to_country_list}}</span>
@@ -127,5 +130,67 @@
     </div>
 
     <br>
+
+</template>
+
+
+<!-- TODO: remove it from here-->
+<template id="country-list-modal">
+
+    <!-- Modal -->
+    <div class="modal left fade " id="fs-country-indicators-list-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:white; padding-top:0px;padding-bottom:8px;" >
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <h3 class="pull-left"><b>FAO</b>STAT <small>Country List</small></h3>
+                            <button style="padding-top:23px;" type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+
+                    <!--<input class='form-control' placeholder='{{filter_domain_tree}}' id='fs-download-tree-search'>-->
+
+                    <div class="row">
+                        <div class="col-md-12" data-role="country-list"></div>
+                    </div>
+                    <!--<ul data-role="country-list" class="list-unstyled fs-download-options"></ul>-->
+
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a type="button" class="btn btn-primary pull-right waves-effect" aria-label="Apply Changes"
+                                data-role='country-list-apply-changes'>
+                                    <i class="material-icons left">done</i>
+                                    <span class="hidden-xs"> Apply changes</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</template>
+
+<template id="country-list-modal-content">
+
+    {{#if this.checked}}checked{{/if}}
+
+    {{#each data}}
+        <li>
+            <input type="checkbox" data-code="{{this.code}}" id="country-list-check-box-{{this.code}}">
+            <label for="country-list-check-box-{{this.code}}">{{this.label}}</label>
+        </li>
+    {{/each}}
 
 </template>
