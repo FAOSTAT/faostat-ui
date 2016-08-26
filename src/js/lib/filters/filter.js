@@ -84,11 +84,16 @@ define([
             // TODO: how to handle correctly the title?
             title = this.o.title ||  this.o.config.dimension_id || this.o.id;
         */
-        var c = $.extend(true, {}, {data: this.o.config.data}, this.o.componentType),
-            // TODO: how to handle correctly the title?
-            title = this.o.title ||  this.o.config.dimension_id || this.o.id;
+        var c = $.extend(true, {}, {data: this.o.config.data}, this.o.componentType);
 
-        c.title = i18nLabels[title] || title;
+        var title = this.o.hasOwnProperty("title")? this.o.title[Common.getLocale()] || this.o.title["en"] || i18nLabels[this.o.title] || this.o.title : null;
+
+        if (title === null) {
+            title = this.o.title ||  this.o.config.dimension_id || this.o.id;
+            title = i18nLabels[title] || title
+        }
+
+        c.title = title;
 
         log.info("Filter.renderFilter;", c);
 
@@ -175,6 +180,7 @@ define([
     };
 
     Filter.prototype.getFilterStandard = function () {
+
         var f = {
             id: this.o.id,
             parameter: this.o.parameter,

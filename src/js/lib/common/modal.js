@@ -5,14 +5,17 @@ define([
     'loglevel',
     'handlebars',
     'i18n!nls/common',
-    'text!lib/common/templates/modal.hbs'
+    'text!lib/common/templates/modal.hbs',
+    'underscore.string'
     //'views/standards-glossary-view'
 ], function ($,
              Require,
              log,
              Handlebars,
              i18nLabels,
-             templates) {
+             templates,
+             _s
+) {
              //GlossaryView) {
 
     'use strict';
@@ -41,7 +44,7 @@ define([
 
         $('body').append(t({
             title: title,
-            close: i18nLabels.close
+            close: _s.capitalize(i18nLabels.close)
         }));
 
         this._removeFullScreen();
@@ -79,7 +82,7 @@ define([
 
             // TODO: in theory could be a singleton
             var $MODAL = self._initModal({
-                    title: i18nLabels.definitions_and_standards + ' - ' + label,
+                    title: '<i class="material-icons left">subject</i>' + i18nLabels.definitions_and_standards + ' - ' + label,
                     fullscreen: true
                 }),
                 $CONTAINER = $MODAL.find(s.CONTAINER),

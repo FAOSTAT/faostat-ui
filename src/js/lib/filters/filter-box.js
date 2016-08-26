@@ -151,16 +151,14 @@ define([
 
         var id = filter.config.dimension_id,
             defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [],
-            request = $.extend({}, true, {
-            subcodelists: null,
+            request = $.extend(true, {}, {
             show_lists: null,
-            show_full_metadata: null,
             ord: null,
             id: id
         }, filter.config.filter);
 
-        log.info("FilterBox._preloadCodes; filter.config.filter", filter.config.filter);
-        log.info("FilterBox._preloadCodes; request", request);
+        //log.info("FilterBox._preloadCodes; filter.config.filter", filter.config.filter);
+        //log.info("FilterBox._preloadCodes; request", request);
 
         return API.codes(request)
             .then(function(c) {
@@ -177,7 +175,7 @@ define([
 
             }).fail(function(e) {
                 log.error("FilterBox._preloadCodes", e);
-                amplify.subscribe(E.CONNECTION_PROBLEM);
+                //amplify.subscribe(E.CONNECTION_PROBLEM);
             });
 
     };

@@ -5,13 +5,34 @@ define([
 
     'use strict';
 
+    var i18n = C.i18n || {};
+
     return {
 
-        filter: {
+        "relatedViews" : [
+            {
+                title: i18n.em_total_ghg,
+                id: 'EM'
+            },
+            {
+                title: i18n.em_co2,
+                id: 'EM-CO2',
+                selected: true
+            },
+            {
+                title: i18n.em_n2o,
+                id: 'EM-N2O'
+            },
+            {
+                title: i18n.em_ch4,
+                id: 'EM-CH4'
+            }
+        ],
+
+        "filter": {
 
             defaultFilter: {
-                "domain_code": ["QA"],
-                // this force all the filters to avoid the "lists" codes
+                "domain_code": ["EM"],
                 "show_lists": false
             },
 
@@ -20,33 +41,38 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
                     "parameter": "List3Codes",
-                    //"title": "title",
+                    "title": {
+                        "en": "Sector",
+                        "fr": "Sector",
+                        "es": "Sector",
+                    },
                     "componentType": {
-                        // <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-xs-6 col-sm-6 col-md-3",
-                        "type": "dropDownList",
-                        "multiple": false
+                        "class": "col-xs-4 col-sx-4 col-md-4",
+                        "type": "dropDownList"
+                        //"multiple": true
                     },
                     "config": {
-                        "dimension_id": "items",
-                        "defaultCodes": ["1057"],
-                        "filter": {}
+                        "dimension_id": "item",
+                        "defaultCodes": ["1711"],
+                        "filter": {
+                            whitelist: [1711, 6822]
+                        }
                     }
                 },
                 {
+                    // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
                     "parameter": "List1Codes",
                     "componentType": {
-                        "class": "col-xs-6 col-sm-6 col-md-3",
-                        "type": "dropDownList",
-                        "multiple": false
+                        "class": "col-xs-4 col-sx-4 col-md-4",
+                        "type": "dropDownList"
+                        //"multiple": true
                     },
                     "config": {
                         "dimension_id": "area",
-                        "defaultCodes": ["2"],
+                        "defaultCodes": ["5000"],
                         "filter": {}
                     }
                 },
@@ -55,17 +81,14 @@ define([
                     "type": "codelist",
                     "parameter": "List4Codes",
                     "componentType": {
-                        "class": "col-xs-4 col-sm-4 col-md-2",
-                        "type": "dropDownList-timerange"
+                        "class": "col-xs-4 col-sx-4 col-md-2",
+                        "type": "dropDownList"
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1994'],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
-                },
-                C.filter.aggregation
+                }
             ]
         },
 
@@ -73,34 +96,27 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['QA'],
-                List2Codes: ["2111"],
+                domain_codes: ['EM'],
+                List2Codes: ["7264"],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
                 limit: -1,
+                decimal_places: 2,
                 thousand_separator: ",",
                 "null_values": null,
-                // TODO: remove it the page_size!!!
                 page_size: 0,
-                per_page: 0,
                 page_number: 0
             },
 
-            // labels
             labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {
-                }
+                default: {}
             },
 
             //bridge configuration
             bridge: {
 
-                type: "faostat",
-                //requestType: 'data' // data, rankings
+                type: "faostat"
 
             },
 
@@ -119,9 +135,9 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production of {{item}} by country",
-                                fr: "Quantités de {{item}} par pays",
-                                es: "Cantidades de {{item}} por país"
+                                en: "Shares by country of sector {{item}} in CO2 emissions",
+                                fr: "",
+                                es: ""
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -129,13 +145,10 @@ define([
                     config: {
                         template: {}
                     },
-                    allowedFilter: ['item', 'year', 'aggregation'],
+                    allowedFilter: ['item', 'year'],
                     deniedTemplateFilter: [],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
-                        "group_by": 'year',
-                        "order_by": 'area'
+                        List1Codes: ["5000>", "351"]
                     }
                 },
                 {
@@ -147,11 +160,12 @@ define([
                         // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production of {{item}} in {{area}}",
-                                fr: "Production de {{item}} dans le {{area}}",
-                                es: "Producción de {{item}} en {{area}}"
+                                en: "Shares of agricultural sectors in CO2 emissions",
+                                fr: "",
+                                es: ""
                             },
-                            subtitle: "{{year}}"
+                            // TODO: make it dinamic for the timeserie
+                            subtitle: "{{area}}, 1990 - 2010"
                         }
                     },
 
@@ -162,33 +176,30 @@ define([
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
+                            seriesDimensions: ['area', 'item', 'element'],
+                            decimalPlaces: 2
                         },
-                        template: {
-                            // height:'350px'
-                            // default labels to be applied
-                        },
-                        creator: {
-
-                        }
+                        template: {},
+                        creator: {}
                     },
-                    allowedFilter: ['area', 'year', 'item'],
-                    filter: {}
+                    allowedFilter: ['area'],
+                    filter: {
+                        List3Codes: ["1711", "6822"],
+                        List4Codes: ["_1"]
+                    }
                 },
                 {
                     type: 'chart',
-                    class: "col-md-6",
+                    class: "col-md-12",
 
-                    // labels
                     labels: {
-                        // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production share of {{item}} by region",
-                                fr: "Part de la production de {{item}} par région",
-                                es: "Proporción de producción de {{item}} por región"
+                                en: "Share of each sector in CO2 emissions",
+                                fr: "",
+                                es: ""
                             },
-                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                            subtitle: "{{area}}, {{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
 
                     },
@@ -200,32 +211,77 @@ define([
                             xDimensions: null,
                             yDimensions: null,
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item'],
+                            decimalPlaces: 2
+                        },
+                        template: {
+                            height: '300px'
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['area', 'year'],
+                    filter: {
+                        List3Codes: [
+                            6814,
+                            6815,
+                            6816,
+                            6817,
+                            6818,
+                            6819,
+                            6820,
+                            1711,
+                            6822
+                        ]
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-md-12",
+
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Share of each gas in sector {{item}} emissions",
+                                fr: "",
+                                es: ""
+                            },
+                            subtitle: "{{area}}, {{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                        }
+
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['element', 'item'],
+                            decimalPlaces: 2
                         },
                         template: {
                             height: '250px'
                         },
                         creator: {}
                     },
-                    allowedFilter: ['year', 'item', 'aggregation'],
+                    allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        "group_by": 'year, item',
-                        "order_by": 'area'
+                        List2Codes: [7267, 7268, 7269]
                     }
                 },
                 {
                     type: 'chart',
-                    class: "col-md-6",
+                    class: "col-md-12",
 
                     // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production of {{item}} top 10 producers",
-                                fr: "Production of {{item}} top 10 producers",
-                                es: "Production of {{item}} top 10 producers"
+                                en: "Top 10 areas by share of sector {{item}} in CO2 emissions",
+                                fr: "",
+                                es: ""
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -238,10 +294,11 @@ define([
                             xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['element']
+                            seriesDimensions: ['item', 'element'],
+                            decimalPlaces: 2
                         },
                         template: {
-                            height:'250px'
+                            //height:'250px'
                             // default labels to be applied
                         },
                         creator: {
@@ -252,11 +309,10 @@ define([
                             }
                         }
                     },
-                    allowedFilter: ['year', 'item', 'aggregation'],
+                    allowedFilter: ['year', 'item'],
                     deniedTemplateFilter: [],
                     filter: {
                         List1Codes: ["5000>"],
-                        "group_by": 'year, item',
                         "order_by": 'value DESC',
                         "limit": '10'
                     }

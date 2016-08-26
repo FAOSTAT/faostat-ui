@@ -8297,9 +8297,16 @@ div#google_search input#search-submit {
     .fs-metadata .fs-metadata-content .fs-metadata-row .fs-metadata-code {
       font-weight: bold; }
 
-.fs-metadata-modal {
+.fs-metadata-modal-content {
   overflow-x: hidden;
   max-height: calc(100vh - 250px); }
+
+.fs-metadata-modal-export-button {
+  margin-top: 0px;
+  margin-bottom: 0px; }
+
+.fs-metadata-modal-title {
+  margin-top: 10px; }
 
 /* Third parties */
 .typeahead, .tt-query, .tt-hint {
@@ -8430,7 +8437,8 @@ div#google_search input#search-submit {
   margin-top: 20px; }
 
 .fs-browse-related-views {
-  border-bottom-color: transparent; }
+  border-bottom-color: transparent;
+  margin-bottom: 10px; }
 
 /* Download */
 .fs-compare-filter-box .fs-compare-heading {

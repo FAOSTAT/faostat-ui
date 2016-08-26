@@ -30,9 +30,22 @@
 
 }
 
-.fs-metadata-modal {
+.fs-metadata-modal-content {
 
   overflow-x: hidden;
   max-height: calc(100vh - 250px);
+
+}
+
+.fs-metadata-modal-export-button {
+
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+}
+
+.fs-metadata-modal-title {
+
+  margin-top:10px;
 
 }
