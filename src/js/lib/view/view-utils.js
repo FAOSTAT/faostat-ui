@@ -4,13 +4,14 @@ define([
     'config/Config',
     'globals/Common',
     'config/Events',
+    'config/Analytics',
     'text!templates/browse/related_views.hbs',
     'handlebars',
     'underscore',
     'loglevel',
     'select2',
     'amplify'
-], function ($, C, Common, E, templateRelatedViews, Handlebars, _, log) {
+], function ($, C, Common, E, A, templateRelatedViews, Handlebars, _, log) {
 
     'use strict';
 
@@ -71,15 +72,25 @@ define([
             var t = Handlebars.compile(templateRelatedViews);
             $container.html(t({relatedViews: view.relatedViews}));
 
-            $container.find('.nav-tabs').on('click', _.bind(function (e) {
-                var viewID = $(e.target).data("view");
+            $container.find('[data-role="related-view"]').off();
+            $container.find('[data-role="related-view"]').on('click', function (e) {
+
+                var viewID = $(this).data("view");
+
+                log.info("ViewUtils.addRelatedViews; click", viewID);
+
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+                   $.extend(true, {}, A.browse_by_domain.selection_tab, {
+                       label: viewID
+                   })
+                );
 
                 callback({
                     viewID: viewID,
                     updatedRelatedViews: false
                 });
 
-            }, this));
+            });
         }else {
             log.warn("ViewUtils.addRelatedViews; not applied. $container not valid:  ", $container);
         }

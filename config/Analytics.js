@@ -171,6 +171,12 @@ define(function () {
                 category: 'browse_by_domain',
                 action: 'selection',
                 label: 'change' //type?
+            },
+
+            selection_tab: {
+                category: 'browse_by_domain',
+                action: 'selection_tab',
+                label: '' // view-code
             }
 
         },
