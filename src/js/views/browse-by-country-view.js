@@ -510,7 +510,7 @@ define([
 
                 // highlight country
                 // TODO: how to check for old countries (i.e. USSR) or new (i.e. south sudan)?
-                //this.m.zoomTo('gaul0_faostat_3857', "faost_code", code);
+                this.m.zoomTo('gaul0_faostat_3857', "faost_code", code);
 
 /*
                 var wmsLayer = L.tileLayer.wms('http://fenix.fao.org:20900/geoserver/fenix/wms', {
