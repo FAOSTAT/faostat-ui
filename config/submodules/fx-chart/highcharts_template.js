@@ -327,7 +327,10 @@ define(['moment'],function (moment) {
                 dataLabels: {
                     enabled: true,
                     formatter: function () {
-                        return '<b>' + this.point.name + '</b><br>' + Math.round(parseFloat(this.percentage).toFixed(1) * 100) / 100 + ' %';
+                        var maxLength = 40,
+                            name = (this.point.name.length <= maxLength)? this.point.name : this.point.name.substring(0, maxLength) + "...";
+                        return '<b>' + name + '</b><br>' + Math.round(parseFloat(this.percentage).toFixed(1) * 100) / 100 + ' %';
+                        //return '<b>' + this.point.name + '</b><br>' + Math.round(parseFloat(this.percentage).toFixed(1) * 100) / 100 + ' %';
                     }
                 },
                 showInLegend: true

@@ -135,7 +135,7 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Shares by country of sector {{item}} in N2O emissions",
+                                en: "Shares by country of sector {{item}} in N<sub>2</sub>O emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -160,7 +160,7 @@ define([
                         // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Shares of agricultural sectors in N2O emissions",
+                                en: "Shares of agricultural sectors in N<sub>2</sub>O emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -195,43 +195,7 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Share of each gas in sector {{item}} emissions",
-                                fr: "",
-                                es: ""
-                            },
-                            subtitle: "{{area}}, {{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
-                        }
-
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
-                            valueDimensions: 'value',
-                            seriesDimensions: ['element', 'item'],
-                            decimalPlaces: 2
-                        },
-                        template: {
-                            height: '250px'
-                        },
-                        creator: {}
-                    },
-                    allowedFilter: ['area', 'year', 'item'],
-                    filter: {
-                        List2Codes: [7267, 7268, 7269]
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-md-12",
-
-                    labels: {
-                        template: {
-                            title: {
-                                en: "Share of each sector in N2O emissions",
+                                en: "Share of each sector in N<sub>2</sub>O emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -274,12 +238,48 @@ define([
                     type: 'chart',
                     class: "col-md-12",
 
+                    labels: {
+                        template: {
+                            title: {
+                                en: "Share of each gas in sector {{item}} emissions",
+                                fr: "",
+                                es: ""
+                            },
+                            subtitle: "{{area}}, {{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                        }
+
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['element', 'item'],
+                            decimalPlaces: 2
+                        },
+                        template: {
+                            height: '250px'
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['area', 'year', 'item'],
+                    filter: {
+                        List2Codes: [7267, 7268, 7269]
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-md-12",
+
                     // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 areas by share of sector {{item}} in N2O emissions",
+                                en: "Top 10 areas by share of sector {{item}} in N<sub>2</sub>O emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -305,6 +305,13 @@ define([
                             chartObj: {
                                 chart: {
                                     type: "column"
+                                },
+                                plotOptions: {
+                                    column: {
+                                        dataLabels: {
+                                            enabled: true
+                                        }
+                                    }
                                 }
                             }
                         }

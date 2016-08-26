@@ -132,10 +132,10 @@ define([
                         // labels to dinamically substitute the title and subtitle
                         default: {},
 
-                        // temp[late to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Shares by country of sector {{item}} in CO2 emissions",
+                                en: "Shares by country of sector {{item}} in CO<sub>2</sub> emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -160,7 +160,7 @@ define([
                         // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Shares of agricultural sectors in CO2 emissions",
+                                en: "Shares of agricultural sectors in CO<sub>2</sub> emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -195,7 +195,7 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Share of each sector in CO2 emissions",
+                                en: "Share of each sector in CO<sub>2</sub> emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -279,7 +279,7 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 areas by share of sector {{item}} in CO2 emissions",
+                                en: "Top 10 areas by share of sector {{item}} in CO<sub>2</sub>  emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -305,6 +305,13 @@ define([
                             chartObj: {
                                 chart: {
                                     type: "column"
+                                },
+                                plotOptions: {
+                                    column: {
+                                        dataLabels: {
+                                            enabled: true
+                                        }
+                                    }
                                 }
                             }
                         }

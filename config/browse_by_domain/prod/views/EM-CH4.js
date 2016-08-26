@@ -135,7 +135,7 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Shares by country of sector {{item}} in CH4 emissions",
+                                en: "Shares by country of sector {{item}} in CH<sub>4</sub>  emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -160,7 +160,7 @@ define([
                         // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Shares of agricultural sectors in CH4 emissions",
+                                en: "Shares of agricultural sectors in CH<sub>4</sub>  emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -195,7 +195,7 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Share of each sector in CH4 emissions",
+                                en: "Share of each sector in CH<sub>4</sub>  emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -279,7 +279,7 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 areas by share of sector {{item}} in CH4 emissions",
+                                en: "Top 10 areas by share of sector {{item}} in CH<sub>4</sub> emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -305,6 +305,13 @@ define([
                             chartObj: {
                                 chart: {
                                     type: "column"
+                                },
+                                plotOptions: {
+                                    column: {
+                                        dataLabels: {
+                                            enabled: true
+                                        }
+                                    }
                                 }
                             }
                         }

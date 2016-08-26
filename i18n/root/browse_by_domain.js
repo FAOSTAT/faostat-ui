@@ -11,9 +11,9 @@ define(['jquery', 'i18n!nls/common'], function ($, I18N) {
         "tab_macro_indicators_value_usd": "Value US$",
         "tab_macro_indicators_share": "Share of GDP",
         "em_total_ghg" : "Total GHG",
-        "em_co2" : "CO2",
-        "em_n2o" : "N2O",
-        "em_ch4" : "CH4"
+        "em_co2" : "CO<sub>2</sub>",
+        "em_n2o" : "N<sub>2</sub>O",
+        "em_ch4" : "CH<sub>4</sub>"
     });
 
 });

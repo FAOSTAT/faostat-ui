@@ -133,7 +133,7 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Shares by country of sector {{item}} in CO2eq emissions",
+                                en: "Shares by country of sector {{item}} in total GHG emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -158,7 +158,7 @@ define([
                         // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Shares of agricultural sectors in CO2eq emissions",
+                                en: "Shares of agricultural sectors in total GHG emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -193,7 +193,7 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Share of each sector in CO2eq emissions",
+                                en: "Share of each sector in total GHG emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -215,7 +215,8 @@ define([
                         template: {
                             height: '300px'
                         },
-                        creator: {}
+                        creator: {
+                        }
                     },
                     allowedFilter: ['area', 'year'],
                     filter: {
@@ -241,7 +242,7 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 areas by share of sector {{item}} in CO2eq emissions",
+                                en: "Top 10 areas by share of sector {{item}} in total GHG emissions",
                                 fr: "",
                                 es: ""
                             },
@@ -267,6 +268,13 @@ define([
                             chartObj: {
                                 chart: {
                                     type: "column"
+                                },
+                                plotOptions: {
+                                    column: {
+                                        dataLabels: {
+                                            enabled: true
+                                        }
+                                    }
                                 }
                             }
                         }
