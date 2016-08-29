@@ -17,7 +17,6 @@ define([
     'globals/GoogleAnalyticsManager',
     'globals/Export',
     'lib/search/search-box',
-    'fs-m-v/start',
     'lib/common/modal',
     'toastr',
     'jquery.visible',
@@ -37,7 +36,6 @@ define([
              Common,
              GoogleAnalyticsManager,
              Export, SearchBox,
-             MetadataViewer,
              Modal,
              toastr
 ) {
@@ -125,7 +123,8 @@ define([
             amplify.subscribe(E.SEARCH_BOX_SHOW, this, this.showSearchBox);
             amplify.subscribe(E.SEARCH_BOX_HIDE, this, this.hideSearchBox);
 
-            amplify.subscribe(E.METADATA_SHOW, this, this.showMetadata);
+            amplify.subscribe(E.METADATA_SHOW, Modal, Modal.showMetadata);
+            // amplify.subscribe(E.METADATA_SHOW, this, this.showMetadata);
             //amplify.subscribe(E.GLOSSARY_SHOW, Modal, Modal.glossary);
             amplify.subscribe(E.DEFINITION_DOMAIN_SHOW, Modal, Modal.definitions_domain);
 
@@ -482,27 +481,6 @@ define([
         hideSearchBox: function () {
 
             this.$SEACH_BOX.hide();
-
-        },
-
-        showMetadata: function (options) {
-
-            if ( !options.hasOwnProperty('code')) {
-                log.error('Code is not passed in the options', options);
-            }
-            else {
-
-                var metadataViewer = new MetadataViewer($.extend(true, {},
-                    {
-                        modal: true,
-                        addHeaders: false,
-                        lang: Common.getLocale()
-                    },
-                    options)
-                );
-
-                metadataViewer.render();
-            }
 
         },
 

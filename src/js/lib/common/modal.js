@@ -1,14 +1,15 @@
 /*global define*/
 define([
     'jquery',
+    'globals/Common',
     'require',
     'loglevel',
     'handlebars',
     'i18n!nls/common',
     'text!lib/common/templates/modal.hbs',
     'underscore.string'
-    //'views/standards-glossary-view'
 ], function ($,
+             Common,
              Require,
              log,
              Handlebars,
@@ -16,7 +17,6 @@ define([
              templates,
              _s
 ) {
-             //GlossaryView) {
 
     'use strict';
     
@@ -115,5 +115,31 @@ define([
 
     };
 
+    Modal.prototype.showMetadata = function(obj) {
+
+        Require([ 'fs-m-v/start'], function(MetadataViewer) {
+            if (!obj.hasOwnProperty('code')) {
+                log.error('Code is not passed in the options', obj);
+            }
+            else {
+
+                var metadataViewer = new MetadataViewer($.extend(true, {},
+                    {
+                        modal: true,
+                        addHeaders: false,
+                        lang: Common.getLocale()
+                    },
+                    obj)
+                );
+
+                metadataViewer.render();
+            }
+
+        });
+
+    };
+
     return new Modal();
+
+    
 });
