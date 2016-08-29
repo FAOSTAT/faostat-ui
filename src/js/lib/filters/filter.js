@@ -40,7 +40,7 @@ define([
 
         this.o = $.extend(true, {}, defaultOptions, options);
 
-        log.info("Filter.init;", this.o);
+        //log.info("Filter.init;", this.o);
 
         // init lang
         this.o.lang = Common.getLocale();
@@ -78,15 +78,10 @@ define([
     };
 
     Filter.prototype.renderFilter = function () {
-        var template = Handlebars.compile(templateFilter);
 
-        /*var c = $.extend(true, {}, i18nLabels, {data: this.o.config.data}, this.o.componentType),
-            // TODO: how to handle correctly the title?
-            title = this.o.title ||  this.o.config.dimension_id || this.o.id;
-        */
-        var c = $.extend(true, {}, {data: this.o.config.data}, this.o.componentType);
-
-        var title = this.o.hasOwnProperty("title")? this.o.title[Common.getLocale()] || this.o.title["en"] || i18nLabels[this.o.title] || this.o.title : null;
+        var template = Handlebars.compile(templateFilter),
+            c = $.extend(true, {}, {data: this.o.config.data}, this.o.componentType),
+            title = this.o.hasOwnProperty("title")? this.o.title[Common.getLocale()] || this.o.title["en"] || i18nLabels[this.o.title] || this.o.title : null;
 
         if (title === null) {
             title = this.o.title ||  this.o.config.dimension_id || this.o.id;
@@ -95,13 +90,14 @@ define([
 
         c.title = title;
 
-        log.info("Filter.renderFilter;", c);
+        //log.info("Filter.renderFilter;", c);
 
         this.$CONTAINER.append(template(c));
 
         // initialize with select2
         this.$DD = this.$CONTAINER.find(s.DD);
         this.$DD.select2();
+
     };
 
     /* TODO: make it nicer the timerange. Use plugins "method" for the future.*/
@@ -111,8 +107,7 @@ define([
         var template = Handlebars.compile(templateFilter);
 
         if (this.o.config.defaultCodes === undefined) {
-            // TODO: trhrow an error
-            log.info(this.o.config.data);
+
             log.warn("Timerange filter doesn't have default codes. Adding it manually.");
 
             // TODO: make a proper sorting for the year codes.
@@ -189,15 +184,12 @@ define([
         };
 
         _.each(this.$DD.find(':selected'), function(o) {
-            log.info(o);
             f.labels.push(o.text);
         });
 
-        log.info("Filter.getFilterStandard; f.labels:", f.labels);
-
         f.labels = f.labels.join(this.o.labelSeparator);
 
-        log.info("Filter.getFilterStandard; labels:", f.labels);
+        //log.info("Filter.getFilterStandard; labels:", f.labels);
 
         // TODO: remove the alert?
         if (f.codes.length <= 0) {
@@ -346,6 +338,8 @@ define([
         if (this.$DD_TO_YEAR) {
             this.$DD_TO_YEAR.empty();
         }
+
+        log.warn("Filter.destroy; Handle destroy the filter.");
 
     };
 

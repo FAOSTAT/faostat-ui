@@ -131,7 +131,7 @@ define([
                 text: 'Select at least one ' + i18nLabels[this.o.id] || this.o.id
             });
 
-            log.error('Select at least one ' + this.o.id);
+            log.error('CompareFilter.getFilterVisible; Select at least one ' + this.o.id);
             throw new Exception('Select at least one ' + this.o.id);
         }
 

@@ -328,8 +328,7 @@ define([
                     model: model,
                     template: {
                         title: groupName + " - " + domainName,
-                        addExport: true,
-                        export: i18nLabels.export_data
+                        addExport: true
                     },
 
                     // TODO: leave exportRequest?

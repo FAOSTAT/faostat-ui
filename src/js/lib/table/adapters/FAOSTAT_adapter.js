@@ -38,8 +38,6 @@ define([
 
                 _.each(columnsToFilter, function (dimension_id) {
 
-                    //log.info(dimension_id)
-
                     _.each(dsd, function (c) {
                         if (c.dimension_id === dimension_id) {
                             if (c.type !== "code") {
@@ -85,7 +83,7 @@ define([
 
             // order by index the filtered columns
 
-            log.info("Filtered Columns:", filteredColumns);
+            //log.info("Table.FAOSTAT_Adapter.getFilteredMetadata; Filtered Columns:", filteredColumns);
 
             // filtered column are the one rendered by the custom template
             return filteredColumns;
@@ -94,7 +92,7 @@ define([
 
         FAOSTAT_Adapter.prototype.formatData = function(model) {
 
-            log.info('Table.FAOSTAT_Adapter.formatData;', model);
+            //log.info('Table.FAOSTAT_Adapter.formatData;', model);
 
             this.o.model = model || this.o.model;
 
@@ -142,7 +140,7 @@ define([
 
             });
 
-            log.info('Table.FAOSTAT_Adapter.formattedData;', data);
+            //log.info('Table.FAOSTAT_Adapter.formattedData;', data);
 
             return data;
         };
@@ -160,7 +158,7 @@ define([
         };
 
         FAOSTAT_Adapter.prototype.destroy = function () {
-            log.warn('TODO: FAOSTAT_Adapter.destroy');
+            log.warn('TODO: Table.FAOSTAT_Adapter.destroy');
         };
 
         return FAOSTAT_Adapter;

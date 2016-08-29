@@ -73,7 +73,7 @@ define([
                 },*/
                 transport: function (obj, onSuccess, onError) {
 
-                    log.info('SearchBox.initComponents; request', obj);
+                    //log.info('SearchBox.initComponents; request', obj);
 
                     API.suggestions({
                         q: obj.url
@@ -82,7 +82,6 @@ define([
                         var r = [];
 
                         _.each(d.data, function(v) {
-                            log.info(v);
                             r.push({
                                 label: v.label,
                                 type: i18nLabels[v.id]
@@ -129,7 +128,8 @@ define([
                     suggestion: Handlebars.compile('<p>{{label}} {{#if type}}<small>({{type}})</small>{{/if}}</p>')
                 }
             }).on('typeahead:selected', function (e, d) {
-                log.info(e, d);
+
+                log.info("SearchBox.typeahead", e, d);
 
                 self.$SEARCH_BOX.typeahead('close');
 

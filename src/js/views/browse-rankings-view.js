@@ -63,18 +63,13 @@ define([
                     this.o.code = CM.defaultCode;
                 }
 
-                //this.changeState();
-
             },
 
             getTemplateData: function () {
-                log.info("BrowseRankings.getTemplateData;");
                 return i18nLabels;
             },
 
             attach: function () {
-
-                log.info("BrowseRankings.attach;");
 
                 View.prototype.attach.call(this, arguments);
 
@@ -92,8 +87,6 @@ define([
 
             initVariables: function () {
 
-                log.info("BrowseRankings.initVariables;");
-
                 this.$TREE = this.$el.find(s.TREE);
 
                 this.$VIEW_CONTAINER = this.$el.find(s.VIEW_CONTAINER);
@@ -104,8 +97,6 @@ define([
             },
 
             initComponents: function () {
-
-                log.info("BrowseRankings.initComponents;");
 
                 var self = this;
 

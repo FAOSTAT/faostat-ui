@@ -3,10 +3,10 @@
 
 <div class="jumbotron faostat-intro">
     <div>
-        <h2>Food and agriculture data</h2>
-        <p style="font-size:16px;">FAOSTAT provides free access to food and agriculture data for over 245 countries and 35 regional areas from 1961 to the most recent year available.</p>
+        <h2>{{{explore_data_title}}}</h2>
+        <p style="font-size:16px;">{{{explore_data_text}}}</p>
         <a data-link='interanl' href='{{URL_DATA}}' class="btn btn-lg btn-primary waves-effect truncate">
-            Explore the data
+            {{explore_data}}
         </a>
     </div>
 </div>
@@ -60,9 +60,8 @@
                         <i class="material-icons">keyboard_arrow_right</i>
                     </a>
                     <div class="card-content">
-                        <h3>FAO statistical yearbooks</h3>
-                        <p>The FAO Statistical Yearbook provides a selection of indicators on food and agriculture by country.</p>
-                        <p>The first part of the book includes thematic spreads with data visualizations (graphs, charts, and maps) with basic text. The second part has country-level tables for a selected number of indicators.</p>
+                        <h3>{{fao_statistical_yearbooks}}</h3>
+                        <p>{{{fao_statistical_yearbooks_text}}}</p>
                     </div>
 
                 </div>
@@ -89,7 +88,7 @@
                     <!-- Content -->
                     <div class="card-content">
                         <h3>{{country_indicators}}</h3>
-                        <p>Country indicators provide an overview of key indicators and charts by country.</p>
+                        <p>{{{country_indicators_text}}}</p>
                     </div>
                 </div>
             </div>
@@ -109,7 +108,7 @@
                     <!-- Content -->
                     <div class="card-content">
                         <h3 class="text-capitalized">{{rankings}}</h3>
-                        <p>Rankings indicators provide an overview of key indicators and charts by commodity.</p>
+                        <p>{{{rankings_text}}}</p>
                     </div>
 
                 </div>
@@ -132,8 +131,8 @@
                         <i class="material-icons">keyboard_arrow_right</i>
                     </a>
                     <div class="card-content">
-                        <h3>Food security in the 2030 Agenda for Sustainable Development</h3>
-                        <p>The 2030 Agenda for Sustainable Development, including the 17 Sustainable Development Goals (SDGs), are new global objectives that succeeded the Millennium Development Goals on 1 January 2016. The SDGs will shape national development plans over the next 15 years. From ending poverty and hunger to responding to climate change and sustaining our natural resources, food and agriculture lies at the heart of the 2030 Agenda.</p>
+                        <h3>{{development_goals}}</h3>
+                        <p>{{{development_goals_text}}}</p>
                     </div>
 
                 </div>
@@ -157,14 +156,14 @@
                 </div>
 
                 <div class="card-horiz-left-text-up pull-left">
-                    <h4 class="truncate">Bulk Download</h4>
+                    <h4 class="truncate">{{bulk_download}}</h4>
                     <div class="clearfix">
-                        <span class="pull-left">All FAOSTAT Data</span>
+                        <span class="pull-left">{{all_faostat_data}}</span>
                         <span class="pull-right visible-xs visible-sm hidden-md visible-lg" data-role="bulk_download_size"></span>
                     </div>
                 </div>
                 <div class="card-horiz-left-text-bottom pull-left">
-                    <span class="truncate">Updated on <span data-role="bulk_download_date"></span></span>
+                    <span class="truncate">{{updated_on}} <span data-role="bulk_download_date"></span></span>
 
                 </div>
 
@@ -201,17 +200,19 @@
 
                 <address>
                     <a data-link='external' href="http://www.fao.org/economic/ess/{{locale}}/" target="_blank">
-                        <strong>Statistics Division</strong>
+                        <strong>{{statistics_division}}</strong>
                     </a>
                     <br>
-                    Food and Agriculture Organization of the United Nations<br>
-                    Viale delle Terme di Caracalla<br>
-                    00153 Rome, Italy<br>
-                    <abbr title="Phone">T:</abbr> (+39) 06 570 55303
+                    <div style="font-size:13px;">
+                        {{fao}}<br>
+                        Viale delle Terme di Caracalla<br>
+                        00153 {{rome}}, {{italy}}<br>
+                        <abbr title="Phone">T:</abbr> (+39) 06 570 55303
+                    </div>
                 </address>
 
                 <address>
-                    <strong>Info</strong><br>
+                    <strong>{{info}}</strong><br>
                     <a data-link='external' href="mailto:FAO-statistics@fao.org">FAO-statistics@fao.org</a>
                 </address>
 

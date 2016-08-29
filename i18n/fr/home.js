@@ -5,40 +5,38 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-        home_welcome_title : 'Welcome to the FAOSTAT prototype',
-
-        featured_links: 'Featured Links',
-        whats_new: "What's new in FAOSTAT?",
-        coming_up: "Coming Up",
-
-        // info box
-        info_box_title: "FAO Statistical Pocketbook 2015",
-        info_box_text: "This publication is part of the FAO Statistical Yearbook suite of products. <br><br> The first part of the book includes thematic spreads with data visualizations (graphs, charts, and maps) with basic text. <br><br>  The second part has country-level tables for a selected number of indicators.",
-        info_box_link: "<a target='_blank' href='http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/#.VlXSE3arSG-'>Pocketbook</a>",
-
-        // featured links
-        faostat_database_download: 'Download all FAOSTAT Data',
-
-        // partners
-        partners: 'Partners',
+        // bulk downloads
+        bulk_download: "Bulk Download",
+        all_faostat_data: "All FAOSTAT Data",
+        updated_on: "Updated On",
 
         // database updates
         database_updates: "Database Updates",
 
-        release_calendar: "Release Calendar",
+        // Statistical Yearbook
+        fao_statistical_yearbooks: "FAO Statistical Yearbooks",
+        fao_statistical_yearbooks_text: "The FAO Statistical Yearbook provides a selection of indicators on food and agriculture by country. <br><br> The first part of the book includes thematic spreads with data visualizations (graphs, charts, and maps) with basic text. The second part has country-level tables for a selected number of indicators.",
 
-        // chart
-        chart_title: 'Highlights',
-        chart_subtitle: 'Number of undernourished declining',
-        chart_measurement_unit: 'Millions of people',
+        // country indicators
+        country_indicators: "Country Indicators",
+        country_indicators_text: "Country indicators provide an overview of key indicators and charts by country.",
 
-        // contact us
-        contact_us: 'Contact Us',
-        department_ess: 'Economic and Social Development Department',
-        address_fao: 'Viale delle Terme di Caracalla 00153 Rome, Italy',
+        // Rankings
+        rankings: "Rankings",
+        rankings_text: "Rankings indicators provide an overview of key indicators and charts by commodity.",
 
-        download: "Télécharger",
-        browse: "Explorer"
+        // Food security in the 2030 Agenda for Sustainable Development
+        development_goals: "Food security in the 2030 Agenda for Sustainable Development",
+        development_goals_text: "The 2030 Agenda for Sustainable Development, including the 17 Sustainable Development Goals (SDGs), are new global objectives that succeeded the Millennium Development Goals on 1 January 2016. The SDGs will shape national development plans over the next 15 years. From ending poverty and hunger to responding to climate change and sustaining our natural resources, food and agriculture lies at the heart of the 2030 Agenda.",
+
+        // Contacts
+        rome: "Rome",
+        italy: "Italy",
+        info: "Info",
+
+        explore_data: "Explore Data",
+        explore_data_title: "Food and agriculture data",
+        explore_data_text: "FAOSTAT provides free access to food and agriculture data for over 245 countries and 35 regional areas from 1961 to the most recent year available."
 
     });
 

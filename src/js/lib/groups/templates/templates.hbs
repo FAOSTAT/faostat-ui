@@ -1,4 +1,5 @@
 <script type='text/x-handlebars-template' id='template'>
+
     <div class="row">
         <div class="col-sm-12">
 
@@ -21,19 +22,15 @@
                 </div>
             </form>
 
-
-
             <div class="domain-list-container" data-role="groups"></div>
-
             <div style="display:none" data-role="no-data">{{no_data_available}}</div>
 
         </div>
         <!--<div class="col-sm-3 hidden-xs">-->
-
-
             <!--<div data-role="groups-list"></div>-->
         <!--</div>-->
     </div>
+
 </script>
 
 <script type='text/x-handlebars-template' id='domains'>
@@ -65,10 +62,7 @@
                     {{this.title}}
                 </h1>
 
-
-
                 <ul class="list-unstyled">
-
                     {{#each this.data}}
                         <li class="domain-list">
                             <a class="instafilta-target"
@@ -79,7 +73,6 @@
                             </a>
                         </li>
                     {{/each}}
-
                 </ul>
 
             </div>

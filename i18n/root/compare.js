@@ -5,7 +5,6 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-        "compare": "Compare",
         "compare_data": "Compare Data",
         "add_filter": "Add Filter",
         "chart_title": "Timeseries on selected data",

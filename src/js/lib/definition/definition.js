@@ -19,12 +19,14 @@ define([
     'use strict';
 
     var s = {
+
             OUTPUT: "[data-role='output']",
 
             TABLE: "[data-role='table']",
             EXPORT_DATA: "[data-role='export']",
             TABLE_TOOLBAR: "[data-role='table-toolbar']",
             NO_DEFINITION_AVAILABLE: "[data-role='no-definition-available']"
+
         },
 
         defaultOptions = {
@@ -232,7 +234,7 @@ define([
 
     Definition.prototype._createExportMatrix = function () {
 
-        log.info('Definition._createExportMatrix;');
+        //log.info('Definition._createExportMatrix;');
 
         var model = this.o.cache.model,
             dsd = model.metadata.dsd,

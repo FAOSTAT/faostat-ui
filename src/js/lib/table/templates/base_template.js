@@ -52,7 +52,7 @@ define([
 
             this.$TABLE = $table_content.find(s.TABLE);
 
-            log.info("Table._injectTemplate; o:", this.o, this.o.template.ajax);
+            //log.info("Table._injectTemplate; o:", this.o, this.o.template.ajax);
 
 
             // http://bootstrap-table.wenzhixin.net.cn/documentation/

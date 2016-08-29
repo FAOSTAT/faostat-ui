@@ -5,20 +5,5 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-       /* 
-       
-        year: 'Year',
-        fromyear: 'From Year',
-        toyear: 'To Year',
-        countries: 'Countries',
-        items: 'Items',
-        element: 'Element',
-        aggregation: 'Aggregation',
-        average: 'Average',
-        sum: 'Sum',
-        please_select_an_option: 'Please select an option'
-        
-        */
-
     });
 });

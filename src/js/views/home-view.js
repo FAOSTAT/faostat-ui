@@ -368,7 +368,7 @@ define([
                         "700247798168551424",
                         document.getElementById(s.TWITTER),
                         {
-                            height: 830,
+                            height: 870,
                             width: '100%',
                             screenName: "FAOStatistics"
                         }

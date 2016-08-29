@@ -20,18 +20,9 @@ define([
         return this;
     }
 
+    // TODO: lagacy not used
     ViewUtils.prototype.defaultFilterOptions = function(config) {
-
-        return $.extend(
-            true,
-            {},
-            config,
-            {
-                //lang: Common.getLocale(),
-                //datasource: C.DATASOURCE
-            }
-        );
-
+        return config;
     };
 
     ViewUtils.prototype.defaultItemOptions = function(item, CustomView) {
@@ -58,6 +49,7 @@ define([
                 view.comment.text = view.comment.text[lang] || view.comment.text;
             }
             if (view.comment.hasOwnProperty('pdf')) {
+                // TODO: check if this is set
                 view.comment.url = C.PDF_BASEPATH + lang.toUpperCase() + "/" + view.comment.pdf;
             }
         }
@@ -66,10 +58,10 @@ define([
 
     ViewUtils.prototype.addRelatedViews = function($container, view, callback) {
 
-        log.info("ViewUtils.addRelatedViews;", $container, view);
+       // log.info("ViewUtils.addRelatedViews;", $container, view);
+        var t = Handlebars.compile(templateRelatedViews);
 
         if ($container !== undefined && $container !== null) {
-            var t = Handlebars.compile(templateRelatedViews);
             $container.html(t({relatedViews: view.relatedViews}));
 
             $container.find('[data-role="related-view"]').off();
@@ -77,7 +69,7 @@ define([
 
                 var viewID = $(this).data("view");
 
-                log.info("ViewUtils.addRelatedViews; click", viewID);
+                //log.info("ViewUtils.addRelatedViews; click", viewID);
 
                 amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
                    $.extend(true, {}, A.browse_by_domain.selection_tab, {

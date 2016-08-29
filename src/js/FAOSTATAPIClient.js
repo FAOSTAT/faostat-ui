@@ -13,7 +13,8 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
         this.CONFIG = {
             base_url: 'http://fenixervices.fao.org/faostat/api/v1/',
             mode: '@@mode',
-            lang: 'en'
+            lang: 'en',
+            log: false
         };
 
         /* Extend default configuration. */
@@ -1501,10 +1502,14 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
         // 3600000 (60 minutes)
 
         if (value !== undefined) {
-            log.info("Stored", key);
+            if (this.CONFIG.log) {
+                log.info("Stored", key);
+            }
             return amplify.store(key, value, expireStoreTime);
         }else {
-            log.info("Get Stored", key);
+            if (this.CONFIG.log) {
+                log.info("Get Stored", key);
+            }
             return amplify.store(key);
         }
 

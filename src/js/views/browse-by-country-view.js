@@ -246,8 +246,6 @@ define([
                 // initialize map
                 this.initializeMap(code);
 
-                log.info("------------", code);
-
                 // get and render the right view
                 Require([basePath + "country_profile"], _.bind(function(views) {
 
@@ -575,8 +573,6 @@ define([
 
                 config._name = 'by_country';
                 dashboard.render(config);
-
-                log.info("------------", config)
 
                 // save dashboard for destroy
                 if (this.dashboards === undefined) {

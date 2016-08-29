@@ -39,11 +39,9 @@ define([
 
     Groups.prototype.render = function (options) {
 
-        log.info("Groups.render");
+        log.info("Groups.render;", options);
 
         this.o = $.extend(true, {}, defaultOptions, options);
-
-        this.o.lang = Common.getLocale();
 
         this._initVariables();
 
@@ -57,6 +55,7 @@ define([
 
         /* Load main structure. */
         var t = Handlebars.compile($(templates).filter("#template").html());
+
         this.$CONTAINER.html(t({
             search_for_a_domain: i18nLabels.search_for_a_domain,
             no_data_available: i18nLabels.no_data_available,
@@ -149,6 +148,7 @@ define([
     Groups.prototype._showGroupsAndDomains = function(data) {
 
         var t = Handlebars.compile($(templates).filter('#groups').html());
+
         this.$GROUPS.html(t(this._getGroupsAndDomains(data)));
 
     };
@@ -226,7 +226,7 @@ define([
     Groups.prototype._analyticsDomainSelection = function (label) {
 
         amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
-             $.extend(true, {}, A.data_domain_list_page.select_a_domain, {
+             $.extend({}, A.data_domain_list_page.select_a_domain, {
                 label: label
             })
         );
@@ -236,7 +236,7 @@ define([
     Groups.prototype._analyticsSearchDomain = function (label) {
 
         amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
-            $.extend(true, {}, A.data_domain_list_page.search_a_domain, {
+            $.extend({}, A.data_domain_list_page.search_a_domain, {
                 label: label
             })
         );

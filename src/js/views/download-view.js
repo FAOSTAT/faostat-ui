@@ -780,7 +780,7 @@ define([
                 delete this.metadataViewer;
             }
 
-            log.info("------Download.dispose; interactiveDownload", this.interactiveDownload);
+            log.info("-------Download.dispose; interactiveDownload", this.interactiveDownload);
             if (this.interactiveDownload && _.isFunction(this.interactiveDownload.destroy)) {
                 this.interactiveDownload.destroy();
                 delete this.interactiveDownload;

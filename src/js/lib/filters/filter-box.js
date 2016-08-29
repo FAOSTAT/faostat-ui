@@ -19,6 +19,7 @@ define([
     var s = {
 
         //FILTERS: '[data-role="filter-box"]'
+
     },
         events = {
     },
@@ -56,8 +57,6 @@ define([
 
     FilterBox.prototype.initVariables = function () {
 
-        // TODO: have a template?
-        //log.info(this.o.container);
         this.$CONTAINER = $(this.o.container);
 
     };
@@ -74,7 +73,7 @@ define([
                 f.config.filter = $.extend(true, {}, defaultFilter, f.config.filter);
             }
 
-            log.info("FilterBox.render; f.config.filter", f);
+            //log.info("FilterBox.render; f.config.filter", f);
 
         }, this));
 
@@ -129,7 +128,7 @@ define([
 
         _.each(filterItems, function(filter) {
 
-            log.info("FilterBox._preloadCodelists;", filter);
+            //log.info("FilterBox._preloadCodelists;", filter);
 
             var type = filter.type;
 
@@ -152,8 +151,6 @@ define([
         var id = filter.config.dimension_id,
             defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [],
             request = $.extend(true, {}, {
-            show_lists: null,
-            ord: null,
             id: id
         }, filter.config.filter);
 
@@ -182,7 +179,7 @@ define([
 
     FilterBox.prototype._preloadStaticCodes = function (filter) {
 
-        log.info("FilterBox._preloadStaticCodes; filter", filter);
+        //log.info("FilterBox._preloadStaticCodes; filter", filter);
         var defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [];
 
             // TODO: add boolean "translatable"? in the json definition?
@@ -192,7 +189,7 @@ define([
             d.label = i18nLabels[d.label] || d.label;
 
             // process codes/defaults
-            log.info("FilterBox._preloadStaticCodes; d", d, "selected", defaultCodes.indexOf(d.code) > -1);
+            //log.info("FilterBox._preloadStaticCodes; d", d, "selected", defaultCodes.indexOf(d.code) > -1);
             d.selected = (defaultCodes.indexOf(d.code) > -1);
 
         });
@@ -228,13 +225,12 @@ define([
             delete this.o.filters;
         }
 
-
         // destroy all filters
         if (this.$CONTAINER !== undefined) {
             this.$CONTAINER.empty();
         }
 
-        log.warn("Handle destroy of all filters");
+        log.warn("FilterBox.destroy; Handle destroy of all filters.");
 
     };
 
