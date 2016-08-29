@@ -54,25 +54,37 @@ define(function () {
 
         data_domain_specific_page: {
 
-            // TODO: not used yet
-            // to track if the right side are used
             selection_metadata: {
                 category: 'data',
-                action: 'selection',
-                label: 'matadata'
+                action: 'selection_metadata',
+                label: '' // domain_code
             },
 
+            selection_definitions: {
+                category: 'data',
+                action: 'selection_definitions',
+                label: '' // domain_code
+            },
+
+            // TODO: not used yet
             selection_back_to_domains: {
                 category: 'data',
-                action: 'selection',
-                label: 'back_to_domains'
+                action: 'selection_back_to_domains',
+                label: null
             },
 
-            selection_show_more: {
+            open_domain_tree: {
                 category: 'data',
-                action: 'selection',
-                label: 'back_to_domains'
+                action: 'domain_tree_open',
+                label: null
+            },
+
+            select_domain_in_tree: {
+                category: 'data',
+                action: 'domain_tree',
+                label: null // 'domain_code
             }
+
         },
 
 
@@ -373,9 +385,8 @@ define(function () {
             database_updates: {
                 category: 'database_updates',
                 action: 'selection',
-                label: '' // domain_code
-            },
-            // is it needed?
+                label: '' // url
+            }
         }
 
     };

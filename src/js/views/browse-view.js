@@ -1,4 +1,6 @@
 /*global define, _:false, $, console, amplify, FM*/
+
+// TODO: legacy not used anymore
 define([
     'jquery',
     'views/base/view',

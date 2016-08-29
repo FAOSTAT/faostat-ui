@@ -65,8 +65,6 @@ define([
                     this.o.code = CM.defaultCode;
                 }
 
-                this.changeState();
-
             },
 
             getTemplateData: function () {
@@ -92,8 +90,6 @@ define([
 
             initVariables: function () {
 
-                //this.$table = this.$el.find(s.TABLE);
-                this.$TREE = this.$el.find(s.TREE);
                 this.$VIEW_TITLE = this.$el.find(s.VIEW_TITLE);
                 this.$VIEW = this.$el.find(s.VIEW);
                 this.$RELATED_VIEWS = this.$el.find(s.RELATED_VIEWS);
@@ -103,53 +99,6 @@ define([
             initComponents: function () {
 
                 this.updateView();
-
-                // this._initTree();
-
-            },
-
-            _initTree: function() {
-
-                var self = this;
-
-                this.tree = new Tree();
-                this.tree.init({
-                    placeholder_id: this.$TREE,
-                    placeholder_search: this.$el.find(s.SEARCH_TREE),
-                    code: this.o.code,
-                    blacklist: CM.blacklist || [],
-                    whitelist: CM.whitelist || [],
-                    callback: {
-
-                        onClick: _.bind(function (callback) {
-
-                            this.o.code = callback.id;
-                            this.o.label = callback.label;
-
-                            // update view
-                            this.updateView();
-
-                            // change url state
-                            this.changeState();
-
-                            amplify.publish(E.SCROLL_TO_SELECTOR, {
-                                container: self.$VIEW_TITLE
-                            });
-
-                        }, this),
-
-                        onTreeRendered:  _.bind(function (callback) {
-
-                            this.o.code = callback.id;
-                            this.o.label = callback.label;
-
-                            // update view
-                            this.updateView();
-
-                        }, this)
-
-                    }
-                });
 
             },
 
@@ -163,21 +112,6 @@ define([
 
                 this.$VIEW_TITLE.html(title);
                 this.$RELATED_VIEWS.empty();
-
-                // Go to the download section
-                this.$DOWNLOAD_INTERACTIVE_LINK = this.$el.find(s.DOWNLOAD_INTERACTIVE_LINK);
-                this.$DOWNLOAD_INTERACTIVE_LINK.off('click');
-                this.$DOWNLOAD_INTERACTIVE_LINK.on('click', function(e) {
-                    e.preventDefault();
-                    Common.changeURL(ROUTE.DOWNLOAD_INTERACTIVE, [code], true);
-                });
-
-                this.$DOWNLOAD_BULK_LINK = this.$el.find(s.DOWNLOAD_BULK_LINK);
-                this.$DOWNLOAD_BULK_LINK.off('click');
-                this.$DOWNLOAD_BULK_LINK.on('click', function(e) {
-                    e.preventDefault();
-                    Common.changeURL(ROUTE.DOWNLOAD_BULK, [code], true);
-                });
 
                 var obj = {
                     container: this.$VIEW,
@@ -205,14 +139,6 @@ define([
 
                 amplify.unsubscribe(EM.ON_FILTER_CHANGE, this.updateDashboard);
                 amplify.unsubscribe(EM.ON_FILTER_INVALID_SELECTION, this.onFilterInvalidSelection);
-
-            },
-
-            changeState: function() {
-
-                // TODO: fix it: this.o.section + '_code'
-                //Common.changeURL(this.o.section + '_code', [this.o.code], false);
-                Common.changeURL(this.o.section, [this.o.code], false);
 
             },
 

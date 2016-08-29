@@ -10,18 +10,10 @@ define([
     'config/Events',
     'config/home/Config',
     'text!templates/home/home.hbs',
-    // 'text!templates/home/news.hbs',
-    'text!templates/home/domains.hbs',
     'text!templates/home/database_updates.hbs',
     'i18n!nls/home',
     'handlebars',
     'faostatapiclient',
-    //'fx-c-c/start',
-    //'config/browse_by_domain/Config',
-    //'config/home/sample/chartModel',
-     /*'config/home/sample/whatsNew',
-     'config/home/sample/comingUp',
-     'config/home/sample/databaseUpdates',*/
     'moment',
     'underscore.string',
     'amplify',
@@ -34,17 +26,9 @@ define([
              Common,
              A, ROUTE, C, E, CM,
              template,
-             // templateNews,
-             templateDomains,
              templateDatabaseUpdates,
              i18nLabels, Handlebars,
              API,
-             //ChartCreator,
-             //BrowseByDomainConfig,
-             // ChartModel,
-              /*WhatsNew,
-              ComingUp,
-              DatabaseUpdates,*/
              moment,
              _s
 ) {
@@ -53,15 +37,6 @@ define([
 
     var s = {
 
-            DOMAINS: "#fs_home_domains",
-            GO_TO_BROWSE: '[data-role="go_to_browse"]',
-            GO_TO_DOWNLOAD: '[data-role="go_to_download"]',
-
-            CHART: "#fs_home_chart",
-            WHATS_NEW: "#fs_home_whats_new",
-            COMING_UP: "#fs_home_coming_up",
-            INFO: "#fs_home_info", // i.e. FAO Statistical pocketbook
-            FAO_LINKS: "#fs_home_fao_links",
             DATABASE_UPDATES: "#fs_home_database_updates",
             RELEASE_CALENDAR: "#fs_home_release_calendar",
             PARTNERS: "#fs_home_partners",
@@ -72,6 +47,11 @@ define([
             FAOSTAT_BULK_DATE: '[data-role="bulk_download_date"]',
             FAOSTAT_BULK_SIZE: '[data-role="bulk_download_size"]',
             EXTERNAL_LINK: "[data-link='external']"
+
+            //DOMAINS: "#fs_home_domains",
+            //GO_TO_BROWSE: '[data-role="go_to_browse"]',
+            //GO_TO_DOWNLOAD: '[data-role="go_to_download"]',
+           // CHART: "#fs_home_chart",
 
         },
         HomeView = View.extend({
@@ -84,8 +64,7 @@ define([
 
             getTemplateData: function () {
 
-                // ADD links
-                // TODO: helper?
+                // TODO select which labels to add
                 var d = $.extend(true, {}, i18nLabels, {
                     URL_FAOSTAT_DATABASE_ZIP: C.URL_FAOSTAT_DATABASE_ZIP,
                     URL_COUNTRY_PROFILES: C.URL_COUNTRY_PROFILES,
@@ -123,24 +102,25 @@ define([
 
             initVariables: function () {
 
-                this.$DOMAINS = this.$el.find(s.DOMAINS);
-                this.$WHATS_NEW = this.$el.find(s.WHATS_NEW);
-                this.$COMING_UP = this.$el.find(s.COMING_UP);
+                this.o = {};
+
                 this.$DATABASE_UPDATES = this.$el.find(s.DATABASE_UPDATES);
                 this.$FAOSTAT_BULK_ZIP = this.$el.find(s.FAOSTAT_BULK_ZIP);
                 this.$FAOSTAT_BULK_DATE = this.$el.find(s.FAOSTAT_BULK_DATE);
                 this.$FAOSTAT_BULK_SIZE = this.$el.find(s.FAOSTAT_BULK_SIZE);
                 this.$EXTERNAL_LINK = this.$el.find(s.EXTERNAL_LINK);
 
-               // this.$CHART1 = this.$el.find(s.CHART + "1");
 
-                this.o = {};
+                //this.$DOMAINS = this.$el.find(s.DOMAINS);
+                //this.$WHATS_NEW = this.$el.find(s.WHATS_NEW);
+                //this.$COMING_UP = this.$el.find(s.COMING_UP);
+                // this.$CHART1 = this.$el.find(s.CHART + "1");
 
             },
 
             configurePage: function () {
 
-                this.initSlideShow();
+               // this.initSlideShow();
 
                 this.initDatabaseUpdates();
 
@@ -154,7 +134,7 @@ define([
 
             },
 
-            initSlideShow: function() {
+           /* initSlideShow: function() {
 
                 var swiper = new Swiper('.swiper-container', {
                     pagination: '.swiper-pagination',
@@ -168,7 +148,7 @@ define([
                     speed: 600
                 });
 
-            },
+            },*/
 
      /*       initDomains: function () {
 
@@ -238,7 +218,7 @@ define([
 
             },*/
 
-            initChart: function () {
+           /* initChart: function () {
 
                 var self = this,
                     c = new ChartCreator();
@@ -267,15 +247,15 @@ define([
 
 
 
-                /*
-                    c.init($.extend(true, {}, CM.chart, {model: d}, {container: self.$CHART1})).then(function (c) {
 
-                        c.render();
-                        // c.render($.extend(true, {}, CM.chart, {container: self.$CHART2}));
-                        // c.render($.extend(true, {}, CM.chart, {container: self.$CHART3}));
-                        // c.render($.extend(true, {}, CM.chart, {container: self.$CHART4}));
-
-                    });*/
+                    // c.init($.extend(true, {}, CM.chart, {model: d}, {container: self.$CHART1})).then(function (c) {
+                    //
+                    //     c.render();
+                    //     // c.render($.extend(true, {}, CM.chart, {container: self.$CHART2}));
+                    //     // c.render($.extend(true, {}, CM.chart, {container: self.$CHART3}));
+                    //     // c.render($.extend(true, {}, CM.chart, {container: self.$CHART4}));
+                    //
+                    // });
 
 
                 }).fail(function(e) {
@@ -288,7 +268,7 @@ define([
 
                 });
 
-            },
+            },*/
 
             initDatabaseUpdates: function () {
 
@@ -299,55 +279,9 @@ define([
 
                 API.groupsanddomains().then(function(d) {
 
-                    var sortedDomains = [],
-                        databaseUpdates = [];
+                    self.$DATABASE_UPDATES.html(t(self._prepareDatabaseUpdates(d)));
 
-                    _.each(d.data, function(domain) {
-
-                        // clean date for firefox
-                        //http://stackoverflow.com/questions/3257460/new-date-is-working-in-chrome-but-not-firefox
-                        domain.date_update = _s.strLeft(_s.replaceAll(domain.date_update, '-', '/'), ".");
-                        domain.date_update = new Date(domain.date_update);
-                        sortedDomains.push(domain);
-                    });
-
-                    // order by date
-                    sortedDomains = _.sortBy(sortedDomains, function(o){
-                        return -o.date_update.getTime();
-                    });
-
-                    // parse 10 first domains
-                    //log.info("Home.initDatabaseUpdates; sortedDomains", sortedDomains);
-
-                    moment.locale(Common.getLocale());
-
-                    _.each(sortedDomains, function(domain, index) {
-
-                        //log.info(domain, index);
-
-                        if (index < CM.MAX_DATABASE_UPDATES) {
-
-                            var m = moment(domain.date_update),
-                                date =  m.format("MMM DD, YYYY");
-
-                            domain.title = domain.domain_name + " ("+ domain.group_name + ")";
-                            domain.date = date;
-                            domain.url = '#' + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [domain.domain_code ]);
-
-                            databaseUpdates.push(domain);
-
-                        }
-
-                    });
-
-                    //log.info("Home.initDatabaseUpdates; databaseUpdates", databaseUpdates);
-
-                    self.$DATABASE_UPDATES.html(t(databaseUpdates));
-
-                    // TODO: track in analytics the click on database updates
-
-
-                    var swiper = new Swiper('.swiper-container-updates', {
+                    self.o.database_updates = new Swiper('.swiper-container-updates', {
                         scrollbar: '.swiper-scrollbar',
                         direction: 'vertical',
                         slidesPerView: 'auto',
@@ -355,6 +289,16 @@ define([
                         freeMode: true
                     });
 
+                    // add analytics
+                    self.$DATABASE_UPDATES.find('a').on('click', function() {
+
+                        amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+                            $.extend({}, A.home.database_updates, {
+                                label: $(this).attr('href')
+                            })
+                        );
+
+                    });
 
                 }).fail(function(e) {
 
@@ -364,6 +308,51 @@ define([
                     amplify.publish(E.CONNECTION_PROBLEM, {});
 
                 });
+
+            },
+
+            _prepareDatabaseUpdates: function(d) {
+
+                var sortedDomains = [],
+                    databaseUpdates = [];
+
+                _.each(d.data, function(domain) {
+
+                    // clean date for firefox
+                    //http://stackoverflow.com/questions/3257460/new-date-is-working-in-chrome-but-not-firefox
+                    domain.date_update = _s.strLeft(_s.replaceAll(domain.date_update, '-', '/'), ".");
+                    domain.date_update = new Date(domain.date_update);
+                    sortedDomains.push(domain);
+
+                });
+
+                // order by date
+                sortedDomains = _.sortBy(sortedDomains, function(o){
+                    return -o.date_update.getTime();
+                });
+
+                //log.info("Home.initDatabaseUpdates; sortedDomains", sortedDomains);
+
+                moment.locale(Common.getLocale());
+
+                _.each(sortedDomains, function(domain, index) {
+
+                    if (index < CM.MAX_DATABASE_UPDATES) {
+
+                        var m = moment(domain.date_update),
+                            date =  m.format("MMM DD, YYYY");
+
+                        domain.title = domain.domain_name + " ("+ domain.group_name + ")";
+                        domain.date = date;
+                        domain.url = '#' + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [domain.domain_code ]);
+
+                        databaseUpdates.push(domain);
+
+                    }
+
+                });
+
+                return databaseUpdates;
 
             },
 
@@ -438,10 +427,10 @@ define([
                     var url = $(this).attr('href');
 
                     amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
-                        $.extend({}, true,
-                            A.external_link,
-                            { label: url }
-                        ));
+                        $.extend({}, true, A.external_link, {
+                            label: url
+                        })
+                    );
                 });
 
             },
@@ -453,7 +442,7 @@ define([
                 }
 
                 if (this.$DATABASE_UPDATES) {
-                    this.$DATABASE_UPDATES.find(s.GO_TO_DOWNLOAD).off();
+                    this.$DATABASE_UPDATES.find('a').off();
                 }
 
             },
@@ -461,6 +450,13 @@ define([
             dispose: function () {
 
                 this.unbindEventListeners();
+
+                // destroy swiper
+                if (this.o.database_updates) {
+                    this.o.database_updates.destroy();
+                }
+
+                this.$el.empty();
 
                 View.prototype.dispose.call(this, arguments);
 

@@ -9,7 +9,6 @@
                     <div class="col-md-12">
                         <h3 class="pull-left"><b>FAO</b>STAT <small>Domains</small></h3>
                         <button style="padding-top:23px;" type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
-                            <!--<span aria-hidden="true">&times;</span>-->
                             <i class="material-icons">close</i>
                         </button>
                     </div>
@@ -46,20 +45,6 @@
 <div class="row">
     <div class='col-lg-12'>
         <ul class='nav nav-tabs' role='tablist'>
-            <!--
-              <li role='presentation' style="padding-top:5px;">
-                            <i class="fa fa-bars fa-lg" aria-hidden="true" style="cursor:pointer;" data-role="fs-domains-menu"></i>
-                        </li>-->
-
-            <!--
-             <li role='presentation'>
-                <a href='#bulk_downloads' data-section='bulk' role='tab' data-toggle='tab'>{{bulk_downloads}}</a>
-            </li>-->
-            <!--
-            <li role='presentation'>
-                <a href='#about' data-section='about' role='tab' data-toggle='tab'>{{welcome_page}}</a>
-            </li>
-            -->
             <li role='presentation'>
                 <a href='#interactive_download' data-section='interactive' role='tab' data-toggle='tab'>
                     {{download_data}}
@@ -91,10 +76,8 @@
 
         <!-- Container tab-panels -->
         <div class="tab-content">
-            <div class="tab-pane" id="about" data-section='about'></div>
             <div class="tab-pane" id="interactive_download" data-section='interactive_download'></div>
             <div class="tab-pane" id="report" data-section='report'></div>
-            <div class="tab-pane" id="bulk_downloads" data-section='bulk_downloads'></div>
             <div class="tab-pane" id="metadata" data-section='metadata'></div>
             <div class="tab-pane" id="browse" data-section='browse_by_domain_code'></div>
         </div>
@@ -128,7 +111,7 @@
                     <h5>
                         <i class="material-icons left">file_download</i>{{bulk_downloads}}
                     </h5>
-                    <ul class="list-unstyled list-download" data-role="bulk-downloads-caret"></ul>
+                    <ul class="list-unstyled list-download" data-role="bulk-downloads-list"></ul>
                 </div>
             </div>
 
@@ -140,31 +123,15 @@
                     <p data-role="date"></p>
                 </div>
 
-                <!-- Contacts -->
-                <!--                <div data-role="contact-name">
-                    <p class="label label-default label-aligned">{{contacts}}Contacts</p>
-
-                    <p data-role="text"></p>
-                </div>-->
-
-                <!--&lt;!&ndash; Group &ndash;&gt;-->
-                <!--<div data-role="">-->
-                <!--<p class="label label-default label-aligned">Group</p>-->
-                <!--<p><span data-role="go_to_download" class="domain-icon icojam_Q"></span></p>-->
-                <!--<p data-role="text">Commodity Balances - Livestock and Fish Primary Equivalent</p>-->
-                <!--</div>-->
-
                 <!-- Email -->
                 <div data-role="contact-email" style="display:none">
                     <p class="label label-default label-aligned">{{contacts_email}}</p>
-
                     <p data-role="text"></p>
                 </div>
 
                 <div data-role="related-documents">
                     <p class="label label-default label-aligned">{{related_documents}}</p>
-
-                    <!--TODO: remove when data are not available -->
+                    <!--TODO: remove when data are not available? -->
                     <div data-role="fs-download-related-documents"></div>
                 </div>
 

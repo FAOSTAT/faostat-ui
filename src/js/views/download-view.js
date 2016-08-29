@@ -12,18 +12,9 @@ define([
     'text!templates/download/download.hbs',
     'i18n!nls/download',
     'FAOSTAT_UI_TREE',
-    //'fs-r-p/start',
-    // 'fs-i-d/start',
-    // TODO: change Names
-    //'FAOSTAT_UI_BULK_DOWNLOADS',
-    //'FENIX_UI_METADATA_VIEWER',
-    //'fs-m-v/start',
     'lib/related_documents/related_documents',
-    //'FAOSTAT_UI_WELCOME_PAGE',
-    //'lib/download/domains_list/domains-list',
     'moment',
     'underscore.string',
-    //'views/browse-by-domain-view',
     'handlebars',
     'faostatapiclient',
     'lib/common/text-wrapper',
@@ -33,16 +24,9 @@ define([
              $, log, View, A, C, E, Common, ROUTE,
              template, i18nLabels,
              Tree,
-             //Report,
-             //InteractiveDownload,
-             //BulkDownloads,
-             //MetadataViewer,
-             //WelcomePage,
              RelatedDocuments,
-             //DomainsList,
              moment,
              _s,
-            // DomainView,
              Handlebars,
              API,
              TextWrapper
@@ -70,7 +54,7 @@ define([
             RELATED_DOCUMENTS: '[data-role="fs-download-related-documents"]',
             METADATA_BUTTON: '[data-role="fs-download-metadata-button"]',
             BULK_DOWNLOADS_PANEL: "[data-role='bulk-downloads-panel']",
-            BULK_CARET: "[data-role='bulk-downloads-caret']",
+            BULK_LIST: "[data-role='bulk-downloads-list']",
 
             // Tree
             TREE_CLOSE: '[data-role="fs-domains-tree-container-close"]',
@@ -108,16 +92,22 @@ define([
 
             this.o.lang = Common.getLocale();
 
-            // TODO: useful?
             this.options = $.extend(true, {}, options);
+
+            // used to handle the current selection
+            this.o.selected = {
+                id: this.o.code
+            }
 
         },
 
         getTemplateData: function () {
-            return $.extend(true, {},
-                i18nLabels, {
+
+            // TODO: add explicitaly the labels used in the page to avoid overhead
+            return $.extend(true, {}, i18nLabels, {
                 url_data_section: '#' + Common.getURI(ROUTE.DATA)
             });
+
         },
 
         attach: function () {
@@ -131,42 +121,65 @@ define([
 
             this.initComponents();
 
+            this.configurePage();
+
             this.bindEventListeners();
 
-            this.configurePage();
         },
 
         initVariables: function () {
 
-            this.$TREE = this.$el.find(s.TREE);
-            this.$OUTPUT_CONTAINER = this.$el.find(s.OUTPUT_CONTAINER);
-            this.$REPORT = this.$el.find(s.REPORT);
-            this.$BULK = this.$el.find(s.BULK);
-            this.$METADATA = this.$el.find(s.METADATA);
-            this.$INTERACTIVE_DOWNLOAD = this.$el.find(s.INTERACTIVE_DOWNLOAD);
-            this.$ABOUT = this.$el.find(s.ABOUT);
+            // Title
             this.$MAIN_CONTAINER_TITLE = this.$el.find(s.MAIN_CONTAINER_TITLE);
+
+            // Output container
+            this.$OUTPUT_CONTAINER = this.$el.find(s.OUTPUT_CONTAINER);
+
+            // Tabs sections
+            this.$INTERACTIVE_DOWNLOAD = this.$el.find(s.INTERACTIVE_DOWNLOAD);
             this.$BROWSE = this.$el.find(s.BROWSE);
-            this.$RELATED_DOCUMENTS = this.$el.find(s.RELATED_DOCUMENTS);
+            this.$METADATA = this.$el.find(s.METADATA);
+            this.$REPORT = this.$el.find(s.REPORT);
 
-            //this.$BULK_SIDEBAR = this.$el.find(s.BULK_SIDEBAR);
-            this.$BULK_CARET = this.$el.find(s.BULK_CARET);
+            // Sidebar
+            this.$BULK_LIST = this.$el.find(s.BULK_LIST);
             this.$BULK_DOWNLOADS_PANEL = this.$el.find(s.BULK_DOWNLOADS_PANEL);
-
             this.$LAST_UPDATE_DATE = this.$el.find(s.LAST_UPDATE_DATE);
             this.$METADATA_BUTTON = this.$el.find(s.METADATA_BUTTON);
             this.$DEFINITIONS_BUTTON = this.$el.find(s.DEFINITIONS_BUTTON);
-
             this.$DESCRIPTION = this.$el.find(s.DESCRIPTION);
             this.$CONTACTS = this.$el.find(s.CONTACTS);
             this.$ORGANIZATION = this.$el.find(s.ORGANIZATION);
-            this.$TREE_MODAL = this.$el.find(s.TREE_MODAL);
+            this.$RELATED_DOCUMENTS = this.$el.find(s.RELATED_DOCUMENTS);
 
+            // Domains tree modal
+            this.$TREE_MODAL = this.$el.find(s.TREE_MODAL);
+            this.$TREE = this.$el.find(s.TREE);
+
+            // Select the current section
             this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
 
         },
 
         initComponents: function () {
+
+            this._initTree();
+
+        },
+
+        configurePage: function () {
+
+        },
+
+        updateSection: function() {
+
+            log.info("Download.updateSection", this.o.selected);
+
+            this.switchTabs();
+
+        },
+
+        _initTree: function() {
 
             var self = this;
 
@@ -179,6 +192,7 @@ define([
 
                     onClick: function (callback) {
 
+                        // update the current selection
                         self.o.selected = $.extend(true, {}, callback, { type:  self.tree.getCodeType()});
 
                         if (self.o.selected.type === "domain") {
@@ -190,12 +204,16 @@ define([
 
                             self.$TREE_MODAL.modal('hide');
 
+                            // track analytics tree selection
+                            amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+                                $.extend({},A.data_domain_specific_page.select_domain_in_tree, {
+                                    label: self.o.selected.id
+                                })
+                            );
+
                         } else {
 
-                            // TODO: handlke group selection
-
-                            // expand collapse tree
-                            log.info(self.o.selected);
+                            // TODO: handle group selection
 
                         }
 
@@ -203,6 +221,7 @@ define([
 
                     onTreeRendered: function (callback) {
 
+                        // update the current selection
                         self.o.selected = $.extend(true, {}, callback, { type:  self.tree.getCodeType()});
 
                         // TODO: this can be outside the tree rendering. It's missing hte label and the "node" type.
@@ -212,20 +231,6 @@ define([
 
                 }
             });
-
-        },
-
-        updateSection: function() {
-
-            //this.o.selected = $.extend(true, {}, options);
-
-            log.info("Download.updateSection", this.o.selected);
-
-            this.switchTabs();
-
-        },
-
-        configurePage: function () {
 
         },
 
@@ -240,17 +245,12 @@ define([
 
             moment.locale(Common.getLocale());
 
-            log.info('switch tab: ', section, options);
-
             var code = options.id,
                 label = options.label,
                 type = options.type,
                 date_sanitized = _s.strLeft(_s.replaceAll(options.date_update, '-', '/'), "."),
                 date_update = moment(new Date(date_sanitized)).format("DD MMMM YYYY");
 
-            if ( type === 'group') {
-                this.switchTabsGroup(section, options);
-            }
 
             if ( type === 'domain') {
                 this.switchTabsDomain(section, options);
@@ -266,7 +266,7 @@ define([
             // TODO: this in theory should change only when a domain/group is changed and not when a tab is switched.
             this._renderRelatedDocuments(code);
 
-            this._renderBulkDownloadCaret(code);
+            this._renderBulkDownloads(code);
             this._renderMetadata(code);
 
             // check tab availability
@@ -277,7 +277,7 @@ define([
         checkSectionsAvailability: function(section, code) {
 
             // TODO: check show/hide tabs and if tab is available (use APIs)
-            log.info('DONWLOAD.checkSectionsAvailability;', section, code);
+            //log.info('DownloadView.checkSectionsAvailability;', section, code);
 
             // TODO: change with APIs
             if (code === 'FBS') {
@@ -288,144 +288,26 @@ define([
 
         },
 
-        switchTabsGroup: function(section, options) {
-
-            var code = options.id,
-                label = options.label,
-                type = options.type;
-
-            if (section === 'about') {
-
-                this._renderWelcomePage(code, label);
-
-            }
-
-            if (section === 'bulk') {
-
-                this._renderBulkDownloadsGroups(code);
-
-            }
-
-            if (section === 'interactive') {
-
-                this.createDomainsList(this.$INTERACTIVE_DOWNLOAD, section, code, i18nLabels.domains_list_description_interactive_download);
-
-            }
-
-            if (section === 'bulk') {
-
-                this.createDomainsList(this.$BULK, section, code, i18nLabels.domains_list_description_bulk);
-
-            }
-
-            if (section === 'report') {
-
-                this.createDomainsList(this.$REPORT, section, code, i18nLabels.domains_list_report);
-
-            }
-
-            if (section === 'metadata') {
-
-                this.createDomainsList(this.$METADATA, section, code, i18nLabels.domains_list_description_metadata);
-
-            }
-
-            if (section === 'browse_by_domain_code') {
-
-                this._browseByDomain(options);
-
-            }
-
-        },
-
-        _renderWelcomePage: function(code, label) {
-
-            Require(['FAOSTAT_UI_WELCOME_PAGE'], _.bind(function(WelcomePage) {
-
-                this.welcomePage = new WelcomePage();
-                this.welcomePage.init({
-                    container: this._createRandomElement(this.$ABOUT),
-                    domain_code: code,
-                    domain_name: label,
-                    base_url: C.URL_FAOSTAT_DOCUMENTS_BASEPATH
-                });
-
-            }, this));
-
-        },
-
-        _renderBulkDownloadsGroups: function(code) {
-
-            this.$BULK.empty();
-
-            Require(['FAOSTAT_UI_BULK_DOWNLOADS'], _.bind(function(BulkDownloads) {
-
-                this.bulkDownloads = new BulkDownloads();
-                this.bulkDownloads.init({
-                    container: this._createRandomElement(this.$BULK),
-                    code: code,
-                    bulk_downloads_root: C.URL_BULK_DOWNLOADS_BASEPATH
-                });
-
-            }, this));
-
-        },
-
-        createDomainsList: function(container, section, code, section_description) {
-
-            Require(['lib/download/domains_list/domains-list'], _.bind(function(DomainsList) {
-
-                this.domainsList = new DomainsList();
-                this.domainsList.init({
-                    container: this._createRandomElement($(container)),
-                    section: section,
-                    code: code,
-                    section_description: section_description
-                });
-
-            }, this));
-
-        },
-
         switchTabsDomain: function(section, options) {
 
-            moment.locale(Common.getLocale());
-
-            var code = options.id,
-                date_sanitized = _s.strLeft(_s.replaceAll(options.date_update, '-', '/'), "."),
-                label = options.label,
-                date_update = moment(new Date(date_sanitized)).format("DD MMMM YYYY"),
-                type = options.type;
-
-            // TODO destroy old bulkthis._createRandomElement(this.$ABOUT),
-            if (section === 'bulk') {
-
-                this._renderBulkDownloads(code);
-
-            }
+            var code = options.id;
 
             if (section === 'interactive') {
 
-                this._renderInteractiveDownload(code);
+                this._renderInteractiveDownload();
 
             }
 
             if (section === 'report') {
 
-                this._renderReport(code);
+                this._renderReport();
 
             }
 
             // TODO: the metadataViewer should be the only entry point to get Metadata Informations
             if (section === 'metadata') {
 
-                this._renderMetadataViewer(code);
-
-            }
-
-            if (section === 'about') {
-
-                this._renderWelcomePage(code, label);
+                this._renderMetadataViewer();
 
             }
 
@@ -438,7 +320,9 @@ define([
 
         },
 
-        _renderInteractiveDownload: function(code) {
+        _renderInteractiveDownload: function() {
+
+            var code = this.o.selected.id;
 
             amplify.publish(E.LOADING_SHOW, {container: this.$INTERACTIVE_DOWNLOAD});
 
@@ -459,24 +343,9 @@ define([
 
         },
 
-        _renderBulkDownloads: function(code) {
+        _renderReport: function() {
 
-            this.$BULK.empty();
-
-            Require(['FAOSTAT_UI_BULK_DOWNLOADS'], _.bind(function(BulkDownloads) {
-
-                this.bulkDownloads = new BulkDownloads();
-                this.bulkDownloads.init({
-                    container: this._createRandomElement(this.$BULK),
-                    code: code,
-                    bulk_downloads_root: C.URL_BULK_DOWNLOADS_BASEPATH
-                });
-
-            }, this));
-
-        },
-
-        _renderReport: function(code) {
+            var code = this.o.selected.id;
 
             this.$REPORT.empty();
 
@@ -505,7 +374,9 @@ define([
 
         },
 
-        _renderMetadataViewer: function(code) {
+        _renderMetadataViewer: function() {
+
+            var code = this.o.selected.id;
 
             // adding loading
             this.$METADATA.empty();
@@ -527,7 +398,11 @@ define([
 
         _browseByDomain: function(options) {
 
-            this.$BROWSE.empty();
+            log.info("---------", options);
+
+
+
+           this.$BROWSE.empty();
 
             // TODO: probably should be avoided
            amplify.publish(E.LOADING_SHOW, {
@@ -536,25 +411,16 @@ define([
 
            Require(['views/browse-by-domain-view'], _.bind(function(DomainView) {
 
-                var browseOptions = {};
-                browseOptions.code = options.id;
-                browseOptions.lang = this.o.lang;
-
-                // TODO: section shouldn't be need
-                browseOptions.section = ROUTE.BROWSE_BY_DOMAIN_CODE; //ROUTE.BROWSE_BY_DOMAIN_CODE;
-
-                log.info("Download._browseByDomain; options:", browseOptions);
-
-                // {region: "main", section: "browse_by_domain", lang: "en", code: "P"}
-
-                log.info("Download._browseByDomain; browseOptions:", browseOptions);
+               var code = this.o.selected.id;
+                   // TODO: section shouldn't be need
 
                 // init browse by domain
-                this.viewDomain = new DomainView(browseOptions);
+                this.viewDomain = new DomainView({
+                    code: code
+                });
 
-
-                var $S = this._createRandomElement(this.$BROWSE);
-                $S.html(this.viewDomain.$el);
+               // add view to an element in the browse section
+               this._createRandomElement(this.$BROWSE).html(this.viewDomain.$el);
 
             }, this));
 
@@ -592,10 +458,19 @@ define([
             this.$METADATA_BUTTON.on('click', function() {
 
                 if (self.o.hasOwnProperty("selected")) {
+
                     // TODO: this.o.section should be always updated
                     amplify.publish(E.METADATA_SHOW, {
                         code: self.o.selected.id
                     });
+
+                    // track analytics
+                    amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+                        $.extend({},A.data_domain_specific_page.selection_metadata, {
+                            label: self.o.selected.id
+                        })
+                    );
+
                 }
                 else {
                     log.error("Download.MetadataButton; this.o.selected.code doesn't exists", self.o);
@@ -606,20 +481,39 @@ define([
             this.$DEFINITIONS_BUTTON.off();
             this.$DEFINITIONS_BUTTON.on('click', function() {
 
-               log.info(self.o.selected);
+                var domain_code =  self.o.selected.id,
+                    label = self.o.selected.label;
 
                 if (self.o.hasOwnProperty("selected")) {
+
                     // TODO: this.o.section should be always updated
                     amplify.publish(E.DEFINITION_DOMAIN_SHOW, {
-                        domain_code: self.o.selected.id,
-                        label: self.o.selected.label
+                        domain_code: domain_code,
+                        label: label
                     });
+
+                    // track analytics
+                    amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+                        $.extend({},A.data_domain_specific_page.selection_definitions, {
+                            label: domain_code
+                        })
+                    );
 
                 }
                 else {
                     log.error("Download.Definitions; this.o.selected.code doesn't exists", self.o);
                 }
 
+            });
+
+            this.$TREE_MODAL.off('show.bs.modal');
+            this.$TREE_MODAL.on('show.bs.modal', function() {
+                // track analytics tree modal opens
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+                    $.extend({},A.data_domain_specific_page.open_domain_tree, {
+                        label: self.o.selected.id
+                    })
+                );
             });
 
         },
@@ -637,29 +531,18 @@ define([
                 this.$DEFINITIONS_BUTTON.off();
             }
 
-        },
-
-        // TODO: not used
-        _renderBulkDownloadsSidebar: function(code) {
-
-            this.$BULK_SIDEBAR.empty();
-
-            var bulkDownloads = new BulkDownloads();
-            bulkDownloads.init({
-                container: this._createRandomElement(this.$BULK_SIDEBAR),
-                code: code,
-                bulk_downloads_root: C.URL_BULK_DOWNLOADS_BASEPATH,
-                show_header: false
-            });
+            if (this.$TREE_MODAL) {
+                this.$TREE_MODAL.off('show.bs.modal');
+            }
 
         },
 
-        // TODO: remove it from here
-        _renderBulkDownloadCaret: function(code) {
+        // TODO: refactor/move to a common lib folder to be reusable (if needed)
+        _renderBulkDownloads: function(code) {
 
             var self = this;
 
-            this.$BULK_CARET.empty();
+            this.$BULK_LIST.empty();
 
             // TODO: this should be in a common functionality?
             /* Fetch available bulk downloads. */
@@ -667,7 +550,7 @@ define([
                 domain_code: code
             }).then(function (d) {
 
-                log.info("DownloadView._renderBulkDownloadCaret;", d);
+                //log.info("DownloadView._renderBulkDownloadCaret;", d);
 
                 var data = d.data,
                     // TODO: load it with an external template
@@ -713,26 +596,25 @@ define([
 
                     });
 
-                    self.$BULK_CARET.html(t({data: data}));
+                    self.$BULK_LIST.html(t({data: data}));
 
                 }else {
-                   // self.$BULK_CARET.html('<li><a>'+ i18nLabels.no_data_available +'</a></li>');
-                   self.$BULK_CARET.html('<li><a>-</a></li>');
+                   self.$BULK_LIST.html('<li><a>-</a></li>');
                 }
 
                 // track on click google analytics
-                self.$BULK_CARET.find('a').on('click',function(e) {
-                    
+                self.$BULK_LIST.find('a').on('click',function(e) {
+
                     amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
                         category: A.download_bulk.download.category,
                         action: A.download_bulk.download.action,
-                        label: $(e.target).data('filename')
+                        label: $(this).data('filename')
                     });
 
                 });
 
             });
-            
+
         },
 
         _renderLastUpdate: function(date_update) {
@@ -910,9 +792,9 @@ define([
 
             // dirty fix on modal
             // TODO: fix modal on close
-            this.$TREE_MODAL.remove();
-            //$('body').removeClass('modal-open');
-           // $('.modal-backdrop').remove();
+            if (this.$TREE_MODAL) {
+                this.$TREE_MODAL.remove();
+            }
 
             this.destroySections();
 

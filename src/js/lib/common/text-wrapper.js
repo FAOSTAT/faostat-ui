@@ -94,6 +94,7 @@ define([
             this.$DESCRIPTION.html(text);
             this.$SHOW_MORE.html(i18nLabels.show_less);
         }
+
     };
 
     return TextWrapper;
