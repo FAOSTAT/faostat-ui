@@ -1,6 +1,4 @@
-/* Fenix - Js tree */
-//$fx-ui-common: '../submodules/fenix-ui-common';
-
+/* Js tree */
 .jstree-default {
 
   .jstree-search{
@@ -16,7 +14,10 @@
 
 .jstree-default .jstree-node,
 .jstree-default .jstree-icon{
-  background-image: url("#{$fx-ui-common}/css/img/treejs-32px.svg");
+  //background-image: url("#{$fx-ui-common}/css/img/treejs-32px.svg");
+  //background-image: url("../../src/images/treejs-32px.svg");
+  // TODO: check if there is a better way to access the image
+  background-image: url("#{$fs-images}/treejs-32px.svg");
 }
 
 

@@ -8397,7 +8397,7 @@ div#google_search input#search-submit {
 #rtl-support .tt-menu {
   text-align: right; }
 
-/* Fenix - Js tree */
+/* Js tree */
 .jstree-default .jstree-search {
   color: #333333;
   font-weight: 300;
@@ -8409,7 +8409,7 @@ div#google_search input#search-submit {
 
 .jstree-default .jstree-node,
 .jstree-default .jstree-icon {
-  background-image: url("../../submodules/fenix-ui-common/css/img/treejs-32px.svg"); }
+  background-image: url("../../src/images/treejs-32px.svg"); }
 
 .jstree-default .jstree-wholerow-clicked {
   background: none;
@@ -8547,6 +8547,7 @@ div#google_search input#search-submit {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  padding-left: 15px;
   border-bottom: 1px solid #dddddd; }
 
 .faostat-download-selector-resume-holder {

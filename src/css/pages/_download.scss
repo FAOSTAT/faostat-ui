@@ -11,8 +11,6 @@
 }
 
 
-
-
 .inline-icon {
   display: inline-block;
   font-size: 20px;
@@ -65,6 +63,7 @@
   @include fx-no-border-radius;
   @include fx-no-border;
   @include fx-noshadow;
+  padding-left: 15px;
   border-bottom: 1px solid $fenix-light-hr;
 }
 

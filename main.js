@@ -52,7 +52,7 @@ var config = {
         bloodhound: CDN + '/js/bloodhound/0.11.1/bloodhound.min',
         bootpag: CDN + '/js/bootpag/1.0.7/jquery.bootpag.min',
         instafilta: CDN + '/js/instafilta/1.4.4/instafilta.min',
-        jstree: CDN + '/js/jstree/3.3.0/dist/jstree.min',
+        jstree: CDN + '/js/jstree/3.3.2/dist/jstree.min',
 
         // aos
         nprogress: CDN + '/js/nprogress/0.2.0/nprogress',

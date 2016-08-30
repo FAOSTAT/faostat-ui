@@ -56,7 +56,7 @@ define({
     // Filters TODO: check singlurar/plurars
     aggregation: 'Agrégation',
     fromyear: "Depuis l'année",
-    toyear: "A 'année",
+    toyear: "A l'année",
     average: "Moyenne",
     sum: "Somme",
 

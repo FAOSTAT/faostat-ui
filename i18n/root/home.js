@@ -8,7 +8,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         // bulk downloads
         bulk_download: "Bulk Download",
         all_faostat_data: "All FAOSTAT Data",
-        updated_on: "Updated On",
+        updated_on: "Updated on",
 
         // database updates
         database_updates: "Database Updates",
