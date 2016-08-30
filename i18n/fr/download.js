@@ -11,7 +11,6 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         suggest_bulk_downloads:  "Please use the <strong>Bulk Downloads</strong> or reduce the selection.",
         suggest_bulk_downloads_or_table: "Please use the <strong>Bulk Downloads or Standard Table.</strong>",
         back_to_domains_list: "Back to domains' list",
-        download_data: "Download Data",
         last_update: "Last Update",
         full_metadata: "Full Metadata",
         contacts_email: "Contacts Email",

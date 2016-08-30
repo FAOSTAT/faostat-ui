@@ -8308,6 +8308,9 @@ div#google_search input#search-submit {
 .fs-metadata-modal-title {
   margin-top: 10px; }
 
+.fs-loading {
+  padding-top: 15px; }
+
 /* Third parties */
 .typeahead, .tt-query, .tt-hint {
   width: 225px;
@@ -8434,7 +8437,7 @@ div#google_search input#search-submit {
   font-size: 11px; }
 
 .fs-browse-comment-margin {
-  margin-top: 20px; }
+  margin-top: 5px; }
 
 .fs-browse-related-views {
   border-bottom-color: transparent;

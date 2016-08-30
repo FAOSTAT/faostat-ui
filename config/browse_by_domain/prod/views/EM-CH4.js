@@ -29,6 +29,14 @@ define([
             }
         ],
 
+        "comment": {
+            "text": {
+                "en": "Shares of emissions from Agriculture total and Land Use sources in the total emissions of greenhouse gases, and shares of each gas in the emissions of these sectors.",
+                "es": "Cuota de las emisiones de Agricultura total y de Fuentes Uso de la tierra en el total de emisiones de gases de efecto invernadero, y cuota de cada gas en las emisiones de dichos sectores.",
+                "fr": "Parts des secteurs Agriculture total et Sources Utilisation des terres dans les émissions totales de gaz à effet de serre, et parts de chaque gaz dans les émissions provenant de ces secteurs."
+            }
+        },
+
         "filter": {
 
             defaultFilter: {
@@ -127,7 +135,7 @@ define([
                     type: 'map',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // labels to dinamically substitute the title and subtitle
                         default: {},
@@ -136,8 +144,8 @@ define([
                         template: {
                             title: {
                                 en: "Shares by country of sector {{item}} in CH<sub>4</sub>  emissions",
-                                fr: "",
-                                es: ""
+                                fr: "Parts par pays du secteur {{item}} dans les émissions de CH<sub>4</sub>",
+                                es: "Cuotas por país del sector {{item}} en las emisiones de CH<sub>4</sub>"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -160,9 +168,9 @@ define([
                         // temp[template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Shares of agricultural sectors in CH<sub>4</sub>  emissions",
-                                fr: "",
-                                es: ""
+                                en: "Shares of agricultural sectors in CH<sub>4</sub> emissions",
+                                fr: "Parts des secteurs agricoles dans les émissions de CH<sub>4</sub>",
+                                es: "Cuotas de los sectores agrícolas en las emisiones de CH<sub>4</sub>"
                             },
                             // TODO: make it dinamic for the timeserie
                             subtitle: "{{area}}, 1990 - 2010"
@@ -196,8 +204,8 @@ define([
                         template: {
                             title: {
                                 en: "Share of each sector in CH<sub>4</sub>  emissions",
-                                fr: "",
-                                es: ""
+                                fr: "Part de chaque secteur dans les émissions de CH<sub>4</sub>",
+                                es: "Cuota de cada sector en las emisiones de CH<sub>4</sub>"
                             },
                             subtitle: "{{area}}, {{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -242,8 +250,8 @@ define([
                         template: {
                             title: {
                                 en: "Share of each gas in sector {{item}} emissions",
-                                fr: "",
-                                es: ""
+                                fr: "Part de chaque gaz dans les émissions du {{item}}",
+                                es: "Cuota de cada gas en las emisiones de {{item}}"
                             },
                             subtitle: "{{area}}, {{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -280,8 +288,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 areas by share of sector {{item}} in CH<sub>4</sub> emissions",
-                                fr: "",
-                                es: ""
+                                fr: "Les 10 premiers pays par part du secteur {{item}} dans les émissions de CH<sub>4</sub>",
+                                es: "Principales 10 áreas según la cuota del sector {{item}} en las emisiones de CH<sub>4</sub>"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

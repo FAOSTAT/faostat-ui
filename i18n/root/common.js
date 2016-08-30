@@ -19,12 +19,12 @@ define({
     no_docs_available: "No documents available",
     show_more: "show more",
     show_less: "show less",
-    average: "Average",
-    sum: "Sum",
     close: "close",
     filter_domains: 'filter domains',
     map_disclaimer: "The designations employed and the presentation of material in the maps do not imply the expression of any opinion whatsoever on the part of FAO concerning the legal or constitutional status of any country, territory or sea area, or concerning the delimitation of frontiers.                    South Sudan declared its independence on July 9, 2011. Due to data availability, the assessment presented in the map for Sudan and South Sudan reflects the situation up to 2011 for the former Sudan.",
     help_us_improve_this_site: "Help us improve this site",
+    download_data: "Download Data",
+    show_data: "Show Data",
 
     // Table
     next: "next",
@@ -53,23 +53,69 @@ define({
     error_export: "Aw, Snap!. <br> Something went wrong during the download of the data.",
     error_preview: "Aw, Snap!. <br> Something went wrong during the fetch of the data.",
 
-    // Dimensions
-    item: "Item",
-    items: "Items",
-    element: "Element",
-    elements: "Elements",
-    regions: "Regions",
-    area: "Country/Regions",
-    year: "Year",
-    years: "Years",
-    yearproj: "Year Projections",
-    donor: "Donor",
-    recipientarea: "Recipient Area",
-    analyticalaggregates: "Aid Aggregates",
+    // Filters TODO: check singlurar/plurars
+    aggregation: 'Aggregation',
     fromyear: "From Year",
     toyear: "To Year",
-    countries: "Countries",
-    aggregation: "Aggregation",
-    reporterarea: "Report Area"
+    average: "Average",
+    sum: "Sum",
+
+    // subdimensions
+    countries: "Country",
+    intratrade: "Exc IntraTrade",
+    regions: "Region",
+    specialgroups: "Region groups",
+    breakdownbysex: "Breadown by Sex of the Household Head",
+    breakdownbyvar: "Breakdown Variable",
+    currencies: "Currency",
+    donoragg: "Aggregated Donors",
+    donors: "Donor",
+    donorcountry: "Donor Country",
+    elements: "Element",
+    indicators: "Indicator",
+    items: "Item",
+    itemsagg: "Items Aggregated",
+    measures: "Measure",
+    months: "Month",
+    // TBR
+    partnerregions: "Partner Country",
+    partners: "Partner Country",
+    partspecialgroups: "Partner Country",
+
+    analyticalagg: "Aid Aggregates", // modified
+    purposes: "Purpose",
+    // TBR
+    recipient: "Recipient Area",
+    recipientcountry: "Recipient Area",
+    recipientregions: "Recipient Area",
+    recipspecialgroups: "Recipient Area",
+    reporterregions: "Reporter Area",
+    reporters: "Reporter Area",
+    repspecialgroups: "Reporter Area",
+
+    sources: "Source",
+    surveys: "Survey",
+    yearproj: "Year Projections",
+    years: "Year",
+
+    // Dimensions
+    area: "Country/Region",
+    breakdownsex: "Breadown by Sex of the Household Head",
+    breakdownvar: "Breakdown Variable",
+    currency: "Currency",
+    donor: "Donor",
+    donorarea: "Donor Country",
+    element: "Element",
+    indicator: "Indicator",
+    item: "Item",
+    measure: "Measure",
+    month: "Month",
+    partnerarea: "Partner Countries",
+    purpose: "Purpose",
+    recipientarea: "Recipient Area",
+    reporterarea: "Reporter Area",
+    source: "Source",
+    survey: "Survey",
+    year: "Year"
 
 });

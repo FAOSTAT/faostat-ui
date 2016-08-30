@@ -428,7 +428,8 @@ require([
     API.config({
         base_url: C.URL_API,
         datasource: C.DATASOURCE,
-        lang: Common.getLocaleAPI()
+        lang: Common.getLocaleAPI(),
+        log: C.API_LOG
     });
 
     // starting the Application
