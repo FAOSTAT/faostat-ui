@@ -6,32 +6,30 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
     return $.extend(true, {}, Common, {
 
         // bulk downloads
-        bulk_download: "Bulk Download",
+        bulk_download: "Todos los datos",
         all_faostat_data: "All FAOSTAT Data",
-        updated_on: "Updated On",
+        updated_on: "Updated on",
 
         // database updates
-        database_updates: "Database Updates",
+        database_updates: "Actualizaciones de la base de datos",
 
         // Statistical Yearbook
-        fao_statistical_yearbooks: "FAO Statistical Yearbooks",
-        fao_statistical_yearbooks_text: "The FAO Statistical Yearbook provides a selection of indicators on food and agriculture by country. <br><br> The first part of the book includes thematic spreads with data visualizations (graphs, charts, and maps) with basic text. The second part has country-level tables for a selected number of indicators.",
+        fao_statistical_yearbooks: "Anuarios estadísticos de la FAO",
+        fao_statistical_yearbooks_text: "L'Annuaire statistique de la FAO fournit une sélection d'indicateurs par pays sur l'alimentation et l'agriculture. <br><br> The first part of the book includes thematic spreads with data visualizations (graphs, charts, and maps) with basic text. The second part has country-level tables for a selected number of indicators.",
 
         // country indicators
-        country_indicators: "Country Indicators",
         country_indicators_text: "Country indicators provide an overview of key indicators and charts by country.",
 
         // Rankings
-        rankings: "Rankings",
         rankings_text: "Rankings indicators provide an overview of key indicators and charts by commodity.",
 
         // Food security in the 2030 Agenda for Sustainable Development
-        development_goals: "Food security in the 2030 Agenda for Sustainable Development",
-        development_goals_text: "The 2030 Agenda for Sustainable Development, including the 17 Sustainable Development Goals (SDGs), are new global objectives that succeeded the Millennium Development Goals on 1 January 2016. The SDGs will shape national development plans over the next 15 years. From ending poverty and hunger to responding to climate change and sustaining our natural resources, food and agriculture lies at the heart of the 2030 Agenda.",
+        development_goals: "La alimentación y la agricultura en la Agenda 2030 para el Desarrollo Sostenible",
+        development_goals_text: "La Agenda 2030 para el Desarrollo Sostenible, incluyendo los 17 Objetivos de Desarrollo Sostenible (ODS) son los nuevos objetivos que sucederán a los Objetivos de Desarrollo del Milenio a partir del primero de enero de 2016. Los ODS darán forma a los planes nacionales de desarrollo nacional por los próximos 15 años. Erradicar la pobreza y el hambre, combatir el cambio climático y proteger nuestros recursos naturales, la alimentación y la agricultura están en el centro de la Agenda de 2030.",
 
         // Contacts
-        rome: "Rome",
-        italy: "Italy",
+        rome: "Roma",
+        italy: "Italia",
         info: "Info",
 
         explore_data: "Explore Data",

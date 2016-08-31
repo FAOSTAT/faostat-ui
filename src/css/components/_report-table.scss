@@ -1,0 +1,43 @@
+
+.fs-report-table {
+
+  font-size: 11px;
+
+  thead {
+
+    background-color: #337ab7;
+    color: #ffffff;
+
+    th {
+      border: 1px solid #ffffff;
+    }
+
+  }
+
+  tbody {
+
+    tr {
+
+      border: 1px solid white;
+      padding: 7px;
+
+      &.row-shade {
+        background-color: #8bb8df;
+        color: #ffffff;
+
+        &:hover {
+          background-color: #f5f5f5;
+          color: #333333;
+        }
+
+      }
+
+    }
+
+    td {
+      padding: 7px;
+    }
+
+  }
+
+}

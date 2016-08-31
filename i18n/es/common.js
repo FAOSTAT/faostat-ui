@@ -47,7 +47,7 @@ define({
     data: 'datos',
     topics: 'topics',
     compare_data: 'Comparar Datos',
-    country_indicators: 'indicadores por país',
+    country_indicators: 'Indicadores por País',
 
     //Errors
     error_export: "Aw, Snap!. <br> Something went wrong during the download of the data.",
