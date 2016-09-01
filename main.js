@@ -88,8 +88,7 @@ var config = {
         'bootstrap-table': CDN + '/js/bootstrap-table/1.9.1/bootstrap-table.min',
         //'bootstrap-treeview': CDN + '/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
         //'bootstrap-tour': CDN + '/js/bootstrap-tour/0.10.3/build/js/bootstrap-tour.min',
-
-
+        
         "datatables.net": CDN + '/js/DataTables/1.10.12/media/js/jquery.dataTables.min',
         "datatables.net-bs": CDN + '/js/DataTables/1.10.12/media/js/dataTables.bootstrap.min',
         'datatables-fixedcolumns': CDN + '/js/DataTables/1.10.12/extensions/FixedColumns/js/dataTables.fixedColumns.min',
@@ -101,21 +100,6 @@ var config = {
         //'datatables-responsive': CDN + '/js/DataTables/1.10.12/extensions/Responsive/js/dataTables.responsive.min',
         //'datatables.net-responsive-bs': CDN + '/js/DataTables/1.10.12/extensions/Responsive/js/responsive.bootstrap.min',
 
-
-
-        /*        // Data table
-                //'datatables': CDN + '/js/DataTables/1.10.12/media/js/jquery.dataTables.min',
-                //'datatables.net': CDN + '/js/DataTables/1.10.12/media/js/jquery.dataTables.min',
-                'datatables': CDN + '/js/DataTables/1.10.12.custom/datatables.min',
-                //'datatables': CDN + '/js/DataTables/1.10.12/media/js/dataTables.bootstrap.min',
-                'datatables.bs': CDN + '/js/DataTables/1.10.12/media/js/dataTables.bootstrap.min',
-                //'datatables': '//cdn.datatables.net/v/bs/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/cr-1.3.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min',
-                'datatables-fixedcolumns': CDN + '/js/DataTables/1.10.12/extensions/FixedColumns/js/dataTables.fixedColumns.min',
-
-                'datatables-buttons.net': CDN + '/js/DataTables/1.10.12/extensions/Buttons/js/dataTables.buttons.min',
-                'datatables-buttons-bootstrap': CDN + '/js/DataTables/1.10.12/extensions/Buttons/js/buttons.bootstrap.min',
-
-        */
         // aos
         aos: CDN + '/js/aos/2.0.4/dist/aos',
 
