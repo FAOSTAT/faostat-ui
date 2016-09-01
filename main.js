@@ -88,7 +88,7 @@ var config = {
         'bootstrap-table': CDN + '/js/bootstrap-table/1.9.1/bootstrap-table.min',
         //'bootstrap-treeview': CDN + '/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
         //'bootstrap-tour': CDN + '/js/bootstrap-tour/0.10.3/build/js/bootstrap-tour.min',
-        
+
         "datatables.net": CDN + '/js/DataTables/1.10.12/media/js/jquery.dataTables.min',
         "datatables.net-bs": CDN + '/js/DataTables/1.10.12/media/js/dataTables.bootstrap.min',
         'datatables-fixedcolumns': CDN + '/js/DataTables/1.10.12/extensions/FixedColumns/js/dataTables.fixedColumns.min',

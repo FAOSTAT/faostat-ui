@@ -1,0 +1,35 @@
+{{#if addPanel}}
+    <div class="panel panel-default hoverable {{#if class}}{{class}}{{/if}}" {{#if style}}style="{{style}}"{{/if}}>
+        <div class="panel-heading clearfix">
+            {{#if addExport}}
+                <div class="pull-right flip">
+                    <a class="btn-floating waves-effect waves-light btn-default" data-role="export"><i class="material-icons">file_download</i> </a>
+                </div>
+            {{/if}}
+            <h5>{{{title}}}</h5>
+            <h6>{{{subtitle}}}</h6>
+        </div>
+        <div class="panel-body" style="padding-top:0px;">
+
+                <table id="{{id}}"
+                       class="fs-table table {{class}}"
+                       cellspacing="0"
+                       width="100%">
+                </table>
+        </div>
+        {{#if footer}}
+            <div class="panel-footer clearfix">{{{footer}}}</div>
+        {{/if}}
+    </div>
+{{else}}
+    <!--<button class="btn btn-primary pull-right" data-role="fullscreen">fullscreen</button>-->
+    <!--<div data-role="content" {{#if height}}style="height:{{height}}"{{/if}}></div>-->
+    <!--<div data-role="content"></div>-->
+    <table id="{{id}}"
+           class="fs-table table {{class}}"
+           cellspacing="0"
+           width="100%">
+    </table>
+{{/if}}
+
+

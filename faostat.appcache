@@ -42,6 +42,11 @@ CACHE MANIFEST
 //fenixrepo.fao.org/cdn/faostat/js/nprogress/0.2.0/nprogress.js
 //fenixrepo.fao.org/cdn/faostat/js/toastr/2.1.2/build/toastr.min.js
 
+# datatables
+//fenixrepo.fao.org/cdn/faostat/js/DataTables/1.10.12/media/js/jquery.dataTables.min.js
+//fenixrepo.fao.org/cdn/faostat/js/DataTables/1.10.12/media/js/dataTables.bootstrap.min.js
+//fenixrepo.fao.org/cdn/faostat/js/DataTables/1.10.12/extensions/FixedColumns/js/dataTables.fixedColumns.min.js
+
 # fenix-ui-map
 //fenixrepo.fao.org/cdn/faostat/js/FENIX/utils/import-dependencies-1.0.js
 //fenixrepo.fao.org/cdn/faostat/js/leaflet/0.7.7/leaflet.js
@@ -71,11 +76,15 @@ CACHE MANIFEST
 //fenixrepo.fao.org/cdn/faostat/js/jbpivot/0.1.0/jbPivot.css
 //fenixrepo.fao.org/cdn/faostat/js/leaflet/0.7.7/leaflet.css
 //fenixrepo.fao.org/cdn/faostat/js/node-waves/0.7.5/waves.min.css
+#CSS - datatables
+//fenixrepo.fao.org/cdn/faostat/js/DataTables/1.10.12/media/css/dataTables.bootstrap.min.css
+//fenixrepo.fao.org/cdn/faostat/js/DataTables/1.10.12/extensions/FixedColumns/css/fixedColumns.bootstrap.min.css
 //fenixrepo.fao.org/cdn/faostat/js/nprogress/0.2.0/nprogress.css
 //fenixrepo.fao.org/cdn/faostat/js/toastr/2.1.2/build/toastr.min.css
 # ./submodules/fenix-ui-map/dist/fenix-ui-map.min.css
 //fast.fonts.com/cssapi/0ad75cee-12a6-49a0-a922-c4ecad41ec44.css
 //fonts.googleapis.com/icon?family=Material+Icons
+
 
 # woff (dangerous?)
 #//fast.fonts.com/dv2/3/59d9a83f-4045-4d43-af46-655f845461ee.woff?d44f19a684109620e484147caf90e818891532d74607d3fe1602d4c9bcc5795e82f225f3c98844302bad03a5390250ec007d5d5ad47c0d474401&projectId=0ad75cee-12a6-49a0-a922-c4ecad41ec44
