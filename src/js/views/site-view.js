@@ -19,6 +19,7 @@ define([
     'lib/search/search-box',
     'lib/common/modal',
     'toastr',
+    //'aos',
     'jquery.visible',
     'jquery.lazyload'
 ], function ($,
@@ -38,6 +39,7 @@ define([
              Export, SearchBox,
              Modal,
              toastr
+             //AOS
 ) {
 
     'use strict';
@@ -207,6 +209,13 @@ define([
 
             // init breadcrumb (N.B. not used)
             //this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
+
+           /* AOS.init({
+                once: true,
+                offset: 50,
+                // easing: "ease",
+                //duration: 1200
+            });*/
         },
 
         initMenu: function() {

@@ -40,7 +40,7 @@ define({
     frequently_asked_questions: "Frequently Asked Questions",
     definitions_and_Standards: "Definitions and standards",
     metadata: 'Metadato',
-    bulk_downloads: 'Todos Lost Datos',
+    bulk_downloads: 'Todos Los Datos',
     interactive_download: 'Interactive Download',
     visualize_data: "Visualize Data",
     search: 'Buscar',

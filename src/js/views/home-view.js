@@ -54,6 +54,19 @@ define([
            // CHART: "#fs_home_chart",
 
         },
+
+        defaults = {
+
+            twitter: {
+                height: {
+                    "en": 870,
+                    "fr": 940,
+                    "es": 940
+                }
+            }
+
+        },
+
         HomeView = View.extend({
 
             autoRender: true,
@@ -102,7 +115,7 @@ define([
 
             initVariables: function () {
 
-                this.o = {};
+                this.o = $.extend({}, defaults);
 
                 this.$DATABASE_UPDATES = this.$el.find(s.DATABASE_UPDATES);
                 this.$FAOSTAT_BULK_ZIP = this.$el.find(s.FAOSTAT_BULK_ZIP);
@@ -358,6 +371,8 @@ define([
 
             initTwitter: function() {
 
+                var self = this;
+
                 amplify.publish(E.LOADING_SHOW, {container: document.getElementById(s.TWITTER)});
 
                 setTimeout(function() {
@@ -368,7 +383,7 @@ define([
                         "700247798168551424",
                         document.getElementById(s.TWITTER),
                         {
-                            height: 870,
+                            height: self.o.twitter.height[Common.getLocale()] || this.o.twitter.height["en"],
                             width: '100%',
                             screenName: "FAOStatistics"
                         }

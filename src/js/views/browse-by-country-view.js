@@ -37,7 +37,7 @@ define([
              // List,
              Dashboard, ViewUtils,
              FilterBox
-            // ,AOS
+             //AOS
              //,holmes
             // ,microlight
 ) {
@@ -101,7 +101,7 @@ define([
                 View.prototype.attach.call(this, arguments);
 
                 //update State. needed?
-                amplify.publish(E.STATE_CHANGE, {browse_by_country: 'browse_by_country'});
+                amplify.publish(E.STATE_CHANGE, {'country-indicators': 'country-indicators'});
 
                 this.initVariables();
 
@@ -234,7 +234,7 @@ define([
                     sections: i18nLabels.sections || "Sections",
                     back_to_country_list: i18nLabels.back_to_country_list,
                     topics: i18nLabels.topics,
-                    //country_indicators: i18nLabels.country_indicators,
+                    country_indicators: i18nLabels.country_indicators,
                     map_disclaimer: i18nLabels.map_disclaimer,
                     url_back_country_list: Common.getURI(ROUTE.BROWSE_BY_COUNTRY)
                 }));

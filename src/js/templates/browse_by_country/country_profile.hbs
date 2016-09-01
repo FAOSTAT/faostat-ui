@@ -10,7 +10,6 @@
             <h1 class="truncate">{{country_name}}</h1>
         </div>
         <div class="col-xs-3 col-sm-4 col-md-3 clearfix">
-            <!-- TODO: use Common.getURI(ROUTE.DATA)-->
             <a type="button" class="btn btn-link pull-right fs-section-back waves-effect"
                href="{{url_back_country_list}}">
                 <i class="hidden-xs material-icons left">undo</i>
@@ -37,7 +36,6 @@
 
     <br>
 
-    <!-- TODO: this should be the same height in md-->
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-default hoverable">
@@ -45,9 +43,6 @@
                     <h4 class="text-capitalize">{{topics}}</h4>
                 </div>
                 <div class="list-unstyled" data-role="sections"></div>
-                <!-- <div class="panel-body">
-                     <ul class="list-unstyled" data-role="sections"></ul>
-                 </div>-->
             </div>
         </div>
         <div class="col-md-9">
@@ -72,21 +67,18 @@
 <template id='sections'>
 
     {{#each sections}}
-        <!--<li style="padding:3px 0 3px 0;border-bottom: 1px solid #ddd;">-->
          <div class="panel-footer">
             <h5 class="country-topic text-capitalize">
                 <a data-dashboard-index='{{index}}' href="#">{{this.title}}</a>
             </h5>
          </div>
-        <!--</li>-->
     {{/each}}
 
 </template>
 
 <template id='dashboard'>
 
-    <!--<div data-dashboard-index='{{index}}' aos="fade-down" aos-offset="300" aos-easing="ease-in-sine">-->
-    <div data-dashboard-index='{{index}}'>
+    <div data-dashboard-index='{{index}}' data-aos="fade-up">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="fs-data-group-title text-capitalize flip">
@@ -108,8 +100,7 @@
 
 <template id='dashboard-description'>
 
-    <!--<div data-dashboard-index='{{index}}' aos="fade-down" aos-offset="300" aos-easing="ease-in-sine">-->
-    <div data-dashboard-index='{{index}}'>
+    <div data-dashboard-index='{{index}}' data-aos="fade-down" data-aos-offset="300" data-aos-easing="ease-in-sine">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="fs-data-group-title text-capitalize">
@@ -179,8 +170,8 @@
         </div>
     </div>
 
-
 </template>
+
 
 <template id="country-list-modal-content">
 

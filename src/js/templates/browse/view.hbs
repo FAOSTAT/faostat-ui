@@ -1,11 +1,7 @@
 <div class="row">
     <div class="col-md-12">
-
         {{#if comment}}
-            
             <div class="fs-browse-comment-margin">
-
-                <!-- TODO: avoid replication of the info icon -->
                 {{#if comment.url}}
                     <a href="{{comment.url}}" target="_blank">{{comment.text}}</a>
                 {{else}}
@@ -13,11 +9,8 @@
                         {{comment.text}}
                     </p>
                 {{/if}}
-
             </div>
-
         {{/if}}
-
         <div class="row" data-role="filter-box"></div>
         <div class="row fs-browse-view-padding" data-role='dashboard'></div>
     </div>

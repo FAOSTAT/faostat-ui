@@ -1,5 +1,4 @@
 /*global require, window, $*/
-
 var CDN = "//fenixrepo.fao.org/cdn/faostat",
     SUBMODULE = "../../submodules",
     locale = "@@locale",
@@ -26,6 +25,7 @@ var config = {
 
         // TODO: switch to submodule? */
         'fs-t-c': './lib/table',
+        'fs-dt-c': './lib/datatable',
 
         jquery: CDN + '/js/jquery/2.2.3/jquery.min',
         bootstrap: CDN + "/js/bootstrap/3.3.4/js/bootstrap.min",
@@ -34,10 +34,10 @@ var config = {
         backbone: CDN + "/js/backbone/1.1.2/backbone.min",
         handlebars: CDN + "/js/handlebars/4.0.5/handlebars.min",
         chaplin: CDN + "/js/chaplin/1.1.1/chaplin.min",
-        domReady: CDN + "/js/requirejs/plugins/domready/2.0.1/domReady",
+        domReady: CDN + "/js/requirejs/plugins/domready/2.0.1/domReady", // not used
         i18n: CDN + "/js/requirejs/plugins/i18n/2.0.4/i18n",
         text: CDN + '/js/requirejs/plugins/text/2.0.12/text',
-        rsvp: CDN + '/js/rsvp/3.0.17/rsvp',
+        rsvp: CDN + '/js/rsvp/3.0.17/rsvp', // not used
         amplify: CDN + '/js/amplify/1.1.2/amplify.min',
         select2: CDN + '/js/select2/3.5.4/select2.min',
         loglevel: CDN + '/js/loglevel/1.4.0/loglevel',
@@ -50,18 +50,13 @@ var config = {
 
         typeahead: CDN + '/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
         bloodhound: CDN + '/js/bloodhound/0.11.1/bloodhound.min',
-        bootpag: CDN + '/js/bootpag/1.0.7/jquery.bootpag.min',
+        bootpag: CDN + '/js/bootpag/1.0.7/jquery.bootpag.min', // not used
         instafilta: CDN + '/js/instafilta/1.4.4/instafilta.min',
         jstree: CDN + '/js/jstree/3.3.2/dist/jstree.min',
 
-        // aos
         nprogress: CDN + '/js/nprogress/0.2.0/nprogress',
 
-        // notifications
-        //'bootstrap-notify': CDN + '/js/bootstrap-notify/3.1.5/bootstrap-notify.min',
         'toastr': CDN + '/js/toastr/2.1.2/build/toastr.min',
-
-        'fx-common/config/auth_users': '../../config/auth_users.json',
 
         q: CDN + '/js/q/1.1.2/q',
         'jquery.rangeSlider': CDN + '/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
@@ -70,11 +65,9 @@ var config = {
 
         'jquery.visible': CDN + '/js/jquery.visible/1.2.0/jquery.visible.min',
 
-        //jbPivot: CDN + '/js/jbpivot/0.1.0/jbPivot',
         jbPivot: '../../submodules/faostat-ui-pivot/dist/js/jbPivot',
         pivot_exporter: '../../submodules/faostat-ui-pivot/src/js/PivotExporter',
         swal: CDN + '/js/sweet-alert/0.5.0/sweet-alert.min',
-        //sweetAlert: CDN + '/js/sweet-alert/0.5.0/sweet-alert.min',
         numeral: CDN + '/js/numeral/1.5.3/min/numeral.min',
 
         'draggabilly': CDN + '/js/draggabilly/2.1.0/dist/draggabilly.pkgd.min',
@@ -96,8 +89,35 @@ var config = {
         //'bootstrap-treeview': CDN + '/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
         //'bootstrap-tour': CDN + '/js/bootstrap-tour/0.10.3/build/js/bootstrap-tour.min',
 
+
+        "datatables.net": CDN + '/js/DataTables/1.10.12/media/js/jquery.dataTables.min',
+        "datatables.net-bs": CDN + '/js/DataTables/1.10.12/media/js/dataTables.bootstrap.min',
+        'datatables-fixedcolumns': CDN + '/js/DataTables/1.10.12/extensions/FixedColumns/js/dataTables.fixedColumns.min',
+        'datatables-fixedheader': CDN + '/js/DataTables/1.10.12/extensions/FixedHeader/js/dataTables.fixedHeader.min',
+        'datatables-colreorder': CDN + '/js/DataTables/1.10.12/extensions/ColReorder/js/dataTables.colReorder.min',
+        'datatables.net-buttons': CDN + '/js/DataTables/1.10.12/extensions/Buttons/js/dataTables.buttons.min',
+        'datatables.net-buttons-bs': CDN + '/js/DataTables/1.10.12/extensions/Buttons/js/buttons.bootstrap.min',
+        'datatables-scroller': CDN + '/js/DataTables/1.10.12/extensions/Scroller/js/dataTables.scroller.min',
+        //'datatables-responsive': CDN + '/js/DataTables/1.10.12/extensions/Responsive/js/dataTables.responsive.min',
+        //'datatables.net-responsive-bs': CDN + '/js/DataTables/1.10.12/extensions/Responsive/js/responsive.bootstrap.min',
+
+
+
+        /*        // Data table
+                //'datatables': CDN + '/js/DataTables/1.10.12/media/js/jquery.dataTables.min',
+                //'datatables.net': CDN + '/js/DataTables/1.10.12/media/js/jquery.dataTables.min',
+                'datatables': CDN + '/js/DataTables/1.10.12.custom/datatables.min',
+                //'datatables': CDN + '/js/DataTables/1.10.12/media/js/dataTables.bootstrap.min',
+                'datatables.bs': CDN + '/js/DataTables/1.10.12/media/js/dataTables.bootstrap.min',
+                //'datatables': '//cdn.datatables.net/v/bs/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/cr-1.3.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min',
+                'datatables-fixedcolumns': CDN + '/js/DataTables/1.10.12/extensions/FixedColumns/js/dataTables.fixedColumns.min',
+
+                'datatables-buttons.net': CDN + '/js/DataTables/1.10.12/extensions/Buttons/js/dataTables.buttons.min',
+                'datatables-buttons-bootstrap': CDN + '/js/DataTables/1.10.12/extensions/Buttons/js/buttons.bootstrap.min',
+
+        */
         // aos
-        //aos: 'https://cdn.rawgit.com/michalsnik/aos/1.2.0/dist/aos',
+        aos: CDN + '/js/aos/2.0.4/dist/aos',
 
         // holmes
         //holmes: '//raw.githubusercontent.com/Haroenv/holmes/gh-pages/js/holmes',
@@ -364,7 +384,41 @@ var config = {
         },
         "highcharts-export-clientside": {
             "deps": ["highcharts", "canvas-tools", 'jspdf']
+        },
+
+
+        "datatables.bs": {
+            "deps": ["jquery", "bootstrap"],
+            export: "DataTables"
+        },
+
+        "datatables.net": {
+            "deps": ["jquery"],
+
+        },
+        "datatables.net-bs":{
+            //export: "DataTables"
+            "deps": ["datatables.net"]
+        },
+        "datatables-fixedcolumns": {
+            "deps": ["datatables.net"]
+        },
+        "datatables.net-buttons": {
+            "deps": ["datatables.net"]
+        },
+        "datatables.net-buttons-bs": {
+            "deps": ["datatables.net-buttons"]
+        },
+        "datatables.net-responsive-bs": {
+            "deps": ["datatables-responsive"]
+        },
+        "datatables-responsive": {
+            "deps": ["datatables.net"]
+        },
+        "datatables-scroller": {
+            "deps": ["datatables.net"]
         }
+
     }
 };
 

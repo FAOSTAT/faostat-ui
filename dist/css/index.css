@@ -8312,23 +8312,12 @@ div#google_search input#search-submit {
   padding-top: 15px; }
 
 .fs-report-table {
-  font-size: 11px; }
-  .fs-report-table thead {
-    background-color: #337ab7;
-    color: #ffffff; }
-    .fs-report-table thead th {
-      border: 1px solid #ffffff; }
-  .fs-report-table tbody tr {
-    border: 1px solid white;
-    padding: 7px; }
-    .fs-report-table tbody tr.row-shade {
-      background-color: #8bb8df;
-      color: #ffffff; }
-      .fs-report-table tbody tr.row-shade:hover {
-        background-color: #f5f5f5;
-        color: #333333; }
-  .fs-report-table tbody td {
-    padding: 7px; }
+  font-size: 13px; }
+  .fs-report-table thead th {
+    color: #337ab7;
+    font-size: 14px; }
+  .fs-report-table tbody tr.row-shade {
+    font-weight: bold; }
 
 /* Third parties */
 .typeahead, .tt-query, .tt-hint {
@@ -8895,6 +8884,12 @@ div#google_search input#search-submit {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0 15px 0 0; }
+
+.es .swiper-container-updates {
+  height: 190px; }
+
+.fr .swiper-container-updates {
+  height: 190px; }
 
 /* Country Profile Page */
 /* Masonry-like patch for columns */

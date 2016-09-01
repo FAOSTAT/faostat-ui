@@ -114,6 +114,7 @@ module.exports = function (grunt) {
                             'submodules/faostat-ui-pivot/html/**',
                             'submodules/faostat-ui-pivot/dist/**',
                             'submodules/faostat-ui-report/nls/**',
+                            'submodules/faostat-ui-report/**',
                             'submodules/faostat-ui-report-table/**',
                             'submodules/faostat-ui-tree/**',
                             'submodules/fenix-ui-chart-creator/**',
@@ -296,9 +297,9 @@ module.exports = function (grunt) {
         grunt.task.run('en');
         grunt.task.run('fr');
         grunt.task.run('es');
-        //grunt.task.run('ar');
-        //grunt.task.run('ru');
-        //grunt.task.run('zh');
+        // grunt.task.run('ar');
+        // grunt.task.run('ru');
+        // grunt.task.run('zh');
         grunt.task.run('compress_dev');
         grunt.task.run('compress_internal');
         grunt.task.run('compress_prod');

@@ -12,6 +12,7 @@ define([
     'text!templates/indicators/indicators.hbs',
     'i18n!nls/indicators',
     'fs-r-t/start',
+    'fs-dt-c/table',
     'faostatapiclient',
     'q',
     'amplify'
@@ -25,7 +26,8 @@ define([
              template,
              i18nLabels,
              ReportTable,
-             FAOSTATApi,
+             Table,
+             API,
              Q
              ) {
 
@@ -92,38 +94,56 @@ define([
 
         initVariables: function () {
 
+            this.initTable();
+
+        },
+
+        initTable: function() {
+
+            var t = new Table();
+            t.render({
+                container: "#example"
+            });
+
+            //'datatables-colreorder',
+
+        },
+
+
+        testQueries: function () {
+
+
             /*$.ajax({
-                url: "http://fenixservices.fao.org/faostat/api/v1/en/data/",
-                data: JSON.stringify(
-                    {"datasource":"production","domain_codes":["QC"],"filters":{"area":["2"],"item":["15"],"year":["2010"]}}
-                ),
-                contentType: "application/json",
-                type: 'POST',
-                success: function(result){
-                    log.info(result);
-                },
-                error: function(error) {
-                    log.error(error);
-                }
-            });*/
+             url: "http://fenixservices.fao.org/faostat/api/v1/en/data/",
+             data: JSON.stringify(
+             {"datasource":"production","domain_codes":["QC"],"filters":{"area":["2"],"item":["15"],"year":["2010"]}}
+             ),
+             contentType: "application/json",
+             type: 'POST',
+             success: function(result){
+             log.info(result);
+             },
+             error: function(error) {
+             log.error(error);
+             }
+             });*/
 
-            var api =  new FAOSTATApi();
 
-            api.definitions({
+            API.definitions({
                 datasource: "production"
             }).then(function(d) {
                 log.info(d)
 
             });
 
-            api.definitions({
+            API.definitions({
                 datasource: "internal"
             }).then(function(d) {
                 log.info(d)
 
             });
 
-            api.definitions_by_type({
+            API.definitions_by_type({
                 datasource: "production",
                 type: "abbreviation"
             }).then(function(d) {
@@ -133,149 +153,150 @@ define([
 
 
             /*  api.data_get({
-                  domain: 'QC',
-                  datasource: "test",
-                  area: [2],
-                  year: [2010]
-              }).then(function(d) {
+             domain: 'QC',
+             datasource: "test",
+             area: [2],
+             year: [2010]
+             }).then(function(d) {
 
-                  log.info(d)
+             log.info(d)
 
-              });
+             });
 
-              $.ajax({
-                  url: "http://localhost:8081/faostat-api/v1/en/data/CS",
-                  contentType: "application/json",
-                  data: {
-                      datasource: "test",
-                      area: [2],
-                      year: [2010]},
-                  success: function(result){
-                      log.info(result);
-                  },
-                  error: function(error) {
-                      log.error(error);
-                  }
-              });
+             $.ajax({
+             url: "http://localhost:8081/faostat-api/v1/en/data/CS",
+             contentType: "application/json",
+             data: {
+             datasource: "test",
+             area: [2],
+             year: [2010]},
+             success: function(result){
+             log.info(result);
+             },
+             error: function(error) {
+             log.error(error);
+             }
+             });
 
-              $.ajax({
-                  url: "http://localhost:8081/faostat-api/v1/en/data/CS",
-                  contentType: "application/json",
-                  data: {
-                      datasource: "test",
-                      area: [2, 3],
-                      year: [2010]
-                  },
-                  success: function(result){
-                      log.info(result);
-                  },
-                  error: function(error) {
-                      log.error(error);
-                  }
-              });
+             $.ajax({
+             url: "http://localhost:8081/faostat-api/v1/en/data/CS",
+             contentType: "application/json",
+             data: {
+             datasource: "test",
+             area: [2, 3],
+             year: [2010]
+             },
+             success: function(result){
+             log.info(result);
+             },
+             error: function(error) {
+             log.error(error);
+             }
+             });
 
-              $.ajax({
-                  url: "http://localhost:8081/faostat-api/v1/en/data/CS",
-                  contentType: "application/json",
-                  data: {
-                      datasource:"test"
-                  },
-                  success: function(result){
-                      log.info(result);
-                  },
-                  error: function(error) {
-                      log.error(error);
-                  }
-              });
+             $.ajax({
+             url: "http://localhost:8081/faostat-api/v1/en/data/CS",
+             contentType: "application/json",
+             data: {
+             datasource:"test"
+             },
+             success: function(result){
+             log.info(result);
+             },
+             error: function(error) {
+             log.error(error);
+             }
+             });
 
-              $.ajax({
-                  url: "http://localhost:8081/faostat-api/v1/en/data/QC",
-                  contentType: "application/json",
-                  data: {
-                      datasource:"test",
-                      area: ["5100>"],
-                  },
-                  success: function(result){
-                      log.info(result);
-                  },
-                  error: function(error) {
-                      log.error(error);
-                  }
-              });
+             $.ajax({
+             url: "http://localhost:8081/faostat-api/v1/en/data/QC",
+             contentType: "application/json",
+             data: {
+             datasource:"test",
+             area: ["5100>"],
+             },
+             success: function(result){
+             log.info(result);
+             },
+             error: function(error) {
+             log.error(error);
+             }
+             });
 
-              $.ajax({
-                  url: "http://localhost:8081/faostat-api/v1/en/data/TP",
-                  contentType: "application/json",
-                  data: {
-                      datasource:"test",
-                      year: ["2010"],
-                  },
-                  success: function(result){
-                      log.info(result);
-                  },
-                  error: function(error) {
-                      log.error(error);
-                  }
-              });
+             $.ajax({
+             url: "http://localhost:8081/faostat-api/v1/en/data/TP",
+             contentType: "application/json",
+             data: {
+             datasource:"test",
+             year: ["2010"],
+             },
+             success: function(result){
+             log.info(result);
+             },
+             error: function(error) {
+             log.error(error);
+             }
+             });
 
-              var api = new FAOSTATApi();*/
+             var api = new FAOSTATApi();*/
 
-           /* api.data({
-                "datasource":"production",
-                "domain_codes":["QC"],
-                "filters":{"area":["2"],
-                    "item":["15"],
-                    "year":["2010"]
-                }
-            })*/
+            /* api.data({
+             "datasource":"production",
+             "domain_codes":["QC"],
+             "filters":{"area":["2"],
+             "item":["15"],
+             "year":["2010"]
+             }
+             })*/
 
-          /*  api.data({
-                domain_codes: ['QC'],
-                filters: {
-                    area: ['5000>'],
-                    elements: ['2510'],
-                    items: ['15'],
-                    //years: ['2012']
-                },
+            /*  api.data({
+             domain_codes: ['QC'],
+             filters: {
+             area: ['5000>'],
+             elements: ['2510'],
+             items: ['15'],
+             //years: ['2012']
+             },
 
-                //output_type: 'csv'
-            }).then(function (response) {
-                log.info(response)
-            });*/
+             //output_type: 'csv'
+             }).then(function (response) {
+             log.info(response)
+             });*/
 
-          /*  api.databean({
-                domain_codes: ['QC'],
-                List1Codes: ['2'],
-                List2Codes: ['2510'],
-                List3Codes: ['15'],
-                List4Codes: ['2010'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                List1AltCodes: ['ISO3'],
-                page_size: 10
-                //output_type: 'csv'
-            }).then(function (response) {
-                log.info(response);
-            });*/
+            /*  api.databean({
+             domain_codes: ['QC'],
+             List1Codes: ['2'],
+             List2Codes: ['2510'],
+             List3Codes: ['15'],
+             List4Codes: ['2010'],
+             List5Codes: null,
+             List6Codes: null,
+             List7Codes: null,
+             List1AltCodes: ['ISO3'],
+             page_size: 10
+             //output_type: 'csv'
+             }).then(function (response) {
+             log.info(response);
+             });*/
 
 
             /*var reportTable = new ReportTable();
 
-            reportTable.init({
-                container: this.$el,
-                request: {
-                    domain_code: 'fbs',
-                    List1Codes: [33],
-                    List2Codes: [2009]
-                }
-            });
+             reportTable.init({
+             container: this.$el,
+             request: {
+             domain_code: 'fbs',
+             List1Codes: [33],
+             List2Codes: [2009]
+             }
+             });
 
 
-            reportTable.render();
-            //reportTable.export();*/
+             reportTable.render();
+             //reportTable.export();*/
 
         },
+
 
         initComponents: function () {
 
