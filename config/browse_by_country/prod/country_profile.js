@@ -883,10 +883,10 @@ define([
                             },
                             creator: {
                                 /*chartObj: {
-                                    chart: {
-                                        type: "column"
-                                    }
-                                }*/
+                                 chart: {
+                                 type: "column"
+                                 }
+                                 }*/
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -964,72 +964,72 @@ define([
                 items: [
 
                     /*{
-                        type: 'chart',
-                        class: "col-xs-12 col-md-6",
+                     type: 'chart',
+                     class: "col-xs-12 col-md-6",
 
-                        // labels?
-                        labels: {
-                            // template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Land Use",
-                                    fr: "Land Use",
-                                    es: "Land Use"
-                                },
-                                subtitle: "{{year}}"
-                            }
-                        },
-                        config: {
-                            adapter: {
-                                adapterType: 'faostat',
-                                type: "timeserie",
-                                xDimensions: 'year',
-                                yDimensions: 'unit',
-                                valueDimensions: 'value',
-                                seriesDimensions: ['area', 'item']
-                            },
-                            template: {
-                                height: '300px'
-                            },
-                            creator: {
-                                chartObj: {
-                                    chart: {
-                                       // type: 'column',
-                                        type: 'bar',
-                                       // inverted: true
-                                    },
-                                    plotOptions: {
-                                        column: {
-                                            stacking: 'normal'
+                     // labels?
+                     labels: {
+                     // template to be applied to the config.template for the custom object
+                     template: {
+                     title: {
+                     en: "Land Use",
+                     fr: "Land Use",
+                     es: "Land Use"
+                     },
+                     subtitle: "{{year}}"
+                     }
+                     },
+                     config: {
+                     adapter: {
+                     adapterType: 'faostat',
+                     type: "timeserie",
+                     xDimensions: 'year',
+                     yDimensions: 'unit',
+                     valueDimensions: 'value',
+                     seriesDimensions: ['area', 'item']
+                     },
+                     template: {
+                     height: '300px'
+                     },
+                     creator: {
+                     chartObj: {
+                     chart: {
+                     // type: 'column',
+                     type: 'bar',
+                     // inverted: true
+                     },
+                     plotOptions: {
+                     column: {
+                     stacking: 'normal'
 
-                                        },
-                                        bar: {
-                                            stacking: 'normal'
+                     },
+                     bar: {
+                     stacking: 'normal'
 
-                                        },
-                                        area: {
-                                            stacking: 'normal'
+                     },
+                     area: {
+                     stacking: 'normal'
 
-                                        },
-                                        series: {
-                                            marker: {
-                                                enabled: false
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        allowedFilter: ['area', 'year'],
-                        filter: {
-                            domain_codes: ['RL'],
-                            List2Codes: [5110],
-                            List3Codes: [6610, 6661, 6670],
-                            List4Codes: ['_1'],
-                            "order_by": 'year'
-                        }
-                    },
-*/
+                     },
+                     series: {
+                     marker: {
+                     enabled: false
+                     }
+                     }
+                     }
+                     }
+                     }
+                     },
+                     allowedFilter: ['area', 'year'],
+                     filter: {
+                     domain_codes: ['RL'],
+                     List2Codes: [5110],
+                     List3Codes: [6610, 6661, 6670],
+                     List4Codes: ['_1'],
+                     "order_by": 'year'
+                     }
+                     },
+                     */
                     {
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
@@ -1154,49 +1154,49 @@ define([
                         }
                     },
 
-                  /*  {
-                        type: 'table',
-                        class: "col-xs-12 col-md-6",
+                    /*  {
+                     type: 'table',
+                     class: "col-xs-12 col-md-6",
 
-                        // labels?
-                        labels: {
-                            // labels to dinamically substitute the title and subtitle
-                            default: {},
+                     // labels?
+                     labels: {
+                     // labels to dinamically substitute the title and subtitle
+                     default: {},
 
-                            //template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Land Resources (1000 Ha)",
-                                    fr: "Land Resources (1000 Ha)",
-                                    es: "Land Resources (1000 Ha)"
-                                }
-                                //subtitle: "2012"
-                            }
-                        },
+                     //template to be applied to the config.template for the custom object
+                     template: {
+                     title: {
+                     en: "Land Resources (1000 Ha)",
+                     fr: "Land Resources (1000 Ha)",
+                     es: "Land Resources (1000 Ha)"
+                     }
+                     //subtitle: "2012"
+                     }
+                     },
 
-                        config: {
-                            adapter: {
-                                columns: ['item', 'year', 'value', 'unit'],
-                                showCodes: false
-                            },
-                            template: {
-                                tableOptions: {
-                                    'data-search': false,
-                                    'data-show-header': false
-                                }
-                                // height: '300'
-                            }
-                        },
-                        allowedFilter: ['area', 'item', 'year', 'element', 'aggregation'],
-                        deniedTemplateFilter: [],
-                        filter: {
-                            domain_codes: ["RL"],
-                            List2Codes: [5110],
-                            List3Codes: [6600, 6610, 6661],
-                            List4Codes: [2012],
-                            order_by: 'value DESC'
-                        }
-                    },*/
+                     config: {
+                     adapter: {
+                     columns: ['item', 'year', 'value', 'unit'],
+                     showCodes: false
+                     },
+                     template: {
+                     tableOptions: {
+                     'data-search': false,
+                     'data-show-header': false
+                     }
+                     // height: '300'
+                     }
+                     },
+                     allowedFilter: ['area', 'item', 'year', 'element', 'aggregation'],
+                     deniedTemplateFilter: [],
+                     filter: {
+                     domain_codes: ["RL"],
+                     List2Codes: [5110],
+                     List3Codes: [6600, 6610, 6661],
+                     List4Codes: [2012],
+                     order_by: 'value DESC'
+                     }
+                     },*/
 
                 ]
             }
@@ -1248,7 +1248,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                
+
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -1287,7 +1287,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                
+
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -1337,7 +1337,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                
+
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -1376,7 +1376,7 @@ define([
                                 seriesDimensions: ['area', 'item']
                             },
                             template: {
-                                
+
                             }
                         },
                         allowedFilter: ['area', 'year'],
@@ -1584,136 +1584,136 @@ define([
                     },
 
                     /*{
-                        type: 'chart',
-                        class: "col-xs-12 col-md-6",
+                     type: 'chart',
+                     class: "col-xs-12 col-md-6",
 
-                        // labels?
-                        labels: {
-                            // template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Most produced commodities",
-                                    fr: "Most produced commodities",
-                                    es: "Most produced commodities"
-                                },
-                                subtitle: "Average 1993-2013"
-                            }
-                        },
+                     // labels?
+                     labels: {
+                     // template to be applied to the config.template for the custom object
+                     template: {
+                     title: {
+                     en: "Most produced commodities",
+                     fr: "Most produced commodities",
+                     es: "Most produced commodities"
+                     },
+                     subtitle: "Average 1993-2013"
+                     }
+                     },
 
-                        config: {
-                            adapter: {
-                                adapterType: 'faostat',
-                                type: "standard",
-                                xDimensions: ['element'],
-                                yDimensions: 'unit',
-                                valueDimensions: 'value',
-                                seriesDimensions: ['item']
-                            },
-                            template: {
-                                //height: '250px'
-                            },
-                            creator: {
-                                chartObj: {
-                                    chart: {
-                                        type: "column"
-                                    }
-                                }
-                            }
-                        },
-                        allowedFilter: ['area'],
-                        deniedTemplateFilter: [],
-                        filter: {
-                            domain_codes: ["QC"],
-                            List2Codes: ["2510"],
-                            // TODO: how to solve this problemi with the list?
-                            List3Codes: ["1717>", "1804>", "1814>", "1714>", "1753>", "1801>", "1738>", "1737>", "1751>", "1841>", "1732>", "1726>", "1720>", "1734>", "1729>", "1735>", "1800>"],
-                            List4Codes: [
-                                1993,
-                                1994,
-                                1995,
-                                1996,
-                                1997,
-                                1998,
-                                1999,
-                                2000,
-                                2001,
-                                2002,
-                                2003,
-                                2004,
-                                2005,
-                                2006,
-                                2007,
-                                2008,
-                                2009,
-                                2010,
-                                2011,
-                                2012,
-                                2013
-                            ],
-                            "group_by": 'year',
-                            "order_by": 'value DESC',
-                            "limit": '10',
-                            "operator": "avg"
-                        }
-                    },
+                     config: {
+                     adapter: {
+                     adapterType: 'faostat',
+                     type: "standard",
+                     xDimensions: ['element'],
+                     yDimensions: 'unit',
+                     valueDimensions: 'value',
+                     seriesDimensions: ['item']
+                     },
+                     template: {
+                     //height: '250px'
+                     },
+                     creator: {
+                     chartObj: {
+                     chart: {
+                     type: "column"
+                     }
+                     }
+                     }
+                     },
+                     allowedFilter: ['area'],
+                     deniedTemplateFilter: [],
+                     filter: {
+                     domain_codes: ["QC"],
+                     List2Codes: ["2510"],
+                     // TODO: how to solve this problemi with the list?
+                     List3Codes: ["1717>", "1804>", "1814>", "1714>", "1753>", "1801>", "1738>", "1737>", "1751>", "1841>", "1732>", "1726>", "1720>", "1734>", "1729>", "1735>", "1800>"],
+                     List4Codes: [
+                     1993,
+                     1994,
+                     1995,
+                     1996,
+                     1997,
+                     1998,
+                     1999,
+                     2000,
+                     2001,
+                     2002,
+                     2003,
+                     2004,
+                     2005,
+                     2006,
+                     2007,
+                     2008,
+                     2009,
+                     2010,
+                     2011,
+                     2012,
+                     2013
+                     ],
+                     "group_by": 'year',
+                     "order_by": 'value DESC',
+                     "limit": '10',
+                     "operator": "avg"
+                     }
+                     },
 
-                    // FORCE SPACING
-                    {
-                        type: 'custom',
-                        class: 'clearfix',
-                        config: {
-                            template: {},
-                            model: {}
-                        }
-                    },
+                     // FORCE SPACING
+                     {
+                     type: 'custom',
+                     class: 'clearfix',
+                     config: {
+                     template: {},
+                     model: {}
+                     }
+                     },
 
-                    {
-                        type: 'chart',
-                        class: "col-xs-12 col-md-6",
+                     {
+                     type: 'chart',
+                     class: "col-xs-12 col-md-6",
 
-                        // labels?
-                        labels: {
-                            // template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Production Indices - Net Production Index Number (2004-2006 = 100)",
-                                    fr: "Indices de Production - Index de production Net (2004-2006=100)",
-                                    es: "Indices de Producción - Número índice de Producción Neta (2004-2006 = 100)"
-                                },
-                                //subtitle: "2003 - 2013"
-                                subtitle: ""
-                            }
-                        },
-                        config: {
-                            adapter: {
-                                adapterType: 'faostat',
-                                type: "timeserie",
-                                xDimensions: 'year',
-                                yDimensions: 'unit',
-                                valueDimensions: 'value',
-                                seriesDimensions: ['item']
-                            },
-                            template: {
-                                // height: '400px'
-                                // default labels to be applied
-                            },
-                            creator: {}
-                        },
-                        allowedFilter: ['area', 'year', 'item'],
-                        filter: {
-                            domain_codes: ["QI"],
-                            List2Codes: [
-                                438],
-                            List3Codes: [
-                                1717,
-                                2051,
-                                2054,
-                                2057],
-                            List4Codes: ['_1'],
-                            order_by: 'year, item',
-                            limit: -1
-                        }
-                    }*/
+                     // labels?
+                     labels: {
+                     // template to be applied to the config.template for the custom object
+                     template: {
+                     title: {
+                     en: "Production Indices - Net Production Index Number (2004-2006 = 100)",
+                     fr: "Indices de Production - Index de production Net (2004-2006=100)",
+                     es: "Indices de Producción - Número índice de Producción Neta (2004-2006 = 100)"
+                     },
+                     //subtitle: "2003 - 2013"
+                     subtitle: ""
+                     }
+                     },
+                     config: {
+                     adapter: {
+                     adapterType: 'faostat',
+                     type: "timeserie",
+                     xDimensions: 'year',
+                     yDimensions: 'unit',
+                     valueDimensions: 'value',
+                     seriesDimensions: ['item']
+                     },
+                     template: {
+                     // height: '400px'
+                     // default labels to be applied
+                     },
+                     creator: {}
+                     },
+                     allowedFilter: ['area', 'year', 'item'],
+                     filter: {
+                     domain_codes: ["QI"],
+                     List2Codes: [
+                     438],
+                     List3Codes: [
+                     1717,
+                     2051,
+                     2054,
+                     2057],
+                     List4Codes: ['_1'],
+                     order_by: 'year, item',
+                     limit: -1
+                     }
+                     }*/
 
                 ]
             }
@@ -1723,6 +1723,30 @@ define([
 
             title: i18n.emissions,
             icon: 'G1',
+
+            filter: {
+
+                defaultFilter: {
+                    "domain_code": ["GT"],
+                    "show_lists": false
+                },
+                items: [
+                    {
+                        "id": "year",
+                        "type": "codelist",
+                        "parameter": "List4Codes",
+                        "componentType": {
+                            "class": "hidden",
+                            "type": "dropDownList-timerange"
+                        },
+                        "config": {
+                            "dimension_id": "years",
+                            "defaultCodes": ['1990'],
+                            "filter": {}
+                        }
+                    }
+                ]
+            },
 
             dashboard: {
 
@@ -1752,7 +1776,7 @@ define([
                                     fr: "Emissions (CO2 equivalent), Agriculture total + (Total)",
                                     es: "Emissions (CO2 equivalent), Agriculture total + (Total)"
                                 },
-                                subtitle: "1990 - 2014"
+                                subtitle: "{{year}}"
                             }
                         },
                         config: {
@@ -1770,38 +1794,11 @@ define([
                             },
                             creator: {}
                         },
-                        allowedFilter: ['area'],
+                        allowedFilter: ['area', 'year'],
                         filter: {
                             domain_codes: ["GT"],
                             List2Codes: [7231],
                             List3Codes: [1711],
-                            List4Codes: [
-                                1990,
-                                1991,
-                                1992,
-                                1993,
-                                1994,
-                                1995,
-                                1996,
-                                1997,
-                                1998,
-                                1999,
-                                2000,
-                                2001,
-                                2002,
-                                2003,
-                                2004,
-                                2005,
-                                2006,
-                                2007,
-                                2008,
-                                2009,
-                                2010,
-                                2011,
-                                2012,
-                                2013,
-                                2014
-                            ],
                             "order_by": 'year',
                             "limit": '-1'
                         }
@@ -1881,52 +1878,52 @@ define([
             }
         },
 
-       /* a: {
+        /* a: {
 
-            title: "",
+         title: "",
 
-            dashboard: {
+         dashboard: {
 
-                //data base filter
-                defaultFilter: defaultFilter,
+         //data base filter
+         defaultFilter: defaultFilter,
 
-                //bridge configuration
-                bridge: {
+         //bridge configuration
+         bridge: {
 
-                    type: "faostat"
-                    //requestType: 'data' // data, rankings
+         type: "faostat"
+         //requestType: 'data' // data, rankings
 
-                },
+         },
 
-                items: [
+         items: [
 
-                    // DIETARY ENERGY SUPPLY
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Dietary energy supply</h2>'
-                            },
-                            model: {}
-                        }
-                    },
+         // DIETARY ENERGY SUPPLY
+         {
+         type: 'custom',
+         class: 'col-xs-12',
+         config: {
+         template: {
+         html: '<h2>Dietary energy supply</h2>'
+         },
+         model: {}
+         }
+         },
 
 
-                    // CROP PRODUCTION
-                    {
-                        type: 'custom',
-                        class: 'col-xs-12',
-                        config: {
-                            template: {
-                                html: '<h2>Crop Production</h2>'
-                            },
-                            model: {}
-                        }
-                    }
-                ]
-            }
-        }*/
+         // CROP PRODUCTION
+         {
+         type: 'custom',
+         class: 'col-xs-12',
+         config: {
+         template: {
+         html: '<h2>Crop Production</h2>'
+         },
+         model: {}
+         }
+         }
+         ]
+         }
+         }*/
 
     };
 });

@@ -9,7 +9,6 @@ define([
     'handlebars',
     'underscore',
     'loglevel',
-    'select2',
     'amplify'
 ], function ($, C, Common, E, A, templateRelatedViews, Handlebars, _, log) {
 
@@ -20,11 +19,12 @@ define([
         return this;
     }
 
-    // TODO: lagacy not used
+    // TODO: legacy not used
     ViewUtils.prototype.defaultFilterOptions = function(config) {
         return config;
     };
 
+    // i.e. defaut custom option on a map
     ViewUtils.prototype.defaultItemOptions = function(item, CustomView) {
 
         if (item.type) {
@@ -53,6 +53,8 @@ define([
                 view.comment.url = C.PDF_BASEPATH + lang.toUpperCase() + "/" + view.comment.pdf;
             }
         }
+
+        return view;
 
     };
 

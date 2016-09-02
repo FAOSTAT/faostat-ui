@@ -29,6 +29,7 @@ define(function () {
 
         // Don't know if should be here..
         ON_FILTER_CHANGE: 'fs.filter_change.event',
+        ON_FILTER_INVALID_SELECTION: 'fs.filter_change.invalid_selection.event',
 
         EXPORT_DATA: 'fs.export_data.event',
         EXPORT_TABLE_HTML: 'fs.export_table_html.event',

@@ -96,9 +96,8 @@ var config = {
         'datatables-colreorder': CDN + '/js/DataTables/1.10.12/extensions/ColReorder/js/dataTables.colReorder.min',
         'datatables.net-buttons': CDN + '/js/DataTables/1.10.12/extensions/Buttons/js/dataTables.buttons.min',
         'datatables.net-buttons-bs': CDN + '/js/DataTables/1.10.12/extensions/Buttons/js/buttons.bootstrap.min',
+        'datatables.net-buttons-html5': CDN + '/js/DataTables/1.10.12/extensions/Buttons/js/buttons.html5.min',
         'datatables-scroller': CDN + '/js/DataTables/1.10.12/extensions/Scroller/js/dataTables.scroller.min',
-        //'datatables-responsive': CDN + '/js/DataTables/1.10.12/extensions/Responsive/js/dataTables.responsive.min',
-        //'datatables.net-responsive-bs': CDN + '/js/DataTables/1.10.12/extensions/Responsive/js/responsive.bootstrap.min',
 
         // aos
         aos: CDN + '/js/aos/2.0.4/dist/aos',
@@ -370,7 +369,6 @@ var config = {
             "deps": ["highcharts", "canvas-tools", 'jspdf']
         },
 
-
         "datatables.bs": {
             "deps": ["jquery", "bootstrap"],
             export: "DataTables"
@@ -394,7 +392,7 @@ var config = {
             "deps": ["datatables.net-buttons"]
         },
         "datatables.net-responsive-bs": {
-            "deps": ["datatables-responsive"]
+            "deps": ["datatables-responsive", "datatables.net-buttons-html5"]
         },
         "datatables-responsive": {
             "deps": ["datatables.net"]
@@ -431,7 +429,7 @@ require([
     'faostatapiclient',
     //'modernizr',
     'outdatedbrowser',
-    'amplify'
+    'amplify',
 ], function ($, Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves, NProgress, API) {
 
     "use strict";

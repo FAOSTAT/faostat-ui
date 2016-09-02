@@ -16,11 +16,9 @@ define([
     'handlebars',
     'globals/Common',
     'FAOSTAT_UI_TREE',
-    'lib/filters/filter-box',
-    'fx-ds/start',
-    'lib/view/view-utils',
+    'lib/dashboard-compose/dashboard-compose',
     'amplify'
-], function ($, log, Require, View, A, C, ROUTES, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, FilterBox, Dashboard, ViewUtils) {
+], function ($, log, Require, View, A, C, ROUTES, E, CM, EM, template, templateView, i18nLabels, Handlebars, Common, Tree, DashBoardCompose) {
 
     'use strict';
 
@@ -34,13 +32,10 @@ define([
             VIEW: "#fs-browse-rankings-view",
             VIEW_NOT_AVAILABLE: "#fs-browse-rankings-view-not-available",
 
-            FILTER_BOX: "[data-role='filter-box']",
-            DASHBOARD: "[data-role='dashboard']"
+            DASHBOARD_COMPOSE: "[data-role='dashboard-compose']"
 
         },
-        defaultOptions = {
-            requestKey: 0
-        },
+        defaultOptions = {},
 
         BrowseRankingsView = View.extend({
 
@@ -93,6 +88,7 @@ define([
                 this.$VIEW_TITLE = this.$el.find(s.VIEW_TITLE);
                 this.$VIEW = this.$el.find(s.VIEW);
                 this.$VIEW_NOT_AVAILABLE = this.$el.find(s.VIEW_NOT_AVAILABLE);
+                this.$DASHBOARD_COMPOSE= this.$el.find(s.DASHBOARD_COMPOSE);
 
             },
 
@@ -114,16 +110,8 @@ define([
 
                             this.o.code = callback.id;
                             this.o.label = callback.label;
-
-                            // update view
-                            //this.updateView();
-
                             // change url state
                             this.changeState();
-
-                            //amplify.publish(E.SCROLL_TO_SELECTOR, {
-                            //    container: self.$VIEW_TITLE
-                            //});
 
                         }, this),
 
@@ -155,23 +143,12 @@ define([
 
             updateView: function () {
 
-                log.info("BrowseRankingsView.updateView;");
 
                 this.$VIEW_NOT_AVAILABLE.hide();
                 this.$VIEW_CONTAINER.show();
+                this.$VIEW_TITLE.html(this.o.label);
 
-                var code = this.o.code,
-                    label = this.o.label;
-
-                this.$VIEW_TITLE.html(label);
-
-                var obj = {
-                    container: this.$VIEW,
-                    basePath:CM.viewsBasePath,
-                    viewID: code
-                };
-
-                this.createView(obj);
+                this.createView();
 
             },
 
@@ -256,151 +233,32 @@ define([
 
             },
 
-            // TODO: move to a common area for all the modules? (create a submodule?)
-            createView: function(c) {
+            createView: function() {
 
-                log.info("BrowseRankings.createView;", c);
+                var basePath = CM.viewsBasePath,
+                    code = this.o.code;
 
-                var lang = this.o.lang,
-                    basePath = c.basePath || CM.viewsBasePath,
-                    updatedRelatedViews = (c.updatedRelatedViews !== undefined)? c.updatedRelatedViews: true;
-
-                this.$VIEW.empty();
+                if (this.dashboardCompose !== undefined) {
+                    this.dashboardCompose.destroy();
+                }
 
                 // get and render the right view
-                Require([basePath + c.viewID], _.bind(function(view) {
+                Require([basePath + code], _.bind(function (view) {
 
-                    log.info("BrowseRankings.createView; view:", view);
-
-                    var filter = view.filter || null,
-                        dashboard = view.dashboard || null,
-                        requestKey = ++this.o.requestKey,
-                        t  = Handlebars.compile(templateView);
-
-                    log.info("BrowseRankings.createView; view:", filter);
-
-                    // extending view
-                    view = $.extend(true, {}, c.config, view);
-
-                    // set comments
-                    ViewUtils.setDashboardComment(view);
-
-                    log.info("BrowseRankings.createView; appending", view);
-
-                    /* Load main structure. */
-                    this.$VIEW.append(t(view));
-
-                    log.info("BrowseRankings.createView; updatedRelatedViews", updatedRelatedViews);
-
-                    // update related views
-                    // TODO: review the relatedViews template part
-                    if (updatedRelatedViews) {
-                        ViewUtils.addRelatedViews(this.$RELATED_VIEWS, view, _.bind(this.createView, this));
-                    }
-
-                    log.info(this.$VIEW.find(s.FILTER_BOX))
-                    log.info(this.$VIEW.find(s.DASHBOARD))
-                    this.$FILTER_BOX = this.$VIEW.find(s.FILTER_BOX);
-                    this.$DASHBOARD = this.$VIEW.find(s.DASHBOARD);
-
-                    log.info("BrowseRankings.createView; filter", filter);
-                    // render filters
-                    if (filter !== null) {
-                        this.renderFilter({
-                            filter: filter,
-                            // override event listener for the filter change (custom for browse by domain)
-                            E: $.extend(true, {}, EM),
-                            container: this.$FILTER_BOX,
-                            lang: lang,
-                            requestKey: requestKey
-                        });
-                    }
-
-                    log.info("BrowseRankings.createView; dashboard", dashboard);
-                    // render dashboard
-                    if (dashboard !== null) {
-                        this.renderDashboard($.extend(true, {}, view.dashboard, {
-                            container: this.$DASHBOARD,
-                            layout: 'fluid',
-                            //layout: 'injected',
-                            lang: lang,
-                            requestKey: requestKey
+                        this.dashboardCompose = new DashBoardCompose();
+                        this.dashboardCompose.render($.extend(true, {}, view, {
+                            container: this.$DASHBOARD_COMPOSE,
+                            customDashBoardConfiguration: $.extend(true, {}, CM.view)
                         }));
-                    }else{
-                        log.error("View is not defined, handle exception");
-                    }
 
-                }, this));
+                    }, this),
 
-            },
-
-            renderFilter: function(config) {
-
-                log.info("BrowseRankings.renderFilter;", config);
-
-                // create filters
-                try {
-                    if (this.filterBox && this.filterBox.destroy) {
-                        this.filterBox.destroy();
-                    }
-                }catch (e) {
-                    log.error(e);
-                }
-
-                this.filterBox = new FilterBox();
-
-                // render filters
-                this.filterBox.render(config, false);
-
-            },
-
-            renderDashboard: function(config) {
-
-                log.info("BrowseRankings.renderDashboard; config", config);
-
-                if (this.dashboard && this.dashboard.destroy) {
-                    this.dashboard.destroy();
-                }
-
-                this.dashboard = new Dashboard();
-
-                log.info("BrowseRankings.renderDashboard; new Dashboard");
-
-                // setting default filter options (i.e. language and datasouce)
-
-                config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
-                log.info("BrowseRankings.renderDashboard; config", config);
-                _.each(config.items, _.bind(function(item) {
-                    item.config = ViewUtils.defaultItemOptions(item, CM.view);
-                }, this));
-
-                config._name = 'rankigns';
-                this.dashboard.render(config);
-
-            },
-
-            updateDashboard: function(c) {
-
-                var isOnLoad = (c)? c.isOnLoad || false: false,
-                    isCurrentKey = (c.requestKey === this.o.requestKey);
-
-                if ( isCurrentKey ) {
-
-                    // getFilters
-                    var filters = this.filterBox.getFilters();
-
-                    // apply filters to dashboard
-                    this.dashboard.filter(filters, isOnLoad);
-
-                }
-
-            },
-
-            onFilterInvalidSelection: function() {
-
-                if ( this.dashboard && _.isFunction(this.dashboard.destroy)) {
-                    this.dashboard.destroy();
-                }
+                    // Catch missing views
+                    function (e) {
+                        //display error to user
+                        log.error("BrowseByDomainView.createView; empty view", e);
+                        self.$VIEW.html("<h4 style='padding-top:35px;' class='text-center'>" + i18nLabels.missing_view + "</h4>");
+                    });
 
             },
 
@@ -408,13 +266,8 @@ define([
 
                 this.unbindEventListeners();
 
-                if ( this.dashboard && _.isFunction(this.dashboard.destroy)) {
-                    this.dashboard.destroy();
-                }
-
-
-                if ( this.filterBox && _.isFunction(this.filterBox.destroy)) {
-                    this.filterBox.destroy();
+                if ( this.dashboardCompose && _.isFunction(this.dashboardCompose.destroy)) {
+                    this.dashboardCompose.destroy();
                 }
 
                 this.$el.empty();

@@ -16,11 +16,7 @@ define([
     'handlebars',
     'globals/Common',
     'faostatapiclient',
-    //'list',
-    'fx-ds/start',
-    'lib/view/view-utils',
-    'lib/filters/filter-box',
-    //'aos',
+    'lib/dashboard-compose/dashboard-compose',
     //'holmes',
     //'microlight',
     'fenix-ui-map',
@@ -34,12 +30,7 @@ define([
              templateCountryList,
              templateCountryProfile,
              i18nLabels, Handlebars, Common, API,
-             // List,
-             Dashboard, ViewUtils,
-             FilterBox
-             //AOS
-             //,holmes
-            // ,microlight
+             DashBoardCompose
 ) {
 
     'use strict';
@@ -256,8 +247,9 @@ define([
                     _.each(views, _.bind(function(view, key) {
 
                         setTimeout(_.bind(function () {
+
                             this.renderCountryProfileDashboard(view, key);
-                            //AOS.init();
+
                         },this), 1000 + (index++ * 300));
 
                     }, this));
@@ -380,10 +372,9 @@ define([
 
                     var index = $(this).data('dashboard-index');
 
-                    amplify.publish(E.SCROLL_TO_SELECTOR,
-                        {
-                            container: self.$COUNTRY_PROFILE_DASHBOARDS.find('[data-dashboard-index='+ index +']')
-                        });
+                    amplify.publish(E.SCROLL_TO_SELECTOR, {
+                        container: self.$COUNTRY_PROFILE_DASHBOARDS.find('[data-dashboard-index='+ index +']')
+                    });
                 });
 
             },
@@ -394,38 +385,42 @@ define([
                     html = $(templateCountryProfile).filter('#dashboard').html(),
                     t = Handlebars.compile(html),
                     title = view.title || "",
-                    dashboard = view.dashboard || null,
-                    code = this.o.code,
-                    lang = this.o.lang;
-
-                log.info("BrowseByCountryView.renderCountryProfileDashboard;", key, title, dashboard);
+                    viewConfig = $.extend(true, {}, view),
+                    code = this.o.code;
 
                 // render dashboard
-                if (dashboard !== null) {
+                if (viewConfig.dashboard !== null) {
 
                     $container.html(t({
                         title: title,
-                        icon: view.icon,
-                        description: (view.description)? view.description[Common.getLocale()] || view.description["en"] : null,
+                        icon: viewConfig.icon,
+                        description: (viewConfig.description)? viewConfig.description[Common.getLocale()] || viewConfig.description["en"] : null,
                         index: key
                     }));
 
-                    var $dashboard = $container.find('[data-role="dashboard"]');
+                    var $dashboard = $container.find('[data-role="dashboard-compose"]');
 
                     // adding default country
-                    dashboard.defaultFilter = $.extend({}, dashboard.defaultFilter, {
-                        List1Codes: code}
-                        );
+                    viewConfig.dashboard.defaultFilter = $.extend({},
+                        viewConfig.dashboard.defaultFilter,
+                        {
+                            List1Codes: code
+                        }
+                     );
                     //dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code, '3]});
 
+                    var d = new DashBoardCompose();
 
-                    this.renderDashboard($.extend({}, dashboard, {
-                        container: $dashboard,
-                        layout: 'fluid',
-                        lang: lang}));
+                    d.render($.extend(true, {},
+                        viewConfig,
+                        {
+                            container: $dashboard,
+                            customDashBoardConfiguration: $.extend(true, {}, CM.view)
+                        })
+                    );
 
                 }else{
-                    log.error("View is not defined, handle exception");
+                    //log.error("View is not defined, handle exception");
                 }
 
             },
@@ -557,29 +552,6 @@ define([
                 });
 
                 return r.join(", ");
-
-            },
-
-            renderDashboard: function(config) {
-
-                var dashboard = new Dashboard();
-                // setting default filter options (i.e. language and datasouce)
-                config.defaultFilter = ViewUtils.defaultFilterOptions(config.defaultFilter);
-                _.each(config.items, _.bind(function(item) {
-                    item.config = ViewUtils.defaultItemOptions(item, CM.view);
-                }, this));
-
-                config.render =  true;
-
-                config._name = 'by_country';
-                dashboard.render(config);
-
-                // save dashboard for destroy
-                if (this.dashboards === undefined) {
-                    this.dashboards = [];
-                }
-
-                this.dashboards.push(dashboard);
 
             },
 

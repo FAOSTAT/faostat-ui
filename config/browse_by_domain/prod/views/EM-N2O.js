@@ -230,7 +230,8 @@ define([
                     allowedFilter: ['area', 'year'],
                     filter: {
                         List3Codes: [
-                            6814,
+                            68140,
+                            68160,
                             6815,
                             6816,
                             6817,

@@ -22,3 +22,41 @@
   }
 
 }
+
+
+//  Added Rounded Corner Tables
+.table-curved {
+  border-collapse: separate;
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  border-left:0px;
+
+  td, th {
+    border-left: 1px solid  #ddd;
+    border-top: 1px solid #ddd;
+  }
+
+  th {
+    border-top: none;
+  }
+
+  th:first-child {
+    border-radius: 5px 0 0 0;
+  }
+
+  th:last-child {
+    border-radius: 0 5px 0 0;
+  }
+
+  th:only-child{
+    border-radius: 5px 5px 0 0;
+  }
+
+  tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+  }
+
+  tr:last-child td:last-child {
+    border-radius: 0 0 5px 0;
+  }
+}

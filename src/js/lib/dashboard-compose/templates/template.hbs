@@ -1,0 +1,24 @@
+{{#if comment}}
+    <div class="row">
+        <div class="col-md-12">
+            <div data-role="comment">
+                {{#if comment.url}}
+                    <a href="{{comment.url}}" target="_blank">{{{i18n comment.text}}}</a>
+                {{else}}
+                    <p>
+                        {{{i18n comment.text}}}
+                    </p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{/if}}
+{{#if filter}}
+    <div class="row">
+        <div data-role="filter"></div>
+    </div>
+{{/if}}
+<div class="row">
+    <br>
+    <div data-role="dashboard"></div>
+</div>

@@ -86,6 +86,12 @@ define([
 
     });
 
+    Handlebars.registerHelper('calculateYears', function() {
+
+        return "";
+
+    });
+
     utils.getLabel = function (obj) {
         var lang = Common.getLocale();
         return obj[lang.toUpperCase()] || obj[lang.toLowerCase];

@@ -5,6 +5,7 @@ define([
     'config/Config',
     'config/Events',
     'i18n!nls/filter',
+    'text!lib/filters/templates/filter-box.hbs',
     'handlebars',
     'faostatapiclient',
     'underscore',
@@ -12,26 +13,21 @@ define([
     'q',
     'loglevel',
     'amplify'
-], function ($, Common, C, E, i18nLabels, Handlebars, API, _, Filter, Q, log) {
+], function ($, Common, C, E, i18nLabels, template, Handlebars, API, _, Filter, Q, log) {
 
     'use strict';
 
-    var s = {
-
-        //FILTERS: '[data-role="filter-box"]'
-
-    },
-        events = {
-    },
-
-    defaultOptions = {
+    var defaultOptions = {
 
         // EVENTS
         E: {
             ON_FILTER_CHANGE: E.ON_FILTER_CHANGE
         }
 
-        //requestKey: 0
+    },
+    s = {
+        LOADING: '[data-role=loading]',
+        FILTERS: '[data-role=filters]'
     };
 
     function FilterBox() {
@@ -40,197 +36,153 @@ define([
 
     FilterBox.prototype.render = function (options) {
 
+        var deferred = Q.defer();
+
         this.o = $.extend(true, {}, defaultOptions, options);
 
-        log.info("FilterBox.render; options", options);
+        // log.info("FilterBox.render; options", options);
 
         this.o.lang = Common.getLocale();
 
-        this.initVariables();
+        this._initVariables();
 
-        this.applyDefaultFilter();
+        this._applyDefaultFilter();
 
-        this.configurePage();
+        this._configurePage(deferred);
 
+        return deferred.promise;
     };
 
 
-    FilterBox.prototype.initVariables = function () {
+    FilterBox.prototype._initVariables = function () {
 
-        this.$CONTAINER = $(this.o.container);
+        var t = Handlebars.compile(template);
+
+        if (this.o.hasOwnProperty('container')) {
+            this.$CONTAINER = $(this.o.container);
+            this.$CONTAINER.html(t());
+
+            this.$LOADING = this.$CONTAINER.find(s.LOADING);
+            this.$FILTERS = this.$CONTAINER.find(s.FILTERS);
+        }else{
+            log.error("FilterBox._initVariables; missing container", this.o);
+        }
 
     };
 
+    FilterBox.prototype._applyDefaultFilter = function () {
 
-    FilterBox.prototype.applyDefaultFilter = function () {
+        //log.info("FilterBox.applyDefaultFilter;");
 
-        var filterItems = this.o.filter.items|| [],
-            defaultFilter =  this.o.filter.defaultFilter || {};
+        // TODO: leave only this.o.items when dashboards are ready
+        var filterItems = this.o.items || this.o.filter.items || [],
+            defaultFilter = this.o.defaultFilter || this.o.filter.defaultFilter || {};
 
-        _.each(filterItems, _.bind(function(f) {
+        _.each(filterItems, _.bind(function (f) {
             // TODO: in theory all filters should have it
             if (f.hasOwnProperty('config') && f.config.hasOwnProperty('filter')) {
                 f.config.filter = $.extend(true, {}, defaultFilter, f.config.filter);
             }
 
-            //log.info("FilterBox.render; f.config.filter", f);
-
         }, this));
 
     };
 
-    FilterBox.prototype.configurePage = function() {
+    FilterBox.prototype._configurePage = function (deferred) {
 
         var self = this;
-        this.o.filters = [];
+        this.filters = [];
 
-        amplify.publish(E.LOADING_SHOW, {container: this.$CONTAINER});
+        amplify.publish(E.LOADING_SHOW, {container: this.$LOADING});
 
-        this._preloadCodelists().then(function(f) {
+        Q.all(this._preloadFilters()).then(function (filters) {
 
-            amplify.publish(E.LOADING_HIDE, {container: self.$CONTAINER});
+            amplify.publish(E.LOADING_HIDE, {container: self.$LOADING});
+            self.$FILTERS.show();
 
-            _.each(f, function (c, index) {
+            //log.info("FilterBox._configurePage;", filters);
 
-                var id = 'filter_box_' + index;
+            self.filters = filters;
 
-                // TODO: dirty append for the filters
-                self.$CONTAINER.append('<div id="' + id + '"></div>');
-
-                // render filter
-                var filter = new Filter();
-
-                // binding the right event publish/subscriber
-                c.E = self.o.E;
-                c.requestKey = self.o.requestKey;
-
-                c.container = self.$CONTAINER.find('#' + id);
-
-                filter.init(c);
-
-                self.o.filters.push(filter);
-
-            });
-
-        }).done(function() {
-
-            amplify.publish(self.o.E.ON_FILTER_CHANGE, {isOnLoad: true, requestKey: self.o.requestKey});
+            deferred.resolve();
 
         });
 
     };
 
-    FilterBox.prototype._preloadCodelists = function () {
+    FilterBox.prototype._preloadFilters = function () {
 
-        var r = [],
-            filterItems = this.o.filter.items,
+        //log.info("FilterBox._preloadFilters;");
+
+        var filters = [],
+            // TODO: leave only this.o.items
+            filterItems = this.o.items || this.o.filter.items,
             self = this;
 
-        _.each(filterItems, function(filter) {
+        _.each(filterItems, function (filter) {
 
-            //log.info("FilterBox._preloadCodelists;", filter);
+            var id = 'filter_box_' + Math.random().toString().replace('.');
 
-            var type = filter.type;
+            // TODO: dirty append for the filters
+            self.$FILTERS.append('<div id="' + id + '"></div>');
 
-            switch(type) {
-                case 'codelist':
-                    r.push(self._preloadCodes(filter));
-                    break;
-                default:
-                    r.push(self._preloadStaticCodes(filter));
-                    break;
-            }
-
-        });
-
-        return Q.all(r);
-    };
-
-    FilterBox.prototype._preloadCodes = function (filter) {
-
-        var id = filter.config.dimension_id,
-            defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [],
-            request = $.extend(true, {}, {
-            id: id
-        }, filter.config.filter);
-
-        //log.info("FilterBox._preloadCodes; filter.config.filter", filter.config.filter);
-        //log.info("FilterBox._preloadCodes; request", request);
-
-        return API.codes(request)
-            .then(function(c) {
-
-                // TODO: use directly metadata/data returned by APIs?
-                var codes = [];
-
-                // process codes/defaults
-                _.each(c.data, function(d) {
-                    codes.push($.extend({}, d, {selected: defaultCodes.indexOf(d.code) > -1 }));
-                });
-                filter.config.data = codes;
-                return filter;
-
-            }).fail(function(e) {
-                log.error("FilterBox._preloadCodes", e);
-                //amplify.subscribe(E.CONNECTION_PROBLEM);
+            // render filter
+            var f = new Filter();
+            f.init({
+                filter: filter,
+                container: self.$FILTERS.find('#' + id),
+                E: self.o.E
             });
-
-    };
-
-    FilterBox.prototype._preloadStaticCodes = function (filter) {
-
-        //log.info("FilterBox._preloadStaticCodes; filter", filter);
-        var defaultCodes = (filter.config.hasOwnProperty("defaultCodes"))? filter.config.defaultCodes: [];
-
-            // TODO: add boolean "translatable"? in the json definition?
-        _.each(filter.config.data, function(d) {
-
-            // change labels if needed with i18nlabels.
-            d.label = i18nLabels[d.label] || d.label;
-
-            // process codes/defaults
-            //log.info("FilterBox._preloadStaticCodes; d", d, "selected", defaultCodes.indexOf(d.code) > -1);
-            d.selected = (defaultCodes.indexOf(d.code) > -1);
+            filters.push(f.render());
 
         });
 
-        return filter;
+        return filters;
     };
 
     FilterBox.prototype.getFilters = function () {
 
+        //log.info("FilterBox.getFilters;", this.filters);
+
         var f = [];
         try {
-            if (this.o.filters) {
-                _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
-                    f.push(this.o.filters[filterKey].getFilter());
-                }, this));
+            if (this.filters) {
+                _.each(this.filters, function (filter) {
+                    f.push(filter.getFilter());
+                });
             }
-        }catch (e) {
-            log.error(e);
+        } catch (e) {
+            log.error("FilterBox.getFilters;", e);
         }
 
         return f;
     };
 
+    FilterBox.prototype.unbindEventListeners = function () {
+
+    };
 
     FilterBox.prototype.destroy = function () {
 
-        if (this.o.filters) {
-            _.each(Object.keys(this.o.filters), _.bind(function (filterKey) {
+        log.info("FilterBox.destroy;");
 
-                this.o.filters[filterKey].destroy();
+        if (this.filters) {
+            _.each(this.filters, _.bind(function (filter) {
+
+                filter.destroy();
+
             }, this));
 
-            delete this.o.filters;
+            //delete this.filters;
+            delete this.filters;
         }
+
+        this.unbindEventListeners();
 
         // destroy all filters
         if (this.$CONTAINER !== undefined) {
             this.$CONTAINER.empty();
         }
-
-        log.warn("FilterBox.destroy; Handle destroy of all filters.");
 
     };
 

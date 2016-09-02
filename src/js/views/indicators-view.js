@@ -15,6 +15,9 @@ define([
     'fs-dt-c/table',
     'faostatapiclient',
     'q',
+    'lib/filters/filter-box',
+    'lib/filters/filter',
+    'lib/dashboard-composer/dashboard-composer',
     'amplify'
 ], function ($,
              log,
@@ -28,7 +31,10 @@ define([
              ReportTable,
              Table,
              API,
-             Q
+             Q,
+             FilterBox,
+             Filter,
+             DashBoardComposer
              ) {
 
     'use strict';
@@ -94,18 +100,323 @@ define([
 
         initVariables: function () {
 
-            this.initTable();
+            // this.initTable();
+
+            //this.initFiltersBox();
+
+            this.initDashBoardComposer();
+
+        },
+
+        initDashBoardComposer: function() {
+
+            this.$el.append('dashboard<div class="row"><div class="col-md-12" id="dashboard-composer"></div></div>');
+            var d = new DashBoardComposer(),
+                config = {
+
+                    "comment": {
+                        "text": {
+                            "en": "Emissions of methane and nitrous oxide produced from agricultural activities",
+                            "es": "Emisiones de metano y óxido nitroso producido por las actividades agrícolas",
+                            "fr": "Émissions de méthane et d'oxyde nitreux provenant des activités agricoles"
+                        }
+                        //,pdf: "GT.pdf"
+                    },
+
+                    filter: {
+
+                        defaultFilter: {
+                            "domain_code": ["QC"],
+                            // this force all the filters to avoid the "lists" codes
+                            "show_lists": false
+                        },
+
+                        items: [
+                            {
+                                // id to be applied on the getData request
+                                "id": "item",
+                                "type": "codelist",
+                                // TODO: in theory that should come from the dimensions schema!!
+                                "parameter": "List3Codes",
+                                //"title": "title",
+                                "componentType": {
+                                    // <!-- TODO: add a class instead of bootstrap -->
+                                    "class": "col-xs-6 col-sm-6 col-md-3",
+                                    "type": "dropDownList",
+                                    "multiple": false
+                                },
+                                "config": {
+                                    "dimension_id": "items",
+                                    "defaultCodes": ["27"],
+                                    "filter": {}
+                                }
+                            },
+                            {
+                                "id": "area",
+                                "type": "codelist",
+                                "parameter": "List1Codes",
+                                "componentType": {
+                                    "class": "col-xs-6 col-sm-6 col-md-3",
+                                    "type": "dropDownList",
+                                    "multiple": false
+                                },
+                                "config": {
+                                    "dimension_id": "area",
+                                    "defaultCodes": ["2"],
+                                    "filter": {}
+                                }
+                            },
+                            {
+                                "id": "year",
+                                "type": "codelist",
+                                "parameter": "List4Codes",
+                                "componentType": {
+                                    "class": "col-xs-4 col-sm-4 col-md-2",
+                                    "type": "dropDownList-timerange"
+                                },
+                                "config": {
+                                    "dimension_id": "year",
+                                    "defaultCodes": ['1994'],
+                                    "filter": {
+                                    }
+                                }
+                            }
+                        ]
+                    },
+
+                    dashboard: {
+
+                        //data base filter
+                        defaultFilter: {
+                            domain_codes: ['QC'],
+                            List2Codes: ["2510"],
+                            List5Codes: null,
+                            List6Codes: null,
+                            List7Codes: null,
+                            decimal_places: 2,
+                            decimal_separator: ".",
+                            limit: -1,
+                            thousand_separator: ",",
+                            "null_values": null,
+                            // TODO: remove it the page_size!!!
+                            page_size: 0,
+                            per_page: 0,
+                            page_number: 0
+                        },
+
+                        // labels?
+                        labels: {
+                            // labels to dinamically substitute the title and subtitle
+                            default: {
+                            }
+                        },
+
+                        //bridge configuration
+                        bridge: {
+
+                            type: "faostat",
+                            //requestType: 'data' // data, rankings
+
+                        },
+
+                        metadata: {},
+
+                        items: [
+                            {
+                                type: 'chart',
+                                class: "col-md-12",
+
+                                // labels
+                                labels: {
+                                    // temp[template to be applied to the config.template for the custom object
+                                    template: {
+                                        title: {
+                                            en: "Production/Yield quantities of {{item}} in {{area}}",
+                                            fr: "Production/Rendement de {{item}} dans le {{area}}",
+                                            es: "Producción/Rendimiento de {{item}} en {{area}}"
+                                        },
+                                        subtitle: "{{year}}"
+                                    }
+                                },
+
+                                config: {
+                                    adapter: {
+                                        adapterType: 'faostat',
+                                        type: "timeserie",
+                                        xDimensions: 'year',
+                                        yDimensions: 'unit',
+                                        valueDimensions: 'value',
+                                        seriesDimensions: ['area', 'item', 'element']
+                                    },
+                                    template: {
+                                        // height:'350px'
+                                        // default labels to be applied
+                                    },
+                                    creator: {}
+                                },
+                                allowedFilter: ['area', 'year', 'item'],
+                                filter: {
+                                    List2Codes: ["2312", "2510" ]
+                                }
+                            }
+                        ]
+                    }
+
+                };
+            d.render($.extend(true, {}, config, {container: '#dashboard-composer'}));
+
+            //this.$el.append('<br><br><div id="dashboard-composer2"></div>');
+           // var d2 = new DashBoardComposer();
+           // d2.init($.extend({}, config, {container: '#dashboard-composer2'}));
+
+        },
+
+        initFiltersBox: function() {
+
+            this.$el.append('<div id="filter-box"></div>');
+            var filterBox = new FilterBox();
+            filterBox.render({
+
+                container: '#filter-box',
+                defaultFilter: {
+                    "domain_code": ["AF"],
+                    "show_lists": false
+                },
+
+                items: [
+                    {
+                        "id": "area",
+                        "type": "codelist",
+                        "parameter": "List1Codes",
+                        "componentType": {
+                            "class": "col-lg-3",
+                            "type": "dropDownList",
+                            "multiple": false
+                        },
+                        "config": {
+                            "dimension_id": "area",
+                            "defaultCodes": ["4"],
+                            "filter": {
+                                "show_lists": false
+                            }
+                        }
+                    }
+                ]
+            }).then(function(v){
+
+            });
+
+
+        },
+
+        initFilters: function() {
+
+/*            this.$el.append('filter<br><div id="filter"></div>');
+
+            var filterBox = new FilterBox();
+            filterBox.render({
+                container: "#filter",
+                filter: {
+                    items: [{
+                        "id": "item",
+                        "type": "codelist",
+                        "parameter": "List3Codes",
+                       // "componentType": {
+                           // "class": "col-lg-3",
+                           // "type": "dropDownList"
+                       // },
+                        "config": {
+                            //"dimension_id": "item",
+                            "defaultCodes": ["27"],
+                            "filter": {
+                                "domain_code": "QC"
+                            }
+                        }
+                    }]
+                }
+            }, false);*/
+
+
+            /*this.$el.append('<div id="filter"></div>');
+            var filter = new Filter();
+            filter.render({
+                container: "#filter",
+                filter: {
+                        "id": "item",
+                        "type": "codelist",
+                        "parameter": "List3Codes",
+                        // "componentType": {
+                        // "class": "col-lg-3",
+                        // "type": "dropDownList"
+                        // },
+                        "config": {
+                            "dimension_id": "item",
+                            "defaultCodes": ["27"],
+                            "filter": {
+                                "domain_code": "QC",
+                                "show_lists": false
+                            }
+                        }
+                }
+            }).then(function(v){
+            });*/
+
+            this.$el.append('<div id="filter-year"></div>');
+            var filterYear = new Filter();
+            filterYear.render({
+                container: "#filter-year",
+                filter: {
+                    "id": "year",
+                    //"type": "remote",
+                    "parameter": "List3Codes",
+                     "componentType": {
+                         "type": "dropDownList-timerange"
+                     },
+                    "config": {
+                        "dimension_id": "year",
+                        "filter": {
+                            "domain_code": "QC"
+                        }
+                    }
+                }
+            }).then(function(v){
+            });
+
 
         },
 
         initTable: function() {
 
+            this.$el.append('<div id="test1"></div>');
             var t = new Table();
             t.render({
-                container: "#example"
+                model: {"metadata": {"processing_time": 203,"dsd": [{"label": "Domain Code","type": "code","key": "Domain Code"},{"label": "Domain","type": "label","key": "Domain"},{"label": "Country Code","type": "code","key": "Country Code","dimension_id": "area"},{"label": "Country","type": "label","key": "Country","dimension_id": "area"},{"label": "Element Code","type": "code","key": "Element Code","dimension_id": "element"},{"label": "Element","type": "label","key": "Element","dimension_id": "element"},{"label": "Item Code","type": "code","key": "Item Code","dimension_id": "item"},{"label": "Item","type": "label","key": "Item","dimension_id": "item"},{"label": "Year Code","type": "code","key": "Year Code","dimension_id": "year"},{"label": "Year","type": "label","key": "Year","dimension_id": "year"},{"label": "Unit","key": "Unit","type": "unit","dimension_id": "unit"},{"label": "Value","type": "value","key": "Value","dimension_id": "value"},{"label": "Flag","key": "Flag","type": "flag","dimension_id": "flag"},{"label": "Flag Description","type": "flag_label","key": "Flag Description","dimension_id": "flag"}],"output_type": "OBJECTS"},"data": [{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1990","Year":"1990","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1991","Year":"1991","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1992","Year":"1992","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1993","Year":"1993","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1994","Year":"1994","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1995","Year":"1995","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1996","Year":"1996","Unit":"index","Value":0.82,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1997","Year":"1997","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1998","Year":"1998","Unit":"index","Value":0.67,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1999","Year":"1999","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2000","Year":"2000","Unit":"index","Value":0.74,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2001","Year":"2001","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2002","Year":"2002","Unit":"index","Value":0.85,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2003","Year":"2003","Unit":"index","Value":0.18,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2004","Year":"2004","Unit":"index","Value":0.34,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2005","Year":"2005","Unit":"index","Value":0.38,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2006","Year":"2006","Unit":"index","Value":0.57,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2007","Year":"2007","Unit":"index","Value":0.55,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2008","Year":"2008","Unit":"index","Value":0.53,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2009","Year":"2009","Unit":"index","Value":0.47,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2010","Year":"2010","Unit":"index","Value":0.67,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2011","Year":"2011","Unit":"index","Value":0.59,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2012","Year":"2012","Unit":"index","Value":0.55,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2013","Year":"2013","Unit":"index","Value":0.42,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2014","Year":"2014","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2015","Year":"2015","Unit":"index","Flag":"NA","Flag Description":"Not applicable"}]},
+                container: "#test1",
+                adapter: {
+                   // columns: ['item', 'element'],
+                    show_codes: true
+                }
             });
+/*
+            this.$el.append('<div id="test2"></div>')
+            var t2 = new Table();
+            t2.render({
+                model: {"metadata": {"processing_time": 203,"dsd": [{"label": "Domain Code","type": "code","key": "Domain Code"},{"label": "Domain","type": "label","key": "Domain"},{"label": "Country Code","type": "code","key": "Country Code","dimension_id": "area"},{"label": "Country","type": "label","key": "Country","dimension_id": "area"},{"label": "Element Code","type": "code","key": "Element Code","dimension_id": "element"},{"label": "Element","type": "label","key": "Element","dimension_id": "element"},{"label": "Item Code","type": "code","key": "Item Code","dimension_id": "item"},{"label": "Item","type": "label","key": "Item","dimension_id": "item"},{"label": "Year Code","type": "code","key": "Year Code","dimension_id": "year"},{"label": "Year","type": "label","key": "Year","dimension_id": "year"},{"label": "Unit","key": "Unit","type": "unit","dimension_id": "unit"},{"label": "Value","type": "value","key": "Value","dimension_id": "value"},{"label": "Flag","key": "Flag","type": "flag","dimension_id": "flag"},{"label": "Flag Description","type": "flag_label","key": "Flag Description","dimension_id": "flag"}],"output_type": "OBJECTS"},"data": [{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1990","Year":"1990","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1991","Year":"1991","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1992","Year":"1992","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1993","Year":"1993","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1994","Year":"1994","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1995","Year":"1995","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1996","Year":"1996","Unit":"index","Value":0.82,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1997","Year":"1997","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1998","Year":"1998","Unit":"index","Value":0.67,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"1999","Year":"1999","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2000","Year":"2000","Unit":"index","Value":0.74,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2001","Year":"2001","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2002","Year":"2002","Unit":"index","Value":0.85,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2003","Year":"2003","Unit":"index","Value":0.18,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2004","Year":"2004","Unit":"index","Value":0.34,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2005","Year":"2005","Unit":"index","Value":0.38,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2006","Year":"2006","Unit":"index","Value":0.57,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2007","Year":"2007","Unit":"index","Value":0.55,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2008","Year":"2008","Unit":"index","Value":0.53,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2009","Year":"2009","Unit":"index","Value":0.47,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2010","Year":"2010","Unit":"index","Value":0.67,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2011","Year":"2011","Unit":"index","Value":0.59,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2012","Year":"2012","Unit":"index","Value":0.55,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2013","Year":"2013","Unit":"index","Value":0.42,"Flag":"","Flag Description":"Official data"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2014","Year":"2014","Unit":"index","Flag":"NA","Flag Description":"Not applicable"},{"Domain Code":"FS","Domain":"Suite of Food Security Indicators","Country Code":"68","Country":"France","Element Code":"6125","Element":"Value","Item Code":"21032","Item":"Political stability and absence of violence/terrorism (index)","Year Code":"2015","Year":"2015","Unit":"index","Flag":"NA","Flag Description":"Not applicable"}]},
+                container: "#test2",
+                adapter: {
+                    // columns: ['item', 'element'],
+                    show_codes: true
+                },
+                temaplate: {
+                    table: {
+
+                    }
+                }
+            });*/
 
             //'datatables-colreorder',
+
+
 
         },
 

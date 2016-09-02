@@ -7653,6 +7653,27 @@ button_new_2:before {
 .bootstrap-table .page-last {
   display: none; }
 
+.table-curved {
+  border-collapse: separate;
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  border-left: 0px; }
+  .table-curved td, .table-curved th {
+    border-left: 1px solid  #ddd;
+    border-top: 1px solid #ddd; }
+  .table-curved th {
+    border-top: none; }
+  .table-curved th:first-child {
+    border-radius: 5px 0 0 0; }
+  .table-curved th:last-child {
+    border-radius: 0 5px 0 0; }
+  .table-curved th:only-child {
+    border-radius: 5px 5px 0 0; }
+  .table-curved tr:last-child td:first-child {
+    border-radius: 0 0 0 5px; }
+  .table-curved tr:last-child td:last-child {
+    border-radius: 0 0 5px 0; }
+
 /* Btn-round Fenix*/
 /** avoid dotted lines when clicking on button**/
 input[type="button"] {

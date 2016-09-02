@@ -7,10 +7,8 @@ define([
     'use strict';
 
     return Controller.extend({
-        
 
         show: function (params, section) {
-            console.log("download-browse-controller.show()");
             this.view = new View({
                 region: 'main',
                 section: section,

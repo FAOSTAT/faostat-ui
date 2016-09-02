@@ -21,7 +21,8 @@ define([
     'toastr',
     //'aos',
     'jquery.visible',
-    'jquery.lazyload'
+    'jquery.lazyload',
+    'bootstrap'
 ], function ($,
              log,
              C,

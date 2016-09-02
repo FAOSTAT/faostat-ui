@@ -38,7 +38,7 @@ CACHE MANIFEST
 //fenixrepo.fao.org/cdn/faostat/js/blob/1.0/Blob.js
 //fenixrepo.fao.org/cdn/faostat/js/tableExport.jquery.plugin/1.0/tableExport.min.js
 //fenixrepo.fao.org/cdn/faostat/js/bootstrap-table/1.9.1/bootstrap-table.min.js
-//fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.0/dist/jstree.min.js
+//fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.2/dist/jstree.min.js
 //fenixrepo.fao.org/cdn/faostat/js/nprogress/0.2.0/nprogress.js
 //fenixrepo.fao.org/cdn/faostat/js/toastr/2.1.2/build/toastr.min.js
 
@@ -65,7 +65,7 @@ CACHE MANIFEST
 # CSS
 //fenixrepo.fao.org/cdn/faostat/js/bootstrap/3.3.6/css/bootstrap.min.css
 //fenixrepo.fao.org/cdn/faostat/js/bootstrap-table/1.9.1/bootstrap-table.min.css
-//fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.0/dist/themes/default/style.min.css
+//fenixrepo.fao.org/cdn/faostat/js/jstree/3.3.2/dist/themes/default/style.min.css
 //fenixrepo.fao.org/cdn/faostat/js/select2/3.5.4/select2.css
 //fenixrepo.fao.org/cdn/faostat/js/jquery-ui/1.9.2/smoothness/jquery-ui.custom.min.css
 //fenixrepo.fao.org/cdn/faostat/js/outdatedbrowser/1.1.1/outdatedbrowser.min.css
