@@ -61,7 +61,6 @@
                    </span>
                     {{this.title}}
                 </h1>
-
                 <ul class="list-unstyled">
                     {{#each this.data}}
                         <li class="domain-list">
@@ -70,6 +69,8 @@
                                data-domain="{{this.domain_code}}"
                                href="{{this.link}}">{{this.domain_name}}
                                 <span style="display:none">{{../title}}</span>
+                                <span style="display:none">{{this.domain_code}} </span>
+                                <span style="display:none">{{../group_code}} </span>
                             </a>
                         </li>
                     {{/each}}
