@@ -7648,6 +7648,9 @@ button_new_2:before {
   content: "\ec1d"; }
 
 /* Components */
+.fs-table .btn-floating {
+  margin: 10px 0px 10px 10px; }
+
 .bootstrap-table .page-first {
   display: none; }
 .bootstrap-table .page-last {
@@ -8126,69 +8129,6 @@ div#google_search input#search-submit {
   border-bottom-color: #EEEEEE;
   background-color: #FAFAFA; }
 
-.leaflet-container .leaflet-control-attribution {
-  opacity: 0.7; }
-
-.fm-controller-box-icons-container {
-  display: none; }
-
-.leaflet-popup-content-wrapper {
-  box-shadow: none;
-  border-radius: 7px; }
-  .leaflet-popup-content-wrapper .leaflet-popup-content {
-    line-height: 1.4; }
-    .leaflet-popup-content-wrapper .leaflet-popup-content .fm-popup .fm-popup-join-content {
-      color: #337ab7;
-      font-size: 22px; }
-
-.leaflet-container {
-  background: white; }
-
-.leaflet-control {
-  opacity: 0.9; }
-
-/* zoom control */
-/* to keep */
-/*
-.leaflet-control-zoom-in {
-  font: bold 0 'Lucida Console', Monaco, monospace;
-  width:31px !important;
-  height: 30px !important;
-  background-image: url(images/fenix-map-sprite.png);
-  background-position: -120px 0 !important;
-}
-
-.leaflet-control-zoom-in:hover {
-  background-position: -120px -30px !important;
-}
-
-!* to keep *!
-.leaflet-control-zoom-out {
-  font: bold 0 'Lucida Console', Monaco, monospace;
-  width:31px !important;
-  height: 30px !important;
-  background-image: url(images/fenix-map-sprite.png);
-  background-position: -150px 0 !important;
-}
-
-.leaflet-control-zoom-out:hover {
-  background-position: -150px -30px !important;
-}
-
-!* to keep *!
-.leaflet-control-zoom-reset {
-  font: bold 0 'Lucida Console', Monaco, monospace;
-  width:31px !important;
-  height: 30px !important;
-  background-image: url(images/fenix-map-sprite.png);
-  background-position: -210px 0 !important;
-}
-
-.leaflet-control-zoom-reset:hover {
-  cursor: pointer;
-  background-position: -210px -30px !important;
-}
-*/
 /* Range Slider */
 .irs-bar, .irs-bar-edge, .irs-line {
   height: 5px;
@@ -8339,6 +8279,75 @@ div#google_search input#search-submit {
     font-size: 14px; }
   .fs-report-table tbody tr.row-shade {
     font-weight: bold; }
+
+.fs-map .btn-floating {
+  margin: 10px 0px 10px 10px; }
+
+.leaflet-container .leaflet-control-attribution {
+  opacity: 0.7; }
+
+.fm-controller-box-icons-container {
+  display: none; }
+
+.leaflet-popup-content-wrapper {
+  box-shadow: none;
+  border-radius: 7px; }
+  .leaflet-popup-content-wrapper .leaflet-popup-content {
+    line-height: 1.4; }
+    .leaflet-popup-content-wrapper .leaflet-popup-content .fm-popup .fm-popup-join-content {
+      color: #337ab7;
+      font-size: 22px; }
+
+.leaflet-container {
+  background: white; }
+
+.leaflet-control {
+  opacity: 0.9; }
+
+/* zoom control */
+/* to keep */
+/*
+.leaflet-control-zoom-in {
+  font: bold 0 'Lucida Console', Monaco, monospace;
+  width:31px !important;
+  height: 30px !important;
+  background-image: url(images/fenix-map-sprite.png);
+  background-position: -120px 0 !important;
+}
+
+.leaflet-control-zoom-in:hover {
+  background-position: -120px -30px !important;
+}
+
+!* to keep *!
+.leaflet-control-zoom-out {
+  font: bold 0 'Lucida Console', Monaco, monospace;
+  width:31px !important;
+  height: 30px !important;
+  background-image: url(images/fenix-map-sprite.png);
+  background-position: -150px 0 !important;
+}
+
+.leaflet-control-zoom-out:hover {
+  background-position: -150px -30px !important;
+}
+
+!* to keep *!
+.leaflet-control-zoom-reset {
+  font: bold 0 'Lucida Console', Monaco, monospace;
+  width:31px !important;
+  height: 30px !important;
+  background-image: url(images/fenix-map-sprite.png);
+  background-position: -210px 0 !important;
+}
+
+.leaflet-control-zoom-reset:hover {
+  cursor: pointer;
+  background-position: -210px -30px !important;
+}
+*/
+.fs-chart .btn-floating {
+  margin: 10px 0px 10px 10px; }
 
 /* Third parties */
 .typeahead, .tt-query, .tt-hint {
