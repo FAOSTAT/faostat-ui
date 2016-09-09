@@ -78,6 +78,7 @@ var config = {
         Blob: CDN + '/js/blob/1.0/Blob',
         tableExport: CDN + '/js/tableExport.jquery.plugin/1.0/tableExport.min',
 
+
         // TODO: move to CDN
         /* FAOSTAT API's client. */
         faostatapiclient: 'FAOSTATAPIClient.min',
@@ -134,6 +135,8 @@ var config = {
         'highcharts-treemap': CDN + '/js/highcharts/4.2.5/js/modules/treemap',
         'highcharts-heatmap': CDN + '/js/highcharts/4.2.5/js/modules/heatmap',
         'highcharts-export': CDN + '/js/highcharts/4.2.5/js/modules/exporting',
+        'highcharts-regression':'//rawgithub.com/phpepe/highcharts-regression/master/highcharts-regression',
+
 
         // highchart client side exporting
         'highcharts-export-clientside': CDN + '/js/highcharts-export-clientside/1.1.4/highcharts-export-clientside',
@@ -368,15 +371,15 @@ var config = {
         "highcharts-export-clientside": {
             "deps": ["highcharts", "canvas-tools", 'jspdf']
         },
-
+        "highcharts-regression": {
+            "deps": ["highcharts"]
+        },
         "datatables.bs": {
             "deps": ["jquery", "bootstrap"],
             export: "DataTables"
         },
-
         "datatables.net": {
             "deps": ["jquery"],
-
         },
         "datatables.net-bs":{
             //export: "DataTables"
