@@ -494,7 +494,7 @@ define([
                 log.info(item);
 
 
-                API.data_new({
+                API.data({
                     datasource: "internal",
                     domain_code: "QC",
                     area: area,

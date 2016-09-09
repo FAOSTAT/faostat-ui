@@ -301,7 +301,7 @@ define([
 
            amplify.publish(E.EXPORT_DATA, exportObj, {
                 //requestType: 'databean',
-                requestType: 'data_new',
+                requestType: 'data',
                // TODO: multilinguage
                 waitingText: 'Please wait<br> The download could require some time'
             });

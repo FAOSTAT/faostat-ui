@@ -246,7 +246,7 @@ define([
                 }, r);
 
                 this.cachedRequest.push(r);
-                requests.push(API.data_new(r));
+                requests.push(API.data(r));
 
             }, this));
 
