@@ -68,7 +68,7 @@ define([
                 leaflet: {
                     zoomControl: false,
                     attributionControl: true,
-                    scrollWheelZoom: true,
+                    scrollWheelZoom: false,
                     touchZoom: true,
                     minZoom: 1
                 },

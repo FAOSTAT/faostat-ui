@@ -8,6 +8,7 @@ define(['jquery'], function ($) {
 
         "URL_API": "http://168.202.39.159:8081/faostat-api/v1/",
         "DATASOURCE": "internal",
+        //"DATASOURCE": "production",
         "API_LOG": false,
 
         "LOGLEVEL": "trace", // trace/debug/info/warn/error/silent
@@ -16,9 +17,6 @@ define(['jquery'], function ($) {
         "GOOGLE_ANALYTICS_ID": "UA-68486942-2",
 
         // URLs
-        "URL_FEEDBACK_SYSTEM": "http://fenixapps.fao.org/feedbacksystem/",
-        //"URL_FAOSTAT_DATABASE_ZIP": "http://fenix.fao.org/faostat/ftp/FAOSTAT.zip",
-        //"URL_BULK_DOWNLOADS_BASEPATH": "http://fenix.fao.org/faostat/bulkdownloads/",
         "URL_FAOSTAT_DOCUMENTS_BASEPATH": 'http://fenixservices.fao.org/faostat/static/documents/',
         "URL_RELEASE_CALENDAR": 'http://fenixservices.fao.org/faostat/static/releasecalendar/Default.aspx',
 

@@ -9,7 +9,7 @@ define([
     'i18n!nls/common',
     'FileSaver',
     'tableExport',
-    'amplify'
+    'amplify',
 ], function ($, log, _, A, E, API, i18nLabels) {
 
     'use strict';
@@ -17,13 +17,16 @@ define([
     var defaultOptions = {
 
         //requestType: 'data',
-        requestType: 'databean',
+        //requestType: 'databean',
+        requestType: 'data_new',
         output_type: 'csv',
         name: "FAOSTAT_data"
 
     };
 
     function Export(config) {
+
+        log.info(this.isExportSupported());
 
         this.o = $.extend(true, {}, defaultOptions, config);
 
@@ -42,8 +45,8 @@ define([
             r = $.extend(true, {}, request);
 
 
-        log.info("Export.exportData;", request);
-        log.info("Export.exportData;", options);
+        //log.info("Export.exportData;", request);
+        //log.info("Export.exportData;", options);
         log.info("Export.exportData;", r, requestType, options, name, request);
 
         if (!r.hasOwnProperty('output_type')) {
@@ -77,7 +80,7 @@ define([
 
             }).fail(function (error) {
 
-                log.error("FAIL", error);
+                log.error("Export.exportData; error", error);
                 amplify.publish(E.WAITING_HIDE);
                 amplify.publish(E.NOTIFICATION_WARNING, {title: i18nLabels.error_export});
 
@@ -96,9 +99,7 @@ define([
 
         var start = new Date();
 
-        // TODO: check if it works in all browser. There should be an issue with Sfari 8.0
-
-        var blob = new Blob([result], {type: "data:application/csv;charset=utf-8;"}),
+        var blob = new Blob([result], this.isExportSupported()? {type: "data:application/csv;charset=utf-8;"} : {type: "text/plain;"}),
             d = new Date(),
             filename = name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear() + '.csv';
 
@@ -137,7 +138,7 @@ define([
         log.info('EXPORT.exportTable; options: ', options);
 
         var container = options.container,
-            type = options.type || 'excel',
+            type = this.isExportSupported()? options.type || 'xls' : 'txt',
             d = new Date(),
             filename = (options.name) || this.o.name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear();
 
@@ -160,14 +161,12 @@ define([
 
         var csv = ConvertToCSV(options.data);
 
-        var blob = new Blob([csv], {type: "data:application/csv;charset=utf-8;"}),
+        var blob = new Blob([csv], this.isExportSupported()? {type: "data:application/csv;charset=utf-8;"} : {type: "text/plain;"}),
             d = new Date(),
             filename = (options.name) || this.o.name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear();
 
         // adding the extension
         filename += ".csv";
-
-        log.info('EXPORT.saveAs;');
 
         saveAs(blob, filename);
         
@@ -199,6 +198,18 @@ define([
             return (text)? '"' + text.toString().replace(/"/g, '""') + '"' : '""';
 
         }
+
+    };
+
+    Export.prototype.isExportSupported = function () {
+
+        // dirty fix for IE10 that doesn't support indexOF
+        var isSafari = false;
+        if (!Array.prototype.indexOf) {
+            isSafari = navigator.vendor.indexOf("Apple") == 0 && /\sSafari\//.test(navigator.userAgent); // true or false
+        }
+
+        return !isSafari;
 
     };
 

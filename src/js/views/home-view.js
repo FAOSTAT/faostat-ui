@@ -39,10 +39,8 @@ define([
 
             DATABASE_UPDATES: "#fs_home_database_updates",
             RELEASE_CALENDAR: "#fs_home_release_calendar",
-            PARTNERS: "#fs_home_partners",
             COUNTRY_PROFILES: "#fs_home_country_profiles",
             TWITTER: "fs_home_twitter",
-            TERRITORIAL_NOTES: '#territorial_notes',
             FAOSTAT_BULK_ZIP: '[data-role="bulk_download"]',
             FAOSTAT_BULK_DATE: '[data-role="bulk_download_date"]',
             FAOSTAT_BULK_SIZE: '[data-role="bulk_download_size"]',
@@ -352,14 +350,15 @@ define([
 
                     if (index < CM.MAX_DATABASE_UPDATES) {
 
-                        var m = moment(domain.date_update),
-                            date =  m.format("MMM DD, YYYY");
+                        var d = $.extend(true, {}, domain),
+                            m = moment(domain.date_update),
+                            date_update =  m.format("MMM DD, YYYY");
 
-                        domain.title = domain.domain_name + " ("+ domain.group_name + ")";
-                        domain.date = date;
-                        domain.url = '#' + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [domain.domain_code ]);
+                        d.title = d.domain_name + " ("+ d.group_name + ")";
+                        d.date_update = date_update;
+                        d.url = '#' + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [d.domain_code]);
 
-                        databaseUpdates.push(domain);
+                        databaseUpdates.push(d);
 
                     }
 

@@ -56,6 +56,8 @@ define([
         BREADCRUMB_CONTAINER: "#breadcrumb-container",
         FOOTER_MENU_CONTAINER: "#footer-menu-container",
         LANG: "#footer-menu-container",
+        SCROLL_TOP: '[data-role="scroll-top"]',
+        MENU: '#fs-menu',
 
         JIRA_COLLECTOR: "#jiraFaostatCollector",
         JIRA_LOGIN: "#jiraLogin",
@@ -158,12 +160,9 @@ define([
                 }
             });
 
-            $('.scroll-top-wrapper').on('click', this.scrollToTop);
+            $(s.SCROLL_TOP).on('click', this.scrollToTop);
 
             this.$SEACH_BOX = this.$el.find(s.SEARCH);
-
-            // tooltip
-            $('[data-toggle="tooltip"]').tooltip();
 
             // disclaimer
             amplify.publish(E.NOTIFICATION_INFO, {
@@ -224,7 +223,9 @@ define([
             /* Initiate the menu. */
             this.menu = new FAOSTATMenu();
             // TODO: fix menu language and check how is it taken
-            this.menu.init();
+            this.menu.init({
+                container: s.MENU
+            });
 
         },
 
@@ -264,6 +265,9 @@ define([
             this.$GOOGLE_FORM.on('click', function() {
                 amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.select_google_form);
             });
+
+            // tooltip
+            this.$GOOGLE_FORM.tooltip();
 
         },
 

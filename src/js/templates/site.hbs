@@ -128,7 +128,7 @@
 <!-- Top menu container -->
 <div class="container">
     <div class="col-md-12">
-        <div class='faostat_ui_menu' id='faostat_ui_menu'></div>
+        <div class='faostat_ui_menu' id='fs-menu'></div>
     </div>
 </div>
 
@@ -284,8 +284,6 @@
 
     </div>
 
-    <!--<div class="hidden-xs"><br></div>-->
-
     <div class="row">
         <div class="col-xs-12">
             <a data-link="external" href="http://www.fao.org/contact-us/terms/{{locale}}/" target='_blank' class="pull-right">© FAO,&nbsp;2016</a>
@@ -299,23 +297,20 @@
 </footer>
 
 <!-- Scrooling -->
-<div class="scroll-top-wrapper">
+<div data-role="scroll-top" class="scroll-top-wrapper">
 	<span class="scroll-top-inner">
         <i style="color:white;margin-top:10px;" class="material-icons">keyboard_arrow_up</i>
 	</span>
 </div>
 
 <!-- Feedbacks -->
-<div data-toggle="tooltip" data-placement="left" title="{{help_us_improve_this_site}}"
+<div data-role="google-form" data-toggle="tooltip" data-placement="left" title="{{help_us_improve_this_site}}"
      style="position:fixed; bottom:15px; right:15px;z-index:3;">
-
-    <a data-role="google-form" href='https://docs.google.com/forms/d/1rB6ECrKubLS49wf9_ozx2ywSeLIWSB5PrjaDSWJO-oo/viewform?c=0&w=1'
+    <a href='https://docs.google.com/forms/d/1rB6ECrKubLS49wf9_ozx2ywSeLIWSB5PrjaDSWJO-oo/viewform?c=0&w=1'
        target="_blank" class="btn-floating btn-default btn-large waves-effect waves-light">
         <i class="material-icons left">feedback</i>
     </a>
-
     <br>
-
 </div>
 
 <!-- JIRA -->

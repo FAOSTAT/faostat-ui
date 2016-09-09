@@ -404,7 +404,7 @@ define([
                     viewConfig.dashboard.defaultFilter = $.extend({},
                         viewConfig.dashboard.defaultFilter,
                         {
-                            List1Codes: code
+                            area: code
                         }
                      );
                     //dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code, '3]});

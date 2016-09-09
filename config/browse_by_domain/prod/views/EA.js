@@ -1,12 +1,13 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 
     return {
 
-        "filter": {
+        filter: {
 
             defaultFilter: {
                 "domain_code": ["EA"],
@@ -87,20 +88,19 @@ define(function () {
                         }
                     }
                 },
+                C.filter.aggregation,
                 {
-                    "id": "aggregation",
-                    "type": "static",
-                    "parameter": "operator",
+                    "id": "element",
+                    "type": "codelist",
+                    "parameter": "List3Codes",
                     "componentType": {
-                        "class": "col-md-2",
+                        "class": "hidden",
                         "type": "dropDownList"
                     },
                     "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-                        ]
+                        "dimension_id": "element",
+                        "defaultCodes": ["6137"],
+                        "filter": {}
                     }
                 }
             ]
@@ -111,7 +111,7 @@ define(function () {
             //data base filter
             defaultFilter: {
                 domain_codes: ['EA'],
-                List3Codes: ["6137"],
+                //List3Codes: ["6137"],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -120,7 +120,6 @@ define(function () {
                 limit: -1,
                 thousand_separator: ",",
                 "null_values": null,
-                // TODO: remove it the page_size!!!
                 page_size: 0,
                 per_page: 0,
                 page_number: 0
@@ -152,9 +151,9 @@ define(function () {
                         default: {},
                         template: {
                             title: {
-                                en: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices",
-                                fr: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices",
-                                es: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices"
+                                en: "Development flows of {{donor}} to {{purpose}} in {{element}}",
+                                fr: "Development flows of {{donor}} to {{purpose}} in {{element}}",
+                                es: "Development flows of {{donor}} to {{purpose}} in {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -171,7 +170,7 @@ define(function () {
                         },
                         layer: {}
                     },
-                    allowedFilter: ['donor', 'item', 'year', 'purpose', 'aggregation'],
+                    allowedFilter: ['donor', 'item', 'year', 'purpose', 'aggregation', 'element'],
                     deniedTemplateFilter: [],
                     filter: {
                         List2Codes: ["5000>", "351"],
@@ -185,9 +184,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} US$, 2013 prices",
-                                fr: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} US$, 2013 prices",
-                                es: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} US$, 2013 prices"
+                                en: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} {{element}}",
+                                fr: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} {{element}}",
+                                es: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} {{element}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -221,9 +220,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 10 recipients of {{donor}} in US$, 2013 prices",
-                                fr: "Top 10 recipients of {{donor}} in US$, 2013 prices",
-                                es: "Top 10 recipients of {{donor}} in US$, 2013 prices"
+                                en: "Top 10 recipients of {{donor}} in {{element}}",
+                                fr: "Top 10 recipients of {{donor}} in {{element}}",
+                                es: "Top 10 recipients of {{donor}} in {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -263,9 +262,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 10 donors of {{recipientarea}} in US$, 2013 prices",
-                                fr: "Top 10 donors of {{recipientarea}} in US$, 2013 prices",
-                                es: "Top 10 donors of {{recipientarea}} in US$, 2013 prices"
+                                en: "Top 10 donors of {{recipientarea}} in {{element}}",
+                                fr: "Top 10 donors of {{recipientarea}} in {{element}}",
+                                es: "Top 10 donors of {{recipientarea}} in {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

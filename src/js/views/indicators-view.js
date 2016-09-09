@@ -17,7 +17,8 @@ define([
     'q',
     'lib/filters/filter-box',
     'lib/filters/filter',
-    'lib/dashboard-composer/dashboard-composer',
+    'lib/dashboard-compose/dashboard-compose',
+    'lib/release-calendar/release-calendar',
     'amplify'
 ], function ($,
              log,
@@ -34,8 +35,9 @@ define([
              Q,
              FilterBox,
              Filter,
-             DashBoardComposer
-             ) {
+             DashBoardComposer,
+             ReleaseCalendar
+ ) {
 
     'use strict';
 
@@ -104,8 +106,21 @@ define([
 
             //this.initFiltersBox();
 
-            this.initDashBoardComposer();
+            //this.initDashBoardComposer();
 
+            // this.initReleaseCalendar();
+
+            this.testQueries();
+
+        },
+
+        initReleaseCalendar: function() {
+
+            this.$el.append('calendard<div class="col-md-12" id="calendar"></div>');
+            var c = new ReleaseCalendar();
+            c.render({
+                container: '#calendar'
+            });
         },
 
         initDashBoardComposer: function() {
@@ -423,6 +438,96 @@ define([
 
         testQueries: function () {
 
+           /* $.ajax({
+                url: "http://168.202.39.159:8081/faostat-api/v1/en/data/QC",
+                contentType: "application/json",
+                traditional:true,
+                data: {
+                    datasource: "internal",
+                    area: [2],
+                    year: [2011,2010],
+                    item: [27],
+                    element: [2510]
+                },
+                success: function(result){
+                    log.info(result);
+                },
+                error: function(error) {
+                    log.error(error);
+                }
+            });*/
+
+
+          /*  $.ajax({
+                url: "http://168.202.39.159:8081/faostat-api/v1/en/data/QC",
+                //contentType: "application/json",
+                //traditional:true,
+                data: {
+                    datasource: "internal",
+                    area: [2],
+                    year: [2011,2010],
+                    item: [27],
+                    element: [2510]
+                },
+                success: function(result){
+                    log.info(result);
+                },
+                error: function(error) {
+                    log.error(error);
+                }
+            });*/
+
+            Q.all([
+                API.codes({id: 'area', domain_code: 'QC', show_lists: false}),
+                API.codes({id: 'year', domain_code: 'QC', show_lists: false}),
+                API.codes({id: 'item', domain_code: 'QC', show_lists: false})
+            ]).then(function(codes) {
+
+                log.info(codes)
+
+                var area = _.pluck(codes[0].data, 'code');
+                var year = _.pluck(codes[1].data, 'code');
+                var item = _.pluck(codes[2].data, 'code');
+
+                log.info(area);
+                log.info(year);
+                log.info(item);
+
+
+                API.data_new({
+                    datasource: "internal",
+                    domain_code: "QC",
+                    area: area,
+                    year: year,
+                    item: item,
+                    element: [2510],
+                    no_records: true,
+                }).then(function(d) {
+                    alert("----")
+                    log.info("----", d);
+                    alert(d)
+
+                }).fail(function(e) {
+                    alert("error")
+                    alert("error", e);
+                    log.error(e);
+                });
+            });
+
+           /*
+
+            API.data_new({
+                datasource: "internal",
+                domain_code: "QC",
+                area: [2],
+                year: [2011,2010],
+                item: [27],
+                element: [2510]
+            }).then(function(d) {
+                log.info(d)
+
+            });*/
+
 
             /*$.ajax({
              url: "http://fenixservices.fao.org/faostat/api/v1/en/data/",
@@ -440,7 +545,7 @@ define([
              });*/
 
 
-            API.definitions({
+           /* API.definitions({
                 datasource: "production"
             }).then(function(d) {
                 log.info(d)
@@ -460,7 +565,7 @@ define([
             }).then(function(d) {
                 log.info(d)
 
-            });
+            });*/
 
 
             /*  api.data_get({

@@ -261,7 +261,7 @@ define([
                             // TODO: get label from metadata
                             v.title = i18nLabels[id.toLowerCase()] || id;
                             //v.parameter = this.DIMENSION_PARAMETER_MAPPING[id];
-                            v.parameter = parameter;
+                            v.parameter = id;
                             v.id = id;
 
                             v.ddOptions = {
@@ -312,13 +312,7 @@ define([
                     API.codes({
                         id: id,
                         domain_code: domainCode,
-                        domains: domainCode,
-                        whitelist: [],
-                        blacklist: [],
-                        subcodelists: null,
                         show_lists: false,
-                        show_full_metadata: null,
-                        ord: null
                     })
                 );
 
@@ -379,7 +373,7 @@ define([
 
             domain.id = 'domain';
             // TODO: the parameter in theory should be dynamic
-            domain.parameter = 'domain_codes';
+            domain.parameter = 'domain_code';
             // TODO: change domains variable name
             domain.codes = [this.o.domains.$DD.val()];
 
