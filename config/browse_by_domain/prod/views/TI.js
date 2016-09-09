@@ -18,9 +18,9 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
-                        "class": "col-xs-12 col-sm-6 col-md-3",
+                        "class": "col-xs-12 col-sm-6 col-md-4",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -34,9 +34,9 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
-                        "class": "col-xs-12 col-sm-6 col-md-3",
+                        "class": "col-xs-12 col-sm-6 col-md-4",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -50,15 +50,31 @@ define([
                     // id to be applied on the getData request
                     "id": "element",
                     "type": "codelist",
-                    "parameter": "List2Codes",
+                    "parameter": "element",
                     "componentType": {
-                        "class": "col-xs-12 col-sm-6 col-md-3",
+                        "class": "col-xs-12 col-sm-6 col-md-4",
                         "type": "dropDownList",
                         "multiple": false
                     },
                     "config": {
                         "dimension_id": "element",
                         "defaultCodes": ["64"],
+                        "filter": {}
+                    }
+                },
+                {
+                    // id to be applied on the getData request
+                    "id": "year",
+                    "type": "codelist",
+                    "parameter": "year",
+                    "componentType": {
+                        "class": "hidden",
+                        "type": "dropDownList-timerange",
+                        "multiple": false
+                    },
+                    "config": {
+                        "dimension_id": "year",
+                        "defaultCodes": [],
                         "filter": {}
                     }
                 }
@@ -69,44 +85,17 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['TI'],
-                List4Codes: ["_1"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['TI']
             },
-
-            // labels
-            labels: {
-                default: {}
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "{{element}} - {{item}}",

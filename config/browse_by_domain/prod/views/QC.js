@@ -20,11 +20,9 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     //"title": "title",
                     "componentType": {
-                        // <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
                         "multiple": false
@@ -38,7 +36,7 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
@@ -53,7 +51,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
@@ -73,23 +71,11 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['QC'],
-                List2Codes: ["2510"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['QC'],
+                element: ["2510"]
             },
 
-            // labels?
+            // labels
             labels: {
                 // labels to dinamically substitute the title and subtitle
                 default: {
@@ -111,9 +97,9 @@ define([
                     type: 'map',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // labels to dinamically substitute the title and subtitle
+                        // labels to dynamically substitute the title and subtitle
                         default: {},
 
                         // temp[late to be applied to the config.template for the custom object
@@ -132,8 +118,7 @@ define([
                     allowedFilter: ['item', 'year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
+                        area: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -144,7 +129,7 @@ define([
 
                     // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Production/Yield quantities of {{item}} in {{area}}",
@@ -172,7 +157,7 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: ["2312", "2510" ]
+                        element: ["2312", "2510" ]
                     }
                 },
                 {
@@ -209,8 +194,8 @@ define([
                     },
                     allowedFilter: ['year', 'item', 'aggregation'],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        // TODO: remove the area (in theory should be automatically detected from the domain dimensions/schema)
+                        area: ["5100", "5200", "5300", "5400", "5500"],
                         "group_by": 'year, item',
                         "order_by": 'area'
                     }
@@ -256,7 +241,7 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
+                        area: ["5000>"],
                         "group_by": 'year, item',
                         "order_by": 'value DESC',
                         "limit": '10'
@@ -303,8 +288,8 @@ define([
                     allowedFilter: ['area', 'year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        //List1Codes: ["5000>"],
-                        List3Codes: ["_1"],
+                        //area: ["5000>"],
+                        item: ["_1"],
                         "group_by": 'year, area',
                         "order_by": 'value DESC',
                         "limit": '10'

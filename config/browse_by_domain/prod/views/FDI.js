@@ -18,7 +18,7 @@ define([
                     "id": "item",
                     "type": "codelist",
                     // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-sm-3",
                         "type": "dropDownList"
@@ -39,7 +39,7 @@ define([
                 {
                     "id": "element",
                     "type": "codelist",
-                    "parameter": "List2Codes",
+                    "parameter": "element",
                     "componentType": {
                         "class": "col-sm-2",
                         "type": "dropDownList"
@@ -54,7 +54,7 @@ define([
                     // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-sm-3",
                         "type": "dropDownList"
@@ -71,7 +71,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-sm-2",
                         "type": "dropDownList-timerange"
@@ -98,43 +98,17 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['FDI'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                decimal_places: 0,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                page_number: 0
+                domain_code: ['FDI']
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {
-                }
-            },
-
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-                //requestType: 'data' // data, rankings
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'map',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // labels to dinamically substitute the title and subtitle
+                        // labels to dynamically substitute the title and subtitle
                         default: {},
 
                         // temp[late to be applied to the config.template for the custom object
@@ -158,8 +132,8 @@ define([
                     allowedFilter: ['item', 'year', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
+                        // TODO: remove the area (in theory should be automatically detected from the domain dimensions/schema)
+                        area: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -229,7 +203,7 @@ define([
                     },
                     allowedFilter: ['item', 'year', 'element', 'aggregation'],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        area: ["5100", "5200", "5300", "5400", "5500"],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -238,7 +212,7 @@ define([
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -275,7 +249,7 @@ define([
                     allowedFilter: ['item', 'year', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
+                        area: ["5000>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'

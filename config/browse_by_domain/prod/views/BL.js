@@ -19,7 +19,7 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
@@ -35,7 +35,7 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList",
@@ -52,7 +52,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
@@ -72,44 +72,15 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['BL'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                null_values: null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['BL']
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {
-                }
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -136,7 +107,7 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: [2610, 2910],
+                        element: [2610, 2910],
                         "order_by": 'year'
                     }
                 },
@@ -149,7 +120,7 @@ define([
                             title: {
                                 en: "Exports by region of {{item}}",
                                 fr: "Exportations par régions de {{item}}",
-                                es: "Exportaciones por región de {{item}}",
+                                es: "Exportaciones por región de {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -171,8 +142,8 @@ define([
                     },
                     allowedFilter: ['year', 'item', 'aggregation'],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        List2Codes: [2910],
+                        area: ["5100", "5200", "5300", "5400", "5500"],
+                        element: [2910],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -208,8 +179,8 @@ define([
                     },
                     allowedFilter: ['year', 'item', 'aggregation'],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        List2Codes: [2610],
+                        area: ["5100", "5200", "5300", "5400", "5500"],
+                        element: [2610],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -256,8 +227,8 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: [2910],
+                        area: ["5000>"],
+                        element: [2910],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": 5
@@ -305,8 +276,8 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: [2610],
+                        area: ["5000>"],
+                        element: [2610],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": 5
@@ -355,7 +326,7 @@ define([
                     allowedFilter: ['area', 'year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List2Codes: [
+                        element: [
                             2120,
                             2141,
                             5153,
@@ -405,8 +376,8 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        List2Codes: [
+                        area: ["5100", "5200", "5300", "5400", "5500"],
+                        element: [
                             2120,
                             2141,
                             5153,

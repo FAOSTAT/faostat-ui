@@ -21,7 +21,7 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     //"title": "title",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-4",
@@ -37,7 +37,7 @@ define([
                 {
                     "id": "element",
                     "type": "codelist",
-                    "parameter": "List2Codes",
+                    "parameter": "element",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-4",
                         "type": "dropDownList"
@@ -56,7 +56,7 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-4",
                         "type": "dropDownList"
@@ -72,7 +72,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
@@ -92,41 +92,15 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['RT'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                decimal_places: 2,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                page_number: 0
+                domain_code: ['RT']
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {
-                }
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'map',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // labels to dinamically substitute the title and subtitle
                         default: {},
@@ -153,7 +127,7 @@ define([
                     allowedFilter: ['item', 'year', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>", "351"],
+                        area: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -162,7 +136,7 @@ define([
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -189,7 +163,7 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'item', 'element'],
                     filter: {
-                        List1Codes: ["5000"]
+                        area: ["5000"]
                     }
                 },
                 {
@@ -223,7 +197,7 @@ define([
                     },
                     allowedFilter: ['year', 'item', 'aggregation', 'element'],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        area: ["5100", "5200", "5300", "5400", "5500"],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -232,7 +206,7 @@ define([
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -269,7 +243,7 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation', 'element'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
+                        area: ["5000>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'

@@ -1087,7 +1087,7 @@ define([
 
             filter: {
                 defaultFilter: {
-                    "domain_code": ["RF"],
+                    "domain_code": ["RL"],
                     "show_lists": false
                 },
                 items: [

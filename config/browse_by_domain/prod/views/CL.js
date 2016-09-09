@@ -19,7 +19,7 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
@@ -27,15 +27,13 @@ define([
                     "config": {
                         "dimension_id": "item",
                         "defaultCodes": ["2943"],
-                        "filter": {
-                            "show_lists": false
-                        }
+                        "filter": {}
                     }
                 },
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
@@ -43,15 +41,13 @@ define([
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["5000"],
-                        "filter": {
-                            "show_lists": false
-                        }
+                        "filter": {}
                     }
                 },
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
@@ -59,11 +55,9 @@ define([
                     "config": {
                         "dimension_id": "year",
                         "defaultCodes": ["1993"],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
-                },
-                C.filter.aggregation
+                }
             ]
         },
 
@@ -71,38 +65,10 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['CL'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                null_values: null,
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['CL']
             },
 
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {
-
-                }
-            },
-
-            //bridge configuration
-            bridge: {
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-            },
-
-            metadata: {},
-
-            items: [
-                {
+            items: [{
                     type: 'chart',
                     class: "col-md-6",
 
@@ -124,15 +90,16 @@ define([
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
+                            seriesDimensions: ['area', 'item', 'element'],
+                            decimalPlaces: 2
                         },
                         template: {},
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: [684],
-                        "order_by": 'year'
+                        element: [684],
+                        order_by: 'year'
                     }
                 },
                 {
@@ -157,15 +124,16 @@ define([
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
+                            seriesDimensions: ['area', 'item', 'element'],
+                            decimalPlaces: 2
                         },
                         template: {},
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: [674],
-                        "order_by": 'year'
+                        element: [674],
+                        order_by: 'year'
                     }
                 },
                 {
@@ -190,15 +158,16 @@ define([
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
+                            seriesDimensions: ['area', 'item', 'element'],
+                            decimalPlaces: 2
                         },
                         template: {},
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: [645],
-                        "order_by": 'year'
+                        element: [645],
+                        order_by: 'year'
                     }
                 },
                 {
@@ -223,15 +192,16 @@ define([
                             xDimensions: 'year',
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area', 'item', 'element']
+                            seriesDimensions: ['area', 'item', 'element'],
+                            decimalPlaces: 2
                         },
                         template: {},
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: [641],
-                        "order_by": 'year'
+                        element: [641],
+                        order_by: 'year'
                     }
                 }
             ]

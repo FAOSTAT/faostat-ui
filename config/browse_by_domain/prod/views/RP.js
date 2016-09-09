@@ -18,9 +18,7 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List1Codes",
-                    //"title": "title",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-4",
                         "type": "dropDownList"
@@ -34,7 +32,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
@@ -53,32 +51,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['RP'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                "null_values": null,
-                page_size: 0,
-                per_page: 0
+                domain_code: ['RP']
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {}
-            },
-
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
@@ -124,8 +98,8 @@ define([
                     },
                     allowedFilter: ['area', 'year'],
                     filter: {
-                        List2Codes: [5161],
-                        List3Codes: [1309, 1320, 1331]
+                        element: [5161],
+                        item: [1309, 1320, 1331]
                     }
                 }
             ]

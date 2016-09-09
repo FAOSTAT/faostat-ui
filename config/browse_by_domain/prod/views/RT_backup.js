@@ -20,7 +20,7 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-md-2",
                         "type": "dropDownList",
@@ -37,7 +37,7 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-md-3",
                         "type": "dropDownList",
@@ -52,7 +52,7 @@ define([
                 {
                     "id": "element",
                     "type": "codelist",
-                    "parameter": "List2Codes",
+                    "parameter": "element",
                     "componentType": {
                         "class": "col-md-3",
                         "type": "dropDownList",
@@ -69,7 +69,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-md-2",
                         "type": "dropDownList-timerange"

@@ -14,40 +14,17 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['ES'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                decimal_places: 2,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                page_number: 0
+                domain_code: ['ES']
             },
-
-            // labels?
-            labels: {
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'map',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // labels to dinamically substitute the title and subtitle
+                        // labels to dynamically substitute the title and subtitle
 
                         // temp[late to be applied to the config.template for the custom object
                         template: {
@@ -68,10 +45,10 @@ define([
                     allowedFilter: [],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>", "351"],
-                        List2Codes: ["7221"],
-                        List3Codes: ["6709"],
-                        List4Codes: ["2008"]
+                        area: ["5000>", "351"],
+                        element: ["7221"],
+                        item: ["6709"],
+                        year: ["2008"]
                     }
                 },
                 {
@@ -111,10 +88,10 @@ define([
                     },
                     allowedFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: ["7221"],
-                        List3Codes: ["6709"],
-                        List4Codes: ["2008"],
+                        area: ["5000>"],
+                        element: ["7221"],
+                        item: ["6709"],
+                        year: ["2008"],
                         "order_by": 'value DESC',
                         "limit": '10'
                     }
@@ -147,10 +124,10 @@ define([
                     allowedFilter: [],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>", "351"],
-                        List2Codes: ["7220"],
-                        List3Codes: ["6709"],
-                        List4Codes: ["1991"]
+                        area: ["5000>", "351"],
+                        element: ["7220"],
+                        item: ["6709"],
+                        year: ["1991"]
                     }
                 },
                 {
@@ -190,10 +167,10 @@ define([
                     },
                     allowedFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: ["7220"],
-                        List3Codes: ["6709"],
-                        List4Codes: ["1991"],
+                        area: ["5000>"],
+                        element: ["7220"],
+                        item: ["6709"],
+                        year: ["1991"],
                         "order_by": 'value DESC',
                         "limit": '10'
                     }
@@ -226,10 +203,10 @@ define([
                     allowedFilter: [],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>", "351"],
-                        List2Codes: ["7219"],
-                        List3Codes: ["6709"],
-                        List4Codes: ["1991"]
+                        area: ["5000>", "351"],
+                        element: ["7219"],
+                        item: ["6709"],
+                        year: ["1991"]
                     }
                 },
                 {
@@ -269,10 +246,10 @@ define([
                     },
                     allowedFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: ["7219"],
-                        List3Codes: ["6709"],
-                        List4Codes: ["1991"],
+                        area: ["5000>"],
+                        element: ["7219"],
+                        item: ["6709"],
+                        year: ["1991"],
                         "order_by": 'value DESC',
                         "limit": '10'
                     }

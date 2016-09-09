@@ -18,7 +18,7 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
@@ -32,7 +32,7 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
@@ -46,7 +46,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList"
@@ -64,33 +64,9 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['PM'],
-                List2Codes: ['_1'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                "null_values": null,
-                page_size: 0,
-                per_page: 0
+                domain_code: ['PM'],
+                element: ['_1']
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {}
-            },
-
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {

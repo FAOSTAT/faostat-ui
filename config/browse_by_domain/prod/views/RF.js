@@ -15,7 +15,7 @@ define(function () {
                 {
                     "id": "yearTimeserie",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "hidden",
                         "type": "dropDownList-timerange"
@@ -36,18 +36,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['RF'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                null_values: null,
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['RF']
             },
 
             // labels
@@ -94,9 +83,9 @@ define(function () {
                     },
                     allowedFilter: ['yearTimeserie'],
                     filter: {
-                        List1Codes: [5000],
-                        List2Codes: [5155],
-                        List3Codes: [
+                        area: [5000],
+                        element: [5155],
+                        item: [
                             3102,
                             3103,
                             3104
@@ -134,9 +123,9 @@ define(function () {
                     },
                     allowedFilter: ['yearTimeserie'],
                     filter: {
-                        List1Codes: [5000],
-                        List2Codes: [5155],
-                        List3Codes: [
+                        area: [5000],
+                        element: [5155],
+                        item: [
                             3102,
                             3103,
                             3104
@@ -182,14 +171,14 @@ define(function () {
                     },
                     allowedFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: [5155],
-                        List3Codes: [
+                        area: ["5000>"],
+                        element: [5155],
+                        item: [
                             3102,
                             3103,
                             3104
                         ],
-                        List4Codes: [2002, 2003, 2004, 2005, 2006, 2007],
+                        year: [2002, 2003, 2004, 2005, 2006, 2007],
                         "group_by": 'year, item',
                         "operator": "avg",
                         "order_by": 'value DESC',
@@ -232,14 +221,14 @@ define(function () {
                     },
                     allowedFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: [5155],
-                        List3Codes: [
+                        area: ["5000>"],
+                        element: [5155],
+                        item: [
                             3102,
                             3103,
                             3104
                         ],
-                        List4Codes: [2008, 2009, 2010, 2011, 2012, 2013],
+                        year: [2008, 2009, 2010, 2011, 2012, 2013],
                         "group_by": 'year, item',
                         "operator": "avg",
                         "order_by": 'value DESC',

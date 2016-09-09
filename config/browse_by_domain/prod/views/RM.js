@@ -18,9 +18,7 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List3Codes",
-                    //"title": "title",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-sm-4 col-md-3",
                         "type": "dropDownList"
@@ -34,7 +32,7 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-sm-4 col-md-3",
                         "type": "dropDownList",
@@ -49,7 +47,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-sm-2 col-md-2",
                         "type": "dropDownList-timerange"
@@ -69,43 +67,15 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['RM'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                null_values: null,
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['RM']
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {
-                }
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -131,7 +101,7 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: ['_1'],
+                        element: ['_1'],
                         "order_by": 'year'
                     }
                 },
@@ -139,7 +109,7 @@ define([
                     type: 'chart',
                     class: "col-sm-6",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -174,8 +144,8 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: ["2610"],
+                        area: ["5000>"],
+                        element: ["2610"],
                         "group_by": 'year, item',
                         "order_by": 'value DESC',
                         "limit": '10'
@@ -185,7 +155,7 @@ define([
                     type: 'chart',
                     class: "col-sm-6",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -220,8 +190,8 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: ["2910"],
+                        area: ["5000>"],
+                        element: ["2910"],
                         "group_by": 'year, item',
                         "order_by": 'value DESC',
                         "limit": '10'
@@ -266,8 +236,8 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: ["2620"],
+                        area: ["5000>"],
+                        element: ["2620"],
                         "group_by": 'year, item',
                         "order_by": 'value DESC',
                         "limit": '10'
@@ -277,7 +247,7 @@ define([
                     type: 'chart',
                     class: "col-sm-6",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -312,8 +282,8 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: ["2920"],
+                        area: ["5000>"],
+                        element: ["2920"],
                         "group_by": 'year, item',
                         "order_by": 'value DESC',
                         "limit": '10'

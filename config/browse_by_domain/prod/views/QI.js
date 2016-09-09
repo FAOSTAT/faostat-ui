@@ -20,9 +20,7 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List3Codes",
-                    //"title": "title",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-xs-12 col-sm-6 col-md-3",
                         "type": "dropDownList"
@@ -37,7 +35,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-3 col-md-2",
                         "type": "dropDownList-timerange"
@@ -56,41 +54,17 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['QI'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                "null_values": null,
-                page_size: 0,
-                per_page: 0
+                domain_code: ['QI']
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {}
-            },
-
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Net production index (base 2004-2006), {{item}}",
@@ -118,17 +92,17 @@ define([
                     },
                     allowedFilter: ['item', 'year'],
                     filter: {
-                        List1Codes: [5000, 5100, 5200, 5300, 5400, 5500],
-                        List2Codes: [436]
+                        area: [5000, 5100, 5200, 5300, 5400, 5500],
+                        element: [436]
                     }
                 },
                 {
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Per capita net production index (base 2004-2006), {{item}}",
@@ -156,8 +130,8 @@ define([
                     },
                     allowedFilter: ['item', 'year'],
                     filter: {
-                        List1Codes: [5000, 5100, 5200, 5300, 5400, 5500],
-                        List2Codes: [438]
+                        area: [5000, 5100, 5200, 5300, 5400, 5500],
+                        element: [438]
                     }
                 }
             ]

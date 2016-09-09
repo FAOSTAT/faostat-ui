@@ -11,45 +11,20 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['HS'],
-                List3Codes: [20001, 20002],
-                List4Codes: [6063],
-                List5Codes: [6076],
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['HS'],
+                breakdownsex: [20001, 20002],
+                indicator: [6063],
+                measure: [6076]
             },
-
-            // labels
-            labels: {
-                default: {}
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'chart',
                     class: "col-md-6",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Dietary consumption/acquisition (kcal/person/day) - All Household",
@@ -85,10 +60,8 @@ define([
                             }
                         }
                     },
-                    // allowedFilter: ['breakdownvariable', 'indicator', 'item', 'element'],
-                   // allowedFilter: ['breakdownvariable'],
                     filter: {
-                        List1Codes: [
+                        survey: [
                             32005,
                             1462006,
                             1032007,
@@ -108,7 +81,7 @@ define([
                             13020042005,
                             392009
                         ],
-                        List2Codes: [20008]
+                        breakdownvar: [20008]
                     }
                 },
 
@@ -154,10 +127,8 @@ define([
                             }
                         }
                     },
-                    // allowedFilter: ['breakdownvariable', 'indicator', 'item', 'element'],
-                    // allowedFilter: ['breakdownvariable'],
                     filter: {
-                        List1Codes: [
+                        survey: [
                             1462006,
                             1032007,
                             1152004,
@@ -176,7 +147,7 @@ define([
                             13020042005,
                             392009
                         ],
-                        List2Codes: [20030]
+                        breakdownvar: [20030]
                     }
                 },
 
@@ -232,10 +203,8 @@ define([
                             }
                         }
                     },
-                    // allowedFilter: ['breakdownvariable', 'indicator', 'item', 'element'],
-                    // allowedFilter: ['breakdownvariable'],
                     filter: {
-                        List1Codes: [
+                        survey: [
                             1462006,
                             522006,
                             23620042005,
@@ -246,7 +215,7 @@ define([
                             11420052006,
                             13020042005
                         ],
-                        List2Codes: [20026]
+                        breakdownvar: [20026]
                     }
                 },
 
@@ -292,10 +261,8 @@ define([
                             }
                         }
                     },
-                    // allowedFilter: ['breakdownvariable', 'indicator', 'item', 'element'],
-                    // allowedFilter: ['breakdownvariable'],
                     filter: {
-                        List1Codes: [
+                        survey: [
                             32005,
                             1462006,
                             1032007,
@@ -315,7 +282,7 @@ define([
                             13020042005,
                             392009
                         ],
-                        List2Codes: [20024]
+                        breakdownvar: [20024]
                     }
                 }
 

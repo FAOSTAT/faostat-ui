@@ -6,41 +6,38 @@ define(function () {
 
     return {
 
-        dashboard: {
+        filter: {
 
-            // TODO: this should be automatically added if filter is null
-            "render": true,
+            defaultFilter: {
+                "domain_code": ["RA"],
+                "show_lists": false
+            },
+
+            items: [
+                {
+                    "id": "year",
+                    "type": "codelist",
+                    "parameter": "year",
+                    "componentType": {
+                        "class": "hidden",
+                        "type": "dropDownList-timerange"
+                    },
+                    "config": {
+                        "dimension_id": "year",
+                        "defaultCodes": [],
+                        "filter": {}
+                    }
+                }
+            ]
+        },
+
+        dashboard: {
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['RA'],
-                List2Codes: [5157],
-                List3Codes: [1360],
-                List4Codes: ["_1"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                null_values: null,
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
-            },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                // TODO: import i18n in the js to be consistent?
-                default: {
-                    aggregation: {
-                         en: "Average",
-                         fr: "Moyenne",
-                         es: "Promedio"
-                     }
-                }
+                domain_code: ['RA'],
+                element: [5157],
+                item: [1360]
             },
 
             items: [
@@ -48,7 +45,7 @@ define(function () {
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -56,7 +53,8 @@ define(function () {
                                 en: "World fertilizers consumption",
                                 fr: "Consomation mondiale d'engrais",
                                 es: "Consumo mundial de fertilizantes"
-                            }
+                            },
+                            subtitle: "{{year}}"
                         }
                     },
                     config: {
@@ -71,9 +69,9 @@ define(function () {
                         template: {},
                         creator: {}
                     },
-                    allowedFilter: [],
+                    allowedFilter: ['year'],
                     filter: {
-                        List1Codes: [5000],
+                        area: [5000],
                         "order_by": 'year'
                     }
                 }

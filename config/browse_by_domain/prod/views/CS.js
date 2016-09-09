@@ -18,7 +18,7 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-sm-3",
                         "type": "dropDownList"
@@ -26,31 +26,14 @@ define([
                     "config": {
                         "dimension_id": "item",
                         "defaultCodes": ["22030"],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
-/*                {
-                    "id": "elements",
-                    "type": "codelist",
-                    "parameter": "List2Codes",
-                    "componentType": {
-                        "class": "col-sm-3",
-                        "type": "dropDownList"
-                    },
-                    "config": {
-                        "dimension_id": "elements",
-                        "defaultCodes": ["6110"],
-                        "filter": {
-                            whitelist: [6110]
-                        }
-                    }
-                },*/
                 {
                     // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-sm-3",
                         "type": "dropDownList",
@@ -59,23 +42,20 @@ define([
                     "config": {
                         "dimension_id": "area",
                         "defaultCodes": ["2"],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-sm-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
                         "dimension_id": "year",
-                        //"defaultCodes": ['1990'],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
                 C.filter.aggregation
@@ -86,34 +66,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['CS'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                decimal_places: 2,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                page_number: 0
+                domain_code: ['CS']
             },
-
-            // labels
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {
-                }
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
@@ -133,16 +87,13 @@ define([
                         }
                     },
 
-                    config: {
-                        layer: {},
-                        template: {}
-                    },
+                    config: {},
                     allowedFilter: ['year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>", "351"],
-                        List2Codes: ["6135"],
-                        List3Codes: ["22030"],
+                        area: ["5000>", "351"],
+                        element: ["6135"],
+                        item: ["22030"],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -180,8 +131,8 @@ define([
                     allowedFilter: ['year', 'area'],
                     //deniedOnLoadFilter: ['area'],
                     filter: {
-                        List2Codes: ["6112"],
-                        List3Codes: ["22030"],
+                        element: ["6112"],
+                        item: ["22030"]
                     }
                 },
                 {
@@ -217,7 +168,7 @@ define([
                     allowedFilter: ['year', 'area', 'item'],
                     //deniedOnLoadFilter: ['area'],
                     filter: {
-                        List2Codes: ["6110"]
+                        element: ["6110"]
                     }
                 },
                 {
@@ -262,8 +213,8 @@ define([
                     allowedFilter: ['item', 'year', 'elements', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: ["6110"],
+                        area: ["5000>"],
+                        element: ["6110"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'

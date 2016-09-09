@@ -20,7 +20,7 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-xs-4",
                         "type": "dropDownList",
@@ -36,7 +36,7 @@ define([
                     // id to be applied on the getData request
                     "id": "element",
                     "type": "codelist",
-                    "parameter": "List2Codes",
+                    "parameter": "element",
                     "componentType": {
                         "class": "col-xs-6",
                         "type": "dropDownList",
@@ -54,6 +54,21 @@ define([
                             ]
                         }
                     }
+                },
+                {
+                    "id": "year",
+                    "type": "codelist",
+                    "parameter": "year",
+                    "componentType": {
+                        "class": "hidden",
+                        "type": "dropDownList-timerange",
+                        "multiple": false
+                    },
+                    "config": {
+                        "dimension_id": "year",
+                        "defaultCodes": [],
+                        "filter": {}
+                    }
                 }
             ]
         },
@@ -62,46 +77,19 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['QV'],
-                List1Codes: ["5000"],
-                List2Codes: ["57"],
-                List4Codes: ["_1"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['QV'],
+                area: ["5000"],
+                element: ["57"]
             },
-
-            // labels
-            labels: {
-                default: {}
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "{{element}} - {{item}}",

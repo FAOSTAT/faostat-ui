@@ -17,7 +17,7 @@ define(function () {
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList",
@@ -33,7 +33,7 @@ define(function () {
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList",
@@ -49,7 +49,7 @@ define(function () {
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-lg-2",
                         "type": "dropDownList-timerange"
@@ -86,7 +86,7 @@ define(function () {
             //data base filter
             defaultFilter: {
                 domain_code: 'QA',
-                List2Codes: ["2111"],
+                element: ["2111"],
                 List5Codes: null,
                 List6Codes: null,
                 List7Codes: null,
@@ -162,7 +162,7 @@ define(function () {
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
+                        area: ["5000>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'

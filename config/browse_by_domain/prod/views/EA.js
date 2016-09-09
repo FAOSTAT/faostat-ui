@@ -18,7 +18,7 @@ define([
                 {
                     "id": "donor",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "donor",
                     "componentType": {
                         "class": "col-md-4",
                         "type": "dropDownList"
@@ -32,7 +32,7 @@ define([
                 {
                     "id": "recipientarea",
                     "type": "codelist",
-                    "parameter": "List2Codes",
+                    "parameter": "recipientarea",
                     "componentType": {
                         "class": "col-md-4",
                         "type": "dropDownList"
@@ -46,7 +46,7 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-md-4",
                         "type": "dropDownList"
@@ -62,7 +62,7 @@ define([
                 {
                     "id": "purpose",
                     "type": "codelist",
-                    "parameter": "List5Codes",
+                    "parameter": "purpose",
                     "componentType": {
                         "class": "col-md-4",
                         "type": "dropDownList"
@@ -76,7 +76,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List6Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-md-2",
                         "type": "dropDownList-timerange"
@@ -84,15 +84,14 @@ define([
                     "config": {
                         "dimension_id": "year",
                         "defaultCodes": ['1995'],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
                 C.filter.aggregation,
                 {
                     "id": "element",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "element",
                     "componentType": {
                         "class": "hidden",
                         "type": "dropDownList"
@@ -110,19 +109,7 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['EA'],
-                //List3Codes: ["6137"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['EA']
             },
 
             // labels?
@@ -131,17 +118,6 @@ define([
                 default: {
                 }
             },
-
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
@@ -173,7 +149,7 @@ define([
                     allowedFilter: ['donor', 'item', 'year', 'purpose', 'aggregation', 'element'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List2Codes: ["5000>", "351"],
+                        recipientarea: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'recipientarea'
                     }
@@ -203,15 +179,13 @@ define([
                             decimalPlaces: 2
                         },
                         template: {
-                            // height:'350px'
-                            // default labels to be applied
                         },
                         creator: {}
                     },
-                    allowedFilter: ['donor', 'year', 'element', 'purpose', 'recipientarea'],
+                    allowedFilter: ['donor', 'element', 'year', 'purpose', 'recipientarea'],
                     filter: {
-                        List4Codes: ["22040", "22050"],
-                        "order_by": 'year'
+                        item: ["22040", "22050"],
+                        order_by: "year ASC"
                     }
                 },
                 {
@@ -250,7 +224,7 @@ define([
                     allowedFilter: ['donor', 'item', 'element', 'year', 'purpose', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List2Codes: ["5000>"],
+                        recipientarea: ["5000>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'
@@ -293,7 +267,7 @@ define([
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: fix it with level 5
-                        List1Codes: ["690>", "691>", "692>"],
+                        donor: ["690>", "691>", "692>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'

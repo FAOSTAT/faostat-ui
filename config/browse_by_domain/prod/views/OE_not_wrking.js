@@ -18,7 +18,7 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-md-4",
                         "type": "dropDownList",
@@ -33,7 +33,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
@@ -53,41 +53,19 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['OE'],
-                List2Codes: ["21060"],
-                List3Codes: ["3023"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['OE'],
+                element: ["21060"],
+                item: ["3023"]
             },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'map',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // labels to dinamically substitute the title and subtitle
+                        // labels to dynamically substitute the title and subtitle
                         default: {},
 
                         // temp[late to be applied to the config.template for the custom object
@@ -108,22 +86,18 @@ define([
                     allowedFilter: ['item', 'year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
+                        area: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
-                    },
-/*                    bridge: {
-                        requestType: 'rankings' // data, rankings
-                    }*/
+                    }
                 },
                 {
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Employment distribution, agriculture (all sources)",
@@ -143,15 +117,12 @@ define([
                             valueDimensions: 'value',
                             seriesDimensions: ['area', 'item', 'element']
                         },
-                        template: {
-                            // height:'350px'
-                            // default labels to be applied
-                        },
+                        template: {},
                         creator: {}
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: ["2413", "2510" ]
+                        element: ["2413", "2510" ]
                     }
                 }
             ]
