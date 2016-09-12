@@ -105,10 +105,10 @@ define(function () {
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['item'],
+                            xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
                             height:'275px'
@@ -153,10 +153,10 @@ define(function () {
                         adapter: {
                             adapterType: 'faostat',
                             type: "standard",
-                            xDimensions: ['item'],
+                            xDimensions: ['area'],
                             yDimensions: 'unit',
                             valueDimensions: 'value',
-                            seriesDimensions: ['area']
+                            seriesDimensions: ['item', 'element']
                         },
                         template: {
                             height:'275px'

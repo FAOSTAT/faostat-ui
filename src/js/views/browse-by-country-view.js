@@ -466,10 +466,28 @@ define([
                     maxZoom: 16
                 });
 
+                // https: also suppported.
+                var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                });
+
+                var CartoDB_DarkMatterNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+                    subdomains: 'abcd',
+                    maxZoom: 19
+                });
+
+                var CartoDB_DarkMatterOnlyLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+                    subdomains: 'abcd',
+                    maxZoom: 19
+                })
+
 
                 // added dirty baselayer
-                //this.m.map.addLayer(Esri_WorldGrayCanvas);
+                //this.m.map.addLayer(Esri_WorldGrayCanvas)
                 this.m.map.addLayer(Esri_WorldPhysical);
+                //this.m.map.addLayer(Esri_WorldImagery);
 
                 var boundary = {
                     layers: 'fenix:gaul0_line_3857',

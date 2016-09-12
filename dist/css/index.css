@@ -7648,7 +7648,7 @@ button_new_2:before {
   content: "\ec1d"; }
 
 /* Components */
-.fs-table .btn-floating {
+.fs-table-heading .btn-floating {
   margin: 10px 0px 10px 10px; }
 
 .bootstrap-table .page-first {

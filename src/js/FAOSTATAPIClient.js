@@ -28,6 +28,8 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
     if (this.is_valid_rankings(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/rankings/',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -39,6 +41,16 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -46,7 +58,7 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'POST'
                 })).then(function (d) {
@@ -105,6 +117,8 @@ FAOSTATAPIClient.prototype.apply_rankings_defaults = function(config) {
     if (this.is_valid_data_old(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/data/',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -114,6 +128,16 @@ FAOSTATAPIClient.prototype.apply_rankings_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -121,7 +145,7 @@ FAOSTATAPIClient.prototype.apply_rankings_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: JSON.stringify(data),
                         contentType: "application/json",
                     type: 'POST'
@@ -175,6 +199,8 @@ FAOSTATAPIClient.prototype.apply_data_old_defaults = function(config) {
     if (this.is_valid_databean(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/data/bean/',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -186,6 +212,16 @@ FAOSTATAPIClient.prototype.apply_data_old_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -193,7 +229,7 @@ FAOSTATAPIClient.prototype.apply_data_old_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'POST'
                 })).then(function (d) {
@@ -252,6 +288,8 @@ FAOSTATAPIClient.prototype.apply_databean_defaults = function(config) {
     if (this.is_valid_data_get(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/data/' + config.domain + '/',
             url_data = ['base_url','lang','domain'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -263,6 +301,16 @@ FAOSTATAPIClient.prototype.apply_databean_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -270,7 +318,7 @@ FAOSTATAPIClient.prototype.apply_databean_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -329,6 +377,8 @@ FAOSTATAPIClient.prototype.apply_data_get_defaults = function(config) {
     if (this.is_valid_reportheaders(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/report/headers/',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -340,6 +390,16 @@ FAOSTATAPIClient.prototype.apply_data_get_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -347,7 +407,7 @@ FAOSTATAPIClient.prototype.apply_data_get_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'POST'
                 })).then(function (d) {
@@ -381,7 +441,7 @@ FAOSTATAPIClient.prototype.apply_reportheaders_defaults = function(config) {
     var i,
         parameters = ["datasource", "output_type", "domain_code", "report_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes"],
         defaults = {
-            "output_type": "objects", "report_code": "null"
+            "output_type": "objects"
         },
         key;
     for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -406,6 +466,8 @@ FAOSTATAPIClient.prototype.apply_reportheaders_defaults = function(config) {
     if (this.is_valid_reportdata(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/report/data/',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -417,6 +479,16 @@ FAOSTATAPIClient.prototype.apply_reportheaders_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -424,7 +496,7 @@ FAOSTATAPIClient.prototype.apply_reportheaders_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'POST'
                 })).then(function (d) {
@@ -458,7 +530,7 @@ FAOSTATAPIClient.prototype.apply_reportdata_defaults = function(config) {
     var i,
         parameters = ["datasource", "output_type", "lang", "domain_code", "report_code", "List1Codes", "List2Codes", "List3Codes", "List4Codes", "List5Codes", "List6Codes", "List7Codes", "List1AltCodes", "List2AltCodes", "List3AltCodes", "List4AltCodes", "List5AltCodes", "List6AltCodes", "List7AltCodes"],
         defaults = {
-            "output_type": "objects", "lang": "en", "report_code": "null"
+            "output_type": "objects", "lang": "en"
         },
         key;
     for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -483,6 +555,8 @@ FAOSTATAPIClient.prototype.apply_reportdata_defaults = function(config) {
     if (this.is_valid_datasize(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/datasize/',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -494,6 +568,16 @@ FAOSTATAPIClient.prototype.apply_reportdata_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -501,7 +585,7 @@ FAOSTATAPIClient.prototype.apply_reportdata_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'POST'
                 })).then(function (d) {
@@ -560,6 +644,8 @@ FAOSTATAPIClient.prototype.apply_datasize_defaults = function(config) {
     if (this.is_valid_groupsanddomains(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/groupsanddomains',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -571,6 +657,16 @@ FAOSTATAPIClient.prototype.apply_datasize_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -578,7 +674,7 @@ FAOSTATAPIClient.prototype.apply_datasize_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -637,6 +733,8 @@ FAOSTATAPIClient.prototype.apply_groupsanddomains_defaults = function(config) {
     if (this.is_valid_dimensions(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/dimensions/' + config.domain_code + '/',
             url_data = ['base_url','lang','domain_code'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -648,6 +746,16 @@ FAOSTATAPIClient.prototype.apply_groupsanddomains_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -655,7 +763,7 @@ FAOSTATAPIClient.prototype.apply_groupsanddomains_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -689,7 +797,7 @@ FAOSTATAPIClient.prototype.apply_dimensions_defaults = function(config) {
     var i,
         parameters = ["datasource", "report_code", "lang", "domain_code", "full"],
         defaults = {
-            "report_code": "null", "lang": "en", "full": "false"
+            "lang": "en", "full": "false"
         },
         key;
     for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -714,6 +822,8 @@ FAOSTATAPIClient.prototype.apply_dimensions_defaults = function(config) {
     if (this.is_valid_codes(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/codes/' + config.id + '/' + config.domain_code + '/',
             url_data = ['base_url','lang','id','domain_code'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -725,6 +835,16 @@ FAOSTATAPIClient.prototype.apply_dimensions_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -732,7 +852,7 @@ FAOSTATAPIClient.prototype.apply_dimensions_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -766,7 +886,7 @@ FAOSTATAPIClient.prototype.apply_codes_defaults = function(config) {
     var i,
         parameters = ["datasource", "domain_code", "report_code", "lang", "id", "whitelist", "blacklist", "show_lists"],
         defaults = {
-            "report_code": "null", "lang": "en", "whitelist": "[]", "blacklist": "[]", "show_lists": "true"
+            "lang": "en", "whitelist": "[]", "blacklist": "[]", "show_lists": "true"
         },
         key;
     for (i = 0; i < Object.keys(defaults).length; i += 1) {
@@ -791,6 +911,8 @@ FAOSTATAPIClient.prototype.apply_codes_defaults = function(config) {
     if (this.is_valid_groups(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/groups/',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -802,6 +924,16 @@ FAOSTATAPIClient.prototype.apply_codes_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -809,7 +941,7 @@ FAOSTATAPIClient.prototype.apply_codes_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -868,6 +1000,8 @@ FAOSTATAPIClient.prototype.apply_groups_defaults = function(config) {
     if (this.is_valid_domains(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/domains/' + config.group_code + '/',
             url_data = ['base_url','lang','group_code'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -879,6 +1013,16 @@ FAOSTATAPIClient.prototype.apply_groups_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -886,7 +1030,7 @@ FAOSTATAPIClient.prototype.apply_groups_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -945,6 +1089,8 @@ FAOSTATAPIClient.prototype.apply_domains_defaults = function(config) {
     if (this.is_valid_bulkdownloads(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/bulkdownloads/' + config.domain_code + '/',
             url_data = ['base_url','lang','domain_code'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -956,6 +1102,16 @@ FAOSTATAPIClient.prototype.apply_domains_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -963,7 +1119,7 @@ FAOSTATAPIClient.prototype.apply_domains_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -1022,6 +1178,8 @@ FAOSTATAPIClient.prototype.apply_bulkdownloads_defaults = function(config) {
     if (this.is_valid_documents(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/documents/' + config.domain_code + '/',
             url_data = ['base_url','lang','domain_code'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -1033,6 +1191,16 @@ FAOSTATAPIClient.prototype.apply_bulkdownloads_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -1040,7 +1208,7 @@ FAOSTATAPIClient.prototype.apply_bulkdownloads_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -1099,6 +1267,8 @@ FAOSTATAPIClient.prototype.apply_documents_defaults = function(config) {
     if (this.is_valid_suggestions(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/suggestions',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -1110,6 +1280,16 @@ FAOSTATAPIClient.prototype.apply_documents_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -1117,7 +1297,7 @@ FAOSTATAPIClient.prototype.apply_documents_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -1176,6 +1356,8 @@ FAOSTATAPIClient.prototype.apply_suggestions_defaults = function(config) {
     if (this.is_valid_search(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/search',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -1187,6 +1369,16 @@ FAOSTATAPIClient.prototype.apply_suggestions_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -1194,7 +1386,7 @@ FAOSTATAPIClient.prototype.apply_suggestions_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -1253,6 +1445,8 @@ FAOSTATAPIClient.prototype.apply_search_defaults = function(config) {
     if (this.is_valid_metadata(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/metadata/' + config.domain_code + '',
             url_data = ['base_url','lang','domain_code'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -1264,6 +1458,16 @@ FAOSTATAPIClient.prototype.apply_search_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -1271,7 +1475,7 @@ FAOSTATAPIClient.prototype.apply_search_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -1330,6 +1534,8 @@ FAOSTATAPIClient.prototype.apply_metadata_defaults = function(config) {
     if (this.is_valid_definitions_types(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/definitions/types',
             url_data = ['base_url','lang'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -1341,6 +1547,16 @@ FAOSTATAPIClient.prototype.apply_metadata_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -1348,7 +1564,7 @@ FAOSTATAPIClient.prototype.apply_metadata_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -1407,6 +1623,8 @@ FAOSTATAPIClient.prototype.apply_definitions_types_defaults = function(config) {
     if (this.is_valid_definitions_by_type(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/definitions/types/' + config.type + '',
             url_data = ['base_url','lang','type'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -1418,6 +1636,16 @@ FAOSTATAPIClient.prototype.apply_definitions_types_defaults = function(config) {
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -1425,7 +1653,7 @@ FAOSTATAPIClient.prototype.apply_definitions_types_defaults = function(config) {
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -1484,6 +1712,8 @@ FAOSTATAPIClient.prototype.apply_definitions_by_type_defaults = function(config)
     if (this.is_valid_definitions_domain(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/definitions/domain/' + config.domain_code + '',
             url_data = ['base_url','lang','domain_code'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -1495,6 +1725,16 @@ FAOSTATAPIClient.prototype.apply_definitions_by_type_defaults = function(config)
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -1502,7 +1742,7 @@ FAOSTATAPIClient.prototype.apply_definitions_by_type_defaults = function(config)
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -1561,6 +1801,8 @@ FAOSTATAPIClient.prototype.apply_definitions_domain_defaults = function(config) 
     if (this.is_valid_definitions_domain_by_type(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/definitions/domain/' + config.domain_code + '/' + config.type + '',
             url_data = ['base_url','lang','domain_code','type'],
+            compressArray = false,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -1572,6 +1814,16 @@ FAOSTATAPIClient.prototype.apply_definitions_domain_defaults = function(config) 
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -1579,7 +1831,7 @@ FAOSTATAPIClient.prototype.apply_definitions_domain_defaults = function(config) 
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
@@ -1638,6 +1890,8 @@ FAOSTATAPIClient.prototype.apply_definitions_domain_by_type_defaults = function(
     if (this.is_valid_data(config)) {
         var url = this.CONFIG.base_url +  config.lang + '/data/' + config.domain_code + '',
             url_data = ['base_url','lang','domain_code'],
+            compressArray = true,
+            traditional = true,
             self = this;
 
         // if advanced
@@ -1649,6 +1903,16 @@ FAOSTATAPIClient.prototype.apply_definitions_domain_by_type_defaults = function(
             delete data[url_data[i]];
         }
 
+        // parse arrays to strings
+        // this will reduce the length of the URL
+        if(compressArray === true) {
+            $.each(data, function(k, v) {
+                if (Array.isArray(v)) {
+                    data[k] = v.join(",");
+                }
+            });
+        }
+
         var key = JSON.stringify($.extend({url: url}, data));
         var v = this.store(key);
 
@@ -1656,7 +1920,7 @@ FAOSTATAPIClient.prototype.apply_definitions_domain_by_type_defaults = function(
                 return Q($.ajax({
                     url: url,
                     // TODO: this should be an option in the schema
-                    traditional: true,
+                    traditional: traditional,
                         data: data,
                     type: 'GET'
                 })).then(function (d) {
