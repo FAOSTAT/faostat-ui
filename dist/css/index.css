@@ -8348,6 +8348,44 @@ div#google_search input#search-submit {
 */
 .fs-chart .btn-floating {
   margin: 10px 0px 10px 10px; }
+.fs-chart .fs-icons {
+  height: 18px;
+  width: 18px;
+  background-repeat: no-repeat;
+  display: inline-block; }
+.fs-chart .chart-line {
+  background: url("../../src/images/chart/chart-line.svg");
+  background-size: contain; }
+.fs-chart .chart-areaspline {
+  background: url("../../src/images/chart/chart-areaspline.svg");
+  background-size: contain; }
+.fs-chart .chart-bar {
+  background: url("../../src/images/chart/chart-bar.svg");
+  background-size: contain; }
+.fs-chart .chart-histogram {
+  background: url("../../src/images/chart/chart-histogram.svg");
+  background-size: contain; }
+.fs-chart .chart-timeline {
+  background: url("../../src/images/chart/chart-timeline.svg");
+  background-size: contain; }
+.fs-chart .chart-pie {
+  background: url("../../src/images/chart/chart-pie.svg");
+  background-size: contain; }
+.fs-chart .chart-arc {
+  background: url("../../src/images/chart/chart-arc.svg");
+  background-size: contain; }
+.fs-chart .chart-bubble {
+  background: url("../../src/images/chart/chart-bubble.svg");
+  background-size: contain; }
+.fs-chart .chart-gantt {
+  background: url("../../src/images/chart/chart-gantt.svg");
+  background-size: contain; }
+.fs-chart .chart-scatter {
+  background: url("../../src/images/chart/chart-scatterplot-hexbin.svg");
+  background-size: contain; }
+.fs-chart .chart-timeline {
+  background: url("../../src/images/chart/chart-timeline.svg");
+  background-size: contain; }
 
 /* Third parties */
 .typeahead, .tt-query, .tt-hint {
