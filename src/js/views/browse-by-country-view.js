@@ -76,6 +76,7 @@ define([
                 this.o = $.extend(true, {}, o, options);
                 this.cache = {};
                 this.o.lang = Common.getLocale();
+                this.dashboardCompose = [];
 
                 if( this.o.code !== undefined && this.o.code !== null){
                     this.o.code = this.o.code.split(",");
@@ -419,6 +420,9 @@ define([
                         })
                     );
 
+                    // caching the dashboard to be destroyed
+                    this.dashboardCompose.push(d);
+
                 }else{
                     //log.error("View is not defined, handle exception");
                 }
@@ -616,12 +620,12 @@ define([
 
             destroyDashBoards: function () {
 
-                if (this.dashboards !== undefined) {
+                if (this.dashboardCompose !== undefined) {
 
-                    _.each(this.dashboards, function(dashboard) {
+                    _.each(this.dashboardCompose, function(d) {
 
-                        if ( _.isFunction(dashboard.destroy)) {
-                            dashboard.destroy();
+                        if ( _.isFunction(d.destroy)) {
+                            d.destroy();
                         }
                     });
                 }
