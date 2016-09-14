@@ -189,7 +189,7 @@ define([
                 domain_code: domainCode
             }).then(function(dimensions) {
 
-                log.info("StatusView.getDataDomainSample.dimensions;", dimensions);
+                log.info("StatusView.getDataDomainSample.dimensions;", dimensions, domainCode);
 
                 self.showDetails($domain_container, 'dimensions', dimensions);
 
@@ -199,7 +199,7 @@ define([
                 // for each dimensions get sample codes
                 _.each(dimensions.data, function(dimension){
 
-                    //log.info("StatusView.getDataDomainSample.dimension;", dimension);
+                    //log.info("StatusView.getDataDomainSample.dimension;", dimension, domainCode);
 
                     requestCodes.push(API.codes({
                         domain_code: domainCode,
@@ -212,27 +212,23 @@ define([
                 // get codes
                 Q.all(requestCodes).then(function(codes) {
 
-                    log.info("StatusView.getDataDomainSample.codes;", codes);
+                    log.info("StatusView.getDataDomainSample.codes;", codes, domainCode);
 
                     var filters = {};
 
                     // for each code get a sample
                     _.each(codes, function(code, index) {
 
-                        log.info("StatusView.getDataDomainSample.code;", code, index);
+                        log.info("StatusView.getDataDomainSample.code;", code, dimensions, dimensions.data[index], index);
 
-                        self.showDetails($domain_container, 'codes', code);
-
-                        //log.info(code);
-                        //log.info(codes)
                         if ( code.data.length <= 0 ) {
                             log.warn("StatusView.getDataDomainSample.code.data.length;", code.data.length);
                         }
 
-                        //var parameter = code.metadata.parameters.parameter;
-                        //var id = code.metadata.parameters.id;
+                        var id = dimensions.data[index].id;
+                        filters[id] = _.chain(code.data).sample(10).pluck('code').value();
 
-                        //filters[id] = _.chain(code.data).sample(10).pluck('code').value();
+                        self.showDetails($domain_container, 'codes', code, id);
 
                     });
 
@@ -242,17 +238,18 @@ define([
                     try {
                         API.data($.extend(true, {},
                             {
-                                domain_codes: [domainCode]
+                                domain_code: [domainCode]
                             },
-                            { filters: filters }
-                        )).then(function (data) {
+                            filters
+                        )).then(function (d) {
 
-                            log.info("StatusView.getDataDomainSample.data;", domainName, domainCode, data.data.length);
-                            //log.info(data);
+                            log.info("StatusView.getDataDomainSample.data;", domainName, domainCode, d.data.length);
+                            log.info(d.data.length, domainCode);
 
-                            self.showData($domain_container, data, domain);
-
-                            data = null;
+                            self.showData($domain_container, d, {
+                                domain_code: domainCode,
+                                domain_name: domainName
+                            });
 
                         });
                     }catch(e) {
@@ -265,7 +262,7 @@ define([
 
         },
 
-        showDetails: function ($container, type, d) {
+        showDetails: function ($container, type, d, id) {
 
             var $details = $container.find('[data-role="'+ type + '-details"]');
 
@@ -273,14 +270,17 @@ define([
                 t = Handlebars.compile(html);
 
             $details.append(t({
+                id: id,
                 total: d.data.length,
                 data: d.data,
-                metadata: d.metadata
+                //metadata: d.metadata
             }));
 
         },
 
         showData: function ($container, d, domain) {
+
+            log.info("StatusView.showData;", $container, d, domain);
 
             var $details = $container.find('[data-role="data-details"]');
 
