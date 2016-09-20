@@ -6,7 +6,7 @@ define(['jquery'], function ($) {
 
     return {
 
-        "URL_API": "http://168.202.39.159:8081/faostat-api/v1/",
+        "URL_API": "http://fenixservices.fao.org/faostat/api/v1/",
         "API_LOG": false,
 
         "LOGLEVEL": "trace", // trace/debug/info/warn/error/silent
