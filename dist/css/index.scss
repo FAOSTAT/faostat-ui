@@ -19,7 +19,10 @@
 @import '../../src/css/theme/default';
 
 /* Eldorado */
-@import '../../submodules/fenix-ui-common/css/base/fonts/eldorado/font-eldorado-main';
+@import '../../src/css/fonts/eldorado/font-eldorado-main';
+
+/* Mixin */
+@import '../../src/css/base/mixin';
 
 /* Components */
 @import '../../src/css/components/bootstrap_table';

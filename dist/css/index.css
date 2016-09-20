@@ -2756,8 +2756,8 @@ footer.container {
 /* Eldorado  */
 @font-face {
   font-family: 'eldorado_stroke';
-  src: url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/eldorado/eldorado_stroke.eot");
-  src: url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/eldorado/eldorado_stroke.eot?#iefix") format("embedded-opentype"), url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/eldorado/eldorado_stroke.woff") format("woff"), url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/eldorado/eldorado_stroke.ttf") format("truetype"), url("http://fenixrepo.fao.org/cdn/css/fenix-ui-common/css/fonts/eldorado/eldorado_stroke.svg#RobotoRegular") format("svg");
+  src: url("http://fenixrepo.fao.org/cdn/faostat/fonts/eldorado/eldorado_stroke.eot");
+  src: url("http://fenixrepo.fao.org/cdn/faostat/fonts/eldorado/eldorado_stroke.eot?#iefix") format("embedded-opentype"), url("http://fenixrepo.fao.org/cdn/faostat/fonts//eldorado/eldorado_stroke.woff") format("woff"), url("http://fenixrepo.fao.org/cdn/faostat/fonts//eldorado/eldorado_stroke.ttf") format("truetype"), url("http://fenixrepo.fao.org/cdn/faostat/fonts//eldorado/eldorado_stroke.svg#RobotoRegular") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icojam_"], [class*=" icojam_"] {
@@ -7661,6 +7661,7 @@ button_new_2:before {
 .icojam_time_favorite:before {
   content: "\ec1d"; }
 
+/* Mixin */
 /* Components */
 .fs-table-heading .btn-floating {
   margin: 10px 0px 10px 10px; }

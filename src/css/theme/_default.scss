@@ -18,6 +18,13 @@ body {
   color: $fenix-text;
 }
 
+@mixin fs-box-shadow($value){
+  -webkit-box-shadow:$value;
+  -moz-box-shadow:$value;
+  box-shadow:$value;
+}
+
+
 .fs-main-container {
   padding-bottom: 60px;
 }
