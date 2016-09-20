@@ -1,18 +1,18 @@
 [submodule "submodules/fenix-ui-common"]
 	path = submodules/fenix-ui-common
-	url = https://github.com/FENIX-Platform/fenix-ui-common.git
+	url = https://github.com/FAOSTAT/fenix-ui-common.git
 [submodule "submodules/faostat-ui-tree"]
 	path = submodules/faostat-ui-tree
 	url = https://github.com/FAOSTAT/faostat-ui-tree.git
 [submodule "submodules/fenix-ui-chart-creator"]
 	path = submodules/fenix-ui-chart-creator
-	url = https://github.com/FENIX-Platform/fenix-ui-chart-creator.git
+	url = https://github.com/FAOSTAT/fenix-ui-chart-creator.git
 [submodule "submodules/fenix-ui-map-creator"]
 	path = submodules/fenix-ui-map-creator
-	url = https://github.com/FENIX-Platform/fenix-ui-map-creator.git
+	url = https://github.com/FAOSTAT/fenix-ui-map-creator.git
 [submodule "submodules/fenix-ui-dashboard"]
 	path = submodules/fenix-ui-dashboard
-	url = https://github.com/FENIX-Platform/fenix-ui-dashboard.git
+	url = https://github.com/FAOSTAT/fenix-ui-dashboard.git
 [submodule "submodules/fenix-ui-reports"]
 	path = submodules/fenix-ui-reports
 	url = https://github.com/FENIX-Platform/fenix-ui-reports.git
@@ -54,7 +54,7 @@
 	url = https://github.com/FAOSTAT/faostat-ui-welcome-page.git
 [submodule "submodules/fenix-ui-map"]
 	path = submodules/fenix-ui-map
-	url = https://github.com/FENIX-Platform/fenix-ui-map.git
+	url = https://github.com/FAOSTAT/fenix-ui-map.git
 [submodule "submodules/faostat-ui-report-table"]
 	path = submodules/faostat-ui-report-table
 	url = https://github.com/FAOSTAT/faostat-ui-report-table.git
