@@ -18,9 +18,7 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List1Codes",
-                    //"title": "title",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
@@ -34,14 +32,14 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['2003'],
+                        "defaultCodes": [],
                         "filter": {
                         }
                     }
@@ -53,41 +51,17 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['PI'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                "null_values": null,
-                page_size: 0,
-                per_page: 0
+                domain_code: ['PI']
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {}
-            },
-
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Producer price indices (2004-2006=100), {{area}}",
@@ -116,8 +90,8 @@ define([
                     },
                     allowedFilter: ['area', 'year'],
                     filter: {
-                        List2Codes: [5539],
-                        List3Codes: [2051, 2044, 1717, 1720, 1726, 1732, 1735, 1738, 1780, 1783]
+                        element: [5539],
+                        item: [2051, 2044, 1717, 1720, 1726, 1732, 1735, 1738, 1780, 1783]
                     }
                 }
             ]

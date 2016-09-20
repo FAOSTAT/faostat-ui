@@ -16,14 +16,10 @@ define([
 
             items: [
                 {
-                    // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List3Codes",
-                    //"title": "title",
+                    "parameter": "item",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-lg-3",
                         "type": "dropDownList",
                         "multiple": false
@@ -31,14 +27,13 @@ define([
                     "config": {
                         "dimension_id": "items",
                         "defaultCodes": ["3102"],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList",
@@ -53,16 +48,15 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-lg-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['2002'],
-                        "filter": {
-                        }
+                        "defaultCodes": [],
+                        "filter": {}
                     }
                 },
                 C.filter.aggregation
@@ -73,31 +67,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['EF'],
-                List2Codes: ["5159"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['EF']
             },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
@@ -107,7 +78,7 @@ define([
                     // labels
                     labels: {
 
-                        // temp[late to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Fertilizer nutrient use on arable and permanent crop area by country",
@@ -126,22 +97,19 @@ define([
                     allowedFilter: ['item', 'year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
+                        // TODO: remove the area (in theory should be automatically detected from the domain dimensions/schema)
+                        area: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
-                    },
-                    /*                    bridge: {
-                     requestType: 'rankings' // data, rankings
-                     }*/
+                    }
                 },
                 {
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[late to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Trend of fertilizer nutrient use on arable and permanent crop area by continent",
@@ -168,7 +136,7 @@ define([
                     },
                     allowedFilter: ['year', 'item'],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        area: ["5100", "5200", "5300", "5400", "5500"],
                         "order_by": 'area'
                     }
                 },
@@ -176,7 +144,7 @@ define([
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -200,7 +168,6 @@ define([
                         },
                         template: {
                             height:'250px'
-                            // default labels to be applied
                         },
                         creator: {
                             chartObj: {
@@ -213,7 +180,7 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
+                        area: ["5000>"],
                         "group_by": 'year, item',
                         "order_by": 'value DESC',
                         "limit": '10'

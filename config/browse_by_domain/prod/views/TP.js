@@ -18,9 +18,7 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List3Codes",
-                    //"title": "title",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
@@ -36,9 +34,8 @@ define([
                     // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
-                        <!-- TODO: add a class instead of bootstrap -->
                         "class": "col-xs-6 col-sm-6 col-md-3",
                         "type": "dropDownList"
                         //"multiple": true
@@ -53,7 +50,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
@@ -73,46 +70,15 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['TP'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: "-1",
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['TP']
             },
-
-            // labels?
-            labels: {
-
-                // labels to dinamically substitute the title and subtitle
-                default: {
-
-                }
-
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -145,8 +111,8 @@ define([
                     allowedFilter: ['area', 'year', 'item', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List2Codes: [2910],
-                        List3Codes: [15]
+                        element: [2910],
+                        item: [15]
                     }
                 },
                 {
@@ -186,8 +152,8 @@ define([
                     allowedFilter: ['area', 'year', 'item', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List2Codes: [2610],
-                        List3Codes: [15]
+                        element: [2610],
+                        item: [15]
                     }
                 },
                 {
@@ -230,9 +196,9 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: [2910],
-                        List3Codes: [15],
+                        area: ["5000>"],
+                        element: [2910],
+                        item: [15],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '5'
@@ -242,7 +208,7 @@ define([
                     type: 'chart',
                     class: "col-md-6",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -278,9 +244,9 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: [2610],
-                        List3Codes: [15],
+                        area: ["5000>"],
+                        element: [2610],
+                        item: [15],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '5'

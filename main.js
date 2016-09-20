@@ -78,6 +78,7 @@ var config = {
         Blob: CDN + '/js/blob/1.0/Blob',
         tableExport: CDN + '/js/tableExport.jquery.plugin/1.0/tableExport.min',
 
+
         // TODO: move to CDN
         /* FAOSTAT API's client. */
         faostatapiclient: 'FAOSTATAPIClient.min',
@@ -87,7 +88,8 @@ var config = {
         // boostrap bplugins
         'bootstrap-table': CDN + '/js/bootstrap-table/1.9.1/bootstrap-table.min',
         //'bootstrap-treeview': CDN + '/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
-        //'bootstrap-tour': CDN + '/js/bootstrap-tour/0.10.3/build/js/bootstrap-tour.min',
+        'bootstrap-tour': CDN + '/js/bootstrap-tour/0.11.0/build/js/bootstrap-tour.min',
+
 
         "datatables.net": CDN + '/js/DataTables/1.10.12/media/js/jquery.dataTables.min',
         "datatables.net-bs": CDN + '/js/DataTables/1.10.12/media/js/dataTables.bootstrap.min',
@@ -134,6 +136,8 @@ var config = {
         'highcharts-treemap': CDN + '/js/highcharts/4.2.5/js/modules/treemap',
         'highcharts-heatmap': CDN + '/js/highcharts/4.2.5/js/modules/heatmap',
         'highcharts-export': CDN + '/js/highcharts/4.2.5/js/modules/exporting',
+        'highcharts-regression':'//rawgithub.com/phpepe/highcharts-regression/master/highcharts-regression',
+
 
         // highchart client side exporting
         'highcharts-export-clientside': CDN + '/js/highcharts-export-clientside/1.1.4/highcharts-export-clientside',
@@ -368,15 +372,15 @@ var config = {
         "highcharts-export-clientside": {
             "deps": ["highcharts", "canvas-tools", 'jspdf']
         },
-
+        "highcharts-regression": {
+            "deps": ["highcharts"]
+        },
         "datatables.bs": {
             "deps": ["jquery", "bootstrap"],
             export: "DataTables"
         },
-
         "datatables.net": {
             "deps": ["jquery"],
-
         },
         "datatables.net-bs":{
             //export: "DataTables"
@@ -463,10 +467,15 @@ require([
     // config api
     API.config({
         base_url: C.URL_API,
-        datasource: C.DATASOURCE,
         lang: Common.getLocaleAPI(),
         log: C.API_LOG
     });
+
+    if (C.DATASOURCE !== null) {
+        API.config({
+            datasource: C.DATASOURCE
+        })
+    }
 
     // starting the Application
     var app = new Application({

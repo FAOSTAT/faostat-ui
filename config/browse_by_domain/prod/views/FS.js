@@ -15,25 +15,33 @@ define(function () {
 
             items: [
                 {
-                    // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
-                        // <!-- TODO: add a class instead of bootstrap -->
-                        "class": "col-xs-8 col-sm-6 col-md-5",
+                        "class": "col-xs-8 col-sm-6 col-md-4",
                         "type": "dropDownList"
-                        //"multiple": true
                     },
                     "config": {
                         "dimension_id": "area",
-                        //"defaultCodes": ["249"],
                         "defaultCodes": ["5000"],
-                        "filter": {
-                            "show_lists": false
-                        }
+                        "filter": {}
+                    }
+                },
+                {
+                    "id": "year",
+                    "type": "codelist",
+                    "parameter": "year",
+                    "componentType": {
+                        "class": "hidden",
+                        "type": "dropDownList-timerange"
+                    },
+                    "config": {
+                        "dimension_id": "year",
+                        "filter": {}
                     }
                 }
+
             ]
         },
 
@@ -41,50 +49,18 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['FS'],
-                List2Codes: [6120],
-                List4Codes: ['_1'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['FS'],
+                element: [6120]
             },
-
-            // labels?
-            labels: {
-
-                // labels to dinamically substitute the title and subtitle
-                default: {
-                }
-
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
-
+            
             items: [
                 {
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Prevalence of undernourishment (%) - 3 years average",
@@ -119,7 +95,7 @@ define(function () {
                     },
                     allowedFilter: ['area', 'year'],
                     filter: {
-                        List3Codes: [21004],
+                        item: [21004],
                         order_by: 'year'
                     }
                 },
@@ -127,9 +103,9 @@ define(function () {
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Average dietary supply adequacy (%)",
@@ -164,7 +140,7 @@ define(function () {
                     },
                     allowedFilter: ['area', 'year'],
                     filter: {
-                        List3Codes: [21010],
+                        item: [21010],
                         order_by: 'year'
                     }
                 },
@@ -172,9 +148,9 @@ define(function () {
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Domestic food price level index (index)",
@@ -209,7 +185,7 @@ define(function () {
                     },
                     allowedFilter: ['area', 'year'],
                     filter: {
-                        List3Codes: [21018],
+                        item: [21018],
                         order_by: 'year'
                     }
                 },
@@ -217,9 +193,9 @@ define(function () {
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // temp[template to be applied to the config.template for the custom object
+                        // template to be applied to the config.template for the custom object
                         template: {
                             title: {
                                 en: "Percentage of children under 5 years of age who are underweight (%)",
@@ -264,7 +240,7 @@ define(function () {
                     },
                     allowedFilter: ['area', 'year'],
                     filter: {
-                        List3Codes: [21027],
+                        item: [21027],
                         order_by: 'year'
                     }
                 }

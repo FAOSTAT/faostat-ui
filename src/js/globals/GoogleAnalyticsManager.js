@@ -60,7 +60,7 @@ define([
 
     GoogleAnalyticsManager.prototype.pageView = function () {
 
-        if ( this.CURRENT_PAGE !== Backbone.history.getFragment()) {
+       /* if ( this.CURRENT_PAGE !== Backbone.history.getFragment()) {
 
             log.info("GoogleAnalyticsManager; pageView", Backbone.history.getFragment());
 
@@ -76,7 +76,20 @@ define([
 
         }else{
             log.warn("GoogleAnalyticsManager; page already set", Backbone.history.getFragment(), this.CURRENT_PAGE);
-        }
+        }*/
+
+        // Google analytics says that it's required a pageView before and Event
+        log.info("GoogleAnalyticsManager; pageView", Backbone.history.getFragment());
+
+        this.CURRENT_PAGE = Backbone.history.getFragment();
+
+        // TOD: get page by the fragment?
+
+        ga('set', {
+            page: this.CURRENT_PAGE,
+            title: this.CURRENT_PAGE
+        });
+        ga('send', 'pageview');
 
     };
 

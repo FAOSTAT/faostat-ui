@@ -71,3 +71,20 @@ input[type="button"]::-moz-focus-inner{
 .btn-default {
   //background-color: #2BBBAD;
 }
+
+.btn-floating {
+
+  &:not(.btn-large) {
+    i.material-icons {
+      font-size: 20px;
+    }
+
+  }
+
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-20 { font-size: 20px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }

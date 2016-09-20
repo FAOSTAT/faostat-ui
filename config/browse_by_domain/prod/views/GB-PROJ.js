@@ -41,8 +41,7 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    // TODO: in theory that should come from the dimensions schema!!
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-md-3",
                         "type": "dropDownList"
@@ -58,7 +57,7 @@ define([
                     // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-md-3",
                         "type": "dropDownList"
@@ -74,7 +73,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-md-2",
                         "type": "dropDownList"
@@ -93,17 +92,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GB'],
-                List2Codes: ["7231"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                decimal_places: 2,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                page_number: 0
+                domain_code: ['GB'],
+                element: ["7231"]
             },
 
             // labels?
@@ -158,8 +148,8 @@ define([
                     allowedFilter: ['item', 'year', 'element'],
                     deniedTemplateFilter: [],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"]
+                        // TODO: remove the area (in theory should be automatically detected from the domain dimensions/schema)
+                        area: ["5000>", "351"]
                         //"group_by": 'year',
                         //"order_by": 'area'
                     }
@@ -201,8 +191,8 @@ define([
                     },
                     allowedFilter: ['item'],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
-                        List4Codes: ["2030", "2050"]
+                        area: ["5100", "5200", "5300", "5400", "5500"],
+                        year: ["2030", "2050"]
                         // TODO: baseline 2005-2006-2007
                     }
                 },
@@ -243,7 +233,7 @@ define([
                     },
                     allowedFilter: ['area', 'item'],
                     filter: {
-                        List4Codes: ["2030", "2050"]
+                        year: ["2030", "2050"]
                         // TODO: baseline 2005-2006-2007
                     }
                 },
@@ -285,7 +275,7 @@ define([
                     allowedFilter: ['year', 'item'],
                     deniedOnLoadFilter: [],
                     filter: {
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"]
+                        area: ["5100", "5200", "5300", "5400", "5500"]
                     }
                 },
                 {
@@ -320,7 +310,7 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'aggregation'],
                     filter: {
-                        List3Codes: ["1712>"],
+                        item: ["1712>"],
                     }
                 }
             ]

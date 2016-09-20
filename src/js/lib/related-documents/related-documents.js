@@ -5,7 +5,7 @@ define([
     'config/Config',
     'config/Events',
     'config/Analytics',
-    'text!lib/related_documents/templates/templates.hbs',
+    'text!lib/related-documents/templates/templates.hbs',
     'i18n!nls/common',
     'handlebars',
     'faostatapiclient',

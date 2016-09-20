@@ -6,28 +6,40 @@ define(function () {
 
     return {
 
+        filter: {
+            defaultFilter: {
+                "domain_code": ["RF"],
+                "show_lists": false
+            },
+            items: [
+                {
+                    "id": "yearTimeserie",
+                    "type": "codelist",
+                    "parameter": "year",
+                    "componentType": {
+                        "class": "hidden",
+                        "type": "dropDownList-timerange"
+                    },
+                    "config": {
+                        "dimension_id": "years",
+                        "defaultCodes": [],
+                        "filter": {}
+                    }
+                }
+            ]
+        },
+
         dashboard: {
 
             // TODO: this should be automatically added if filter is null
-            "render": true,
+            //"render": true,
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['RF'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                null_values: null,
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['RF']
             },
 
-            // labels?
+            // labels
             labels: {
                 // labels to dinamically substitute the title and subtitle
                 // TODO: import i18n in the js to be consistent?
@@ -54,7 +66,7 @@ define(function () {
                                 fr: "Consomation mondiale d'engrais (nutriments)",
                                 es: "Consumo mundial de fertilizantes (nutrientes)"
                             },
-                            subtitle: "2002 - 2009"
+                            subtitle: "{{yearTimeserie}}"
                         }
                     },
                     config: {
@@ -69,16 +81,15 @@ define(function () {
                         template: {},
                         creator: {}
                     },
-                    allowedFilter: [],
+                    allowedFilter: ['yearTimeserie'],
                     filter: {
-                        List1Codes: [5000],
-                        List2Codes: [5155],
-                        List3Codes: [
+                        area: [5000],
+                        element: [5155],
+                        item: [
                             3102,
                             3103,
                             3104
                         ],
-                        List4Codes: [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009],
                         "order_by": 'year'
                     }
                 },
@@ -95,7 +106,7 @@ define(function () {
                                 fr: "La consommation mondiale en nutriments (total)",
                                 es: "Consumo mundial de nutrientes (total)"
                             },
-                            subtitle: "2002 - 2009"
+                            subtitle: "{{yearTimeserie}}"
                         }
                     },
                     config: {
@@ -110,16 +121,15 @@ define(function () {
                         template: {},
                         creator: {}
                     },
-                    allowedFilter: [],
+                    allowedFilter: ['yearTimeserie'],
                     filter: {
-                        List1Codes: [5000],
-                        List2Codes: [5155],
-                        List3Codes: [
+                        area: [5000],
+                        element: [5155],
+                        item: [
                             3102,
                             3103,
                             3104
                         ],
-                        List4Codes: [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009],
                         "order_by": 'year',
                         "group_by": 'item',
                         "operator": "AVG"
@@ -138,7 +148,7 @@ define(function () {
                                 fr: "Consommation des 10 principaux consommateur",
                                 es: "Consumo de los 10 principales consumadores"
                             },
-                            subtitle: "{{aggregation}} 2002 - 2005"
+                            subtitle: "{{aggregation}} 2002 - 2007"
                         }
                     },
                     config: {
@@ -161,14 +171,14 @@ define(function () {
                     },
                     allowedFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: [5155],
-                        List3Codes: [
+                        area: ["5000>"],
+                        element: [5155],
+                        item: [
                             3102,
                             3103,
                             3104
                         ],
-                        List4Codes: [2002, 2003, 2004, 2005],
+                        year: [2002, 2003, 2004, 2005, 2006, 2007],
                         "group_by": 'year, item',
                         "operator": "avg",
                         "order_by": 'value DESC',
@@ -188,7 +198,7 @@ define(function () {
                                 fr: "Consommation des 10 principaux consommateur",
                                 es: "Consumo de los 10 principales consumadores"
                             },
-                            subtitle: "{{aggregation}} 2006 - 2009"
+                            subtitle: "{{aggregation}} 2008 - 2013"
                         }
                     },
                     config: {
@@ -211,14 +221,14 @@ define(function () {
                     },
                     allowedFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: [5155],
-                        List3Codes: [
+                        area: ["5000>"],
+                        element: [5155],
+                        item: [
                             3102,
                             3103,
                             3104
                         ],
-                        List4Codes: [2006, 2007, 2008, 2009],
+                        year: [2008, 2009, 2010, 2011, 2012, 2013],
                         "group_by": 'year, item',
                         "operator": "avg",
                         "order_by": 'value DESC',

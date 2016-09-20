@@ -36,7 +36,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
         explore_data: "Explore Data",
         explore_data_title: "Food and agriculture data",
-        explore_data_text: "FAOSTAT provides free access to food and agriculture data for over 245 countries and 35 regional areas from 1961 to the most recent year available."
+        explore_data_text: "FAOSTAT provides free access to food and agriculture data for over 245 countries and territories and covers all FAO regional groupings <br> from 1961 to the most recent year available."
 
     });
 

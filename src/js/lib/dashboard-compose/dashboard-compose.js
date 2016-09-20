@@ -198,7 +198,7 @@ define([
 
         DashBoardComposer.prototype.destroy = function () {
 
-            //log.info("DashBoardComposer.destroy;");
+            log.info("DashBoardComposer.destroy;");
 
             this._unbindEventListeners();
 

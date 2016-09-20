@@ -291,12 +291,11 @@ define([
 
             var obj = this.results.data[index],
                 exportObj = {
-                    domain_codes: [obj.DomainCode],
-                    filters: {}
+                    domain_code: obj.DomainCode,
                 };
 
             // adding the export code to the filters
-            exportObj.filters[obj.id] = [obj.Code];
+            exportObj[obj.id] = [obj.Code];
 
             log.info("Search.exportData;", exportObj);
 

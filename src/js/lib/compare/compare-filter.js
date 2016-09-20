@@ -114,7 +114,8 @@ define([
         var f = {
             //id: this.o.metadata.parameters.id,
             id: this.o.id,
-            parameter: this.o.parameter,
+            // parameter: this.o.parameter,
+            parameter: this.o.id,
             codes: this.$DD.val() || []
         };
 

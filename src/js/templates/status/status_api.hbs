@@ -24,16 +24,16 @@
 <script type='text/x-handlebars-template' id='domain-details'>
 
     <div data-role="{{domain_code}}">
-        <h4>({{domain_code}}) {{domain_name}} </h4>
+        <h3>({{domain_code}}) {{domain_name}} </h3>
 
-        <h5><span><a href="#"><i data-role='dimensions-show-details' class="fa fa-search-plus"></i></a></span> Dimensions</h5>
-        <div data-role="dimensions-details"></div>
+        <h4><a href="#"><i data-role='dimensions-show-details'></i></a>Dimensions</h4>
+        <div style="padding-left:25px;" data-role="dimensions-details"></div>
 
-        <h5><span><a href="#"><i data-role='codes-show-details' class="fa fa-search-plus"></i></a> Codes</h5>
-        <div data-role="codes-details"></div>
+        <h4><a href="#"><i data-role='codes-show-details'></i></a>Codes for each dimension</h4>
+        <div style="padding-left:25;" data-role="codes-details"></div>
 
-        <h5><span><a href="#"><i data-role='data-show-details' class="fa fa-search-plus"></i></a> Data</h5>
-        <div data-role="data-details"></div>
+        <h4><a href="#"><i data-role='data-show-details'></i></a>Data</h4>
+        <div style="padding-left:25px;" data-role="data-details"></div>
 
     </div>
     <hr>
@@ -42,7 +42,8 @@
 
 
 <script type='text/x-handlebars-template' id='dimensions'>
-    {{total}}
+    <p>Number of dimensions: {{total}}</p>
+    <p>Dimensions and subdimensions list</p>
     <ul>
     {{#each data}}
         <li>{{this.id}} </li>
@@ -60,10 +61,7 @@
 <script type='text/x-handlebars-template' id='codes'>
     <div class="row">
         <div class="col-md-2">
-            <h5>{{this.metadata.parameters.id}} </h5>
-        </div>
-        <div class="col-md-2">
-            <p>{{this.metadata.parameters.parameter}}</p>
+            <h5>{{this.id}} </h5>
         </div>
         <div class="col-md-2">
             <p>{{this.total}}</p>
@@ -80,7 +78,7 @@
 <script type='text/x-handlebars-template' id='warning'>
         <div class="row">
             <div class="col-md-12">
-                <h4 {{#if this.color}}style='color: {{this.color}}'{{/if}}>({{this.domain_code}}) {{this.domain_name}} </h4>
+                <h4 {{#if this.color}}style='color: {{this.color}}'{{/if}}>({{this.domain_code}}) {{this.domain_name}} rows from getData: {{this.rows}}</h4>
             </div>
         </div>
 </script>

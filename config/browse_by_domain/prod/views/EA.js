@@ -1,12 +1,13 @@
 /*global define*/
-
-define(function () {
+define([
+    'config/browse_by_domain/Config'
+],function (C) {
 
     'use strict';
 
     return {
 
-        "filter": {
+        filter: {
 
             defaultFilter: {
                 "domain_code": ["EA"],
@@ -17,7 +18,7 @@ define(function () {
                 {
                     "id": "donor",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "donor",
                     "componentType": {
                         "class": "col-md-4",
                         "type": "dropDownList"
@@ -31,7 +32,7 @@ define(function () {
                 {
                     "id": "recipientarea",
                     "type": "codelist",
-                    "parameter": "List2Codes",
+                    "parameter": "recipientarea",
                     "componentType": {
                         "class": "col-md-4",
                         "type": "dropDownList"
@@ -45,7 +46,7 @@ define(function () {
                 {
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-md-4",
                         "type": "dropDownList"
@@ -61,7 +62,7 @@ define(function () {
                 {
                     "id": "purpose",
                     "type": "codelist",
-                    "parameter": "List5Codes",
+                    "parameter": "purpose",
                     "componentType": {
                         "class": "col-md-4",
                         "type": "dropDownList"
@@ -75,7 +76,7 @@ define(function () {
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List6Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-md-2",
                         "type": "dropDownList-timerange"
@@ -83,24 +84,22 @@ define(function () {
                     "config": {
                         "dimension_id": "year",
                         "defaultCodes": ['1995'],
-                        "filter": {
-                        }
+                        "filter": {}
                     }
                 },
+                C.filter.aggregation,
                 {
-                    "id": "aggregation",
-                    "type": "static",
-                    "parameter": "operator",
+                    "id": "element",
+                    "type": "codelist",
+                    "parameter": "element",
                     "componentType": {
-                        "class": "col-md-2",
+                        "class": "hidden",
                         "type": "dropDownList"
                     },
                     "config": {
-                        "defaultCodes": ["AVG"],
-                        "data": [
-                            {"code": "AVG", "label": "average", "selected": true},
-                            {"code": "SUM", "label": "sum", "selected": false}
-                        ]
+                        "dimension_id": "element",
+                        "defaultCodes": ["6137"],
+                        "filter": {}
                     }
                 }
             ]
@@ -110,20 +109,7 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['EA'],
-                List3Codes: ["6137"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['EA']
             },
 
             // labels?
@@ -133,17 +119,6 @@ define(function () {
                 }
             },
 
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
-
             items: [
                 {
                     type: 'map',
@@ -152,9 +127,9 @@ define(function () {
                         default: {},
                         template: {
                             title: {
-                                en: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices",
-                                fr: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices",
-                                es: "Development flows of {{donor}} to {{purpose}} in US$, 2013 prices"
+                                en: "Development flows of {{donor}} to {{purpose}} in {{element}}",
+                                fr: "Development flows of {{donor}} to {{purpose}} in {{element}}",
+                                es: "Development flows of {{donor}} to {{purpose}} in {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -171,10 +146,10 @@ define(function () {
                         },
                         layer: {}
                     },
-                    allowedFilter: ['donor', 'item', 'year', 'purpose', 'aggregation'],
+                    allowedFilter: ['donor', 'item', 'year', 'purpose', 'aggregation', 'element'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List2Codes: ["5000>", "351"],
+                        recipientarea: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'recipientarea'
                     }
@@ -185,9 +160,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} US$, 2013 prices",
-                                fr: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} US$, 2013 prices",
-                                es: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} US$, 2013 prices"
+                                en: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} {{element}}",
+                                fr: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} {{element}}",
+                                es: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} {{element}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -204,15 +179,13 @@ define(function () {
                             decimalPlaces: 2
                         },
                         template: {
-                            // height:'350px'
-                            // default labels to be applied
                         },
                         creator: {}
                     },
-                    allowedFilter: ['donor', 'year', 'element', 'purpose', 'recipientarea'],
+                    allowedFilter: ['donor', 'element', 'year', 'purpose', 'recipientarea'],
                     filter: {
-                        List4Codes: ["22040", "22050"],
-                        "order_by": 'year'
+                        item: ["22040", "22050"],
+                        order_by: "year ASC"
                     }
                 },
                 {
@@ -221,9 +194,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 10 recipients of {{donor}} in US$, 2013 prices",
-                                fr: "Top 10 recipients of {{donor}} in US$, 2013 prices",
-                                es: "Top 10 recipients of {{donor}} in US$, 2013 prices"
+                                en: "Top 10 recipients of {{donor}} in {{element}}",
+                                fr: "Top 10 recipients of {{donor}} in {{element}}",
+                                es: "Top 10 recipients of {{donor}} in {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -251,7 +224,7 @@ define(function () {
                     allowedFilter: ['donor', 'item', 'element', 'year', 'purpose', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List2Codes: ["5000>"],
+                        recipientarea: ["5000>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'
@@ -263,9 +236,9 @@ define(function () {
                     labels: {
                         template: {
                             title: {
-                                en: "Top 10 donors of {{recipientarea}} in US$, 2013 prices",
-                                fr: "Top 10 donors of {{recipientarea}} in US$, 2013 prices",
-                                es: "Top 10 donors of {{recipientarea}} in US$, 2013 prices"
+                                en: "Top 10 donors of {{recipientarea}} in {{element}}",
+                                fr: "Top 10 donors of {{recipientarea}} in {{element}}",
+                                es: "Top 10 donors of {{recipientarea}} in {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -294,7 +267,7 @@ define(function () {
                     deniedTemplateFilter: [],
                     filter: {
                         // TODO: fix it with level 5
-                        List1Codes: ["690>", "691>", "692>"],
+                        donor: ["690>", "691>", "692>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'

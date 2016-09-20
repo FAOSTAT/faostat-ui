@@ -27,7 +27,6 @@
     <div class="col-xs-9 col-sm-8 col-md-9 clearfix">
         <a data-toggle="modal" data-target="#fs-data-tree-domain-modal"
            class="pull-left btn-floating waves-effect waves-light btn-primary fs-btn-tree" data-role="export">
-            <!--<i class="material-icons">keyboard_arrow_down</i>-->
             <i class="material-icons">menu</i>
         </a>
         <h1 class="truncate" data-role="domain-title"></h1>
@@ -131,7 +130,6 @@
 
                 <div data-role="related-documents">
                     <p class="label label-default label-aligned">{{related_documents}}</p>
-                    <!--TODO: remove when data are not available? -->
                     <div data-role="fs-download-related-documents"></div>
                 </div>
 
@@ -140,7 +138,7 @@
                 </a>
 
                 <a class="btn btn-default btn-block waves-effect" target='_blank' data-role="fs-download-metadata-button">
-                    <i class="material-icons left">info_outline</i>{{full_metadata}}
+                    <i class="material-icons left">info_outline</i>{{metadata}}
                 </a>
 
             </div>

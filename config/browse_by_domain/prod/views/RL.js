@@ -17,7 +17,7 @@ define(function () {
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-xs-6 col-sm-6 col-md-4",
                         "type": "dropDownList"
@@ -32,7 +32,7 @@ define(function () {
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList-timerange"
@@ -67,49 +67,21 @@ define(function () {
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['RL'],
-                List2Codes: [5110],
-                List3Codes: [
+                domain_code: ['RL'],
+                element: [5110],
+                item: [
                     6621,
                     6650,
                     6655
-                ],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                null_values: null,
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                ]
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {
-                }
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -190,7 +162,7 @@ define(function () {
                     },
                     allowedFilter: ['year', 'aggregation'],
                     filter: {
-                        List1Codes: [
+                        area: [
                             5100,
                             5200,
                             5300,

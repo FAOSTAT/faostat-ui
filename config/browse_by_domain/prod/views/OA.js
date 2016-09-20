@@ -18,7 +18,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sm-4 col-md-2",
                         "type": "dropDownList"
@@ -37,38 +37,54 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['OA'],
-                List3Codes: [3010],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: ['OA'],
+                item: [3010]
             },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'chart',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "Global population composition (area of residence)",
+                                fr: "Composition de la population mondiale par année",
+                                es: "Composición mundial de la población por año"
+                            },
+                            subtitle: "{{year}}"
+                        }
+
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "pie",
+                            xDimensions: null,
+                            yDimensions: null,
+                            valueDimensions: 'value',
+                            seriesDimensions: ['element']
+                        },
+                        template: {
+                            height: '250px'
+                        },
+                        creator: {}
+                    },
+                    allowedFilter: ['year'],
+                    filter: {
+                        area: ["5000"],
+                        element: [551, 561]
+                    }
+                },
+                {
+                    type: 'chart',
+                    class: "col-md-12",
+
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -98,9 +114,9 @@ define([
                     },
                     allowedFilter: [],
                     filter: {
-                        List1Codes: [5000],
-                        List2Codes: [511, 551, 561],
-                        List4Codes: [
+                        area: [5000],
+                        element: [511, 551, 561],
+                        year: [
                             1961,
                             1962,
                             1963,
@@ -152,45 +168,6 @@ define([
                             2009,
                             2010
                         ]
-                    }
-                },
-                {
-                    type: 'chart',
-                    class: "col-md-12",
-
-                    // labels?
-                    labels: {
-                        // temp[late to be applied to the config.template for the custom object
-                        template: {
-                            title: {
-                                en: "Global population composition (area of residence)",
-                                fr: "Composition de la population mondiale par année",
-                                es: "Composición mundial de la población por año"
-                            },
-                            subtitle: "{{year}}"
-                        }
-
-                    },
-
-                    config: {
-                        adapter: {
-                            adapterType: 'faostat',
-                            type: "pie",
-                            xDimensions: null,
-                            yDimensions: null,
-                            valueDimensions: 'value',
-                            seriesDimensions: ['element']
-                        },
-                        template: {
-                            height: '250px'
-                        },
-                        creator: {}
-                    },
-                    allowedFilter: ['year'],
-                    filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000"],
-                        List2Codes: [551, 561]
                     }
                 }
             ]

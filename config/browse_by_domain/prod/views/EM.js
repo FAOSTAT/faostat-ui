@@ -49,7 +49,7 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "title": {
                         "en": "Sector"
                     },
@@ -70,7 +70,7 @@ define([
                     // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-xs-4 col-sx-4 col-md-4",
                         "type": "dropDownList"
@@ -85,10 +85,23 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sx-4 col-md-2",
                         "type": "dropDownList"
+                    },
+                    "config": {
+                        "dimension_id": "year",
+                        "filter": {}
+                    }
+                },
+                {
+                    "id": "yearTimeserie",
+                    "type": "codelist",
+                    "parameter": "year",
+                    "componentType": {
+                        "class": "hidden",
+                        "type": "dropDownList-timerange"
                     },
                     "config": {
                         "dimension_id": "year",
@@ -102,41 +115,17 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['EM'],
-                List2Codes: ["7263"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                decimal_places: 2,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                page_number: 0
+                domain_code: ['EM'],
+                element: ["7263"]
             },
-
-            labels: {
-                default: {}
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-
-            },
-
-            metadata: {},
 
             items: [
                 {
                     type: 'map',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // labels to dinamically substitute the title and subtitle
-                        default: {},
 
                         // temp[late to be applied to the config.template for the custom object
                         template: {
@@ -151,10 +140,10 @@ define([
                     config: {
                         template: {}
                     },
-                    allowedFilter: ['item', 'year'],
+                    allowedFilter: ['item', 'year', 'element'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>", "351"]
+                        area: ["5000>", "351"]
                     }
                 },
                 {
@@ -170,8 +159,7 @@ define([
                                 fr: "Parts des secteurs agricoles dans les émissions de total GHG",
                                 es: "Cuotas de los sectores agrícolas en las emisiones de total GHG"
                             },
-                            // TODO: make it dinamic for the timeserie
-                            subtitle: "{{area}}, 1990 - 2010"
+                            subtitle: "{{area}}, {{yearTimeserie}}"
                         }
                     },
 
@@ -188,10 +176,9 @@ define([
                         template: {},
                         creator: {}
                     },
-                    allowedFilter: ['area'],
+                    allowedFilter: ['area', 'yearTimeserie', 'element'],
                     filter: {
-                        List3Codes: ["1711", "6822"],
-                        List4Codes: ["_1"]
+                        item: ["1711", "6822"]
                     }
                 },
                 {
@@ -226,9 +213,9 @@ define([
                         creator: {
                         }
                     },
-                    allowedFilter: ['area', 'year'],
+                    allowedFilter: ['area', 'year', 'element'],
                     filter: {
-                        List3Codes: [
+                        item: [
                             68140,
                             68160,
                             6815,
@@ -288,10 +275,10 @@ define([
                             }
                         }
                     },
-                    allowedFilter: ['year', 'item'],
+                    allowedFilter: ['year', 'item', 'element'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
+                        area: ["5000>"],
                         "order_by": 'value DESC',
                         "limit": '10'
                     }

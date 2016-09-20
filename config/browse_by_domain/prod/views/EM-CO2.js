@@ -49,7 +49,7 @@ define([
                     // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "title": {
                         "en": "Sector",
                         "fr": "Sector",
@@ -72,7 +72,7 @@ define([
                     // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-xs-4 col-sx-4 col-md-4",
                         "type": "dropDownList"
@@ -87,7 +87,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-xs-4 col-sx-4 col-md-2",
                         "type": "dropDownList"
@@ -104,40 +104,17 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['EM'],
-                List2Codes: ["7264"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                decimal_places: 2,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                page_number: 0
+                domain_code: ['EM'],
+                element: ["7264"],
             },
-
-            labels: {
-                default: {}
-            },
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-
-            },
-
-            metadata: {},
-
             items: [
                 {
                     type: 'map',
                     class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
-                        // labels to dinamically substitute the title and subtitle
+                        // labels to dynamically substitute the title and subtitle
                         default: {},
 
                         // template to be applied to the config.template for the custom object
@@ -156,7 +133,7 @@ define([
                     allowedFilter: ['item', 'year'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>", "351"]
+                        area: ["5000>", "351"]
                     }
                 },
                 {
@@ -192,8 +169,8 @@ define([
                     },
                     allowedFilter: ['area'],
                     filter: {
-                        List3Codes: ["1711", "6822"],
-                        List4Codes: ["_1"]
+                        item: ["1711", "6822"],
+                        year: ["_1"]
                     }
                 },
                 {
@@ -229,7 +206,7 @@ define([
                     },
                     allowedFilter: ['area', 'year'],
                     filter: {
-                        List3Codes: [
+                        item: [
                             68140,
                             68160,
                             6815,
@@ -276,7 +253,7 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: [7267, 7268, 7269]
+                        element: [7267, 7268, 7269]
                     }
                 },
                 {
@@ -285,7 +262,7 @@ define([
 
                     // labels
                     labels: {
-                        // template to be applied to the config.template for the custom object
+                        // labels to dynamically substitute the title and subtitle
                         template: {
                             title: {
                                 en: "Top 10 areas by share of sector {{item}} in CO<sub>2</sub>  emissions",
@@ -328,7 +305,7 @@ define([
                     allowedFilter: ['year', 'item'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
+                        area: ["5000>"],
                         "order_by": 'value DESC',
                         "limit": '10'
                     }

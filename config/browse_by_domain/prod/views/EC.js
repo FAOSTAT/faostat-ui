@@ -18,7 +18,7 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
                         "class": "col-lg-3",
                         "type": "dropDownList",
@@ -33,7 +33,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-sm-2",
                         "type": "dropDownList-timerange"
@@ -52,35 +52,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ["EC"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                decimal_places: 2,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                page_number: 0
+                domain_code: ["EC"]
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {
-                }
-            },
-
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
@@ -119,8 +92,8 @@ define([
                     allowedFilter: ['year', 'area'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List2Codes: [7203],
-                        List3Codes: [6730]
+                        element: [7203],
+                        item: [6730]
                     }
                 },
                 {
@@ -132,11 +105,7 @@ define([
 
                         // labels to dinamically substitute the title and subtitle
                         default: {
-                            aggregation: {
-                                "en": "Average",
-                                "fr": "Moyenne",
-                                "es": "Promedio"
-                            }
+                            aggregation: C.i18n.average
                         },
 
                         // template to be applied to the config.template for the custom object
@@ -144,7 +113,7 @@ define([
                             title: {
                                 "en":"Ammonia (NH3) emissions from agriculture (Top 10 Countries)",
                                 "fr":"Ammoniac (NH3) provenant de l'agriculture (10 pays)",
-                                "es":"Amoniaco (NH3) procedentes de la agricultura (10 países)",
+                                "es":"Amoniaco (NH3) procedentes de la agricultura (10 países)"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -175,15 +144,15 @@ define([
                     allowedFilter: ['year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
-                        List2Codes: [7203],
-                        List3Codes: [6730],
+                        area: ["5000>"],
+                        element: [7203],
+                        item: [6730],
                         "group_by": 'year, item',
                         "order_by": 'value DESC',
                         "limit": '10',
                         "operator": 'avg'
                     }
-                },
+                }
             ]
         }
 

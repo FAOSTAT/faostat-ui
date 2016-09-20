@@ -1,0 +1,74 @@
+.fs-chart {
+
+  .btn-floating {
+
+    margin:10px 0px 10px 10px;
+
+  }
+
+  .fs-icons {
+
+    height: 18px;
+    width: 18px;
+    background-repeat: no-repeat;
+    display: inline-block;
+
+  }
+
+  .chart-line {
+    background: url("#{$fs-images}/chart/chart-line.svg");
+    background-size: contain;
+  }
+
+  .chart-areaspline {
+    background: url("#{$fs-images}/chart/chart-areaspline.svg");
+    background-size: contain;
+  }
+
+  .chart-bar {
+    background: url("#{$fs-images}/chart/chart-bar.svg");
+    background-size: contain;
+  }
+
+  .chart-histogram {
+    background: url("#{$fs-images}/chart/chart-histogram.svg");
+    background-size: contain;
+  }
+
+  .chart-timeline {
+    background: url("#{$fs-images}/chart/chart-timeline.svg");
+    background-size: contain;
+  }
+
+  .chart-pie {
+    background: url("#{$fs-images}/chart/chart-pie.svg");
+    background-size: contain;
+  }
+
+  .chart-arc {
+    background: url("#{$fs-images}/chart/chart-arc.svg");
+    background-size: contain;
+  }
+
+  .chart-bubble {
+    background: url("#{$fs-images}/chart/chart-bubble.svg");
+    background-size: contain;
+  }
+
+  .chart-gantt {
+    background: url("#{$fs-images}/chart/chart-gantt.svg");
+    background-size: contain;
+  }
+
+  .chart-scatter {
+    background: url("#{$fs-images}/chart/chart-scatterplot-hexbin.svg");
+    background-size: contain;
+  }
+
+  .chart-timeline {
+    background: url("#{$fs-images}/chart/chart-timeline.svg");
+    background-size: contain;
+  }
+
+
+}

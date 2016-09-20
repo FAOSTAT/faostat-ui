@@ -17,7 +17,8 @@ define([
     'q',
     'lib/filters/filter-box',
     'lib/filters/filter',
-    'lib/dashboard-composer/dashboard-composer',
+    'lib/dashboard-compose/dashboard-compose',
+    'lib/release-calendar/release-calendar',
     'amplify'
 ], function ($,
              log,
@@ -34,8 +35,9 @@ define([
              Q,
              FilterBox,
              Filter,
-             DashBoardComposer
-             ) {
+             DashBoardComposer,
+             ReleaseCalendar
+ ) {
 
     'use strict';
 
@@ -106,6 +108,19 @@ define([
 
             this.initDashBoardComposer();
 
+            // this.initReleaseCalendar();
+
+            //this.testQueries();
+
+        },
+
+        initReleaseCalendar: function() {
+
+            this.$el.append('calendard<div class="col-md-12" id="calendar"></div>');
+            var c = new ReleaseCalendar();
+            c.render({
+                container: '#calendar'
+            });
         },
 
         initDashBoardComposer: function() {
@@ -126,8 +141,7 @@ define([
                     filter: {
 
                         defaultFilter: {
-                            "domain_code": ["QC"],
-                            // this force all the filters to avoid the "lists" codes
+                            "domain_code": ["QD"],
                             "show_lists": false
                         },
 
@@ -136,25 +150,24 @@ define([
                                 // id to be applied on the getData request
                                 "id": "item",
                                 "type": "codelist",
-                                // TODO: in theory that should come from the dimensions schema!!
-                                "parameter": "List3Codes",
+                                "parameter": "item",
                                 //"title": "title",
                                 "componentType": {
-                                    // <!-- TODO: add a class instead of bootstrap -->
                                     "class": "col-xs-6 col-sm-6 col-md-3",
                                     "type": "dropDownList",
                                     "multiple": false
                                 },
                                 "config": {
                                     "dimension_id": "items",
-                                    "defaultCodes": ["27"],
-                                    "filter": {}
+                                    "defaultCodes": ["290"],
+                                    "filter": {
+                                    }
                                 }
                             },
                             {
                                 "id": "area",
                                 "type": "codelist",
-                                "parameter": "List1Codes",
+                                "parameter": "area",
                                 "componentType": {
                                     "class": "col-xs-6 col-sm-6 col-md-3",
                                     "type": "dropDownList",
@@ -162,21 +175,22 @@ define([
                                 },
                                 "config": {
                                     "dimension_id": "area",
-                                    "defaultCodes": ["2"],
-                                    "filter": {}
+                                    "defaultCodes": ["5000"],
+                                    "filter": {
+                                    }
                                 }
                             },
                             {
                                 "id": "year",
                                 "type": "codelist",
-                                "parameter": "List4Codes",
+                                "parameter": "year",
                                 "componentType": {
                                     "class": "col-xs-4 col-sm-4 col-md-2",
                                     "type": "dropDownList-timerange"
                                 },
                                 "config": {
                                     "dimension_id": "year",
-                                    "defaultCodes": ['1994'],
+                                    "defaultCodes": ['1993'],
                                     "filter": {
                                     }
                                 }
@@ -188,38 +202,9 @@ define([
 
                         //data base filter
                         defaultFilter: {
-                            domain_codes: ['QC'],
-                            List2Codes: ["2510"],
-                            List5Codes: null,
-                            List6Codes: null,
-                            List7Codes: null,
-                            decimal_places: 2,
-                            decimal_separator: ".",
-                            limit: -1,
-                            thousand_separator: ",",
-                            "null_values": null,
-                            // TODO: remove it the page_size!!!
-                            page_size: 0,
-                            per_page: 0,
-                            page_number: 0
+                            domain_code: ['QD'],
+                            element: ["2510"]
                         },
-
-                        // labels?
-                        labels: {
-                            // labels to dinamically substitute the title and subtitle
-                            default: {
-                            }
-                        },
-
-                        //bridge configuration
-                        bridge: {
-
-                            type: "faostat",
-                            //requestType: 'data' // data, rankings
-
-                        },
-
-                        metadata: {},
 
                         items: [
                             {
@@ -228,12 +213,12 @@ define([
 
                                 // labels
                                 labels: {
-                                    // temp[template to be applied to the config.template for the custom object
+                                    // template to be applied to the config.template for the custom object
                                     template: {
                                         title: {
-                                            en: "Production/Yield quantities of {{item}} in {{area}}",
-                                            fr: "Production/Rendement de {{item}} dans le {{area}}",
-                                            es: "Producción/Rendimiento de {{item}} en {{area}}"
+                                            en: "Production quantities of {{item}} in {{area}}",
+                                            fr: "Production de {{item}} dans le {{area}}",
+                                            es: "Producción de {{item}} en {{area}}"
                                         },
                                         subtitle: "{{year}}"
                                     }
@@ -256,7 +241,6 @@ define([
                                 },
                                 allowedFilter: ['area', 'year', 'item'],
                                 filter: {
-                                    List2Codes: ["2312", "2510" ]
                                 }
                             }
                         ]
@@ -423,6 +407,92 @@ define([
 
         testQueries: function () {
 
+           /* $.ajax({
+                url: "http://168.202.39.159:8081/faostat-api/v1/en/data/QC",
+                contentType: "application/json",
+                traditional:true,
+                data: {
+                    datasource: "internal",
+                    area: [2],
+                    year: [2011,2010],
+                    item: [27],
+                    element: [2510]
+                },
+                success: function(result){
+                    log.info(result);
+                },
+                error: function(error) {
+                    log.error(error);
+                }
+            });*/
+
+
+          /*  $.ajax({
+                url: "http://168.202.39.159:8081/faostat-api/v1/en/data/QC",
+                //contentType: "application/json",
+                //traditional:true,
+                data: {
+                    datasource: "internal",
+                    area: [2],
+                    year: [2011,2010],
+                    item: [27],
+                    element: [2510]
+                },
+                success: function(result){
+                    log.info(result);
+                },
+                error: function(error) {
+                    log.error(error);
+                }
+            });*/
+
+            Q.all([
+                API.codes({id: 'area', domain_code: 'QC', show_lists: false}),
+                API.codes({id: 'year', domain_code: 'QC', show_lists: false}),
+                API.codes({id: 'item', domain_code: 'QC', show_lists: false})
+            ]).then(function(codes) {
+
+                log.info(codes)
+
+                var area = _.pluck(codes[0].data, 'code');
+                var year = _.pluck(codes[1].data, 'code');
+                var item = _.pluck(codes[2].data, 'code');
+
+                log.info(area);
+                log.info(year);
+                log.info(item);
+
+
+                API.data({
+                    datasource: "internal",
+                    domain_code: "QC",
+                    area: area,
+                    year: year,
+                    item: item,
+                    element: [2510],
+                    no_records: true
+                }).then(function(d) {
+                    log.info(d);
+
+                }).fail(function(e) {
+                    log.error(e);
+                });
+            });
+
+           /*
+
+            API.data_new({
+                datasource: "internal",
+                domain_code: "QC",
+                area: [2],
+                year: [2011,2010],
+                item: [27],
+                element: [2510]
+            }).then(function(d) {
+                log.info(d)
+
+            });*/
+
 
             /*$.ajax({
              url: "http://fenixservices.fao.org/faostat/api/v1/en/data/",
@@ -440,7 +510,7 @@ define([
              });*/
 
 
-            API.definitions({
+           /* API.definitions({
                 datasource: "production"
             }).then(function(d) {
                 log.info(d)
@@ -460,7 +530,7 @@ define([
             }).then(function(d) {
                 log.info(d)
 
-            });
+            });*/
 
 
             /*  api.data_get({

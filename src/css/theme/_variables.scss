@@ -40,13 +40,15 @@ $fx-main-color-darker: darken($fx-cool-blue, 20%); // Ideal for hovers
 
 
 
-$fenix-text: #333333;
+//$fenix-text: #333333;
+$fenix-text:rgba(0, 0, 0, 0.70);
 $fenix-secondary-text: #999999;
 
 $fenix-light-gray: #dddddd;
 $fenix-dark-blue: #4c647f;
 $fenix-dark-bg: #666666;
-$fenix-light-bg: #f1f1f1;
+//$fenix-light-bg: #f1f1f1;
+$fenix-light-bg: #eee;
 $light-purple: #EEEEFF;
 $light-brown: #f3efe0;
 
@@ -69,6 +71,7 @@ $black-alpha : rgba(0, 0, 0, 0.8);
 // Background
 // background: color position/size repeat origin clip attachment image|initial|inherit;
 $fx-site-bg: $fenix-light-bg;
+$fx-container-bg: #fcfcfc;
 
 // Border Radius
 $fx-border-radius: 0;

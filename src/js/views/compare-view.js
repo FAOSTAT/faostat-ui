@@ -217,8 +217,6 @@ define([
 
                 _.each(f.filter, function (filterParameter) {
 
-                    log.info(filterParameter)
-
                     if (CM.filters.blacklistCodesID.indexOf(filterParameter.id) <= -1) {
 
                         r[filterParameter.parameter] = filterParameter.codes;
@@ -248,7 +246,7 @@ define([
                 }, r);
 
                 this.cachedRequest.push(r);
-                requests.push(API.databean(r));
+                requests.push(API.data(r));
 
             }, this));
 
@@ -343,7 +341,6 @@ define([
 
         _getFiltersSelections: function () {
 
-            log.info("getFiltersSelection");
 
             var filters = [];
             _.each(Object.keys(filterBox), function (filterID) {
@@ -352,6 +349,8 @@ define([
                     filterBox: filterBox[filterID]
                 });
             });
+
+            //log.info("getFiltersSelection", filters);
             return filters;
 
         },

@@ -19,9 +19,9 @@ define([
                 {
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-md-3",
                         "type": "dropDownList",
                         "multiple": false
                     },
@@ -36,7 +36,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-lg-2",
                         "type": "dropDownList-timerange"
@@ -57,31 +57,11 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['AF'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                decimal_places: 2,
-                decimal_separator: ".",
-                limit: -1,
-                thousand_separator: ",",
-                "null_values": null,
-                // TODO: remove it the page_size!!!
-                page_size: 0,
-                per_page: 0,
-                page_number: 0
+                domain_code: 'AE'
             },
 
             // labels
             labels: {},
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat"
-                //requestType: 'data' // data, rankings
-
-            },
 
             metadata: {},
 
@@ -117,10 +97,10 @@ define([
                     allowedFilter: ['item', 'year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
-                        List2Codes: ["6085"],
-                        List3Codes: ["23046"],
+                        // TODO: remove the area (in theory should be automatically detected from the domain dimensions/schema)
+                        area: ["5000>", "351"],
+                        element: ["6085"],
+                        item: ["23045"],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -162,8 +142,8 @@ define([
                     },
                     allowedFilter: ['area', 'year', 'item'],
                     filter: {
-                        List2Codes: ["6085"],
-                        List3Codes: ["23046"]
+                        element: ["6085"],
+                        item: ["23045"]
                     }
                 }
             ]

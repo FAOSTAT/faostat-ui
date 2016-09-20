@@ -29,7 +29,7 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     //"title": "title",
                     "componentType": {
                         "class": "col-lg-3",
@@ -46,9 +46,9 @@ define([
                     // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
-                    "parameter": "List1Codes",
+                    "parameter": "area",
                     "componentType": {
-                        "class": "col-lg-3",
+                        "class": "col-md-3",
                         "type": "dropDownList"
                         //"multiple": true
                     },
@@ -62,9 +62,9 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
-                        "class": "col-lg-2",
+                        "class": "col-md-2",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
@@ -82,17 +82,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['GC'],
-                List2Codes: ["7217"],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                decimal_places: 2,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                page_number: 0
+                domain_code: ['GC'],
+                element: ["7217"]
             },
 
             // labels?
@@ -146,8 +137,8 @@ define([
                     allowedFilter: ['item', 'year', 'element', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5000>", "351"],
+                        // TODO: remove the area (in theory should be automatically detected from the domain dimensions/schema)
+                        area: ["5000>", "351"],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -183,8 +174,8 @@ define([
                     },
                     allowedFilter: ['year', 'item', 'aggregation'],
                     filter: {
-                        // TODO: remove the List1Codes (in theory should be automatically detected from the domain dimensions/schema)
-                        List1Codes: ["5100", "5200", "5300", "5400", "5500"],
+                        // TODO: remove the area (in theory should be automatically detected from the domain dimensions/schema)
+                        area: ["5100", "5200", "5300", "5400", "5500"],
                         "group_by": 'year',
                         "order_by": 'area'
                     }
@@ -230,7 +221,7 @@ define([
                     allowedFilter: ['year', 'item', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>"],
+                        area: ["5000>"],
                         "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'

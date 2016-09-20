@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-xs-9 col-sm-8 col-md-9 clearfix">
+        <a data-toggle="modal" data-target="#fs-data-tree-domain-modal"
+           class="pull-left btn-floating waves-effect waves-light btn-primary fs-btn-tree" data-role="export">
+            <!--<i class="material-icons">keyboard_arrow_down</i>-->
+            <i class="material-icons">menu</i>
+        </a>
+        <h1 class="truncate" data-role="domain-title"></h1>
+    </div>
+    <div class="col-xs-3 col-sm-4 col-md-3 clearfix">
+        <a href="{{url_data_section}}" type="button" class="btn btn-link pull-right fs-section-back waves-effect"
+           id="fs-browse-by-country-profile-back">
+            <i class="hidden-xs material-icons left">undo</i>
+            <i class="visible-xs material-icons">undo</i>
+            <span class="hidden-xs">{{back_to_domains_list}}</span>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class='col-md-12'>
+        <ul class='nav nav-tabs' role='tablist'>
+            <li role='presentation'>
+                <a href='#interactive_download' data-section='interactive' role='tab' data-toggle='tab'>
+                    {{download_data}}
+                </a>
+            </li>
+            <li role='presentation'>
+                <a href='#browse' data-section='browse_by_domain_code' role='tab' data-toggle='tab'>
+                    {{visualize_data}}
+                </a>
+            </li>
+            <li role='presentation'>
+                <a href='#metadata' data-section='metadata' role='tab' data-toggle='tab'>
+                    {{metadata}}
+                </a>
+            </li>
+            <li role='presentation'>
+                <a style='display:none' href='#report' data-section='report' role='tab' data-toggle='tab'>
+                    <span data-role="domain-title"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class='row'>
+
+    <div class='col-md-9 fs-data-padding-top'>
+
+        <!-- Container tab-panels -->
+        <div class="tab-content">
+            <div class="tab-pane" id="interactive_download" data-section='interactive_download'></div>
+            <div class="tab-pane" id="report" data-section='report'></div>
+            <div class="tab-pane" id="metadata" data-section='metadata'></div>
+            <div class="tab-pane" id="browse" data-section='browse_by_domain_code'></div>
+        </div>
+
+    </div>
+
+    <div class='col-md-3 fs-data-padding-top'>
+        <div id="domain-resume"></div>
+    </div>
+
+</div>
+
+<br>
+
+<div id="fs-download-output-container" style="display:none;"></div>

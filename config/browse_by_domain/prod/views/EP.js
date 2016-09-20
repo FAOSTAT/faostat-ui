@@ -1,7 +1,8 @@
 /*global define*/
 define([
+    'jquery',
     'config/browse_by_domain/Config'
-],function (C) {
+],function ($, C) {
 
     'use strict';
 
@@ -18,7 +19,7 @@ define([
                 {
                     "id": "item",
                     "type": "codelist",
-                    "parameter": "List3Codes",
+                    "parameter": "item",
                     "componentType": {
                         "class": "col-sm-4",
                         "type": "dropDownList"
@@ -34,7 +35,7 @@ define([
                 {
                     "id": "year",
                     "type": "codelist",
-                    "parameter": "List4Codes",
+                    "parameter": "year",
                     "componentType": {
                         "class": "col-sm-2",
                         "type": "dropDownList-timerange"
@@ -45,7 +46,13 @@ define([
                         "filter": {
                         }
                     }
-                }
+                },
+                $.extend(true, {}, C.filter.aggregation, {
+                    "componentType": {
+                        "class": "hidden"
+                    },
+                    "defaultCodes": ["AVG"]
+                })
             ]
         },
 
@@ -53,40 +60,8 @@ define([
 
             //data base filter
             defaultFilter: {
-                domain_codes: ['EP'],
-                List5Codes: null,
-                List6Codes: null,
-                List7Codes: null,
-                limit: -1,
-                decimal_places: 2,
-                thousand_separator: ",",
-                "null_values": null,
-                page_size: 0,
-                page_number: 0
+                domain_code: ['EP']
             },
-
-            // labels?
-            labels: {
-                // labels to dinamically substitute the title and subtitle
-                default: {
-                    aggregation: {
-                        "en": "Average",
-                        "fr": "Moyenne",
-                        "es": "Promedio"
-                    }
-                }
-            },
-
-
-            //bridge configuration
-            bridge: {
-
-                type: "faostat",
-                //requestType: 'data' // data, rankings
-
-            },
-
-            metadata: {},
 
             items: [
                 {
@@ -114,14 +89,13 @@ define([
                         layer: {},
                         template: {}
                     },
-                    allowedFilter: ['item', 'year'],
+                    allowedFilter: ['item', 'year', 'aggregation'],
                     deniedTemplateFilter: [],
                     filter: {
-                        List1Codes: ["5000>", "351"],
-                        List2Codes: ["5160"],
+                        area: ["5000>", "351"],
+                        element: ["5160"],
                         "group_by": 'year',
-                        "order_by": 'area',
-                        operator: 'avg'
+                        "order_by": 'area'
                     }
                 }
 

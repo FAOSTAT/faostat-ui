@@ -6,17 +6,7 @@ define([
 
     'use strict';
 
-    var defaultFilter =  {
-        List5Codes: null,
-        List6Codes: null,
-        List7Codes: null
-        //decimal_separator: ".",
-        //limit: -1,
-        //thousand_separator: ",",
-        //null_values: null,
-       // page_size: 0,
-        //per_page: 0
-    };
+    var defaultFilter =  {};
 
     return {
 
@@ -37,7 +27,7 @@ define([
                     {
                         "id": "yearTimeserie",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList-timerange"
@@ -51,7 +41,7 @@ define([
                     {
                         "id": "yearLatest",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList"
@@ -129,13 +119,13 @@ define([
                         },
                         allowedFilter: ['area', 'yearTimeserie', 'item', 'aggregation'],
                         filter: {
-                            domain_codes: ["OA"],
-                            List2Codes: [
+                            domain_code: "OA",
+                            element: [
                                 //511,
                                 551,
                                 561
                             ],
-                            List3Codes: [3010],
+                            item: [3010],
                             order_by: 'year'
                         }
                     },
@@ -171,12 +161,12 @@ define([
                         },
                         allowedFilter: ['area', 'yearLatest', 'item', 'aggregation'],
                         filter: {
-                            domain_codes: ["OA"],
-                            List2Codes: [
+                            domain_code: "OA",
+                            element: [
                                 551,
                                 561
                             ],
-                            List3Codes: [3010],
+                            item: [3010],
                             "group_by": 'area',
                             "order_by": 'item',
                             "operator": "avg"
@@ -212,7 +202,7 @@ define([
                     {
                         "id": "yearTimeserie",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList-timerange"
@@ -226,7 +216,7 @@ define([
                     {
                         "id": "yearLatest",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList"
@@ -302,10 +292,10 @@ define([
                             }
                         },
                         allowedFilter: ['area', 'yearTimeserie'],
-                        filter: {
-                            domain_codes: ['RF'],
-                            List2Codes: [5155],
-                            List3Codes: [
+                        filter: {                            
+                            domain_code: 'RF',
+                            element: [5155],
+                            item: [
                                 3102,
                                 3103,
                                 3104
@@ -324,7 +314,7 @@ define([
                                 title: {
                                     en: "Fertilizers consumption in nutrients",
                                     fr: "Fertilizers consumption in nutrients",
-                                    es: "Fertilizers consumption in nutrients",
+                                    es: "Fertilizers consumption in nutrients"
                                 },
                                 subtitle: "{{yearLatest}}"
                             }
@@ -356,10 +346,10 @@ define([
                         },
                         allowedFilter: ['yearLatest'],
                         filter: {
-                            domain_codes: ['RF'],
-                            List1Codes: [5100, 5200, 5300, 5400, 5500],
-                            List2Codes: [5155],
-                            List3Codes: [
+                            domain_code: 'RF',
+                            area: [5100, 5200, 5300, 5400, 5500],
+                            element: [5155],
+                            item: [
                                 3102,
                                 3103,
                                 3104
@@ -385,7 +375,7 @@ define([
                     {
                         "id": "year",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList-timerange"
@@ -444,9 +434,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21001],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21001],
                             'order_by': 'year'
                         }
                     },
@@ -482,9 +472,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21004],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21004],
                             'order_by': 'year'
                         }
                     }
@@ -508,7 +498,7 @@ define([
                     {
                         "id": "year",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList-timerange"
@@ -567,9 +557,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21013],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21013],
                             'order_by': 'year'
                         }
                     },
@@ -605,9 +595,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21014],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21014],
                             'order_by': 'year'
                         }
                     },
@@ -653,9 +643,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21012],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21012],
                             'order_by': 'year'
                         }
                     },
@@ -691,9 +681,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21010],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21010],
                             'order_by': 'year'
                         }
                     },
@@ -739,9 +729,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21011],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21011],
                             'order_by': 'year'
                         }
                     }
@@ -763,7 +753,7 @@ define([
                     {
                         "id": "year",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList-timerange"
@@ -823,9 +813,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21023],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21023],
                             'order_by': 'year'
                         }
                     },
@@ -861,9 +851,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21018],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21018],
                             'order_by': 'year'
                         }
                     },
@@ -910,9 +900,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [22013],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [22013],
                             'order_by': 'year'
                         }
                     },
@@ -940,7 +930,7 @@ define([
                                 xDimensions: 'year',
                                 yDimensions: 'unit',
                                 valueDimensions: 'value',
-                                seriesDimensions: ['area', 'item', 'year']
+                                seriesDimensions: ['area', 'item']
                             },
                             template: {
                                 height: '300px'
@@ -948,9 +938,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21017],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21017],
                             'order_by': 'year'
                         }
                     }
@@ -973,7 +963,7 @@ define([
                     {
                         "id": "year",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList-timerange"
@@ -1040,9 +1030,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21025, 21026, 21027],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21025, 21026, 21027],
                             'order_by': 'year'
                         }
                     },
@@ -1078,9 +1068,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21019],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21019],
                             'order_by': 'year'
                         }
                     }
@@ -1097,14 +1087,14 @@ define([
 
             filter: {
                 defaultFilter: {
-                    "domain_code": ["RF"],
+                    "domain_code": ["RL"],
                     "show_lists": false
                 },
                 items: [
                     {
                         "id": "year",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList-timerange"
@@ -1180,9 +1170,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            domain_codes: ['RL'],
-                            List2Codes: [5110],
-                            List3Codes: [6610, 6661, 6670],
+                            domain_code: 'RL',
+                            element: [5110],
+                            item: [6610, 6661, 6670],
                             "order_by": 'year'
                         }
                     },
@@ -1234,9 +1224,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            domain_codes: ['RL'],
-                            List2Codes: [5110],
-                            List3Codes: [6621, 6650, 6655],
+                            domain_code: 'RL',
+                            element: [5110],
+                            item: [6621, 6650, 6655],
                             "order_by": 'year'
                         }
                     },
@@ -1268,7 +1258,7 @@ define([
                     {
                         "id": "year",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList-timerange"
@@ -1328,9 +1318,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21030],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21030],
                             'order_by': 'year'
                         }
                     },
@@ -1366,9 +1356,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21033],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21033],
                             'order_by': 'year'
                         }
                     },
@@ -1415,9 +1405,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21031],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21031],
                             'order_by': 'year'
                         }
                     },
@@ -1453,9 +1443,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            "domain_codes": ["FS"],
-                            "List2Codes": [6120],
-                            "List3Codes": [21032],
+                            "domain_code": "FS",
+                            "element": [6120],
+                            "item": [21032],
                             'order_by': 'year'
                         }
                     }
@@ -1478,7 +1468,7 @@ define([
                     {
                         "id": "yearTimeserie",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList-timerange"
@@ -1492,7 +1482,7 @@ define([
                     {
                         "id": "yearLatest",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList"
@@ -1520,115 +1510,6 @@ define([
                 },
 
                 items: [
-                    {
-                        type: 'chart',
-                        class: "col-md-6",
-
-                        //bridge configuration
-                        bridge: {
-
-                            type: "faostat",
-                            requestType: 'rankings' // data, rankings
-
-                        },
-
-                        // labels
-                        labels: {
-                            // template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Top 10 commodities production",
-                                    fr: "Top 10 commodities production",
-                                    es: "Top 10 commodities production"
-                                },
-                                subtitle: "{{yearLatest}}"
-                            }
-                        },
-
-                        config: {
-                            adapter: {
-                                adapterType: 'faostat',
-                                type: "standard",
-                                xDimensions: ['item'],
-                                yDimensions: 'unit',
-                                valueDimensions: 'value',
-                                seriesDimensions: ['area', 'element']
-                            },
-                            template: {
-                                height:'275px'
-                                // default labels to be applied
-                            },
-                            creator: {
-                                chartObj: {
-                                    chart: {
-                                        type: "column"
-                                    }
-                                }
-                            }
-                        },
-                        allowedFilter: ['area', 'yearLatest'],
-                        deniedTemplateFilter: [],
-                        filter: {
-                            domain_codes: ['QA', 'QC', 'QD', 'QL', 'QP'],
-                            List2Codes: ["5510"],
-                            List3Codes: ["_1"],
-                            limit: "10",
-                            null_values: false,
-                            filter_list: "1",
-                            rank_type: 'DESC'
-                        }
-                    },
-                    {
-                        type: 'table',
-                        class: "col-md-6",
-
-                        //bridge configuration
-                        bridge: {
-
-                            type: "faostat",
-                            requestType: 'rankings' // data, rankings
-
-                        },
-
-                        // labels
-                        labels: {
-                            // template to be applied to the config.template for the custom object
-                            template: {
-                                title: {
-                                    en: "Top 10 commodities production",
-                                    fr: "Top 10 commodities production",
-                                    es: "Top 10 commodities production"
-                                },
-                                subtitle: "{{yearLatest}}"
-                            }
-                        },
-
-                        config: {
-
-                            adapter: {
-                                columns: ['area', 'item', 'year', 'value', 'unit', 'flags'],
-                                showCodes: false,
-                                thousand_separator: ','
-                            },
-                            template: {
-                                tableOptions: {
-                                    'data-search': false,
-                                    'data-show-header': false,
-                                }
-                            }
-                        },
-                        allowedFilter: ['area', 'yearLatest', 'item'],
-                        deniedTemplateFilter: [],
-                        filter: {
-                            domain_codes: ['QA', 'QC', 'QD', 'QL', 'QP'],
-                            List2Codes: ["5510"],
-                            List3Codes: ["_1"],
-                            limit: "10",
-                            null_values: false,
-                            filter_list: "1",
-                            rank_type: 'DESC'
-                        }
-                    },
                     {
                         type: 'chart',
                         class: "col-md-12",
@@ -1673,13 +1554,13 @@ define([
                         allowedFilter: ['area', 'yearTimeserie', 'item'],
                         deniedTemplateFilter: [],
                         filter: {
-                            domain_codes: ['QC'],
-                            List2Codes: [
+                            domain_code: 'QC',
+                            element: [
                                 2312,
                                 2413,
                                 2510
                             ],
-                            List3Codes: [1717],
+                            item: [1717],
                             "null_values": false,
                             "order_by": 'year'
                         }
@@ -1702,7 +1583,7 @@ define([
                     {
                         "id": "year",
                         "type": "codelist",
-                        "parameter": "List4Codes",
+                        "parameter": "year",
                         "componentType": {
                             "class": "hidden",
                             "type": "dropDownList-timerange"
@@ -1776,9 +1657,9 @@ define([
                         },
                         allowedFilter: ['area', 'year'],
                         filter: {
-                            domain_codes: ["GT"],
-                            List2Codes: [7231],
-                            List3Codes: [1711],
+                            domain_code: "GT",
+                            element: [7231],
+                            item: [1711],
                             "order_by": 'year',
                             "limit": '-1'
                         }
@@ -1817,9 +1698,9 @@ define([
                         },
                         allowedFilter: ['area', 'year', 'item', 'aggregation'],
                         filter: {
-                            domain_codes: ["GT"],
-                            List2Codes: [7231],
-                            List3Codes: [5058,  5059, 5060, 5061, 5062, 5063, 5064, 5066, 5067, 6759],
+                            domain_code: "GT",
+                            element: [7231],
+                            item: [5058,  5059, 5060, 5061, 5062, 5063, 5064, 5066, 5067, 6759],
                             "group_by": 'year, area',
                             "order_by": 'item',
                             "limit": '-1'

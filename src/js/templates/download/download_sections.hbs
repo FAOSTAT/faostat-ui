@@ -1,0 +1,300 @@
+<!-- TODO: remove it -->
+<!-- Modal -->
+<template id="modal-tree">
+    <div class="modal left fade " id="fs-data-tree-domain-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:white; padding-top:0px;padding-bottom:8px;" >
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <h3 class="pull-left"><b>FAO</b>STAT <small>Domains</small></h3>
+                            <button style="padding-top:23px;" type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <input class='form-control' placeholder='{{filter_domain_tree}}' id='fs-download-tree-search'>
+                    <br>
+                    <div id='fs-download-domain-tree'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="domain-resume">
+
+    <div class="panel panel-default hoverable">
+        <div class="panel-heading">
+            <h4 data-role="domain-title" class="fs-download-domain-title"></h4>
+        </div>
+
+        <div class="panel-body grey lighten-5" >
+
+            <!-- Description -->
+            <div data-role="description">
+                <p data-role="text"></p>
+            </div>
+
+            <!-- Organization -->
+            <div data-role="organization">
+                <small data-role="text"></small>
+            </div>
+
+        </div>
+
+        <div class="panel-footer amber lighten-4" data-role="bulk-downloads-panel">
+
+            <div>
+                <h5>
+                    <i class="material-icons left">file_download</i>{{bulk_downloads}}
+                </h5>
+                <ul class="list-unstyled list-download" data-role="bulk-downloads-list"></ul>
+            </div>
+        </div>
+
+        <div class="panel-footer grey lighten-5">
+
+            <!-- Last Update -->
+            <div data-role="last-update">
+                <p class="label label-default label-aligned">{{last_update}}</p>
+                <p data-role="date"></p>
+            </div>
+
+            <!-- Email -->
+            <div data-role="contact-email" style="display:none">
+                <p class="label label-default label-aligned">{{contacts_email}}</p>
+                <p data-role="text"></p>
+            </div>
+
+            <div data-role="related-documents">
+                <p class="label label-default label-aligned">{{related_documents}}</p>
+                <!--TODO: remove when data are not available? -->
+                <div data-role="fs-download-related-documents"></div>
+            </div>
+
+            <a class="btn btn-default btn-block waves-effect truncate" target='_blank' data-role="fs-download-definitions-button">
+                <i class="material-icons left">subject</i>{{definitions_and_standards}}
+            </a>
+
+            <a class="btn btn-default btn-block waves-effect" target='_blank' data-role="fs-download-metadata-button">
+                <i class="material-icons left">info_outline</i>{{full_metadata}}
+            </a>
+
+        </div>
+    </div>
+
+</template>
+
+<div class="row">
+    <div class="col-xs-9 col-sm-8 col-md-9 clearfix">
+        <a data-toggle="modal" data-target="#fs-data-tree-domain-modal"
+           class="pull-left btn-floating waves-effect waves-light btn-primary fs-btn-tree" data-role="export">
+            <!--<i class="material-icons">keyboard_arrow_down</i>-->
+            <i class="material-icons">menu</i>
+        </a>
+        <h1 class="truncate" data-role="domain-title"></h1>
+    </div>
+    <div class="col-xs-3 col-sm-4 col-md-3 clearfix">
+        <a href="{{url_data_section}}" type="button" class="btn btn-link pull-right fs-section-back waves-effect"
+           id="fs-browse-by-country-profile-back">
+            <i class="hidden-xs material-icons left">undo</i>
+            <i class="visible-xs material-icons">undo</i>
+            <span class="hidden-xs">{{back_to_domains_list}}</span>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class='col-lg-12'>
+        <ul class='nav nav-tabs' role='tablist'>
+            <li role='presentation'>
+                <a href='#interactive_download' data-section='interactive' role='tab' data-toggle='tab'>
+                    {{download_data}}
+                </a>
+            </li>
+            <li role='presentation'>
+                <a href='#browse' data-section='browse_by_domain_code' role='tab' data-toggle='tab'>
+                    {{visualize_data}}
+                </a>
+            </li>
+            <li role='presentation'>
+                <a href='#metadata' data-section='metadata' role='tab' data-toggle='tab'>
+                    {{metadata}}
+                </a>
+            </li>
+            <li role='presentation'>
+                <a style='display:none' href='#report' data-section='report' role='tab' data-toggle='tab'>
+                    <span data-role="domain-title"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class='row'>
+
+    <div class='col-md-9 fs-data-padding-top'>
+
+        <!-- Container tab-panels -->
+        <div class="tab-content">
+            <div class="tab-pane" id="interactive_download" data-section='interactive_download'></div>
+            <div class="tab-pane" id="report" data-section='report'></div>
+            <div class="tab-pane" id="metadata" data-section='metadata'></div>
+            <div class="tab-pane" id="browse" data-section='browse_by_domain_code'></div>
+        </div>
+
+    </div>
+
+    <div class='col-md-3 fs-data-padding-top'>
+
+        <div class="panel panel-default hoverable">
+            <div class="panel-heading">
+                <h4 data-role="domain-title" class="fs-download-domain-title"></h4>
+            </div>
+
+            <div class="panel-body grey lighten-5" >
+
+                <!-- Description -->
+                <div data-role="description">
+                    <p data-role="text"></p>
+                </div>
+
+                <!-- Organization -->
+                <div data-role="organization">
+                    <small data-role="text"></small>
+                </div>
+
+            </div>
+
+            <div class="panel-footer amber lighten-4" data-role="bulk-downloads-panel">
+
+                <div>
+                    <h5>
+                        <i class="material-icons left">file_download</i>{{bulk_downloads}}
+                    </h5>
+                    <ul class="list-unstyled list-download" data-role="bulk-downloads-list"></ul>
+                </div>
+            </div>
+
+            <div class="panel-footer grey lighten-5">
+
+                <!-- Last Update -->
+                <div data-role="last-update">
+                    <p class="label label-default label-aligned">{{last_update}}</p>
+                    <p data-role="date"></p>
+                </div>
+
+                <!-- Email -->
+                <div data-role="contact-email" style="display:none">
+                    <p class="label label-default label-aligned">{{contacts_email}}</p>
+                    <p data-role="text"></p>
+                </div>
+
+                <div data-role="related-documents">
+                    <p class="label label-default label-aligned">{{related_documents}}</p>
+                    <!--TODO: remove when data are not available? -->
+                    <div data-role="fs-download-related-documents"></div>
+                </div>
+
+                <a class="btn btn-default btn-block waves-effect truncate" target='_blank' data-role="fs-download-definitions-button">
+                    <i class="material-icons left">subject</i>{{definitions_and_standards}}
+                </a>
+
+                <a class="btn btn-default btn-block waves-effect" target='_blank' data-role="fs-download-metadata-button">
+                    <i class="material-icons left">info_outline</i>{{full_metadata}}
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br>
+
+<div class='row' id="fs-download-output-container" style="display:none;">
+
+    <div class='col-xs-12'>
+        <div class="fs-preview-container">
+            <div class="panel panel-default hoverable">
+
+                <div class="panel-heading clearfix">
+                    <div class="pull-right">
+                        <a class="btn-floating waves-effect waves-light btn-default disabled"
+                           data-role="export">
+                            <i class="material-icons">file_download</i>
+                        </a>
+                    </div>
+                    <h4>{{show_data}}</h4>
+                </div>
+
+                <div class="panel-body fs-output-preview">
+
+                    <!-- message preview -->
+                    <div data-role="message">
+                        <h3 class="text-center">
+                            {{where_is_the_data}}
+                        </h3>
+
+                        <h5 class="text-center fs-output-preview-message">
+                            <span class="fs-icojam-icon icojam_rotate_4"></span><br>
+                            {{{show_data_info_message}}}
+                        </h5>
+                    </div>
+
+                    <!-- output content -->
+                    <div data-role="content" class="fs-download-output-area" ></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<template id="output">
+
+    <div class="row">
+        <div class='col-xs-12'>
+            <div class="fs-preview-container">
+                <div class="panel panel-default hoverable">
+
+                    <div class="panel-heading clearfix">
+                        <div class="pull-right">
+                            <a class="btn-floating waves-effect waves-light btn-default disabled"
+                               data-role="export">
+                                <i class="material-icons">file_download</i>
+                            </a>
+                        </div>
+                        <h4>{{show_data}}</h4>
+                    </div>
+
+                    <div class="panel-body fs-output-preview">
+
+                        <!-- message preview -->
+                        <div data-role="message">
+                            <h3 class="text-center">
+                                {{where_is_the_data}}
+                            </h3>
+
+                            <h5 class="text-center fs-output-preview-message">
+                                <span class="fs-icojam-icon icojam_rotate_4"></span><br>
+                                {{{show_data_info_message}}}
+                            </h5>
+                        </div>
+
+                        <!-- output content -->
+                        <div data-role="content" class="fs-download-output-area" ></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>

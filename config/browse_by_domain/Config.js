@@ -68,7 +68,7 @@ define([
                 leaflet: {
                     zoomControl: false,
                     attributionControl: true,
-                    scrollWheelZoom: true,
+                    scrollWheelZoom: false,
                     touchZoom: true,
                     minZoom: 1
                 },
@@ -101,7 +101,7 @@ define([
                 adapter: {
                     adapterType: 'faostat',
                     modelType: 'faostat',
-                    //decimalPlaces: 2
+                    decimalPlaces: 2
                 },
                 creator: {
                     chartObj: HighchartsTemplate

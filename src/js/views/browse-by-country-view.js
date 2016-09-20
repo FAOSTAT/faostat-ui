@@ -76,6 +76,7 @@ define([
                 this.o = $.extend(true, {}, o, options);
                 this.cache = {};
                 this.o.lang = Common.getLocale();
+                this.dashboardCompose = [];
 
                 if( this.o.code !== undefined && this.o.code !== null){
                     this.o.code = this.o.code.split(",");
@@ -404,7 +405,7 @@ define([
                     viewConfig.dashboard.defaultFilter = $.extend({},
                         viewConfig.dashboard.defaultFilter,
                         {
-                            List1Codes: code
+                            area: code
                         }
                      );
                     //dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code, '3]});
@@ -418,6 +419,9 @@ define([
                             customDashBoardConfiguration: $.extend(true, {}, CM.view)
                         })
                     );
+
+                    // caching the dashboard to be destroyed
+                    this.dashboardCompose.push(d);
 
                 }else{
                     //log.error("View is not defined, handle exception");
@@ -466,10 +470,28 @@ define([
                     maxZoom: 16
                 });
 
+                // https: also suppported.
+                var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                });
+
+                var CartoDB_DarkMatterNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+                    subdomains: 'abcd',
+                    maxZoom: 19
+                });
+
+                var CartoDB_DarkMatterOnlyLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+                    subdomains: 'abcd',
+                    maxZoom: 19
+                })
+
 
                 // added dirty baselayer
-                //this.m.map.addLayer(Esri_WorldGrayCanvas);
+                //this.m.map.addLayer(Esri_WorldGrayCanvas)
                 this.m.map.addLayer(Esri_WorldPhysical);
+                //this.m.map.addLayer(Esri_WorldImagery);
 
                 var boundary = {
                     layers: 'fenix:gaul0_line_3857',
@@ -598,12 +620,12 @@ define([
 
             destroyDashBoards: function () {
 
-                if (this.dashboards !== undefined) {
+                if (this.dashboardCompose !== undefined) {
 
-                    _.each(this.dashboards, function(dashboard) {
+                    _.each(this.dashboardCompose, function(d) {
 
-                        if ( _.isFunction(dashboard.destroy)) {
-                            dashboard.destroy();
+                        if ( _.isFunction(d.destroy)) {
+                            d.destroy();
                         }
                     });
                 }

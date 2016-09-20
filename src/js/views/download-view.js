@@ -12,7 +12,7 @@ define([
     'text!templates/download/download.hbs',
     'i18n!nls/download',
     'FAOSTAT_UI_TREE',
-    'lib/related_documents/related_documents',
+    'lib/related-documents/related-documents',
     'moment',
     'underscore.string',
     'handlebars',
