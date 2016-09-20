@@ -7,11 +7,11 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
         /* Store configuration. */
             this.CONFIG = {
-            base_url: 'http://fenixervices.fao.org/faostat/api/v1/',
-            mode: '@@mode',
-            lang: 'en',
-            log: false
-        };
+                base_url: 'faostat-api/',
+                mode: '@@mode',
+                lang: 'en',
+                log: false
+            };
 
     };
 
