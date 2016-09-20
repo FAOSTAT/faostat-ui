@@ -55,18 +55,15 @@
 
 
   .tt-suggestion.tt-cursor {
-    color: white;
+    color: $fx-container-bg;
 
   }
 
 }
 
 
-
-
-
 .typeahead {
-  background-color: white;
+  background-color: $fx-container-bg;
 }
 
 .typeahead:focus {
@@ -89,10 +86,11 @@
   margin: 12px 0;
   padding: 8px 0;
   top: 38px !important;
-  background-color: white;
+  //background-color: white;
+  background-color: $fx-container-bg;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
- @include fx-border-radius(0 0 3px 3px);
+  @include fx-border-radius(0 0 3px 3px);
   -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
   -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
   box-shadow: 0 5px 10px rgba(0,0,0,.2);
@@ -103,8 +101,8 @@
   max-height:250px;
   overflow-y: auto;
 
-  
-  @media (min-width: 0) and (max-width: 768px) {
+  // max width 767
+  @media (min-width: 0) and (max-width: 767px) {
     display: none !important;
   }
 

@@ -1,0 +1,103 @@
+/* Radio Buttons */
+
+input[type="radio"] {
+  display:none;
+}
+
+input[type="radio"] + label  {
+  cursor: pointer;
+  margin: 0 7px;
+  font-weight: normal;
+
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    background-color: $fenix-light-gray;
+    @include fx-border-radius(100%);
+    border: 0 solid $fx-cool-blue;
+    position: relative;
+    top: 3px;
+    left: -5px;
+  }
+}
+
+input[type="radio"]:checked + label {
+  color: $fx-cool-blue;
+  &:before {
+    border-width: 5px;
+  }
+}
+
+input[type="radio"] + label ,
+input[type="radio"]:checked + label {
+
+  &:before {
+    @include animate;
+  }
+
+}
+
+
+
+
+/* Checkbox Buttons */
+
+input[type="checkbox"] {
+  display:none;
+}
+
+input[type="checkbox"] + label  {
+  cursor: pointer;
+  margin: 0 7px;
+  font-weight: normal;
+
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    background-color: $fenix-light-gray;
+    @include fx-border-radius(100%);
+    border: 0 solid $fx-cool-blue;
+    position: relative;
+    top: 3px;
+    left: -5px;
+  }
+}
+
+input[type="checkbox"]:checked + label {
+  color: $fx-cool-blue;
+  &:before {
+    border-width: 5px;
+  }
+}
+
+
+
+
+input[type="checkbox"] + label ,
+input[type="checkbox"]:checked + label {
+
+  &:before {
+    @include animate;
+  }
+
+}
+
+
+/* Disabled */
+
+input[type="checkbox"]:disabled + label,
+input[type="radio"]:disabled + label{
+  cursor:no-drop;
+  opacity: 0.4;
+
+  &:before {
+    cursor:no-drop;
+    opacity: 0.4;
+  }
+}

@@ -103,7 +103,7 @@ define([
             });
 
             // show modal
-            $MODAL.modal('show');
+            $MODAL.modal({keyboard: true});
 
             // destroy event listener on the modal and dispose the view
             $MODAL.on('hidden.bs.modal', function () {

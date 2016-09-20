@@ -5,7 +5,7 @@ define(['jquery', 'i18n!nls/common'], function ($, I18N) {
 
     return $.extend(true, {}, I18N, {
 
-        back_to_country_list: "Back to countries' list",
+        back_to_country_list: "Back to countries",
         country_list: "Country List",
         demographics: "demographics",
         inputs: "inputs",

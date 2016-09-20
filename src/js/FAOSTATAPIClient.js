@@ -5,17 +5,17 @@ define(['jquery', 'loglevel', 'q' , 'amplify'], function ($, log, Q) {
 
     function FAOSTATAPIClient() {
 
-    };
-
-    FAOSTATAPIClient.prototype.config = function(c) {
-
         /* Store configuration. */
-        this.CONFIG = {
+            this.CONFIG = {
             base_url: 'http://fenixervices.fao.org/faostat/api/v1/',
             mode: '@@mode',
             lang: 'en',
             log: false
         };
+
+    };
+
+    FAOSTATAPIClient.prototype.config = function(c) {
 
         /* Extend default configuration. */
         this.CONFIG = $.extend(true, {}, this.CONFIG, c || {});

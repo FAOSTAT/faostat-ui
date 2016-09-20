@@ -50,7 +50,9 @@ define(function () {
         GLOSSARY_SHOW: 'fs.glossary.show.event',
         DEFINITION_DOMAIN_SHOW: 'fs.definitions.domain.show.event',
         
-        CONNECTION_PROBLEM: 'fs.connection.problem'
+        CONNECTION_PROBLEM: 'fs.connection.problem',
+
+        TOUR_DOWNLOAD: 'fs.tour.download'
 
     };
 });

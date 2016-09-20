@@ -106,11 +106,11 @@ define([
 
             //this.initFiltersBox();
 
-            //this.initDashBoardComposer();
+            this.initDashBoardComposer();
 
             // this.initReleaseCalendar();
 
-            this.testQueries();
+            //this.testQueries();
 
         },
 
@@ -141,8 +141,7 @@ define([
                     filter: {
 
                         defaultFilter: {
-                            "domain_code": ["QC"],
-                            // this force all the filters to avoid the "lists" codes
+                            "domain_code": ["QD"],
                             "show_lists": false
                         },
 
@@ -151,25 +150,24 @@ define([
                                 // id to be applied on the getData request
                                 "id": "item",
                                 "type": "codelist",
-                                // TODO: in theory that should come from the dimensions schema!!
-                                "parameter": "List3Codes",
+                                "parameter": "item",
                                 //"title": "title",
                                 "componentType": {
-                                    // <!-- TODO: add a class instead of bootstrap -->
                                     "class": "col-xs-6 col-sm-6 col-md-3",
                                     "type": "dropDownList",
                                     "multiple": false
                                 },
                                 "config": {
                                     "dimension_id": "items",
-                                    "defaultCodes": ["27"],
-                                    "filter": {}
+                                    "defaultCodes": ["290"],
+                                    "filter": {
+                                    }
                                 }
                             },
                             {
                                 "id": "area",
                                 "type": "codelist",
-                                "parameter": "List1Codes",
+                                "parameter": "area",
                                 "componentType": {
                                     "class": "col-xs-6 col-sm-6 col-md-3",
                                     "type": "dropDownList",
@@ -177,21 +175,22 @@ define([
                                 },
                                 "config": {
                                     "dimension_id": "area",
-                                    "defaultCodes": ["2"],
-                                    "filter": {}
+                                    "defaultCodes": ["5000"],
+                                    "filter": {
+                                    }
                                 }
                             },
                             {
                                 "id": "year",
                                 "type": "codelist",
-                                "parameter": "List4Codes",
+                                "parameter": "year",
                                 "componentType": {
                                     "class": "col-xs-4 col-sm-4 col-md-2",
                                     "type": "dropDownList-timerange"
                                 },
                                 "config": {
                                     "dimension_id": "year",
-                                    "defaultCodes": ['1994'],
+                                    "defaultCodes": ['1993'],
                                     "filter": {
                                     }
                                 }
@@ -203,38 +202,9 @@ define([
 
                         //data base filter
                         defaultFilter: {
-                            domain_codes: ['QC'],
-                            List2Codes: ["2510"],
-                            List5Codes: null,
-                            List6Codes: null,
-                            List7Codes: null,
-                            decimal_places: 2,
-                            decimal_separator: ".",
-                            limit: -1,
-                            thousand_separator: ",",
-                            "null_values": null,
-                            // TODO: remove it the page_size!!!
-                            page_size: 0,
-                            per_page: 0,
-                            page_number: 0
+                            domain_code: ['QD'],
+                            element: ["2510"]
                         },
-
-                        // labels?
-                        labels: {
-                            // labels to dinamically substitute the title and subtitle
-                            default: {
-                            }
-                        },
-
-                        //bridge configuration
-                        bridge: {
-
-                            type: "faostat",
-                            //requestType: 'data' // data, rankings
-
-                        },
-
-                        metadata: {},
 
                         items: [
                             {
@@ -243,12 +213,12 @@ define([
 
                                 // labels
                                 labels: {
-                                    // temp[template to be applied to the config.template for the custom object
+                                    // template to be applied to the config.template for the custom object
                                     template: {
                                         title: {
-                                            en: "Production/Yield quantities of {{item}} in {{area}}",
-                                            fr: "Production/Rendement de {{item}} dans le {{area}}",
-                                            es: "Producción/Rendimiento de {{item}} en {{area}}"
+                                            en: "Production quantities of {{item}} in {{area}}",
+                                            fr: "Production de {{item}} dans le {{area}}",
+                                            es: "Producción de {{item}} en {{area}}"
                                         },
                                         subtitle: "{{year}}"
                                     }
@@ -271,7 +241,6 @@ define([
                                 },
                                 allowedFilter: ['area', 'year', 'item'],
                                 filter: {
-                                    List2Codes: ["2312", "2510" ]
                                 }
                             }
                         ]
@@ -501,15 +470,11 @@ define([
                     year: year,
                     item: item,
                     element: [2510],
-                    no_records: true,
+                    no_records: true
                 }).then(function(d) {
-                    alert("----")
-                    log.info("----", d);
-                    alert(d)
+                    log.info(d);
 
                 }).fail(function(e) {
-                    alert("error")
-                    alert("error", e);
                     log.error(e);
                 });
             });

@@ -3,14 +3,6 @@
 
 
 /* To remove */
-
-.faostat-downlaod-selector-single{
-  .jstree-icon.jstree-ocl{
-    width: 10px !important;
-  }
-}
-
-
 .inline-icon {
   display: inline-block;
   font-size: 20px;
@@ -35,6 +27,14 @@
 }
 
 .faostat-downlaod-selector-single{
+
+  .jstree-icon.jstree-ocl{
+    width: 10px !important;
+  }
+
+  .nav-tabs > li {
+    margin-left: -10px;
+  }
 
   .panel-heading{
    // padding: 5px 0;
