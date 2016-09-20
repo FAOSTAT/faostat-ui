@@ -8703,15 +8703,15 @@ input[type="radio"]:disabled + label {
 .fs-download-domain-title .domain-icon {
   display: inline-block; }
 
-.faostat-downlaod-selector-single .jstree-icon.jstree-ocl {
+.faostat-download-selector-single .jstree-icon.jstree-ocl {
   width: 10px !important; }
-.faostat-downlaod-selector-single .nav-tabs > li {
+.faostat-download-selector-single .nav-tabs > li {
   margin-left: -10px; }
-.faostat-downlaod-selector-single .panel-body {
+.faostat-download-selector-single .panel-body {
   padding: 0; }
-.faostat-downlaod-selector-single .panel-footer .btn-group {
+.faostat-download-selector-single .panel-footer .btn-group {
   width: 100%; }
-  .faostat-downlaod-selector-single .panel-footer .btn-group .btn {
+  .faostat-download-selector-single .panel-footer .btn-group .btn {
     width: 50%; }
 
 .fs-download-selector-filter {

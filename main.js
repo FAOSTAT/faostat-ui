@@ -85,11 +85,11 @@ var config = {
         //list: '//fenixrepo.fao.org/cdn/js/list/1.1.1/list.min',
         //list_pagination: '//raw.githubusercontent.com/javve/list.pagination.js/v0.1.1/dist/list.pagination.min',
 
-        // boostrap bplugins
+        // boostrap plugins
         'bootstrap-table': CDN + '/js/bootstrap-table/1.9.1/bootstrap-table.min',
         //'bootstrap-treeview': CDN + '/js/boostrap-treeview/1.2.0/bootstrap-treeview.min',
-        'bootstrap-tour': CDN + '/js/bootstrap-tour/0.11.0/build/js/bootstrap-tour.min',
-
+        'hopscotch': CDN + '/js/hopscotch/0.2.6/dist/js/hopscotch.min',
+        'introjs': CDN + '/js/introjs/2.3.0/minified/intro.min',
 
         "datatables.net": CDN + '/js/DataTables/1.10.12/media/js/jquery.dataTables.min',
         "datatables.net-bs": CDN + '/js/DataTables/1.10.12/media/js/dataTables.bootstrap.min',
@@ -433,7 +433,7 @@ require([
     'faostatapiclient',
     //'modernizr',
     'outdatedbrowser',
-    'amplify',
+    'amplify'
 ], function ($, Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves, NProgress, API) {
 
     "use strict";
@@ -493,7 +493,10 @@ function forceAmplifyStorageClear() {
 
     $.each(amplify.store(), function (storeKey) {
         // Delete the current key from Amplify storage
-        amplify.store(storeKey, null);
+        // TODO: get from a boarding storageKey
+        if (storeKey.indexOf("onboarding") === -1) {
+            amplify.store(storeKey, null);
+        }
     });
 
 }
