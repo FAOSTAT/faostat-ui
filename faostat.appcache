@@ -62,6 +62,9 @@ CACHE MANIFEST
 # Google Analytics
 //fenixrepo.fao.org/cdn/faostat/js/googleanalytics/0.3.7/analytics.js
 
+# IntroJS
+//fenixrepo.fao.org/cdn/faostat/js/introjs/2.3.0/minified/intro.min.js
+
 # CSS
 //fenixrepo.fao.org/cdn/faostat/js/bootstrap/3.3.6/css/bootstrap.min.css
 //fenixrepo.fao.org/cdn/faostat/js/bootstrap-table/1.9.1/bootstrap-table.min.css
@@ -79,6 +82,7 @@ CACHE MANIFEST
 #CSS - datatables
 //fenixrepo.fao.org/cdn/faostat/js/DataTables/1.10.12/media/css/dataTables.bootstrap.min.css
 //fenixrepo.fao.org/cdn/faostat/js/DataTables/1.10.12/extensions/FixedColumns/css/fixedColumns.bootstrap.min.css
+//fenixrepo.fao.org/cdn/faostat/js/introjs/2.3.0/minified/introjs.min.css
 //fenixrepo.fao.org/cdn/faostat/js/nprogress/0.2.0/nprogress.css
 //fenixrepo.fao.org/cdn/faostat/js/toastr/2.1.2/build/toastr.min.css
 # ./submodules/fenix-ui-map/dist/fenix-ui-map.min.css
