@@ -8229,7 +8229,20 @@ div#google_search input#search-submit {
 #toast-container > div {
   opacity: 0.9;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
-  filter: alpha(opacity=90); }
+  filter: alpha(opacity=90);
+  -webkit-box-shadow: 0 0 0 white;
+  -moz-box-shadow: 0 0 0 white;
+  box-shadow: 0 0 0 white;
+  opacity: 0.95; }
+  #toast-container > div .toast-title {
+    font-size: 15px; }
+  #toast-container > div .toast-message {
+    font-size: 12px; }
+
+#toast-container > div:hover {
+  -webkit-box-shadow: 0 0 0 white;
+  -moz-box-shadow: 0 0 0 white;
+  box-shadow: 0 0 0 white; }
 
 .toast-top-center {
   top: 25px;

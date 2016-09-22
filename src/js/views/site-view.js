@@ -358,7 +358,6 @@ define([
 
             log.info("SiteView.jiraLoadSnippet; load snippet");
 
-
             $.ajax({
                 url: C.JIRA_COLLECTOR.URL,
                 type: "get",
@@ -510,21 +509,21 @@ define([
         onNotificationInfo: function (data) {
 
             toastr.options = $.extend(true, {}, defaultOptions.toastr, data.options);
-            toastr.info(data.text? '<h5>' + data.text + '</h5>': '',  '<h4>' + data.title + '</h4>');
+            toastr.info(data.text? data.text: '', data.title);
 
         },
 
         onNotificationWarning: function (data) {
 
             toastr.options = $.extend(true, {}, defaultOptions.toastr, data.options);
-            toastr.warning(data.text? '<h5>' + data.text + '</h5>': '',  '<h4>' + data.title + '</h4>');
+            toastr.warning(data.text? data.text: '', data.title)
 
         },
 
         onNotificationError: function (data) {
 
             toastr.options = $.extend(true, {}, defaultOptions.toastr, data.options);
-            toastr.error(data.text? '<h5>' + data.text + '</h5>': '',  '<h4>' + data.title + '</h4>');
+            toastr.error(data.text? data.text: '', data.title)
 
         },
 
