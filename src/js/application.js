@@ -9,6 +9,10 @@ define([
 
     'use strict';
 
+    var cache = {
+        skip: 'onboarding'
+    };
+
     // The application object
     // Choose a meaningful name for your application
     var Application = Chaplin.Application.extend({
@@ -24,6 +28,8 @@ define([
 
             var args = [].slice.call(arguments);
 
+            this.forceAmplifyStorageClear();
+
             this.bindEventListeners();
 
             Chaplin.Application.prototype.start.apply(this, args);
@@ -34,6 +40,19 @@ define([
 
             Chaplin.mediator.subscribe(E.NOT_AUTHORIZED, function () {
                 //Chaplin.utils.redirectTo({url: C.SECURITY_NOT_AUTHORIZED_REDIRECTION_LINK});
+            });
+
+        },
+
+        // TODO: move to the initialization
+        forceAmplifyStorageClear: function() {
+
+            $.each(amplify.store(), function (storeKey) {
+                // Delete the current key from Amplify storage
+                // TODO: get from a boarding storageKey
+                if (storeKey.indexOf(cache.skip) === -1) {
+                    amplify.store(storeKey, null);
+                }
             });
 
         }

@@ -1,4 +1,4 @@
-/*global require, window, $*/
+/*global require, window, $, amplify*/
 var CDN = "//fenixrepo.fao.org/cdn/faostat",
     SUBMODULE = "../../submodules",
     locale = "@@locale",
@@ -112,11 +112,11 @@ var config = {
         // Leaflet
         'leaflet': CDN + '/js/leaflet/0.7.7/leaflet',
         //'import-dependencies':CDN + '/js/FENIX/utils/import-dependencies-1.0',
-        'jquery.power.tip': CDN + '/js/jquery.powertip/1.2.0/jquery.powertip.min',
+        //'jquery.power.tip': CDN + '/js/jquery.powertip/1.2.0/jquery.powertip.min',
         //'jquery-ui': CDN + '/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
         'jquery.i18n.properties': CDN + '/js/jquery/1.0.9/jquery.i18n.properties-min',
-        'jquery.hoverIntent': CDN + '/js/jquery.hoverIntent/1.8.0/jquery.hoverIntent.min',
-        'chosen': CDN + '/js/chosen/1.2.0/chosen.jquery.min',
+        //'jquery.hoverIntent': CDN + '/js/jquery.hoverIntent/1.8.0/jquery.hoverIntent.min',
+        //'chosen': CDN + '/js/chosen/1.2.0/chosen.jquery.min',
 
         // leaflet-image
         //'leaflet-image': '//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image',
@@ -342,10 +342,8 @@ var config = {
                 'jquery-ui',
                 'leaflet',
                 'fenix-ui-map-config',
-                'jquery.power.tip',
-                'jquery.i18n.properties',
-                'jquery.hoverIntent',
-                'chosen'
+                //'jquery.power.tip',
+                'jquery.i18n.properties'
             ]
         },
 
@@ -431,7 +429,6 @@ require([
     'waves',
     'nprogress',
     'faostatapiclient',
-    //'modernizr',
     'outdatedbrowser',
     'amplify'
 ], function ($, Application, routes, C, Common, E, GoogleAnalyticsManager, log, Waves, NProgress, API) {
@@ -449,20 +446,18 @@ require([
         languagePath: ''
     });
 
-    // saving Locale
+    // store locale
     Common.setLocale(locale);
     Common.setLocaleAPI(locale);
 
-    $('body').addClass(Common.getLocale());
+    // add language
+    $('body').addClass(locale);
 
-    // init Wave effect applaied on buttons
+    // init wave effect
     Waves.init();
 
-    // setting global LOGLEVEL level
+    // setting global log level
     log.setLevel(C.LOGLEVEL);
-
-    // clear amplify
-    forceAmplifyStorageClear(C);
 
     // config api
     API.config({
@@ -474,10 +469,10 @@ require([
     if (C.DATASOURCE !== null) {
         API.config({
             datasource: C.DATASOURCE
-        })
+        });
     }
 
-    // starting the Application
+    // bootstrap the application
     var app = new Application({
         routes: routes,
         root: C.CHAPLINJS_PROJECT_ROOT,
@@ -487,16 +482,3 @@ require([
     });
 
 });
-
-// TODO: move to the initialization
-function forceAmplifyStorageClear(C) {
-
-    $.each(amplify.store(), function (storeKey) {
-        // Delete the current key from Amplify storage
-        // TODO: get from a boarding storageKey
-        if (storeKey.indexOf("onboarding") === -1) {
-            amplify.store(storeKey, null);
-        }
-    });
-
-}
