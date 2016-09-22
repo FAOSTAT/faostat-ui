@@ -19,8 +19,9 @@ define([
     defaultOptions = {
         storageKey: 'onboarding_',
         interval: 1000,
+        intervalForce: 200,
         failures: 0,
-        maxFailures: 5
+        maxFailures: 4
     };
 
     function OnBoarding() {
@@ -68,7 +69,6 @@ define([
                 // putting the filters steps as steps to use
                 self.o.steps = steps;
 
-                log.info(self.o.steps)
                 // setting the options
                 self.intro.setOptions(self.o);
 
@@ -83,7 +83,7 @@ define([
             }
             log.warn("OnBoarding.start; failures", self.o.failures)
 
-        }, this.o.interval);
+        }, force === true? this.o.intervalForce : this.o.interval);
 
     };
 

@@ -8502,6 +8502,59 @@ input[type="radio"]:disabled + label {
     cursor: no-drop;
     opacity: 0.4; }
 
+.introjs-helperNumberLayer {
+  text-shadow: none;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  border: 3px solid #fcfcfc;
+  border-radius: 50%;
+  background: #E53935; }
+
+.introjs-helperLayer {
+  background-color: #FFF;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 2px; }
+
+.introjs-tooltip {
+  border-radius: 2px; }
+
+.introjs-button {
+  padding: 0.6em 0.8em;
+  text-shadow: none;
+  border-color: #fcfcfc;
+  color: #fff;
+  background: #0D6CAC;
+  background-image: none;
+  -webkit-border-radius: .2em;
+  -moz-border-radius: .2em;
+  border-radius: .2em;
+  -webkit-transition: background .3s, border .3s;
+  -moz-transition: background .3s, border .3s;
+  -ms-transition: background .3s, border .3s;
+  -o-transition: background .3s, border .3s;
+  transition: background .3s, border .3s; }
+
+.introjs-prevbutton {
+  border-radius: .2em 0 0 .2em; }
+
+.introjs-nextbutton {
+  border-radius: 0 .2em .2em 0; }
+
+.introjs-button:hover, .introjs-button:focus {
+  color: #fff;
+  box-shadow: none;
+  border-color: #fff;
+  background: #4285F4;
+  text-decoration: none; }
+
+.introjs-disabled {
+  background: #eeeeee; }
+
+.introjs-disabled:hover {
+  background: #eeeeee; }
+
 /* Third parties */
 .typeahead, .tt-query, .tt-hint {
   width: 225px;

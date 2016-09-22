@@ -1,5 +1,3 @@
-<!-- TODO: remove it -->
-<!-- Modal -->
 <div class="modal left fade " id="fs-data-tree-domain-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
 
@@ -133,16 +131,21 @@
                     <div data-role="fs-download-related-documents"></div>
                 </div>
 
-                <a class="btn btn-default btn-block waves-effect truncate" target='_blank' data-role="fs-download-definitions-button">
+                <a class="btn btn-default btn-block waves-effect truncate" data-role="fs-download-definitions-button">
                     <i class="material-icons left">subject</i>{{definitions_and_standards}}
                 </a>
 
-                <a class="btn btn-default btn-block waves-effect" target='_blank' data-role="fs-download-metadata-button">
+                <a class="btn btn-default btn-block waves-effect truncate" data-role="fs-download-metadata-button">
                     <i class="material-icons left">info_outline</i>{{metadata}}
+                </a>
+
+                <a style="display:none;" class="btn btn-info btn-block waves-effect truncate" data-role="fs-download-onboarding">
+                    <i class="material-icons left">help_outline</i>{{onboarding_text}}Help on this section?
                 </a>
 
             </div>
         </div>
+
     </div>
 
 </div>

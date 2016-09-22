@@ -17,7 +17,9 @@ define(['jquery'], function ($) {
         CHAPLINJS_PROJECT_ROOT: '',
         CHAPLINJS_PUSH_STATE: false,
         CHAPLINJS_SCROLL_TO: true,
-        CHAPLINJS_APPLICATION_TITLE: "FAOSTAT"
+        CHAPLINJS_APPLICATION_TITLE: "FAOSTAT",
+
+        MODE: "dev"
 
     };
 

@@ -70,6 +70,9 @@ define([
             // Definitions and Standards
             DEFINITIONS_BUTTON: '[data-role="fs-download-definitions-button"]',
 
+            // on boarding optional button
+            ONBOARDING: '[data-role="fs-download-onboarding"]'
+
     },
 
     defaultOptions = {
@@ -151,6 +154,7 @@ define([
             this.$CONTACTS = this.$el.find(s.CONTACTS);
             this.$ORGANIZATION = this.$el.find(s.ORGANIZATION);
             this.$RELATED_DOCUMENTS = this.$el.find(s.RELATED_DOCUMENTS);
+            this.$ONBOARDING = this.$el.find(s.ONBOARDING);
 
             // Domains tree modal
             this.$TREE_MODAL = this.$el.find(s.TREE_MODAL);
@@ -334,9 +338,15 @@ define([
                 this.interactiveDownload.init({
                     container: this._createRandomElement(this.$INTERACTIVE_DOWNLOAD),
                     // to output the table outside the standard output area
-                    output_container:  this.$OUTPUT_CONTAINER,
+                    //output_container:  this.$OUTPUT_CONTAINER,
                     code: code,
-                    $BULK_DOWNLOADS_PANEL: this.$BULK_DOWNLOADS_PANEL
+                    onboarding: {
+                        container: this.$ONBOARDING
+                    },
+                    output: {
+                        container: this.$OUTPUT_CONTAINER
+                    }
+
                 });
 
             }, this));

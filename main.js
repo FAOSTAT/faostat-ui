@@ -462,7 +462,7 @@ require([
     log.setLevel(C.LOGLEVEL);
 
     // clear amplify
-    forceAmplifyStorageClear();
+    forceAmplifyStorageClear(C);
 
     // config api
     API.config({
@@ -489,7 +489,7 @@ require([
 });
 
 // TODO: move to the initialization
-function forceAmplifyStorageClear() {
+function forceAmplifyStorageClear(C) {
 
     $.each(amplify.store(), function (storeKey) {
         // Delete the current key from Amplify storage
