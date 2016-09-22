@@ -8238,6 +8238,11 @@ div#google_search input#search-submit {
     font-size: 15px; }
   #toast-container > div .toast-message {
     font-size: 12px; }
+  @media (max-width: 767px) {
+    #toast-container > div .toast-title {
+      font-size: 12px; }
+    #toast-container > div .toast-message {
+      font-size: 11px; } }
 
 #toast-container > div:hover {
   -webkit-box-shadow: 0 0 0 white;
