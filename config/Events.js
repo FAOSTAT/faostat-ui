@@ -52,7 +52,7 @@ define(function () {
         
         CONNECTION_PROBLEM: 'fs.connection.problem',
 
-        ONBOARDING_DOWNLOAD: 'fs.tour.download'
+        ONBOARDING_DOWNLOAD: 'fs.onboarding.download'
 
     };
 });

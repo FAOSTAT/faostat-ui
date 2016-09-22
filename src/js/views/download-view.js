@@ -71,7 +71,7 @@ define([
             DEFINITIONS_BUTTON: '[data-role="fs-download-definitions-button"]',
 
             // on boarding optional button
-            ONBOARDING: '[data-role="fs-download-onboarding"]'
+            ADDITIONAL_INFORMATION: '[data-role="fs-download-additional-information"]'
 
     },
 
@@ -154,7 +154,7 @@ define([
             this.$CONTACTS = this.$el.find(s.CONTACTS);
             this.$ORGANIZATION = this.$el.find(s.ORGANIZATION);
             this.$RELATED_DOCUMENTS = this.$el.find(s.RELATED_DOCUMENTS);
-            this.$ONBOARDING = this.$el.find(s.ONBOARDING);
+            this.$ADDITIONAL_INFORMATION = this.$el.find(s.ADDITIONAL_INFORMATION);
 
             // Domains tree modal
             this.$TREE_MODAL = this.$el.find(s.TREE_MODAL);
@@ -340,8 +340,8 @@ define([
                     // to output the table outside the standard output area
                     //output_container:  this.$OUTPUT_CONTAINER,
                     code: code,
-                    onboarding: {
-                        container: this.$ONBOARDING
+                    additional_information: {
+                        container: this.$ADDITIONAL_INFORMATION
                     },
                     output: {
                         container: this.$OUTPUT_CONTAINER
