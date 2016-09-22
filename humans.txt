@@ -1,15 +1,20 @@
-/* TEAM */
+ ___ _   ___  ___ _        _
+| __/_\ / _ \/ __| |_ __ _| |_
+| _/ _ \ (_) \__ \  _/ _` |  _|
+|_/_/ \_\___/|___/\__\__,_|\__|
 
+
+# TEAM
 Statistician, DBA: Amanda Gordon
 Contact: amanda.gordon [at] fao.com
 Location: Rome, Italy
 
-Software engineer: Simone Murzilli
+Software Engineer: Simone Murzilli
 Contact: simone.murzilli [at] fao.com
 Location: Rome, Italy
 Github: simonemurzilli
 
-Software engineer: Guido Barbaglia
+Software Engineer: Guido Barbaglia
 Contact: guido.barbaglia [at] gmail.com
 From: Caserta, Italy
 Location: Rome, Italy
@@ -21,7 +26,7 @@ Contact: nicola.selleri [at] fao.org
 Location: Rome, Italy
 Github: nicolafenix
 
-Software engineer: Daniele Salvatore
+Software Engineer: Daniele Salvatore
 Contact: daniele.salvatore [at] fao.com
 Location: Rome, Italy
 Github: danielefenix

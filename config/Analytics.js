@@ -159,6 +159,14 @@ define(function () {
 
         },
 
+        onboarding: {
+
+            category: 'onboarding',
+            action: '', // section
+            label: '' //domain_code
+
+        },
+
         /* report */
         report: {
 

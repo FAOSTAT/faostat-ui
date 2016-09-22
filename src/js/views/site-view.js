@@ -64,7 +64,29 @@ define([
 
         EXTERNAL_LINK: '[data-link="external"]'
 
-    }, 
+    },
+
+    defaultOptions = {
+
+        toastr: {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+    },
         
     SiteView = View.extend({
 
@@ -169,26 +191,8 @@ define([
                 title: "Disclaimer",
                 text: "Please note that this is a beta version of the FAOSTAT website which is still undergoing final testing before its official release. The website, its software and all content found on it are provided on an “as is” and “as available” basis. FAO does not give any warranties, whether express or implied, as to the suitability or usability of the website, its software or any of its content. Under no circumstances shall FAO, or its affiliates, or any of their respective agents, employees, information providers or content providers be responsible or liable to any user or anyone else for any inaccuracy, error, omission, interruption, deletion, defect, alteration of or use of any content herein, or for its timeliness or completeness, nor shall they be liable for any failure of performance, computer virus or communication line failure, regardless of cause, or for damages of any kind arising out of use, reference to, or reliance on any information contained within the website. <br> Should you encounter any bugs, glitches, lack of functionality or other problems on the website, please let us know. Your help is greatly appreciated",
                 options: {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-bottom-full-width",
-                    "preventDuplicates": true,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "null",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut",
-                    "closeMethod": 'fadeOut',
-                    "closeDuration": 300,
-                    "closeEasing": 'swing'
-                }
-
+                     "positionClass": "toast-bottom-full-width"
+                 }
             });
 
         },
@@ -205,7 +209,6 @@ define([
             this.initGoogleFormAnalytics();
             this.trackExternalLinks();
            // this.initJIRACollector();
-            this.initNotificationInitConfiguration();
 
             // init breadcrumb (N.B. not used)
             //this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
@@ -292,8 +295,6 @@ define([
         initJIRACollector: function () {
 
             var allCookies = document.cookie;
-
-            log.info(allCookies);
 
             // Get all the cookies pairs in an array
             var cookiearray = allCookies.split(';');
@@ -506,61 +507,24 @@ define([
         },
 
         // Notifications
-        initNotificationInitConfiguration: function () {
-
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": false,
-                "positionClass": "toast-top-center",
-                "preventDuplicates": true,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            };
-
-        },
-
         onNotificationInfo: function (data) {
 
-            this.initNotificationInitConfiguration();
-
-            if (data.hasOwnProperty('options')) {
-                toastr.options = data.options;
-            }
-
-            toastr.info( '<h4>' + data.title + '</h4>', (data.text)? '<h5>' + data.text + '</h5>': '');
+            toastr.options = $.extend(true, {}, defaultOptions.toastr, data.options);
+            toastr.info(data.text? '<h5>' + data.text + '</h5>': '',  '<h4>' + data.title + '</h4>');
 
         },
 
         onNotificationWarning: function (data) {
 
-            this.initNotificationInitConfiguration();
-
-            if (data.hasOwnProperty('options')) {
-                toastr.options = data.options;
-            }
-
-            toastr.warning( '<h4>' + data.title + '</h4>', (data.text)? '<h5>' + data.text + '</h5>': '');
+            toastr.options = $.extend(true, {}, defaultOptions.toastr, data.options);
+            toastr.warning(data.text? '<h5>' + data.text + '</h5>': '',  '<h4>' + data.title + '</h4>');
 
         },
 
         onNotificationError: function (data) {
 
-            this.initNotificationInitConfiguration();
-
-            if (data.hasOwnProperty('options')) {
-                toastr.options = data.options;
-            }
-
-            toastr.error( '<h4>' + data.title + '</h4>', (data.text)? '<h5>' + data.text + '</h5>': '');
+            toastr.options = $.extend(true, {}, defaultOptions.toastr, data.options);
+            toastr.error(data.text? '<h5>' + data.text + '</h5>': '',  '<h4>' + data.title + '</h4>');
 
         },
 

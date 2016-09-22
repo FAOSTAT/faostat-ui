@@ -409,7 +409,7 @@ define([
                         size = Math.round(data.FileSize * 0.001),
                         mu = "MB", //data.FileSizeUnit,
                         m = moment(data.CreatedDate),
-                        date =  m.format("MMMM DD, YYYY"),
+                        date =  m.format("MMM DD, YYYY"),
                         url = data.URL;
 
                     self.$FAOSTAT_BULK_SIZE.html(size + " " + mu);
