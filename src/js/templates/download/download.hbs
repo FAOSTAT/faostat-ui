@@ -24,18 +24,24 @@
 <div class="row">
     <div class="col-xs-9 col-sm-8 col-md-9 clearfix">
         <a data-toggle="modal" data-target="#fs-data-tree-domain-modal"
-           class="pull-left btn-floating waves-effect waves-light btn-primary fs-btn-tree" data-role="export">
+           class="pull-left btn-floating waves-effect waves-light btn-primary fs-btn-tree" data-role="modal-domains-button">
             <i class="material-icons">menu</i>
         </a>
         <h1 class="truncate" data-role="domain-title"></h1>
     </div>
     <div class="col-xs-3 col-sm-4 col-md-3 clearfix">
-        <a href="{{url_data_section}}" type="button" class="btn btn-link pull-right fs-section-back waves-effect"
+<!--        <a href="{{url_data_section}}" type="button" class="btn btn-link pull-right fs-section-back waves-effect"
            id="fs-browse-by-country-profile-back">
             <i class="hidden-xs material-icons left">undo</i>
             <i class="visible-xs material-icons">undo</i>
             <span class="hidden-xs">{{back_to_domains_list}}</span>
-        </a>
+        </a>-->
+        <div style="display:none;" data-role="onboarding">
+            <a style="margin-top:15px;"class="btn btn-info waves-effect truncate pull-right">
+                <i class="material-icons left">help_outline</i>
+                <span data-role="text"></span>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -139,8 +145,12 @@
                     <i class="material-icons left">info_outline</i>{{metadata}}
                 </a>
 
-
-                <div style="display:none;" data-role="fs-download-additional-information"></div>
+                <div style="display:none;" data-role="onboarding">
+                    <a class="btn btn-info btn-block waves-effect truncate">
+                        <i class="material-icons left">help_outline</i>
+                        <span data-role="text"></span>
+                    </a>
+                </div>
 
             </div>
         </div>

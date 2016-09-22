@@ -12,10 +12,10 @@ define([
     'handlebars',
     'faostatapiclient',
     'underscore',
-    'underscore.string',
+    'lib/onboarding/onboarding',
     'amplify',
     'instafilta'
-], function ($, log, Common, C, E, A, ROUTES, i18nLabels, templates, Handlebars, API, _, _s) {
+], function ($, log, Common, C, E, A, ROUTES, i18nLabels, templates, Handlebars, API, _, OnBoarding) {
 
     'use strict';
 
@@ -186,6 +186,56 @@ define([
         return json;
     };
 
+    Groups.prototype.tour = function(force) {
+
+        var force = force || false;
+
+        if (this.onboarding === undefined) {
+            this.onboarding = new OnBoarding();
+            this.onboarding.setOptions({
+                id: "data_groups",
+                steps: [
+                    {
+                        intro: "Explore the domains",
+                        element: this.$GROUPS.find('.domain-group-list')
+                    },
+                    {
+                        intro: "Filter the domains list by name of domain code",
+                        element: this.$SEARCH
+                    },
+                    {
+                        intro: "Select a domain to go to the download data page",
+                        element:  this.$GROUPS.find('.domain-list')
+                    }
+                ]
+            });
+        }
+
+        this.onboarding.start(force);
+
+    };
+
+    Groups.prototype._analyticsDomainSelection = function (label) {
+
+        amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+            $.extend({}, A.data_domain_list_page.select_a_domain, {
+                label: label
+            })
+        );
+
+    };
+
+    Groups.prototype._analyticsSearchDomain = function (label) {
+
+        amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+            $.extend({}, A.data_domain_list_page.search_a_domain, {
+                label: label
+            })
+        );
+
+    };
+
+
     Groups.prototype._bindEventListeners = function () {
 
         var self = this;
@@ -223,26 +273,6 @@ define([
 
     };
 
-    Groups.prototype._analyticsDomainSelection = function (label) {
-
-        amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
-             $.extend({}, A.data_domain_list_page.select_a_domain, {
-                label: label
-            })
-        );
-
-    };
-
-    Groups.prototype._analyticsSearchDomain = function (label) {
-
-        amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
-            $.extend({}, A.data_domain_list_page.search_a_domain, {
-                label: label
-            })
-        );
-
-    };
-
     Groups.prototype._unbindEventListeners = function () {
 
         this.$GROUPS_LIST.find("a").off();
@@ -258,6 +288,10 @@ define([
         // destroy all filters
         if (this.$CONTAINER !== undefined) {
             this.$CONTAINER.empty();
+        }
+
+        if (this.onboarding) {
+            this.onboarding.destroy();
         }
 
     };

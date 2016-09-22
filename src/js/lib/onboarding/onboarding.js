@@ -19,7 +19,7 @@ define([
     defaultOptions = {
         storageKey: 'onboarding_',
         interval: 1000,
-        intervalForce: 200,
+        intervalForce: 350,
         failures: 0,
         maxFailures: 4
     };
@@ -44,7 +44,7 @@ define([
     OnBoarding.prototype.start = function (force) {
 
         var self = this,
-            force = force;
+            force = force || false;
 
         this.intro.oncomplete(function() {
             self._onComplete();
@@ -66,6 +66,8 @@ define([
             var steps = self._filterVisibleSteps();
             if (steps.length === self.o.steps.length) {
 
+                log.info("OnBoarding.start; starting", steps.length === self.o.steps.length);
+
                 // putting the filters steps as steps to use
                 self.o.steps = steps;
 
@@ -74,14 +76,15 @@ define([
 
                 self._startReady(force);
                 clearInterval(checkElements);
-            }
+            }else {
 
-            if( self.o.failures++ >= self.o.maxFailures) {
-                // exit
-                log.error("OnBoarding.start; reached max failures", self.o.maxFailures);
-                clearInterval(checkElements);
+                if (self.o.failures++ >= self.o.maxFailures) {
+                    // exit
+                    log.error("OnBoarding.start; reached max failures", self.o.maxFailures);
+                    clearInterval(checkElements);
+                }
+                log.warn("OnBoarding.start; failures", self.o.failures)
             }
-            log.warn("OnBoarding.start; failures", self.o.failures)
 
         }, force === true? this.o.intervalForce : this.o.interval);
 
@@ -149,8 +152,8 @@ define([
 
     OnBoarding.prototype.destroy = function () {
 
-        if (this.intro) {
-            log.warn("Destroy introJs");
+        if (this.intro !== undefined) {
+            this.intro.exit();
         }
 
     };
