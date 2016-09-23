@@ -5,7 +5,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-        search_for_a_domain: "Search for a Domain e.g. crops, food security, fertilizers",
+        search_for_a_domain: "Filter the domain list e.g. crops, food security, fertilizers",
         related_documents: "Related Documents",
         selection_too_large:  "Selection is too large.",
         suggest_bulk_downloads:  "Please use the <strong>Bulk Downloads</strong> or reduce the selection.",

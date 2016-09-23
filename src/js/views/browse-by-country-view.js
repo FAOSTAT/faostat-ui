@@ -494,9 +494,10 @@ define([
                 //this.m.map.addLayer(Esri_WorldImagery);
 
                 var boundary = {
-                    layers: 'fenix:gaul0_line_3857',
+                    layers: 'faostat:gaul0_line_3857',
                     layertitle: 'Country Boundaries',
-                    urlWMS: FMCONFIG.BASEURL_MAPS,
+                    urlWMS: FMCONFIG.DEFAULT_WMS_SERVER,
+                    styles: 'faostat:gaul0_line',
                     opacity: '0.5'
                 };
 
@@ -505,8 +506,8 @@ define([
                 var highlight = new FM.layer({
                     layers: 'gaul0_faostat_3857',
                     layertitle: '',
-                    urlWMS: FMCONFIG.BASEURL_MAPS,
-                    style: 'highlight_polygon',
+                    urlWMS: FMCONFIG.DEFAULT_WMS_SERVER,
+                    style: 'faostat:highlight_polygon',
                     cql_filter: "faost_code IN ('" + code.join("','") +"')",
                     hideLayerInControllerList: true,
                     lang: 'en'

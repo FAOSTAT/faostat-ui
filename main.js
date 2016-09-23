@@ -127,6 +127,7 @@ var config = {
         'fenix-ui-map-config': '../../config/submodules/fx-map/fenix-ui-map-config',
 
 
+
         // Charts
         'highcharts': CDN + '/js/highcharts/4.2.5/js/highcharts',
         'highstock': CDN + '/js/highstock/2.1.9/js/highstock',
@@ -224,7 +225,9 @@ var config = {
         // fenix-ui-map-creator
         'fx-m-c/start': SUBMODULE + '/fenix-ui-map-creator/src/js/start',
         'fx-m-c/html': SUBMODULE + '/fenix-ui-map-creator/src/html',
+        'fx-m-c/config/config':  '../../config/submodules/fx-map/config/config',
         'fx-m-c/config': SUBMODULE + '/fenix-ui-map-creator/config',
+        'fx-m-c/config/adapters/FAOSTAT_fx_map':  '../../config/submodules/fx-map/config/adapters/FAOSTAT_fx_map',
         'fx-m-c/adapters': SUBMODULE + '/fenix-ui-map-creator/src/js/adapters',
         'fx-m-c/templates': SUBMODULE + '/fenix-ui-map-creator/src/js/templates',
         'fx-m-c/nls': SUBMODULE + '/fenix-ui-map-creator/i18n',

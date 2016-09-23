@@ -49,7 +49,15 @@ define([
 
         // download button for each result container
         DOWNLOAD_BUTTON: "[data-role='download']",
-        DOWNLOAD_LINK: "[data-role='download-link']"
+        DOWNLOAD_LINK: "[data-role='download-link']",
+        METADATA: "[data-role='metadata']",
+        OUTPUT: "[data-role='output']"
+
+    },
+
+    config = {
+
+        isClustered: false
 
     },
     SearchView = View.extend({
@@ -120,15 +128,51 @@ define([
                 v.index = index;
 
                 // adding domain name
+                v = $.extend(true, {}, v, self.getDomain(v.domain_code));
+
+                // i18n
+                v.type = i18nLabels[v.id];
+                v.domain_label = i18nLabels.domain;
+                v.group_label = i18nLabels.group;
+                v.download_data = i18nLabels.download_data;
+                v.show_data = i18nLabels.show_data;
+
+                // TODO: this can be computed and rendered at runtime on page change.
+                v.download_link = "#" + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [v.domain_code]);
+
+                r.push(v);
+
+            });
+
+            log.info("Search.parseSearchResults; parsed results", r);
+
+            this.renderResults(r);
+
+        },
+
+        parseSearchResultsClusteredSearch: function(results) {
+
+            log.info("Search.parseSearchResultsClusteredSearch; results from query", results);
+
+            // cluster results
+            var r = [],
+                self = this;
+
+            // TODO: this can be computed and rendered at runtime on page change.
+            _.each(results.data, function(v, index) {
+
+                // index used to retrieve the obj in cached results
+                v.index = index;
+
+                // adding domain name
                 v = $.extend(true, {}, v, self.getDomain(v.DomainCode));
 
                 // i18n
                 v.type = i18nLabels[v.id];
                 v.domain_label = i18nLabels.domain;
                 v.group_label = i18nLabels.group;
-                v.go_to_download = i18nLabels.go_to_download;
-                v.go_to_browse = i18nLabels.go_to_browse;
                 v.download_data = i18nLabels.download_data;
+                v.show_data = i18nLabels.show_data;
 
                 // TODO: this can be computed and rendered at runtime on page change.
                 v.download_link = "#" + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [v.domainCode]);
@@ -244,7 +288,7 @@ define([
         getPage: function(results, nextPage, pageSize) {
 
             // TODO: this could be cached
-            var t = Handlebars.compile(templateResults),
+            var t = Handlebars.compile($(templateResults).filter('#results').html()),
                 currentPage = (nextPage - 1),
                 d = {
                     data: results.slice(currentPage * pageSize, nextPage * pageSize)
@@ -291,11 +335,11 @@ define([
 
             var obj = this.results.data[index],
                 exportObj = {
-                    domain_code: obj.DomainCode,
+                    domain_code: obj.domain_code,
                 };
 
             // adding the export code to the filters
-            exportObj[obj.id] = [obj.Code];
+            exportObj[obj.id] = [obj.code];
 
             log.info("Search.exportData;", exportObj);
 
@@ -318,10 +362,10 @@ define([
             for(var i=0; i < domains.length; i++) {
                 if (domains[i].domain_code === code) {
                     return {
-                        domainCode: domains[i].domain_code,
-                        domainName: domains[i].domain_name,
-                        groupCode: domains[i].group_code,
-                        groupName: domains[i].group_name
+                        domain_code: domains[i].domain_code,
+                        domain_name: domains[i].domain_name,
+                        group_code: domains[i].group_code,
+                        group_name: domains[i].group_name
                     };
                 }
             }
@@ -370,7 +414,11 @@ define([
                     self.results = results;
 
                     //self.parseSearchResultsClustered(result);
-                    self.parseSearchResults(results);
+                    if (!config.isClustered) {
+                        self.parseSearchResults(results);
+                    }else {
+                        self.parseSearchResultsClusteredSearch(results);
+                    }
 
                 });
 

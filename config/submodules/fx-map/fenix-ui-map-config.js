@@ -6,7 +6,8 @@ define(function() {
 		//BASEURL_LANG: 'http://fenixrepo.fao.org/cdn/js/fenix-ui-map/0.1.4/i18n/',
 
 		MAP_SERVICE_SHADED: 'http://fenixservices.fao.org/faostat/geo/mapclassify/join/',
-		DEFAULT_WMS_SERVER: 'http://fenixservices.fao.org/faostat/geoserver',
+		//DEFAULT_WMS_SERVER: 'http://fenixservices.fao.org/faostat/geoserver',
+		DEFAULT_WMS_SERVER: 'http://fenix.fao.org:15100/geoserver/faostat/wms',
 		MAP_SERVICE_GFI_JOIN: 'http://fenixservices.fao.org/faostat/geo/mapclassify/request/',
 		MAP_SERVICE_GFI_STANDARD: 'http://fenixservices.fao.org/faostat/geo/mapclassify/request/',
 

@@ -1,52 +1,59 @@
-{{#each data}}
-    <div class="row">
+<template id="results">
+    {{#each data}}
+        <div class="row">
 
+            <div class="col-sm-8 col-md-9">
+                <h4>
+                    {{this.label}}
+                    {{#if this.type}}<small>({{this.type}})</small>{{/if}}
 
-        <div class="col-sm-8 col-md-9">
-            <h4>
-                {{this.Label}}
-                <!-- TODO: id should be translated and take from the db as typeLabel -->
-                {{#if this.type}}<small>({{this.type}})</small>{{/if}}
-
-            </h4>
-            <div>
-<!--                <h5>
-                    <small>{{group_label}}</small>
-                    <span class="domain-icon icojam_{{this.groupCode}}"></span>
-                </h5>-->
-                <h5>
-                    <a href="{{this.download_link}}">{{this.domainName}}</a> ({{this.groupName}})
-                </h5>
+                </h4>
+                <div>
+                    <a href="{{this.download_link}}">{{this.domain_name}}</a> ({{this.group_name}})
+                </div>
             </div>
-            {{#each relations}}
-                <span> {{this.Label}} </span>
-            {{/each}}
-        </div>
 
-        <div class="col-sm-4 col-md-3">
-            <button class="btn btn-default btn-block waves-effect waves-light" data-role="download" data-index="{{index}}">
-                <i class="material-icons left hidden-xs">file_download</i>{{download_data}}
-            </button>
-
-            <!--<a href="{{this.download_link}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>-->
-            <!--<a style="margin-left:15px;" href="{{this.browse_link}}"><i class="fa fa-external-link"></i>Visualize Data {{go_to_visualize_data}}</a>-->
-
-        </div>
-
-    </div>
-
-<!--    <div class="row clearfix">
-        <div class="col-md-9">
-            <div style="padding-top:15px;">
-                &lt;!&ndash; TODO: with routing an multilanguage &ndash;&gt;
-                <a href="{{this.download_link}}"><i class="fa fa-external-link"></i> {{go_to_download}}</a>
-                <a style="margin-left:15px;" href="{{this.browse_link}}"><i class="fa fa-external-link"></i> {{go_to_browse}}</a>
+            <div class="col-sm-4 col-md-3">
+                <button class="btn btn-default btn-block waves-effect waves-light" data-role="download" data-index="{{index}}">
+                    <i class="material-icons left hidden-xs">file_download</i>{{download_data}}
+                </button>
             </div>
 
         </div>
 
-    </div>-->
+        <div class="row">
+            <div class="col-md-12">
+                <div data-role="output"></div>
+            </div>
+        </div>
+        <hr>
 
-    <hr>
+    {{/each}}
+</template>
 
-{{/each}}
+<template id="results_clustered">
+    {{#each data}}
+        <div class="row">
+
+            <div class="col-sm-8 col-md-6">
+                <h4>
+                    {{this.Label}}
+                    {{#if this.type}}<small>({{this.type}})</small>{{/if}}
+                </h4>
+
+                {{#each domains}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <i class="material-icons left hidden-xs">file_download</i>
+                            <a href="{{this.download_link}}">{{this.domainName}}</a> ({{this.groupName}})
+                        </div>
+                    </div>
+                {{/each}}
+
+            </div>
+
+        </div>
+        <hr>
+
+    {{/each}}
+</template>
