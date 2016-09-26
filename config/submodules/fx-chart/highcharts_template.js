@@ -49,7 +49,7 @@ define(['moment'],function (moment) {
                 },
                 theme: {
                     fill: '#FFFFFF', //Colore di background pulsante reset zoom
-                    stroke: '#666666', //Colore di stroke pulsante reset zoom
+                    stroke: '#707070', //Colore di stroke pulsante reset zoom
                     width: 60, //Larghezza del pulsante reset
                     //r:0, //Smusso pulsante reset zoom
                     style: {
@@ -59,7 +59,7 @@ define(['moment'],function (moment) {
                     states: {
                         hover: {
                             fill: '#e6e6e6', //Colore di background hover pulsante reset zoom
-                            stroke: '#666666', //Colore di stroke hover pulsante reset zoom
+                            stroke: '#707070', //Colore di stroke hover pulsante reset zoom
                             style: {
                                 //color: 'white' //Colore testo hover pulsante reset zoom
                             }
@@ -255,7 +255,7 @@ define(['moment'],function (moment) {
                 //y: -10,
                 symbolFill: '#E0E0E0',
                 symbolSize: 14,
-                symbolStroke: '#666',
+                symbolStroke: '#707070',
                 symbolStrokeWidth: 3,
                 symbolX: 12.5,
                 symbolY: 10.5,
@@ -299,7 +299,7 @@ define(['moment'],function (moment) {
             //lineHeight: 20, //Altezza di ogni elemento della legenda (il valore di default è 16)
             itemStyle: {
                 cursor: 'pointer',
-                color: '#666666',
+                color: '#707070',
                 fontSize: '12px',
                 fontWeight: 300
             },
@@ -311,11 +311,11 @@ define(['moment'],function (moment) {
             },
             navigation: { //Paginazione Legenda - stilizzazione
                 activeColor: '#3ca7da', //Colore freccia attiva legenda
-                inactiveColor: '#666666', //Colore freccia disattiva legenda
+                inactiveColor: '#707070', //Colore freccia disattiva legenda
                 arrowSize: 8, //Dimensioni freccia
                 animation: true, //Attiva/Disattiva animazione
                 style: { //Stile CSS applicato solo alla navigazione della legenda
-                    color: '#666666',
+                    color: '#707070',
                     fontSize: '10px'
                 }
             }
@@ -324,8 +324,10 @@ define(['moment'],function (moment) {
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
+                color: '#707070',
                 dataLabels: {
                     enabled: true,
+                    color: '#707070',
                     formatter: function () {
                         var maxLength = 40,
                             name = (this.point.name.length <= maxLength)? this.point.name : this.point.name.substring(0, maxLength) + "...";
@@ -391,7 +393,7 @@ define(['moment'],function (moment) {
             labels: {
                 y: 25,
                 style: {
-                    color: '#666666',
+                    color: '#707070',
                     fontWeight: '300',
                     fontSize: 11
                 }
@@ -414,7 +416,7 @@ define(['moment'],function (moment) {
             gridLineColor: '#eeeeee',
             labels: {
                 style: {
-                    color: '#666666',
+                    color: '#707070',
                     fontWeight: '300',
                     fontSize: 12
                 }

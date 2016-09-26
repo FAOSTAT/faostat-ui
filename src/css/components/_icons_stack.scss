@@ -5,7 +5,7 @@
   bottom: 0;
   right: 0;
   white-space: nowrap;
-  z-index: 21;
+  z-index: 1000; //21; TODO: fix with the z-index map
   padding: 23px 12px 23px 15px;
 
   a {

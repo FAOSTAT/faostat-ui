@@ -8577,7 +8577,7 @@ input[type="radio"]:disabled + label {
   bottom: 0;
   right: 0;
   white-space: nowrap;
-  z-index: 21;
+  z-index: 1000;
   padding: 23px 12px 23px 15px; }
   .fs-icons-stack a {
     margin-bottom: 0px; }
