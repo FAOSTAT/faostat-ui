@@ -7748,7 +7748,11 @@ input[type="button"]::-moz-focus-inner {
   .btn-primary.hover, .btn-primary.focus {
     background-color: #0D6CAC !important; }
 
-.btn-floating:not(.btn-large) i.material-icons {
+.btn-floating i.material-icons {
+  font-size: 20px; }
+.btn-floating.btn-large i.material-icons {
+  font-size: 24px; }
+.btn-floating.btn-small i.material-icons {
   font-size: 20px; }
 
 .material-icons.md-18 {
@@ -8191,40 +8195,35 @@ div#google_search input#search-submit {
   color: #337ab7; }
 
 .scroll-top-wrapper {
-  position: fixed;
   opacity: 0;
   visibility: hidden;
-  overflow: hidden;
-  text-align: center;
-  z-index: 1000;
-  background-color: #777777;
-  color: #eeeeee;
-  width: 50px;
-  height: 48px;
-  line-height: 48px;
-  right: 30px;
-  bottom: 95px;
-  padding-top: 2px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out; }
 
-.scroll-top-wrapper:hover {
-  background-color: #888888; }
-
+/*.scroll-top-wrapper {
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  text-align: center;
+  z-index: 3;
+  width: 50px;
+  height: 48px;
+  line-height: 48px;
+  right: 85px;
+  bottom: 34px;
+  padding-top: 2px;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}*/
 .scroll-top-wrapper.show {
   visibility: visible;
-  cursor: pointer;
   opacity: 1.0; }
-
-.scroll-top-wrapper i.fa {
-  line-height: inherit; }
 
 #toast-container > div {
   opacity: 0.9;
@@ -8242,7 +8241,7 @@ div#google_search input#search-submit {
     #toast-container > div .toast-title {
       font-size: 12px; }
     #toast-container > div .toast-message {
-      font-size: 11px; } }
+      font-size: 10px; } }
 
 #toast-container > div:hover {
   -webkit-box-shadow: 0 0 0 white;
@@ -8571,6 +8570,16 @@ input[type="radio"]:disabled + label {
 
 .introjs-disabled:hover {
   background: #eeeeee; }
+
+.fs-icons-stack {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  white-space: nowrap;
+  z-index: 21;
+  padding: 23px 12px 23px 15px; }
+  .fs-icons-stack a {
+    margin-bottom: 0px; }
 
 /* Third parties */
 .typeahead, .tt-query, .tt-hint {

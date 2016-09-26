@@ -74,7 +74,8 @@ define([
             DEFINITIONS_BUTTON: '[data-role="fs-download-definitions-button"]',
 
             // on boarding optional button
-            ONBOARDING: '[data-role="onboarding"]'
+            //ONBOARDING: '[data-role="onboarding"]'
+            ONBOARDING: '[data-role="help"]'
 
         },
 
@@ -102,11 +103,12 @@ define([
                         intro: "<h4>Change Domain</h4>or going back to the domains",
                         element: '[data-role="fs-menu-data"]'
                     },
-                    {
+/*                    {
                         intro: "<h4>Any doubt or suggestion?</h4>Drop us a line",
                         element: '[data-role="google-form"]',
                         position: 'left'
-                    }]
+                    }*/
+                    ]
                 }
 
         },
@@ -190,7 +192,9 @@ define([
                 this.$CONTACTS = this.$el.find(s.CONTACTS);
                 this.$ORGANIZATION = this.$el.find(s.ORGANIZATION);
                 this.$RELATED_DOCUMENTS = this.$el.find(s.RELATED_DOCUMENTS);
-                this.$ONBOARDING = this.$el.find(s.ONBOARDING);
+                //this.$ONBOARDING = this.$el.find(s.ONBOARDING);
+                this.$ONBOARDING = $(s.ONBOARDING);
+
 
                 // Domains tree modal
                 this.$TREE_MODAL = this.$el.find(s.TREE_MODAL);
@@ -605,6 +609,10 @@ define([
                     this.$TREE_MODAL.off('show.bs.modal');
                 }
 
+                if (this.$ONBOARDING) {
+                    this.$ONBOARDING.off();
+                }
+
             },
 
             // TODO: refactor/move to a common lib folder to be reusable (if needed)
@@ -864,6 +872,10 @@ define([
                 // TODO: fix modal on close
                 if (this.$TREE_MODAL) {
                     this.$TREE_MODAL.remove();
+                }
+
+                if (this.$ONBOARDING) {
+                    this.$ONBOARDING.hide();
                 }
 
                 this.destroySections();

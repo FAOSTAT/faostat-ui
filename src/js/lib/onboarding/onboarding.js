@@ -46,11 +46,11 @@ define([
         var self = this,
             force = force || false;
 
-        this.intro.oncomplete(function() {
+        this.intro.oncomplete(function () {
             self._onComplete();
         });
 
-        this.intro.onexit(function() {
+        this.intro.onexit(function () {
             self._onExit();
         });
 
@@ -61,7 +61,7 @@ define([
         }
 
         // filter visible steps
-        var checkElements = setInterval(function() {
+        var checkElements = setInterval(function () {
 
             var steps = self._filterVisibleSteps();
             if (steps.length === self.o.steps.length) {
@@ -76,7 +76,7 @@ define([
 
                 self._startReady(force);
                 clearInterval(checkElements);
-            }else {
+            } else {
 
                 if (self.o.failures++ >= self.o.maxFailures) {
                     // exit
@@ -86,14 +86,20 @@ define([
                 log.warn("OnBoarding.start; failures", self.o.failures)
             }
 
-        }, force === true? this.o.intervalForce : this.o.interval);
+        }, force === true ? this.o.intervalForce : this.o.interval);
+
 
     };
 
     OnBoarding.prototype._startReady = function (force) {
 
         if (this.isSeen() === undefined || force === true) {
-            this.intro.start();
+            if (!this._isAlreadyOnTour()) {
+                this.intro.start();
+            } else {
+                log.error("OnBoarding._startReady; Another onboarding is already visible.");
+            }
+
         }
 
     };
@@ -101,6 +107,10 @@ define([
     /* TODO: check if it is skipped and not exit */
     OnBoarding.prototype._onSkip = function () {
         amplify.store(this.o.storageKey, "skip");
+    };
+
+    OnBoarding.prototype._isAlreadyOnTour = function () {
+        return $(".introjs-overlay").is(":visible");
     };
 
     /*  the user exit the tour, but didn't skip it */
@@ -130,7 +140,7 @@ define([
 
             var element = this._getElement(steps[i]);
 
-            if ( element.length > 0) {
+            if ( element !== undefined && element.is(':visible')) {
                 r.push($.extend(true, {}, steps[i], {element: element[0]}));
             }
         }

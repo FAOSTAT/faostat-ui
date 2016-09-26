@@ -22,7 +22,8 @@ define([
     var s = {
 
         GROUPS: "#fs-data-groups",
-        ONBOARDING: "[data-role='onboarding']"
+        //ONBOARDING: "[data-role='onboarding']"
+        ONBOARDING   : "[data-role='help']"
 
     },
 
@@ -75,7 +76,8 @@ define([
         initVariables: function () {
 
             this.$GROUPS = this.$el.find(s.GROUPS);
-            this.$ONBOARDING = this.$el.find(s.ONBOARDING);
+            this.$ONBOARDING = $(s.ONBOARDING);
+            this.$ONBOARDING.show();
 
         },
 
@@ -116,6 +118,10 @@ define([
 
             if(this.groups && this.groups.destroy) {
                 this.groups.destroy();
+            }
+
+            if(this.$ONBOARDING) {
+                this.$ONBOARDING.hide();
             }
 
             this.unbindEventListeners();

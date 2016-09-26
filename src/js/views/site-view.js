@@ -270,7 +270,7 @@ define([
             });
 
             // tooltip
-            this.$GOOGLE_FORM.tooltip();
+            //this.$GOOGLE_FORM.tooltip();
 
         },
 

@@ -74,12 +74,25 @@ input[type="button"]::-moz-focus-inner{
 
 .btn-floating {
 
-  &:not(.btn-large) {
+  i.material-icons {
+    font-size: 20px;
+  }
+
+
+  &.btn-large {
+    i.material-icons {
+      font-size: 24px;
+    }
+
+  }
+
+  &.btn-small {
     i.material-icons {
       font-size: 20px;
     }
 
   }
+
 
 }
 
