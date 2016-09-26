@@ -9,9 +9,10 @@
   border: 0;
 
   .panel-heading{
+    color: $fenix-text;
     background-color: white;
     border-color: transparent;
-    border-bottom-color:$fenix-light-hr ;
+    border-bottom-color: $fenix-light-hr ;
   }
 
   .panel-footer{

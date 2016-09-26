@@ -1,5 +1,7 @@
 /*global define*/
-define(['fx-m-c/config/config', 'fx-m-c/config/config-default'], function (C, DC) {
+define([
+    'fenix-ui-map-config'
+], function () {
 
     'use strict';
     return {
@@ -33,14 +35,22 @@ define(['fx-m-c/config/config', 'fx-m-c/config/config-default'], function (C, DC
                 layers: 'fenix:gaul0_line_3857',
                 layertitle: 'Country Boundaries',
                 // TODO: remove the url to wms
-                urlWMS: ( C.WMS_URL || DC.WMS_URL ),
+                urlWMS: FMCONFIG.DEFAULT_WMS_SERVER,
                 //styles: 'gaul0_line_white',
-                opacity: '0.3',
+                opacity: '0.5',
+                lang: 'en'
+            },
+            highlight: {
+                layers: 'gaul0_faostat_3857',
+                layertitle: '',
+                urlWMS: FMCONFIG.DEFAULT_WMS_SERVER,
+                style: 'highlight_polygon',
+                hideLayerInControllerList: true,
                 lang: 'en'
             }
         },
         url: {
-            wms: C.WMS_URL || DC.WMS_URL
+            wms: FMCONFIG.DEFAULT_WMS_SERVER
         },
         geoSubject: 'geo',
         valueSubject: 'value',

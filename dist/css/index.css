@@ -226,6 +226,7 @@
   border-color: transparent;
   border: 0; }
   .panel.panel-default .panel-heading {
+    color: rgba(0, 0, 0, 0.7);
     background-color: white;
     border-color: transparent;
     border-bottom-color: #dddddd; }

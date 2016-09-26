@@ -17,6 +17,7 @@ define([
     'globals/Common',
     'faostatapiclient',
     'lib/dashboard-compose/dashboard-compose',
+    'fx-m-c/config/adapters/FAOSTAT_fx_map',
     //'holmes',
     //'microlight',
     'fenix-ui-map',
@@ -30,7 +31,8 @@ define([
              templateCountryList,
              templateCountryProfile,
              i18nLabels, Handlebars, Common, API,
-             DashBoardCompose
+             DashBoardCompose,
+             MapConfig
 ) {
 
     'use strict';
@@ -493,26 +495,13 @@ define([
                 this.m.map.addLayer(Esri_WorldPhysical);
                 //this.m.map.addLayer(Esri_WorldImagery);
 
-                var boundary = {
-                    layers: 'faostat:gaul0_line_3857',
-                    layertitle: 'Country Boundaries',
-                    urlWMS: FMCONFIG.DEFAULT_WMS_SERVER,
-                    styles: 'faostat:gaul0_line',
-                    opacity: '0.5'
-                };
-
+                var boundary = $.extend(true, {}, MapConfig.layers.boundary);
                 this.m.addLayer(new FM.layer(boundary));
 
-                var highlight = new FM.layer({
-                    layers: 'gaul0_faostat_3857',
-                    layertitle: '',
-                    urlWMS: FMCONFIG.DEFAULT_WMS_SERVER,
-                    style: 'faostat:highlight_polygon',
-                    cql_filter: "faost_code IN ('" + code.join("','") +"')",
-                    hideLayerInControllerList: true,
-                    lang: 'en'
+                var highlight = $.extend(true, {}, MapConfig.layers.highlight, {
+                    cql_filter: "faost_code IN ('" + code.join("','") +"')"
                 });
-                this.m.addLayer(highlight);
+                this.m.addLayer(new FM.layer(highlight));
 
                 var CartoDB_PositronOnlyLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -526,38 +515,7 @@ define([
 
                 // highlight country
                 // TODO: how to check for old countries (i.e. USSR) or new (i.e. south sudan)?
-                this.m.zoomTo('gaul0_faostat_3857', "faost_code", code);
-
-/*
-                var wmsLayer = L.tileLayer.wms('http://fenix.fao.org:20900/geoserver/fenix/wms', {
-                    layers: 'fenix:gaul0_3857',
-                    format: 'application/json;type=utfgrid',
-                    style: 'polygon'
-                }).addTo(this.m.map);
-*/
-
-/*                var utfGrid = new L.UtfGrid('http://{s}.tiles.mapbox.com/v3/milkator.press_freedom/{z}/{x}/{y}.grid.json?callback={cb}', {
-                    resolution: 4,
-                    maxZoom: 5
-                });*/
-
-
-
-                /*var teaLayer = L.tileLayer.wms("http://fenix.fao.org:20200/geoserver/wms", {
-                    layers: 'earthstat:tea_area_3857',
-                    format: 'image/png',
-                    transparent: true
-                });
-
-                var riceLayer = L.tileLayer.wms("http://fenix.fao.org:20200/geoserver/wms", {
-                    layers: 'earthstat:rice_area_3857',
-                    format: 'image/png',
-                    transparent: true
-                });
-
-
-                this.m.map.addLayer(teaLayer);*/
-
+                this.m.zoomTo(MapConfig.layers.highlight.layers, "faost_code", code);
 
             },
 
