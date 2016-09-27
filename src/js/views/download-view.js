@@ -200,6 +200,10 @@ define([
                 this.$TREE_MODAL = this.$el.find(s.TREE_MODAL);
                 this.$TREE = this.$el.find(s.TREE);
                 this.$MODAL_DOMAINS_BUTTON = this.$el.find(s.MODAL_DOMAINS_BUTTON);
+                this.$MODAL_DOMAINS_BUTTON.tooltip('destroy');
+                this.$MODAL_DOMAINS_BUTTON.tooltip({
+                    container: 'body'
+                });
 
                 // Select the current section
                 this.$el.find('.nav-tabs [data-section=' + this.o.section + ']').tab('show');
@@ -388,6 +392,10 @@ define([
                     });
 
                     this.$ONBOARDING.show();
+                    this.$ONBOARDING.tooltip('destroy');
+                    this.$ONBOARDING.tooltip({
+                        container: 'body'
+                    });
                     this.$ONBOARDING.find('[data-role="text"]').html("Help on download data?");
                     this.$ONBOARDING.on('click', _.bind(function(e) {
 
@@ -588,6 +596,10 @@ define([
                             label: self.o.selected.id
                         })
                     );
+                });
+
+                this.$MODAL_DOMAINS_BUTTON.on('click', function() {
+                    self.$MODAL_DOMAINS_BUTTON.tooltip('hide');
                 });
 
             },
@@ -875,6 +887,7 @@ define([
                 }
 
                 if (this.$ONBOARDING) {
+                    this.$ONBOARDING.tooltip('destroy');
                     this.$ONBOARDING.hide();
                 }
 

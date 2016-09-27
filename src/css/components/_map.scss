@@ -10,6 +10,8 @@
 
 .leaflet-container {
 
+  font-family: $standard-text;
+
   .leaflet-control-attribution {
     opacity: 0.7;
   }
@@ -53,6 +55,22 @@
 
 .leaflet-control {
   opacity: 0.9;
+}
+
+.leaflet-control-zoom-in:before {
+  color: $fenix-text;
+}
+
+.leaflet-control-zoom-out:before {
+  color: $fenix-text;
+}
+
+.leaflet-control-fullscreen {
+  color: $fenix-text;
+
+  &.hover {
+    color: $fenix-text;
+  }
 }
 
 /* zoom control */

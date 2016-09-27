@@ -151,8 +151,6 @@ define([
             amplify.subscribe(E.SEARCH_BOX_HIDE, this, this.hideSearchBox);
 
             amplify.subscribe(E.METADATA_SHOW, Modal, Modal.showMetadata);
-            // amplify.subscribe(E.METADATA_SHOW, this, this.showMetadata);
-            //amplify.subscribe(E.GLOSSARY_SHOW, Modal, Modal.glossary);
             amplify.subscribe(E.DEFINITION_DOMAIN_SHOW, Modal, Modal.definitions_domain);
 
             amplify.subscribe(E.SCROLL_TO_SELECTOR, this, this.scrollTo);
@@ -219,6 +217,7 @@ define([
                 // easing: "ease",
                 //duration: 1200
             });*/
+
         },
 
         initMenu: function() {
@@ -270,7 +269,10 @@ define([
             });
 
             // tooltip
-            //this.$GOOGLE_FORM.tooltip();
+            this.$GOOGLE_FORM.tooltip('destroy');
+            this.$GOOGLE_FORM.tooltip({
+                container: 'body'
+            });
 
         },
 

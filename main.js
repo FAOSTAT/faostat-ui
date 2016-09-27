@@ -284,7 +284,8 @@ var config = {
             deps: ["jquery", "bootstrap"]
         },
         bootstrap: {
-            deps: ["jquery"]
+            // jquery-ui is needed because overrides bootstrap e.g. tooltip
+            deps: ["jquery", "jquery-ui"]
         },
         'bootstrap-tour': {
             deps: ["jquery", "bootstrap"],

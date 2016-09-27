@@ -23,7 +23,7 @@ define([
 
         GROUPS: "#fs-data-groups",
         //ONBOARDING: "[data-role='onboarding']"
-        ONBOARDING   : "[data-role='help']"
+        ONBOARDING: "[data-role='help']"
 
     },
 
@@ -78,7 +78,10 @@ define([
             this.$GROUPS = this.$el.find(s.GROUPS);
             this.$ONBOARDING = $(s.ONBOARDING);
             this.$ONBOARDING.show();
-
+            this.$ONBOARDING.tooltip('destroy');
+            this.$ONBOARDING.tooltip({
+                container: 'body'
+            });
         },
 
         initComponents: function () {
@@ -121,6 +124,7 @@ define([
             }
 
             if(this.$ONBOARDING) {
+                this.$ONBOARDING.tooltip('destroy');
                 this.$ONBOARDING.hide();
             }
 
