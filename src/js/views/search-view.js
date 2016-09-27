@@ -198,6 +198,7 @@ define([
                 v.group_label = i18nLabels.group;
                 v.download_data = i18nLabels.download_data;
                 v.show_data = i18nLabels.show_data;
+                v.metadata = i18nLabels.metadata;
 
                 // TODO: this can be computed and rendered at runtime on page change.
                 v.download_link = "#" + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [v.domain_code]);
@@ -394,9 +395,12 @@ define([
 
                 e.preventDefault();
 
+                $(this).tooltip('hide');
                 self.showMetadata($(this).data('index'));
 
             });
+            this.$el.find(s.METADATA).tooltip('hide');
+            this.$el.find(s.METADATA).tooltip();
 
             this.$el.find(s.PREVIEW).on('click', function(e) {
 
@@ -471,7 +475,7 @@ define([
                     container: $output,
                     model: d,
                     template: {
-                        height: '300',
+                        height: '298',
                         sortable: false,
                         removable: true,
                         addPanel: true,

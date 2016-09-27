@@ -1,4 +1,3 @@
-// Scroll
 
 .scroll-top-wrapper {
   opacity: 0;
@@ -8,6 +7,13 @@
   -ms-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+}
+
+.scroll-top-wrapper:hover {
+}
+.scroll-top-wrapper.show {
+  visibility:visible;
+  opacity: 1.0;
 }
 
 /*.scroll-top-wrapper {
@@ -28,11 +34,3 @@
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }*/
-
-.scroll-top-wrapper:hover {
-  //background-color: #888888;
-}
-.scroll-top-wrapper.show {
-  visibility:visible;
-  opacity: 1.0;
-}

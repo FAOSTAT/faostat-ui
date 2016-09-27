@@ -1,5 +1,4 @@
 
-
 .fs-search-box {
 
   .fs-search-icon {
@@ -24,7 +23,7 @@
     i {
        cursor:pointer;
 
-      &.hover {
+      &:hover {
         color: $fx-cool-blue;
       }
     }
@@ -33,6 +32,12 @@
 
   .fs-search-output {
     padding-top:15px;
+
+    .fs-table-heading {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
   }
 
 }

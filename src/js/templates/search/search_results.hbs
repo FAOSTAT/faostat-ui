@@ -8,7 +8,7 @@
                     {{#if this.type}}<small>({{this.type}})</small>{{/if}}
                 </p>
                 <div class="subtitle truncate">
-                    <i data-index="{{index}}" data-role='metadata' class="material-icons left">info_outline</i>
+                    <i data-toggle="tooltip" data-placement="bottom" title="{{metadata}}" data-index="{{index}}" data-role='metadata' class="material-icons left">info_outline</i>
                     <span>
                         <a class="truncate" href="{{this.download_link}}">{{this.domain_name}}</a> ({{this.group_name}})
                     </span>

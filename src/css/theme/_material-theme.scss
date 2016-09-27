@@ -263,6 +263,11 @@
   display: inline-block;
   text-align: center;
   line-height: 37px;
+  color: white;
+}
+
+.btn-floating.btn-link i {
+  color: $fenix-text;
 }
 
 .btn-floating:before {
