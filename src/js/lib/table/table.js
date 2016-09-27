@@ -39,6 +39,7 @@ define([
                 },
                 addPanel: true,
                 sortable: true,
+                removable: false,
 
                 // TODO: not used yet?
                 remote: {
@@ -50,7 +51,8 @@ define([
         },
 
         s = {
-            FULLSCREEN: '[data-role="fullscreen"]'
+            FULLSCREEN: '[data-role="fullscreen"]',
+            CLOSE: '[data-role=close]'
         };
 
         function Table() {
@@ -179,19 +181,28 @@ define([
 
         Table.prototype.bindEventListeners = function() {
 
-          /*  
-          var self = this;
-            
-            this.o.container.find(s.FULLSCREEN).on('click', function() {
-                if (screenfull.enabled) {
-                    screenfull.request($(self.o.container)[0]);
-                }
-            });
-            
-            */
+            var self = this;
+
+            this.$CLOSE = this.o.container.find(s.CLOSE);
+            if( this.$CLOSE.length > 0) {
+                this.$CLOSE.on('click', function () {
+                    self.destroy();
+                });
+            }
+
+        };
+
+        Table.prototype.unbindEventListeners = function() {
+
+            if( this.$CLOSE ) {
+                this.$CLOSE.off();
+            }
+
         };
 
         Table.prototype.destroy = function () {
+
+            this.unbindEventListeners();
 
             //log.warn("TODO: implement destroy");
             this.template.destroy();

@@ -46,7 +46,7 @@ define([
 
         // add analytics
         // TODO: add here on button selection?
-      this._analyticsDefinitionSelectDownload(this.o.domain_code);
+      this._analyticsDefinitionSelectDownload(this.o.code);
 
     };
 
@@ -78,10 +78,9 @@ define([
         amplify.publish(E.LOADING_SHOW, {container: this.$LIST});
 
         API.definitions_domain({
-            domain_code: this.o.domain_code
-        })
-            .then(_.bind(this._showList, this))
-            .fail(_.bind(this._showEmptyList, this));
+            domain_code: this.o.code
+        }).then(_.bind(this._showList, this))
+          .fail(_.bind(this._showEmptyList, this));
 
     };
 
@@ -107,11 +106,11 @@ define([
 
             self.$OUTPUT.empty();
 
-            var domain_code = self.o.domain_code,
+            var code = self.o.code,
                 type = $(this).data('code'),
                 label =  $(this).data('label');
 
-            self._showDefinitions(domain_code, type, label);
+            self._showDefinitions(code, type, label);
 
         });
 
@@ -127,17 +126,17 @@ define([
 
     };
 
-    DefinitionDomain.prototype._showDefinitions = function (domain_code, type, label) {
+    DefinitionDomain.prototype._showDefinitions = function (code, type, label) {
 
         var label = label;
 
-        this._analyticsDefinitionDomainTypeSelection(domain_code + ' - ' + type);
+        this._analyticsDefinitionDomainTypeSelection(code + ' - ' + type);
 
         var definition = new Definition();
 
         definition.render({
             container: this.$OUTPUT,
-            domain_code:domain_code,
+            code: code,
             type: type,
             table: {
                 title: label,

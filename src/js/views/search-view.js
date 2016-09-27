@@ -19,6 +19,7 @@ define([
     'bootpag',
     'faostatapiclient',
     'lib/search/search-box',
+    'fs-t-c/table',
     'amplify'
 ], function ($,
              log,
@@ -36,12 +37,19 @@ define([
              Handlebars,
              bootpag,
              API,
-             SearchBox
+             SearchBox,
+             Table
 ){
 
     'use strict';
 
-    var s = {
+    var config = {
+
+            isClustered: false
+
+        },
+
+        s = {
 
         SEARCH_BOX: '#fs-search-box',
         SEARCH_RESULTS: "#fs-search-results",
@@ -50,16 +58,15 @@ define([
         // download button for each result container
         DOWNLOAD_BUTTON: "[data-role='download']",
         DOWNLOAD_LINK: "[data-role='download-link']",
+        PREVIEW: "[data-role='preview']",
         METADATA: "[data-role='metadata']",
-        OUTPUT: "[data-role='output']"
+        OUTPUT: "[data-role='output-{{index}}']",
+
+        // Template filters
+        TEMPLATE_RESULTS: config.isClustered? "#results_clustered" : "#results"
 
     },
 
-    config = {
-
-        isClustered: false
-
-    },
     SearchView = View.extend({
 
         autoRender: true,
@@ -99,6 +106,8 @@ define([
 
             this.bindEventListeners();
 
+            log.warn("Search; TODO: add Analytics");
+
         },
 
         initVariables: function () {
@@ -110,6 +119,59 @@ define([
             this.$SEARCH_BOX = this.$el.find(s.SEARCH_BOX);
             this.$SEARCH_RESULTS = this.$el.find(s.SEARCH_RESULTS);
             this.$PAGINATION = this.$el.find(s.PAGINATION);
+
+        },
+
+        initComponents: function () {
+
+            // init search box container
+            this.initSearchBox();
+
+            // init query results page
+            this.initQuerySearchResults();
+
+        },
+
+        initQuerySearchResults: function() {
+
+            var self = this,
+                query = self.o.query;
+
+
+            // add query to analytics
+            this._analyticsQuery(query);
+
+            amplify.publish(E.LOADING_SHOW, {
+                container: this.$SEARCH_RESULTS
+            });
+
+            //log.info(query, escape(query), encodeURIComponent(query))
+            //log.info(query, unescape(query), decodeURIComponent(query))
+
+            // TODO: use this API for caching the groups and domains? or the domainstree with 'search' parameter?
+            // caching domains
+            API.groupsanddomains().then(function(d) {
+
+                // cachind the domains
+                self.cache.domains = d.data;
+
+                API.search({
+                    q: query
+                }).then(function(results) {
+
+                    self.results = results;
+
+                    //self.parseSearchResultsClustered(result);
+                    if (!config.isClustered) {
+                        self.parseSearchResults(results);
+                    }else {
+                        self.parseSearchResultsClusteredSearch(results);
+                    }
+
+                });
+
+
+            });
 
         },
 
@@ -165,7 +227,7 @@ define([
                 v.index = index;
 
                 // adding domain name
-                v = $.extend(true, {}, v, self.getDomain(v.DomainCode));
+                v = $.extend(true, {}, v, self.getDomain(v.domain_code));
 
                 // i18n
                 v.type = i18nLabels[v.id];
@@ -175,8 +237,7 @@ define([
                 v.show_data = i18nLabels.show_data;
 
                 // TODO: this can be computed and rendered at runtime on page change.
-                v.download_link = "#" + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [v.domainCode]);
-                v.browse_link = "#" + Common.getURI(ROUTE.BROWSE_BY_DOMAIN_CODE, [v.domainCode]);
+                v.download_link = "#" + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [v.domain_code]);
 
                 r.push(v);
 
@@ -267,7 +328,7 @@ define([
                     amplify.publish(E.SCROLL_TO_SELECTOR, {container: self.$SEARCH_BOX});
 
                     // bind export data selection
-                    self.bindExportDataSelection();
+                    self.bindSearchResultListeners();
 
                     // binding download link
                     self.bindDownloadLink();
@@ -277,7 +338,7 @@ define([
                 self.$SEARCH_RESULTS.html(self.getPage(results, page, pageSize));
 
                 // bind export data selection
-                self.bindExportDataSelection();
+                self.bindSearchResultListeners();
 
                 // binding download link
                 self.bindDownloadLink();
@@ -288,7 +349,7 @@ define([
         getPage: function(results, nextPage, pageSize) {
 
             // TODO: this could be cached
-            var t = Handlebars.compile($(templateResults).filter('#results').html()),
+            var t = Handlebars.compile($(templateResults).filter(s.TEMPLATE_RESULTS).html()),
                 currentPage = (nextPage - 1),
                 d = {
                     data: results.slice(currentPage * pageSize, nextPage * pageSize)
@@ -317,7 +378,7 @@ define([
 
         },
 
-        bindExportDataSelection: function() {
+        bindSearchResultListeners: function() {
 
             var self = this;
 
@@ -329,13 +390,29 @@ define([
 
             });
 
+            this.$el.find(s.METADATA).on('click', function(e) {
+
+                e.preventDefault();
+
+                self.showMetadata($(this).data('index'));
+
+            });
+
+            this.$el.find(s.PREVIEW).on('click', function(e) {
+
+                e.preventDefault();
+
+                self.showPreview($(this).data('index'));
+
+            });
+
         },
 
         exportData: function(index) {
 
             var obj = this.results.data[index],
                 exportObj = {
-                    domain_code: obj.domain_code,
+                    domain_code: obj.domain_code
                 };
 
             // adding the export code to the filters
@@ -355,6 +432,61 @@ define([
 
         },
 
+        showMetadata: function(index) {
+
+            var obj = this.results.data[index],
+                domain_code = obj.domain_code;
+
+
+            amplify.publish(E.METADATA_SHOW, {
+                code: domain_code
+            });
+            
+        },
+
+        showPreview: function(index) {
+
+            var $output = this.$el.find(s.OUTPUT.replace('{{index}}', index)),
+                obj = this.results.data[index],
+                title = obj.label,
+                subtitle = "Preview data",
+                requestObj = {
+                    domain_code: obj.domain_code,
+                    limit: 100
+                };
+
+                log.info(obj);
+
+            // adding the export code to the filters
+            requestObj[obj.id] = [obj.code];
+
+            $output.empty();
+            amplify.publish(E.LOADING_SHOW, {container: $output});
+            $output.show();
+
+            API.data(requestObj).then(function (d) {
+
+                var table = new Table();
+                table.render({
+                    container: $output,
+                    model: d,
+                    template: {
+                        height: '300',
+                        sortable: false,
+                        removable: true,
+                        addPanel: true,
+                        title: title,
+                        subtitle: subtitle
+                    }
+                });
+
+            }).fail(function(e) {
+                amplify.publish(E.LOADING_HIDE, {container: $output});
+                log.error("Search.showPreview; error", e);
+            });
+
+        },
+
         getDomain: function(code) {
 
             var domains = this.cache.domains;
@@ -371,59 +503,6 @@ define([
             }
 
             return {};
-
-        },
-
-        initComponents: function () {
-
-            // init search box container
-            this.initSearchBox();
-
-            // init query results page
-            this.initQuerySearchResults();
-
-        },
-
-        initQuerySearchResults: function() {
-
-            var self = this,
-                query = self.o.query;
-
-
-            // add query to analytics
-            this._analyticsQuery(query);
-
-            amplify.publish(E.LOADING_SHOW, {
-                container: this.$SEARCH_RESULTS
-            });
-
-            //log.info(query, escape(query), encodeURIComponent(query))
-            //log.info(query, unescape(query), decodeURIComponent(query))
-
-            // TODO: use this API for caching the groups and domains? or the domainstree with 'search' parameter?
-            // caching domains
-            API.groupsanddomains().then(function(d) {
-
-                // cachind the domains
-                self.cache.domains = d.data;
-
-                API.search({
-                    q: query
-                }).then(function(results) {
-
-                    self.results = results;
-
-                    //self.parseSearchResultsClustered(result);
-                    if (!config.isClustered) {
-                        self.parseSearchResults(results);
-                    }else {
-                        self.parseSearchResultsClusteredSearch(results);
-                    }
-
-                });
-
-
-            });
 
         },
 

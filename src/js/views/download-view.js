@@ -570,7 +570,7 @@ define([
 
                         // TODO: this.o.section should be always updated
                         amplify.publish(E.DEFINITION_DOMAIN_SHOW, {
-                            domain_code: domain_code,
+                            code: domain_code,
                             label: label
                         });
 

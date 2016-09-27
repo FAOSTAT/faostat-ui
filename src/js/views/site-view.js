@@ -170,18 +170,6 @@ define([
             });
             this.$el.find(s.LANGUAGE).find('[data-locale=' + Common.getLocale() + ']').addClass('active');
 
-            // scrolling
-            $(document).on( 'scroll', function(){
-
-                if ($(window).scrollTop() > 100) {
-                    $('.scroll-top-wrapper').addClass('show');
-                } else {
-                    $('.scroll-top-wrapper').removeClass('show');
-                }
-            });
-
-            $(s.SCROLL_TOP).on('click', this.scrollToTop);
-
             this.$SEACH_BOX = this.$el.find(s.SEARCH);
 
             // disclaimer
@@ -200,15 +188,17 @@ define([
             this.$GOOGLE_FORM = this.$el.find(s.GOOGLE_FORM);
             this.$JIRA_COLLECTOR = this.$el.find(s.JIRA_COLLECTOR);
             this.$JIRA_LOGIN = this.$el.find(s.JIRA_LOGIN);
+            this.$SCROLL_TO_TOP = this.$el.find(s.SCROLL_TOP);
 
             this.initMenu();
             this.initSearchBox();
             this.initLazyLoading();
+            this.initScrollToTop();
             this.initGoogleFormAnalytics();
             this.trackExternalLinks();
            // this.initJIRACollector();
 
-            // init breadcrumb (N.B. not used)
+            // init breadcrumb
             //this.$BREADCRUMB_CONTAINER = this.$el.find(s.BREADCRUMB_CONTAINER);
 
            /* AOS.init({
@@ -245,6 +235,20 @@ define([
                     }
                 }
             });
+
+        },
+
+        initScrollToTop: function() {
+
+            $(document).on( 'scroll', function(){
+                if ($(window).scrollTop() > 500) {
+                    $('.scroll-top-wrapper').addClass('show');
+                } else {
+                    $('.scroll-top-wrapper').removeClass('show');
+                }
+            });
+
+            this.$SCROLL_TO_TOP.on('click', this.scrollToTop)
 
         },
 

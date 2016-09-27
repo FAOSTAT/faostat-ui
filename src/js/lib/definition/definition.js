@@ -77,15 +77,15 @@ define([
     Definition.prototype._configurePage = function () {
 
         // TODO: add more checks?
-        if(this.o.hasOwnProperty('domain_code') && this.o.hasOwnProperty('type')) {
+        if(this.o.hasOwnProperty('code') && this.o.hasOwnProperty('type')) {
             this._definition_domain();
         }
         else if(this.o.hasOwnProperty('type')) {
             this._definition_by_type();
         }
         else {
-            log.error('Definition._configurePage; missing domain_code or type from configuration', this.o);
-            throw new Error('Definition._configurePage; missing domain_code or type from configuration', this.o);
+            log.error('Definition._configurePage; missing code or type from configuration', this.o);
+            throw new Error('Definition._configurePage; missing code or type from configuration', this.o);
         }
 
     };
@@ -131,15 +131,14 @@ define([
     Definition.prototype._definition_domain = function () {
 
         var self = this,
-            lang = this.o.lang,
-            domain_code = this.o.domain_code,
+            code = this.o.code,
             type = this.o.type,
-            analyticsLabel = domain_code + " - " + type;
+            analyticsLabel = code + " - " + type;
 
         amplify.publish(E.LOADING_SHOW, {container: this.$OUTPUT});
 
         API.definitions_domain_by_type({
-            domain_code: domain_code,
+            domain_code: code,
             type: type
         }).then(function (model) {
 

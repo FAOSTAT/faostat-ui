@@ -102,6 +102,7 @@ define([
 
         Base_template.prototype.destroy = function () {
             this.$TABLE.bootstrapTable('destroy');
+            this.o.$container.empty();
         };
 
         return Base_template;

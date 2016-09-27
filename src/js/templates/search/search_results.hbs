@@ -2,11 +2,50 @@
     {{#each data}}
         <div class="row">
 
+            <div class="col-sm-12 col-md-8">
+                <p style="font-size:18px;">
+                    {{this.label}}
+                    {{#if this.type}}<small>({{this.type}})</small>{{/if}}
+                </p>
+                <div style="font-size:16px;">
+                    <i data-index="{{index}}" data-role='metadata' style="cursor:pointer;" class="material-icons left">info_outline</i>
+                    <span>
+                        <a class="truncate" href="{{this.download_link}}">{{this.domain_name}}</a> ({{this.group_name}})
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <button data-index="{{index}}" data-role="preview" class="btn btn-primary btn-block waves-effect waves-light truncate">
+                    <i class="material-icons left hidden-xs">search</i>{{show_data}}
+                </button>
+            </div>
+
+            <div class="col-xs-6 col-md-2">
+                <button data-index="{{index}}" data-role="download" class="btn btn-default btn-block waves-effect waves-light truncate">
+                    <i class="material-icons left hidden-xs">file_download</i>{{download_data}}
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="fs-search-output" style="display:none; padding-top:15px;" data-role="output-{{index}}"></div>
+            </div>
+        </div>
+        <hr>
+
+    {{/each}}
+</template>
+
+<template id="results_bk">
+    {{#each data}}
+        <div class="row">
+
             <div class="col-sm-8 col-md-9">
                 <h4>
                     {{this.label}}
                     {{#if this.type}}<small>({{this.type}})</small>{{/if}}
-
                 </h4>
                 <div>
                     <a href="{{this.download_link}}">{{this.domain_name}}</a> ({{this.group_name}})
@@ -31,7 +70,7 @@
     {{/each}}
 </template>
 
-<template id="results_clustered">
+<template id="results_clustered2">
     {{#each data}}
         <div class="row">
 
@@ -49,6 +88,39 @@
                         </div>
                     </div>
                 {{/each}}
+
+            </div>
+
+        </div>
+        <hr>
+
+    {{/each}}
+</template>
+
+<template id="results_clustered">
+    {{#each data}}
+        <div class="row">
+
+            <div class="col-sm-8 col-md-8">
+                <h4>
+                    {{this.label}}
+                    {{#if this.type}}<small>({{this.type}})</small>{{/if}}
+                </h4>
+
+                <ul class="list-unstyled" style="font-size:16px;">
+                    <li style="padding-top:15px;">
+                        <i class="material-icons left">more</i>
+                        <a href="{{this.download_link}}">Food Balance Sheets</a> (Food Balance)
+                    </li>
+                    <li style="padding-top:15px;">
+                        <i class="material-icons left">more</i>
+                        <a href="{{this.download_link}}">Commodity Balances - Crops Primary Equivalent</a> (Food Balance)
+                    </li>
+                    <li style="padding-top:15px;">
+                        <i class="material-icons left">more</i>
+                        <a href="{{this.download_link}}">Food Supply - Crops Primary Equivalent</a> (Food Balance)
+                    <li>
+                </ul>
 
             </div>
 

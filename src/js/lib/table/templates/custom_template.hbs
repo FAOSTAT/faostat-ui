@@ -3,7 +3,16 @@
         <div class="fs-table-heading panel-heading clearfix">
             {{#if addExport}}
                 <div class="pull-right flip">
-                    <a class="btn-floating waves-effect waves-light btn-default" data-role="export"><i class="material-icons">file_download</i> </a>
+                    <a class="btn-floating waves-effect waves-light btn-default" data-role="export">
+                        <i class="material-icons">file_download</i>
+                    </a>
+                </div>
+            {{/if}}
+            {{#if removable}}
+                <div class="pull-right flip">
+                    <a class="btn-floating waves-effect waves-light btn-link" data-role="close">
+                        <i class="material-icons">close</i>
+                    </a>
                 </div>
             {{/if}}
             <h5>{{{title}}}</h5>
@@ -17,7 +26,7 @@
         {{/if}}
     </div>
 {{else}}
-<!--<button class="btn btn-primary pull-right" data-role="fullscreen">fullscreen</button>-->
-<!--<div data-role="content" {{#if height}}style="height:{{height}}"{{/if}}></div>-->
-<div data-role="content"></div>
+
+    <div data-role="content"></div>
+
 {{/if}}

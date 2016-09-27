@@ -22,23 +22,26 @@
   display:none;
 }
 
+.leaflet-popup {
 
-.leaflet-popup-content-wrapper {
+  .leaflet-popup-content-wrapper {
 
-  box-shadow: none;
-  border-radius: 7px;
+    box-shadow: none;
+    border-radius: 7px;
 
-  .leaflet-popup-content {
-    line-height: 1.4;
+    .leaflet-popup-content {
+      line-height: 1.4;
 
-    .fm-popup {
+      .fm-popup {
 
-      //font-size: 18px;
+        //font-size: 18px;
 
-      .fm-popup-join-content {
+        .fm-popup-join-content {
 
-        color: $fx-cool-blue;
-        font-size: 22px;
+          color: $fx-cool-blue;
+          font-size: 22px;
+
+        }
 
       }
 

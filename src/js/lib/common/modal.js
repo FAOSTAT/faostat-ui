@@ -75,7 +75,7 @@ define([
         log.info("Modal.definitions_domain;", obj);
 
         var self = this,
-            domain_code = obj.domain_code,
+            code = obj.code,
             label = obj.label;
 
         Require(['lib/definition_domain/definition_domain'], function(DefinitionDomain) {
@@ -95,7 +95,7 @@ define([
             definitionDomain.render({
                 container: $CONTAINER,
                 //label: label,
-                domain_code: domain_code,
+                code: code,
                 table: {
                    // height: ((window.innerHeight - 450) < 250)? '250' : (window.innerHeight - 450).toString()
                     height: '600'
@@ -126,6 +126,7 @@ define([
                 var metadataViewer = new MetadataViewer($.extend(true, {},
                     {
                         modal: true,
+                        label: obj.label || null,
                         addHeaders: false,
                         lang: Common.getLocale()
                     },

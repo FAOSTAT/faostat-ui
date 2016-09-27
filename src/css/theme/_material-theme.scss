@@ -262,8 +262,6 @@
   width: inherit;
   display: inline-block;
   text-align: center;
-  color: #fff;
-
   line-height: 37px;
 }
 
@@ -346,11 +344,13 @@ button.btn-floating {
 }
 
 .btn-danger {
-  background: #CC0000;
+  //background: #CC0000;
+  background: #E53935;
 }
 
 .btn-danger:hover, .btn-danger:focus {
-  background-color: #db0000 !important;
+  //background-color: #db0000 !important;
+  background-color: #F44336 !important;
   color: #fff;
 }
 
