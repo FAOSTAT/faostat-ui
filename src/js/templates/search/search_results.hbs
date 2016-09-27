@@ -3,12 +3,12 @@
         <div class="row">
 
             <div class="col-sm-12 col-md-8">
-                <p style="font-size:18px;">
+                <p class="title truncate">
                     {{this.label}}
                     {{#if this.type}}<small>({{this.type}})</small>{{/if}}
                 </p>
-                <div style="font-size:16px;">
-                    <i data-index="{{index}}" data-role='metadata' style="cursor:pointer;" class="material-icons left">info_outline</i>
+                <div class="subtitle truncate">
+                    <i data-index="{{index}}" data-role='metadata' class="material-icons left">info_outline</i>
                     <span>
                         <a class="truncate" href="{{this.download_link}}">{{this.domain_name}}</a> ({{this.group_name}})
                     </span>
@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <div class="fs-search-output" style="display:none; padding-top:15px;" data-role="output-{{index}}"></div>
+                <div class="fs-search-output" style="display:none;" data-role="output-{{index}}"></div>
             </div>
         </div>
         <hr>

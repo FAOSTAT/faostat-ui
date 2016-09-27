@@ -1,3 +1,39 @@
 
 
+.fs-search-box {
+
+  .fs-search-icon {
+    margin-left: 0px;
+  }
+
+  .typeahead {
+    border-bottom: 1px solid #eee;
+  }
+
+}
+
+.fs-search-results {
+
+  .title {
+    font-size:16px;
+  }
+
+  .subtitle {
+    font-size:16px;
+
+    i {
+       cursor:pointer;
+
+      &.hover {
+        color: $fx-cool-blue;
+      }
+    }
+
+  }
+
+  .fs-search-output {
+    padding-top:15px;
+  }
+
+}
 

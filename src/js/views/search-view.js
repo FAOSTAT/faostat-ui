@@ -441,7 +441,7 @@ define([
             amplify.publish(E.METADATA_SHOW, {
                 code: domain_code
             });
-            
+
         },
 
         showPreview: function(index) {
