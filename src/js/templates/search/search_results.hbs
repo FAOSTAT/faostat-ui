@@ -1,31 +1,32 @@
 <template id="results">
     {{#each data}}
-        <div class="row">
+        <div class="row" data-role="search-result">
 
             <div class="col-sm-12 col-md-8">
-                <p class="title truncate">
+                <h4 class="truncate">
                     {{this.label}}
                     {{#if this.type}}<small>({{this.type}})</small>{{/if}}
-                </p>
+                </h4>
                 <div class="subtitle truncate">
                     <i data-toggle="tooltip" data-placement="bottom" title="{{metadata}}" data-index="{{index}}" data-role='metadata' class="material-icons left">info_outline</i>
                     <span>
-                        <a class="truncate" href="{{this.download_link}}">{{this.domain_name}}</a> ({{this.group_name}})
+                        <a data-role="download-link" class="truncate" href="{{this.download_link}}">{{this.domain_name}}</a> ({{this.group_name}})
                     </span>
                 </div>
             </div>
 
             <div class="col-xs-6 col-md-2">
                 <button data-index="{{index}}" data-role="preview" class="btn btn-primary btn-block waves-effect waves-light truncate">
-                    <i class="material-icons left hidden-xs">search</i>{{show_data}}
+                    {{show_data}}
                 </button>
             </div>
 
             <div class="col-xs-6 col-md-2">
                 <button data-index="{{index}}" data-role="download" class="btn btn-default btn-block waves-effect waves-light truncate">
-                    <i class="material-icons left hidden-xs">file_download</i>{{download_data}}
+                    {{download_data}}
                 </button>
             </div>
+
         </div>
 
         <div class="row">

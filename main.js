@@ -4,7 +4,7 @@ var CDN = "//fenixrepo.fao.org/cdn/faostat",
     locale = "@@locale",
     testLocale = "@@" + "locale";
 if (locale === testLocale) {
-    locale = 'en';
+    locale = 'fr';
 }
 var config = {
 

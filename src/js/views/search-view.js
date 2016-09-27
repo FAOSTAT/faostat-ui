@@ -20,6 +20,7 @@ define([
     'faostatapiclient',
     'lib/search/search-box',
     'fs-t-c/table',
+    'lib/onboarding/onboarding',
     'amplify'
 ], function ($,
              log,
@@ -38,7 +39,8 @@ define([
              bootpag,
              API,
              SearchBox,
-             Table
+             Table,
+             OnBoarding
 ){
 
     'use strict';
@@ -49,10 +51,11 @@ define([
 
         },
 
-        s = {
+    s = {
 
         SEARCH_BOX: '#fs-search-box',
         SEARCH_RESULTS: "#fs-search-results",
+        SEARCH_RESULT: '[data-role="search-result"]', // used for onboarding
         PAGINATION: "#pagination",
 
         // download button for each result container
@@ -60,10 +63,45 @@ define([
         DOWNLOAD_LINK: "[data-role='download-link']",
         PREVIEW: "[data-role='preview']",
         METADATA: "[data-role='metadata']",
+
+        // {{index}} is overwritten at runtime based on the result index
         OUTPUT: "[data-role='output-{{index}}']",
 
         // Template filters
-        TEMPLATE_RESULTS: config.isClustered? "#results_clustered" : "#results"
+        TEMPLATE_RESULTS: config.isClustered? "#results_clustered" : "#results",
+
+
+        ONBOARDING: "[data-role='help']"
+
+    },
+
+    onBoarding = {
+
+        search: {
+            id: 'search',
+            steps: [{
+                        intro: "<h4>Search Result</h4>This is the search result",
+                        element: s.SEARCH_RESULT,
+                    },
+                    {
+                        intro: "<h4>Metadata</h4>If you want to see the metadata <i>Click here</i>",
+                        element: s.METADATA
+                    },
+                    {
+                        intro: "<h4>Download Page</h4>If you want to go to the domain download data page <i>Click here</i> ",
+                        element: s.DOWNLOAD_LINK
+                    },
+                    {
+                        intro: "<h4>Data Preview</h4>If you want to preview the data <i>Click here</i>",
+                        element: s.PREVIEW
+                    },
+                    {
+                        intro: "<h4>Download Data</h4>If you want to download the data <i>Click here</i>",
+                        element: s.DOWNLOAD_BUTTON
+                    }
+
+            ]
+        }
 
     },
 
@@ -119,6 +157,7 @@ define([
             this.$SEARCH_BOX = this.$el.find(s.SEARCH_BOX);
             this.$SEARCH_RESULTS = this.$el.find(s.SEARCH_RESULTS);
             this.$PAGINATION = this.$el.find(s.PAGINATION);
+            this.$ONBOARDING = $(s.ONBOARDING);
 
         },
 
@@ -129,6 +168,10 @@ define([
 
             // init query results page
             this.initQuerySearchResults();
+
+        },
+
+        configurePage: function () {
 
         },
 
@@ -456,7 +499,9 @@ define([
                 subtitle = "Preview data",
                 requestObj = {
                     domain_code: obj.domain_code,
-                    limit: 100
+                    //limit: 100,
+                    page_number: 1,
+                    page_size: 50
                 };
 
                 log.info(obj);
@@ -557,21 +602,49 @@ define([
 
         },
 
-        configurePage: function () {
+
+        tour: function(e) {
+
+            e.preventDefault();
+
+            var force = true;
+
+            if (this.onboarding === undefined) {
+            }
+            else{
+                this.onboarding.destroy();
+            }
+
+            this.onboarding = new OnBoarding();
+            this.onboarding.setOptions(onBoarding.search);
+            this.onboarding.start(force);
 
         },
 
         bindEventListeners: function () {
 
+            this.$ONBOARDING.show();
+            this.$ONBOARDING.tooltip('destroy');
+            this.$ONBOARDING.tooltip({
+                container: 'body'
+            });
+            this.$ONBOARDING.on('click', _.bind(this.tour, this));
+
         },
 
         unbindEventListeners: function () {
+
+            if (this.onboarding) {
+                this.onboarding.destroy();
+            }
 
         },
 
         dispose: function () {
 
             this.unbindEventListeners();
+
+            // TODO: clean all the results, tables and events
 
             View.prototype.dispose.call(this, arguments);
 
