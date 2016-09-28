@@ -25,6 +25,7 @@ define({
     help_us_improve_this_site: "Help us improve this site",
     download_data: "Download Data",
     show_data: "Show Data",
+    data_preview: "Data preview",
 
     // Table
     next: "prochain",

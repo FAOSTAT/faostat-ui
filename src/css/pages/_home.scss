@@ -91,8 +91,6 @@
 
 /* Home Slider */
 
-
-
 .swiper-container {
    width: 100%;
 
@@ -102,6 +100,7 @@
 
    height: 400px;
    background: white;
+
 }
 .swiper-slide {
    position: relative;
@@ -233,8 +232,6 @@
          color: rgba($fenix-text, .85);
       }
 
-
-
    }
 
    .feature-icon{
@@ -291,6 +288,12 @@
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       padding: 0 15px 0 0;
+   }
+
+   &:hover {
+      .swiper-scrollbar {
+         opacity: 1 !important;
+      }
    }
 
 }

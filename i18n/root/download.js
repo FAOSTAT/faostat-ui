@@ -16,7 +16,8 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         contacts_email: "Contacts Email",
         show_data: "Show Data",
         where_is_the_data: "Where is the data?",
-        show_data_info_message: "Please make a selection above and press <i>Show Data</i>"
+        show_data_info_message: "Please make a selection above and press <i>Show Data</i>",
+        open_domain_list: "Open domain list"
 
     });
 

@@ -495,15 +495,13 @@ define([
             var $output = this.$el.find(s.OUTPUT.replace('{{index}}', index)),
                 obj = this.results.data[index],
                 title = obj.label,
-                subtitle = "Preview data",
+                subtitle = i18nLabels.data_preview, //"Preview data",
                 requestObj = {
                     domain_code: obj.domain_code,
                     //limit: 100,
                     page_number: 1,
                     page_size: 50
                 };
-
-                log.info(obj);
 
             // adding the export code to the filters
             requestObj[obj.id] = [obj.code];
@@ -536,7 +534,11 @@ define([
             }).fail(function(e) {
                 amplify.publish(E.LOADING_HIDE, {container: $output});
                 log.error("Search.showPreview; error", e);
+                // TODO: show error message
             });
+
+            // track analytics
+            this._analyticsOnPreview(obj);
 
         },
 
@@ -595,17 +597,30 @@ define([
         _analyticsDownload: function(obj) {
 
             // this will be a double counting event, but useful to track the events coming from the search
-            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
-                category: A.search.download.category,
-                action: A.search.download.action,
-                label: {
-                    domain_codes: obj.domain_codes,
-                    filters: obj.filters
-                }
-            });
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, $.extend(true, {},
+                A.search.download, {
+                    label: {
+                        domain_codes: obj.domain_codes,
+                        filters: obj.filters
+                    }
+                })
+            );
 
         },
 
+        _analyticsOnPreview: function(obj) {
+
+            // this will be a double counting event, but useful to track the events coming from the search
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, $.extend(true, {},
+                A.search.preview, {
+                    label: {
+                        domain_codes: obj.domain_codes,
+                        filters: obj.filters
+                    }
+                })
+            );
+
+        },
 
         tour: function(e) {
 
