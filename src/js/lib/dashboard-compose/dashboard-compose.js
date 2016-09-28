@@ -92,7 +92,6 @@ define([
                 event = view.event;
 
             // render filters
-            log.info("------------", filter)
             if (filter !== null) {
 
                 this.filterBox = new FilterBox();

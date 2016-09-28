@@ -103,22 +103,25 @@ define([
         template: template,
 
         getTemplateData: function () {
-            // add lang
             return $.extend(true,
                 {
                     locale: Common.getLocale()
                 },
                 C,
-                i18nLabels);
+                i18nLabels
+            );
         },
 
         attach: function () {
 
-            View.prototype.attach.call(this, arguments);
+            if (!$('#outdated').is(":visible")) {
 
-            this.initComponents();
+                View.prototype.attach.call(this, arguments);
 
-            this.bindEventListeners();
+                this.initComponents();
+
+                this.bindEventListeners();
+            }
 
         },
 
@@ -157,10 +160,10 @@ define([
             
             amplify.subscribe(E.CONNECTION_PROBLEM, this, this.connectionProblem);
 
-            // publishing GA Events
+            // publishing GA events
             amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
 
-            /* Switch Language */
+            // switch language
             this.$el.find(s.LANGUAGE).find('a').on('click', function(e) {
 
                 e.preventDefault();
@@ -241,7 +244,7 @@ define([
         initScrollToTop: function() {
 
             $(document).on( 'scroll', function(){
-                if ($(window).scrollTop() > 500) {
+                if ($(window).scrollTop() > 800) {
                     $('.scroll-top-wrapper').addClass('show');
                 } else {
                     $('.scroll-top-wrapper').removeClass('show');
