@@ -68,7 +68,7 @@ define([
         OUTPUT: "[data-role='output-{{index}}']",
 
         // Template filters
-        TEMPLATE_RESULTS: config.isClustered? "#results_clustered" : "#results",
+        TEMPLATE_RESULTS: config.isClustered? "#results_clustered" : "#results_full",
 
 
         ONBOARDING: "[data-role='help']"
@@ -412,11 +412,14 @@ define([
             this.$el.find(s.DOWNLOAD_LINK).off('click');
             this.$el.find(s.DOWNLOAD_LINK).on('click', function(e) {
 
-                e.preventDefault();
+                var obj = self.results.data[index],
+                    s = {};
 
-                amplify.store('search.selection', {
-                    item: 23
-                });
+                // adding the export code to the filters
+                s[obj.id] = [obj.code];
+
+                // this is will be used on the download data to preselect the clicked indicator
+                amplify.store('search.selection', s);
 
             });
 

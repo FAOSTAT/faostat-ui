@@ -11,3 +11,4 @@ Web.config
 /build/
 Config*
 /backup/
+main-all.js
