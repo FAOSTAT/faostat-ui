@@ -31,6 +31,7 @@ var config = {
         i18n: CDN + "/js/requirejs/plugins/i18n/2.0.4/i18n",
         text: CDN + '/js/requirejs/plugins/text/2.0.12/text',
         amplify: CDN + '/js/amplify/1.1.2/amplify.min',
+        q: CDN + '/js/q/1.1.2/q',
         select2: CDN + '/js/select2/3.5.4/select2.min',
         loglevel: CDN + '/js/loglevel/1.4.0/loglevel',
         moment: CDN + '/js/moment/2.9.0/moment-with-locales.min',
@@ -39,13 +40,16 @@ var config = {
         waves: CDN + '/js/node-waves/0.7.5/waves.min',
         modernizr: CDN + '/js/modernizr/3.3.1/modernizr-custom',
         'jquery.lazyload': CDN + '/js/jquery.lazyload/1.9.7/jquery.lazyload.min',
+
+        // search
         typeahead: CDN + '/js/bootstrap-typeahead/0.11.1/typeahead.bundle.custom',
         bloodhound: CDN + '/js/bloodhound/0.11.1/bloodhound.min',
+        bootpag: CDN + '/js/bootpag/1.0.7/jquery.bootpag.min',
+
         instafilta: CDN + '/js/instafilta/1.4.4/instafilta.min',
         jstree: CDN + '/js/jstree/3.3.2/dist/jstree.min',
         nprogress: CDN + '/js/nprogress/0.2.0/nprogress',
         'toastr': CDN + '/js/toastr/2.1.2/build/toastr.min',
-        q: CDN + '/js/q/1.1.2/q',
         'jquery.rangeSlider': CDN + '/js/jquery.rangeslider/5.7.0/jQDateRangeSlider-min',
         'ion.rangeSlider': CDN + '/js/ion.rangeSlider/2.1.2/js/ion-rangeSlider/ion.rangeSlider.min',
         'jquery.visible': CDN + '/js/jquery.visible/1.2.0/jquery.visible.min',
