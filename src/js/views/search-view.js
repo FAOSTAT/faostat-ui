@@ -520,8 +520,8 @@ define([
                     model: d,
                     adapter: {
                         show_codes: true,
-                        thousand_separator: ".",
-                        decimal_separator: ","
+                        thousand_separator: ",",
+                        decimal_separator: "."
                     },
                     template: {
                         height: '298',
