@@ -188,9 +188,6 @@ define([
                 container: this.$SEARCH_RESULTS
             });
 
-            //log.info(query, escape(query), encodeURIComponent(query))
-            //log.info(query, unescape(query), decodeURIComponent(query))
-
             // TODO: use this API for caching the groups and domains? or the domainstree with 'search' parameter?
             // caching domains
             API.groupsanddomains().then(function(d) {
@@ -212,7 +209,6 @@ define([
                     }
 
                 });
-
 
             });
 
@@ -522,6 +518,11 @@ define([
                 table.render({
                     container: $output,
                     model: d,
+                    adapter: {
+                        show_codes: true,
+                        thousand_separator: ".",
+                        decimal_separator: ","
+                    },
                     template: {
                         height: '298',
                         sortable: false,

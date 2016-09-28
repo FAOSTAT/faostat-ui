@@ -92,7 +92,7 @@ define([
 
         container: 'body',
 
-        containerMethod: 'html',
+        containerMethod: 'append',
 
         id: 'site-container',
 
@@ -114,14 +114,11 @@ define([
 
         attach: function () {
 
-            if (!$('#outdated').is(":visible")) {
+            View.prototype.attach.call(this, arguments);
 
-                View.prototype.attach.call(this, arguments);
+            this.initComponents();
 
-                this.initComponents();
-
-                this.bindEventListeners();
-            }
+            this.bindEventListeners();
 
         },
 

@@ -1,12 +1,10 @@
-/*global require, window, $, amplify*/
+/*global require, window */
 var CDN = "//fenixrepo.fao.org/cdn/faostat",
     SUBMODULE = "../../submodules",
     locale = "@@locale",
-    testLocale = "@@" + "locale";
-if (locale === testLocale) {
-    locale = 'en';
-}
-var config = {
+    locale = (locale === "@@" + "locale")? "en" : locale;
+
+require.config({
 
     /* Set the config for the i18n. */
     locale: locale,
@@ -38,7 +36,6 @@ var config = {
         outdatedbrowser: CDN + '/js/outdatedbrowser/1.1.1/outdatedbrowser.min',
         swiper: CDN + '/js/swiper/3.3.1/dist/js/swiper.min',
         waves: CDN + '/js/node-waves/0.7.5/waves.min',
-        modernizr: CDN + '/js/modernizr/3.3.1/modernizr-custom',
         'jquery.lazyload': CDN + '/js/jquery.lazyload/1.9.7/jquery.lazyload.min',
 
         // search
@@ -57,10 +54,7 @@ var config = {
         //pivot
         jbPivot: '../../submodules/faostat-ui-pivot/dist/js/jbPivot',
         pivot_exporter: '../../submodules/faostat-ui-pivot/src/js/PivotExporter',
-
         numeral: CDN + '/js/numeral/1.5.3/min/numeral.min',
-        'draggabilly': CDN + '/js/draggabilly/2.1.0/dist/draggabilly.pkgd.min',
-        'packery': CDN + '/js/packery/1.4.3/dist/packery.pkgd.min',
 
         // Export
         FileSaver: CDN + '/js/FileSaver/1.1.2/FileSaver.min',
@@ -89,7 +83,6 @@ var config = {
         'jquery-ui': CDN + '/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
         'leaflet': CDN + '/js/leaflet/0.7.7/leaflet',
         'jquery.i18n.properties': CDN + '/js/jquery/1.0.9/jquery.i18n.properties-min',
-        'leaflet-image': 'lib/leaflet-image',
 
         // Charts
         'highcharts': CDN + '/js/highcharts/4.2.5/js/highcharts',
@@ -192,9 +185,6 @@ var config = {
     },
 
     shim: {
-        modernizr: {
-            exports: 'Modernizr'
-        },
         'jquery.lazyload': {
             deps: ["jquery"]
         },
@@ -227,9 +217,6 @@ var config = {
             // jquery-ui is needed because overrides bootstrap e.g. tooltip
             deps: ["jquery", "jquery-ui"]
         },
-        'bootstrap-tour': {
-            deps: ["jquery", "bootstrap"]
-        },
         underscore: {
             exports: '_'
         },
@@ -240,12 +227,7 @@ var config = {
         handlebars: {
             exports: 'Handlebars'
         },
-        "gt_msg": ['jquery'],
-        "gt_msg_grid": ['jquery', 'gt_msg'],
         faostatapiclient: {
-            deps: ['jquery']
-        },
-        'jqueryui': {
             deps: ['jquery']
         },
         jbPivot: {
@@ -260,9 +242,6 @@ var config = {
         'ion.rangeSlider': {
             deps: ['jquery']
         },
-        'leaflet-image': {
-            deps: ['leaflet']
-        },
         "ga": {
             exports: "__ga__"
         },
@@ -274,7 +253,6 @@ var config = {
         },
         // Maps
         'jquery-ui': ['jquery'],
-        'jquery.power.tip': ['jquery'],
         'jquery.i18n.properties': ['jquery'],
         'fenix-ui-map': {
             deps: [
@@ -296,19 +274,10 @@ var config = {
         "highcharts-export-csv": {
             "deps": ["highcharts", "highcharts-export"]
         },
-        "highcharts-treemap": {
-            "deps": ["highcharts", "highcharts-heatmap"]
-        },
         "highcharts-heatmap": {
             "deps": ["highcharts"]
         },
-        "highcharts-more": {
-            "deps": ["highcharts"]
-        },
-        "highcharts-export-clientside": {
-            "deps": ["highcharts", "canvas-tools", 'jspdf']
-        },
-        "highcharts-regression": {
+        "highcharts-treemap": {
             "deps": ["highcharts"]
         },
         "datatables.bs": {
@@ -319,7 +288,6 @@ var config = {
             "deps": ["jquery"]
         },
         "datatables.net-bs":{
-            //export: "DataTables"
             "deps": ["datatables.net"]
         },
         "datatables-fixedcolumns": {
@@ -341,12 +309,11 @@ var config = {
             "deps": ["datatables.net"]
         }
     }
-};
+});
 
 // Google Analytics
 window.GoogleAnalyticsObject = "__ga__";
-window.__ga__ = { l: Date.now()};
-require.config(config);
+window.__ga__ = {l: Date.now()};
 
 // Bootstrap the application
 require([
@@ -355,8 +322,7 @@ require([
     'routes',
     'config/Config',
     'globals/Common',
-    'nprogress',
-    'outdatedbrowser'
+    'nprogress'
 ], function ($, Application, routes, C, Common, NProgress) {
 
     "use strict";

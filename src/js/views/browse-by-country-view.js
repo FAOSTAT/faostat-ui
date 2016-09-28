@@ -487,8 +487,7 @@ define([
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
                     subdomains: 'abcd',
                     maxZoom: 19
-                })
-
+                });
 
                 // added dirty baselayer
                 //this.m.map.addLayer(Esri_WorldGrayCanvas)

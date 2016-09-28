@@ -8,9 +8,9 @@ CACHE MANIFEST
 //fenixrepo.fao.org/cdn/faostat/js/bootstrap/3.3.6/js/bootstrap.min.js
 //fenixrepo.fao.org/cdn/faostat/js/underscore/1.7.0/underscore.min.js
 //fenixrepo.fao.org/cdn/faostat/js/underscore.string/3.2.2/underscore.string.min.js
+//fenixrepo.fao.org/cdn/faostat/js/backbone/1.1.2/backbone.min.js
 //fenixrepo.fao.org/cdn/faostat/js/handlebars/4.0.5/handlebars.min.js
 //fenixrepo.fao.org/cdn/faostat/js/chaplin/1.1.1/chaplin.min.js
-//fenixrepo.fao.org/cdn/faostat/js/requirejs/plugins/domready/2.0.1/domReady.js
 //fenixrepo.fao.org/cdn/faostat/js/requirejs/plugins/i18n/2.0.4/i18n.js
 //fenixrepo.fao.org/cdn/faostat/js/requirejs/plugins/text/2.0.12/text.js
 //fenixrepo.fao.org/cdn/faostat/js/amplify/1.1.2/amplify.min.js

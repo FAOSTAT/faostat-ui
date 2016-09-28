@@ -26,8 +26,6 @@ define([
 
     function Export(config) {
 
-        log.info(this.isExportSupported());
-
         this.o = $.extend(true, {}, defaultOptions, config);
 
         return this;
