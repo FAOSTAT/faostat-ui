@@ -514,7 +514,8 @@ define([
 
                 // highlight country
                 // TODO: how to check for old countries (i.e. USSR) or new (i.e. south sudan)?
-                this.m.zoomTo(MapConfig.layers.highlight.layers, "faost_code", code);
+                // TODO: FIX IT. in the zoom to remove workspace if needed
+                this.m.zoomTo(MapConfig.layers.highlight.layers.replace("faostat:", ""), "faost_code", code);
 
             },
 

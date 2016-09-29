@@ -16,7 +16,7 @@ define([
         },
 
         //TODO: move the templates to templates if needed
-        template = '<span data-role="text">{{{text}}}</span> <a href="javascript:void(0)" class="text-capitalize" style="display:none" data-state="full" data-role="show">{{show_more}}</a>',
+        template = '<div> <span data-role="text">{{{text}}}</span> <a href="javascript:void(0)" class="text-capitalize" style="display:none" data-state="full" data-role="show">{{show_more}}</a></div>',
 
         defaultOptions = {
             text: "",

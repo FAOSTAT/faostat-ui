@@ -1,7 +1,7 @@
 /*global define*/
 define([
     'config/browse_by_domain/Config'
-],function (C) {
+], function (C) {
 
     'use strict';
 
@@ -20,7 +20,7 @@ define([
                     "type": "codelist",
                     "parameter": "item",
                     "componentType": {
-                        "class": "col-sm-3",
+                        "class": "col-sm-7",
                         "type": "dropDownList"
                     },
                     "config": {
@@ -30,7 +30,6 @@ define([
                     }
                 },
                 {
-                    // id to be applied on the getData request
                     "id": "area",
                     "type": "codelist",
                     "parameter": "area",
@@ -51,20 +50,35 @@ define([
                     "parameter": "year",
                     "componentType": {
                         "class": "col-sm-2",
+                        "type": "dropDownList"
+                    },
+                    "config": {
+                        "dimension_id": "year",
+                        "filter": {
+                            "blacklist": [1990, 1991, 1992, 1993, 1994]
+                        }
+                    }
+                },
+                {
+                    "id": "yearTimerange",
+                    "type": "codelist",
+                    "parameter": "year",
+                    "componentType": {
+                        "class": "hidden",
                         "type": "dropDownList-timerange"
                     },
                     "config": {
                         "dimension_id": "year",
-                        "filter": {}
+                        "filter": {
+                            "blacklist": [1990, 1991, 1992, 1993, 1994]
+                        }
                     }
-                },
-                C.filter.aggregation
+                }
             ]
         },
 
         dashboard: {
 
-            //data base filter
             defaultFilter: {
                 domain_code: ['CS']
             },
@@ -72,7 +86,7 @@ define([
             items: [
                 {
                     type: 'map',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels
                     labels: {
@@ -89,18 +103,15 @@ define([
 
                     config: {},
                     allowedFilter: ['year', 'aggregation'],
-                    deniedTemplateFilter: [],
                     filter: {
                         area: ["5000>", "351"],
                         element: ["6135"],
-                        item: ["22030"],
-                        "group_by": 'year',
-                        "order_by": 'area'
+                        item: ["22030"]
                     }
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels
                     labels: {
@@ -111,7 +122,7 @@ define([
                                 fr: "Gross Fixed Capital Formation (Agriculture, Forestry and Fishing), Agriculture orientation index in {{area}}",
                                 es: "Gross Fixed Capital Formation (Agriculture, Forestry and Fishing), Agriculture orientation index in {{area}}"
                             },
-                            subtitle: "{{year}}"
+                            subtitle: "{{yearTimerange}}"
                         }
                     },
 
@@ -128,8 +139,7 @@ define([
                         template: {},
                         creator: {}
                     },
-                    allowedFilter: ['year', 'area'],
-                    //deniedOnLoadFilter: ['area'],
+                    allowedFilter: ['yearTimerange', 'area'],
                     filter: {
                         element: ["6112"],
                         item: ["22030"]
@@ -137,7 +147,7 @@ define([
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
                     // labels
                     labels: {
@@ -146,9 +156,9 @@ define([
                             title: {
                                 en: "{{item}}, Value US$ in {{area}}",
                                 fr: "{{item}}, Value US$ in {{area}}",
-                                es: "{{item}}, Value US$ in {{area}}",
+                                es: "{{item}}, Value US$ in {{area}}"
                             },
-                            subtitle: "{{year}}"
+                            subtitle: "{{yearTimerange}}"
                         }
                     },
 
@@ -165,17 +175,16 @@ define([
                         template: {},
                         creator: {}
                     },
-                    allowedFilter: ['year', 'area', 'item'],
-                    //deniedOnLoadFilter: ['area'],
+                    allowedFilter: ['yearTimerange', 'area', 'item'],
                     filter: {
                         element: ["6110"]
                     }
                 },
                 {
                     type: 'chart',
-                    class: "col-xs-12",
+                    class: "col-md-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -198,10 +207,7 @@ define([
                             seriesDimensions: ['item', 'element'],
                             decimalPlaces: 3
                         },
-                        template: {
-                            //height:'250px'
-                            // default labels to be applied
-                        },
+                        template: {},
                         creator: {
                             chartObj: {
                                 chart: {
@@ -211,11 +217,9 @@ define([
                         }
                     },
                     allowedFilter: ['item', 'year', 'elements', 'aggregation'],
-                    deniedTemplateFilter: [],
                     filter: {
                         area: ["5000>"],
                         element: ["6110"],
-                        "group_by": 'year',
                         "order_by": 'value DESC',
                         "limit": '10'
                     }
