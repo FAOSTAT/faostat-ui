@@ -35,10 +35,39 @@
 
 }
 
-
-
 .jstree-wholerow-clicked.jstree-wholerow-hovered{
   background: none;
   background-color: lighten($fx-main-color-lighter, 5%);
+}
+
+.jstree-icon.jstree-ocl{
+  //width: 10px !important;
+  margin-left: 5px;
+  margin-right: -5px;
+}
+
+.jstree-container-ul {
+
+  .jstree-anchor {
+    white-space: normal;
+    height: auto;
+  }
+
+  [role="group"].jstree-children {
+    .jstree-icon {
+      //width: 15px;
+    }
+    [role='treeitem'] {
+      position: relative;
+    }
+    [role='treeitem'] .jstree-wholerow {
+      height: 100%;
+    }
+    [role='treeitem'] .jstree-wholerow-clicked {
+      height: 100%;
+    }
+
+  }
+
 }
 
