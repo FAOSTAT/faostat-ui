@@ -68,13 +68,16 @@
   color: $fenix-text;
 }
 
-.leaflet-control-fullscreen {
+.leaflet-control-fullscreen a {
   color: $fenix-text;
 
-  &.hover {
-    color: $fenix-text;
+  &:hover {
+    background-position: -90px 0; // this is to avoid the blue hover because it is not an svg
   }
+
 }
+
+
 
 /* zoom control */
 /* to keep */

@@ -19,6 +19,12 @@ define([
     'lib/filters/filter',
     'lib/dashboard-compose/dashboard-compose',
     'lib/release-calendar/release-calendar',
+    'sigma',
+    'sigma.plugins.dragNodes',
+    'sigma.plugins.relativeSize',
+    'sigma.plugins.animate',
+    'sigma.plugins.neighborhoods',
+    'sigma.layout.forceAtlas2',
     'amplify'
 ], function ($,
              log,
@@ -58,6 +64,7 @@ define([
 
         initialize: function (options) {
             this.o = $.extend(true, {}, options);
+
         },
 
         test: function() {
@@ -98,6 +105,8 @@ define([
                 return 25;
             });
 
+
+
         },
 
         initVariables: function () {
@@ -106,11 +115,276 @@ define([
 
             //this.initFiltersBox();
 
-            this.initDashBoardComposer();
+             this.initDashBoardComposer();
 
             // this.initReleaseCalendar();
 
             //this.testQueries();
+
+            //this.initSigma();
+
+        },
+
+        initSigma: function() {
+
+            var data = {
+                nodes: [],
+                edges: []
+            },
+            isAlternateSize = false;
+
+            var nodesCache = {};
+
+            amplify.publish(E.LOADING_SHOW, {container: '#sigma'});
+
+
+            API.data({
+                domain_code: ['TM'],
+                reporterarea: ['5000>'],
+                partnerarea: ['5000>'],
+                element: [2610],
+                item: [552],
+                year: [2013]
+            }).then(function(d) {
+
+                amplify.publish(E.LOADING_HIDE, {container: '#sigma'});
+
+                var colors = ['#0d6cac'];
+               _.each(d.data, function(v, index) {
+
+                   var siblingID = v['Reporter Country Code'] + '_' + v['Element Code'],
+                       siblingLabel = v['Reporter Countries'],
+                       id = v['Partner Country Code'] + '_' + v['Element Code'],
+                       size = v['Value'];
+
+                   if (size > 0 ) {
+
+                       log.info(siblingID, id, v['Partner Countries'], v['Value']);
+
+                       if (!nodesCache.hasOwnProperty(siblingID)) {
+
+                           nodesCache[siblingID] = {
+                               id: siblingID,
+                               label: siblingLabel,
+                               x: Math.random(),
+                               y: Math.random(),
+                               size: v['Value'],
+                               alternateSize: 0,
+                               color: colors[0]
+                           };
+
+                       }else{
+
+                          nodesCache[siblingID].size = v['Value'] + nodesCache[siblingID]['size'];
+
+                       }
+                       if (!nodesCache.hasOwnProperty(id)) {
+
+                           nodesCache[id] = {
+                               id: id,
+                               label: v['Partner Countries'],
+                               x: Math.random(),
+                               y: Math.random(),
+                               size: 0,
+                               alternateSize: v['Value'],
+                               //color: colors[0]
+                               color: colors[0]
+
+                           };
+
+                       }else{
+
+                           nodesCache[id].alternateSize = v['Value'] + nodesCache[id]['size'];
+
+                       }
+
+                       var edge = {
+                           "id": "e" + index,
+                           "source": nodesCache[siblingID]['id'],
+                           "target": nodesCache[id]['id'],
+                           size: v['Value'],
+                           color: '#ccc'
+                       };
+
+                       //log.info(edge.source, edge.target);
+                       data.edges.push(edge);
+                   }
+
+               });
+
+                _.each(nodesCache, function (node) {
+
+                    node.originalSize = node.size;
+                    var size = isAlternateSize? node.alternateSize: node.size;
+
+                    node.label = node.label + " - " + size;
+                    node.size = size;
+
+                    data.nodes.push(node);
+
+                });
+
+                var s = new sigma({
+                    graph: data,
+                    renderer: {
+                        // IMPORTANT:
+                        // This works only with the canvas renderer, so the
+                        // renderer type set as "canvas" is necessary here.
+                        container: 'sigma',
+                        //type: 'canvas',
+                        type: 'svg',
+                        freeStyle: true
+                    },
+                    settings: {
+                       // defaultNodeColor: '#ccc',
+/*                        animationsTime: 5000,
+                        doubleClickEnabled: false,
+                        enableEdgeHovering: true,
+                        edgeHoverColor: 'edge',
+                        defaultEdgeHoverColor: '#000',
+                        edgeHoverSizeRatio: 1,
+                        edgeHoverExtremities: true,*/
+                        labelThreshold: 0,
+
+                        /*animationsTime: 1000,
+                        borderSize: 2,
+                        outerBorderSize: 3,
+                        defaultNodeOuterBorderColor: 'rgb(236, 81, 72)',
+                        enableEdgeHovering: true,
+                        edgeHoverHighlightNodes: 'circle',
+                        sideMargin: 1,
+                        edgeHoverColor: 'edge',
+                        defaultEdgeHoverColor: '#000',
+                        edgeHoverSizeRatio: 1,
+                        edgeHoverExtremities: true,
+                        scalingMode: 'outside',*/
+                        //drawEdges: false,
+                        enableHovering: false
+                    }
+                });
+
+               /* s.addRenderer({
+                    id: 'main',
+                    type: 'svg',
+                    container: document.getElementById('sigma'),
+                    freeStyle: true
+                });*/
+
+                s.configForceAtlas2({
+                    adjustSizes: true,
+                    strongGravityMode: true
+
+                });
+                s.startForceAtlas2();
+
+                setTimeout(function() {
+                    s.killForceAtlas2();
+                    s.stopForceAtlas2();
+                }, 4000);
+
+               /* var isRunning = true;
+                    document.getElementById('stop-layout').addEventListener('click',function(){
+                        if(isRunning){
+                            isRunning = false;
+                            s.stopForceAtlas2();
+                            document.getElementById('stop-layout').childNodes[0].nodeValue = 'Start Layout';
+                        }else{
+                            isRunning = true;
+                            s.startForceAtlas2();
+                            document.getElementById('stop-layout').childNodes[0].nodeValue = 'Stop Layout';
+                        }
+                    },true);
+                    document.getElementById('rescale-graph').addEventListener('click',function(){
+                        s.position(0,0,1).draw();
+                    },true);
+*/
+
+                // Binding silly interactions
+                function mute(node) {
+
+                    log.info("mute function")
+                    if (!~node.getAttribute('class').search(/muted/))
+                        node.setAttributeNS(null, 'class', node.getAttribute('class') + ' muted');
+                }
+
+                function unmute(node) {
+                    log.info("unmute function")
+                    node.setAttributeNS(null, 'class', node.getAttribute('class').replace(/(\s|^)muted(\s|$)/g, '$2'));
+                }
+
+                $('.sigma-node').click(function() {
+
+                    // Muting
+                    $('.sigma-node, .sigma-edge').each(function() {
+                        log.info("Muting");
+                        mute(this);
+                    });
+
+                    // Unmuting neighbors
+                    var neighbors = s.graph.neighborhood($(this).attr('data-node-id'));
+                    neighbors.nodes.forEach(function(node) {
+                        log.info("unmute1")
+                        unmute($('[data-node-id="' + node.id + '"]')[0]);
+                    });
+
+                    neighbors.edges.forEach(function(edge) {
+                        log.info("unmute2")
+                        unmute($('[data-edge-id="' + edge.id + '"]')[0]);
+                    });
+                });
+
+                s.bind('clickStage', function() {
+                    log.info("clickStage")
+                    $('.sigma-node, .sigma-edge').each(function() {
+                        log.info("clickStage");
+                        unmute(this);
+                    });
+
+                    s.refresh();
+                });
+
+            });
+
+            /*var data = {
+                "nodes": [
+                    {
+                        "id": "n0",
+                        "label": "A node",
+                        "x": Math.random(),
+                        "y": Math.random(),
+                        "size": 3
+                    },
+                    {
+                        "id": "n1",
+                        "label": "Another node",
+                        "x": Math.random(),
+                        "y": Math.random(),
+                        "size": 2
+                    },
+                    {
+                        "id": "n3",
+                        "label": "Another node",
+                        "x": Math.random(),
+                        "y": Math.random(),
+                        "size": 10000
+                    }
+                ],
+                "edges": [
+                    {
+                        "id": "e0",
+                        "source": "n0",
+                        "target": "n1"
+                    }
+                ]
+            }
+
+            var s = new sigma({
+                graph: data,
+                container: 'sigma',
+                settings: {
+                    defaultNodeColor: '#ccc'
+                }
+            });*/
 
         },
 

@@ -241,7 +241,7 @@ define([
         initScrollToTop: function() {
 
             $(document).on( 'scroll', function(){
-                if ($(window).scrollTop() > 800) {
+                if ($(window).scrollTop() > 900) {
                     $('.scroll-top-wrapper').addClass('show');
                 } else {
                     $('.scroll-top-wrapper').removeClass('show');

@@ -61,6 +61,15 @@ require.config({
         Blob: CDN + '/js/blob/1.0/Blob',
         tableExport: CDN + '/js/tableExport.jquery.plugin/1.0/tableExport.min',
 
+        sigma: 'https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/sigma.min',
+        'sigma.parsers.json': 'https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.parsers.json.min',
+        'sigma.plugins.dragNodes': 'https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.plugins.dragNodes.min',
+        'sigma.plugins.relativeSize': 'https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.plugins.relativeSize.min',
+        'sigma.plugins.animate': 'https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.plugins.animate.min',
+        'sigma.plugins.neighborhoods': 'https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.plugins.neighborhoods.min',
+        'sigma.layout.forceAtlas2': 'https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.1.0/plugins/sigma.layout.forceAtlas2.min',
+
+
         // TODO: move to CDN
         faostatapiclient: 'FAOSTATAPIClient.min',
 
@@ -307,6 +316,27 @@ require.config({
         },
         "datatables-scroller": {
             "deps": ["datatables.net"]
+        },
+        "sigma": {
+            "export": "sigma"
+        },
+        "sigma.parsers.json": {
+            deps: ["sigma"]
+        },
+        "sigma.plugins.dragNodes": {
+            deps: ["sigma"]
+        },
+        "sigma.plugins.relativeSize": {
+            deps: ["sigma"]
+        },
+        "sigma.plugins.animate": {
+            deps: ["sigma"]
+        },
+        "sigma.plugins.neighborhoods": {
+            deps: ["sigma"]
+        },
+        "sigma.layout.forceAtlas2": {
+            deps: ["sigma"]
         }
     }
 });
