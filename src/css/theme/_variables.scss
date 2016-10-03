@@ -4,7 +4,6 @@
 $fx-ui-common: '../../submodules/fenix-ui-common';
 $fs-images: '../../src/images';
 
-// Fenix - Variables
 
 // Layout
 $host-menu-height : 40px;
@@ -13,8 +12,6 @@ $host-menu-height : 40px;
 $small-text : 12px;
 $standard-text-size: 12px;
 $standard-text : "FrutigerLTW02-45Light",Arial,Helvetica,Verdana,sans-serif;
-
-
 
 $fx-text-smalltitle-normal: normal normal 400 10px/normal 'Roboto';
 $fx-text-smalltitle-bold: normal normal 700 10px/normal 'Roboto';
@@ -44,6 +41,7 @@ $fx-main-color-darker: darken($fx-cool-blue, 20%); // Ideal for hovers
 //$fenix-text:rgba(0, 0, 0, 0.70);
 $fenix-text: #434343;
 $fenix-secondary-text: #999999;
+$fenix-text-primary: #337ab7; // like the cool blue
 
 $fenix-light-gray: #dddddd;
 $fenix-dark-blue: #4c647f;

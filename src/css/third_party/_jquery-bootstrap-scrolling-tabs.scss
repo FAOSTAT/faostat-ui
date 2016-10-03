@@ -1,0 +1,59 @@
+/**
+ * jquery-bootstrap-scrolling-tabs
+ * @version v0.0.8
+ * @link https://github.com/mikejacobson/jquery-bootstrap-scrolling-tabs
+ * @author Mike Jacobson <michaeljjacobson1@gmail.com>
+ * @license MIT License, http://www.opensource.org/licenses/MIT
+ */
+/* line 13, jquery.scrolling-tabs.scss */
+.scrtabs-tab-container * {
+  //box-sizing: border-box;
+}
+
+/* line 17, jquery.scrolling-tabs.scss */
+.scrtabs-tab-container {
+}
+/* line 19, jquery.scrolling-tabs.scss */
+.scrtabs-tab-container .tab-content {
+  clear: left;
+}
+
+/* line 24, jquery.scrolling-tabs.scss */
+.scrtabs-tabs-fixed-container {
+  float: left;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* line 31, jquery.scrolling-tabs.scss */
+.scrtabs-tabs-movable-container {
+  position: relative;
+}
+/* line 33, jquery.scrolling-tabs.scss */
+.scrtabs-tabs-movable-container .tab-content {
+  display: none;
+}
+
+/* line 38, jquery.scrolling-tabs.scss */
+.scrtabs-tab-scroll-arrow {
+  color: $fenix-text-primary;
+  cursor: pointer;
+  float: left;
+  padding-top: 2px;
+ // padding: 3px 2px 3px 0;
+  //width: 20px;
+}
+/* line 50, jquery.scrolling-tabs.scss */
+.scrtabs-tab-scroll-arrow:hover {
+}
+
+/* line 55, jquery.scrolling-tabs.scss */
+.scrtabs-tab-scroll-arrow.scrtabs-disable {
+  color: #ddd;
+  cursor: default;
+}
+
+/* line 60, jquery.scrolling-tabs.scss */
+.scrtabs-tabs-fixed-container ul.nav-tabs > li {
+  white-space: nowrap;
+}
