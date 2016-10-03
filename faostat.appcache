@@ -71,15 +71,15 @@ CACHE MANIFEST
 //fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/ion.rangeSlider.css
 //fenixrepo.fao.org/cdn/faostat/js/ion.rangeSlider/2.1.2/css/ion.rangeSlider.skinHTML5.css
 //fenixrepo.fao.org/cdn/faostat/js/swiper/3.3.1/dist/css/swiper.min.css
+//fenixrepo.fao.org/cdn/faostat/js/nprogress/0.2.0/nprogress.css
+//fenixrepo.fao.org/cdn/faostat/js/toastr/2.1.2/build/toastr.min.css
 //fenixrepo.fao.org/cdn/faostat/js/jbpivot/0.1.0/jbPivot.css
 //fenixrepo.fao.org/cdn/faostat/js/leaflet/0.7.7/leaflet.css
 //fenixrepo.fao.org/cdn/faostat/js/node-waves/0.7.5/waves.min.css
+//fenixrepo.fao.org/cdn/faostat/js/introjs/2.3.0/minified/introjs.min.css
 #CSS - datatables
 //fenixrepo.fao.org/cdn/faostat/js/DataTables/1.10.12/media/css/dataTables.bootstrap.min.css
 //fenixrepo.fao.org/cdn/faostat/js/DataTables/1.10.12/extensions/FixedColumns/css/fixedColumns.bootstrap.min.css
-//fenixrepo.fao.org/cdn/faostat/js/introjs/2.3.0/minified/introjs.min.css
-//fenixrepo.fao.org/cdn/faostat/js/nprogress/0.2.0/nprogress.css
-//fenixrepo.fao.org/cdn/faostat/js/toastr/2.1.2/build/toastr.min.css
 ./submodules/fenix-ui-map/dist/fenix-ui-map.min.css
 //fast.fonts.com/cssapi/0ad75cee-12a6-49a0-a922-c4ecad41ec44.css
 //fonts.googleapis.com/icon?family=Material+Icons
