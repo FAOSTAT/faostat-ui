@@ -24,18 +24,14 @@ define([
 
         attach: function () {
 
-            Common.changeURL(ROUTE.HOME, [], true);
+            //Common.changeURL(ROUTE.HOME, [], true);
 
-           /* View.prototype.attach.call(this, arguments);
+            View.prototype.attach.call(this, arguments);
 
             //update State
-            amplify.publish(E.STATE_CHANGE, {menu: '404'});*/
-
-
+            amplify.publish(E.STATE_CHANGE, {menu: '404'});
 
         }
-
-
 
     });
 
