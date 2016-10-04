@@ -143,6 +143,11 @@ define(['chaplin',
 
         };
 
+        // getting current page
+        Common.prototype.getCurrentUrl = function () {
+            return Backbone.history.getFragment();
+        };
+
         return new Common();
 
     });

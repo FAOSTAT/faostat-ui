@@ -70,7 +70,7 @@ define([
         // Template filters
         TEMPLATE_RESULTS: config.isClustered? "#results_clustered" : "#results_full",
 
-
+        // onboarding
         ONBOARDING: "[data-role='help']"
 
     },

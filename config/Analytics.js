@@ -395,6 +395,14 @@ define(function () {
                 action: 'selection',
                 label: '' // url
             }
+        },
+
+        error: {
+            "404": {
+                category: 'error',
+                action: '404',
+                label: '' // page
+            }
         }
 
     };

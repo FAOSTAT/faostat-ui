@@ -2,11 +2,11 @@
 define([
     'views/base/view',
     'globals/Common',
-    'config/Routes',
     'text!templates/404.hbs',
     'config/Events',
+    'config/Analytics',
     'amplify'
-], function (View, Common, ROUTE, template, E) {
+], function (View, Common, template, E, A) {
 
     'use strict';
 
@@ -30,6 +30,12 @@ define([
 
             //update State
             amplify.publish(E.STATE_CHANGE, {menu: '404'});
+
+            amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
+                $.extend(true, {}, A.error['404'], {
+                    label: Common.getCurrentUrl()
+                })
+            );
 
         }
 
