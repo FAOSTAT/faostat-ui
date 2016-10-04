@@ -42,6 +42,14 @@
   padding-top: 2px;
  // padding: 3px 2px 3px 0;
   //width: 20px;
+
+  &.scrtabs-js-tab-scroll-arrow-left {
+
+    i.material-icons {
+      margin-left: -7px;
+    }
+
+  }
 }
 /* line 50, jquery.scrolling-tabs.scss */
 .scrtabs-tab-scroll-arrow:hover {

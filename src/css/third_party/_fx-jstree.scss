@@ -6,6 +6,12 @@
     font-weight: 300;
     font-style: normal;
   }
+
+  .jstree-striped {
+    width: 100%;
+    padding-right: 30px;
+  }
+
 }
 
 .jstree-default .jstree-themeicon{
@@ -49,8 +55,12 @@
 .jstree-container-ul {
 
   .jstree-anchor {
-    white-space: normal;
+    //white-space: normal;
     height: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
   }
 
   [role="group"].jstree-children {
@@ -70,4 +80,5 @@
   }
 
 }
+
 

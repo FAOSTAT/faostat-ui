@@ -343,7 +343,8 @@
             var ehd = this,
                 stc = ehd.stc;
 
-            stc.$fixedContainer.width(stc.fixedContainerWidth = stc.$tabsContainer.outerWidth());
+            // TODO: dirty calc for the width that is too large in md mode
+            stc.$fixedContainer.width(stc.fixedContainerWidth = stc.$tabsContainer.outerWidth() - 5);
         };
 
         p.setFixedContainerWidthForJustHiddenScrollArrows = function () {
