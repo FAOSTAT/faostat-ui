@@ -1,4 +1,40 @@
 /* Js tree */
+
+.jstree-anchor {
+
+  height: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  //width: inherit;
+  width: 100%;
+  //max-width: 100%;
+
+/*
+  &:hover {
+    background-color: $fx-main-color-lighter !important;
+  }*/
+}
+
+.jstree-anchor.jstree-clicked {
+
+  background-color: $fx-main-color-light !important;
+
+}
+
+.jstree-anchor.jstree-hovered {
+
+  background-color: $fx-main-color-lighter !important;
+
+}
+
+.jstree-anchor.jstree-clicked.jstree-hovered {
+
+  background-color: lighten($fx-main-color-lighter, 5%) !important;
+
+}
+
+
 .jstree-default {
 
   .jstree-search{
@@ -29,12 +65,19 @@
 
 .jstree-default .jstree-wholerow-clicked{
   background: none;
-  background-color: $fx-main-color-light;
+
+  .jstree-anchor {
+    //background-color: $fx-main-color-light;
+  }
+
 }
 
-.jstree-default .jstree-wholerow-hovered{
+.jstree-default .jstree-wholerow-hovered {
   background: none;
-  background-color: $fx-main-color-lighter;
+  //background-color: $fx-main-color-lighter;
+  .jstree-anchor {
+    //background-color: $fx-main-color-lighter;
+  }
 }
 
 .jstree-default > .jstree-wholerow-ul .jstree-hovered, .jstree-default > .jstree-wholerow-ul .jstree-clicked {
@@ -43,7 +86,7 @@
 
 .jstree-wholerow-clicked.jstree-wholerow-hovered{
   background: none;
-  background-color: lighten($fx-main-color-lighter, 5%);
+  //background-color: lighten($fx-main-color-lighter, 5%);
 }
 
 .jstree-icon.jstree-ocl{
@@ -53,15 +96,6 @@
 }
 
 .jstree-container-ul {
-
-  .jstree-anchor {
-    //white-space: normal;
-    height: auto;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-  }
 
   [role="group"].jstree-children {
     .jstree-icon {

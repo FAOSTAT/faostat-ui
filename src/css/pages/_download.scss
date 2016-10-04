@@ -1,6 +1,23 @@
 /* Download */
 
+// jstree modela
+.fs-data-tree-domain-modal {
 
+  .jstree-anchor {
+    width: inherit;
+  }
+
+  .modal-header {
+    background-color: $fx-container-bg;
+    padding-top: 0px;
+    padding-bottom: 8px;
+
+    button {
+      padding-top:23px;
+    }
+  }
+
+}
 
 /* To remove */
 .inline-icon {
