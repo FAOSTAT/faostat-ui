@@ -22,6 +22,13 @@
 /* Mixin */
 @import '../../src/css/base/mixin';
 
+/* Third parties */
+//@import '../../submodules/fenix-ui-common/css/vendor/fx-jstree';
+@import '../../src/css/third_party/typeahead';
+@import '../../src/css/third_party/fx-jstree';
+@import '../../src/css/third_party/highcharts';
+@import '../../src/css/third_party/jquery-bootstrap-scrolling-tabs';
+
 /* Components */
 @import '../../src/css/components/bootstrap_table';
 @import '../../src/css/components/buttons';
@@ -45,13 +52,6 @@
 @import '../../src/css/components/introjs';
 @import '../../src/css/components/icons_stack';
 @import '../../src/css/components/tooltip';
-
-/* Third parties */
-//@import '../../submodules/fenix-ui-common/css/vendor/fx-jstree';
-@import '../../src/css/third_party/typeahead';
-@import '../../src/css/third_party/fx-jstree';
-@import '../../src/css/third_party/highcharts';
-@import '../../src/css/third_party/jquery-bootstrap-scrolling-tabs';
 
 /* Pages */
 @import '../../src/css/pages/browse';

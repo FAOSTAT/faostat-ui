@@ -37,7 +37,6 @@ require.config({
         swiper: CDN + '/js/swiper/3.3.1/dist/js/swiper.min',
         waves: CDN + '/js/node-waves/0.7.5/waves.min',
         'jquery.lazyload': CDN + '/js/jquery.lazyload/1.9.7/jquery.lazyload.min',
-         // 'jquery.scrolling-tabs': CDN + '/js/jquery.scrolling-tabs/0.0.8/jquery.scrolling-tabs.min',
          'jquery.scrolling-tabs': './lib/jquery.scrolling-tabs/jquery.scrolling-tabs.min',
 
         // search
@@ -318,6 +317,9 @@ require.config({
         },
         "datatables-scroller": {
             "deps": ["datatables.net"]
+        },
+        "jquery.scrolling-tabs": {
+            "deps": ["jquery"]
         },
         "sigma": {
             "export": "sigma"

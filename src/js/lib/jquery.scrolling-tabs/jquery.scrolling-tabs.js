@@ -281,6 +281,9 @@
                 stc = ehd.stc,
                 $tabsContainer = stc.$tabsContainer;
 
+            //console.log("setElementReferences", stc.$tabsContainer.outerWidth(),  stc.$tabsContainer.width)
+            //console.log("setElementReferences", $tabsContainer.outerWidth());
+
             stc.isNavPills = false;
 
             stc.$fixedContainer = $tabsContainer.find('.scrtabs-tabs-fixed-container');
@@ -310,6 +313,8 @@
 
             stc.containerWidth = stc.$tabsContainer.outerWidth();
             stc.winWidth = stc.$win.width();
+
+            //console.log("setElementWidths", stc.containerWidth,  stc.winWidth)
 
             stc.scrollArrowsCombinedWidth = stc.$leftScrollArrow.outerWidth() + stc.$rightScrollArrow.outerWidth();
 
@@ -366,6 +371,8 @@
                 stc = ehd.stc,
                 $tabLi = stc.$tabsUl.find('li');
 
+            //console.log("sc -------------");
+
             stc.movableContainerWidth = 0;
 
             if ($tabLi.length) {
@@ -374,14 +381,24 @@
                     var $li = $(this),
                         totalMargin = 0;
 
+                    //console.log("sc stc.isNavPills", stc.isNavPills);
                     if (stc.isNavPills) { // pills have a margin-left, tabs have no margin
+                        // TODO: total margin should be reduced
                         totalMargin = parseInt($li.css('margin-left'), 10) + parseInt($li.css('margin-right'), 10);
                     }
 
+                    //console.log("sc totalMargin", totalMargin);
+
+                    //console.log("sc $tabLi", $li.outerWidth());
+
                     stc.movableContainerWidth += ($li.outerWidth() + totalMargin);
+
+                    //console.log("sc ", stc.movableContainerWidth);
                 });
 
                 stc.movableContainerWidth += 1;
+
+                //console.log("sc ", stc.movableContainerWidth, stc.fixedContainerWidth);
 
                 // if the tabs don't span the width of the page, force the
                 // movable container width to full page width so the bottom
@@ -392,13 +409,20 @@
                 }
             }
 
-            stc.$movableContainer.width(stc.movableContainerWidth);
+            // TODO: check if works in all the cases. It add 30px more than normal
+            stc.movableContainerWidth = parseInt(stc.movableContainerWidth) - 30;
+
+            //console.log("sc ", stc.movableContainerWidth, stc.fixedContainerWidth);
+
+            stc.$movableContainer.width(parseInt(stc.movableContainerWidth));
         };
 
         p.setScrollArrowVisibility = function () {
             var ehd = this,
                 stc = ehd.stc,
                 shouldBeVisible = stc.movableContainerWidth > stc.fixedContainerWidth;
+
+            //console.log("sc setScrollArrowVisibility", stc.movableContainerWidth, stc.fixedContainerWidth)
 
             if (shouldBeVisible && !stc.scrollArrowsVisible) {
                 stc.$scrollArrows.show();
@@ -734,6 +758,8 @@
 
             stc.movableContainerLeftPos = stc.movableContainerLeftPos / 1;
             leftVal = smv.getMovableContainerCssLeftVal();
+
+            //console.log("scrolling slideMovableContainerToLeftPos", leftVal);
 
             stc.$movableContainer.stop().animate({ left: leftVal }, 'slow', function __slideAnimComplete() {
                 var newMinPos = smv.getMinPos();
