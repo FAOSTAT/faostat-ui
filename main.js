@@ -91,14 +91,14 @@ require.config({
         'fenix-ui-map': '../../submodules/fenix-ui-map/dist/fenix-ui-map.min',
         'fenix-ui-map-config': '../../config/submodules/fx-map/fenix-ui-map-config',
         'jquery-ui': CDN + '/js/jquery-ui/1.10.3/jquery-ui-1.10.3.custom.min',
-        'leaflet': CDN + '/js/leaflet/0.7.7/leaflet',
+        'leaflet': CDN + '/js/leaflet/1.0.1/leaflet',
         'jquery.i18n.properties': CDN + '/js/jquery/1.0.9/jquery.i18n.properties-min',
 
         // Charts
-        'highcharts': CDN + '/js/highcharts/4.2.5/js/highcharts',
-        'highcharts-treemap': CDN + '/js/highcharts/4.2.5/js/modules/treemap',
-        'highcharts-heatmap': CDN + '/js/highcharts/4.2.5/js/modules/heatmap',
-        'highcharts-export': CDN + '/js/highcharts/4.2.5/js/modules/exporting',
+        'highcharts': CDN + '/js/highcharts/5.0.0/js/highcharts',
+        'highcharts-treemap': CDN + '/js/highcharts/5.0.0/js/modules/treemap',
+        'highcharts-heatmap': CDN + '/js/highcharts/5.0.0/js/modules/heatmap',
+        'highcharts-export': CDN + '/js/highcharts/5.0.0/js/modules/exporting',
 
         // PDFs
         'jspdf': CDN + '/js/jspdf/1.2.61/jspdf.min',

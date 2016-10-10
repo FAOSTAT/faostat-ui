@@ -81,7 +81,6 @@ define([
                     datasource: C.DATASOURCE
                 });
             }
-
         },
 
         bindEventListeners: function () {
