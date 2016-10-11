@@ -27,8 +27,6 @@ define([
 
     function Export(config) {
 
-        log.info("bowser", bowser);
-
         this.o = $.extend(true, {}, defaultOptions, config);
 
         return this;
@@ -203,8 +201,11 @@ define([
     };
 
     Export.prototype.isExportSupported = function () {
-        // the check at the moment is only on safari
-        return !bowser.safari;
+
+        var isExportSupported = (bowser.safari !== undefined && bowser.safari)? false : true;
+        log.info("Export.isExportSupported; browser export supported:", isExportSupported, bowser);
+        // at the moment the check is only on safari
+        return isExportSupported;
 
     };
 

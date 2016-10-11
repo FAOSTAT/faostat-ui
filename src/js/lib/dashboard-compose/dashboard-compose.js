@@ -49,8 +49,6 @@ define([
             // setting view
             this.o.view = $.extend(true, {}, this.o.view, config);
 
-            log.info(this.o.view);
-
             // setting event
             // TODO: review it
             this.o.view.event.ON_FILTER_CHANGE = this.o.view.event.ON_FILTER_CHANGE + Math.random().toString().replace(".", "");
