@@ -1,5 +1,13 @@
 /* Js tree */
 
+.fs-tree.nostripes {
+
+  .jstree-striped {
+    background: white !important;
+  }
+
+}
+
 .jstree-anchor {
 
   height: auto;
@@ -47,6 +55,7 @@
     width: 100%;
     padding-right: 24px;
   }
+
 
 }
 
