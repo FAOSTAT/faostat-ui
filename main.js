@@ -37,6 +37,7 @@ require.config({
         swiper: CDN + '/js/swiper/3.3.1/dist/js/swiper.min',
         waves: CDN + '/js/node-waves/0.7.5/waves.min',
         'jquery.lazyload': CDN + '/js/jquery.lazyload/1.9.7/jquery.lazyload.min',
+        bowser: CDN + '/js/bowser/1.4.6/src/bowser',
          'jquery.scrolling-tabs': './lib/jquery.scrolling-tabs/jquery.scrolling-tabs.min',
 
         // search

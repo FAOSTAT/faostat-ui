@@ -7,10 +7,11 @@ define([
     'config/Events',
     'faostatapiclient',
     'i18n!nls/common',
+    'bowser',
     'FileSaver',
     'tableExport',
     'amplify',
-], function ($, log, _, A, E, API, i18nLabels) {
+], function ($, log, _, A, E, API, i18nLabels, bowser) {
 
     'use strict';
 
@@ -25,6 +26,8 @@ define([
     };
 
     function Export(config) {
+
+        log.info("bowser", bowser);
 
         this.o = $.extend(true, {}, defaultOptions, config);
 
@@ -200,14 +203,8 @@ define([
     };
 
     Export.prototype.isExportSupported = function () {
-
-        // dirty fix for IE10 that doesn't support indexOF
-        var isSafari = false;
-        if (!Array.prototype.indexOf) {
-            isSafari = navigator.vendor.indexOf("Apple") == 0 && /\sSafari\//.test(navigator.userAgent); // true or false
-        }
-
-        return !isSafari;
+        // the check at the moment is only on safari
+        return !bowser.safari;
 
     };
 
