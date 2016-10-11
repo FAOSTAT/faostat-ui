@@ -205,10 +205,8 @@ define([
                  });*/
 
                 //}
-                
 
             },
-
 
             renderCountryProfile: function() {
 

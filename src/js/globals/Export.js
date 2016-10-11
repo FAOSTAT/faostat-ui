@@ -70,8 +70,7 @@ define([
 
                 log.info("Export.exportData; Execution query time: ", (time - start) / 1000 + "s");
 
-                //log.info(error);
-                //window.btoa(unescape(encodeURIComponent(error)))
+                // export
                 self._exportResult(data, name);
 
                 // analytics
@@ -98,7 +97,7 @@ define([
 
         var start = new Date();
 
-        var blob = new Blob([result], this.isExportSupported()? {type: "data:application/csv;charset=utf-8;"} : {type: "text/plain;"}),
+        var blob = new Blob([result], {type: "text/csv"}),
             d = new Date(),
             filename = name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear() + '.csv';
 
@@ -160,7 +159,8 @@ define([
 
         var csv = ConvertToCSV(options.data);
 
-        var blob = new Blob([csv], this.isExportSupported()? {type: "data:application/csv;charset=utf-8;"} : {type: "text/plain;"}),
+        //var blob = new Blob([csv], this.isExportSupported()? {type: "data:application/csv;charset=utf-8;"} : {type: "text/plain;"}),
+        var blob = new Blob([csv], {type: "text/csv;"}),
             d = new Date(),
             filename = (options.name) || this.o.name + "_" + (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear();
 
