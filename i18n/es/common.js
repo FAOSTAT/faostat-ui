@@ -117,6 +117,8 @@ define({
     reporterarea: "Área declarante",
     source: "Fuente",
     survey: "Encuesta",
-    year: "Año"
+    year: "Año",
+
+    feedback_system: "Feedback System"
 
 });

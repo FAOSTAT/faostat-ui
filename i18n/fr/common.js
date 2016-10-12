@@ -117,6 +117,8 @@ define({
     reporterarea: "Zone déclarant",
     source: "Source",
     survey: "Enquête",
-    year: "Année"
+    year: "Année",
+
+    feedback_system: "Feedback System"
 
 });
