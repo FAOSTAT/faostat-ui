@@ -4,14 +4,13 @@ define(['jquery'], function ($) {
     'use strict';
 
     return {
-        "URL_API": "http://168.202.39.159:8081/faostat-api/v1/",
-        "DATASOURCE": "internal",
         "API_LOG": false,
         "LOGLEVEL": "trace", // trace/debug/info/warn/error/silent
-        "GOOGLE_ANALYTICS_ID": "UA-68486942-5",
+
         // URLs
         "URL_FAOSTAT_DOCUMENTS_BASEPATH": 'http://fenixservices.fao.org/faostat/static/documents/',
         "URL_RELEASE_CALENDAR": 'http://fenixservices.fao.org/faostat/static/releasecalendar/Default.aspx',
+        "URL_FEEDBACK_SYSTEM": 'http://fenixapps2.fao.org/feedbacksystem',
 
         "JIRA_COLLECTOR": {
             "ENABLED": true,

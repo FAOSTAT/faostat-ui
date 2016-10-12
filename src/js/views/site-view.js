@@ -46,11 +46,11 @@ define([
     'use strict';
 
     var s = {
-        
-        FEEDBACK_SYSTEM: '#feedback-system',
+
         LANGUAGE: '#fs-language',
         SEARCH: '[data-role="fs-search"]',
         GOOGLE_FORM: '[data-role="google-form"]',
+        FEEDBACK_SYSTEM: '[data-role="feedback-system"]',
 
         TOP_MENU_CONTAINER: '#top-menu-container',
         BREADCRUMB_CONTAINER: "#breadcrumb-container",
@@ -105,9 +105,9 @@ define([
         getTemplateData: function () {
             return $.extend(true,
                 {
-                    locale: Common.getLocale()
+                    locale: Common.getLocale(),
+                    URL_FEEDBACK_SYSTEM: C.URL_FEEDBACK_SYSTEM
                 },
-                C,
                 i18nLabels
             );
         },
@@ -186,6 +186,7 @@ define([
         initComponents: function () {
 
             this.$GOOGLE_FORM = this.$el.find(s.GOOGLE_FORM);
+            this.$FEEDBACK_SYSTEM = this.$el.find(s.FEEDBACK_SYSTEM);
             this.$JIRA_COLLECTOR = this.$el.find(s.JIRA_COLLECTOR);
             this.$JIRA_LOGIN = this.$el.find(s.JIRA_LOGIN);
             this.$SCROLL_TO_TOP = this.$el.find(s.SCROLL_TOP);
@@ -195,6 +196,7 @@ define([
             this.initLazyLoading();
             this.initScrollToTop();
             this.initGoogleFormAnalytics();
+            this.initFeedbackSystem();
             this.trackExternalLinks();
            // this.initJIRACollector();
 
@@ -275,6 +277,20 @@ define([
             // tooltip
             this.$GOOGLE_FORM.tooltip('destroy');
             this.$GOOGLE_FORM.tooltip({
+                container: 'body'
+            });
+
+        },
+
+        initFeedbackSystem: function () {
+
+            this.$FEEDBACK_SYSTEM.on('click', function() {
+                amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.select_feedback_system);
+            });
+
+            // tooltip
+            this.$FEEDBACK_SYSTEM.tooltip('destroy');
+            this.$FEEDBACK_SYSTEM.tooltip({
                 container: 'body'
             });
 

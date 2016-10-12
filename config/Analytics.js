@@ -18,6 +18,11 @@ define(function () {
                 action: 'clicked'
             },
 
+            select_feedback_system: {
+                category: 'feedback_system',
+                action: 'clicked'
+            },
+
             select_jira_collector: {
                 category: 'jira_collector',
                 action: 'clicked'
