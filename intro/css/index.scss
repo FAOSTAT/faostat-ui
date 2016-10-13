@@ -1,0 +1,101 @@
+/* Variables */
+
+// Path of the FENIX-UI-COMMON Submodule relative to this file
+$fx-ui-common: '../../submodules/fenix-ui-common';
+$fs-images: '../../src/images';
+
+
+// Layout
+$host-menu-height : 40px;
+
+// Typography
+$small-text : 12px;
+$standard-text-size: 12px;
+$standard-text : "FrutigerLTW02-45Light",Arial,Helvetica,Verdana,sans-serif;
+
+$fx-text-smalltitle-normal: normal normal 400 10px/normal 'Roboto';
+$fx-text-smalltitle-bold: normal normal 700 10px/normal 'Roboto';
+
+// Fenix Colors
+$fenix-standard-blue: rgba(53, 166, 220, 1);
+$fx-cool-blue: #337ab7;
+$material-default: #2BBBAD;
+$dark-green-fao: #356B76;
+$fx-cool-blue-alt: #174c74;
+$fx-cool-red: #E00000;
+$fao-menu-blue: #0e6da5;
+$fx-secondary-color: desaturate( $fx-cool-blue, 50% );
+$fx-main-color-light: lighten($fx-cool-blue, 42%);  // Ideal for selection
+$fx-main-color-lighter: lighten($fx-cool-blue, 42%); // Ideal for hovers
+$fx-main-color-darker: darken($fx-cool-blue, 20%); // Ideal for hovers
+$fenix-text: #434343;
+$fenix-secondary-text: #999999;
+$fenix-text-primary: #337ab7; // like the cool blue
+$fenix-light-gray: #dddddd;
+$fenix-dark-blue: #4c647f;
+$fenix-dark-bg: #666666;
+$fenix-light-bg: #eee;
+$light-purple: #EEEEFF;
+$light-brown: #f3efe0;
+$box-bg: #ededed;
+$superlight-gray: #f2f2f2;
+$buttons: $fx-cool-blue;
+$fenix-hr: #D2D0D0;
+$fenix-light-hr: #dddddd;
+$fenix-thin-border: 1px solid $fenix-hr;
+
+// Specials
+$white-alpha: rgba(255, 255, 255, 0.9);
+$black-alpha : rgba(0, 0, 0, 0.8);
+
+// Background
+// background: color position/size repeat origin clip attachment image|initial|inherit;
+$fx-site-bg: $fenix-light-bg;
+$fx-container-bg: #fcfcfc;
+
+// Border Radius
+$fx-border-radius: 0;
+$custom-color1: lighten($fx-cool-blue, 42%); //Arancio
+
+$custom-color2: #d2ccbf; //Marroncino
+$custom-color3: #dfdede; //Grigio chiaro pulsanti reset
+$custom-color4: #ebebeb; //Grigio Pulsanti pressed
+$custom-color5: #27729a; //Cool blue pressed
+$custom-color6: #0d6cac; // Fao Blue
+$custom-color7: #4fa3db; // Fao Azure
+$custom-color8: #ec6e00; // Fao Orange
+
+body {
+  font-family: "FrutigerLTW02-45Light",Arial,Helvetica,Verdana,sans-serif;
+  background-color: $fenix-light-bg;
+  color: $fenix-text;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.selector {
+  background-color: white;
+  color: #337ab7;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #ec6e00;
+    color: white;
+    -webkit-transition: background-color 300ms linear;
+    -moz-transition: background-color 300ms linear;
+    -o-transition: background-color 300ms linear;
+    -ms-transition: background-color 300ms linear;
+    transition: background-color 300ms linear;
+  }
+
+}
+
+
+
