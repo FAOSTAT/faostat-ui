@@ -2,7 +2,7 @@
 var CDN = "//fenixrepo.fao.org/cdn/faostat",
     SUBMODULE = "../../submodules",
     locale = "@@locale",
-    locale = (locale === "@@" + "locale")? "en" : locale;
+    locale = (locale === "@@" + "locale")? "ar" : locale;
 
 require.config({
 
