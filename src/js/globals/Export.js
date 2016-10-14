@@ -93,6 +93,7 @@ define([
 
     Export.prototype._exportResult = function (result, name) {
 
+        log.info("Export.browser;", bowser);
         log.info('EXPORT._exportResult;');
 
         var start = new Date();
