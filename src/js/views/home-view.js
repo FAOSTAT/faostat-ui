@@ -36,7 +36,6 @@ define([
     'use strict';
 
     var s = {
-
             DATABASE_UPDATES: "#fs_home_database_updates",
             RELEASE_CALENDAR: "#fs_home_release_calendar",
             COUNTRY_PROFILES: "#fs_home_country_profiles",
@@ -45,12 +44,6 @@ define([
             FAOSTAT_BULK_DATE: '[data-role="bulk_download_date"]',
             FAOSTAT_BULK_SIZE: '[data-role="bulk_download_size"]',
             EXTERNAL_LINK: "[data-link='external']"
-
-            //DOMAINS: "#fs_home_domains",
-            //GO_TO_BROWSE: '[data-role="go_to_browse"]',
-            //GO_TO_DOWNLOAD: '[data-role="go_to_download"]',
-           // CHART: "#fs_home_chart",
-
         },
 
         defaults = {
@@ -121,17 +114,9 @@ define([
                 this.$FAOSTAT_BULK_SIZE = this.$el.find(s.FAOSTAT_BULK_SIZE);
                 this.$EXTERNAL_LINK = this.$el.find(s.EXTERNAL_LINK);
 
-
-                //this.$DOMAINS = this.$el.find(s.DOMAINS);
-                //this.$WHATS_NEW = this.$el.find(s.WHATS_NEW);
-                //this.$COMING_UP = this.$el.find(s.COMING_UP);
-                // this.$CHART1 = this.$el.find(s.CHART + "1");
-
             },
 
             configurePage: function () {
-
-               // this.initSlideShow();
 
                 this.initDatabaseUpdates();
 
@@ -139,147 +124,7 @@ define([
 
                 this.initBulkDownload();
 
-                //this.initDomains();
-
-                //this.initChart();
-
             },
-
-           /* initSlideShow: function() {
-
-                var swiper = new Swiper('.swiper-container', {
-                    pagination: '.swiper-pagination',
-                    paginationClickable: true,
-                    preventLinks: false,
-                    preventLinksPropagation: false,
-                    nextButton: '.swiper-button-next',
-                    prevButton: '.swiper-button-prev',
-                    parallax: true,
-                    autoplay: 5000,
-                    speed: 600
-                });
-
-            },*/
-
-     /*       initDomains: function () {
-
-                var self = this;
-
-                amplify.publish(E.LOADING_SHOW, {container: self.$DOMAINS});
-
-                API.groupsanddomains().then(function(json) {
-
-                    var groups = _.chain(json.data)
-                        .uniq(function(d) {
-                            return d.group_code;
-                        })
-                        .value();
-
-                    var v = _.chain(json.data).pluck('group_code').unique().value();
-
-                    var t = Handlebars.compile(templateDomains);
-                    //self.$DOMAINS.hide().html(t(json)).slideDown(1000);
-                    self.$DOMAINS.html(t(
-                        {
-                            groups: groups,
-                            download: i18nLabels.download,
-                            browse: i18nLabels.browse
-                        }));
-
-                    // add listeners on domains
-                    self.$DOMAINS.find(s.GO_TO_BROWSE).on('click', function(e) {
-
-                        e.preventDefault();
-
-                        var section = ROUTE.BROWSE_BY_DOMAIN_CODE,
-                        //code = $(e.target).data("code");
-                            code = this.getAttribute('data-code');
-
-                        self.changeState({
-                            section:section,
-                            code: code
-                        });
-
-                    });
-
-                    self.$DOMAINS.find(s.GO_TO_DOWNLOAD).on('click', function(e) {
-
-                        e.preventDefault();
-
-                        var section = ROUTE.DOWNLOAD_ABOUT,
-                        //code = $(e.target).data("code");
-                            code = this.getAttribute('data-code');
-
-                        self.changeState({
-                            section:section,
-                            code: code
-                        });
-
-                    });
-
-                }).fail(function(e) {
-
-                    // TODO: Handle error
-                    log.error("Home.initDomains; error", e);
-
-                    amplify.publish(E.LOADING_HIDE, {container: self.$DOMAINS});
-                    amplify.publish(E.CONNECTION_PROBLEM, {});
-
-                });
-
-            },*/
-
-           /* initChart: function () {
-
-                var self = this,
-                    c = new ChartCreator();
-
-                amplify.publish(E.LOADING_SHOW, {container: self.$CHART1});
-
-                API.databean($.extend(true, {}, ChartModel.filter, {})).then(function(d) {
-
-                    amplify.publish(E.LOADING_HIDE, {container: self.$CHART1});
-
-                    c.init(
-                        $.extend(true,
-                            {},
-                            CM.chart,
-                        {
-                            container: self.$CHART1,
-                            model: d
-                        }
-                    )
-                    ).then(function(creator) {
-                        creator.render();
-                        //creator.render(Utils.lineChartOptions(o));
-                        //creator.render(Utils.columnChartOptions(o));
-                        //creator.render(Utils.barChartOptions(o));
-                    });
-
-
-
-
-                    // c.init($.extend(true, {}, CM.chart, {model: d}, {container: self.$CHART1})).then(function (c) {
-                    //
-                    //     c.render();
-                    //     // c.render($.extend(true, {}, CM.chart, {container: self.$CHART2}));
-                    //     // c.render($.extend(true, {}, CM.chart, {container: self.$CHART3}));
-                    //     // c.render($.extend(true, {}, CM.chart, {container: self.$CHART4}));
-                    //
-                    // });
-
-
-                }).fail(function(e) {
-
-                    // TODO: Handle error
-                    log.error("Home.initChart; error", e);
-                    //amplify.publish(E.NOTIFICATION_WARNING, {title: "Error Connection", text: "We are expecting connection problems"});
-                    amplify.publish(E.LOADING_HIDE, {container: self.$CHART1});
-                    amplify.publish(E.CONNECTION_PROBLEM, {});
-
-                });
-
-            },*/
 
             initDatabaseUpdates: function () {
 
@@ -343,7 +188,6 @@ define([
                 });
 
                 //log.info("Home.initDatabaseUpdates; sortedDomains", sortedDomains);
-
                 moment.locale(Common.getLocale());
 
                 _.each(sortedDomains, function(domain, index) {
@@ -372,21 +216,26 @@ define([
 
                 var self = this;
 
-                amplify.publish(E.LOADING_SHOW, {container: document.getElementById(s.TWITTER)});
+                log.info(self.o.twitter);
+                log.info(twttr);
+
+                var $TWITTER = this.$el.find('#' + s.TWITTER);
+
+                amplify.publish(E.LOADING_SHOW, {container: $TWITTER});
 
                 setTimeout(function() {
 
-                    amplify.publish(E.LOADING_HIDE, {container: document.getElementById(s.TWITTER)});
-
-                    twttr.widgets.createTimeline(
+                   twttr.widgets.createTimeline(
                         "700247798168551424",
                         document.getElementById(s.TWITTER),
                         {
-                            height: self.o.twitter.height[Common.getLocale()] || this.o.twitter.height["en"],
+                            height: self.o.twitter.height[Common.getLocale()] || self.o.twitter.height["en"],
                             width: '100%',
                             screenName: "FAOStatistics"
                         }
                     );
+
+                    amplify.publish(E.LOADING_HIDE, {container: $TWITTER});
 
                 }, 1000);
             },

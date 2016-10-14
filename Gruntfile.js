@@ -175,7 +175,7 @@ module.exports = function (grunt) {
                 files: [
                     {
                         src: [
-                            'build_utils/index-ar.html'
+                            'index-ar.html'
                         ],
                         dest: 'build/<%= grunt.config.get("dest") %>/index.html'
                     }
@@ -309,9 +309,9 @@ module.exports = function (grunt) {
         grunt.task.run('en');
         grunt.task.run('fr');
         grunt.task.run('es');
-        // grunt.task.run('ar');
-        // grunt.task.run('ru');
-        // grunt.task.run('zh');
+        grunt.task.run('ar');
+        grunt.task.run('ru');
+        grunt.task.run('zh');
         grunt.task.run('compress_dev');
         grunt.task.run('compress_dev_internal');
         grunt.task.run('compress_internal');
@@ -571,6 +571,7 @@ module.exports = function (grunt) {
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
         grunt.task.run('replace:faostat-locale');
+        grunt.task.run('copy:faostat-arabic-language');
         grunt.task.run('replace:faostat-appcache');
 
         // internal
@@ -579,7 +580,7 @@ module.exports = function (grunt) {
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
         grunt.task.run('replace:faostat-locale');
-        //grunt.task.run('copy:faostat-arabic-language');
+        grunt.task.run('copy:faostat-arabic-language');
         grunt.task.run('replace:faostat-appcache');
 
         // prod
@@ -588,7 +589,7 @@ module.exports = function (grunt) {
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
         grunt.task.run('replace:faostat-locale');
-        //grunt.task.run('copy:faostat-arabic-language');
+        grunt.task.run('copy:faostat-arabic-language');
         grunt.task.run('replace:faostat-appcache');
 
         // qa
@@ -597,7 +598,7 @@ module.exports = function (grunt) {
         grunt.task.run('replace:dist');
         grunt.task.run('replace:faostat-config');
         grunt.task.run('replace:faostat-locale');
-        //grunt.task.run('copy:faostat-arabic-language');
+        grunt.task.run('copy:faostat-arabic-language');
         grunt.task.run('replace:faostat-appcache');
 
     });
