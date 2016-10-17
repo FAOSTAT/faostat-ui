@@ -3,17 +3,7 @@
 $navbar-height: 44px;
 $border-menu-color: #D2D0D0;
 
-// Arabic fix
-.ar {
-  div#google_search {
-    position: absolute;
-    top: 15px;
-    left: 0;
-    margin-left: 12px;
-  }
-
-}
-
+// from fao.org css
 div#google_search {
   position: absolute;
   top: 15px;
@@ -49,6 +39,19 @@ div#google_search input#search-submit {
   color: #fff;
 }
 
+// Arabic fix
+.ar {
+
+  div#google_search {
+    left: 0;
+  }
+
+  div#google_search input#search-submit {
+    //left: 12px;
+    display:none;
+  }
+
+}
 
 .fao-logo-header{
   padding-top: 15px;
@@ -70,7 +73,7 @@ div#google_search input#search-submit {
 }
 
 .fao-header {
-  background-color: #0D6CAC;
+  background-color: $custom-color6;
 }
 
 h1#logo-ltr {
@@ -101,12 +104,26 @@ h1#logo-ltr {
 
 }
 
+// Arabic fix
+.ar {
+  .fao-menu-list {
+
+    li {
+      border-left: 0;
+      border-right: 1px solid #fff;
+
+      &:first-child {
+        border-right: 0;
+      }
+    }
+
+  }
+}
+
 .faostat_ui_menu {
 
   .navbar {
-
     margin: 0 -15px;
-
   }
 
 }
@@ -137,7 +154,6 @@ h1#logo-ltr {
     }
 
   }
-
 
 }
 
@@ -250,6 +266,7 @@ h1#logo-ltr {
 
 }
 
+// Arabic fix
 .ar {
 
   .faostat_ui_menu .navbar-default{
