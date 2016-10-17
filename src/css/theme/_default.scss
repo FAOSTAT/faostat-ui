@@ -189,6 +189,10 @@ footer.container {
   margin-left: -15px;
 }
 
+.text-initials:first-letter {
+  text-transform:uppercase;
+}
+
 /* scroll bar */
 /*::-webkit-scrollbar {
   height: 6px;

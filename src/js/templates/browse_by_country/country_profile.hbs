@@ -40,7 +40,7 @@
         <div class="col-md-3">
             <div class="panel panel-default hoverable">
                 <div class="panel-heading">
-                    <h4 class="text-capitalize">{{topics}}</h4>
+                    <h4 class="text-initials">{{topics}}</h4>
                 </div>
                 <div class="list-unstyled" data-role="sections"></div>
             </div>
@@ -68,7 +68,7 @@
 
     {{#each sections}}
          <div class="panel-footer">
-            <h5 class="country-topic text-capitalize">
+            <h5 class="country-topic text-initials">
                 <a data-dashboard-index='{{index}}' href="#">{{this.title}}</a>
             </h5>
          </div>
@@ -81,7 +81,7 @@
     <div data-dashboard-index='{{index}}' data-aos="fade-up">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="country-dashboard-title text-capitalize flip">
+                <h1 class="country-dashboard-title text-initials flip">
                     <span style="font-size:24px" data-role="go_to_download" class="domain-icon icojam_{{icon}}"></span>
                     {{title}}
                 </h1>
