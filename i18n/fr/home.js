@@ -6,22 +6,23 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
     return $.extend(true, {}, Common, {
 
         // bulk downloads
-        bulk_download: "Données Complètes",
-        all_faostat_data: "All FAOSTAT Data",
-        updated_on: "Updated On",
+        bulk_download: "Données complètes",
+        all_faostat_data: "Données de Faostat",
+        updated_on: "mis à jour le",
 
         // database updates
-        database_updates: "Mise à jour de la base de données",
+        database_updates: "Mises à jour de la base de données",
 
         // Statistical Yearbook
         fao_statistical_yearbooks: "Annuaire statistique de la FAO",
-        fao_statistical_yearbooks_text: "L’Annuaire statistique de la FAO fournit une sélection d’indicateurs par pays sur l’alimentation et l’agriculture. <br><br> The first part of the book includes thematic spreads with data visualizations (graphs, charts, and maps) with basic text. The second part has country-level tables for a selected number of indicators.",
+        fao_statistical_yearbooks_text: "L’Annuaires statistique de la FAO fournit une sélection d’indicateurs par pays sur l’alimentation et l’agriculture. <br><br> La première partie inclue des écarts thématiques avec des visualisations de données (graphiques, tableaux et cartes) avec un texte de base. La seconde partie comprend des tableaux à niveau régional pour un nombre d’indicateurs sélectionnés",
 
         // country indicators
-        country_indicators_text: "Country indicators provide an overview of key indicators and charts by country.",
+        country_indicators_text: "Les indicateurs de pays fournissent un apercu d’indicateurs clés et les tableaux par pays.",
 
         // Rankings
-        rankings_text: "Rankings indicators provide an overview of key indicators and charts by commodity.",
+        rankings: "Classements",
+        rankings_text: "Les indicateurs de classements fournissent un apercu des indicateurs clés et des tableaux de comodity.",
 
         // Food security in the 2030 Agenda for Sustainable Development
         development_goals: "L’alimentation et l’agriculture dans le Programme de développement durable à l’horizon 2030",
@@ -29,12 +30,12 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
         // Contacts
         rome: "Rome",
-        italy: "Italie",
+        italy: "Italy",
         info: "Info",
 
-        explore_data: "Explore Data",
-        explore_data_title: "Food and agriculture data",
-        explore_data_text: "FAOSTAT provides free access to food and agriculture data for over 245 countries and 35 regional areas from 1961 to the most recent year available."
+        explore_data: "Exploration des données",
+        explore_data_title: "Exploration du titre des données",
+        explore_data_text: "FAOSTAT fournit un accès libre aux données concernant l’alimentation et l’agriculture pour plus de 245 pays et 35 régions depuis 1961 jusqu’à l’année disponible la plus récente."
 
     });
 

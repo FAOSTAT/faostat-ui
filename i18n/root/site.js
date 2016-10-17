@@ -15,7 +15,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         partnerships: "Partnerships",
         
         fao_departments_and_offices: "FAO Departments and Offices",
-        contact_us: "contact us",
+        contact_us: "Contact us",
         terms_and_conditions: "Terms and Conditions",
         scam_alert: "Scam Alert",
         report_fraud: "Report fraud",

@@ -514,36 +514,33 @@ i.left {
   -webkit-border-radius: 2px;
   -o-border-radius: 2px;
 
-
   h4{
     font-size: 24px;
   }
 
   .card-horiz-left-text-up{
-    padding: 2em;
+    padding: 15px 20px 15px 20px;
     width: calc(100% - 110px);
   }
 
   .card-horiz-left-text-bottom{
-    padding: 8px 2em;
+    padding: 8px 20px 5px 20px;
     width: calc(100% - 110px);
     border-top: 1px solid $fenix-light-hr;
   }
 
   .card-horiz-right-image{
     width: 110px;
-    height: 160px;
+    height: 155px;
 
     background-color: $custom-color6;
     text-align: center;
     color: white;
 
-
     .material-icons{
       font-size: 50px;
-      line-height: 160px;
+      line-height: 155px;
     }
   }
-
 
 }

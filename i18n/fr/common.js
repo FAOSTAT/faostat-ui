@@ -2,6 +2,58 @@
 define({
 
     fao: "Organisation des Nations unies pour l'alimentation et l'agriculture",
+    statistics_division: "Division des statistiques",
+    faostat_domains: " Domaines FAOSTAT ",
+    results: "Résultats",
+    group: "Groupe",
+    groups: "Groupes",
+    domain: "Domaine",
+    domains: "Domaines",
+    no_data_available: "Aucune donnée disponible.",
+    no_data_available_for_current_selection: "Aucune donnée disponible pour la selection courante",
+    please_make_another_selection: 'Prière de faire un autre choix',
+    please_select_an_option: "Sélectionner une option",
+    filter_domain_tree: "Rechercher un Domaine FAOSTAT",
+    loading: "Télécharger",
+    warning: "Attention",
+    no_docs_available: "Aucun document disponible",
+    show_more: "montrer plus",
+    show_less: "montrer moins",
+    average: "Moyenne",
+    sum: "Somme",
+    close: "fermé",
+    filter_domains: "filtrer les domaines",
+    map_disclaimer: "Les appellations employées et la présentation des données sur la carte n'impliquent de la part de la FAO aucune prise de position quant au statut juridique ou constitutionnel des pays, territoires ou zones maritimes, ni quant au tracé de leurs frontières ou limites. Le Soudan du Sud a déclaré son indépendance le 9 juillet 2011. Pour des raisons de disponibilité des données, l’évaluation montrée sur la carte à la fois pour le Soudan et le Soudan du Sud, reflète la situation comme elle l’était jusqu’en 2011 pour l’ex Soudan.",
+    help_us_improve_this_site: "Aidez-nous à améliorer ce site",
+    download_data: "Télécharger les données",
+    show_data: "Montrer les données",
+    data_preview: "Aperçu des données",
+
+
+    // Table
+    next: "prochain",
+    previous: "précédent",
+    first: "premier",
+    last: "dernier",
+
+    // Sections
+    search_data: "Rechercher de données",
+    rankings: "Classements",
+    faq: "FAQ",
+    faqs: "FAQs",
+    frequently_asked_questions: "Questions fréquemment demandées",
+    definitions_and_Standards: "Définitions et normes",
+    metadata: 'Méta-donnée',
+    bulk_downloads: 'Données complètes',
+    interactive_download: 'Téléchargement interactif',
+    visualize_data: "Visualiser les données",
+    search: 'Rechercher',
+    data: 'Données',
+    topics: 'Sujets',
+    compare_data: 'Comparer des données',
+    country_indicators: 'Indicateurs de pays',
+
+    /*fao: "Organisation des Nations unies pour l'alimentation et l'agriculture",
     statistics_division: "Statistics Division",
     faostat_domains: "FAOSTAT Domaines",
     results: "Results",
@@ -60,6 +112,7 @@ define({
     toyear: "A l'année",
     average: "Moyenne",
     sum: "Somme",
+    */
 
     // subdimensions
     countries: "Pays",

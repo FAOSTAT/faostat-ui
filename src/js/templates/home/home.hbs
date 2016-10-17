@@ -62,7 +62,7 @@
                             <i class="material-icons">keyboard_arrow_right</i>
                         </a>
                         <div class="card-content">
-                            <h3>{{fao_statistical_yearbooks}}</h3>
+                            <h3>{{{fao_statistical_yearbooks}}}</h3>
                             <p>{{{fao_statistical_yearbooks_text}}}</p>
                         </div>
 
@@ -160,8 +160,9 @@
                     <div class="card-horiz-left-text-up pull-left">
                         <h4 class="truncate">{{bulk_download}}</h4>
                         <div class="clearfix">
-                            <span class="pull-left">{{all_faostat_data}}</span>
-                            <span class="pull-right visible-xs visible-sm hidden-md visible-lg" data-role="bulk_download_size"></span>
+                            <div class="pull-left">{{all_faostat_data}}</div>
+                            <div class="pull-right" data-role="bulk_download_size"></div>
+                            <br><br>
                         </div>
                     </div>
                     <div class="card-horiz-left-text-bottom pull-left">
