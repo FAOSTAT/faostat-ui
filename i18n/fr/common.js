@@ -43,7 +43,7 @@ define({
     faqs: "FAQs",
     frequently_asked_questions: "Questions fréquemment demandées",
     definitions_and_Standards: "Définitions et normes",
-    metadata: 'Méta-donnée',
+    metadata: 'Métadonnées',
     bulk_downloads: 'Données complètes',
     interactive_download: 'Téléchargement interactif',
     visualize_data: "Visualiser les données",
