@@ -76,6 +76,9 @@ define([
                 log: C.API_LOG
             });
 
+            // Set direction
+            C.direction = Common.getLocale() === 'ar'? 'fs-direction-rtl': 'fs-direction-ltr';
+
             if (C.DATASOURCE !== null) {
                 API.config({
                     datasource: C.DATASOURCE

@@ -5,22 +5,12 @@ define(['config/Routes'], function (ROUTE) {
 
     return function (match) {
 
+        match('', 'home#show');
         match('home', 'home#show', {name: ROUTE.HOME});
-
-/*        match('download/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DOWNLOAD_BULK});
-        match('download/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
-        match('download/interactive/:code', 'download#show_interactive_download', {name: ROUTE.DOWNLOAD_INTERACTIVE});
-        match('download/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
-        match('download/report/:code', 'download#show_report', {name: ROUTE.DOWNLOAD_REPORT});*/
-
-
-        //match('browse/domain', 'browse#show_browse_by_domain', {name: 'browse_by_domain'});
-        //match('browse/domain/:code', 'browse#show_browse_by_domain', {name: ROUTE.BROWSE_BY_DOMAIN_CODE});
 
         match('country', 'browse-by-country#show', {name: ROUTE.BROWSE_BY_COUNTRY});
         match('country/:code', 'browse-by-country#show', {name: ROUTE.BROWSE_BY_COUNTRY_CODE});
 
-        //match('browse/rankings', 'browse#show_browse_rankings', {name: 'browse_rankings'});
         match('rankings/:code', 'browse-rankings#show', {name: ROUTE.BROWSE_RANKINGS_CODE});
 
         match('compare', 'compare#show', {name: ROUTE.COMPARE});
@@ -53,7 +43,7 @@ define(['config/Routes'], function (ROUTE) {
         //match('data/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
         //match('data/about/:code', 'download#show_about', {name: ROUTE.DOWNLOAD_ABOUT});
         //match('data/bulk/:code', 'download#show_bulk_downloads', {name: ROUTE.DOWNLOAD_BULK});
-        // match('data/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
+        //match('data/metadata/:code', 'download#show_metadata', {name: ROUTE.DOWNLOAD_METADATA});
         //match('protected', 'protected#show');
         //match('about', 'about#show');
         match('*anything', '404#show');

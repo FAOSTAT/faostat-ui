@@ -1,222 +1,226 @@
 
-<br><br>
+<div class="{{direction}}">
 
-<div class="jumbotron faostat-intro">
-    <div>
-        <h2>{{{explore_data_title}}}</h2>
-        <p style="font-size:16px;">{{{explore_data_text}}}</p>
-        <a data-link='interanl' href='{{URL_DATA}}' class="btn btn-lg btn-primary waves-effect truncate">
-            {{explore_data}}
-        </a>
+    <br><br>
+
+    <div class="jumbotron faostat-intro">
+        <div>
+            <h2>{{{explore_data_title}}}</h2>
+            <p style="font-size:16px;">{{{explore_data_text}}}</p>
+            <a data-link='interanl' href='{{URL_DATA}}' class="btn btn-lg btn-primary waves-effect truncate">
+                {{explore_data}}
+            </a>
+        </div>
     </div>
-</div>
 
-<div class="row home-content">
+    <div class="row home-content">
 
-    <div class="col-md-8">
+        <div class="col-md-8">
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="elegant-card z-depth-1 hoverable">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="elegant-card z-depth-1 hoverable">
 
-                    <!-- Image wrapper -->
-                    <div class="card-up view overlay hm-white-slight">
-                        <a><img data-original="src/images/homepage/database.jpg" class="lazy img-responsive"></a>
-                    </div>
+                        <!-- Image wrapper -->
+                        <div class="card-up view overlay hm-white-slight">
+                            <a><img data-original="src/images/homepage/database.jpg" class="lazy img-responsive"></a>
+                        </div>
 
-                    <!-- Button -->
-                    <a data-link='external' href='{{URL_RELEASE_CALENDAR}}' target="_blank" class="btn-floating btn-primary btn-large waves-effect waves-light">
-                        <i class="material-icons">event_note</i>
-                    </a>
+                        <!-- Button -->
+                        <a data-link='external' href='{{URL_RELEASE_CALENDAR}}' target="_blank" class="btn-floating btn-primary btn-large waves-effect waves-light">
+                            <i class="material-icons">event_note</i>
+                        </a>
 
-                    <!-- Content -->
-                    <div class="card-content">
-                        <h3>{{database_updates}}</h3>
+                        <!-- Content -->
+                        <div class="card-content">
+                            <h3>{{database_updates}}</h3>
 
-                        <div class="swiper-container-updates">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <ul id="fs_home_database_updates" class="list-unstyled"></ul>
+                            <div class="swiper-container-updates">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <ul id="fs_home_database_updates" class="list-unstyled"></ul>
+                                    </div>
                                 </div>
+
+                                <!-- Add Scroll Bar -->
+                                <div class="swiper-scrollbar"></div>
                             </div>
 
-                            <!-- Add Scroll Bar -->
-                            <div class="swiper-scrollbar"></div>
                         </div>
 
                     </div>
-
                 </div>
+
+                <div class="col-sm-6">
+                    <div class="elegant-card z-depth-1 hoverable">
+
+                        <div class="card-up view overlay hm-white-slight">
+                            <a><img data-original="src/images/homepage/pocket.jpg" class="lazy img-responsive"></a>
+                        </div>
+
+                        <a data-link='external' target='_blank' href=' http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </a>
+                        <div class="card-content">
+                            <h3>{{fao_statistical_yearbooks}}</h3>
+                            <p>{{{fao_statistical_yearbooks_text}}}</p>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
-            <div class="col-sm-6">
-                <div class="elegant-card z-depth-1 hoverable">
+            <div class="hidden-xs"><br><br></div>
 
-                    <div class="card-up view overlay hm-white-slight">
-                        <a><img data-original="src/images/homepage/pocket.jpg" class="lazy img-responsive"></a>
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="elegant-card z-depth-1 hoverable">
+                        <!-- Image wrapper -->
+                        <div class="card-up view overlay hm-white-slight">
+                            <a><img data-original="src/images/homepage/info-map.jpg" class="lazy img-responsive"></a>
+                        </div>
+
+                        <!-- Button -->
+                        <a data-link='interanl' href='{{URL_BROWSE_BY_COUNTRY}}' class="btn-floating btn-primary btn-large waves-effect waves-light">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </a>
+
+                        <!-- Content -->
+                        <div class="card-content">
+                            <h3>{{country_indicators}}</h3>
+                            <p>{{{country_indicators_text}}}</p>
+                        </div>
                     </div>
-
-                    <a data-link='external' target='_blank' href=' http://www.fao.org/economic/ess/ess-publications/ess-yearbook/en/' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
-                        <i class="material-icons">keyboard_arrow_right</i>
-                    </a>
-                    <div class="card-content">
-                        <h3>{{fao_statistical_yearbooks}}</h3>
-                        <p>{{{fao_statistical_yearbooks_text}}}</p>
-                    </div>
-
                 </div>
+
+                <div class="col-sm-6">
+                    <div class="elegant-card z-depth-1 hoverable">
+
+                        <!-- Image wrapper -->
+                        <div class="card-up view overlay hm-white-slight">
+                            <a><img data-original="src/images/homepage/info-chart.jpg" class="lazy img-responsive"></a>
+                        </div>
+
+                        <!-- Button -->
+                        <a data-link='interanl' href="{{URL_BROWSE_RANKINGS}}"  class="btn-floating btn-primary  btn-large waves-effect waves-light">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </a>
+                        <!-- Content -->
+                        <div class="card-content">
+                            <h3 class="text-capitalized">{{rankings}}</h3>
+                            <p>{{{rankings_text}}}</p>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
+
+            <div class="hidden-xs"><br><br></div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="elegant-card z-depth-1 hoverable">
+
+                        <div class="card-up view overlay hm-white-slight">
+                            <a><img data-original="src/images/homepage/sdgs-big.png" class="lazy img-responsive"></a>
+                        </div>
+
+                        <a data-link='external' target='_blank' href='http://www.fao.org/sustainable-development-goals/{{locale}}/' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </a>
+                        <div class="card-content">
+                            <h3>{{development_goals}}</h3>
+                            <p>{{{development_goals_text}}}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="visible-xs"><br><br></div>
 
         </div>
 
-        <div class="hidden-xs"><br><br></div>
+        <!-- right side -->
+        <div class="col-md-4">
 
-        <div class="row">
+            <div class="elegant-card-horizontal z-depth-1 hoverable">
 
-            <div class="col-sm-6">
-                <div class="elegant-card z-depth-1 hoverable">
-                    <!-- Image wrapper -->
-                    <div class="card-up view overlay hm-white-slight">
-                        <a><img data-original="src/images/homepage/info-map.jpg" class="lazy img-responsive"></a>
+                <div style='cursor:pointer;' class="card-content clearfix" data-role="bulk_download" data-url=''>
+
+                    <div class="card-horiz-right-image pull-right">
+                        <i class="material-icons">file_download</i>
                     </div>
 
-                    <!-- Button -->
-                    <a data-link='interanl' href='{{URL_BROWSE_BY_COUNTRY}}' class="btn-floating btn-primary btn-large waves-effect waves-light">
-                        <i class="material-icons">keyboard_arrow_right</i>
-                    </a>
-
-                    <!-- Content -->
-                    <div class="card-content">
-                        <h3>{{country_indicators}}</h3>
-                        <p>{{{country_indicators_text}}}</p>
+                    <div class="card-horiz-left-text-up pull-left">
+                        <h4 class="truncate">{{bulk_download}}</h4>
+                        <div class="clearfix">
+                            <span class="pull-left">{{all_faostat_data}}</span>
+                            <span class="pull-right visible-xs visible-sm hidden-md visible-lg" data-role="bulk_download_size"></span>
+                        </div>
                     </div>
+                    <div class="card-horiz-left-text-bottom pull-left">
+                        <div class="truncate">
+                            <span class="hidden-md">{{updated_on}}</span>
+                            <span data-role="bulk_download_date"></span>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
 
-            <div class="col-sm-6">
-                <div class="elegant-card z-depth-1 hoverable">
+            <br>
 
-                    <!-- Image wrapper -->
-                    <div class="card-up view overlay hm-white-slight">
-                        <a><img data-original="src/images/homepage/info-chart.jpg" class="lazy img-responsive"></a>
-                    </div>
+            <div class="visible-xs"><br></div>
 
-                    <!-- Button -->
-                    <a data-link='interanl' href="{{URL_BROWSE_RANKINGS}}"  class="btn-floating btn-primary  btn-large waves-effect waves-light">
-                        <i class="material-icons">keyboard_arrow_right</i>
-                    </a>
-                    <!-- Content -->
-                    <div class="card-content">
-                        <h3 class="text-capitalized">{{rankings}}</h3>
-                        <p>{{{rankings_text}}}</p>
-                    </div>
+            <div class="panel panel-default hoverable">
 
-                </div>
-            </div>
+                <div class="panel-body">
 
-        </div>
+                    <!-- Twitter -->
+                    <div id="fs_home_twitter"
+                         class="twitter-timeline"
+                         data-chrome=""
+                         href="https://twitter.com/FAOstatistics"
+                         data-widget-id="{widget_id}">
 
-        <div class="hidden-xs"><br><br></div>
-
-        <div class="row">
-
-            <div class="col-sm-12">
-                <div class="elegant-card z-depth-1 hoverable">
-
-                    <div class="card-up view overlay hm-white-slight">
-                        <a><img data-original="src/images/homepage/sdgs-big.png" class="lazy img-responsive"></a>
-                    </div>
-
-                    <a data-link='external' target='_blank' href='http://www.fao.org/sustainable-development-goals/{{locale}}/' taget="_blank" class="btn-floating btn-primary  btn-large waves-effect waves-light">
-                        <i class="material-icons">keyboard_arrow_right</i>
-                    </a>
-                    <div class="card-content">
-                        <h3>{{development_goals}}</h3>
-                        <p>{{{development_goals_text}}}</p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-        <div class="visible-xs"><br><br></div>
-
-    </div>
-
-    <!-- right side -->
-    <div class="col-md-4">
-
-        <div class="elegant-card-horizontal z-depth-1 hoverable">
-
-            <div style='cursor:pointer;' class="card-content clearfix" data-role="bulk_download" data-url=''>
-
-                <div class="card-horiz-right-image pull-right">
-                    <i class="material-icons">file_download</i>
-                </div>
-
-                <div class="card-horiz-left-text-up pull-left">
-                    <h4 class="truncate">{{bulk_download}}</h4>
-                    <div class="clearfix">
-                        <span class="pull-left">{{all_faostat_data}}</span>
-                        <span class="pull-right visible-xs visible-sm hidden-md visible-lg" data-role="bulk_download_size"></span>
-                    </div>
-                </div>
-                <div class="card-horiz-left-text-bottom pull-left">
-                    <div class="truncate">
-                        <span class="hidden-md">{{updated_on}}</span>
-                        <span data-role="bulk_download_date"></span>
                     </div>
                 </div>
 
             </div>
 
-        </div>
+            <div class="hidden-xs"><br></div>
 
-        <br>
+            <div class="panel panel-default hoverable">
 
-        <div class="visible-xs"><br></div>
+                <div class="panel-body" style="background-color: #D5E4EB;">
+                    <img src="src/images/faostat-logo-blue-capital-only-text.svg" width="108px" height="20px" alt="Faostat" class="faostat-header-logo">
 
-        <div class="panel panel-default hoverable">
+                    <address>
+                        <a data-link='external' href="http://www.fao.org/economic/ess/{{locale}}/" target="_blank">
+                            <strong>{{statistics_division}}</strong>
+                        </a>
+                        <br>
+                        <div style="font-size:13px;">
+                            {{fao}}<br>
+                            Viale delle Terme di Caracalla<br>
+                            00153 {{rome}}, {{italy}}<br>
+                            <abbr title="Phone">T:</abbr> (+39) 06 570 55303
+                        </div>
+                    </address>
 
-            <div class="panel-body">
-
-                <!-- Twitter -->
-                <div id="fs_home_twitter"
-                     class="twitter-timeline"
-                     data-chrome=""
-                     href="https://twitter.com/FAOstatistics"
-                     data-widget-id="{widget_id}">
+                    <address>
+                        <strong>{{info}}</strong><br>
+                        <a data-link='external' href="mailto:FAO-statistics@fao.org">FAO-statistics@fao.org</a>
+                    </address>
 
                 </div>
-            </div>
-
-        </div>
-
-        <div class="hidden-xs"><br></div>
-
-        <div class="panel panel-default hoverable">
-
-            <div class="panel-body" style="background-color: #D5E4EB;">
-                <img src="src/images/faostat-logo-blue-capital-only-text.svg" width="108px" height="20px" alt="Faostat" class="faostat-header-logo">
-
-                <address>
-                    <a data-link='external' href="http://www.fao.org/economic/ess/{{locale}}/" target="_blank">
-                        <strong>{{statistics_division}}</strong>
-                    </a>
-                    <br>
-                    <div style="font-size:13px;">
-                        {{fao}}<br>
-                        Viale delle Terme di Caracalla<br>
-                        00153 {{rome}}, {{italy}}<br>
-                        <abbr title="Phone">T:</abbr> (+39) 06 570 55303
-                    </div>
-                </address>
-
-                <address>
-                    <strong>{{info}}</strong><br>
-                    <a data-link='external' href="mailto:FAO-statistics@fao.org">FAO-statistics@fao.org</a>
-                </address>
 
             </div>
 

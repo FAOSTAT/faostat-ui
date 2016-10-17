@@ -104,11 +104,12 @@ define([
 
         getTemplateData: function () {
             return $.extend(true,
+                i18nLabels,
                 {
                     locale: Common.getLocale(),
-                    URL_FEEDBACK_SYSTEM: C.URL_FEEDBACK_SYSTEM
-                },
-                i18nLabels
+                    URL_FEEDBACK_SYSTEM: C.URL_FEEDBACK_SYSTEM,
+                    direction: C.direction
+                }
             );
         },
 

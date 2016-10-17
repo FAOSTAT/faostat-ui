@@ -44,7 +44,8 @@ define([
         WARNING: '#fs-status-warning',
         DIMENSIONS: '#fs-status-dimensions',
         CODES: '#fs-status-codes',
-        DATA: '#fs-status-data'
+        DATA: '#fs-status-data',
+        DIRECTION: '[data-direction]'
 
     };
 
@@ -57,7 +58,9 @@ define([
         template: template,
 
         initialize: function (options) {
-            this.o = $.extend(true, {}, options);
+            this.o = $.extend(true, {}, options, {
+                direction: C.direction
+            });
         },
 
         getTemplateData: function () {

@@ -49,6 +49,8 @@ define({
     topics: 'topics',
     compare_data: 'Comparar Datos',
     country_indicators: 'Indicadores por País',
+    feedback_system: "Feedback System",
+    release_calendar: "Release Calendar",
 
     //Errors
     error_export: "Aw, Snap!. <br> Something went wrong during the download of the data.",
@@ -118,7 +120,5 @@ define({
     source: "Fuente",
     survey: "Encuesta",
     year: "Año",
-
-    feedback_system: "Feedback System"
 
 });

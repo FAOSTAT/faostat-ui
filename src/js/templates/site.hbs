@@ -1,5 +1,5 @@
 <!-- Fao Header container-->
-<div class="container">
+<div class="container {{direction}}">
     <div class="col-md-12 fao-header">
         <header class="header">
 
@@ -33,7 +33,7 @@
 
     <div class="col-md-12 fao-header clearfix hidden-xs">
 
-        <ul class="list-unstyled list-inline fao-menu-list pull-right">
+        <ul class="list-unstyled list-inline fao-menu-list pull-right flip">
             <li>
                 <a data-link="external" target="_blank" href="//www.fao.org/about/{{locale}}">{{about_fao}}</a>
             </li>
@@ -66,7 +66,7 @@
 
     <div class="col-md-12 clearfix">
 
-        <div id="fs-language" class="language-menu pull-right">
+        <div id="fs-language" class="language-menu pull-right flip">
 
             <ul class="list-unstyled list-inline hidden-xs">
                 <!--<li class="disabled">العربية</li>-->
@@ -130,7 +130,7 @@
 </div>
 
 <!-- Top menu container -->
-<div class="container">
+<div class="container {{direction}}">
     <div class="col-md-12">
         <div class='faostat_ui_menu' id='fs-menu'></div>
     </div>
@@ -150,7 +150,7 @@
 <div class="container fs-main-container" id="main-container"></div>
 
 <!-- Page Footer -->
-<footer class="container fao-footer">
+<footer class="container fao-footer {{direction}}">
 
     <div class="row">
         <div class="col-md-9">

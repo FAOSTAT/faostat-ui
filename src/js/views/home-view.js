@@ -78,7 +78,9 @@ define([
                     EMAIL_FAO_STATISTICS: C.EMAIL_FAO_STATISTICS,
                     TELEPHONE_FAO_STATISTICS: C.TELEPHONE_FAO_STATISTICS,
                     URL_DATA: '#' + Common.getURI(ROUTE.DATA),
-                    locale: Common.getLocale()
+                    locale: Common.getLocale(),
+                    // direction of html
+                    direction: C.direction
                 });
 
                 return d;
