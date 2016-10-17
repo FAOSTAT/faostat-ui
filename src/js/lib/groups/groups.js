@@ -82,12 +82,13 @@ define([
 
         var self = this;
 
-        API.groupsanddomains().then(_.bind(this._show, this))
-          .fail(function(e) {
-            log.error("Groups.initVariables; error", e);
-              amplify.publish(E.LOADING_HIDE, {container: self.$GROUPS});
-              amplify.publish(E.CONNECTION_PROBLEM);
-        });
+        API.groupsanddomains()
+            .then(_.bind(this._show, this))
+            .fail(function(e) {
+                log.error("Groups.initVariables; error", e);
+                  amplify.publish(E.LOADING_HIDE, {container: self.$GROUPS});
+                  amplify.publish(E.CONNECTION_PROBLEM);
+            });
 
     };
 
@@ -235,7 +236,6 @@ define([
 
     };
 
-
     Groups.prototype._bindEventListeners = function () {
 
         var self = this;
@@ -297,4 +297,5 @@ define([
     };
 
     return Groups;
+
 });

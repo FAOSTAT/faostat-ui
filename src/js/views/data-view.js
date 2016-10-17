@@ -53,7 +53,8 @@ define([
 
         getTemplateData: function () {
             return {
-                data: i18nLabels.data
+                data: i18nLabels.data,
+                direction: C.direction
             };
         },
 

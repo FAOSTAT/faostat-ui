@@ -157,19 +157,19 @@ h1#logo-ltr {
 
 }
 
-.faostat_ui_menu .navbar-default{
+.faostat_ui_menu .navbar-default {
 
 
-  .home-ico, .home-h-ico{
+  .home-ico, .home-h-ico {
 
   }
 
-  .home-h-ico{
+  .home-h-ico {
     display: none;
   }
 
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
 
     min-height: $navbar-height;
     @include fx-no-border-radius;
@@ -188,18 +188,18 @@ h1#logo-ltr {
     background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(239,239,239,1) 84%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 ); /* IE6-8 */
 
-    .navbar-brand{
+    .navbar-brand {
       color: white;
       height: $navbar-height;
       width: 50px;
       border-left: 1px solid $border-menu-color;
       margin-left: -1px;
 
-      &:hover{
+      &:hover {
         background-color:white;
       }
 
-      &.active{
+      &.active {
 
         .home-ico{
           display: none;
@@ -216,23 +216,21 @@ h1#logo-ltr {
 
       border-left: 1px solid $border-menu-color;
 
-
-      &:last-child{
+      &:last-child {
         border-right: 1px solid $border-menu-color;
       }
 
-
-      a{
+      a {
         padding-top: 12px;
         padding-bottom: 12px;
 
         @include animate();
 
-        &.fs-nav-link{
+        &.fs-nav-link {
           color: #003b45;
         }
 
-        &:hover{
+        &:hover {
 
           background-color:white;
           text-decoration: none;
@@ -246,13 +244,13 @@ h1#logo-ltr {
 
   ul li {
 
-    &.active{
+    &.active {
 
-      >a{
+      >a {
         background-color: white;
         color: #ec6e00;
 
-        &:hover, &:focus{
+        &:hover, &:focus {
           background-color: white;
           color: #ec6e00;
 
@@ -269,22 +267,22 @@ h1#logo-ltr {
 // Arabic fix
 .ar {
 
-  .faostat_ui_menu .navbar-default{
+  .faostat_ui_menu .navbar-default {
 
-    @media (min-width: 768px){
+    @media (min-width: 768px) {
 
       .navbar-brand{
         border-right: 1px solid $border-menu-color;
+        margin-right: -1px;
       }
 
       ul li {
-
         border-right: 1px solid $border-menu-color;
         border-left: 0px solid $border-menu-color;
 
         &:last-child {
           border-left: 1px solid $border-menu-color;
-          border-right: 1px solid $border-menu-color !important;
+          border-right: 1px solid $border-menu-color;
         }
 
       }
