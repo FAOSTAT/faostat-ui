@@ -39,7 +39,6 @@ define({
     faq: "FAQ",
     faqs: "FAQs",
     frequently_asked_questions: "Frequently Asked Questions",
-    definitions_and_Standards: "Definitions and standards",
     metadata: 'Metadato',
     bulk_downloads: 'Todos Los Datos',
     interactive_download: 'Interactive Download',
@@ -49,6 +48,7 @@ define({
     topics: 'topics',
     compare_data: 'Comparar Datos',
     country_indicators: 'Indicadores por País',
+    definitions_and_standards: "Definitions and Standards",
     feedback_system: "Feedback System",
     release_calendar: "Release Calendar",
 

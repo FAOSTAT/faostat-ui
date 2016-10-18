@@ -29,7 +29,6 @@ define({
     show_data: "Montrer les données",
     data_preview: "Aperçu des données",
 
-
     // Table
     next: "prochain",
     previous: "précédent",
@@ -42,7 +41,6 @@ define({
     faq: "FAQ",
     faqs: "FAQs",
     frequently_asked_questions: "Questions fréquemment demandées",
-    definitions_and_Standards: "Définitions et normes",
     metadata: 'Métadonnées',
     bulk_downloads: 'Données complètes',
     interactive_download: 'Téléchargement interactif',
@@ -52,6 +50,9 @@ define({
     topics: 'Sujets',
     compare_data: 'Comparer des données',
     country_indicators: 'Indicateurs de pays',
+    definitions_and_standards: "Définitions et Standards",
+    feedback_system: "Feedback System",
+    release_calendar: "Calendrier de diffusion",
 
     /*fao: "Organisation des Nations unies pour l'alimentation et l'agriculture",
     statistics_division: "Statistics Division",

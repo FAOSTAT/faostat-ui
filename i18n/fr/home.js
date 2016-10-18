@@ -30,7 +30,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
         // Contacts
         rome: "Rome",
-        italy: "Italy",
+        italy: "Italie",
         info: "Info",
 
         explore_data: "Exploration des données",

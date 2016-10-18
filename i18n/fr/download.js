@@ -15,7 +15,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         full_metadata: "Metadonnées complètes",
         contacts_email: "Contacts mail",
         where_is_the_data: "Où est la donnée?",
-        show_data_info_message: "Prière de faire une sélection ci-dessus et appuyer sur <i>Show Data</i>",
+        show_data_info_message: "Prière de faire une sélection ci-dessus et appuyer sur <i>Montrer les données</i>",
         open_domain_list: "Liste de domaines ouverts"
 
     });

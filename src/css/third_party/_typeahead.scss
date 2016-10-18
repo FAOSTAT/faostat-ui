@@ -1,5 +1,5 @@
 .typeahead, .tt-query, .tt-hint {
-  width: 225px;
+  width: 260px;
   /*height: 30px;*/
   //padding: 3px 10px;
   //font-size: 13px;
@@ -32,8 +32,6 @@
 @media (min-width: 768px){
   .typeahead, .tt-query, .tt-hint {
     //background-color: $fao-menu-blue !important;
-
-
   }
 
   //::-webkit-input-placeholder {

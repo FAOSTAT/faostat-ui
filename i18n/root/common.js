@@ -51,6 +51,12 @@ define({
     country_indicators: 'Country Indicators',
     feedback_system: "Feedback System",
     release_calendar: "Release Calendar",
+    download_excel: "Download to Excel",
+    last_release_revision: "Last Release / Revision",
+    data_staus: "Data Status",
+    reference_year: "Reference Year",
+    next_release: "Next Release",
+    focal_point: "Focal Point",
 
     //Errors
     error_export: "Aw, Snap!. <br> Something went wrong during the download of the data.",
