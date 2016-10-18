@@ -565,7 +565,6 @@ module.exports = function (grunt) {
         grunt.task.run('replace:faostat-appcache');
 
         // dev-internal
-        grunt.config.set('locale', 'ar');
         grunt.task.run('config:dev_internal');
         grunt.task.run('copy:faostat');
         grunt.task.run('replace:dist');
@@ -600,6 +599,7 @@ module.exports = function (grunt) {
         grunt.task.run('replace:faostat-locale');
         //grunt.task.run('copy:faostat-arabic-language');
         grunt.task.run('replace:faostat-appcache');
+
 
     });
 

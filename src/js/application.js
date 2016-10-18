@@ -8,9 +8,10 @@ define([
     'globals/Common',
     'faostatapiclient',
     'waves',
+    'moment',
     'outdatedbrowser',
     'amplify'
-], function ($, log, Chaplin, C, E, Common, API, Waves) {
+], function ($, log, Chaplin, C, E, Common, API, Waves, moment) {
 
     'use strict';
 
@@ -78,6 +79,9 @@ define([
 
             // Set direction
             C.direction = Common.getLocale() === 'ar'? 'fs-direction-rtl': 'fs-direction-ltr';
+
+            // set moment locale. fix on chinese lang in momentjs
+            moment.locale(Common.getLocale() === 'zh'? 'zh_cn' : Common.getLocale());
 
             if (C.DATASOURCE !== null) {
                 API.config({

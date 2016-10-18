@@ -190,7 +190,6 @@ define([
                 });
 
                 //log.info("Home.initDatabaseUpdates; sortedDomains", sortedDomains);
-                moment.locale(Common.getLocale());
 
                 _.each(sortedDomains, function(domain, index) {
 
@@ -198,7 +197,8 @@ define([
 
                         var d = $.extend(true, {}, domain),
                             m = moment(domain.date_update),
-                            date_update =  m.format("MMM DD, YYYY");
+                            //date_update =  m.format("MMMM DD, YYYY");
+                            date_update =  m.format("LL");
 
                         d.title = d.domain_name + " ("+ d.group_name + ")";
                         d.date_update = date_update;
@@ -254,13 +254,13 @@ define([
 
                     //log.info("Home.initBulkDownload;", d);
 
-                    moment.locale(Common.getLocale());
+                    //moment.locale(Common.getLocale());
 
                     var data = d.data[0],
                         size = Math.round(data.FileSize * 0.001),
                         mu = "MB", //data.FileSizeUnit,
                         m = moment(data.CreatedDate),
-                        date =  m.format("MMM DD, YYYY"),
+                        date =  m.format("ll"),
                         url = data.URL;
 
                     self.$FAOSTAT_BULK_SIZE.html(size + " " + mu);

@@ -292,13 +292,11 @@ define([
                 // destroy sections
                 this.destroySections();
 
-                moment.locale(Common.getLocale());
-
                 var code = options.id,
                     label = options.label,
                     type = options.type,
                     date_sanitized = _s.strLeft(_s.replaceAll(options.date_update, '-', '/'), "."),
-                    date_update = moment(new Date(date_sanitized)).format("DD MMMM YYYY");
+                    date_update = moment(new Date(date_sanitized)).format("LL");
 
 
                 if ( type === 'domain') {
