@@ -172,6 +172,6 @@ define({
     survey: "Enquête",
     year: "Année",
 
-    feedback_system: "Feedback System"
+    feedback_system: "Système de feedback"
 
 });

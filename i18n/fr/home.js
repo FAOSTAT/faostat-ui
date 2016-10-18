@@ -34,7 +34,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         info: "Info",
 
         explore_data: "Exploration des données",
-        explore_data_title: "Exploration du titre des données",
+        explore_data_title: "Données de l’alimentation et de l’agriculture",
         explore_data_text: "FAOSTAT fournit un accès libre aux données concernant l’alimentation et l’agriculture pour plus de 245 pays et 35 régions depuis 1961 jusqu’à l’année disponible la plus récente."
 
     });
