@@ -5,7 +5,7 @@ define(['config/Routes'], function (ROUTE) {
 
     return function (match) {
 
-        match('', 'home#show');
+        match('', 'home#redirect');
         match('home', 'home#show', {name: ROUTE.HOME});
 
         match('country', 'browse-by-country#show', {name: ROUTE.BROWSE_BY_COUNTRY});

@@ -72,7 +72,7 @@ define([
         this.$GROUPS_LIST = this.$CONTAINER.find(s.GROUPS_LIST);
 
         // focus on search
-        this.$SEARCH.focus();
+        //this.$SEARCH.focus();
 
         amplify.publish(E.LOADING_SHOW, {container: this.$GROUPS});
 

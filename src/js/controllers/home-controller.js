@@ -1,8 +1,10 @@
 /*global define*/
 define([
     'controllers/base/controller',
-    'views/home-view'
-], function (Controller, View) {
+    'views/home-view',
+    'globals/Common',
+    'config/Routes',
+], function (Controller, View, Common, ROUTES) {
 
     'use strict';
 
@@ -13,6 +15,12 @@ define([
             this.view = new View({
                 region: 'main'
             });
+        },
+
+        redirect: function (params) {
+
+            Common.changeURL(ROUTES.HOME, [], false);
+
         }
     });
 

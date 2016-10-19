@@ -88,6 +88,8 @@ define([
                     datasource: C.DATASOURCE
                 });
             }
+
+            log.info("MODE", C)
         },
 
         bindEventListeners: function () {

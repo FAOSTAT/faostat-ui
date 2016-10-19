@@ -108,7 +108,8 @@ define([
                 {
                     locale: Common.getLocale(),
                     URL_FEEDBACK_SYSTEM: C.URL_FEEDBACK_SYSTEM,
-                    direction: C.direction
+                    direction: C.direction,
+                    ALL_LANGUAGES: C.ALL_LANGUAGES || false
                 }
             );
         },

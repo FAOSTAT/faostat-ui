@@ -51,7 +51,7 @@ define([
             twitter: {
                 height: {
                     "en": 870,
-                    "fr": 940,
+                    "fr": 985,
                     "es": 940
                 }
             }
