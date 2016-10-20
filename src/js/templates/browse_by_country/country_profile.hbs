@@ -40,7 +40,7 @@
         <div class="col-md-3">
             <div class="panel panel-default hoverable">
                 <div class="panel-heading">
-                    <h4 class="text-initials">{{topics}}</h4>
+                    <h4 class="text-capitalize">{{topics}}</h4>
                 </div>
                 <div class="list-unstyled" data-role="sections"></div>
             </div>
@@ -48,7 +48,7 @@
         <div class="col-md-9">
             <div class="fs-map panel panel-default hoverable">
                 <div class="panel-body">
-                    <div style="height: 444px;" id="fs-browse-by-country-profile-map"></div>
+                    <div class="country-profile-map" id="fs-browse-by-country-profile-map"></div>
                 </div>
                 <div class="panel-footer">
                     <p><i>{{{map_disclaimer}}}</i></p>
@@ -69,7 +69,15 @@
     {{#each sections}}
          <div class="panel-footer">
             <h5 class="country-topic text-initials">
-                <a data-dashboard-index='{{index}}' href="#">{{this.title}}</a>
+                {{#if href}}
+                    <a href="{{href}}" target="_blank">
+                        {{title}}
+                    </a>
+                {{else}}
+                    <a data-dashboard-index='{{index}}' href="#">
+                        {{title}}
+                    </a>
+                {{/if}}
             </h5>
          </div>
     {{/each}}
@@ -81,12 +89,20 @@
     <div data-dashboard-index='{{index}}' data-aos="fade-up">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="country-dashboard-title text-initials flip">
-                    <span style="font-size:24px" data-role="go_to_download" class="domain-icon icojam_{{icon}}"></span>
+                <h1 class="country-dashboard-title flip">
+                    <span class="{{icon}}"></span>
                     {{title}}
                 </h1>
             </div>
         </div>
+        {{#if show_details}}
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <p class="text-justify">{{{details}}}</p>
+            </div>
+        </div>
+        {{/if}}
         <div class="row">
             <div class="col-md-12">
                 <div data-role="dashboard-compose"></div>
@@ -158,9 +174,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <a type="button" class="btn btn-primary pull-right waves-effect" aria-label="Apply Changes"
-                                data-role='country-list-apply-changes'>
-                                    <i class="material-icons left">done</i>
-                                    <span class="hidden-xs"> Apply changes</span>
+                               data-role='country-list-apply-changes'>
+                                <i class="material-icons left">done</i>
+                                <span class="hidden-xs">Apply changes</span>
                             </a>
                         </div>
                     </div>

@@ -13,7 +13,7 @@ define([
         population: {
 
             title: i18n.demographics,
-            icon: 'O',
+            icon: 'icojam_O',
             description: {
                 "en": "A combination of declining mortality rates, prolonged life expectancy and younger populations in regions with high fertility contributes to population growth in the world. While growth rates have been slowing since the late 1960s, the world's population has nevertheless doubled since then, to have 7 billion people. Population growth is generally highest where income levels are low. This is especially true in cities. Since 2008, there have been more people living in cities tha in rural areas."
             },
@@ -188,7 +188,7 @@ define([
         inputs: {
 
             title: i18n.inputs,
-            icon: 'R',
+            icon: 'icojam_R',
             description: {
                 "en": "Adeguate access to inputs, including land, pesticides and fertilizers, is vital for agricultural production and growth. Throughout Asia and in parts of latin America, expanding seed and fertilizer use has been accompanied by investments in irrigation, rural roads, marketing infrastructure and finalncial services, paving the way of fynamic commercial input markets. In other regions, such as sub-Saharan Africa, the uptake of agricultural inputs is relatively low because it is often cheaper to expand cropland to have higher production."
             },
@@ -364,7 +364,7 @@ define([
         undernourishment: {
 
             title: i18n.undernourishment,
-            icon: 'D',
+            icon: 'icojam_D',
 
             filter: {
                 defaultFilter: {
@@ -487,7 +487,7 @@ define([
         food_availability: {
 
             title: i18n.food_availability,
-            icon: 'D',
+            icon: 'icojam_D',
 
             filter: {
                 defaultFilter: {
@@ -742,7 +742,7 @@ define([
         food_access: {
 
             title: i18n.food_access,
-            icon: 'D',
+            icon: 'icojam_D',
 
             filter: {
                 defaultFilter: {
@@ -952,7 +952,7 @@ define([
         food_utilization: {
 
             title: i18n.food_utilization,
-            icon: 'D',
+            icon: 'icojam_D',
 
             filter: {
                 defaultFilter: {
@@ -1083,7 +1083,7 @@ define([
         land: {
 
             title: i18n.land,
-            icon: 'R',
+            icon: 'icojam_R',
 
             filter: {
                 defaultFilter: {
@@ -1247,7 +1247,7 @@ define([
         economic_and_political_stability: {
 
             title: i18n.economic_and_political_stability,
-            icon: 'D',
+            icon: 'icojam_D',
 
             filter: {
                 defaultFilter: {
@@ -1457,7 +1457,7 @@ define([
         production: {
 
             title: i18n.production,
-            icon: 'Q',
+            icon: 'icojam_Q',
 
             filter: {
                 defaultFilter: {
@@ -1572,7 +1572,7 @@ define([
         emissions: {
 
             title: i18n.emissions,
-            icon: 'G1',
+            icon: 'icojam_G1',
 
             filter: {
                 defaultFilter: {
@@ -1709,7 +1709,18 @@ define([
 
                 ]
             }
-        }
+        },
+
+        syb: {
+            // TODO: Refactor it and make it decent.
+            title: "FAO Statistical Yearbook Summary",
+            href: "http://fenixservices.fao.org/faostat/static/syb/syb_{{code}}.pdf",
+            /*icon: 'icojam_book_3',
+            show_details: true,
+            details: {
+                "en": "<embed style='border:1px solid #666; overflow: auto; width: 100%; height: 75vh;' src='config/browse_by_country/prod/syb/syb_{{code}}.pdf' type='application/pdf'></embed>",
+            }*/
+        },
 
     };
 });

@@ -85,7 +85,7 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Import - export trends  in {{area}}",
+                                en: "Import - export trends in {{area}}",
                                 fr: "Tendences de l'import-export en {{area}}",
                                 es: "Importación - exportación, tendencias en {{area}}"
                             },

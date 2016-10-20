@@ -350,14 +350,16 @@ define([
                 var html = $(templateCountryProfile).filter('#sections').html(),
                     t = Handlebars.compile(html),
                     sections = [],
+                    code = this.o.code,
                     self = this;
 
                 _.each(views, _.bind(function(view, key) {
 
                     sections.push({
                         title: view.title,
-                        index: key
-                    });
+                        index: key,
+                        href: (view.href)? view.href.replace('{{code}}', code) : null
+                });
 
                 }, this));
 
@@ -369,13 +371,17 @@ define([
 
                 this.$COUNTRY_PROFILE_SECTIONS.find('a').on('click', function(e) {
 
-                    e.preventDefault();
+                    if ($(this).attr('href') === '#') {
 
-                    var index = $(this).data('dashboard-index');
+                        e.preventDefault();
 
-                    amplify.publish(E.SCROLL_TO_SELECTOR, {
-                        container: self.$COUNTRY_PROFILE_DASHBOARDS.find('[data-dashboard-index='+ index +']')
-                    });
+                        var index = $(this).data('dashboard-index');
+
+                        amplify.publish(E.SCROLL_TO_SELECTOR, {
+                            container: self.$COUNTRY_PROFILE_DASHBOARDS.find('[data-dashboard-index=' + index + ']')
+                        });
+                    }
+
                 });
 
             },
@@ -386,16 +392,20 @@ define([
                     html = $(templateCountryProfile).filter('#dashboard').html(),
                     t = Handlebars.compile(html),
                     title = view.title || "",
+                    code = this.o.code,
                     viewConfig = $.extend(true, {}, view),
-                    code = this.o.code;
+                    // TODO remove handcoded url
+                    details = (viewConfig.details)? viewConfig.details["en"].replace('{{code}}', code) : null;
 
                 // render dashboard
-                if (viewConfig.dashboard !== null) {
+                if (viewConfig.dashboard !== undefined || viewConfig.show_details !== undefined ) {
 
                     $container.html(t({
                         title: title,
                         icon: viewConfig.icon,
                         description: (viewConfig.description)? viewConfig.description[Common.getLocale()] || viewConfig.description["en"] : null,
+                        show_details: viewConfig.show_details || undefined,
+                        details: details,
                         index: key
                     }));
 
