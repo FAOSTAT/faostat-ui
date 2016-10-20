@@ -1722,5 +1722,35 @@ define([
             }*/
         },
 
+        syb_world: {
+            // TODO: Refactor it and make it decent.
+            title: "FAO Statistical Yearbook <br> World Summary",
+            href: "http://fenixservices.fao.org/faostat/static/syb/syb_5000.pdf",
+        },
+
+       /* syb_africa: {
+            // TODO: Refactor it and make it decent.
+            title: "FAO Statistical Yearbook Africa Summary",
+            href: "http://fenixservices.fao.org/faostat/static/syb/syb_5100.pdf",
+        },
+
+        syb_asia: {
+            // TODO: Refactor it and make it decent.
+            title: "FAO Statistical Yearbook Asia Summary",
+            href: "http://fenixservices.fao.org/faostat/static/syb/syb_5300.pdf",
+        },
+
+        syb_carribean: {
+            // TODO: Refactor it and make it decent.
+            title: "FAO Statistical Yearbook Latin America and the Caribbean Summary",
+            href: "http://fenixservices.fao.org/faostat/static/syb/syb_5305.pdf",
+        },
+
+        syb_oceania: {
+            // TODO: Refactor it and make it decent.
+            title: "FAO Statistical Yearbook Oceania Summary",
+            href: "http://fenixservices.fao.org/faostat/static/syb/syb_5500.pdf",
+        }*/
+
     };
 });
