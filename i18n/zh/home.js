@@ -26,8 +26,8 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         rankings_text: "Rankings indicators provide an overview of key indicators and charts by commodity.",
 
         // Food security in the 2030 Agenda for Sustainable Development
-        development_goals: "الأغذية والزراعة في جدول أعمال 2030 للتنمية المستدامة",
-        development_goals_text: "جدول أعمال 2030 للتنمية المستدامة، يتضمن جدول الأعمال أهداف التنمية المستدامة السبعة عشر، وهي الأهداف العالمية الجديدة التي تعقب الأهداف الإنمائية للألفية في 1 كانون الثاني/يناير 2016. والأهداف الإنمائية المستدامة ستشكل سياسات التنمية الوطنية للسنوات ال 15 القادمة. ويكمن القضاء على الفقر والجوع والاستجابة لتغير المناخ والحفاظ على مواردنا الطبيعية والأغذية والزراعة في صميم جدول أعمال عام 2030.",
+        development_goals: "2030年可持续发展议程》中的粮食与农业",
+        development_goals_text: "2030年可持续发展议程》包括了17个可持续发展目标（SDGs），这些新的全球性目标在2016年1月帮助实现了千年发展目标。该SDGs将帮助塑造未来十五年的国家发展机会。<br><br>从消除贫困与饥饿到应对气候变化和维护我们的自然资源，粮食与农业是2030年议程的核心重点。",
 
         // Contacts
         rome: "Rome",
