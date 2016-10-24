@@ -8,6 +8,7 @@ define([
 
     var defaultFilter =  {};
 
+    // TODO: Get the titles directly from the elements/item etc of the domain and not hardcoded in the config file
     return {
 
         population: {
@@ -80,8 +81,8 @@ define([
                             template: {
                                 title: {
                                     en: "Rural and urban population",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Populations rurale et urbaine",
+                                    es: "Poplación rural y urbana"
                                 },
                                 subtitle: "{{yearTimeserie}}"
                             }
@@ -138,8 +139,8 @@ define([
                             template: {
                                 title: {
                                     en: "Rural and urban population",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Populations rurale et urbaine",
+                                    es: "Poplación rural y urbana"
                                 },
                                 "subtitle": "{{yearLatest}}"
                             }
@@ -255,8 +256,8 @@ define([
                             template: {
                                 title: {
                                     en: "Fertilizers consumption in nutrients",
-                                    fr: "Fertilizers consumption in nutrients",
-                                    es: "Fertilizers consumption in nutrients"
+                                    fr: "Consommation - Quantité en éleménts fertilisants",
+                                    es: "Consumo de fertilizantes en nutrientes"
                                 },
                                 subtitle: "{{yearTimeserie}}"
                             }
@@ -313,8 +314,8 @@ define([
                             template: {
                                 title: {
                                     en: "Fertilizers consumption in nutrients",
-                                    fr: "Fertilizers consumption in nutrients",
-                                    es: "Fertilizers consumption in nutrients"
+                                    fr: "Consommation - Quantité en éleménts fertilisants",
+                                    es: "Consumo de fertilizantes en nutrientes"
                                 },
                                 subtitle: "{{yearLatest}}"
                             }
@@ -413,8 +414,8 @@ define([
                             template: {
                                 title: {
                                     en: "Number of people undernourished (millions) (3-year average)",
-                                    fr: "Number of people undernourished (millions) (3-year average)",
-                                    es: "Number of people undernourished (millions) (3-year average)"
+                                    fr: "Nombre de personnes sous-alimentées (millions) (moyenne sur 3 ans)",
+                                    es: "Número de personas subnutridas (millones) (promedio de 3 años))"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -445,14 +446,14 @@ define([
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
                                     en: "Prevalence of undernourishment (%) (3-year average)",
-                                    fr: "Prevalence of undernourishment (%) (3-year average)",
-                                    es: "Prevalence of undernourishment (%) (3-year average)"
+                                    fr: "Prévalence de la sous-alimentation (%) (moyenne sur 3 ans)",
+                                    es: "Prevalencia de la subalimentación (%) (promedio de 3 años)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -536,8 +537,8 @@ define([
                             template: {
                                 title: {
                                     en: "Average protein supply (g/capita/day) (3-year average)",
-                                    fr: "Average protein supply (g/capita/day) (3-year average)",
-                                    es: "Average protein supply (g/capita/day) (3-year average)",
+                                    fr: "Disponibilités protéiques moyennes (g/personne/jour) (moyenne sur 3 ans)",
+                                    es: "Suministro medio de proteínas (g/persona/día) (promedio de 3 años)",
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -574,8 +575,8 @@ define([
                             template: {
                                 title: {
                                     en: "Average supply of protein of animal origin (g/capita/day) (3-year average)",
-                                    fr: "Average supply of protein of animal origin (g/capita/day) (3-year average)",
-                                    es: "Average supply of protein of animal origin (g/capita/day) (3-year average)",
+                                    fr: "Disponibilités protéines moyennes d’origine animale (g/personne/jour) (moyenne sur 3 ans)",
+                                    es: "Suministro medio de proteínas de origina animal (g/persona/día) (promedio de 3 años)",
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -622,8 +623,8 @@ define([
                             template: {
                                 title: {
                                     en: "Share of dietary energy supply derived from cereals, roots and tubers (%) (3-year average)",
-                                    fr: "Share of dietary energy supply derived from cereals, roots and tubers (%) (3-year average)",
-                                    es: "Share of dietary energy supply derived from cereals, roots and tubers (%) (3-year average)",
+                                    fr: "Part des céréales, des racines et des tubercules dans les apports énergétiques alimentaires (%) (moyenne sur 3 ans)",
+                                    es: "Proporción del suministro de energía alimentaria derivada de cereales, raíces y tubérculos (%) (promedio de 3 años)",
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -660,8 +661,8 @@ define([
                             template: {
                                 title: {
                                     en: "Average dietary energy supply adequacy (%) (3-year average)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Suffisance des apports énergétiques alimentaires moyens (%) (moyenne sur 3 ans)",
+                                    es: "Suficiencia del suministro medio de energía alimentaria (%) (promedio de 3 años)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -708,8 +709,8 @@ define([
                             template: {
                                 title: {
                                     en: "Average value of food production (constant I$ per person) (3-year average)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Valeur moyenne de la production alimentaire ($I constants par personne) (moyenne sur 3 ans)",
+                                    es: "Valor medio de la producción de alimentos (I$ constante por persona) (promedio de 3 años)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -786,14 +787,14 @@ define([
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
                                     en: "Depth of the food deficit (kcal/capita/day) (3-year average)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Ampleur du déficit alimentaire (Kcal/personne/jour) (moyenne sur 3 ans)",
+                                    es: "Alcance del déficit de alimentos (Kcal/persona/día) (promedio de 3 años)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -824,14 +825,14 @@ define([
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
                                     en: "Domestic food price index (index)",
-                                    fr: "Domestic food price index (index)",
-                                    es: "Domestic food price index (index)",
+                                    fr: "Indice national des prix des aliments (indice)",
+                                    es: "Índice nacional de precios de los alimentos (índice)",
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -873,14 +874,14 @@ define([
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
                                     en: "Gross domestic product per capita, PPP (constant 2011 international $)",
-                                    fr: "Gross domestic product per capita, PPP (constant 2011 international $)",
-                                    es: "Gross domestic product per capita, PPP (constant 2011 international $)",
+                                    fr: "Produit intérieur brut par habitant, ($ PPA internationaux constants de 2011)",
+                                    es: "Producto interno bruto per cápita, PPA ($ a precios internacionales constantes de 2011)",
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -911,14 +912,14 @@ define([
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
                                     en: "Road density (per 100 square km of land area)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Densité du réseau routier (pour 100 km carrés de surface totale du pays)",
+                                    es: "Densidad de carreteras (por cada 100 km cuadrados de la superficie terrestre)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -1002,8 +1003,8 @@ define([
                             template: {
                                 title: {
                                     en: "Percentage of children under 5 years of age who are underweight, stunted, affected by wasting (%)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Pourcentage des enfants de moins de 5 ans présentant un retard de croissance, émaciés, présentant une insuffisance pondérale (%)",
+                                    es: "Porcentaje de niños menores de 5 años aquejados de retraso del crecimiento, de emaciación, de insuciencia ponderal (%)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -1047,8 +1048,8 @@ define([
                             template: {
                                 title: {
                                     en: "Access to improved water sources (%)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Accès à des sources d'eau améliorées (%)",
+                                    es: "Acceso a fuentes de agua mejoradas (%)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -1126,14 +1127,14 @@ define([
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
                                     en: "Land Use",
-                                    fr: "Land Use",
-                                    es: "Land Use"
+                                    fr: "Utilisation des terres",
+                                    es: "Uso de la tierra"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -1186,8 +1187,8 @@ define([
                             template: {
                                 title: {
                                     en: "Agricultural Area",
-                                    fr: "Agricultural Area",
-                                    es: "Agricultural Area"
+                                    fr: "Superficie agricole",
+                                    es: "Superficie agrícola"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -1286,21 +1287,20 @@ define([
                 },
 
                 items: [
-
                     {
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
                                     en: "Per capita food production variability (I$ per person constant 2004-06)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Variabilité de la production alimentaire par habitant ($I par personne constant 2004-06)",
+                                    es: "Valor de las importaciones de alimentos respecto de las exportaciones totales de mercancías (%) (promedio de 3 años)"
                                 },
-                                subtitle: ""
+                                subtitle: "{{year}}"
                             }
                         },
                         config: {
@@ -1335,8 +1335,8 @@ define([
                             template: {
                                 title: {
                                     en: "Value of food imports over total merchandise exports (%) (3-year average)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Valeur des importations alimentaires par rapport aux exportations totales de marchandises (%) (moyenne sur 3 ans)",
+                                    es: "Valor de las importaciones de alimentos respecto de las exportaciones totales de mercancías (%) (promedio de 3 años)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -1384,8 +1384,8 @@ define([
                             template: {
                                 title: {
                                     en: "Per capita food supply variability (kcal/capita/day)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Variabilité des disponibilités alimentaires par habitant (Kcal/personne/jour)",
+                                    es: "Variabilidad del suministro de alimentos per cápita (kcal/persona/día)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -1416,14 +1416,14 @@ define([
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
                                     en: "Political stability and absence of violence/terrorism (index)",
-                                    fr: "",
-                                    es: ""
+                                    fr: "Stabilité politique et absence de violence/terrorisme (indice)",
+                                    es: "Estabilidad política y ausencia de violencia o terrorismo (índice)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -1527,8 +1527,8 @@ define([
                             template: {
                                 title: {
                                     en: "Cereals, total production",
-                                    fr: "Cereals, total production",
-                                    es: "Cereals, total production"
+                                    fr: "Céréales,Total Production",
+                                    es: "Cereales,Total Producción"
                                 },
                                 subtitle: "{{yearTimeserie}}"
                             }
@@ -1628,14 +1628,14 @@ define([
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
-                                    en: "Emissions (CO2 equivalent), Agriculture total + (Total)",
-                                    fr: "Emissions (CO2 equivalent), Agriculture total + (Total)",
-                                    es: "Emissions (CO2 equivalent), Agriculture total + (Total)"
+                                    en: "Emissions (CO2 equivalent), Agriculture total",
+                                    fr: "Émissions (équivalent CO2), Agriculture total",
+                                    es: "Emisiones (CO2 equivalente), Agricultura total"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -1669,14 +1669,14 @@ define([
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {
                                 title: {
                                     en: "Emissions by sector (CO2 equivalent)",
-                                    fr: "Émissions par secteur (CO2 équivalent)",
-                                    es: "Emissions por sector (CO2 equivalente)"
+                                    fr: "Émissions par secteur (équivalent CO2)",
+                                    es: "Emisiones por sector (CO2 equivalente)"
                                 },
                                 subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                             }
