@@ -9,7 +9,7 @@ define([
     'config/Events',
     'config/faq/Config',
     'text!templates/faq/faq.hbs',
-    'i18n!nls/common',
+    'i18n!nls/faq',
     'globals/Common',
     'amplify'
 ], function ($,
