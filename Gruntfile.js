@@ -112,6 +112,7 @@ module.exports = function (grunt) {
                             './index.html',
                             './main.js',
                             './faostat.appcache',
+                            './humans.txt',
                             'config/**',
                             'dist/**',
                             'i18n/**',

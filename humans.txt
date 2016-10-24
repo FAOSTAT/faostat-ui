@@ -6,11 +6,12 @@
 
 # TEAM
 Statistician, DBA: Amanda Gordon
-Contact: amanda.gordon [at] fao.com
+Contact: amanda.gordon [at] fao.org
 Location: Rome, Italy
 
 Software Engineer: Simone Murzilli
-Contact: simone.murzilli [at] fao.com
+Contact: simone.murzilli [at] fao.org
+Contact: simone.murzilli [at] gmail.com
 Location: Rome, Italy
 Github: simonemurzilli
 
@@ -27,6 +28,6 @@ Location: Rome, Italy
 Github: nicolafenix
 
 Software Engineer: Daniele Salvatore
-Contact: daniele.salvatore [at] fao.com
+Contact: daniele.salvatore [at] fao.org
 Location: Rome, Italy
 Github: danielefenix

@@ -2,7 +2,7 @@
 var CDN = "//fenixrepo.fao.org/cdn/faostat",
     SUBMODULE = "../../submodules",
     locale = "@@locale",
-    locale = (locale === "@@" + "locale")? "zh" : locale;
+    locale = (locale === "@@" + "locale")? "en" : locale;
 
 require.config({
 
@@ -192,7 +192,7 @@ require.config({
         'fs-r-t/nls': SUBMODULE + '/faostat-ui-report-table/nls',
 
         // Google Analytics
-        "ga": CDN + '/js/googleanalytics/0.3.7/analytics'
+        "ga": CDN + '/js/googleanalytics/0.3.7/analytics',
     },
 
     shim: {
@@ -357,7 +357,7 @@ require([
     'routes',
     'config/Config',
     'globals/Common',
-    'nprogress'
+    'nprogress',
 ], function ($, Application, routes, C, Common, NProgress) {
 
     "use strict";
