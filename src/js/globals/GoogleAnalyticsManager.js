@@ -16,7 +16,7 @@ define([
 
     function GoogleAnalyticsManager() {
 
-        // traking page
+        // tracking page
         ga('create', C.GOOGLE_ANALYTICS_ID, "auto");
         //ga('send', 'pageview');
 
@@ -28,7 +28,7 @@ define([
         log.info("GoogleAnalyticsManager; event", data, this);
 
         // set the current pageView (it could be different i.e. using different browser tabs)
-        this.pageView();
+        this.setCurrentPage();
         
         // add section to object
         data.label = data.label || "";
@@ -58,28 +58,10 @@ define([
         }
     };
 
-    GoogleAnalyticsManager.prototype.pageView = function () {
-
-       /* if ( this.CURRENT_PAGE !== Backbone.history.getFragment()) {
-
-            log.info("GoogleAnalyticsManager; pageView", Backbone.history.getFragment());
-
-            this.CURRENT_PAGE = Backbone.history.getFragment();
-
-            // TOD: get page by the fragment?
-
-            ga('set', {
-                page: this.CURRENT_PAGE,
-                title: this.CURRENT_PAGE
-            });
-            ga('send', 'pageview');
-
-        }else{
-            log.warn("GoogleAnalyticsManager; page already set", Backbone.history.getFragment(), this.CURRENT_PAGE);
-        }*/
+    GoogleAnalyticsManager.prototype.setCurrentPage = function () {
 
         // Google analytics says that it's required a pageView before and Event
-        log.info("GoogleAnalyticsManager; pageView", Backbone.history.getFragment());
+        log.info("GoogleAnalyticsManager; setCurrentPage", Backbone.history.getFragment());
 
         this.CURRENT_PAGE = Backbone.history.getFragment();
 
@@ -89,6 +71,13 @@ define([
             page: this.CURRENT_PAGE,
             title: this.CURRENT_PAGE
         });
+
+    };
+
+   GoogleAnalyticsManager.prototype.pageView = function () {
+
+       this.setCurrentPage();
+
         ga('send', 'pageview');
 
     };

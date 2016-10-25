@@ -85,7 +85,8 @@ define(['chaplin',
         };
 
         Common.prototype.setLocaleAPI = function(lang) {
-            this.langAPI = (locale === 'en' || locale === 'fr' || locale === 'es')? locale : 'en';
+            //this.langAPI = (lang === 'en' || lang === 'fr' || lang === 'es')? lang : 'en';
+            this.langAPI = lang;
             return this.langAPI;
         };
 
