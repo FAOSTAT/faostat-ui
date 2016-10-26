@@ -415,7 +415,7 @@ define([
                                 title: {
                                     en: "Number of people undernourished (millions) (3-year average)",
                                     fr: "Nombre de personnes sous-alimentées (millions) (moyenne sur 3 ans)",
-                                    es: "Número de personas subnutridas (millones) (promedio de 3 años))"
+                                    es: "Número de personas subnutridas (millones) (promedio de 3 años)"
                                 },
                                 subtitle: "{{year}}"
                             }
@@ -1378,7 +1378,7 @@ define([
                         type: 'chart',
                         class: "col-xs-12 col-md-6",
 
-                        // labels?
+                        // labels
                         labels: {
                             // template to be applied to the config.template for the custom object
                             template: {

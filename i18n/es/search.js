@@ -5,7 +5,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-        no_results_available_for: "No results available for "
+        no_results_available_for: "No existen datos disponibles para "
 
     });
 });

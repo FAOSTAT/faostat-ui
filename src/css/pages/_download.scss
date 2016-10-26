@@ -243,7 +243,12 @@
   margin-bottom: 0;
 
   .fs-download-option-title {
+
     margin-top: 0;
+
+    // in some language the font is too big
+    font-size:13px;
+
   }
 
   button {

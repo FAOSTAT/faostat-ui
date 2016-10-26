@@ -46,8 +46,12 @@ define([
 
             this.o = $.extend(true, {}, defaultOptions);
 
+            // setting lang. It is override by config if it needed
+            this.o.lang = Common.getLocale();
+
             // setting view
             this.o.view = $.extend(true, {}, this.o.view, config);
+
 
             // setting event
             // TODO: review it
@@ -84,7 +88,7 @@ define([
         DashBoardComposer.prototype._createView = function(view) {
 
 
-            var lang = Common.getLocale(),
+            var lang = this.o.lang,
                 filter = view.filter || null,
                 dashboard = view.dashboard || null,
                 event = view.event;

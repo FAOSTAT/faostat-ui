@@ -9,7 +9,7 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         "add_filter": "Add Filter",
         "chart_title": "Timeseries on selected data",
         "select_a_timerange": "Select a timerange",
-        "filter_box_title": "(Filter Box)"
+        "filter_box_title": "(Filter)"
 
     });
 });

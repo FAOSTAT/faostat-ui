@@ -5,18 +5,18 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-        search_for_a_domain: "Search for a Domain e.g. crops, food security, fertilizers",
-        related_documents: "Related Documents",
-        selection_too_large:  "Selection is too large.",
-        suggest_bulk_downloads:  "Please use the <strong>Bulk Downloads</strong> or reduce the selection.",
-        suggest_bulk_downloads_or_table: "Please use the <strong>Bulk Downloads or Standard Table.</strong>",
-        back_to_domains_list: "Back to domains' list",
-        last_update: "Last Update",
-        full_metadata: "Full Metadata",
-        contacts_email: "Contacts Email",
-        where_is_the_data: "Where is the data?",
-        show_data_info_message: "Please make a selection above and press <i>Show Data</i>",
-        open_domain_list: "Open domain list"
+        search_for_a_domain: "Filtrar la lista de dominios, p. ej. cultivos, seguridad alimentaria, fertilizantes, etc.",
+        related_documents: "Documentos relacionados",
+        selection_too_large: "La selección es demasiado amplia.",
+        suggest_bulk_downloads: "Por favor utilice la <strong>Descarga en bloque</strong> o reduzca la selección.",
+        suggest_bulk_downloads_or_table: "Por favor utilice la <strong>Descarga en bloque</strong> o seleccione <strong>Tabla</strong> como salida de datos.",
+        back_to_domains_list: "Volver a la lista de dominios",
+        last_update: "Última actualización",
+        full_metadata: "Todos los metadatos",
+        contacts_email: "Correo electrónico de contacto",
+        where_is_the_data: "¿Dónde están los datos?",
+        show_data_info_message: "Por favor realice una selección en la parte superior y haga clic en <i>Mostrar Datos</i>",
+        open_domain_list: "Abrir la lista de dominios"
 
     });
 
