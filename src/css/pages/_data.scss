@@ -58,3 +58,24 @@
 
   }
 }
+
+// Arabix fix
+.ar {
+
+  .fs-data-group-title {
+
+    position: relative;
+    padding-left: 0px;
+    padding-right: 47px;
+
+    span {
+      position: absolute;
+      //left: 0;
+      right: 0;
+      //top: 50%;
+      top: 45%;
+      @include fx-transfor-me(translateY(-50%));
+    }
+
+  }
+}
