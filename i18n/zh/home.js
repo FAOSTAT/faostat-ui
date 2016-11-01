@@ -30,8 +30,8 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         development_goals_text: "2030年可持续发展议程》包括了17个可持续发展目标（SDGs），这些新的全球性目标在2016年1月帮助实现了千年发展目标。该SDGs将帮助塑造未来十五年的国家发展机会。<br><br>从消除贫困与饥饿到应对气候变化和维护我们的自然资源，粮食与农业是2030年议程的核心重点。",
 
         // Contacts
-        rome: "Rome",
-        italy: "Italy",
+        rome: "罗马",
+        italy: "意大利",
         info: "信息",
 
         explore_data: "浏览数据",
