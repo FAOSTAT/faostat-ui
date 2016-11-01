@@ -6,7 +6,9 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
     return $.extend(true, {}, Common, {
 
         // overwrite of the common language to have the label in english
-        definitions_and_standards: "Definitions and standards",
-        
+        compare: "Compare",
+        compare_data: "Compare Data",
+        domains: 'Domains',
+
     });
 });

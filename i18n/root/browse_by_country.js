@@ -17,7 +17,10 @@ define(['jquery', 'i18n!nls/common'], function ($, I18N) {
         economic_and_political_stability: "Economic and political stability",
         production: "Production",
         emissions: "Emissions",
-        economy: "Economy"
+        economy: "Economy",
+
+        fao_statistical_yearbook_summary: 'FAO Statistical Yearbook - Country',
+        fao_statistical_yearbook_summary_world:  'FAO Statistical Yearbook - World',
 
     });
 

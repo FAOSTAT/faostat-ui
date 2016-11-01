@@ -6,24 +6,24 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
     return $.extend(true, {}, Common, {
 
         // bulk downloads
-        bulk_download: "Bulk Download",
-        all_faostat_data: "All FAOSTAT Data",
-        updated_on: "Updated on",
+        bulk_download: "تنزيل مقادير كبيرة من البيانات",
+        all_faostat_data: "FAOSTAT جميع بيانات",
+        updated_on: "تمّ تحديثها في",
 
         // database updates
-        database_updates: "Database Updates",
+        database_updates: "مستجدات قاعدة البيانات",
 
         // Statistical Yearbook
-        fao_statistical_yearbooks: "FAO Statistical Yearbooks",
-        fao_statistical_yearbooks_text: "The FAO Statistical Yearbook provides a selection of indicators on food and agriculture by country. <br><br> The first part of the book includes thematic spreads with data visualizations (graphs, charts, and maps) with basic text. The second part has country-level tables for a selected number of indicators.",
+        fao_statistical_yearbooks: "كتب الإحصاء السنوية عن المنظمة",
+        fao_statistical_yearbooks_text: "يقدم كتاب الإحصاء السنوي عن المنظمة مجموعة مختارة من المؤشرات بشأن الأغذية والزراعة حسب البلدان.يتضمن الجزء الأول من الكتاب جداول بيانات مواضيعية توفر بيانات مرئية (رسوما وأشكالا بيانية، وخرائط) إلى جانب النص الأساسي. ويتضمن الجزء الثاني جداول بعدد مختار من المؤشرات تتعلّق بالبلدان.",
 
         // country indicators
-        country_indicators: "Country Indicators",
-        country_indicators_text: "Country indicators provide an overview of key indicators and charts by country.",
+        country_indicators: "المؤشرات القطرية",
+        country_indicators_text: "توفر المؤشرات القطرية لمحة عامة عن المؤشرات والرسوم البيانية الرئيسية حسب البلد.",
 
         // Rankings
-        rankings: "Rankings",
-        rankings_text: "Rankings indicators provide an overview of key indicators and charts by commodity.",
+        rankings: "الترتيب",
+        rankings_text: "توفر مؤشرات التصنيف العالمي لمحة عامة عن المؤشرات والرسوم البيانية الرئيسية بحسب السلعة.",
 
         // Food security in the 2030 Agenda for Sustainable Development
         development_goals: "الأغذية والزراعة في جدول أعمال 2030 للتنمية المستدامة",
@@ -32,11 +32,11 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
         // Contacts
         rome: "Rome",
         italy: "Italy",
-        info: "Info",
+        info: "للحصول على المعلومات",
 
-        explore_data: "Explore Data",
-        explore_data_title: "Food and agriculture data",
-        explore_data_text: "FAOSTAT provides free access to food and agriculture data for over 245 countries and territories and covers all FAO regional groupings <br> from 1961 to the most recent year available."
+        explore_data: "استكشاف البيانات",
+        explore_data_title: "بيانات عن الأغذية والزراعة",
+        explore_data_text: "توفر قاعدة البيانات الإحصائية الاطّلاع المجاني على بيانات الأغذية والزراعة لأكثر من 245 بلدا وإقليما، وتشمل جميع = توفر قاعدة البيانات الإحصائية الاطّلاع المجاني على بيانات الأغذية والزراعة لأكثر من 245 بلدا وإقليما، وتشمل جميع التجمعات الإقليمية التابعة للمنظمة في الفترة من 1961 إلى السنة الأخيرة المتاحة."
 
     });
 

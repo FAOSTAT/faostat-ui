@@ -294,6 +294,39 @@ h1#logo-ltr {
 
 }
 
+// Russian fix
+.ru {
+
+  .faostat_ui_menu .navbar-default {
+
+    font-size: 13px;
+
+    &.navbar-left {
+
+      @media (min-width: 768px) {
+
+        li {
+          max-width: 120px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+        }
+
+      }
+
+    }
+
+    .fs-menu-search-container {
+      // TODO: dirty fix on height. check a better solution.
+      height: 44px;
+    }
+
+  }
+
+}
+
+
 .navbar-default .navbar-toggle {
   border-color: transparent;
 }

@@ -19,6 +19,10 @@ define({
     no_docs_available: "Aucun document disponible",
     show_more: "montrer plus",
     show_less: "montrer moins",
+
+    aggregation: 'Agrégaction',
+    fromyear: "Depuis l'année",
+    toyear: "A l'année",
     average: "Moyenne",
     sum: "Somme",
     close: "fermé",

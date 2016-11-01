@@ -5,8 +5,8 @@ define(['jquery', 'i18n!nls/common'], function ($, Common) {
 
     return $.extend(true, {}, Common, {
 
-        faq: "FAQ"
+        search_for_a_domain: "اختيار قائمة المجالات، مثلاً المحاصيل، الأمن الغذائي، الأسمدة"
 
     });
-    
+
 });

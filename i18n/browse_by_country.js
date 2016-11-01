@@ -3,5 +3,7 @@ define({
     "root": true,
     "es": true,
     "fr": true,
-    "zh": true
+    "zh": true,
+    "ar": true,
+    "ru": true
 });
