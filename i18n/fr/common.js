@@ -31,7 +31,7 @@ define({
     download_data: "Télécharger les données",
     show_data: "Montrer les données",
     data_preview: "Aperçu des données",
-    report: "Compte",
+    report: "Rapport",
 
     // Table
     next: "prochain",
