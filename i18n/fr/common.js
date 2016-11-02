@@ -19,7 +19,6 @@ define({
     no_docs_available: "Aucun document disponible",
     show_more: "montrer plus",
     show_less: "montrer moins",
-
     aggregation: 'Agrégaction',
     fromyear: "Depuis l'année",
     toyear: "A l'année",
@@ -32,6 +31,7 @@ define({
     download_data: "Télécharger les données",
     show_data: "Montrer les données",
     data_preview: "Aperçu des données",
+    report: "Compte",
 
     // Table
     next: "prochain",

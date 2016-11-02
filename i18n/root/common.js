@@ -26,6 +26,7 @@ define({
     download_data: "Download Data",
     show_data: "Show Data",
     data_preview: "Data preview",
+    report: "Report",
 
     // Table
     next: "next",
@@ -125,6 +126,6 @@ define({
     reporterarea: "Reporter Area",
     source: "Source",
     survey: "Survey",
-    year: "Year",
+    year: "Year"
 
 });

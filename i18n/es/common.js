@@ -26,6 +26,7 @@ define({
     download_data: "Descargar Datos",
     show_data: "Mostrar Datos",
     data_preview: "Previsualización de datos",
+    report: "Informe",
 
     // Table
     next: "Siguiente",
