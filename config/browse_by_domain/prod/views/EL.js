@@ -156,8 +156,8 @@ define([
                         template: {
                             title: {
                                 "en":"{{item}} {{element}} (Top 10 Countries)",
-                                "fr":"{{item}} {{element}} (10 pays)",
-                                "es":"{{item}} {{element}} (10 países)"
+                                "fr":"{{item}} {{element}} (10 pays principaux)",
+                                "es":"{{item}} {{element}} (los 10 países principales)"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

@@ -104,8 +104,8 @@ define([
                         template: {
                             title: {
                                 en: "{{item}} {{element}} by country",
-                                fr: "{{item}} {{element}} by country",
-                                es: "{{item}} {{element}} by country"
+                                fr: "{{item}} {{element}} par pays",
+                                es: "{{item}} {{element}} por país"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -134,8 +134,8 @@ define([
                         template: {
                             title: {
                                 en: "{{item}}, {{element}} in {{area}}",
-                                fr: "{{item}}, {{element}} in {{area}}",
-                                es: "{{item}}, {{element}} in {{area}}"
+                                fr: "{{item}}, {{element}} en {{area}}",
+                                es: "{{item}}, {{element}} en {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -169,8 +169,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 countries - {{item}}, {{element}}",
-                                fr: "Top 10 countries - {{item}}, {{element}}",
-                                es: "Top 10 countries - {{item}}, {{element}}"
+                                fr: "10 pays principaux - {{item}}, {{element}}",
+                                es: "Los 10 países principales - {{item}}, {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

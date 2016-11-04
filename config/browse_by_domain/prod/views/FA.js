@@ -134,8 +134,8 @@ define([
                         template: {
                             title: {
                                 en: "Food aid shipments {{recipientarea}} (Total Donors)",
-                                fr: "Food aid shipments {{recipientarea}} (Total Donors)",
-                                es: "Food aid shipments {{recipientarea}} (Total Donors)"
+                                fr: "Expédition d'aides alimentaires {{recipientarea}} (Total donateurs)",
+                                es: "Envíos de ayuda alimentaria {{recipientarea}} (Total de donantes)"
                             },
                             subtitle: "{{year}}"
                         }
@@ -207,8 +207,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 food aid shipments, {{item}} by country (Total Donors)",
-                                fr: "Top 10 food aid shipments, {{item}} by country (Total Donors)",
-                                es: "Top 10 food aid shipments, {{item}} by country (Total Donors)"
+                                fr: "10 expéditions d'aides alimentaires principaux, {{item}} par pays (Total donateurs)",
+                                es: "Los 10 envíos de ayuda alimentaria principales, {{item}} por país (Total de donantes)"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -253,8 +253,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 food aid shipments, {{recipientarea}} by item (Total Donors)",
-                                fr: "Top 10 food aid shipments, {{recipientarea}} by item (Total Donors)",
-                                es: "Top 10 food aid shipments, {{recipientarea}} by item (Total Donors)"
+                                fr: "10 expéditions d'aides alimentaires principaux, {{recipientarea}} par produit (Total donateurs)",
+                                es: "Los 10 envíos de ayuda alimentaria principales, {{recipientarea}} por producto (Total de donantes)"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

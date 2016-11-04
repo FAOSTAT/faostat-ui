@@ -87,7 +87,7 @@ define([
                             title: {
                                 en: "Distribution of {{item}} {{element}} by country (%)",
                                 fr: "Répartition de {{item}} {{element}} par pays (%)",
-                                es: "Distribución de {{item}} {{element}} por países (%)"
+                                es: "Distribución de {{item}} {{element}} por país (%)"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -116,8 +116,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 countries - {{item}}, {{element}}",
-                                fr: "Top 10 countries - {{item}}, {{element}}",
-                                es: "Top 10 countries - {{item}}, {{element}}"
+                                fr: "10 pays principaux - {{item}}, {{element}}",
+                                es: "Los 10 países principales - {{item}}, {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

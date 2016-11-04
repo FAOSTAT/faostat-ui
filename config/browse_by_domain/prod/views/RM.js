@@ -115,8 +115,8 @@ define([
                         template: {
                             title: {
                                 en: "Imports of top 10 importers (quantity), {{item}}",
-                                fr: "Importations du top 10 des importateurs (quantité), {{item}}",
-                                es: "Importaciones de los 10 principales importadores (cantidad), {{item}}"
+                                fr: "Importations des 10 importateurs principaux (quantité), {{item}}",
+                                es: "Importaciones de los 10 importadores principales (cantidad), {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -161,8 +161,8 @@ define([
                         template: {
                             title: {
                                 en: "Exports of top 10 exportes (quantity), {{item}}",
-                                fr: "exportations du top 10 des exportateurs (quantité), {{item}}",
-                                es: "Exportaciones de los 10 principales exportadores (cantidad), {{item}}"
+                                fr: "Exportations des 10 exportateurs principaux (quantité), {{item}}",
+                                es: "Exportaciones de los 10 exportadores principales (cantidad), {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -207,8 +207,8 @@ define([
                         template: {
                             title: {
                                 en: "Imports of top 10 importers (value), {{item}}",
-                                fr: "Importations du top 10 des importateurs (valeur), {{item}}",
-                                es: "Importaciones de los 10 principales importadores (valor), {{item}}"
+                                fr: "Importations des 10 importateurs principaux (valeur), {{item}}",
+                                es: "Importaciones de los 10 importadores principales (valor), {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -253,8 +253,8 @@ define([
                         template: {
                             title: {
                                 en: "Exports of top 10 exportes (value), {{item}}",
-                                fr: "exportations du top 10 des exportateurs (valeur), {{item}}",
-                                es: "Exportaciones de los 10 principales exportadores (valor), {{item}}"
+                                fr: "Exportations des 10 exportateurs principaux (valeur), {{item}}",
+                                es: "Exportaciones de los 10 exportadores principales (valor), {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

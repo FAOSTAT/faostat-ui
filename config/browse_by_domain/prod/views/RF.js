@@ -145,8 +145,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Consumption of top 10 consumers",
-                                fr: "Consommation des 10 principaux consommateur",
-                                es: "Consumo de los 10 principales consumadores"
+                                fr: "Consommation des 10 consommateurs principaux",
+                                es: "Consumo de los 10 consumadores principales"
                             },
                             subtitle: "{{aggregation}} 2002 - 2007"
                         }
@@ -195,8 +195,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Consumption of top 10 consumers",
-                                fr: "Consommation des 10 principaux consommateur",
-                                es: "Consumo de los 10 principales consumadores"
+                                fr: "Consommation des 10 consommateurs principaux",
+                                es: "Consumo de los 10 consumadores principales"
                             },
                             subtitle: "{{aggregation}} 2008 - 2013"
                         }

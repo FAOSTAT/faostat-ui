@@ -63,9 +63,9 @@ define([
                     labels: {
                         default: {
                             footer: {
-                                en: "<small><b>Data are expressed in formulated products for the following countries</b><br><i>Algeria, Bahamas, Bangladesh, Bhutan, Cyprus, Fiji, Jamaica, Mauritius, Mexico, Montenegro, Occupied Palestinian Territory, Panama, Republic of Korea, Serbia and Montenegro, Slovakia, Syrian Arab Republic, Trinidad and Tobago</i></small>",
-                                fr: "<small><b>Data are expressed in formulated products for the following countries</b><br><i>Algeria, Bahamas, Bangladesh, Bhutan, Cyprus, Fiji, Jamaica, Mauritius, Mexico, Montenegro, Occupied Palestinian Territory, Panama, Republic of Korea, Serbia and Montenegro, Slovakia, Syrian Arab Republic, Trinidad and Tobago</i></small>",
-                                es: "<small><b>Data are expressed in formulated products for the following countries</b><br><i>Algeria, Bahamas, Bangladesh, Bhutan, Cyprus, Fiji, Jamaica, Mauritius, Mexico, Montenegro, Occupied Palestinian Territory, Panama, Republic of Korea, Serbia and Montenegro, Slovakia, Syrian Arab Republic, Trinidad and Tobago</i></small>",
+                                en: "<small><b>Data are expressed in formulated products for the following countries:</b><br><i>Algeria, Bahamas, Bangladesh, Bhutan, Cyprus, Fiji, Jamaica, Mauritius, Mexico, Montenegro, Occupied Palestinian Territory, Panama, Republic of Korea, Serbia and Montenegro, Slovakia, Syrian Arab Republic, Trinidad and Tobago</i></small>",
+                                fr: "<small><b>Les données sont exprimées en produits formulés pour les pays suivants:</b><br><i>Algérie, Bahamas, Bangladesh, Bhoutan, Chypre, Fidji, Jamaïque, Maurice, Mexique, Monténégro, Panama, République arabe syrienne, République de Corée, Serbie-et-Monténégro, Slovaquie, Territoire palestinien occupé, Trinité-et-Tobago</i></small>",
+                                es: "<small><b>Los datos se expresan en productos formulados para los siguientes países:</b><br><i>Argelia, Bahamas, Bangladesh, Bhután, Chipre, Eslovaquia, Fiji, Jamaica, Mauricio, México, Montenegro, Panamá, República Árabe Siria, República de Corea, Serbia y Montenegro, Territorio Palestino Ocupado, Trinidad y Tabago</i></small>",
                             }
                         },
 
@@ -77,7 +77,7 @@ define([
                                 es: "Consumo de plaguicidas, {{area}} "
                             },
                             subtitle: "{{year}}",
-                            footer: "{{{footer}}}footer"
+                            footer: "{{{footer}}}"
                         }
                     },
 

@@ -266,8 +266,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 areas by share of sector {{item}} in CO<sub>2</sub>  emissions",
-                                fr: "Les 10 premiers pays par part du secteur {{item}} dans les émissions de CO<sub>2</sub>",
-                                es: "Principales 10 áreas según la cuota del sector {{item}} en las emisiones de CO<sub>2</sub>"
+                                fr: "Les 10 pays principaux par part du secteur {{item}} dans les émissions de CO<sub>2</sub>",
+                                es: "Los 10 países principales según la cuota del sector {{item}} en las emisiones de CO<sub>2</sub>"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

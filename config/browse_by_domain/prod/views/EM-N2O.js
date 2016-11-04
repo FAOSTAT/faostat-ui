@@ -280,8 +280,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 areas by share of sector {{item}} in N<sub>2</sub>O emissions",
-                                fr: "Les 10 premiers pays par part du secteur {{item}} dans les émissions de N<sub>2</sub>O",
-                                es: "Principales 10 áreas según la cuota del sector {{item}} en las emisiones de N<sub>2</sub>O"
+                                fr: "Les 10 pays principaux par part du secteur {{item}} dans les émissions de N<sub>2</sub>O",
+                                es: "Los 10 países principales según la cuota del sector {{item}} en las emisiones de N<sub>2</sub>O"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

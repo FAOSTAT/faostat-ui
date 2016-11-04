@@ -107,8 +107,8 @@ define([
                         template: {
                             title: {
                                 en: "{{item}}, {{element}} by country",
-                                fr: "{{item}}, {{element}} by country",
-                                es: "{{item}}, {{element}} by country"
+                                fr: "{{item}}, {{element}} par pays",
+                                es: "{{item}}, {{element}} por país"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

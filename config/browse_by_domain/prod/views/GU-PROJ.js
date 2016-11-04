@@ -270,7 +270,7 @@ define([
                             title: {
                                 en: "Emissions by animal type (CO2 equivalent), {{area}}",
                                 fr: "Émissions par type d'animal (CO2 équivalent), {{area}}",
-                                es: "Emissions  por tipo de animal (CO2 equivalente), {{area}}"
+                                es: "Emissions por tipo de animal (CO2 equivalente), {{area}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

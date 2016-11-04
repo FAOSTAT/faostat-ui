@@ -20,7 +20,9 @@ define(['jquery', 'i18n!nls/common'], function ($, I18N) {
         emissions: "Emisiones",
         economy: "Economía",
         fao_statistical_yearbook_summary: "Anuario estadístico de la FAO - País",
-        fao_statistical_yearbook_summary_world: "Anuario estadístico de la FAO - Mundo"
+        fao_statistical_yearbook_summary_world: "Anuario estadístico de la FAO - Mundo",
+        world: "Mundo",
+        regions: "Regiones"
 
     });
 

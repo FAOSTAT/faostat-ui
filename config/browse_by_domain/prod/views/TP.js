@@ -166,8 +166,8 @@ define([
                         template: {
                             title: {
                                 en: "Exports of top 5 exporters of {{item}}",
-                                fr: "Exportations des 5 meilleurs exportateurs de {{item}}",
-                                es: "Exportaciones de los 5 principales exportadores de {{item}}"
+                                fr: "Exportations des 5 exportateurs principaux de {{item}}",
+                                es: "Exportaciones de los 5 exportadores principales de {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -214,8 +214,8 @@ define([
                         template: {
                             title: {
                                 en: "Imports of top 5 importers of {{item}}",
-                                fr: "Importations des 5 meilleurs importateurs de {{item}}",
-                                es: "Importaciones de los 5 principales importadores de {{item}}"
+                                fr: "Importations des 5 importateurs principaux de {{item}}",
+                                es: "Importaciones de los 5 importadores principales de {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

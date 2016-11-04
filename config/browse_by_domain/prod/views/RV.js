@@ -100,8 +100,8 @@ define([
                         template: {
                             title: {
                                 en: "{{item}}, {{element}} by country",
-                                fr: "{{item}}, {{element}} by country",
-                                es: "{{item}}, {{element}} by country"
+                                fr: "{{item}}, {{element}} par pays",
+                                es: "{{item}}, {{element}} por país"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -204,8 +204,8 @@ define([
                         template: {
                             title: {
                                 en: "{{area}} {{element}} by fertilizer",
-                                fr: "{{area}} {{element}} by fertilizer",
-                                es: "{{area}} {{element}} by fertilizer"
+                                fr: "{{area}} {{element}} par type d'engrais",
+                                es: "{{area}} {{element}} por tipo de fertilizante"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

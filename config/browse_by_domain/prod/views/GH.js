@@ -264,8 +264,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 emitters (CO2 equivalent), {{item}}",
-                                fr: "Principaux 10 émetteurs (CO2 équivalent), {{item}}",
-                                es: "Principales 10 emisores (CO2 equivalente), {{item}}"
+                                fr: "10 émetteurs principaux (CO2 équivalent), {{item}}",
+                                es: "Los 10 emisores principales (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

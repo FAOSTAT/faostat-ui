@@ -134,7 +134,7 @@ define([
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Shares by country of sector {{item}} in CH<sub>4</sub>  emissions",
+                                en: "Shares by country of sector {{item}} in CH<sub>4</sub> emissions",
                                 fr: "Parts par pays du secteur {{item}} dans les émissions de CH<sub>4</sub>",
                                 es: "Cuotas por país del sector {{item}} en las emisiones de CH<sub>4</sub>"
                             },
@@ -192,7 +192,7 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Share of each sector in CH<sub>4</sub>  emissions",
+                                en: "Share of each sector in CH<sub>4</sub> emissions",
                                 fr: "Part de chaque secteur dans les émissions de CH<sub>4</sub>",
                                 es: "Cuota de cada sector en las emisiones de CH<sub>4</sub>"
                             },
@@ -278,8 +278,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 areas by share of sector {{item}} in CH<sub>4</sub> emissions",
-                                fr: "Les 10 premiers pays par part du secteur {{item}} dans les émissions de CH<sub>4</sub>",
-                                es: "Principales 10 áreas según la cuota del sector {{item}} en las emisiones de CH<sub>4</sub>"
+                                fr: "Les 10 pays principaux par part du secteur {{item}} dans les émissions de CH<sub>4</sub>",
+                                es: "Los 10 países principales según la cuota del sector {{item}} en las emisiones de CH<sub>4</sub>"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

@@ -130,9 +130,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production of {{item}} top 10 producers",
-                                fr: "Production of {{item}} top 10 producers",
-                                es: "Production of {{item}} top 10 producers"
+                                en: "Production of {{item}}: top 10 producers",
+                                fr: "Production of {{item}}: 10 principaux producteurs",
+                                es: "Production of {{item}}: los 10 productores principales"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

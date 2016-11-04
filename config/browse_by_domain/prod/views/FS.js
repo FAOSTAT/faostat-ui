@@ -64,8 +64,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Prevalence of undernourishment (%) - 3 years average",
-                                fr: "Prevalence of undernourishment (%) - 3 years average",
-                                es: "Prevalence of undernourishment (%) - 3 years average"
+                                fr: "Prévalence de la sous-alimentation (%) (moyenne sur 3 ans)",
+                                es: "Prevalencia de la subalimentación (%) (promedio de 3 años)"
                             },
                             subtitle: "{{year}}"
                         }
@@ -109,8 +109,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Average dietary supply adequacy (%)",
-                                fr: "Average dietary supply adequacy (%)",
-                                es: "Average dietary supply adequacy (%)"
+                                fr: "Suffisance des apports énergétiques alimentaires moyens (%) (moyenne sur 3 ans)",
+                                es: "Suficiencia del suministro medio de energía alimentaria (%) (promedio de 3 años)"
                             },
                             subtitle: "{{year}}"
                         }
@@ -154,8 +154,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Domestic food price level index (index)",
-                                fr: "Domestic food price level index (index)",
-                                es: "Domestic food price level index (index)"
+                                fr: "Indice national des prix des aliments (indice)",
+                                es: "Índice nacional de precios de los alimentos (índice)"
                             },
                             subtitle: "{{year}}"
                         }
@@ -199,8 +199,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Percentage of children under 5 years of age who are underweight (%)",
-                                fr: "Percentage of children under 5 years of age who are underweight (%)",
-                                es: "Percentage of children under 5 years of age who are underweight (%)"
+                                fr: "Pourcentage des enfants de moins de 5 ans présentant une insuffisance pondérale (%)",
+                                es: "Porcentaje de niños menores de 5 años aquejados de insuciencia ponderal (%)"
                             },
                             subtitle: "{{year}}"
                         }

@@ -25,7 +25,7 @@ define([
             "text": {
                 "en": "Emissions of methane and nitrous oxide from the on-site combustion of crop residues",
                 "fr": "Émissions de méthane et d'oxyde nitreux provenant de la combustion sur place des résidus de cultures",
-                "es": "Émissions de méthane et d'oxyde nitreux provenant de la combustion sur place des résidus de cultures"
+                "es": "Las emisiones de metano y óxido nitroso producidos por la combustión de residuos agrícolas quemados in situ"
             }
             //,pdf: "GT.pdf"
         },
@@ -287,7 +287,7 @@ define([
                             title: {
                                 en: "Emissions by crop type (CO2 equivalent), {{area}}",
                                 fr: "Émissions par type de culture (CO2 équivalent), {{area}}",
-                                es: "Emissions  por tipo de cultivo (CO2 equivalente), {{area}}"
+                                es: "Emissions por tipo de cultivo (CO2 equivalente), {{area}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

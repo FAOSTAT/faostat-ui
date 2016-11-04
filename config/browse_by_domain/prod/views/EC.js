@@ -112,8 +112,8 @@ define([
                         template: {
                             title: {
                                 "en":"Ammonia (NH3) emissions from agriculture (Top 10 Countries)",
-                                "fr":"Ammoniac (NH3) provenant de l'agriculture (10 pays)",
-                                "es":"Amoniaco (NH3) procedentes de la agricultura (10 países)"
+                                "fr":"Ammoniac (NH3) provenant de l'agriculture (10 pays principaux)",
+                                "es":"Amoniaco (NH3) procedentes de la agricultura (los 10 países principales)"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

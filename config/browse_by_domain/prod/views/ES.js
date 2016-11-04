@@ -61,8 +61,8 @@ define([
                         template: {
                             title: {
                                 "en": "Average carbon content in the topsoil as a % in weight (%) in 2008 (Top 10 countries)",
-                                "fr": "Average carbon content in the topsoil as a % in weight (%) in 2008 (Top 10 countries)",
-                                "es": "Average carbon content in the topsoil as a % in weight (%) in 2008 (Top 10 countries)"
+                                "fr": "La teneur moyenne en carbone dans la couche arable en % en poids (%) en 2008 (10 pays principaux)",
+                                "es": "El contenido promedio de carbono en la capa superior del suelo como un % en peso (%) en 2008 (Los 10 países principales)"
                             },
                             subtitle: "2008"
                         }
@@ -109,8 +109,8 @@ define([
                         template: {
                             title: {
                                 "en": "Average land degradation in GLASOD erosion degree (degrees) by country in 1991",
-                                "fr": "Average land degradation in GLASOD erosion degree (degrees) by country in 1991",
-                                "es": "Average land degradation in GLASOD erosion degree (degrees) by country in 1991"
+                                "fr": "Dégradation des terres moyenne exprimée en degré GLASOD d'érosion (degré) par pays en 1991",
+                                "es": "Promedio de degradación de la tierra en grados de erosión GLASOD (grados) por país en 1991"
                             },
                             subtitle: "1991"
                         }
@@ -140,8 +140,8 @@ define([
                         template: {
                             title: {
                                 "en": "Average land degradation in GLASOD erosion degree (degrees) in 1991 (Top 10 countries)",
-                                "fr": "Average land degradation in GLASOD erosion degree (degrees) in 1991 (Top 10 countries)",
-                                "es": "Average land degradation in GLASOD erosion degree (degrees) in 1991 (Top 10 countries)"
+                                "fr": "Dégradation des terres moyenne exprimée en degré GLASOD d'érosion (degré) par pays en 1991 (10 pays principaux)",
+                                "es": "Promedio de degradación de la tierra en grados de erosión GLASOD (grados) por país en 1991 (Los 10 países principales)"
                             },
                             subtitle: "1991"
                         }
@@ -188,8 +188,8 @@ define([
                         template: {
                             title: {
                                 "en": "Average soil erosion expressed in GLASOD erosion degree (degrees) by country in 1991",
-                                "fr": "Average soil erosion expressed in GLASOD erosion degree (degrees) by country in 1991",
-                                "es": "Average soil erosion expressed in GLASOD erosion degree (degrees) by country in 1991"
+                                "fr": "Érosion des sols moyenne exprimée en degré GLASOD d'érosion (degré) par pays en 1991",
+                                "es": "Promedio de degradación de la tierra en grados de erosión GLASOD (grados) por país en 1991"
                             },
                             subtitle: "1991"
                         }
@@ -219,8 +219,8 @@ define([
                         template: {
                             title: {
                                 "en": "Average soil erosion expressed in GLASOD erosion degree (degrees) in 1991 (Top 10 countries)",
-                                "fr": "Average soil erosion expressed in GLASOD erosion degree (degrees) in 1991 (Top 10 countries)",
-                                "es": "Average soil erosion expressed in GLASOD erosion degree (degrees) in 1991 (Top 10 countries)"
+                                "fr": "Érosion des sols moyenne exprimée en degré GLASOD d'érosion (degré) par pays en 1991 (10 pays principaux)",
+                                "es": "Promedio de degradación de la tierra en grados de erosión GLASOD (grados) por país en 1991 (Los 10 países principales)"
                             },
                             subtitle: "1991"
                         }

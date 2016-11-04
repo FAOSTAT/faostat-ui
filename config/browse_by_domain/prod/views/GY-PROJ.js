@@ -89,11 +89,14 @@ define([
 
                     // labels
                     labels: {
-                        // labels to dynamically substitute the title and subtitle
+						// labels to dynamically substitute the title and subtitle
                         default: {
-                            item: "Synthetic Nitrogen fertilizers"
+                            item: {
+                                en: "Synthetic Nitrogen fertilizers",
+                                fr: "Engrais azotés synthétiques",
+                                es: "Fertilizantes nitrogenados sintéticos"
+                            }
                         },
-
                         // temp[late to be applied to the config.template for the custom object
                         template: {
                             title: {
@@ -129,11 +132,14 @@ define([
 
                     // labels?
                     labels: {
-
+						// labels to dynamically substitute the title and subtitle
                         default: {
-                            item: "Synthetic Nitrogen fertilizers"
+                            item: {
+                                en: "Synthetic Nitrogen fertilizers",
+                                fr: "Engrais azotés synthétiques",
+                                es: "Fertilizantes nitrogenados sintéticos"
+                            }
                         },
-
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
@@ -176,11 +182,14 @@ define([
 
                     // labels?
                     labels: {
-
+						// labels to dynamically substitute the title and subtitle
                         default: {
-                            item: "Synthetic Nitrogen fertilizers"
+                            item: {
+                                en: "Synthetic Nitrogen fertilizers",
+                                fr: "Engrais azotés synthétiques",
+                                es: "Fertilizantes nitrogenados sintéticos"
+                            }
                         },
-
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
@@ -222,11 +231,14 @@ define([
 
                     // labels?
                     labels: {
-
+						// labels to dynamically substitute the title and subtitle
                         default: {
-                            item: "Synthetic Nitrogen fertilizers"
+                            item: {
+                                en: "Synthetic Nitrogen fertilizers",
+                                fr: "Engrais azotés synthétiques",
+                                es: "Fertilizantes nitrogenados sintéticos"
+                            }
                         },
-
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {

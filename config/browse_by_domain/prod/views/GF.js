@@ -12,9 +12,9 @@ define([
         "comment": {
             "text": {
               "en": "Emissions/removals of carbon dioxide associated with forest and net forest conversion",
-              "es": "Emisiones/absorciones de dióxido de carbono asociadas con foresta y conversión neta de bosque",
-              "fr": "Émissions/absorptions de dioxyde de carbone associés à la forêt et à la conversion nette de forêt"
-            }
+              "fr": "Émissions/absorptions de dioxyde de carbone associés à la forêt et à la conversion nette de forêt",
+              "es": "Emisiones/absorciones de dióxido de carbono asociadas con foresta y conversión neta de bosque"
+           }
             //,pdf: "GT.pdf"
         },
 
@@ -222,8 +222,8 @@ define([
                         template: {
                             title: {
                                 "en": "Top 10 source countries (CO2 equivalent), {{item}}",
-                                "fr": "10 principaux pays sources (CO2 équivalent), {{item}}",
-                                "es": "10 principales países fuentes (CO2 equivalente), {{item}}"
+                                "fr": "10  pays sources principaux (CO2 équivalent), {{item}}",
+                                "es": "Los 10 países fuentes principales (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -268,8 +268,8 @@ define([
                         template: {
                             title: {
                                 "en": "Top 10 sink countries (CO2 equivalent), {{item}}",
-                                "fr": "10 principaux pays puits (CO2 équivalent), {{item}}",
-                                "es": "10 principales países sumidero (CO2 equivalente), {{item}}"
+                                "fr": "10 pays puits principaux (CO2 équivalent), {{item}}",
+                                "es": "Los 10 países sumidero principales (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

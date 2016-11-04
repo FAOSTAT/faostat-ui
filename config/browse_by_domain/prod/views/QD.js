@@ -122,7 +122,7 @@ define([
                         template: {
                             title: {
                                 en: "Production quantities of {{item}} in {{area}}",
-                                fr: "Production de {{item}} dans le {{area}}",
+                                fr: "Production de {{item}} en {{area}}",
                                 es: "Producción de {{item}} en {{area}}"
                             },
                             subtitle: "{{year}}"
@@ -196,9 +196,9 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production of {{item}} top 10 producers",
-                                fr: "Production du {{item}} top 5 des producteurs",
-                                es: "Producción de {{item}} 5 principales productores"
+                                en: "Production of {{item}}: top 5 producers",
+                                fr: "Production de {{item}}: 5 producteurs principaux",
+                                es: "Producción de {{item}}: los 5 productores principales"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

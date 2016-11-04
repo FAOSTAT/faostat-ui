@@ -100,8 +100,8 @@ define([
                         template: {
                             title: {
                                 en: "{{reporterarea}} {{item}} {{element}}",
-                                fr: "{{item}}",
-                                es: "{{item}}"
+                                fr: "{{reporterarea}} {{item}} {{element}}",
+                                es: "{{reporterarea}} {{item}} {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

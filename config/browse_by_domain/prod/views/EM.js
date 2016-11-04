@@ -190,7 +190,7 @@ define([
                             title: {
                                 en: "Share of each sector in total GHG emissions",
                                 fr: "Part de chaque secteur dans les émissions de total GHG",
-                                es: "Cuota de cada sector en las emisiones de  total GHG"
+                                es: "Cuota de cada sector en las emisiones de total GHG"
                             },
                             subtitle: "{{area}}, {{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -239,8 +239,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 areas by share of sector {{item}} in total GHG emissions",
-                                fr: "Les 10 premiers pays par part du secteur {{item}} dans les émissions de total GHG",
-                                es: "Principales 10 áreas según la cuota del sector {{item}} en las emisiones de total GHG"
+                                fr: "Les 10 pays principaux par part du secteur {{item}} dans les émissions de total GHG",
+                                es: "Los 10 países principales según la cuota del sector {{item}} en las emisiones de total GHG"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

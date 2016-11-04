@@ -122,7 +122,7 @@ define([
                             title: {
                                 en: "Percentage of {{item}} {{element}} by continent",
                                 fr: "Pourcentage de {{item}} {{element}} par continent",
-                                es: "Porcentaje del del {{item}} {{element}} por continente"
+                                es: "Porcentaje del {{item}} {{element}} por continente"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -166,8 +166,8 @@ define([
                         template: {
                             title: {
                                 en: "Trend of {{item}} {{element}} by continent",
-                                fr: "Evolution de {{item}} {{element}}  par continent",
-                                es: "Tendencia de {{item}} {{element}}  por continente"
+                                fr: "Evolution de {{item}} {{element}} par continent",
+                                es: "Tendencia de {{item}} {{element}} por continente"
                             },
                             subtitle: "{{year}}"
                         }

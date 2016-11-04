@@ -153,7 +153,9 @@ define([
 
             renderCountryList: function () {
 
-                var templateFilter = (this.o.lang === 'en' || this.o.lang === 'es' || this.o.lang === 'fr' || this.o.lang === 'ru')? '#country_list_latin': '#country_list_other';
+                // TODO: use the other temaplte for not latin characters
+                //var templateFilter = (this.o.lang === 'en' || this.o.lang === 'es' || this.o.lang === 'fr' || this.o.lang === 'ru')? '#country_list_latin': '#country_list_other';
+                var templateFilter = '#country_list_latin';
 
                 this.$COUNTRY_PROFILE.hide();
                 this.$COUNTRY_LIST_CONTAINER.show();
@@ -178,8 +180,11 @@ define([
                         // labels
                         country_indicators: i18nLabels.country_indicators,
                         country_list: i18nLabels.country_list,
-                        data: d
-                    }));
+                        data: d,
+                        url_syb_world: CM.syb.url_world,
+                        world: i18nLabels.world,
+                        regions: i18nLabels.regions,
+                }));
 
 
                 /* Search **/

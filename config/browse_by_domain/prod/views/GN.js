@@ -12,7 +12,7 @@ define([
         "comment": {
             "text": {
                 "en": "Emissions of carbon dioxide, methane and nitrous oxide gases associated with fuel burning and electricity generation in agriculture (including fisheries)",
-                "fr": "Émissions de dioxyde de carbone, méthane et oxyde nitreux liés au brûlage de combustibles et à la production d'électricité dans l'agriculture (y compris la pêche)",
+                "fr": "Émissions de dioxyde de carbone, méthane et oxyde nitreux liés au brûlage de combustibles et à la production d'électricité dans l'agriculture (compris la pêche)",
                 "es": "Emisiones de dióxido de carbono, metano y óxido nitroso asociados a la quema de combustible y a la generación de electricidad en la agricultura (incluyendo las industrias pesqueras)"
             }
             //,pdf: "GT.pdf"
@@ -262,8 +262,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 emitters (CO2 equivalent), {{item}}",
-                                fr: "Principaux 10 émetteurs (CO2 équivalent), {{item}}",
-                                es: "Principales 10 emisores (CO2 equivalente), {{item}}"
+                                fr: "10 émetteurs principaux (CO2 équivalent), {{item}}",
+                                es: "Los 10 emisores principales (CO2 equivalente), {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

@@ -18,9 +18,10 @@ define(['jquery', 'i18n!nls/common'], function ($, I18N) {
         production: "Production",
         emissions: "Emissions",
         economy: "Economy",
-
         fao_statistical_yearbook_summary: 'FAO Statistical Yearbook - Country',
         fao_statistical_yearbook_summary_world:  'FAO Statistical Yearbook - World',
+        world: "World",
+        regions: "Regions"
 
     });
 

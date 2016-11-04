@@ -150,8 +150,8 @@ define([
                         template: {
                             title: {
                                 en: "Fertilizer nutrient use on arable and permanent crop area (Top 10 Countries)",
-                                fr: "Engrais utilisation des éléments nutritifs sur la zone des cultures arables et cultures permanentes (10 pays)",
-                                es: "El uso de nutrientes de fertilizantes en el área de los cultivos herbáceos y permanente (10 países)"
+                                fr: "Engrais utilisation des éléments nutritifs sur la zone des cultures arables et cultures permanentes (10 pays principaux)",
+                                es: "El uso de nutrientes de fertilizantes en el área de los cultivos herbáceos y permanente (los 10 países principales)"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

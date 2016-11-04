@@ -94,8 +94,8 @@ define([
                         template: {
                             title: {
                                 en: "Agriculture Gross Fixed Capital Formation as a share of Agriculture Value Added",
-                                fr: "Agriculture Gross Fixed Capital Formation as a share of Agriculture Value Added",
-                                es: "Agriculture Gross Fixed Capital Formation as a share of Agriculture Value Added"
+                                fr: "Formation brute de capital fixe (Agriculture, Sylviculture et Pêche), % du Valeur ajoutée (agriculture)",
+                                es: "Formación Bruta de Capital Fijo (Agricultura, Silvicultura y Pesca) como proporción del Valor añadido (agricultura)"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -119,8 +119,8 @@ define([
                         template: {
                             title: {
                                 en: "Gross Fixed Capital Formation (Agriculture, Forestry and Fishing), Agriculture orientation index in {{area}}",
-                                fr: "Gross Fixed Capital Formation (Agriculture, Forestry and Fishing), Agriculture orientation index in {{area}}",
-                                es: "Gross Fixed Capital Formation (Agriculture, Forestry and Fishing), Agriculture orientation index in {{area}}"
+                                fr: "Formation brute de capital fixe (Agriculture, Sylviculture et Pêche), Indice d'orientation agricole en {{area}}",
+                                es: "Formación Bruta de Capital Fijo (Agricultura, Silvicultura y Pesca), Indice de orientación agrícola en {{area}}"
                             },
                             subtitle: "{{yearTimerange}}"
                         }
@@ -155,8 +155,8 @@ define([
                         template: {
                             title: {
                                 en: "{{item}}, Value US$ in {{area}}",
-                                fr: "{{item}}, Value US$ in {{area}}",
-                                es: "{{item}}, Value US$ in {{area}}"
+                                fr: "{{item}}, Valeur US$ en {{area}}",
+                                es: "{{item}}, Valor US$ en {{area}}"
                             },
                             subtitle: "{{yearTimerange}}"
                         }
@@ -190,8 +190,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 countries - {{item}}, Value US$",
-                                fr: "Top 10 countries - {{item}}, Value US$",
-                                es: "Top 10 countries - {{item}}, Value US$"
+                                fr: "10 pays principaux - {{item}}, Valeur US$",
+                                es: "Los 10 países principales - {{item}}, Valor US$"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

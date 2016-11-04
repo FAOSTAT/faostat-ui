@@ -128,8 +128,8 @@ define([
                         template: {
                             title: {
                                 en: "Development flows of {{donor}} to {{purpose}} in {{element}}",
-                                fr: "Development flows of {{donor}} to {{purpose}} in {{element}}",
-                                es: "Development flows of {{donor}} to {{purpose}} in {{element}}"
+                                fr: "Flux de développement de {{donor}} vers {{purpose}} en {{element}}",
+                                es: "Flujos de desarrollo de {{donor}} hacia {{purpose}} en {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -161,8 +161,8 @@ define([
                         template: {
                             title: {
                                 en: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} {{element}}",
-                                fr: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} {{element}}",
-                                es: "Development flow types of {{donor}} to {{purpose}} in {{recipientarea}} {{element}}"
+                                fr: "Types de flux de développement de {{donor}} vers {{purpose}} en {{recipientarea}} {{element}}",
+                                es: "Tipos de flujo de desarrollo de {{donor}} hacia {{purpose}} en {{recipientarea}} {{element}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -195,8 +195,8 @@ define([
                         template: {
                             title: {
                                 en: "Top 10 recipients of {{donor}} in {{element}}",
-                                fr: "Top 10 recipients of {{donor}} in {{element}}",
-                                es: "Top 10 recipients of {{donor}} in {{element}}"
+                                fr: "10 bénéficiaires principaux de {{donor}} en {{element}}",
+                                es: "Los 10 receptores principales de {{donor}} en {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
@@ -236,9 +236,9 @@ define([
                     labels: {
                         template: {
                             title: {
-                                en: "Top 10 donors of {{recipientarea}} in {{element}}",
-                                fr: "Top 10 donors of {{recipientarea}} in {{element}}",
-                                es: "Top 10 donors of {{recipientarea}} in {{element}}"
+                                en: "Top 10 donors to {{recipientarea}} in {{element}}",
+                                fr: "10 donateurs principaux vers {{recipientarea}} en {{element}}",
+                                es: "Los 10 donantes principales hacia {{recipientarea}} en {{element}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }

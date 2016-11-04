@@ -153,8 +153,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Production quantities of {{item}} by country",
-                                fr: "Production quantities of {{item}} by country",
-                                es: "Production quantities of {{item}} by country"
+                                fr: "Quantités de production de {{item}} par pays",
+                                es: "Cantidades de producción de {{item}} por país"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }
@@ -187,8 +187,8 @@ define(function () {
                         template: {
                             title: {
                                 en: "Production quantities of {{item}} in {{area}}",
-                                fr: "Production de {{item}} dans le {{area}}",
-                                es: "Producción de {{item}} en {{area}}"
+                                fr: "Quantités de production de {{item}} en {{area}}",
+                                es: "Cantidades de producción de {{item}} en {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
@@ -261,9 +261,9 @@ define(function () {
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Production of {{item}} top 10 producers",
-                                fr: "Production of {{item}} top 10 producers",
-                                es: "Production of {{item}} top 10 producers"
+                                en: "Production of {{item}}: top 10 producers",
+                                fr: "Production de {{item}}: 10 producteurs principaux",
+                                es: "Producción de {{item}}: los 10 productores principales"
                             },
                             subtitle: "{{aggregation}} {{year}}"
                         }

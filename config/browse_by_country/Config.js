@@ -12,6 +12,11 @@ define([
 
         viewsBasePath: 'config/browse_by_country/prod/',
 
+        syb: {
+            url: 'http://fenixservices.fao.org/faostat/static/syb/syb_{{code}}.pdf',
+            url_world: 'http://fenixservices.fao.org/faostat/static/syb/syb_5000.pdf'
+        },
+
         // default Domain Code used to retrieve the country lists
         countriesDomainCode: 'QC',
         countriesDimensionID: 'countries',
