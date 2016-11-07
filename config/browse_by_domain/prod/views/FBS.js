@@ -110,7 +110,7 @@ define([
                             subtitle: "{{year}}"
                         }
                     },
-                    
+
                     config: {
                         adapter: {
                             adapterType: 'faostat',
@@ -140,7 +140,7 @@ define([
                             title: {
                                 en: "Fat supply quantity and protein supply quantity in {{area}}",
                                 fr: "Disponibilité de matière grasse et disponibilité de protéines en {{area}}",
-                                es: "Suministro alimentarFBSio de energía en {{area}}"
+                                es: "Suministro de proteínas y suministro de grasa en {{area}}"
                             },
                             subtitle: "{{year}}"
                         }
