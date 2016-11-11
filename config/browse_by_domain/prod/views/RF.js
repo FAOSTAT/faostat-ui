@@ -57,7 +57,7 @@ define(function () {
                     type: 'chart',
                     class: "col-xs-12",
 
-                    // labels?
+                    // labels
                     labels: {
                         // template to be applied to the config.template for the custom object
                         template: {
@@ -132,7 +132,7 @@ define(function () {
                         ],
                         "order_by": 'year',
                         "group_by": 'item',
-                        "operator": "AVG"
+                        "operator": "SUM"
                     }
                 },
                 {
