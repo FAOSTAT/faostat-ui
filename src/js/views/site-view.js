@@ -175,13 +175,13 @@ define([
             this.$SEACH_BOX = this.$el.find(s.SEARCH);
 
             // disclaimer
-            amplify.publish(E.NOTIFICATION_INFO, {
+            /*amplify.publish(E.NOTIFICATION_INFO, {
                 title: "Disclaimer",
                 text: "Please note that this is a beta version of the FAOSTAT website which is still undergoing final testing before its official release. The website, its software and all content found on it are provided on an “as is” and “as available” basis. FAO does not give any warranties, whether express or implied, as to the suitability or usability of the website, its software or any of its content. Under no circumstances shall FAO, or its affiliates, or any of their respective agents, employees, information providers or content providers be responsible or liable to any user or anyone else for any inaccuracy, error, omission, interruption, deletion, defect, alteration of or use of any content herein, or for its timeliness or completeness, nor shall they be liable for any failure of performance, computer virus or communication line failure, regardless of cause, or for damages of any kind arising out of use, reference to, or reliance on any information contained within the website. <br> Should you encounter any bugs, glitches, lack of functionality or other problems on the website, please let us know. Your help is greatly appreciated",
                 options: {
                      "positionClass": "toast-bottom-full-width"
                  }
-            });
+            });*/
 
         },
 

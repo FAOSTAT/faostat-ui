@@ -43,7 +43,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "area",
-                        "defaultCodes": ["2"],
+                        "defaultCodes": ["5000"],
                         "filter": {}
                     }
                 },

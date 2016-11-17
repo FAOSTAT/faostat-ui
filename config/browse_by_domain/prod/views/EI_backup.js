@@ -9,6 +9,17 @@ define([
 
     return {
 
+        "relatedViews" : [
+            {
+                title: "View Annex1",
+                id: 'EI',
+                selected: true
+            },
+            {
+                title: "View OECD",
+                id: 'EI_oecd'
+            }
+        ],
 
         "comment": {
             "text": {
@@ -28,6 +39,22 @@ define([
             items: [
                 {
                     // id to be applied on the getData request
+                    "id": "area",
+                    "type": "codelist",
+                    "parameter": "area",
+                    "componentType": {
+                        "class": "col-md-12",
+                        "type": "dropDownList",
+                        "multiple": true
+                    },
+                    "config": {
+                        "dimension_id": "area",
+                        "defaultCodes": ["5000", "5848", "5849"],
+                        "filter": {}
+                    }
+                },
+                {
+                    // id to be applied on the getData request
                     "id": "item",
                     "type": "codelist",
                     "parameter": "item",
@@ -39,22 +66,6 @@ define([
                     "config": {
                         "dimension_id": "item",
                         "defaultCodes": ["1717"],
-                        "filter": {}
-                    }
-                },
-                {
-                    // id to be applied on the getData request
-                    "id": "area",
-                    "type": "codelist",
-                    "parameter": "area",
-                    "componentType": {
-                        "class": "col-xs-4 col-sx-4 col-md-4",
-                        "type": "dropDownList",
-                        //"multiple": true
-                    },
-                    "config": {
-                        "dimension_id": "area",
-                        "defaultCodes": ["5000"],
                         "filter": {}
                     }
                 },
@@ -153,9 +164,50 @@ define([
                         creator: {}
                     },
                     allowedFilter: ['area', 'yearTimeserie', 'item', 'element'],
-                    deniedOnLoadFilter: ['area'],
+                    filter: {}
+                },
+                {
+                    type: 'chart',
+                    class: "col-md-12",
+
+                    // labels
+                    labels: {
+                        // template to be applied to the config.template for the custom object
+                        template: {
+                            title: {
+                                en: "The 10 areas with lowest emissions intensity, {{item}}",
+                                fr: "Les 10 pays avec plus faible intensité des émissions, {{item}}",
+                                es: "Los 10 países con menor intensidad de emisiones, {{item}}"
+                            },
+                            subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
+                        }
+                    },
+
+                    config: {
+                        adapter: {
+                            adapterType: 'faostat',
+                            type: "standard",
+                            xDimensions: ['area'],
+                            yDimensions: 'unit',
+                            valueDimensions: 'value',
+                            seriesDimensions: ['item', 'element'],
+                            decimalPlaces: 2
+                        },
+                        template: {},
+                        creator: {
+                            chartObj: {
+                                chart: {
+                                    type: "column"
+                                }
+                            }
+                        }
+                    },
+                    allowedFilter: ['year', 'item', 'element'],
+                    deniedTemplateFilter: [],
                     filter: {
-                        area: ["5000", "5848", "5849"]
+                        area: ["5000>"],
+                        "order_by": 'value ASC',
+                        "limit": '10'
                     }
                 },
                 {
@@ -167,9 +219,9 @@ define([
                         // template to be applied to the config.template for the custom object
                         template: {
                             title: {
-                                en: "Top 10 areas by emissions intensity, {{item}}",
-                                fr: "Les 10 principaux  pays par intensité des émissions, {{item}}",
-                                es: "Los 10 países principales según la intensidad de emisiones, {{item}}"
+                                en: "The 10 areas with highest emissions intensity, {{item}}",
+                                fr: "Les 10 pays avec majeure intensité des émissions, {{item}}",
+                                es: "Los 10 países con mayor intensidad de emisiones, {{item}}"
                             },
                             subtitle: "{{#isMultipleYears year aggregation}}{{/isMultipleYears}}{{year}}"
                         }
