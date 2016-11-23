@@ -9,7 +9,6 @@ define([
     return Controller.extend({
 
         show: function (params, section) {
-            console.log("download-metadata-controller.show()");
             this.view = new View({
                 region: 'main',
                 section: section,

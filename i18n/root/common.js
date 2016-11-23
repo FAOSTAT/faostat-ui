@@ -1,7 +1,7 @@
 /*global define*/
 define({
 
-    faostat_logo: '<b>FAO</b>STAT',
+    faostat: '<b>FAO</b>STAT',
     fao: "Food and Agriculture Organization of the United Nations",
     statistics_division: "Statistics Division",
     faostat_domains: "FAOSTAT Domains",

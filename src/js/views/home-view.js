@@ -16,9 +16,9 @@ define([
     'faostatapiclient',
     'moment',
     'underscore.string',
+    'require',
     'amplify',
     'bootstrap',
-    'twitter',
     'swiper',
     'jquery.lazyload'
 ], function ($, log,
@@ -30,7 +30,8 @@ define([
              i18nLabels, Handlebars,
              API,
              moment,
-             _s
+             _s,
+             Require
 ) {
 
     'use strict';
@@ -46,18 +47,7 @@ define([
             EXTERNAL_LINK: "[data-link='external']"
         },
 
-        defaults = {
-
-            twitter: {
-                height: {
-                    "en": 880,
-                    "fr": 995,
-                    "es": 950,
-                    "zh": 800
-                }
-            }
-
-        },
+        defaults = {},
 
         HomeView = View.extend({
 
@@ -220,7 +210,6 @@ define([
                 var self = this;
 
                 log.info(self.o.twitter);
-                log.info(twttr);
 
                 var $TWITTER = this.$el.find('#' + s.TWITTER);
 
@@ -228,19 +217,28 @@ define([
 
                 setTimeout(function() {
 
-                   twttr.widgets.createTimeline(
-                        "700247798168551424",
-                        document.getElementById(s.TWITTER),
-                        {
-                            height: self.o.twitter.height[Common.getLocale()] || self.o.twitter.height["en"],
-                            width: '100%',
-                            screenName: "FAOStatistics"
-                        }
-                    );
+                    Require(['twitter'],
+                      function() {
+                       twttr.widgets.createTimeline(
+                           CM.twitter.id,
+                           document.getElementById(s.TWITTER),
+                           {
+                               height: CM.twitter.height[Common.getLocale()] || CM.twitter.height["en"],
+                               width: '100%',
+                               screenName: "FAOStatistics"
+                           }
+                       );
 
-                    amplify.publish(E.LOADING_HIDE, {container: $TWITTER});
+                       amplify.publish(E.LOADING_HIDE, {container: $TWITTER});
 
-                }, 1000);
+                      },
+                      function (e) {
+                          log.error("Twitter widget is unavailable.", e);
+                          amplify.publish(E.LOADING_HIDE, {container: $TWITTER});
+                          $TWITTER.html('Twitter Timeline is unavailable.');
+                      });
+
+                }, 500);
             },
 
             initBulkDownload: function() {
