@@ -184,7 +184,7 @@ define([
 
                 _.each(sortedDomains, function(domain, index) {
 
-                    if (index < CM.MAX_DATABASE_UPDATES) {
+                   // if (index < CM.MAX_DATABASE_UPDATES) {
 
                         var d = $.extend(true, {}, domain),
                             m = moment(domain.date_update),
@@ -197,7 +197,7 @@ define([
 
                         databaseUpdates.push(d);
 
-                    }
+                   // }
 
                 });
 
