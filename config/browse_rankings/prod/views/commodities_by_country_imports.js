@@ -253,7 +253,7 @@ define(function () {
                     deniedTemplateFilter: [],
                     filter: {
                         domain_codes: ['TP'],
-                        List2Codes: ["5610"],
+                        List2Codes: ["5622"],
                         limit: "20"
                     }
                 }
