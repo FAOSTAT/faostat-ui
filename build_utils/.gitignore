@@ -1,12 +1,1 @@
-node_modules
-npm.log
-npm-debug.log
-*.iml
-.idea
-Web.config
-**/.DS_Store
-.DS_Store
-/node_modules/
-/resources/
-/build/
 Config*
