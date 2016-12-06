@@ -54,7 +54,7 @@ define([
                     },
                     "config": {
                         "dimension_id": "year",
-                        "defaultCodes": ['1992'],
+                        "defaultCodes": ['1990'],
                         "filter": {
                         }
                     }
