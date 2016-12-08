@@ -17,8 +17,6 @@ define([
 
     var defaultOptions = {
 
-        //requestType: 'data',
-        //requestType: 'databean',
         requestType: 'data',
         output_type: 'csv',
         name: "FAOSTAT_data"
@@ -42,7 +40,6 @@ define([
             waitingText = options ? (options.waitingText) || null : null,
             self = this,
             r = $.extend(true, {}, request);
-
 
         //log.info("Export.exportData;", request);
         //log.info("Export.exportData;", options);
