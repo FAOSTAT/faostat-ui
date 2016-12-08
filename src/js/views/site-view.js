@@ -437,7 +437,6 @@ define([
                 forceInvisible =  o.forceInvisible || false,
                 scrollPos;
 
-
             if (o && $container) {
 
                 // if not visible in the page (!$container.visible())
@@ -449,7 +448,6 @@ define([
                         scrollPos = $(o.container).offset().top + (-paddingTop);
 
                         if (animate) {
-                            //$(o.container).animate({"height": "47px", "padding-top": "25px"}, {duration: 10, easing: 'easeOutBounce'});
 
                             $('html, body').stop(animateTime).animate(
                                 {
@@ -457,27 +455,6 @@ define([
                                 },
                                 animateTime
                             );
-
-                            // TODO: this requires jquery-ui
-                            /*$('html, body').animate(
-                                {
-                                    scrollTop: scrollPos
-                                },{
-                                    duration: animateTime,
-                                    easing: 'easeInBounce',
-                                   /* specialEasing: {
-                                       // width: "linear",
-                                        height: "easeInOutElastic"
-                                    },*/
-                                   /* complete: function() {}
-                                }
-                            );*/
-/*
-                            $('html, body').stop().animate({
-                                'scrollTop': scrollPos
-                            }, 1000, 'swing', function () {
-                                //window.location.hash = target;
-                            });*/
 
                         } else {
                             $(window).scrollTop(scrollPos);
