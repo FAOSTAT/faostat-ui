@@ -18,7 +18,6 @@ define([
 
         // tracking page
         ga('create', C.GOOGLE_ANALYTICS_ID, "auto");
-        //ga('send', 'pageview');
 
         return this;
     }
@@ -28,7 +27,7 @@ define([
         log.info("GoogleAnalyticsManager; event", data, this);
 
         // set the current pageView (it could be different i.e. using different browser tabs)
-        this.setCurrentPage();
+        this.checkAndSetCurrentPage();
         
         // add section to object
         data.label = data.label || "";
@@ -58,27 +57,30 @@ define([
         }
     };
 
-    GoogleAnalyticsManager.prototype.setCurrentPage = function () {
+    GoogleAnalyticsManager.prototype.checkAndSetCurrentPage = function () {
 
         // Google analytics says that it's required a pageView before and Event
         log.info("GoogleAnalyticsManager; setCurrentPage", Backbone.history.getFragment());
 
-        this.CURRENT_PAGE = Backbone.history.getFragment();
+        // this is set to avoid double counting on the same page
+        var countPageView = this.CURRENT_PAGE !== Backbone.history.getFragment();
 
-        // TOD: get page by the fragment?
+        this.CURRENT_PAGE = Backbone.history.getFragment();
 
         ga('set', {
             page: this.CURRENT_PAGE,
             title: this.CURRENT_PAGE
         });
 
+        return countPageView;
+
     };
 
    GoogleAnalyticsManager.prototype.pageView = function () {
 
-       this.setCurrentPage();
-
-        ga('send', 'pageview');
+       if (this.checkAndSetCurrentPage()) {
+           ga('send', 'pageview');
+       }
 
     };
 

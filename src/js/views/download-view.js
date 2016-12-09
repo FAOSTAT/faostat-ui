@@ -478,10 +478,6 @@ define([
 
             _browseByDomain: function(options) {
 
-                log.info("---------", options);
-
-
-
                 this.$BROWSE.empty();
 
                 // TODO: probably should be avoided
@@ -527,8 +523,6 @@ define([
                 this.$el.find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 
                     self.o.section = $(e.target).data("section"); // activated tab
-
-                    //self.switchTabs(self.o.section, self.o.selected);
 
                     self.changeState();
 

@@ -158,7 +158,7 @@ define([
             amplify.subscribe(E.CONNECTION_PROBLEM, this, this.connectionProblem);
 
             // publishing GA events
-            amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
+            //amplify.publish(E.GOOGLE_ANALYTICS_PAGE_VIEW);
 
             // switch language
             this.$el.find(s.LANGUAGE).find('a').on('click', function(e) {
