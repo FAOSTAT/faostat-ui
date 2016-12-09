@@ -10,7 +10,7 @@ define([
     'bowser',
     'FileSaver',
     'tableExport',
-    'amplify',
+    'amplify'
 ], function ($, log, _, A, E, API, i18nLabels, bowser) {
 
     'use strict';
