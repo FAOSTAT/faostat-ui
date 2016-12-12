@@ -1,6 +1,4 @@
 /*global define, _:false, $, console, amplify, FM*/
-/*jslint todo: true */
-/*jslint nomen: true */
 define([
     'jquery',
     'loglevel',
@@ -20,8 +18,7 @@ define([
              CM,
              template,
              i18nLabels,
-             Common
-) {
+             Common) {
 
     'use strict';
 
@@ -29,89 +26,88 @@ define([
 
             QUESTION: '[data-role="question"]'
 
-    },
-
-
-    FAQView = View.extend({
-
-        autoRender: true,
-
-        className: 'faq',
-
-        template: template,
-
-        initialize: function (options) {
-            this.o = $.extend(true, {}, options);
         },
 
-        getTemplateData: function () {
-            return $.extend(true, {}, i18nLabels, {data: CM.faq[Common.getLocale()] || CM.faq['en'] });
-        },
+        FAQView = View.extend({
 
-        attach: function () {
+            autoRender: true,
 
-            View.prototype.attach.call(this, arguments);
+            className: 'faq',
 
-            /* Update State. */
-            amplify.publish(E.STATE_CHANGE, {faq: 'faq'});
+            template: template,
 
-            this.initVariables();
+            initialize: function (options) {
+                this.o = $.extend(true, {}, options);
+            },
 
-            this.initComponents();
+            getTemplateData: function () {
+                return $.extend(true, {}, i18nLabels, {data: CM.faq[Common.getLocale()] || CM.faq['en']});
+            },
 
-            this.configurePage();
+            attach: function () {
 
-            this.bindEventListeners();
+                View.prototype.attach.call(this, arguments);
 
-        },
+                /* Update State. */
+                amplify.publish(E.STATE_CHANGE, {faq: 'faq'});
 
-        initVariables: function () {
+                this.initVariables();
 
-        },
+                this.initComponents();
 
-        goToQuestion: function(id) {
+                this.configurePage();
 
-            $('html,body').animate({
-                scrollTop: $(id).offset().top
-            });
+                this.bindEventListeners();
 
-        },
+            },
 
-        initComponents: function () {
+            initVariables: function () {
 
-        },
+            },
 
-        configurePage: function () {
+            goToQuestion: function (id) {
 
-        },
+                $('html,body').animate({
+                    scrollTop: $(id).offset().top
+                });
 
-        bindEventListeners: function () {
+            },
 
-            var self = this;
+            initComponents: function () {
 
-            this.$el.find(s.QUESTION).on('click', function(e) {
+            },
 
-                e.preventDefault();
+            configurePage: function () {
 
-                self.goToQuestion(this.getAttribute('data-answer'));
+            },
 
-            });
+            bindEventListeners: function () {
 
-        },
+                var self = this;
 
-        unbindEventListeners: function () {
+                this.$el.find(s.QUESTION).on('click', function (e) {
 
-            this.$el.find(s.QUESTION).off('click');
+                    e.preventDefault();
 
-        },
+                    self.goToQuestion(this.getAttribute('data-answer'));
 
-        dispose: function () {
+                });
 
-            this.unbindEventListeners();
+            },
 
-            View.prototype.dispose.call(this, arguments);
-        }
-    });
+            unbindEventListeners: function () {
+
+                this.$el.find(s.QUESTION).off('click');
+
+            },
+
+            dispose: function () {
+
+                this.unbindEventListeners();
+
+                View.prototype.dispose.call(this, arguments);
+            }
+        });
 
     return FAQView;
 

@@ -28,7 +28,7 @@ define([
 
             show: true
 
-    }
+    };
 
     function CompareFilter(options) {
 

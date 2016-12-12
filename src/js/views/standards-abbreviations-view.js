@@ -1,6 +1,4 @@
 /*global define, _:false, $, console, amplify, FM*/
-/*jslint todo: true */
-/*jslint nomen: true */
 define([
     'jquery',
     'loglevel',

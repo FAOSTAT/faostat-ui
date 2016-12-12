@@ -54,6 +54,7 @@ define([
 
     };
 
+    // TODO: at the moment is used just for testing. The indicator view is not implemented yet.
     IndicatorsView = View.extend({
 
         autoRender: true,

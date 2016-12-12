@@ -34,7 +34,7 @@ define([
     'use strict';
 
     var s,
-        IndicatorsView;
+        StatusView;
 
     s = {
 
@@ -49,7 +49,9 @@ define([
 
     };
 
-    IndicatorsView = View.extend({
+    // It just shows a summary of the status of the domains.
+    // N.B. thee requests are quite heavy
+    StatusView = View.extend({
 
         autoRender: true,
 
@@ -332,6 +334,6 @@ define([
         }
     });
 
-    return IndicatorsView;
+    return StatusView;
 
 });

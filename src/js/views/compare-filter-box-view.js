@@ -11,14 +11,11 @@ define([
     'config/compare/Config',
     'text!templates/compare/compare_filter_box.hbs',
     'text!templates/compare/filter_container.hbs',
-    //'text!templates/compare/dropdown.hbs',
     'i18n!nls/compare',
     'handlebars',
     'faostatapiclient',
     'underscore',
-    //'views/compare-filter-view-backup',
     'lib/compare/compare-filter',
-    //'lib/filter/filter',
     'q',
     'amplify'
 ], function ($, log, View, Common, C, E, A, EC, CM, template, templateFilterContainer, i18nLabels, Handlebars, API, _, Filter, Q) {
@@ -37,8 +34,6 @@ define([
         DOMAIN_HEADING_TITLE: '[data-role="domain-heading-title"]'
 
     };
-
-    // TODO: cache of the dimensions paramenter (a the moment the i.e. /codes/areagroup don't return the paramenter)
 
     var CompareFiltersBoxView = View.extend({
 
@@ -235,9 +230,6 @@ define([
 
                     amplify.publish(E.LOADING_HIDE, { container: $CONTAINER});
 
-                    //log.info("-----------json" ,json);
-                    //log.info("-----------this.DIMENSION_PARAMETER_MAPPIN" ,this.DIMENSION_PARAMETER_MAPPING);
-
                     var indexRequest = 0;
 
                     _.each(this.DIMENSION_PARAMETER_MAPPING, _.bind(function(parameter, id) {
@@ -248,12 +240,6 @@ define([
                         try {
 
                             var v = json[indexRequest];
-
-                            //log.info("-----------id" , id, parameter, $CONTAINER.length, json[id])
-
-                            //var id = v.metadata.parameters.id;
-
-                            //log.info("-----------" ,v.metadata.parameters, id);
 
                             // TODO: to be changed
                             v.container = this.createFilterContainer($CONTAINER, id);
@@ -405,7 +391,7 @@ define([
         collapseFilterBox: function(e) {
 
             e.preventDefault();
-            
+
             var self = this;
 
             this.$PANEL_BODY.toggle("fast", function() {

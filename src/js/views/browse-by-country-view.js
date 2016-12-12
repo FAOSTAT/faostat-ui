@@ -18,8 +18,6 @@ define([
     'faostatapiclient',
     'lib/dashboard-compose/dashboard-compose',
     'fx-m-c/config/adapters/FAOSTAT_fx_map',
-    //'holmes',
-    //'microlight',
     'fenix-ui-map',
     'amplify',
     'instafilta',
@@ -142,12 +140,12 @@ define([
                         self.renderCountryProfile();
                     }
 
-                    })
-                .fail(function(e) {
-                    log.error("BrowseByCountryView.configurePage", e);
-                    amplify.publish(E.LOADING_HIDE, {container: self.$el});
-                    amplify.publish(E.CONNECTION_PROBLEM);
-                });
+                })
+                    .fail(function(e) {
+                        log.error("BrowseByCountryView.configurePage", e);
+                        amplify.publish(E.LOADING_HIDE, {container: self.$el});
+                        amplify.publish(E.CONNECTION_PROBLEM);
+                    });
 
             },
 
@@ -177,39 +175,36 @@ define([
 
                 // labels
                 this.$COUNTRY_LIST_CONTAINER.append(t({
-                        // labels
-                        country_indicators: i18nLabels.country_indicators,
-                        country_list: i18nLabels.country_list,
-                        data: d,
-                        url_syb_world: CM.syb.url_world,
-                        world: i18nLabels.world,
-                        regions: i18nLabels.regions,
+                    // labels
+                    country_indicators: i18nLabels.country_indicators,
+                    country_list: i18nLabels.country_list,
+                    data: d,
+                    url_syb_world: CM.syb.url_world,
+                    world: i18nLabels.world,
+                    regions: i18nLabels.regions,
                 }));
 
 
-                /* Search **/
+                /* Search */
+                // TODO: the search with instafilta is too slow
                 /*this.$SEARCH = this.$COUNTRY_LIST_CONTAINER.find(s.SEARCH);
 
-                 // focus on search
-                 this.$SEARCH.focus();
+                // focus on search
+                this.$SEARCH.focus();
 
-                 this.$SEARCH.instaFilta({
-                 //markMatches: true,
-                 //scope: '.country-list-container',
-                 beginsWith: true,
-                 typeDelay: 200,
-                 onFilterComplete: function(matchedItems) {
+                this.$SEARCH.instaFilta({
+                    //markMatches: true,
+                    //scope: '.country-list-container',
+                    beginsWith: true,
+                    typeDelay: 200,
+                    onFilterComplete: function(matchedItems) {
 
-                 log.info(matchedItems)
-
-                 // show/hide no data div
-                 //if (matchedItems) {
-                 // matchedItems.length > 0 ? self.$NO_DATA.hide() : self.$NO_DATA.show();
-                 //}
-                 }
-                 });*/
-
-                //}
+                        // show/hide no data div
+                        if (matchedItems) {
+                            matchedItems.length > 0 ? self.$NO_DATA.hide() : self.$NO_DATA.show();
+                        }
+                    }
+                });*/
 
             },
 
@@ -264,10 +259,11 @@ define([
 
 
                 // modal
-                this.bindModal();
+                //this.bindModal();
 
             },
 
+            // TODO: not used yet. This could be used as a shortcut to select a different country, like the selection of the domains in data.
             bindModal: function() {
 
                 // modal
@@ -364,7 +360,7 @@ define([
                         title: view.title,
                         index: key,
                         href: (view.href)? view.href.replace('{{code}}', code) : null
-                });
+                    });
 
                 }, this));
 
@@ -422,7 +418,7 @@ define([
                         {
                             area: code
                         }
-                     );
+                    );
                     //dashboard.defaultFilter = $.extend(true, {}, dashboard.defaultFilter, { List1Codes: [code, '3]});
 
                     var d = new DashBoardCompose();
@@ -448,10 +444,10 @@ define([
 
                 this.$COUNTRY_PROFILE_MAP.empty();
 
-                //if ( this.fenixMap === undefined) {
                 this.m = new FM.Map(this.$COUNTRY_PROFILE_MAP, CM.map.fenix_ui_map, CM.map.leaflet);
                 this.m.createMap();
 
+                // TODO: this could be config in map configuration file, or in the module configuration.
                 var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
                     subdomains: 'abcd',
@@ -463,7 +459,6 @@ define([
                     attribution: 'Tiles &copy; Esri &mdash; Source: US National Park Service',
                     maxZoom: 19,
                     zIndex: 0
-                    //opacity: 0.4
                 });
 
                 var MapQuestOpen_Aerial = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.{ext}', {
@@ -473,19 +468,16 @@ define([
                     subdomains: '1234'
                 });
 
-                // https: also suppported.
                 var Esri_OceanBasemap = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
                     attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
                     maxZoom: 13
                 });
 
-                // https: also suppported.
                 var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
                     attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
                     maxZoom: 16
                 });
 
-                // https: also suppported.
                 var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
                     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
                 });
@@ -502,19 +494,6 @@ define([
                     maxZoom: 19
                 });
 
-                // added dirty baselayer
-                //this.m.map.addLayer(Esri_WorldGrayCanvas)
-                this.m.map.addLayer(Esri_WorldPhysical);
-                //this.m.map.addLayer(Esri_WorldImagery);
-
-                var boundary = $.extend(true, {}, MapConfig.layers.boundary);
-                this.m.addLayer(new FM.layer(boundary));
-
-                var highlight = $.extend(true, {}, MapConfig.layers.highlight, {
-                    cql_filter: "faost_code IN ('" + code.join("','") +"')"
-                });
-                this.m.addLayer(new FM.layer(highlight));
-
                 var CartoDB_PositronOnlyLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
                     subdomains: 'abcd',
@@ -523,11 +502,25 @@ define([
                     opacity: 0.9
                 });
 
+                // added dirty baselayer
+                this.m.map.addLayer(Esri_WorldPhysical);
+
+                var boundary = $.extend(true, {}, MapConfig.layers.boundary);
+                this.m.addLayer(new FM.layer(boundary));
+
+                // layer to highlight the selected country
+                var highlight = $.extend(true, {}, MapConfig.layers.highlight, {
+                    cql_filter: "faost_code IN ('" + code.join("','") +"')"
+                });
+                this.m.addLayer(new FM.layer(highlight));
+
+                // added dirty label layer
                 this.m.map.addLayer(CartoDB_PositronOnlyLabels);
 
                 // highlight country
                 // TODO: how to check for old countries (i.e. USSR) or new (i.e. south sudan)?
                 // TODO: FIX IT. in the zoom to remove workspace if needed
+                // TODO: Use a GeoJSON with the correct boundaries.
                 this.m.zoomTo(MapConfig.layers.highlight.layers.replace("faostat:", ""), "faost_code", code);
 
             },
@@ -576,12 +569,10 @@ define([
 
             },
 
-            // TODO: pass the right section instead of being implicit?
             changeState: function () {
 
                 var code = this.o.code ? this.o.code.join(",") : null;
 
-                // dirty fix or should be like that?
                 Common.changeURL((code)? ROUTE.BROWSE_BY_COUNTRY_CODE: ROUTE.BROWSE_BY_COUNTRY, (code) ? [code] : [], false);
 
                 // dirty fix for invalidate size. TODO: remove it from here

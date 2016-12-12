@@ -31,8 +31,7 @@ define([
              API,
              moment,
              _s,
-             Require
-) {
+             Require) {
 
     'use strict';
 
@@ -84,7 +83,7 @@ define([
 
                 this.$el.find("img.lazy").lazyload({
                     threshold: 50,
-                    effect : "fadeIn"
+                    effect: "fadeIn"
                 });
 
                 //update State
@@ -126,7 +125,7 @@ define([
 
                 amplify.publish(E.LOADING_SHOW, {container: self.$DATABASE_UPDATES});
 
-                API.groupsanddomains().then(function(d) {
+                API.groupsanddomains().then(function (d) {
 
                     self.$DATABASE_UPDATES.html(t(self._prepareDatabaseUpdates(d)));
 
@@ -139,7 +138,7 @@ define([
                     });
 
                     // add analytics
-                    self.$DATABASE_UPDATES.find('a').on('click', function() {
+                    self.$DATABASE_UPDATES.find('a').on('click', function () {
 
                         amplify.publish(E.GOOGLE_ANALYTICS_EVENT,
                             $.extend({}, A.home.database_updates, {
@@ -149,7 +148,7 @@ define([
 
                     });
 
-                }).fail(function(e) {
+                }).fail(function (e) {
 
                     // TODO: Handle error
                     log.error("Home.initDatabaseUpdates; error", e);
@@ -160,12 +159,12 @@ define([
 
             },
 
-            _prepareDatabaseUpdates: function(d) {
+            _prepareDatabaseUpdates: function (d) {
 
                 var sortedDomains = [],
                     databaseUpdates = [];
 
-                _.each(d.data, function(domain) {
+                _.each(d.data, function (domain) {
 
                     // clean date for firefox
                     //http://stackoverflow.com/questions/3257460/new-date-is-working-in-chrome-but-not-firefox
@@ -176,28 +175,28 @@ define([
                 });
 
                 // order by date
-                sortedDomains = _.sortBy(sortedDomains, function(o){
+                sortedDomains = _.sortBy(sortedDomains, function (o) {
                     return -o.date_update.getTime();
                 });
 
                 //log.info("Home.initDatabaseUpdates; sortedDomains", sortedDomains);
 
-                _.each(sortedDomains, function(domain, index) {
+                _.each(sortedDomains, function (domain, index) {
 
-                   // if (index < CM.MAX_DATABASE_UPDATES) {
+                    // if (index < CM.MAX_DATABASE_UPDATES) {
 
-                        var d = $.extend(true, {}, domain),
-                            m = moment(domain.date_update),
-                            //date_update =  m.format("MMMM DD, YYYY");
-                            date_update =  m.format("LL");
+                    var d = $.extend(true, {}, domain),
+                        m = moment(domain.date_update),
+                        //date_update =  m.format("MMMM DD, YYYY");
+                        date_update = m.format("LL");
 
-                        d.title = d.domain_name + " ("+ d.group_name + ")";
-                        d.date_update = date_update;
-                        d.url = '#' + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [d.domain_code]);
+                    d.title = d.domain_name + " (" + d.group_name + ")";
+                    d.date_update = date_update;
+                    d.url = '#' + Common.getURI(ROUTE.DOWNLOAD_INTERACTIVE, [d.domain_code]);
 
-                        databaseUpdates.push(d);
+                    databaseUpdates.push(d);
 
-                   // }
+                    // }
 
                 });
 
@@ -205,7 +204,7 @@ define([
 
             },
 
-            initTwitter: function() {
+            initTwitter: function () {
 
                 var self = this;
 
@@ -215,61 +214,53 @@ define([
 
                 amplify.publish(E.LOADING_SHOW, {container: $TWITTER});
 
-                setTimeout(function() {
+                setTimeout(function () {
 
                     Require(['twitter'],
-                      function() {
-                       twttr.widgets.createTimeline(
-                           CM.twitter.id,
-                           document.getElementById(s.TWITTER),
-                           {
-                               height: CM.twitter.height[Common.getLocale()] || CM.twitter.height["en"],
-                               width: '100%',
-                               screenName: "FAOStatistics"
-                           }
-                       );
+                        function () {
+                            twttr.widgets.createTimeline(
+                                CM.twitter.id,
+                                document.getElementById(s.TWITTER),
+                                {
+                                    height: CM.twitter.height[Common.getLocale()] || CM.twitter.height["en"],
+                                    width: '100%',
+                                    screenName: "FAOStatistics"
+                                }
+                            );
 
-                       amplify.publish(E.LOADING_HIDE, {container: $TWITTER});
+                            amplify.publish(E.LOADING_HIDE, {container: $TWITTER});
 
-                      },
-                      function (e) {
-                          log.error("Twitter widget is unavailable.", e);
-                          amplify.publish(E.LOADING_HIDE, {container: $TWITTER});
-                          $TWITTER.html('Twitter Timeline is unavailable.');
-                      });
+                        },
+                        function (e) {
+                            log.error("Twitter widget is unavailable.", e);
+                            amplify.publish(E.LOADING_HIDE, {container: $TWITTER});
+                            $TWITTER.html('Twitter Timeline is unavailable.');
+                        });
 
                 }, 500);
             },
 
-            initBulkDownload: function() {
-
-                //log.info("Home.initBulkDownload;");
+            initBulkDownload: function () {
 
                 var self = this;
 
                 API.bulkdownloads({
                     domain_code: '0'
-                }).then(function(d) {
-
-                    //log.info("Home.initBulkDownload;", d);
-
-                    //moment.locale(Common.getLocale());
+                }).then(function (d) {
 
                     var data = d.data[0],
                         size = Math.round(data.FileSize * 0.001),
                         mu = "MB", //data.FileSizeUnit,
                         m = moment(data.CreatedDate),
-                        date =  m.format("ll"),
+                        date = m.format("ll"),
                         url = data.URL;
 
                     self.$FAOSTAT_BULK_SIZE.html(size + " " + mu);
                     self.$FAOSTAT_BULK_DATE.html(date);
                     self.$FAOSTAT_BULK_ZIP.data('url', url);
 
-                }).fail(function(e) {
-
+                }).fail(function (e) {
                     log.error("Home.initBulkDownload; error", e);
-
                 });
 
             },
@@ -277,7 +268,7 @@ define([
             bindEventListeners: function () {
 
                 this.$FAOSTAT_BULK_ZIP.off();
-                this.$FAOSTAT_BULK_ZIP.on('click', function() {
+                this.$FAOSTAT_BULK_ZIP.on('click', function () {
 
                     amplify.publish(E.GOOGLE_ANALYTICS_EVENT, A.site.faostat_bulk_downloads_zip);
 
@@ -286,7 +277,7 @@ define([
                 });
 
                 this.$EXTERNAL_LINK.off();
-                this.$EXTERNAL_LINK.on('click', function(e) {
+                this.$EXTERNAL_LINK.on('click', function (e) {
 
                     var url = $(this).attr('href');
 

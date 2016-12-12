@@ -142,5 +142,4 @@ define([
 
     return new Modal();
 
-    
 });

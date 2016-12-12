@@ -25,7 +25,7 @@ define(function ( ) {
         DEFINITIONS: 'definitions',
         DEFINITIONS_BY_TYPE: 'definitions_by_type',
 
-       // DOWNLOAD_BULK: "bulk",
+        // DOWNLOAD_BULK: "bulk",
         DOWNLOAD_INTERACTIVE: "interactive",
         DOWNLOAD_METADATA: "metadata",
         //DOWNLOAD_ABOUT: "about",

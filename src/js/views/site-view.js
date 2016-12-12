@@ -13,7 +13,6 @@ define([
     'lib/common/waiting',
     'lib/common/loading',
     'globals/Common',
-    // TODO: move analytics in another section?
     'globals/GoogleAnalyticsManager',
     'globals/Export',
     'lib/search/search-box',

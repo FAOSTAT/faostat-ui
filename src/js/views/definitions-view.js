@@ -1,6 +1,4 @@
 /*global define, _:false, $, console, amplify, FM*/
-/*jslint todo: true */
-/*jslint nomen: true */
 define([
     'jquery',
     'loglevel',
@@ -44,8 +42,7 @@ define([
         OUTPUT: "#fs-definitions-output",
 
         // Definition output template
-        DEFINITIONS_LIST: "[data-role='definition']",
-
+        DEFINITIONS_LIST: "[data-role='definition']"
 
     };
 

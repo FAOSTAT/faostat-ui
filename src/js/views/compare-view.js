@@ -18,7 +18,6 @@ define([
     'fx-c-c/start',
     'fx-ds/itemRenders/tableItem',
     'highcharts-export',
-    //'jquery.rangeSlider',
     'ion.rangeSlider',
     'amplify'
 ], function ($, log, View, Common, A, C, E, EC, CM, HighchartsTemplate, template, i18nLabels, API, FilterBoxView, Q, ChartCreator, TableItem) {
@@ -101,7 +100,6 @@ define([
             var filter = this.addFilter();
 
             // init timerange
-            //this.$TIMERANGE.rangeSlider(CM.timerange.options);
             this.$TIMERANGE.ionRangeSlider(CM.timerange.options);
 
         },
@@ -127,7 +125,6 @@ define([
         onFilterBoxRemove: function (box) {
 
             log.warn('TODO: internal filter remove');
-            //this.removeFilter(filterBox);
             this.removeFilterBox(box);
 
         },
@@ -154,12 +151,6 @@ define([
             // TODO: destroy cached chart/tables
             this.$CHART.empty();
             this.$TABLES_CONTAINER.empty();
-
-            // Google Analytics Add CompareData Event
-/*            amplify.publish(E.GOOGLE_ANALYTICS_EVENT, {
-                category: F.GOOGLE_ANALYTICS.COMPARE.category,
-                action: F.GOOGLE_ANALYTICS.COMPARE.action.compare_data
-            });*/
 
             this._retrieveData()
                 .then(function (models) {
@@ -207,6 +198,7 @@ define([
 
             // retrieve with getData the data for the single box
             var requests = [];
+
             // TODO: fix the requests array (DIRTY fix to pass it to the tables)
             this.cachedRequest = [];
             _.each(filters, _.bind(function (f, index) {
@@ -239,7 +231,6 @@ define([
                 r = $.extend(true, {}, CM.getData, {
                     // TODO: get the years properly (from the domainSchema)
                     // filter the years accordingly to the domain
-                    //List4Codes: years,
                     null_values: null,
                     order_by: "year"
 
@@ -266,6 +257,7 @@ define([
         },
 
         _createTimeserieChart: function (models) {
+
             // create Chart
             var c = new ChartCreator();
             c.init($.extend(true, {},
@@ -388,7 +380,7 @@ define([
         dispose: function () {
 
             // TODO: delete all filters
-
+            
             this.unbindEventListeners();
 
             View.prototype.dispose.call(this, arguments);

@@ -31,16 +31,12 @@ define([
             $c = $(data.container);
 
         if (rt === 'append') {
-            // $c.append('<div style="padding:15px;" ' + role + '></div>');
             $c.append('<div ' + role + ' class="fs-loading text-center"> <span class="loading loading-48"></span> </div>');
         }
         else if (rt === 'prepend') {
             //$c.prepend('<div style="padding:15px;" ' + role +'></div>').find('[' + role + ']');
             $c.append('<div ' + role + ' class="fs-loading text-center"> <span class="loading loading-48"></span> </div>').find('[' + role + ']');
         }
-
-        //$c.find('#' + id).append('<i class="fa fa-refresh fa-spin fa-' + s + '"></i> ');
-        //$c.find('[' + role + ']').append('<i class="fa fa-circle-o-notch fa-spin fa-' + s + '"></i> ');
 
         if (sl) {
             $c.find('[' + role + ']').append('<span>' + l + '</span>');

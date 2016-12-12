@@ -6,11 +6,8 @@ define([
         'handlebars',
         'fs-t-c/templates/base_template',
         'fs-t-c/adapters/FAOSTAT_adapter',
-        /*'lib/table/templates/base_template',
-        'lib/table/adapters/FAOSTAT_adapter',*/
         'i18n!nls/common',
         'underscore.string'
-        //'screenfull'
     ],
     function ($, log, Common, Handlebars, Template, Adapter, i18n, _s) {
 

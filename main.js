@@ -357,7 +357,7 @@ require([
     'routes',
     'config/Config',
     'globals/Common',
-    'nprogress',
+    'nprogress'
 ], function ($, Application, routes, C, Common, NProgress) {
 
     "use strict";
