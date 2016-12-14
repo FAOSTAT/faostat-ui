@@ -16,8 +16,12 @@ define([
 
     function GoogleAnalyticsManager() {
 
-        // tracking page
-        ga('create', C.GOOGLE_ANALYTICS_ID, "auto");
+        // GA trackers. This will handle multiple GOOGLE ANALYTICS instances
+        //https://developers.google.com/analytics/devguides/collection/analyticsjs/creating-trackers#working_with_multiple_trackers
+        _.each(C.GOOGLE_ANALYTICS, function(analytics) {
+            ga('create', analytics.ID, "auto", analytics.NAME);
+        });
+        // ga('create', C.GOOGLE_ANALYTICS_ID, "auto");
 
         return this;
     }
@@ -50,7 +54,11 @@ define([
         }
         
         if (data.category !== undefined && data.action !== undefined) {
-            ga('send', event);
+            //ga('send', event);
+            _.each(ga.getAll(), function(tracker) {
+                tracker.send(event);
+            });
+
         }
         else {
             log.warn('GoogleAnalyticsManager.event; Event has not been saved:', data);
@@ -67,9 +75,18 @@ define([
 
         this.CURRENT_PAGE = Backbone.history.getFragment();
 
-        ga('set', {
+        /*ga('set', {
             page: this.CURRENT_PAGE,
             title: this.CURRENT_PAGE
+        });
+        */
+
+        var self = this;
+        _.each(ga.getAll(), function(tracker) {
+            tracker.set({
+                page: self.CURRENT_PAGE,
+                title: self.CURRENT_PAGE
+            });
         });
 
         return countPageView;
@@ -79,7 +96,10 @@ define([
    GoogleAnalyticsManager.prototype.pageView = function () {
 
        if (this.checkAndSetCurrentPage()) {
-           ga('send', 'pageview');
+          // ga('send', 'pageview');
+           _.each(ga.getAll(), function(tracker) {
+               tracker.send('pageview');
+           });
        }
 
     };
@@ -94,11 +114,20 @@ define([
             value = 100; // in milliseconds
 
         // ga('send', 'timing', [timingCategory], [timingVar], [timingValue], [timingLabel], [fieldsObject]);
-        ga('send', {
+        /*ga('send', {
             hitType: 'timing',
             timingCategory: category,
             timingVar: action,
             timingValue: value
+        });*/
+
+        _.each(ga.getAll(), function(tracker) {
+            tracker.send({
+                hitType: 'timing',
+                timingCategory: category,
+                timingVar: action,
+                timingValue: value
+            });
         });
 
     };
