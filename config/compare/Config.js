@@ -35,7 +35,7 @@ define([
 
         // TODO: DO THE BLACKLIST!!!!!
         groups: {
-            whitelist: ['Q', 'G1', 'G2', 'AS', 'M',  'FB' ,'R', 'O', 'I' ,'F', 'P', 'T'],
+            whitelist: ['Q', 'G1', 'G2', 'AS', 'M',  'FB' ,'R', 'O', 'I' ,'F', 'P', 'T', 'E'],
             blacklist: [
                 //'D', // (FS, HS) it doesn't have yearly data
             ]
@@ -62,7 +62,8 @@ define([
                 'RV', 'RP', 'RT', 'RL', 'OE',
                 'OA',
                 'CS', 'RM', 'RY', 'IC', 'EA',
-                'MK', 'EC', 'EE', 'EF', 'EL', 'EK', 'EP', 'ES', 'EW',
+                'MK', 'EC',
+                'EE', 'EF', 'EL', 'EK', 'EP', 'ES', 'EW',
                 'GT', 'GE', 'GM', 'GR', 'GY', 'GU', 'GP', 'GA', 'GV', 'GH', 'GB', 'GN',
                 'GL', 'GF', 'GC', 'GG', 'GI',
                 'FO',
